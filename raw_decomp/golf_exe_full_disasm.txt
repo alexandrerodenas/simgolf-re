@@ -1,0 +1,19 @@
+================================================================================
+FULL DISASSEMBLY: golf.exe .text section (0xB8000 bytes)
+ImageBase: 0x00400000
+EntryPoint: 0x00843056
+================================================================================
+  0x00401000:  jl       0x400fdf
+  0x00401002:  lea      eax, [ecx]
+  0x00401004:  xlatb    
+  0x00401005:  mov      ah, 0x63
+  0x00401007:  jo       0x401060
+  0x00401009:  xor      al, bh
+  0x0040100b:  lds      esp, ptr [ecx + ebp*4 - 0x2d]
+  0x0040100f:  jnp      0x40100a
+  0x00401011:  sbb      byte ptr [ebx - 0xc204c80], bl
+  0x00401017:  jmp      0x401095
+  0x00401019:  outsd    dx, dword ptr [esi]
+  0x0040101a:  cmpsb    byte ptr [esi], byte ptr es:[edi]
+  0x0040101b:  in       al, dx
+  0x0040101c:  mov      ebx, 0xa3cfd724
