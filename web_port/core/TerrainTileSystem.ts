@@ -48,14 +48,30 @@ export enum Corner {
  * Ici on ne stocke que les données utiles pour la simulation.
  * Les données de rendu (normales, ombres, etc.) sont dans la couche View.
  */
+/**
+ * Interface TileData — Représentation allégée d'une tuile.
+ *
+ * Correspond à la structure C Tile (584 octets).
+ * Dans l'original :
+ *   elevation[4] @ offset 0x000  (int × 4)
+ *   waterLevel   @ offset 0x010  (int)
+ *   type         @ offset 0x024  (int)
+ *   walls[4]     @ offset 0x234  (byte × 4, booléens)
+ */
 export interface TileData {
     type: TileType;
-    elevation: [number, number, number, number]; // 4 coins
-    hasWall: boolean;
+
+    /** Élévation des 4 coins (TopLeft, TopRight, BottomRight, BottomLeft) */
+    elevation: [number, number, number, number];
+
+    /** Mur/barrière sur chaque côté de la tuile */
+    walls: [boolean, boolean, boolean, boolean];
+
+    /** Présence d'un chemin sur la tuile */
     hasPath: boolean;
+
+    /** Variation visuelle (texture) */
     variation: number;
-    // Métadonnées supplémentaires optionnelles
-    flags?: number;
 }
 
 /**
@@ -95,7 +111,7 @@ export class TerrainEngine {
             this.tiles[i] = {
                 type: TileType.Grass,
                 elevation: [0, 0, 0, 0],
-                hasWall: false,
+                walls: [false, false, false, false],
                 hasPath: false,
                 variation: 0,
             };
