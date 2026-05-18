@@ -173,7 +173,10 @@ Voir `MAPPING.md` pour le détail des 38 exports.
 - [x] TextureManager.ts (chargement, cache, sélection par variante)
 - [ ] Analyse et conversion des 646 PCX (UI/sprites)
 - [ ] Analyse des 1893 FLC (animations sprites)
-- [ ] Intégration des textures dans le rendu isométrique
+- [x] Intégration des textures dans le rendu isométrique (IsometricRenderer.ts)
+- [x] Mapping TileType → TerrainType avec prefix match
+- [x] TextureManager.getTileTexture() avec recherche par préfixe
+- [x] Support de 4 thèmes visuels (Desert, Links, Parkland, Tropical)
 
 ---
 

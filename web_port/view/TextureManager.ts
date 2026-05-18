@@ -227,25 +227,63 @@ export class TextureManager {
     }
     
     /**
+     * Obtient les fichiers de texture pour un type donné.
+     * Cherche par préfixe de catégorie (ex: "SandBunker" match "SandBunkerA").
+     */
+    private getFilesByPrefix(theme: CourseTheme, prefix: string): TextureEntry[] {
+        if (!this.catalog) return [];
+
+        const candidates: TextureEntry[] = [];
+        const prefixLower = prefix.toLowerCase();
+
+        for (const [catKey, catData] of Object.entries(this.catalog.categories)) {
+            if (catKey.toLowerCase().startsWith(prefixLower)) {
+                const matching = catData.files.filter(
+                    f => f.theme === theme || f.theme === 'Textures' || f.theme === 'Data'
+                );
+                candidates.push(...matching);
+            }
+        }
+
+        return candidates;
+    }
+
+    /**
      * Retourne une texture pour un type de tuile spécifique du rendu isométrique.
+     * 
+     * La recherche se fait par préfixe : "SandBunker" trouvera "SandBunkerA",
+     * "SandBunker1A", etc. Ceci permet de gérer la nomenclature des fichiers
+     * originaux (BrushA, BrushB, TeeA, SandBunker1A, WaterShallowA...).
      * 
      * @param theme Thème du parcours
      * @param type Type de terrain
      * @param seed Seed pour la variation (basé sur position x,y)
-     * @returns Chemin de la texture
+     * @returns Chemin URL de la texture
      */
     getTileTexture(theme: CourseTheme, type: TerrainType, seed: number = 0): string {
-        const files = this.getTexturesForType(theme, type);
+        // Cherche les fichiers correspondant au type (par préfixe)
+        const typeKey = type.replace(/\s+/g, '');
+        const files = this.getFilesByPrefix(theme, typeKey);
+        
         if (files.length === 0) {
-            // Fallback : texture par défaut
+            // Fallback : texture basique
+            const fallback = this.getFilesByPrefix(theme, 'Brush');
+            if (fallback.length > 0) {
+                return this.entryToPath(fallback[Math.abs(seed) % fallback.length]);
+            }
             return `${this.basePath}/default.png`;
         }
         
         // Variation pseudo-aléatoire déterministe basée sur seed
         const idx = Math.abs(seed) % files.length;
-        const entry = files[idx];
+        return this.entryToPath(files[idx]);
+    }
+
+    /**
+     * Convertit une entrée de catalogue en chemin URL.
+     */
+    private entryToPath(entry: TextureEntry): string {
         const themeDir = entry.theme.toLowerCase();
-        
         if (entry.theme === 'Textures' || entry.theme === 'Data') {
             return `${this.basePath}/${entry.file}`;
         }
