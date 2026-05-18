@@ -190,9 +190,10 @@ Voir `MAPPING.md` pour le détail des 38 exports.
 - [x] Touch handler (pan/drag, tap, pinch zoom, long-press)
 - [x] MainMenu mobile (Nouvelle Partie, Continuer, Options)
 - [x] Index.html + app.ts (point d'entrée)
-- [ ] Adaptation aux formats tablette et téléphone
-- [ ] Écran de construction complet
-- [ ] Mode jeu (parcours) – affichage scorecard
+- [x] Conversion complète 649 PCX → PNG (interface, bodies, heads, flics)
+- [ ] Adaptation responsive tablette + téléphone
+- [ ] Écran de construction complet (mini-carte, infos trou, palette bâtiments)
+- [ ] Mode jeu (parcours) – scorecard, vue match, stats golfeurs
 
 ---
 
