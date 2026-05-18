@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "jsx": "preserve",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "@core/*": ["core/*"],
+      "@view/*": ["view/*"],
+      "@ui/*": ["ui/*"]
+    }
+  },
+  "include": ["core/**/*.ts", "view/**/*.ts", "ui/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
+}

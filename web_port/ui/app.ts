@@ -20,6 +20,7 @@ import { HUD } from './HUD';
 import { BuildToolbar, TERRAIN_TOOLS, BUILDING_TOOLS } from './BuildToolbar';
 import { MainMenu } from './MainMenu';
 import { GameManager } from '../core/GameManager';
+import { ScoringSystem } from '../core/ScoringSystem';
 
 async function init() {
     const canvas = document.getElementById('game-canvas') as HTMLCanvasElement;
