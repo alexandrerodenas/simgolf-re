@@ -160,6 +160,32 @@ Voir `MAPPING.md` pour le détail des 38 exports.
 - Nouveau : **1 118 429 lignes, 182 fonctions, 1 106 cibles d'appels**
 - Prologues détectés : push ebp (116) + __thiscall + thunk targets (80) + connues (26)
 
+**⚠️ CORRECTION MAJEURE — Les 3 "hubs" sont en fait 2 fonctions de dispatch + 1 parser**
+
+Les docs précédentes parlaient de "14 926 instructions" pour CoursEngine et "16 244" pour TileGrid.
+Ce chiffre vient d'une confusion entre **appels VERS** la fonction et instructions DANS la fonction :
+
+| Fonction | Adresse | Appels | Instructions réelles | Rôle réel |
+|----------|---------|:------:|:--------------------:|-----------|
+| CoursEngine::Update | 0x494f00 | 285× | **~200** | Dispatch buffer filler (word) |
+| TileGrid::Dispatch | 0x485e80 | 218× | **~130** | Dispatch buffer filler (byte) |
+| Parser de chaînes | 0x476dd0 | 296× | **~35** | Scan `{}[]$=^` dans strings |
+
+**Analyse réelle de CoursEngine (0x494f00) et TileGrid (0x485e80) :**
+
+Ce sont des variantes du **même pattern C++** (probablement un template) :
+1. Valide this->simulation/grid existe
+2. Bound check param_a via vtable[0xcc] (getBounds)
+3. Skip si plage vide (param_b == param_c)
+4. CoursEngine seulement : callback terrain (vtable[0x18] ou [0x1c]) si bit 31 de flags = 0
+5. Assure param_b <= param_c (swap si nécessaire)
+6. Clamp [param_b, param_c] dans les bornes
+7. Alloue un buffer via dispatch vtable (CoursEngine: [0x1c], TileGrid: [0x14])
+8. Remplit le buffer avec une valeur répétée (CoursEngine: word, TileGrid: byte)
+9. Notifie vtable[0x24](1)
+
+**Les vrais algorithmes complexes (IA golfeurs, physique, économie) sont dans les fonctions appelées par dispatch vtable**, pas dans ces hubs.
+
 **Pipeline nettoyé (8 fichiers C) :**
 
 | Fichier | Fonctions | Insn |
@@ -279,12 +305,12 @@ golf.exe (dépaqueté)
 │   ├── InitSound()
 │   └── GameLoop (timer-driven via SetTimer)
 │       ├── ProcessInput() ← GetKeyState, GetAsyncKeyState
-│       ├── UpdateSimulation() ← Hub 0x494f00 (CoursEngine)
+|       ├── UpdateSimulation() ← Hub 0x494f00 (CoursEngine, ~200 insn)
 │       │   ├── GameTickFunction (0x49846c) — 16 slots × 0x58
 │       │   ├── SmoothInterpolator (0x4969e0) — animation
-│       │   ├── Économie (Profit, Revenue, Memberships...)
-│       │   ├── Scoring (Par, Birdie, Eagle... SGA Rating)
-│       │   └── Tournois (Jr. Tour → Grand Slam)
+│       │   ├── Économie (Profit, Revenue, Memberships...) ← via vtable dispatch
+│       │   ├── Scoring (Par, Birdie, Eagle... SGA Rating) ← via vtable dispatch
+│       │   └── Tournois (Jr. Tour → Grand Slam) ← via vtable dispatch
 │       └── RenderFrame() ← Terrain.dll (38 exports)
 │           ├── initSystem() → JGL (jgld.dll)
 │           ├── render() → boucle isométrique
@@ -318,5 +344,5 @@ jgld.dll (1 export)
 
 ---
 
-*Document généré le 19 Mai 2026 — Hermes-RE*  
+*Document généré le 20 Mai 2026 — Hermes-RE*  
 *Prochaine mise à jour : avant le début du portage web*

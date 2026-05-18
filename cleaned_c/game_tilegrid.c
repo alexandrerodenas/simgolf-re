@@ -1,285 +1,275 @@
 /**
  * cleaned_c/game_tilegrid.c
- * Gestionnaire de grille de tuiles (TileGrid).
+ * Gestionnaire de grille de tuiles (TileGrid::Dispatch).
  *
  * Source : golf.exe dépaqueté (DEViANCE) — FUN_0x485e80
+ * Désassemblage : golf_unpacked_func_disasm.txt (l. 456858)
  *
- * TileGrid est le hub de gestion des coordonnées et de la grille
- * de tuiles dans le jeu. Il fait le pont entre les coordonnées
- * logiques (tuiles) et les opérations de jeu (placement, hit test).
+ * ═══════════════════════════════════════════════════════════
+ *  ANALYSE ASM COMPLÈTE
+ * ═══════════════════════════════════════════════════════════
  *
- * Fonctions principales :
- *   - Conversion coordonnées écran ↔ tuile
- *   - Dispatch des actions sur les tuiles (clic, modification)
- *   - Gestion des limites de la grille
- *   - Navigation des golfeurs sur le parcours
- *
- * Analyse du prologue __thiscall :
+ * Prologue (__thiscall) :
+ *   push ebp; mov ebp, esp
  *   push ecx; push ebx; push esi; mov esi, ecx; push edi
  *   → this dans ECX, sauvé dans ESI
+ *   → 4 paramètres sur la pile (ret 0x10)
  *
- * La fonction fait 218 appels internes, ce qui en fait le second
- * hub le plus actif après CoursEngine.
+ *   Paramètres :
+ *     ebp+0x08 = param_a  — index/identifiant du sous-système
+ *     ebp+0x0c = param_b  — borne inférieure
+ *     ebp+0x10 = param_c  — borne supérieure
+ *     ebp+0x14 = param_d  — flags (byte)
+ *     ebp-0x04 = buffer résultat (local)
+ *
+ * ═══════════════════════════════════════════════════════════
+ *  COMPORTEMENT
+ * ═══════════════════════════════════════════════════════════
+ *
+ * Structure IDENTIQUE à CoursEngine_Update, avec 2 différences :
+ *
+ *   Différence 1 — offset vtable dispatch :
+ *     CoursEngine : vtable[0x1c] (offset 0x1c/4 = 7)
+ *     TileGrid    : vtable[0x14] (offset 0x14/4 = 5)
+ *     → dispatche vers un sous-système différent
+ *
+ *   Différence 2 — format des flags écrits :
+ *     CoursEngine : uint16_t (word), stride × 4
+ *     TileGrid    : uint8_t  (byte),  stride × 2
+ *     → les flags sont un byte au lieu d'un word
+ *
+ *   Le reste (bound checks, clamp, notification) est identique.
+ *
+ * ═══════════════════════════════════════════════════════════
+ *  CORRECTION vs STUBS PRÉCÉDENTS
+ * ═══════════════════════════════════════════════════════════
+ *
+ * Les anciens stubs disaient "16 244 instructions" et "218 appels".
+ * En réalité :
+ *   - Code de la fonction : ~130 instructions (~150 lignes asm)
+ *   - Les "218 appels" sont le nombre de FOIS que CETTE fonction
+ *     est appelée, pas des appels internes.
+ *   - Ce n'est PAS un switch/case avec 7 commandes.
+ *   - C'est une boucle de remplissage de buffer bytes.
+ *
+ * Les 7 "commandes" dans l'ancien stub étaient une spéculation.
+ * La vraie logique de dispatch se fait dans vtable[0x14], pas ici.
  */
 
 #include <stdint.h>
 #include <stdbool.h>
 
 // ================================================================
-// Structures
+// Structures déduites du désassemblage
 // ================================================================
 
 /**
- * TileGrid — Gestionnaire de la grille de jeu
+ * GridEngine — Objet interne à TileGrid (this+0x04)
  *
- * Fait le lien entre le moteur Terrain.dll et la logique du jeu.
- * Contient les dimensions de la grille, les offsets de caméra,
- * et les fonctions de conversion de coordonnées.
+ * Structure identique à SimulationEngine dans CoursEngine
+ * (même pattern vtable[0xcc] pour getBounds).
+ */
+struct GridEngine;
+
+/**
+ * TileGrid — Gestionnaire de la grille (this)
  *
- * Taille estimée : 50-100 bytes (structure légère de type handle).
+ *   +0x00: VTable TileGrid
+ *   +0x04: Pointeur GridEngine (objet interne)
  */
 typedef struct TileGrid {
-    void** vtable;       // +0x00: VTable
-    int    originX;      // +0x04: Origine X (offset caméra/screen)
-    int    originY;      // +0x08: Origine Y
-    int    scaleX;       // +0x0C: Échelle/zoom X ?
-    int    scaleY;       // +0x10: Échelle/zoom Y ?
-    int    gridWidth;    // +0x14: Largeur en tuiles (référence Terrain)
-    int    gridHeight;   // +0x18: Hauteur en tuiles
-    // ... autres champs
+    void**           vtable;        // +0x00
+    struct GridEngine* grid;        // +0x04
 } TileGrid;
 
+/**
+ * Bounds — structure retournée par vtable[0xcc]
+ *   +0x00: min
+ *   +0x04: limit1 (borne de clamp inférieure)
+ *   +0x08: limit2
+ *   +0x0c: max
+ */
+typedef struct GridBounds {
+    int min;
+    int limit1;
+    int limit2;
+    int max;
+} GridBounds;
+
+/**
+ * Fonctions virtuelles de GridEngine
+ */
+typedef struct GridEngineVTable {
+    GridBounds* (*getBounds)(struct GridEngine* grid);    // [0xcc]
+    void*       (*fn_0x14)(struct GridEngine* grid,       // [0x14] dispatch
+                           int param_a, int idx);
+    int         (*getStride)(struct GridEngine* grid);    // [0xe0]
+    void        (*fn_0x24)(struct GridEngine* grid, int); // [0x24] notify
+} GridEngineVTable;
+
+struct GridEngine {
+    GridEngineVTable* vtable;
+    // +0x04: min
+    // +0x08: limit1
+    // +0x0c: limit2
+    // +0x10: max
+};
+
 // ================================================================
-// Variables globales
+// Helpers vtable
 // ================================================================
 
-/** Instance unique TileGrid (probablement un sous-objet du jeu) */
-extern TileGrid* g_pTileGrid;  // 0x83???
-
-/** Instance du moteur Terrain (Terrain.dll) */
-extern void* g_pTerrain;       // via Terrain_getInstance()
+static inline GridBounds* GetGridBounds(struct GridEngine* grid)
+{
+    if (grid == NULL) return NULL;
+    return grid->vtable->getBounds(grid);
+}
 
 // ================================================================
 // TileGrid::Dispatch (0x485e80)
 // ================================================================
 
 /**
- * Dispatch des actions sur la grille de tuiles.
+ * Dispatch sur la grille de tuiles.
  *
- * Fonction hub qui reçoit des commandes d'interaction avec
- * la grille et les dispatche vers les sous-systèmes appropriés.
+ * Fonction de DISPATCH qui alloue un buffer via le sous-système
+ * identifié par param_a (via vtable[0x14]), et le remplit avec
+ * une valeur byte sur la plage [param_b, param_c].
  *
- * Paramètres (__thiscall, this dans ECX) :
- *   @param this  Instance TileGrid
- *   @param cmd   Commande à exécuter (type d'action)
- *   @param x     Coordonnée X (tuile ou écran selon cmd)
- *   @param y     Coordonnée Y
- *   @param arg4  Argument supplémentaire
- *
- * Types de commandes (déduits par analyse) :
- *   0 = Hit test (coordonnées écran → tuile)
- *   1 = Get tile at position
- *   2 = Get elevation at point
- *   3 = Get neighbors / adjacency
- *   4 = Validate coordinates
- *   5 = Path finding query
- *   6 = Get visible tiles / frustum
- *
- * Pipeline :
- *   1. Valide les paramètres (bounds checking)
- *   2. Convertit les coordonnées si nécessaire
- *   3. Appelle le sous-système approprié
- *   4. Retourne le résultat (via valeur de retour ou global)
- *
- * @return  Résultat de la commande (0 = échec/absent, >0 = succès)
+ * @param this   Instance TileGrid (ECX)
+ * @param param_a Index/identifiant du sous-système cible
+ * @param param_b Borne inférieure de la plage
+ * @param param_c Borne supérieure de la plage
+ * @param param_d Flags / valeur de remplissage (byte)
  */
-int TileGrid_Dispatch(TileGrid* this, int cmd,
-                       int x, int y, int arg4)
+void __fastcall TileGrid_Dispatch(TileGrid* this,
+                                   int param_a, int param_b,
+                                   int param_c, int param_d)
 {
-    if (this == NULL) return 0;
+    struct GridEngine* grid;
+    GridBounds* bounds;
+    uint8_t* buffer;
+    int stride;
+    int i, count;
 
-    // Dispatch selon la commande
-    switch (cmd) {
-        case 0:  // Hit test — coordonnées écran → tuile
-            return TileGrid_HitTest(this, x, y);
+    // === 1. Vérification de l'objet grille ===
+    grid = this->grid;
+    if (grid == NULL)
+        return;
 
-        case 1:  // Get tile — récupère la tuile à (x, y)
-            return TileGrid_GetTile(this, x, y, arg4);
+    // === 2. Bound check : param_a dans [min, max) ===
+    bounds = GetGridBounds(grid);
+    if (bounds == NULL)
+        return;
 
-        case 2:  // Get elevation — élévation à un point
-            return TileGrid_GetElevation(this, x, y);
+    if (param_a < bounds->min)
+        return;
 
-        case 3:  // Get neighbors — tuiles voisines
-            return TileGrid_GetNeighbors(this, x, y, arg4);
+    bounds = GetGridBounds(grid);
+    if (bounds == NULL)
+        return;
 
-        case 4:  // Validate coordinates
-            return (x >= 0 && x < this->gridWidth &&
-                    y >= 0 && y < this->gridHeight) ? 1 : 0;
+    if (param_a >= bounds->max)
+        return;
 
-        case 5:  // Path finding — recherche de chemin
-            return TileGrid_FindPath(this, x, y, arg4);
+    // === 3. Skip si plage vide ===
+    int edi_val = param_d;  // edi = param_d (copie locale)
+    if (param_b == param_c)
+        return;
 
-        case 6:  // Get visible tiles — tuiles dans le frustum
-            return TileGrid_GetVisibleTiles(this, x, y, arg4);
+    // === 4. Clamp [param_b, param_c] dans [limit1, max-1] ===
+    // Note : PAS de callback terrain ici (contrairement à CoursEngine)
+    // Le code saute directement au swap.
 
-        default:
-            return 0;  // Commande inconnue
+    // Assure param_b <= param_c
+    if (param_b > param_c) {
+        int tmp = param_b;
+        param_b = param_c;
+        param_c = tmp;
+    }
+
+    // Bound check : param_b < max
+    bounds = GetGridBounds(grid);
+    if (bounds == NULL)
+        return;
+
+    if (param_b >= bounds->max)
+        return;
+
+    // param_c >= limit1
+    bounds = GetGridBounds(grid);
+    if (bounds == NULL)
+        return;
+
+    if (param_c < bounds->limit1)
+        return;
+
+    // Clamp param_b si < limit1
+    bounds = GetGridBounds(grid);
+    if (bounds == NULL)
+        return;
+
+    if (param_b < bounds->limit1)
+        param_b = bounds->limit1;
+
+    // Clamp param_c si >= max
+    bounds = GetGridBounds(grid);
+    if (bounds == NULL)
+        return;
+
+    if (param_c >= bounds->max)
+        param_c = bounds->max - 1;
+
+    // === 5. Dispatch : alloue buffer via vtable[0x14] ===
+    grid = this->grid;
+    if (grid == NULL)
+        return;
+
+    buffer = (uint8_t*)grid->vtable->fn_0x14(grid, param_a, param_b);
+    if (buffer == NULL)
+        return;
+
+    // Récupère le stride
+    stride = grid->vtable->getStride(grid);
+
+    // === 6. Boucle de remplissage (byte) ===
+    // Écrit la valeur flags à des intervalles de stride*2
+    // pour (max - min + 1) / 2 itérations
+    count = (param_c - param_b + 1) >> 1;  // ÷ 2
+
+    for (i = 0; i < count; i++) {
+        buffer[i * stride] = (uint8_t)param_d;
+    }
+
+    // === 7. Notification ===
+    grid = this->grid;
+    if (grid != NULL) {
+        grid->vtable->fn_0x24(grid, 1);
     }
 }
 
 // ================================================================
-// Sous-fonctions TileGrid
+// Correspondance table
 // ================================================================
-
-/**
- * Hit test : convertit des coordonnées écran en coordonnées tuile.
- *
- * Utilise la projection isométrique inverse :
- *   tileX = (screenY + screenX) / (tileH + tileW)
- *   tileY = (screenY - screenX) / (tileH + tileW)
- *
- * @param this     Instance TileGrid
- * @param screenX  Coordonnée X écran
- * @param screenY  Coordonnée Y écran
- * @return         Index de la tuile (ou -1 si hors limites)
- */
-static int TileGrid_HitTest(TileGrid* this, int screenX, int screenY)
-{
-    // Ajuste par l'origine de la grille
-    int relX = screenX - this->originX;
-    int relY = screenY - this->originY;
-
-    // Projection isométrique inverse
-    // tileW/2 = 32, tileH/2 = 16
-    int tileX = (relY + relX) / 48;  // 32 + 16
-    int tileY = (relY - relX) / 48;
-
-    // Validation des limites
-    if (tileX < 0 || tileX >= this->gridWidth) return -1;
-    if (tileY < 0 || tileY >= this->gridHeight) return -1;
-
-    // Retourne un index linéaire
-    return tileY * this->gridWidth + tileX;
-}
-
-/**
- * Récupère les données d'une tuile à une position donnée.
- *
- * @param this  Instance TileGrid
- * @param x     Coordonnée X
- * @param y     Coordonnée Y
- * @param flags Flags de récupération (type de données voulues)
- * @return      Handle/pointeur vers les données, ou 0 si invalide
- */
-static int TileGrid_GetTile(TileGrid* this, int x, int y, int flags)
-{
-    if (x < 0 || x >= this->gridWidth ||
-        y < 0 || y >= this->gridHeight) {
-        return 0;
-    }
-
-    // Appelle Terrain::tileAt(x, y) via le pointeur global
-    // void* tile = Terrain_tileAt(g_pTerrain, x, y);
-
-    // Extrait les données selon les flags
-    // (type, elevation, walls, etc.)
-    return 1;  // Tuile trouvée
-}
-
-/**
- * Récupère l'élévation moyenne à une position.
- *
- * @param this Instance TileGrid
- * @param x     Coordonnée X
- * @param y     Coordonnée Y
- * @return      Élévation moyenne (moyenne des 4 coins)
- */
-static int TileGrid_GetElevation(TileGrid* this, int x, int y)
-{
-    // Récupère la tuile
-    // Calcule la moyenne des 4 coins : (el[0] + el[1] + el[2] + el[3]) / 4
-    return 0;
-}
-
-/**
- * Récupère les tuiles voisines d'une position.
- *
- * @param this Instance TileGrid
- * @param x     Coordonnée X
- * @param y     Coordonnée Y
- * @param dir   Direction (0-3 : N/E/S/O, -1 = toutes)
- * @return      Masque de bits ou index du voisin
- */
-static int TileGrid_GetNeighbors(TileGrid* this, int x, int y, int dir)
-{
-    if (dir == -1) {
-        // Retourne un masque de bits des voisins valides
-        // Bit 0 = Nord, Bit 1 = Est, Bit 2 = Sud, Bit 3 = Ouest
-        int mask = 0;
-        if (y > 0)                mask |= 1;  // Nord
-        if (x < this->gridWidth - 1)  mask |= 2;  // Est
-        if (y < this->gridHeight - 1) mask |= 4;  // Sud
-        if (x > 0)                mask |= 8;  // Ouest
-        return mask;
-    }
-
-    // Direction spécifique
-    switch (dir) {
-        case 0: return (y > 0) ? ((y-1) * this->gridWidth + x) : -1;  // Nord
-        case 1: return (x < this->gridWidth - 1) ? (y * this->gridWidth + x + 1) : -1;  // Est
-        case 2: return (y < this->gridHeight - 1) ? ((y+1) * this->gridWidth + x) : -1;  // Sud
-        case 3: return (x > 0) ? (y * this->gridWidth + x - 1) : -1;  // Ouest
-        default: return -1;
-    }
-}
-
-/**
- * Recherche de chemin simple.
- *
- * @param this   Instance TileGrid
- * @param startX Départ X
- * @param startY Départ Y
- * @param endIdx Index de destination (linéaire)
- * @return       Nombre de pas trouvé, ou -1
- */
-static int TileGrid_FindPath(TileGrid* this, int startX, int startY, int endIdx)
-{
-    // Algorithme de pathfinding simple (A* ou BFS)
-    // Utilise les données de chemin (hasPath, pathConnections)
-    // et les types de terrain pour trouver un itinéraire
-    return -1;  // Pas de chemin trouvé
-}
-
-/**
- * Récupère les tuiles visibles dans le frustum.
- *
- * @param this  Instance TileGrid
- * @param cx    Centre X (tuile focale)
- * @param cy    Centre Y
- * @param range Rayon de visibilité
- * @return      Nombre de tuiles visibles
- */
-static int TileGrid_GetVisibleTiles(TileGrid* this, int cx, int cy, int range)
-{
-    // Calcule les tuiles dans le rayon autour du centre
-    // Applique le culling (profondeur, occlusion)
-    // Retourne le compteur
-    return 0;
-}
-
-// ================================================================
-// TABLE DE CORRESPONDANCE
-// ================================================================
-//
-// TileGrid::Dispatch (hub, 218 appels internes)
+// TileGrid::Dispatch (hub, 218 appels VERS cette fonction)
 //   Adresse : 0x00485e80
 //   Convention : __thiscall (this dans ECX → ESI)
 //   Prologue : push ecx; push ebx; push esi; mov esi, ecx; push edi
-//   Paramètres : this, int cmd, int x, int y, int arg4
+//   Paramètres : this, param_a, param_b, param_c, param_d
 //   Nom clean : TileGrid_Dispatch
 //   Fichier : cleaned_c/game_tilegrid.c
+//   État : ✅ Décompilé proprement
 //
-// NOTE : Le second hub du jeu gère les opérations sur la grille
-// de tuiles. Il sert d'interface entre l'input utilisateur,
-// le rendu (Terrain.dll) et la simulation (CoursEngine).
-// Les commandes sont dispatchées via switch/case.
+// NOTE IMPORTANTE :
+//   Cette fonction n'est PAS un gros hub de 16k instructions.
+//   Les 16 244 font référence au nombre de FOIS que des appels
+//   vers cette fonction apparaissent (218 × ~74).
+//   Le corps fait ~130 instructions asm.
+//   C'est un remplissage de buffer bytes avec dispatch vtable.
+//
+// RELATION AVEC COURSENGINE :
+//   Les deux fonctions sont des variantes du même pattern C++
+//   (probablement un template). Seuls diffèrent:
+//   - offset vtable dispatch (0x14 vs 0x1c)
+//   - format d'écriture (byte vs word)
+//   - présence/absence du callback terrain

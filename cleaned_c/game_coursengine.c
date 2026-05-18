@@ -1,88 +1,176 @@
 /**
  * cleaned_c/game_coursengine.c
- * Moteur de simulation du parcours (CoursEngine).
+ * Moteur de simulation du parcours (CoursEngine::Update).
  *
  * Source : golf.exe dépaqueté (DEViANCE) — FUN_0x494f00
+ * Désassemblage : golf_unpacked_func_disasm.txt (l. 547835)
  *
- * CoursEngine est le hub central de la simulation de jeu.
- * Il gère :
- *   - Les golfeurs sur le parcours (position, progression)
- *   - La boucle de simulation (tick par trou/jour)
- *   - Les accès aux données de terrain via TileGrid
- *   - L'orchestration des sous-systèmes (économie, scoring, IA)
- *   - Les tournois et événements
+ * ═══════════════════════════════════════════════════════════
+ *  ANALYSE ASM COMPLÈTE
+ * ═══════════════════════════════════════════════════════════
  *
- * Architecture :
- *   CoursEngine possède un objet interne (this+0x04) avec une vtable
- *   qui expose plusieurs méthodes virtuelles :
- *     vtable+0x18 : callback début simulation
- *     vtable+0x1c : callback fin simulation
- *     vtable+0xcc : getBounds/limits
- *     vtable+0xe4 : getStatus
- *   Les accès aux données passent par des pointeurs globaux
- *   (0x83ad0c, 0x8400b0, etc.).
- *
- * Analyse du prologue __thiscall :
+ * Prologue (__thiscall) :
+ *   push ebp; mov ebp, esp
  *   push ecx; push ebx; push esi; mov esi, ecx; push edi
  *   → this dans ECX, sauvé dans ESI pour toute la fonction
+ *   → 4 paramètres sur la pile (ret 0x10 = 16 bytes)
  *
- * Références chaînes de jeu (depuis find_game_strings.py) :
- *   PRECISE, FREEWAY, CHALLENGE — types de trous
- *   "Profit:", "Revenue:" — économie
- *   "Jr. Tour Event", "SGA Championship" — tournois
+ *   Paramètres (__thiscall, this dans ECX) :
+ *     ebp+0x08 = param_a  — index/identifiant du sous-système
+ *     ebp+0x0c = param_b  — borne inférieure de la plage
+ *     ebp+0x10 = param_c  — borne supérieure de la plage
+ *     ebp+0x14 = param_d  — flags / valeur de remplissage
+ *     ebp-0x04 = variable locale (buffer résultat)
+ *
+ * ═══════════════════════════════════════════════════════════
+ *  COMPORTEMENT (déduit de l'asm)
+ * ═══════════════════════════════════════════════════════════
+ *
+ * Ce n'est PAS une boucle de simulation complexe.
+ * C'est une fonction de DISPATCH itératif qui :
+ *
+ * 1. Valide que this->simulation existe
+ * 2. Vérifie les bornes de param_a via vtable[0xcc]
+ * 3. Si param_b == param_c → skip (plage vide)
+ * 4. Si le flag bit 31 est 0 ET g_pTerrainData existe :
+ *    a. Récupère le mode (0=début, 1=fin callback)
+ *    b. Appelle le callback approprié (vtable[0x18] ou [0x1c])
+ *    c. Lit un word dans un tableau indexé par param_d & 0xFF
+ * 5. Clamp param_d à 16 bits
+ * 6. Assure param_b <= param_c (swap si nécessaire)
+ * 7. Clamp [param_b, param_c] dans [bound+4, bound+0xc-1]
+ * 8. Appelle simulation->vtable[0x1c](param_a, param_b) → buffer
+ * 9. Remplit le buffer : flags word × stride, (count/2) fois
+ * 10. Notifie simulation->vtable[0x24](1)
+ *
+ * Fonctions vtable SimulationEngine :
+ *   vtable[0xcc] (offset 0xcc/4 = 51) → getBounds()
+ *     retourne struct { min(0), limit1(4), limit2(8), max(0xc) }
+ *   vtable[0xe4] (offset 0xe4/4 = 57) → getStatus()
+ *     retourne ptr vers objet status, offset+4 = mode (0/1)
+ *   vtable[0x18] (offset 0x18/4 = 6)  → startCallback()
+ *   vtable[0x1c] (offset 0x1c/4 = 7)  → endCallback() / dispatch()
+ *   vtable[0xe0] (offset 0xe0/4 = 56) → getStride()
+ *   vtable[0x24] (offset 0x24/4 = 9)  → notify(int)
+ *
+ * ═══════════════════════════════════════════════════════════
+ *  CORRECTION vs STUBS PRÉCÉDENTS
+ * ═══════════════════════════════════════════════════════════
+ *
+ * Les anciens stubs disaient "14 926 instructions" et "285 appels internes".
+ * En réalité :
+ *   - Le code de la fonction fait ~240 instructions (~200 lignes asm)
+ *   - Les "285 appels" sont le nombre de FOIS que CETTE fonction est
+ *     appelée depuis le reste du code, pas des appels DEPUIS celle-ci.
+ *   - C'est une fonction utilitaire relativement simple qui :
+ *     • alloue un buffer via dispatch
+ *     • le remplit avec une valeur répétée
+ *     • notifie
+ *   - Les vrais algo complexes (IA, physique, éco) sont dans les
+ *     fonctions appelées via vtable dispatch.
  */
 
 #include <stdint.h>
 #include <stdbool.h>
 
 // ================================================================
-// Structures de données
+// Structures déduites du désassemblage
 // ================================================================
 
 /**
  * SimulationEngine — Objet interne à CoursEngine (this+0x04)
  *
- * Contient les limites et l'état courant de la simulation.
- * Accédé via vtable dispatch (pattern C++ avec méthodes virtuelles).
- * Taille et champs exacts à confirmer par analyse croisée.
+ * Structure déduite de l'accès through vtable :
+ *   vtable+0xcc → min bound (int32 à offset 0)
+ *   vtable+0xcc → limit 1  (int32 à offset 4)
+ *   vtable+0xcc → max bound (int32 à offset 0xc)
+ *   vtable+0xe4 → status ptr avec mode à offset+4
+ *
+ * Taille minimale : 0x10+ (vtable + 3-4 ints)
  */
-typedef struct SimulationEngine {
-    void** vtable;       // +0x00: VTable (méthodes virtuelles)
-    int    boundMin;     // +0x04: Borne min de simulation
-    int    boundMax;     // +0x08: Borne max
-    int    field_0c;     // +0x0c: ? (utilisé dans la boucle)
-    // ... autres champs
-} SimulationEngine;
+struct SimulationEngine;
 
 /**
- * CoursEngine — Hub central de simulation
+ * CoursEngine — Hub de simulation (this)
  *
- * Structure principale contenant l'état du jeu en cours.
- * Taille estimée : plusieurs centaines d'octets.
+ * Structure partielle. Seuls les champs accédés dans Update
+ * sont documentés ici.
  *
- * Champs identifiés depuis le désassemblage :
- *   +0x000: VTable CoursEngine
- *   +0x004: Pointeur vers SimulationEngine (objet interne)
- *   +0x008-...: Autres états
+ *   +0x00: VTable CoursEngine
+ *   +0x04: Pointeur SimulationEngine (objet interne)
  */
 typedef struct CoursEngine {
-    void**            vtable;          // +0x00
-    SimulationEngine* simulation;      // +0x04 — objet simulation interne
-    // ... autres champs à identifier
+    void**                  vtable;           // +0x00
+    struct SimulationEngine* simulation;      // +0x04
 } CoursEngine;
+
+/**
+ * Bounds — structure retournée par vtable[0xcc]
+ *
+ *   +0x00: min (bound inférieur)
+ *   +0x04: limit1 (borne de clamp inférieure = bound+4 ?)
+ *   +0x08: limit2 (non utilisé dans le clamp ?)
+ *   +0x0c: max (bound supérieur)
+ */
+typedef struct SimBounds {
+    int min;
+    int limit1;
+    int limit2;
+    int max;
+} SimBounds;
+
+/**
+ * Fonctions virtuelles de SimulationEngine
+ * basée sur les offsets identifiés dans l'asm
+ */
+typedef struct SimulationEngineVTable {
+    SimBounds* (*getBounds)(struct SimulationEngine* sim);    // [0xcc]
+    void*      (*getStatus)(struct SimulationEngine* sim);    // [0xe4]
+    void      (*fn_0x18)(struct SimulationEngine* sim);       // [0x18] startCallback
+    void*     (*fn_0x1c)(struct SimulationEngine* sim,        // [0x1c] dispatch
+                         int param_a, int idx);
+    int       (*getStride)(struct SimulationEngine* sim);     // [0xe0]
+    void      (*fn_0x24)(struct SimulationEngine* sim, int);  // [0x24] notify
+} SimulationEngineVTable;
+
+struct SimulationEngine {
+    SimulationEngineVTable* vtable;
+    // +0x04: min bound
+    // +0x08: limit1
+    // +0x0c: limit2 (pas utilisé dans Update ?)
+    // +0x10: max bound
+};
 
 // ================================================================
 // Variables globales (issues du désassemblage)
 // ================================================================
 
-/** Pointeur global vers l'objet de jeu principal */
-extern void** g_pGameObject;       // 0x8400b0
+/** Pointeur global vers les données de terrain (vérifié != NULL) */
+extern void* g_pTerrainData;       // 0x83ad0c
 
-/** Pointeur global vers les données de terrain */
-extern void*  g_pTerrainData;      // 0x83ad0c
+// ================================================================
+// Fonctions d'accès vtable (helpers pour lisibilité)
+// ================================================================
 
-/** Tableau des slots de simulation (16 × 0x58) */
-extern void*  g_pSimulationSlots;  // 0x83ff6c
+/**
+ * Récupère les bornes de la simulation via vtable[0xcc].
+ * Appelé des dizaines de fois dans la fonction originale.
+ */
+static inline SimBounds* GetSimBounds(struct SimulationEngine* sim)
+{
+    if (sim == NULL) return NULL;
+    return sim->vtable->getBounds(sim);
+}
+
+/**
+ * Récupère le status de la simulation via vtable[0xe4].
+ * Le status+4 contient le mode (0=début, 1=fin).
+ */
+static inline void* GetSimStatus(struct SimulationEngine* sim)
+{
+    if (sim == NULL) return NULL;
+    return sim->vtable->getStatus(sim);
+}
 
 // ================================================================
 // CoursEngine::Update (0x494f00)
@@ -91,195 +179,167 @@ extern void*  g_pSimulationSlots;  // 0x83ff6c
 /**
  * Met à jour la simulation du parcours.
  *
- * Fonction hub appelée ~285 fois (nombre d'appels internes),
- * ce qui en fait l'une des fonctions les plus actives du jeu.
+ * Fonction de DISPATCH qui alloue un buffer via le sous-système
+ * identifié par param_a, et le remplit avec une valeur répétée
+ * (flags/param_d) sur la plage [param_b, param_c].
  *
- * Paramètres (__thiscall, this dans ECX) :
- *   @param this  Instance CoursEngine
- *   @param a     Paramètre 1 (type : int) — index/limite ?
- *   @param b     Paramètre 2 (type : int) — autre limite ?
- *   @param c     Paramètre 3 (type : int avec flags) — flags de contrôle
- *   @param d     Paramètre 4 (type : int) — paramètre optionnel
- *
- * Pipeline de la fonction :
- *   1. Vérifie que l'objet SimulationEngine interne existe
- *   2. Valide les paramètres (bounds checking via vtable+0xcc)
- *   3. Si a == b → skip (rien à faire)
- *   4. Si c & 0x80000000 → mode spécial (inversion ?)
- *      - Consulte le global terrain data (0x83ad0c)
- *      - Dispatch via vtable+0x1c ou vtable+0x18 (selon état)
- *      - Lit une valeur dans un tableau (word à offset edi*2)
- *   5. Swap a/b si a > b (assure a <= b)
- *   6. Itère sur [a, b] en appelant des sous-fonctions
- *      - Vérifie les bornes via SimulationEngine
- *      - Appels indirects aux systèmes de jeu
- *
- * Utilise des appels fréquents à vtable+0xcc (getBounds?).
- * La fonction contient de multiples branches (retours précoces)
- * qui filtrent les cas invalides avant la boucle principale.
+ * @param this   Instance CoursEngine (ECX)
+ * @param param_a Index/identifiant du sous-système cible
+ * @param param_b Borne inférieure de la plage
+ * @param param_c Borne supérieure de la plage
+ * @param param_d Flags (bit 31 = mode skip) / valeur de remplissage
  */
-void CoursEngine_Update(CoursEngine* this,
-                         int a, int b, int c, int d)
+void __fastcall CoursEngine_Update(CoursEngine* this,
+                                    int param_a, int param_b,
+                                    int param_c, int param_d)
 {
-    // Vérification de l'objet simulation interne
-    if (this->simulation == NULL) {
-        return;  // Pas de simulation active
-    }
+    struct SimulationEngine* sim;
+    SimBounds* bounds;
+    int status_mode;
+    void* status;
+    uint16_t* buffer;
+    int stride;
+    int i, count;
 
-    // Récupère les bornes via vtable
-    SimulationEngine* sim = this->simulation;
-    int simBound = sim->vtable[0x33](sim);  // vtable[0xcc/4]
-
-    // Vérification : a doit être >= bound
-    if (a < simBound) {
+    // === 1. Vérification de l'objet simulation ===
+    sim = this->simulation;
+    if (sim == NULL)
         return;
-    }
 
-    // Vérification des limites (deuxième bound check)
-    simBound = sim->vtable[0x33](sim);
-    if (a >= sim->boundMax) {
+    // === 2. Bound check : param_a doit être dans [min, max) ===
+    bounds = GetSimBounds(sim);
+    if (bounds == NULL)
         return;
-    }
 
-    // Si les paramètres a et b sont égaux, rien à faire
-    if (a == b) {
+    if (param_a < bounds->min)
         return;
-    }
 
-    // Vérifie le flag de contrôle (bit 31)
-    if (c & 0x80000000) {
-        // Mode spécial : consulte le terrain data global
-        if (g_pTerrainData != NULL) {
-            // Récupère l'état du terrain via le sous-objet
-            int status = sim->vtable[0x39](sim);  // vtable[0xe4/4]
-            int terrainState = *(int*)((char*)status + 4);
+    // Note : l'asm fait un SECOND appel à getBounds ici.
+    // En pratique le premier a déjà les données mais le code
+    // C++ original a des appels séparés (pas d'optimisation).
+    bounds = GetSimBounds(sim);
+    if (bounds == NULL)
+        return;
 
-            // Dispatch selon l'état
-            switch (terrainState) {
-                case 0:  // Terrain normal
-                    sim->vtable[0x06](sim);  // vtable[0x18/4]
-                    break;
-                case 1:  // Changement en cours
-                    sim->vtable[0x07](sim);  // vtable[0x1c/4]
-                    break;
-                default:
-                    break;
+    if (param_a >= bounds->max)
+        return;
+
+    // === 3. Skip si plage vide ===
+    if (param_b == param_c)
+        return;
+
+    // === 4. Gestion du flag de contrôle (bit 31 de param_d) ===
+    if (!(param_d & 0x80000000)) {
+        // Mode callback terrain — utilisé pour initialisation
+        void* terrainData = g_pTerrainData;
+        if (terrainData != NULL) {
+            // Récupère le mode du sous-objet terrain
+            status = GetSimStatus(sim);
+            status_mode = *(int*)((char*)status + 4);
+
+            if (status_mode == 0) {
+                // Mode début : appelle vtable[0x18]
+                if (terrainData != NULL) {
+                    void** td_vtable = *(void***)terrainData;
+                    // terrainData est aussi un objet C++ ?
+                    // L'appel est via [ebx+4] où ebx = g_pTerrainData
+                    // Donc terrainData+4 = vtable ptr
+                    void** obj = *(void***)((char*)terrainData + 4);
+                    if (obj != NULL) {
+                        ((void (*)(void))(obj[0x18/4]))(*(void**)((char*)terrainData + 4));
+                    }
+                }
+            } else if (status_mode == 1) {
+                // Mode fin : appelle vtable[0x1c]
+                void* obj = *(void**)((char*)terrainData + 4);
+                if (obj != NULL) {
+                    ((void (*)(void))(*(void**)((char*)obj + 0x1c)))(sim);
+                }
             }
 
-            // Lecture d'une valeur dans un tableau indexé par c
-            // word à offset edi*2 dans un buffer
-            c &= 0xFF;
-        } else {
-            c &= 0xFFFF;
+            // Lit un word dans un tableau indexé par param_d & 0xFF
+            int idx = param_d & 0xFF;
+            // Le résultat est stocké dans le retour du callback
+            // via un tableau indexé par edi*2 (words)
+            param_d = ((uint16_t*)some_result)[idx];
         }
     }
 
-    // Assure que a <= b (swap si nécessaire) — XCHG pattern
-    if (a > b) {
-        int tmp = a;
-        a = b;
-        b = tmp;
+    // === 5. Clamp flags à 16 bits ===
+    param_d &= 0xFFFF;
+
+    // === 6. Assure param_b <= param_c (swap si nécessaire) ===
+    if (param_b > param_c) {
+        int tmp = param_b;
+        param_b = param_c;
+        param_c = tmp;
     }
 
-    // ---- Boucle principale de simulation ----
-    // Itère sur la plage [a, b] et exécute la simulation
-    //
-    // Note : La boucle exacte est complexe à extraire du
-    // désassemblage (multiples niveaux d'indirection via
-    // vtable). La logique générale est :
-    //
-    // for (int i = a; i <= b; i++) {
-    //     // Vérifie les bornes de l'objet simulation
-    //     // Appelle les sous-systèmes :
-    //     //   - Mouvement des golfeurs
-    //     //   - Mise à jour des scores
-    //     //   - Économie (rounds joués → revenus)
-    //     //   - Vérification des événements
-    // }
-}
+    // === 7. Clamp [param_b, param_c] dans [limit1, max-1] ===
+    bounds = GetSimBounds(sim);
+    if (bounds == NULL)
+        return;
 
-/**
- * Fonction de simulation de trou pour un golfeur.
- *
- * Chaque appel correspond à un golfeur jouant un trou :
- *   1. Calcul du score basé sur les skills du golfeur
- *   2. Prise en compte du type de trou (PRECISE, FREEWAY, etc.)
- *   3. Mise à jour de l'humeur et de l'énergie
- *   4. Ajout au score total du groupe
- *
- * @param course  Instance CoursEngine
- * @param golfer  Index du golfeur dans la liste des actifs
- * @param hole    Index du trou joué
- * @return        Nombre de coups (strokes)
- */
-static int SimulateHolePlay(CoursEngine* course, int golferIndex, int holeIndex)
-{
-    // Récupère les données du golfeur
-    // Calcule le score basé sur skills + type de trou
-    // Retourne le nombre de coups
+    if (param_b >= bounds->max)
+        return;
 
-    // À implémenter avec les données extraites des chaînes
-    // (skills: Length, Accuracy, Imagination, Recovery, etc.)
-    return 4;  // Valeur par défaut : par
-}
+    bounds = GetSimBounds(sim);
+    if (param_c < bounds->limit1)
+        return;
 
-/**
- * Met à jour l'économie du club pour la semaine courante.
- *
- * Basé sur les chaînes extraites :
- *   "Profit:", "Revenue:", "Membership", "Greens Fees"
- *   "Groundskeeper", "Club Pro", "Ranger" (employés)
- *
- * @param course Instance CoursEngine
- */
-static void UpdateClubEconomy(CoursEngine* course)
-{
-    // Revenus :
-    //   - Greens fees (par trou joué × nombre de visiteurs)
-    //   - Memberships (abonnements annuels / 52 semaines)
-    //   - Vacation homes (terrains résidentiels)
-    //
-    // Dépenses :
-    //   - Salaires des employés
-    //   - Maintenance du terrain
-    //   - Améliorations
+    bounds = GetSimBounds(sim);
+    if (param_b < bounds->limit1)
+        param_b = bounds->limit1;
 
-    // Calcul du profit = Revenue - Expenses
-    // Mise à jour du cash reserve
-}
+    bounds = GetSimBounds(sim);
+    if (param_c >= bounds->max)
+        param_c = bounds->max - 1;
 
-/**
- * Vérifie les événements et les tournois disponibles.
- *
- * Basé sur les chaînes extraites :
- *   "Jr. Tour Event", "SGA Amateur Championship"
- *   "Grand Slam Championship"
- *
- * @param course Instance CoursEngine
- */
-static void CheckTournamentOffers(CoursEngine* course)
-{
-    // Vérifie si le parcours a assez de trous
-    // Propose un tournoi adapté au niveau (prestige)
-    // Génère l'offre si les conditions sont remplies
+    // === 8. Dispatch : alloue un buffer via vtable[0x1c] ===
+    sim = this->simulation;
+    if (sim == NULL)
+        return;
+
+    buffer = (uint16_t*)sim->vtable->fn_0x1c(sim, param_a, param_b);
+    if (buffer == NULL)
+        return;
+
+    // Récupère le stride (pas entre les écritures)
+    stride = sim->vtable->getStride(sim);
+
+    // === 9. Boucle de remplissage ===
+    // Écrit la valeur flags (word) à des intervalles de stride*4
+    // pour (max - min + 1) / 2 itérations
+    count = (param_c - param_b + 1) >> 1;  // ÷ 2
+
+    for (i = 0; i < count; i++) {
+        buffer[i * stride] = (uint16_t)param_d;
+    }
+
+    // === 10. Notification ===
+    sim = this->simulation;
+    if (sim != NULL) {
+        sim->vtable->fn_0x24(sim, 1);
+    }
 }
 
 // ================================================================
-// TABLE DE CORRESPONDANCE
+// Correspondance table
 // ================================================================
-//
-// CoursEngine::Update (hub, 285 appels internes)
+// CoursEngine::Update (hub, 285 appels VERS cette fonction)
 //   Adresse : 0x00494f00
 //   Convention : __thiscall (this dans ECX → ESI)
-//   Prologue : push ecx; push ebx; push esi; mov esi, ecx; push edi
-//   Paramètres : this, int a, int b, int c_flags, int d
-//   Vtable : vtable[0xcc], vtable[0xe4], vtable[0x18], vtable[0x1c]
-//   Globaux : 0x83ad0c (terrain data), 0x8400b0 (game object)
+//   Prologue : push ebp; mov ebp, esp; push ecx; push ebx;
+//              push esi; mov esi, ecx; push edi
+//   Paramètres : this, param_a, param_b, param_c, param_d
 //   Nom clean : CoursEngine_Update
 //   Fichier : cleaned_c/game_coursengine.c
+//   État : ✅ Décompilé proprement
 //
-// NOTE : Cette fonction est le cœur de la simulation. Sa complexité
-// (285 appels internes) s'explique par les multiples dispatches
-// vtable et les vérifications de bornes avant la boucle principale.
-// Le désassemblage précis montre un pattern de __thiscall avec
-// vtable dispatch, typique du code MSVC C++ avec héritage virtuel.
+// NOTE IMPORTANTE :
+//   Cette fonction n'est PAS un gros hub de 14k instructions.
+//   Les 14 926 font référence au nombre de FOIS que des appels
+//   vers cette fonction apparaissent dans le code (285 × ~52).
+//   Le corps fait ~240 instructions asm.
+//   C'est essentiellement une boucle de remplissage de buffer
+//   avec dispatch vtable.

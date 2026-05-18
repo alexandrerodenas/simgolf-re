@@ -28,14 +28,16 @@ Imports  : KERNEL32(77), TERRAIN.DLL(26), USER32(24), WINMM(6), BINKW32(16)
 
 ## 2. Fonctions Clés Identifiées
 
-### Hubs Principaux (détectés par nombre d'appels internes)
+### Hubs Principaux (détectés par nombre d'appels)
 
-| Adresse | Appels | Rôle Présumé |
-|---------|--------|-------------|
-| `0x00476dd0` | 296 | **Parsing/string** (vérifie { } [ ] $ = ^) — petit helper, pas le game loop |
-| `0x00494f00` | 285 | **CoursEngine/Simulation** — thiscall, accès vtable 0xCC/0xE4/0x1C/0x18 |
-| `0x00485e80` | 218 | **TileGrid/Dispatching** — thiscall, gère grille et coordonnées |
-| `0x004a682f` | 15 | **WinMain** — EP du programme |
+| Adresse | Appels | Rôle Présumé | Taille réelle |
+|---------|--------|-------------|:-------------:|
+| `0x00476dd0` | 296 | **Parser de chaînes** (scanne `{}[]$=^`) — helper data parsing | **~35 insn** |
+| `0x00494f00` | 285 | **CoursEngine::Update** — dispatch buffer filler (word) | **~200 insn** |
+| `0x00485e80` | 218 | **TileGrid::Dispatch** — dispatch buffer filler (byte) | **~130 insn** |
+| `0x004a682f` | 15 | **WinMain** — EP du programme | — |
+
+⚠️ **Correction :** Les "14 926 instructions" mentionnées plus tôt pour 0x494f00 étaient une confusion entre le nombre d'appels × taille moyenne et le code réel. Ces 3 fonctions sont relativement petites. Les algorithmes complexes sont appelés indirectement via vtable dispatch.
 
 ⚠️ **Note** : la plupart des fonctions du jeu utilisent `__thiscall` (this dans ECX) avec prologue `push ecx; push ebx; push esi; mov esi, ecx; push edi`. Leur détection automatique dépasse les 45 fonctions standard identifiées.
 
