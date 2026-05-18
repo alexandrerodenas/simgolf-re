@@ -1,8 +1,16 @@
-# Game data - large binary files, do not commit to git
-game_data/extracted/
-game_data/exe/
-game_data/exe_patched/
-game_data/exe_unpacked/
+# Dependencies
+node_modules/
 
-# Temp files
-/tmp/
+# Build output
+dist/
+
+# Game assets (extracted from CD - not committed)
+game_data/extracted/
+
+# OS / Editor
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
