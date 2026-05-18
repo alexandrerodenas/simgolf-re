@@ -142,6 +142,12 @@ export class TerrainEngine {
      * Raccourci type-safe qui lève une erreur si hors limites.
      * Utile quand on sait que les coordonnées sont valides.
      */
+    /** Change le type d'une tuile aux coordonnées données */
+    setTileType(x: number, y: number, type: TileType): void {
+        const tile = this.tileAt(x, y);
+        if (tile) tile.type = type;
+    }
+
     tileAtOrThrow(x: number, y: number): TileData {
         const tile = this.tileAt(x, y);
         if (!tile) {
@@ -160,6 +166,24 @@ export class TerrainEngine {
     /**
      * Itère sur toutes les tuiles.
      */
+    /** Initialise un terrain aléatoire (pour le prototypage) */
+    initRandom(): void {
+        for (let y = 0; y < this._height; y++) {
+            for (let x = 0; x < this._width; x++) {
+                const idx = y * this._width + x;
+                const types = [TileType.Grass, TileType.Fairway, TileType.Rough, TileType.Tree, TileType.Sand];
+                this.tiles[idx] = {
+                    type: types[Math.floor(Math.random() * types.length)],
+                    elevation: [Math.floor(Math.random() * 5), Math.floor(Math.random() * 5),
+                                Math.floor(Math.random() * 5), Math.floor(Math.random() * 5)],
+                    walls: [false, false, false, false],
+                    hasPath: false,
+                    variation: Math.floor(Math.random() * 8),
+                };
+            }
+        }
+    }
+
     forEachTile(callback: (tile: TileData, x: number, y: number) => void): void {
         for (let y = 0; y < this._height; y++) {
             for (let x = 0; x < this._width; x++) {

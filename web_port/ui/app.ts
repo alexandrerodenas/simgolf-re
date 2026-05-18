@@ -24,7 +24,8 @@ import { ScoringSystem } from '../core/ScoringSystem';
 
 async function init() {
     const canvas = document.getElementById('game-canvas') as HTMLCanvasElement;
-    const terrain = new TerrainEngine(64, 64);
+    const terrain = TerrainEngine.getInstance();
+    terrain.init(64, 64);
     terrain.initRandom();
 
     const textureManager = TextureManager.getInstance();

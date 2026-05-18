@@ -117,7 +117,7 @@ export class TextureManager {
             const response = await fetch(`${this.basePath}/../texture_catalog.json`);
             this.catalog = await response.json();
             
-            console.log(`[TextureManager] Catalog loaded: ${this.catalog.meta.total} textures`);
+            console.log(`[TextureManager] Catalog loaded: ${this.catalog!.meta.total} textures`);
             this.ready = true;
         } catch (err) {
             console.error('[TextureManager] Failed to load catalog:', err);
