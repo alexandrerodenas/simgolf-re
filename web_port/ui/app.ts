@@ -190,6 +190,12 @@ async function init() {
         hud.showToast('📖 Construisez un tee + un green pour créer un trou !');
     };
 
+    // Expose globally for fallback inline handler
+    (window as any).__simgolfReady = true;
+    (window as any).__simgolfStartGame = (theme?: string) => {
+        (menu.onNewGame as any)(theme || 'Parkland');
+    };;
+
     // ============================================================
     // Build Info Panel (mini-carte, infos trou)
     // ============================================================

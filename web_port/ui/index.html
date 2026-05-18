@@ -340,6 +340,67 @@ max-height:75vh;overflow-y:auto;
     <div id="panel-content"></div>
 </div>
 
+<!-- Fallback inline script — garantit le fonctionnement des boutons même si le module échoue -->
+<script>
+(function() {
+    'use strict';
+    function initFallback() {
+        var btnNew = document.getElementById('btn-new-game');
+        var btnLoad = document.getElementById('btn-load-game');
+        var btnTut = document.getElementById('btn-tutorial');
+        var chips = document.querySelectorAll('.theme-chip');
+        
+        function toast(msg) {
+            var t = document.getElementById('hud-toast');
+            if (t) t.remove();
+            t = document.createElement('div');
+            t.id = 'hud-toast';
+            t.textContent = msg;
+            t.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.8);color:white;padding:10px 24px;border-radius:20px;z-index:200;font-size:14px;white-space:nowrap';
+            document.body.appendChild(t);
+            setTimeout(function() { t.remove(); }, 3000);
+        }
+        
+        function onPointerDown(fn) {
+            return function(e) {
+                e.preventDefault();
+                if (window.__simgolfReady) fn();
+                else toast('⏳ Chargement du jeu...');
+            };
+        }
+        
+        if (btnNew) btnNew.addEventListener('pointerdown', onPointerDown(function() {
+            if (window.__simgolfStartGame) window.__simgolfStartGame();
+            else toast('✅ Module chargé, cliquez à nouveau');
+        }));
+        
+        if (btnLoad) btnLoad.addEventListener('pointerdown', onPointerDown(function() {
+            if (window.__simgolfLoadGame) window.__simgolfLoadGame();
+            else toast('📂 Chargement — bientôt disponible');
+        }));
+        
+        if (btnTut) btnTut.addEventListener('pointerdown', onPointerDown(function() {
+            if (window.__simgolfStartTutorial) window.__simgolfStartTutorial();
+            else toast('📖 Construisez un tee + un green');
+        }));
+        
+        chips.forEach(function(chip) {
+            chip.addEventListener('pointerdown', function(e) {
+                e.preventDefault();
+                chips.forEach(function(c) { c.classList.remove('active'); });
+                chip.classList.add('active');
+            });
+        });
+    }
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initFallback);
+    } else {
+        initFallback();
+    }
+})();
+</script>
+
 <script type="module" src="./app.ts"></script>
 </body>
 </html>
