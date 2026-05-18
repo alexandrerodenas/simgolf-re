@@ -11,198 +11,147 @@
 
 ```
 ~/simgolf-re/
-├── raw_decomp/           ← Désassemblage brut (sortie outils)
-│   ├── golf_exe_full_disasm.txt        (18 lignes — .exe packé)
-│   ├── pe_analysis.txt                 (Analyse PE complète)
-│   ├── Terrain_dll_disasm.txt          (25 658 lignes — v1 partielle)
-│   ├── Terrain_dll_disasm_v2.txt       (28 801 lignes — v2 avec data/code)
-│   ├── Terrain_dll_functions.txt       (34 741 lignes — fonctions individuelles)
-│   ├── sound_dll_disasm.txt            (32 234 lignes — complète)
-│   ├── jgld_dll_disasm.txt             (198 314 lignes — complète, 1.1 Mo)
-│   ├── disassemble.py                  (script extraction v1)
-│   ├── disassemble_dlls.py             (script extraction DLLs)
-│   ├── disassemble_terrain_v2.py       (script v2)
-│   └── disassemble_smart.py            (script fonction-par-fonction)
+├── raw_decomp/                    ← Désassemblage brut
+│   ├── golf_unpacked_disasm.txt   (131 259 lignes — golf.exe dépaqueté !)
+│   ├── Terrain_dll_disasm.txt     (25 658 lignes)
+│   ├── Terrain_dll_functions.txt  (34 741 lignes — fonctions individuelles)
+│   ├── sound_dll_disasm.txt       (32 234 lignes — complète)
+│   ├── jgld_dll_disasm.txt        (198 314 lignes — complète)
+│   ├── golf_exe_full_disasm.txt   (18 lignes — obsolète, exe packé)
+│   ├── pe_analysis.txt
+│   ├── scan_functions.py          (analyse fonctions golf.exe)
+│   ├── scan_game_loop.py          (analyse boucle de jeu)
+│   ├── find_game_strings.py       (extraction chaînes)
+│   ├── extract_bin_strings.py
+│   ├── analyze_exe.py / analyze_exe_deep.py
+│   └── *.py                       (scripts extraction)
 │
-├── cleaned_c/            ← Code C nettoyé et documenté
-│   ├── tile_struct.h                   (Structure Tile 584 bytes — v2)
-│   ├── terrain_tileAt.c                (Terrain::tileAt nettoyé)
-│   ├── tile_getters.c                  (getElevation, getType, getWall)
-│   ├── terrain_render.c                (Terrain::render — moteur isométrique)
-│   ├── terrain_render_helpers.c        (getScreenX/Y, isCulled, getView)
-│   ├── terrain_render_tile.c           (isVisible, renderSingleTile → glBindTexture)
-│   └── MAPPING.md                      (Table 38 exports Terrain.dll)
+├── cleaned_c/                     ← Code C nettoyé et documenté
+│   ├── tile_struct.h              (Structure Tile 584 bytes)
+│   ├── terrain_tileAt.c
+│   ├── tile_getters.c
+│   ├── terrain_render.c
+│   ├── terrain_render_helpers.c
+│   ├── terrain_render_tile.c
+│   ├── MAPPING.md                 (Table 38 exports Terrain.dll)
+│   └── gameplay_architecture.md   ← NOUVEAU : Architecture complète du jeu
 │
-├── web_port/             ← Portage TypeScript
+├── web_port/                      ← Portage TypeScript
 │   ├── core/
-│   │   └── TerrainTileSystem.ts        (TerrainEngine singleton + tileAt)
+│   │   └── TerrainTileSystem.ts
 │   └── view/
-│       └── IsometricRenderer.ts        (Rendu Canvas 2D isométrique)
+│       ├── IsometricRenderer.ts
+│       ├── JGLInterface.ts
+│       └── AudioEngine.ts
 │
-└── game_data/            ← Binaires et données originales
-    ├── exe/                            (golf.exe, DLLs originales)
-    └── exe_patched/                    (golf.exe v1.03 patché)
+└── game_data/                     ← Binaires et données
+    ├── exe/                        (DLLs + golf.exe packé)
+    ├── exe_patched/                (golf.exe v1.03)
+    └── exe_unpacked/               ← NOUVEAU : golf.exe dépaqueté (DEViANCE)
+
+PLAN_DE_SUIVI.md
 ```
 
 ---
 
 ## ✅ Travail Accompli
 
-### Analyse du Binaire Principal (`golf.exe`)
+### Analyse du Binaire Principal (`golf.exe`) — DÉPAQUETÉ !
 
 | Propriété | Valeur |
 |-----------|--------|
 | Format | PE32 i386, Windows GUI |
 | Compilateur | MSVC++ 6.0 (Linker 6.0) |
 | Date | 20 Dec 2001 (v1.0) |
-| Entry Point | `0x443056` (dans section `stxt371`) |
-| ImageBase | `0x400000` |
-| Taille | 1.9 Mo (v1.0), 2.3 Mo (v1.03 patch) |
-| **Packer** | **Custom EA/Firaxis** — entropie .text = 7.98/8.0 |
+| Protection | **SafeDisc 2** (pas custom EA!) |
+| Taille packé | 1.9 Mo |
+| Taille dépaqueté | **946 Ko** (DEViANCE crack, 2002) |
+| EP | `0x004a682f` → `.text` (vrai code) |
+| Sections | .text(754Ko), .rdata, .data, .rsrc |
 
-**Sections :**
-| Nom | Taille | Rôle |
-|-----|--------|------|
-| `.text` | 753 Ko | **Encrypté/compressé** (packer custom) |
-| `.rdata` | 24 Ko | Constantes |
-| `.data` | **3.5 Mo** | Données massives (tables, tuiles ?) |
-| `.rsrc` | 4 Ko | Ressources |
-| `stxt774` | 524 o | Code exécutable + écriture (stub packer) |
-| `stxt371` | 14 Ko | **Code décompresseur + OEP** |
+**Imports clés :**
+- **KERNEL32** (77) : gestion mémoire, fichiers, threads
+- **TERRAIN.DLL** (26) : moteur terrain complet
+- **USER32** (24) : messages, clavier, curseur
+- **WINMM** (6) : son (mmio, time)
+- **BINKW32** (16) : vidéo Bink
 
-**Packer :**
-- Entry point dans `stxt371` : stub auto-modifiant (écrit `JMP rel32` et `RET`)
-- Vrai OEP : `0x4A5F9F` (dans .text)
-- Fonction de décompression : `0x8430FA` (appels COM, vtables, allocations)
-- Non dépacké — nécessite Wine + dumping ou émulation du décompresseur
+**Aucun import DirectX/OpenGL** — tout le rendu passe par Terrain.dll → JGL → GDI
 
-### Analyse Terrain.dll (moteur terrain)
+### Analyse Terrain.dll (moteur terrain) → 12/38 exports nettoyés
 
-**38 exports C++** identifiés :
+Voir `MAPPING.md` pour le détail des 38 exports.
 
-| # | Export | Adresse brute | Statut |
-|---|--------|:---:|:------:|
-| 1 | `Terrain::tileAt(int, int)` | 0x10001D50 | ✅ Nettoyé |
-| 2 | `Terrain::getElevation(Tile*, int)` | 0x10001DE0 | ✅ Nettoyé |
-| 3 | `Terrain::getType(Tile*)` | 0x10001F10 | ✅ Nettoyé |
-| 4 | `Terrain::getWall(Tile*, int)` | 0x10001E80 | ✅ Nettoyé |
-| 5 | `Tile::getElevation(int)` | 0x10001E40 | ✅ Nettoyé |
-| 6 | `Tile::getType()` | 0x10001F60 | ✅ Nettoyé |
-| 7 | `Tile::getWall(int)` | 0x10001ED0 | ✅ Nettoyé |
-| 8 | `Terrain::render(Tile*, float)` | 0x10005990 | ✅ Nettoyé |
-| 9 | `Terrain::getView(float)` | 0x1000ADC0 | ✅ Nettoyé |
-| 10 | `Terrain::renderSingleTile(Tile*, float)` | 0x1000E6C0 | ✅ Nettoyé |
-| 11 | `Tile::getScreenX()` | 0x10006810 | ✅ Nettoyé |
-| 12 | `Tile::getScreenY()` | 0x10005960 | ✅ Nettoyé |
-| 13 | `Tile::isVisible()` | 0x10015460 | ✅ Nettoyé |
-| 14 | `Tile::isCulled(Tile*, float)` | 0x10006850 | ✅ Nettoyé |
-| 15 | `Terrain::setWall(Tile*, int, int, bool)` | 0x1000A560 | ❌ Non traité |
-| 16 | `Terrain::hasPath(Tile*)` | 0x1000A510 | ❌ Non traité |
-| 17 | `Terrain::hasConnectedPath(int, int)` | 0x10001023 | ❌ Non traité |
-| 13 | `Terrain::getInstance()` | 0x100031A0 | ❌ Non traité |
-| 14 | `Terrain::localRender(...)` | 0x1000117C | ❌ Non traité |
-| 15 | `Terrain::drawLine(...)` | 0x100011B3 | ❌ Non traité |
-| 16 | `Terrain::drawCircle(Tile*, float)` | 0x10001186 | ❌ Non traité |
-| 17 | `Terrain::drawBezierSpline(...)` | 0x10005230 | ❌ Non traité |
-| 18 | `Terrain::drawCardinalSpline(...)` | 0x10001244 | ❌ Non traité |
-| 19 | `Terrain::initSystem(int,int,HDC,bool)` | 0x100012E4 | ❌ Non traité |
-| 20 | `Terrain::closeSystem()` | 0x10001217 | ❌ Non traité |
-| 21 | `Terrain::initTerrain()` | 0x100012CB | ❌ Non traité |
-| 22 | `Terrain::resize(int, int)` | 0x100012F8 | ❌ Non traité |
-| 23 | `Terrain::loadNewCourseType(int)` | 0x10001032 | ❌ Non traité |
-| 24 | `Terrain::resetTerrain()` | 0x1000AA10 | ❌ Non traité |
-| 25 | `Terrain::calcAllNormals(Tile*)` | 0x1000A740 | ❌ Non traité |
-| 26 | `Terrain::calcNormals(Tile*)` | 0x10001307 | ❌ Non traité |
-| 27 | `Terrain::setZoomLevel(int)` | 0x10001294 | ❌ Non traité |
-| 28 | `Terrain::changeLighting(int)` | 0x100011C2 | ❌ Non traité |
-| 29 | `Terrain::getVariation(Tile*)` | 0x1000105A | ❌ Non traité |
-| 30 | `Terrain::elevateCorner(Tile*, int)` | 0x1000133E | ❌ Non traité |
-| 31 | `Terrain::lowerCorner(Tile*, int)` | 0x1000A620 | ❌ Non traité |
-| 32 | `Terrain::lowerEdgeCorner(...)` | 0x10001154 | ❌ Non traité |
-| 33 | `Terrain::setSplineHeight(float)` | 0x10001339 | ❌ Non traité |
-| 34 | `Terrain::setType(Tile*, int, int)` | 0x1000121C | ❌ Non traité |
-| 35 | `Terrain::updatePath(int,int,int)` | 0x1000125D | ❌ Non traité |
-| 36 | `Terrain::layPath(Tile*, int, int)` | 0x100012C1 | ❌ Non traité |
-| 37 | `Terrain::pathUpdateRender(...)` | 0x100011E0 | ❌ Non traité |
-| 38 | `Terrain::stripRender(Tile*, int, float)` | 0x10001299 | ❌ Non traité |
+### Analyse jgld.dll (moteur graphique) → FAIT
+- Renderer logiciel GDI32 pur (pas d'OpenGL)
+- 1199 fonctions, 1 seul export `get_graphsy_object_ptr`
+- JackalClass : objet 332 bytes, 6 méthodes cartographiées
 
-### Structure Tile (584 bytes = 0x248) — v2 (12 champs identifiés)
+### Analyse sound.dll → FAIT
+- 12 exports, 3 devices (Wave/DirectSound, WaveIn, MIDI)
+- SoundManager 92 bytes, Wave_Device 16 Ko
+- Portage Web Audio API + MIDI
 
-```
-Offset  Size    Champ             Source                  Statut
-------  ------  ---------------   ----------------------  ------
- 0x000  16      elevation[4]      Tile::getElevation()    ✅
- 0x010   4      waterLevel?       Hypothèse               ⚠️
- 0x014   4      ?                 Inconnu                 ❌
- 0x018   4      ?                 Inconnu                 ❌
- 0x01C   4      renderCategory    Tile::isCulled()        ✅
- 0x020   4      renderWidth       Tile::isCulled()        ✅
- 0x024   4      type              Tile::getType()         ✅
- 0x028   4      renderHeight      Tile::isCulled()        ✅
- 0x02C   4      screenY           Tile::getScreenY()      ✅
- 0x030   4      screenX           Tile::getScreenX()      ✅
- 0x034  0x200   unknown[512]      Non analysé             ❌
- 0x234   4      walls[4]          Tile::getWall()         ✅
- 0x238   ?      render_data?      Non analysé             ❌
-------  ------  ---------------   ----------------------  ------
-Total:  584
-```
-
-### Structure Terrain (partielle)
-
-```
-Offset  Size    Champ         Source                  Statut
-------  ------  -----------   ----------------------  ------
- 0x000   4      vtable        Convention C++          ✅
- 0x004  16      ?             Données internes        ❌
- 0x014   4      width         Terrain::tileAt()       ✅
- 0x018   4      height        Terrain::tileAt()       ✅
- 0x01C  0x388   ?             Données internes        ❌
- 0x3A4   N      tiles[]       Terrain::tileAt()       ✅
-------  ------  -----------   ----------------------  ------
-```
+### Architecture Gameplay (golf.exe dépaqueté) → ANALYSÉ
+131 259 lignes de désassemblage générées. Cartographie complète :
+- **45 fonctions standard** + centaines de `__thiscall`
+- **3 hubs majeurs** identifiés (0x4x476dd0, 0x494f00, 0x485e80)
+- **7 types de trous** (Precise, Freeway, Challenge, Creative, Strategic, Heroic, Classic)
+- **8 compétences golfeur** (Length, Accuracy, Imagination, Recovery, Backspin, Putter, Driver, Long Driver)
+- **Scoring complet** (Triple Eagle → Triple Bogey)
+- **Économie** (Revenue, Expenses, Profit, Cash, Greens Fees, Memberships)
+- **Évaluation SGA** (15+ critères)
+- **Tournois** : 11 niveaux (Jr. Tour → Grand Slam)
+- **Accomplissements** : 21 milestones
+- **Bâtiments** : 10+ types avec effets
+- **Scénarios** : 6+ campagnes avec budgets
+- **Pixels** : format PCX pour tout le rendu
 
 ---
 
 ## 🔄 Prochaines Étapes (Priorisées)
 
 ### Priorité 1 — Rendu Isométrique ✅
-- [x] `Terrain::render(Tile*, float)` — pipeline complet JGL + boucles tuiles
-- [x] 5 helpers : getScreenX/Y, isVisible, isCulled, getView
-- [x] `Terrain::renderSingleTile()` — bind textures OpenGL
-- [x] `IsometricRenderer.ts` — portage Canvas 2D isométrique
-- [x] `JGLInterface.ts` — mapping JGL → Canvas 2D (pushMatrix, translate, etc.)
-- [ ] `Terrain::renderTile(int, int, int, int, int)` (optionnel — rendu avancé)
-- [ ] `Terrain::stripRender(Tile*, int, float)` (optionnel — rendu strip)
-- [ ] `Terrain::drawLine/drawCircle/BezierSpline/CardinalSpline` (optionnel — primitives)
+- [x] `Terrain::render()` complet
+- [x] 5 helpers (getScreenX/Y, isVisible, isCulled, getView)
+- [x] `renderSingleTile()` avec textures
+- [x] `IsometricRenderer.ts` — Canvas 2D isométrique
+- [x] `JGLInterface.ts` — mapping JGL → Canvas 2D
+- [ ] `drawLine/drawCircle/BezierSpline/CardinalSpline` (optionnel)
 
 ### Priorité 2 — Moteur Graphique JGL (jgld.dll) ✅
-- [x] Analyse complète de jgld.dll : renderer logiciel GDI (1199 fonctions)
-- [x] Export unique `get_graphsy_object_ptr` → objet JackalClass (332 bytes)
-- [x] 6 fonctions JGL cartographiées (pushMatrix, loadIdentity, ortho, translate, bindTexture)
-- [x] `jgld_analysis.md` — documentation complète
-- [x] `JGLInterface.ts` — interface TypeScript pour Canvas 2D
+- [x] Analyse complète (1199 fonctions, JackalClass)
+- [x] 6 fonctions JGL cartographiées
+- [x] Documentation + Interface TypeScript
 
-### Priorité 3 — Moteur Audio (sound.dll) ← EN COURS
+### Priorité 3 — Moteur Audio ✅
+- [x] Analyse sound.dll (12 exports, 3 devices)
+- [x] AudioEngine.ts (Web Audio API + MIDI)
 
-### Priorité 3 — Moteur Audio (sound.dll) ← EN COURS
-- [ ] Analyser les exports de sound.dll
-- [ ] Portage Web Audio API
+### Priorité 4 — Dépaquetage golf.exe ✅
+- [x] SafeDisc 2 identifié
+- [x] Version DEViANCE trouvée et extraite (archive ACE)
+- [x] 131 259 lignes de code jeu générées
+- [x] 26 imports Terrain.dll accessibles dans le code
+- [x] Architecture gameplay cartographiée
 
-### Priorité 4 — Dépacketage du golf.exe
-- [ ] Option A : Émuler le décompresseur (x86 emu)
-- [ ] Option B : Wine + dump mémoire
-- [ ] Option C : Trouver une version déjà dépackée (crack/No-CD)
-- [ ] Accéder aux fonctions de jeu (simulation, économie, golfeurs)
-
-### Priorité 5 — Simulation & Gameplay
-- [ ] Analyse des fichiers data (.chr, .glf, .fot, .sve)
-- [ ] Moteur de simulation de golf (physique de balle)
-- [ ] Économie du club
-- [ ] IA des golfeurs Sim
-- [ ] Système de tournois
+### Priorité 5 — Simulation & Gameplay ← EN COURS
+- [x] Analyse des chaînes de jeu (1200+ strings extraites)
+- [x] Cartographie des systèmes : types trous, skills, scoring, économie, SGA, tournois, accomplissements
+- [x] Analyse du pipeline d'exécution (WinMain → GameLoop)
+- [ ] Analyse des fonctions hub (0x494f00, 0x476dd0, 0x485e80)
+- [ ] Nettoyage du moteur d'économie (Revenue/Expenses)
+- [ ] Nettoyage du système de scoring
+- [ ] Nettoyage de l'IA des golfeurs
+- [ ] Nettoyage du système de tournois SGA
+- [ ] Portage TypeScript : `EconomySystem.ts`
+- [ ] Portage TypeScript : `GolfSimulation.ts` (physique)
+- [ ] Portage TypeScript : `ScoringSystem.ts`
+- [ ] Portage TypeScript : `PersonaSystem.ts` (IA golfeurs)
+- [ ] Portage TypeScript : `TournamentSystem.ts`
 
 ### Priorité 6 — Interface Mobile
+- [ ] Analyse des fichiers PCX (extraction textures depuis le CD)
 - [ ] Adaptation tactile (drag-and-drop, appui long)
 - [ ] Écran principal de construction
 - [ ] Mode jeu (parcours)
@@ -214,56 +163,31 @@ Offset  Size    Champ         Source                  Statut
 
 ### Désassemblage
 - **Capstone** (python3-capstone) sur ARM64
-- **Limite connue** : déraille sur les tables de données intercalées
-- **Solution** : extraction fonction-par-fonction via prologues `55 8B EC`
-- 760 fonctions détectées, 200+ réelles, 50 Ko de code
-- 16% de couverture du .text (le reste = padding 0xCC + données)
+- 45 fonctions standard (prologue `push ebp; mov ebp, esp`)
+- Centaines de `__thiscall` (prologue `push ecx; push ebx; push esi; mov esi, ecx; push edi`)
+- 496 appels max à une fonction utilitaire (allocateur)
 
-### Analyse PE
-- **readpe** (pev package) pour analyse PE32
-- **pefile** (python3-pefile) pour extraction sections/exports
-- Import minimum : KERNEL32, USER32, WINMM, binkw32, **Terrain.dll**
-- **Export** : Terrain.dll importe et est importé par golf.exe (circuit étrange)
+### Analyse Binaire
+- **pefile** pour extraction PE
+- **Radare2** pour analyse entropie
+- Extraction chaînes via Python (1200+ strings de jeu)
 
-### Format des données
-- PCX : textures et sprites
-- .chr : personnages (golfeurs)
-- .glf : données de golfeur ?
-- .fot : polices bitmap
-- .sve : sauvegardes (top10.sve)
-- .pro : profils de golfeur
-- .cab : archives InstallShield (5659 fichiers extraits)
-
----
-
-## 📝 Notes Techniques
-
-### Convention d'appel C++
-Toutes les méthodes Terrain.dll utilisent `__thiscall` :
-- `this` dans `ecx`
-- Paramètres sur la stack (ordre C, pushed right-to-left)
-- Caller nettoie la stack (`ret 8`, `ret 4` selon le nombre de paramètres explicites)
-- Build **Debug** : stack frame 0x44 bytes + remplissage `0xCC`
-- Helper de debug : `__chkesp` (call 0x100180A0)
-
-### Packer golf.exe
-- Sections `stxt371` et `stxt774` : nommées arbitrairement
-- Stub auto-modifiant écrit des `JMP rel32` et `RET` sur lui-même
-- Vrai OEP : `0x4A5F9F`
-- Fonction décompresseur : `0x8430FA` (COM/OLE, allocations multiples)
-- Non identifié comme UPX/ASPack/PECompact/UPack connu — **packer custom EA**
-- Versions : v1.0 (20/12/2001) et v1.03 (29/03/2002), toutes deux packées
+### Dépaquetage
+- Protection : SafeDisc 2 (Macrovision)
+- Solution : Version crackée DEViANCE (groupe de crack légendaire)
+- Format : .ace → unace-nonfree → golf.exe dépaqueté de 946 Ko
 
 ---
 
 ## 🚧 Problèmes Connus
 
-1. **Capstone ARM64** : désassemblage incomplet du .text de Terrain.dll (données intercalées)
-2. **golf.exe packé** : code du jeu inaccessible sans dépaquetage
-3. **Structure Tile** : 524 bytes non analysés (offset 0x028-0x233)
-4. **jgld.dll packé** : wrapper graphique principal illisible (entropie 6.56)
-5. **jgld.dll OK** : 1.1 Mo de code clair
-6. **Compréhension partielle** du pipeline de rendu isométrique
+1. **Capstone ARM64** : désassemblage peut dérailler sur données intercalées
+2. **Structure Tile** : 524 bytes non analysés (offset 0x028-0x233)
+3. **Code du jeu massif** : 131K lignes de asm, analyse manuelle longue
+4. **Pas de boucle de message classique** : jeu timer-driven, complexité
+5. **Fonctions `__thiscall`** : non détectées automatiquement (centaines de fonctions)
+6. **Formats data (.chr, .glf, .pro, .fot)** : non analysés
+7. **PCX du CD** : non extraits (nécessitent l'ISO originale ou les CABs)
 
 ---
 
@@ -271,27 +195,32 @@ Toutes les méthodes Terrain.dll utilisent `__thiscall` :
 
 ```
 web_port/
-├── core/                    # Logique de simulation pure
+├── core/                    # Logique de simulation pure (découplée)
 │   ├── TerrainTileSystem.ts ✅  (Moteur terrain)
-│   ├── GolfSimulation.ts    ❌  (Physique balle)
-│   ├── EconomySystem.ts     ❌  (Économie club)
-│   ├── PersonaSystem.ts     ❌  (IA golfeurs)
-│   └── ...
+│   ├── GolfSimulation.ts    ❌  (Physique balle + scoring)
+│   ├── EconomySystem.ts     ❌  (Économie club + membership)
+│   ├── PersonaSystem.ts     ❌  (IA golfeurs + skills + humeur)
+│   ├── TournamentSystem.ts  ❌  (Tournois SGA + accomplissements)
+│   └── SGARating.ts         ❌  (Évaluation parcours)
 │
 ├── view/                    # Rendu graphique
-│   ├── IsometricRenderer.ts ❌  (Rendu isométrique)
-│   ├── TileRenderer.ts      ❌  (Rendu tuile)
-│   ├── SpriteManager.ts     ❌  (Gestion sprites)
-│   └── ...
+│   ├── IsometricRenderer.ts ✅  (Rendu isométrique Canvas 2D)
+│   ├── TileRenderer.ts      ❌  (Rendu tuile par type)
+│   ├── JGLInterface.ts      ✅  (Interface JGL → Canvas)
+│   └── AudioEngine.ts       ✅  (Web Audio API + MIDI)
 │
 └── ui/                      # Interface utilisateur
     ├── Toolbar.tsx           ❌  (Barre d'outils construction)
     ├── CourseMap.tsx         ❌  (Mini-carte)
     ├── SimPanel.tsx          ❌  (Panneau infos golfeur)
-    └── ...
+    ├── FinancePanel.tsx      ❌  (Écran finances)
+    ├── TournamentPanel.tsx   ❌  (Écran tournoi)
+    ├── SGAPanel.tsx          ❌  (Rapport SGA)
+    ├── HUD.tsx               ❌  (Affichage match)
+    └── MenuSystem.tsx        ❌  (Menus)
 ```
 
 ---
 
-*Document généré le 18 Mai 2026 — Hermes-RE*
-*Prochaine mise à jour : après nettoyage du moteur de rendu isométrique*
+*Document généré le 18 Mai 2026 — Hermes-RE*  
+*Prochaine mise à jour : après analyse des fonctions hub de simulation*
