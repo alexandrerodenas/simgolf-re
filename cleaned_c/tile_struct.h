@@ -7,6 +7,9 @@
  *   - Tile::getElevation()   : elevation[4] à offset 0x000 (int)
  *   - Tile::getType()        : type à offset 0x024 (int)
  *   - Tile::getWall()        : walls[] à offset 0x234 (byte[4])
+ *   - Tile::getScreenX()     : screenX à offset 0x030 (int)
+ *   - Tile::getScreenY()     : screenY à offset 0x02c (int)
+ *   - Tile::isCulled()       : renderCategory@0x01c, renderWidth@0x020, renderHeight@0x024
  *   - Terrain::width/height  : offsets 0x14 et 0x18
  */
 
@@ -59,10 +62,13 @@ enum TileCorner {
  *  0x010  4       waterLevel   Niveau d'eau ? (int32)
  *  0x014  4       ?            Inconnu (int32)
  *  0x018  4       ?            Inconnu (int32)
- *  0x01c  4       ?            Inconnu (int32) 
- *  0x020  4       ?            Inconnu (int32)
+ *  0x01c  4       renderCat    Catégorie de rendu (int, utilisé par isCulled)
+ *  0x020  4       renderWidth  Largeur de rendu en pixels (int)
  *  0x024  4       type         Type de terrain (enum TileType, int32)
- *  0x028  524     unknown[524] Champs non encore analysés
+ *  0x028  4       renderHeight Hauteur de rendu en pixels (int)
+ *  0x02c  4       screenY      Coordonnée Y écran pré-calculée (int)
+ *  0x030  4       screenX      Coordonnée X écran pré-calculée (int)
+ *  0x034  0x200   unknown[512] Champs non encore analysés
  *  0x234  4       walls[4]     Murs/bordures (byte par côté, bool)
  *  0x238  8       ?            Padding ou autres flags
  *  0x240  8       ?            Données de rendu ?
@@ -79,12 +85,16 @@ typedef struct Tile {
     
     /* 0x014 */ int32_t    field_014;           // À identifier
     /* 0x018 */ int32_t    field_018;           // À identifier
-    /* 0x01c */ int32_t    field_01c;           // À identifier
-    /* 0x020 */ int32_t    field_020;           // À identifier
+    /* 0x01c */ int32_t    renderCategory;      // Catégorie de rendu
+    /* 0x020 */ int32_t    renderWidth;         // Largeur rendu (px)
     
     /* 0x024 */ int32_t    type;                // Type de terrain (enum TileType)
     
-    /* 0x028 */ uint8_t    unknown_data[524];   // À analyser
+    /* 0x028 */ int32_t    renderHeight;        // Hauteur rendu (px)
+    /* 0x02c */ int32_t    screenY;             // Coordonnée Y écran
+    /* 0x030 */ int32_t    screenX;             // Coordonnée X écran
+    
+    /* 0x034 */ uint8_t    unknown_data[0x200]; // 512 bytes non analysés
     
     /* 0x234 */ uint8_t    walls[4];            // Murs/bordures (bool par côté)
     
