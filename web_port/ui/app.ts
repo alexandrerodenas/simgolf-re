@@ -25,28 +25,35 @@ import { ScoringSystem } from '../core/ScoringSystem';
 // ============================================================
 // Global error toast — capte les erreurs JS non catchées
 // ============================================================
-function showErrorToast(msg: string): void {
-    const t = document.createElement('div');
-    t.textContent = `❌ ${msg}`;
-    t.style.cssText = `
-        position: fixed; bottom: 80px; left: 10px; right: 10px; z-index: 9999;
-        background: rgba(180,30,30,0.95); color: white; padding: 14px 18px;
-        border-radius: 14px; font-size: 14px; font-family: monospace;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-        max-height: 40vh; overflow-y: auto; white-space: pre-wrap; word-break: break-all;
-    `;
-    document.body.appendChild(t);
-    setTimeout(() => t.remove(), 8000);
+function showError(msg: string): void {
+    // Utilise l'élément permanent #simgolf-error (garanti dans le DOM)
+    const el = document.getElementById('simgolf-error');
+    if (el) {
+        el.style.display = 'block';
+        el.textContent += (el.textContent ? '\n---\n' : '') + msg;
+        el.scrollTop = el.scrollHeight;
+    }
+    // Fallback : toast dynamique
+    try {
+        const t = document.createElement('div');
+        t.textContent = `❌ ${msg.slice(0, 200)}`;
+        t.style.cssText = `
+            position: fixed; top: 10px; left: 10px; right: 10px; z-index: 99999;
+            background: rgba(180,30,30,0.95); color: white; padding: 14px 18px;
+            border-radius: 14px; font-size: 14px; font-family: monospace;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        `;
+        document.body.appendChild(t);
+        setTimeout(() => t.remove(), 10000);
+    } catch (_) {}
+    console.error('[SimGolf Error]', msg);
 }
 
-// Global error handler (non-catchée)
 window.addEventListener('error', (e) => {
-    showErrorToast(e.message || String(e));
-    console.error('[Global Error]', e);
+    showError(e.message || String(e));
 });
 window.addEventListener('unhandledrejection', (e) => {
-    showErrorToast(e.reason?.message || String(e.reason));
-    console.error('[Unhandled Rejection]', e.reason);
+    showError(e.reason?.message || String(e.reason));
 });
 
 async function init() {
@@ -155,7 +162,7 @@ async function init() {
                     }
                 }
             } catch (err: any) {
-                showErrorToast(`Tap: ${err.message}`);
+                showError(`Tap: ${err.message}`);
             }
         };
 
@@ -168,7 +175,7 @@ async function init() {
                     game.buyLand(tile.x, tile.y);
                 }
             } catch (err: any) {
-                showErrorToast(`LongPress: ${err.message}`);
+                showError(`LongPress: ${err.message}`);
             }
         };
 
@@ -201,7 +208,7 @@ async function init() {
                         hud.showToast('🔨 Mode Construction');
                     }
                 } catch (err: any) {
-                    showErrorToast(`Mode: ${err.message}`);
+                    showError(`Mode: ${err.message}`);
                 }
             });
         });
@@ -223,7 +230,7 @@ async function init() {
                 hud.showToast(`🌍 ${theme} — construisez votre premier trou !`);
                 menu.hide();
             } catch (err: any) {
-                showErrorToast(`Nouvelle Partie: ${err.message}\n${err.stack?.split('\n').slice(0, 3).join('\n') || ''}`);
+                showError(`Nouvelle Partie: ${err.message}\n${err.stack?.split('\n').slice(0, 3).join('\n') || ''}`);
             }
         };
 
@@ -231,7 +238,7 @@ async function init() {
             try {
                 hud.showToast('📂 Chargement — bientôt disponible');
             } catch (err: any) {
-                showErrorToast(`Load: ${err.message}`);
+                showError(`Load: ${err.message}`);
             }
         };
 
@@ -240,7 +247,7 @@ async function init() {
                 menu.hide();
                 hud.showToast('📖 Construisez un tee + un green pour créer un trou !');
             } catch (err: any) {
-                showErrorToast(`Tutorial: ${err.message}`);
+                showError(`Tutorial: ${err.message}`);
             }
         };
 
@@ -251,17 +258,17 @@ async function init() {
         (window as any).__simgolfStartGame = (theme: string = 'Parkland') => {
             const stored = (menu as any).callbacks?.onNewGame;
             if (stored) stored(theme);
-            else showErrorToast('Menu: callback onNewGame non défini');
+            else showError('Menu: callback onNewGame non défini');
         };
         (window as any).__simgolfLoadGame = () => {
             const stored = (menu as any).callbacks?.onLoadGame;
             if (stored) stored();
-            else showErrorToast('Menu: callback onLoadGame non défini');
+            else showError('Menu: callback onLoadGame non défini');
         };
         (window as any).__simgolfStartTutorial = () => {
             const stored = (menu as any).callbacks?.onTutorial;
             if (stored) stored();
-            else showErrorToast('Menu: callback onTutorial non défini');
+            else showError('Menu: callback onTutorial non défini');
         };
 
         // ============================================================
@@ -316,7 +323,7 @@ async function init() {
                     }
                 }
             } catch (err: any) {
-                showErrorToast(`Tap (patched): ${err.message}`);
+                showError(`Tap (patched): ${err.message}`);
             }
         };
 
@@ -345,7 +352,7 @@ async function init() {
             try {
                 renderer.render(camera.zoom);
             } catch (err: any) {
-                showErrorToast(`Render: ${err.message}`);
+                showError(`Render: ${err.message}`);
             }
             requestAnimationFrame(loop);
         }
@@ -354,7 +361,7 @@ async function init() {
         console.log('[SimGolf Mobile] GameManager orchestrating all systems');
 
     } catch (err: any) {
-        showErrorToast(`Init: ${err.message}\n${err.stack?.split('\n').slice(0, 3).join('\n') || ''}`);
+        showError(`Init: ${err.message}\n${err.stack?.split('\n').slice(0, 3).join('\n') || ''}`);
     }
 }
 
