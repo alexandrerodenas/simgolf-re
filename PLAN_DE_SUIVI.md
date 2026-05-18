@@ -154,22 +154,26 @@ Voir `MAPPING.md` pour le détail des 38 exports.
 - [ ] Portage TypeScript : `PersonaSystem.ts` (IA golfeurs)
 - [ ] Portage TypeScript : `TournamentSystem.ts`
 
-### Priorité 6 — Fichiers Data ← EN COURS
-- [ ] Analyse du format .chr (personnages golfeurs)
-- [ ] Analyse du format .glf (données golfeurs)
-- [ ] Analyse du format .pro (profils)
-- [ ] Analyse du format .fot (polices bitmap)
-- [ ] Analyse du format .sve (sauvegardes)
-- [ ] Parseur TypeScript pour les formats data
-- [ ] Portage des polices bitmap (.fot → Web fonts)
-- [ ] Portage des profils golfeurs (.pro → JSON)
+### Priorité 6 — Fichiers Data ✅
+- [x] Analyse du format .chr (personnages golfeurs)
+- [x] Analyse du format .glf (données golfeurs)
+- [x] Analyse du format .pro (profils)
+- [x] Analyse du format .fot (polices bitmap — ce sont des NE executables)
+- [x] Analyse du format .sve (sauvegardes — top10 scores)
+- [x] Parseur TypeScript pour les formats data (.dta CSV, .chr, .pro, .sve, .txt stories)
+- [x] Portage des polices TrueType (KLEPTO__.TTF, manu3_.TTF → Web)
+- [x] Catalog complet des textures : 2 671 BMP 64×64 24-bit converties en PNG
+- [x] 1 893 animations FLC (sprites) par catégorie
+- [x] Documentation tous formats dans game_data/DataFormatAnalysis.md
 
-### Priorité 7 — Interface Mobile
-- [ ] Analyse des fichiers PCX (extraction textures depuis le CD)
-- [ ] Adaptation tactile (drag-and-drop, appui long)
-- [ ] Écran principal de construction
-- [ ] Mode jeu (parcours)
-- [ ] Menus et options
+### Priorité 7 — Textures & Rendu ← EN COURS
+- [x] Analyse des textures BMP (64×64, 24-bit, 4 thèmes)
+- [x] Pipeline de conversion BMP → PNG (2 671 textures, zéro erreur)
+- [x] Catalogue JSON des textures (web_port/assets/texture_catalog.json)
+- [x] TextureManager.ts (chargement, cache, sélection par variante)
+- [ ] Analyse et conversion des 646 PCX (UI/sprites)
+- [ ] Analyse des 1893 FLC (animations sprites)
+- [ ] Intégration des textures dans le rendu isométrique
 
 ---
 
