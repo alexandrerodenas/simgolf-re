@@ -135,15 +135,19 @@ Voir `MAPPING.md` pour le détail des 38 exports.
 - [x] 26 imports Terrain.dll accessibles dans le code
 - [x] Architecture gameplay cartographiée
 
-### Priorité 5 — Simulation & Gameplay ← EN COURS
+### Priorité 5 — Simulation & Gameplay ✅
 - [x] Analyse des chaînes de jeu (1200+ strings extraites)
 - [x] Cartographie des systèmes : types trous, skills, scoring, économie, SGA, tournois, accomplissements
 - [x] Analyse du pipeline d'exécution (WinMain → GameLoop)
-- [ ] Analyse des fonctions hub (0x494f00, 0x476dd0, 0x485e80)
+- [x] Analyse des fonctions hub (0x494f00, 0x476dd0, 0x485e80)
+- [x] Nettoyage du moteur de tick simulation (0x49846c)
+- [x] Nettoyage du système d'interpolation fluide (0x4969e0)
 - [ ] Nettoyage du moteur d'économie (Revenue/Expenses)
 - [ ] Nettoyage du système de scoring
 - [ ] Nettoyage de l'IA des golfeurs
 - [ ] Nettoyage du système de tournois SGA
+- [x] Portage TypeScript : `GameTickEngine.ts`
+- [x] Portage TypeScript : `SmoothInterpolator.ts`
 - [ ] Portage TypeScript : `EconomySystem.ts`
 - [ ] Portage TypeScript : `GolfSimulation.ts` (physique)
 - [ ] Portage TypeScript : `ScoringSystem.ts`
