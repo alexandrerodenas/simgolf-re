@@ -139,26 +139,24 @@ Voir `MAPPING.md` pour le détail des 38 exports.
 - [x] 2 671 BMP → PNG, 649 PCX → PNG
 - [x] Documentation DataFormatAnalysis.md
 
-### 🟢 Priorité 7 — Décompilation Terrain.dll (26 exports restants)
-**Fait** (12/38 exports nettoyés) :
-| Export | Statut |
-|--------|--------|
-| tileAt, getElevation, getType, getWall, setWall, hasPath | ✅ Nettoyé |
-| render, localRender, renderTile, drawLine, drawCircle | ✅ C clean |
-| drawBezierSpline, drawCardinalSpline | ✅ C clean |
-| initSystem, closeSystem, initTerrain, resize | ✅ C clean |
-| loadNewCourseType, resetTerrain | ✅ C clean |
-| calcAllNormals, calcNormals, setZoomLevel | ✅ C clean |
-| changeLighting, getVariation, elevateCorner | ✅ C clean |
-| lowerCorner, lowerEdgeCorner, setSplineHeight | ✅ C clean |
-| setType, updatePath, layPath, pathUpdateRender | ✅ C clean |
-| stripRender, tileHit, passCollarInfo, ~Terrain | ✅ C clean |
+### 🟢 Priorité 7 — Décompilation Terrain.dll ✅ FAIT
+**38/38 exports nettoyés en C :**
 
-**Reste à faire** :
-- [ ] Vérifier que tous les exports ont leur fichier .c dans cleaned_c/
-- [ ] Analyser les 524 bytes inconnus de Tile (offset 0x028-0x233)
-- [ ] Ajouter les champs manquants à tile_struct.h (renderPasses, tileFlags, textureOffset...)
-- [ ] Compléter la structure Terrain (width/height ok, reste à cartographier)
+| Fichier | Exports couverts |
+|---------|-----------------|
+| `tile_struct.h` | Tile (584 bytes) + Terrain + RenderPass structures |
+| `terrain_tileAt.c` | tileAt |
+| `tile_getters.c` | getElevation, getType, getWall |
+| `terrain_render.c` | render (boucle isométrique) |
+| `terrain_render_helpers.c` | getScreenX, getScreenY, isCulled, getView |
+| `terrain_render_tile.c` | renderSingleTile, isVisible |
+| `terrain_initSystem.c` | **initSystem, closeSystem, initTerrain, resize** |
+| `terrain_zoom.c` | **setZoomLevel, changeLighting, loadNewCourseType, resetTerrain, getVariation** |
+| `terrain_setType.c` | **setType, getInstance, tileHit, ~Terrain** |
+| `terrain_elevation.c` | **elevateCorner, lowerCorner, lowerEdgeCorner, setSplineHeight** |
+| `terrain_drawing.c` | **drawLine, drawCircle, drawBezierSpline, drawCardinalSpline** |
+| `terrain_normals.c` | **calcAllNormals, calcNormals, setWall, hasPath, hasConnectedPath** |
+| `terrain_paths.c` | **updatePath, layPath, pathUpdateRender, stripRender, passCollarInfo, localRender, renderTile** |
 
 ### 🟡 Priorité 8 — Décompilation golf.exe (131K lignes asm)
 - [ ] Analyser le hub CoursEngine (0x494f00 — 285 appels internes)
@@ -201,12 +199,12 @@ Voir `MAPPING.md` pour le détail des 38 exports.
 ## 🚧 Problèmes Connus
 
 1. **Capstone ARM64** : désassemblage peut dérailler sur données intercalées
-2. **Structure Tile** : 524 bytes non analysés (offset 0x028-0x233)
-3. **Code du jeu massif** : 131K lignes de asm, analyse manuelle longue
+2. **Structure Tile** : ~36 bytes non analysés (offset 0x060-0x06b + 0x238-0x247)
+3. **Code du jeu massif** : 131K lignes de asm — analyse manuelle longue
 4. **Pas de boucle de message classique** : jeu timer-driven, complexité
 5. **Fonctions `__thiscall`** : non détectées automatiquement (centaines de fonctions)
-6. **Formats data (.chr, .glf, .pro, .fot)** : non analysés
-7. **PCX du CD** : non extraits (nécessitent l'ISO originale ou les CABs)
+6. **Formats data (.chr, .glf, .pro)** : analysés mais pas de parseur C
+7. **Structures Terrain/Tile** : certaines tailles de champs sont estimées (pas de debug symbols)
 
 ---
 
