@@ -162,13 +162,76 @@ se déclenche pendant le jeu. Le début du nom encode les personnages :
 
 | Format | Nb | Usage |
 |--------|----|-------|
-| .bmp | 2631 | Textures de terrain (tuiles) |
+| .bmp | 2671 | Textures de terrain (tuiles) |
 | .flc | 1893 | Animations FLIC (sprites) |
 | .pcx | 646 | UI, icônes, overlays |
 | .tga | 36 | Textures de chemins (4 thèmes) |
 | .TTF | 2 | Polices TrueType |
 
-## 9. Autres fichiers notables
+## 9. Conversion des FLC (Animations)
+
+**Format :** FLC propriétaire SimGolf — variante du format FLC/FLI standard avec un header décalé de 4 bytes (magic `0xAF12` à l'offset +4 au lieu de +0). Ring frame standard. Pas de compression complexe — chaque frame est en delta (relative) par rapport à la précédente.
+
+### Pipeline de conversion
+
+| Script | Rôle |
+|--------|------|
+| `analyze_flc.py` | Analyse en-tête FLC, validation |
+| `decode_flc.py` | Décodeur FLC → frames individuelles + spritesheet |
+| `convert_flc.py` | Convertisseur batch avec catalogue |
+
+### Résultat : 1 892 / 1 893 fichiers convertis
+
+```
+game_data/converted/
+└── sprites/
+    ├── Animals/        (oiseaux, écureuils...)
+    ├── Bldgs/          (clubhouse, pro shop, putting green...)
+    ├── Bridges/        (ponts)
+    ├── Celebs/         (célébrités Sim-ish)
+    ├── Employee/       (groundskeeper, ranger...)
+    ├── Female/         (golfeuses — 30+ animations : swing, putt, walk...)
+    ├── Flowers/        (fleurs animées)
+    ├── Homes/          (maisons)
+    ├── Landmarks/      (points de repère)
+    ├── Male/           (golfeurs — 30+ animations)
+    ├── Scenic/         (scènes décoratives)
+    ├── Tees/           (drapeaux, départs)
+    ├── Trees/          (arbres — 4 thèmes : DESERT, LINKS, PARKLAND, TROPIC)
+    └── Water/          (fontaines, cascades)
+```
+
+### Format du catalogue (`flc_catalog.json`)
+
+```json
+{
+  "Tees/FlagDESERT_open.flc": {
+    "width": 35,
+    "height": 26,
+    "frames": 66,
+    "sheet": "FlagDESERT_open.png"
+  },
+  "Male/MaleNormalWalk.flc": {
+    "width": 64,
+    "height": 130,
+    "frames": 32,
+    "sheet": "MaleNormalWalk.png"
+  }
+}
+```
+
+Chaque animation produit :
+- **1 spritesheet PNG** (frames disposées horizontalement)
+- **N frames individuelles** dans un sous-dossier `NomAnimation/`
+
+Les noms d'animations sont codés dans les fichiers FLC eux-mêmes et reflètent leur usage :
+- `Swing` (swing normal), `Putt` (putt), `Pitch` (chip)
+- `NormalAddress` (stance), `NormalWalk` (marche), `TiredWalk` (fatigué)
+- `SuccessA/B` (célébration), `Sad` (déception), `Sitting` (assis)
+- `LineUpPutt` (alignement putt), `LeanLeft/LeanRight`
+- `Shadow` suffix = ombre portée
+
+## 10. Autres fichiers notables
 
 | Fichier | Description |
 |---------|-------------|

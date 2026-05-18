@@ -1,7 +1,7 @@
 # SimGolf RE — Plan de Suivi & Status
 
 > Projet : Rétro-ingénierie de Sid Meier's SimGolf (Firaxis/Maxis, 2002)  
-> Cible : Portage Web Mobile-First (TypeScript, Phaser/PixiJS)  
+> Cible : Portage Web Mobile-First (TypeScript, Canvas 2D + WebGL)  
 > Début : 17 Mai 2026  
 > Méthode : Décompilation → C propre → TypeScript
 
@@ -11,38 +11,32 @@
 
 ```
 ~/simgolf-re/
-├── raw_decomp/                    ← Désassemblage brut
-│   ├── golf_unpacked_disasm.txt   (131 259 lignes — golf.exe dépaqueté !)
-│   ├── Terrain_dll_disasm.txt     (25 658 lignes — v1, tronquée ARM64)
-│   ├── Terrain_dll_disasm_v2.txt  (29 069 lignes — v2, fonctions individuelles)
-│   ├── Terrain_dll_functions.txt  (34 741 lignes — fonctions individuelles)
+├── raw_decomp/                    ← Désassemblage brut (1.1M lignes)
+│   ├── golf_unpacked_disasm.txt   (131 259 lignes — golf.exe)
+│   ├── golf_functions_disasm.txt  (1 118 429 lignes — 182 fns)
+│   ├── Terrain_dll_functions.txt  (34 741 lignes — 38 exports)
 │   ├── sound_dll_disasm.txt       (32 234 lignes — complète)
-│   ├── jgld_dll_disasm.txt        (198 314 lignes — complète)
-│   ├── golf_exe_full_disasm.txt   (18 lignes — obsolète, exe packé)
+│   ├── jgld_dll_disasm.txt        (198 314 lignes — 1 199 fns)
 │   ├── pe_analysis.txt
-│   ├── scan_functions.py          (analyse fonctions golf.exe)
-│   ├── scan_game_loop.py          (analyse boucle de jeu)
-│   ├── find_game_strings.py       (extraction chaînes)
-│   ├── extract_bin_strings.py
-│   ├── analyze_exe.py / analyze_exe_deep.py
-│   └── *.py                       (scripts extraction)
+│   └── 17 scripts Python (analyse, extraction, scan)
 │
-├── cleaned_c/                     ← Code C nettoyé et documenté
+├── cleaned_c/                     ← Code C nettoyé et documenté (25 fichiers)
 │   ├── tile_struct.h              (Structure Tile 584 bytes)
-│   ├── terrain_tileAt.c          ✅ Terrain::tileAt
-│   ├── tile_getters.c            ✅ Tile::{getElevation,getType,getWall}
-│   ├── terrain_render.c          ✅ Terrain::render (boucle isométrique)
-│   ├── terrain_render_helpers.c  ✅ {getScreenX/Y, isVisible, isCulled, getView}
-│   ├── terrain_render_tile.c     ✅ renderSingleTile + isVisible
-│   ├── game_tick.c               ✅ Fonction de tick simulation (16 slots)
-│   ├── smooth_interpolator.c     ✅ Interpolateur fluide
+│   ├── terrain_*.c / tile_*.c     12 fichiers (38/38 exports Terrain.dll)
+│   ├── game_*.c / smooth_*.c      13 fichiers (pipeline golf.exe)
 │   ├── MAPPING.md                 (Table 38 exports Terrain.dll)
-│   └── gameplay_architecture.md   (Architecture complète du jeu)
+│   ├── gameplay_architecture.md   (Architecture complète du jeu)
+│   ├── jgld_analysis.md           (Moteur GDI32 sprites)
+│   └── sound_analysis.md          (Moteur audio Wave/MIDI)
 │
 └── game_data/                     ← Binaires et données
     ├── exe/                        (DLLs + golf.exe packé)
     ├── exe_patched/                (golf.exe v1.03)
-    └── exe_unpacked/               ← golf.exe dépaqueté (DEViANCE)
+    ├── exe_unpacked/               golf.exe dépaqueté (DEViANCE, 946 Ko)
+    ├── extracted/                  (2 671 BMP→PNG, 649 PCX→PNG)
+    ├── converted/                  (1 892 FLC→PNG + flc_catalog.json)
+    │   └── sprites/                Animations par catégorie (40+ dossiers)
+    └── 9 scripts Python (conversion, analyse, parse)
 
 PLAN_DE_SUIVI.md
 ```
@@ -73,16 +67,17 @@ PLAN_DE_SUIVI.md
 - **WINMM** (6) : son (mmio, time)
 - **BINKW32** (16) : vidéo Bink
 
-**Aucun import DirectX/OpenGL** — tout le rendu passe par Terrain.dll → JGL → GDI
+**Import OpenGL via Terrain.dll** — 44 imports OpenGL32 + 2 GLU32
 
-### Analyse Terrain.dll (moteur terrain) → 12/38 exports nettoyés
+### Analyse Terrain.dll (moteur terrain) → 38/38 exports nettoyés ✅
 
 Voir `MAPPING.md` pour le détail des 38 exports.
 
 ### Analyse jgld.dll (moteur graphique) → FAIT
-- Renderer logiciel GDI32 pur (pas d'OpenGL)
+- Moteur **GDI32** pour sprites 2D + polices overlay
 - 1199 fonctions, 1 seul export `get_graphsy_object_ptr`
 - JackalClass : objet 332 bytes, 6 méthodes cartographiées
+- **NB :** Terrain.dll utilise OpenGL (44 imports) pour le rendu 3D isométrique — JGL n'est que la couche sprite/UI
 
 ### Analyse sound.dll → FAIT
 - 12 exports, 3 devices (Wave/DirectSound, WaveIn, MIDI)
@@ -222,9 +217,22 @@ WinMain
 | `game_scenarios.c` | 6 scénarios/campagnes | 0x4c3925, 0x4d1dc6, 0x4d212d |
 | `game_physics.c` | Physique balle (Lie, Drive, Putt, Wind, 8 skills) | 0x4c3ee0, 0x4cfcfc, 0x4cfca8 |
 
-**Reste :**
-- [ ] Analyse des 1 893 animations FLC (sprites)
-- [ ] Parseur C pour les fichiers .dta/.pro/.chr
+### Priorité 10 — Animations FLC ✅ FAIT
+- [x] Reverse engineering format FLC propriétaire (header décalé 4 bytes)
+- [x] Décodeur `decode_flc.py` — FLC → frames PNG + spritesheet
+- [x] Convertisseur batch `convert_flc.py` — **1 892/1 893 fichiers**
+- [x] Catalogue JSON `flc_catalog.json` (dimensions + frame counts)
+- [x] Sprite pipeline : 40+ catégories (Golfeurs, Arbres, Drapeaux, Bâtiments, Eau, etc.)
+
+### 🔜 Priorité 11 — Parseur C données (.dta/.pro/.chr)
+- [ ] Parseur C pour `progolfers.dta` (80 golfeurs pros)
+- [ ] Parseur C pour `celebrities.dta` (50 célébrités)
+- [ ] Parseur C pour fichiers .chr (21 personnages)
+- [ ] Parseur C pour .pro profils golfeur
+- [ ] Intégration structures de données dans le portage TypeScript
+
+**Reste :** [Le parseur C est déplacé en Priorité 11]
+- La documentation est à jour. Prochaine étape : attaquer le portage typeScript.
 
 ---
 
@@ -252,11 +260,12 @@ WinMain
 
 1. **Capstone ARM64** : désassemblage peut dérailler sur données intercalées
 2. **Structure Tile** : ~36 bytes non analysés (offset 0x060-0x06b + 0x238-0x247)
-3. **Code du jeu massif** : 131K lignes de asm — analyse manuelle longue
+3. **Code du jeu massif** : 1.1M lignes de asm — analyse manuelle longue
 4. **Pas de boucle de message classique** : jeu timer-driven, complexité
-5. **Fonctions `__thiscall`** : non détectées automatiquement (centaines de fonctions)
-6. **Formats data (.chr, .glf, .pro)** : analysés mais pas de parseur C
+5. **Fonctions `__thiscall`** : détection améliorée via script `disassemble_golf_functions.py` (116 push ebp + 80 thunk targets + 26 connues)
+6. **Formats data (.chr, .glf, .pro)** : analysés en Python mais pas de parseur C
 7. **Structures Terrain/Tile** : certaines tailles de champs sont estimées (pas de debug symbols)
+8. **Sprites FLC convertis** : 1 892 FLC → PNG — répertoire `converted/` volumineux (sprites non versionnés, .gitignore à configurer)
 
 ---
 
@@ -286,10 +295,14 @@ golf.exe (dépaqueté)
 │           ├── drawLine/drawCircle → primitives
 │           └── BezierSpline/CardinalSpline → courbes
 │
-└── Terrain.dll (38 exports C++ → 12 nettoyés)
+└── Terrain.dll (38 exports C++ → 38/38 nettoyés)
     ├── tileAt, getElevation, getType, getWall ✅
     ├── render, renderTile, renderSingleTile ✅
-    └── drawLine, drawCircle, drawBezierSpline ✅
+    ├── initSystem, resize, zoom, lighting ✅
+    ├── elevation (elevateCorner, lowerCorner) ✅
+    ├── drawLine, drawCircle, drawBezierSpline ✅
+    ├── normals, paths, walls ✅
+    └── setType, tileHit, getInstance ✅
 
 sound.dll (12 exports)
 ├── create_sound / delete_sound
@@ -305,5 +318,5 @@ jgld.dll (1 export)
 
 ---
 
-*Document généré le 18 Mai 2026 — Hermes-RE*  
-*Prochaine mise à jour : après analyse des fonctions hub de simulation*
+*Document généré le 19 Mai 2026 — Hermes-RE*  
+*Prochaine mise à jour : avant le début du portage web*

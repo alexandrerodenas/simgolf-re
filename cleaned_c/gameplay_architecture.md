@@ -1,7 +1,7 @@
 # SimGolf — Architecture Gameplay (Reverse Engineering)
 
 > Analyse du `golf.exe` dépaqueté (DEViANCE, SafeDisc 2 retiré)
-> Février 2026 — Hermes-RE
+> Mai 2026 — Hermes-RE
 
 ---
 
@@ -17,7 +17,8 @@ Imports  : KERNEL32(77), TERRAIN.DLL(26), USER32(24), WINMM(6), BINKW32(16)
 
 **Architecture du jeu :**
 - **Pas de boucle de message classique** : pas d'appel à `PeekMessage`. Le jeu utilise `SetTimer` / `KillTimer` pour l'animation (timer-driven, pas d'idle loop).
-- **Rendu via Terrain.dll** : l'EXE appelle Terrain.dll pour tout le rendu, qui utilise JGL (Jackal Graphics Layer → GDI32 software renderer)
+- **Rendu via Terrain.dll** : l'EXE appelle Terrain.dll pour tout le rendu 3D isométrique, qui utilise **OpenGL** (44 imports : glBegin/glEnd, textures, lumière, matrices). La couche **jgld.dll** (GDI32) gère les sprites 2D overlay + polices.
+- **Animations** : 1 892 sprites animés au format FLC (convertis en PNG) — golfeurs, arbres, drapeaux, eau, bâtiments
 - **Bink Video** : cutscenes via Bink decoder
 - **Son** : WINMM (waveOut/MIDI) via sound.dll
 - **UI custom** : pas de Windows standard controls — tout est dessiné en PCX custom

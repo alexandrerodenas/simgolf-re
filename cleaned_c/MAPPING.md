@@ -64,3 +64,11 @@
 3. Analyser `initSystem()` — initialisation DirectX
 4. Analyser sound.dll — moteur audio
 5. Dépaqueter le golf.exe principal pour accéder aux fonctions de jeu
+
+## Compléments récents (Mai 2026)
+
+- ✅ **38/38 exports nettoyés** (MAPPING complet ci-dessus)
+- ✅ **Architecture corrigée v2** : Terrain.dll = OpenGL 3D, jgld.dll = GDI32 sprites
+- ✅ **1 892 animations FLC converties** en PNG (cf. `game_data/converted/flc_catalog.json`)
+- ✅ **Parseur Python** pour 80 golfeurs pros + 50 célébrités (fichiers .dta)
+- 🔜 Parseur C pour les données (.dta/.pro/.chr)
