@@ -154,7 +154,17 @@ Voir `MAPPING.md` pour le détail des 38 exports.
 - [ ] Portage TypeScript : `PersonaSystem.ts` (IA golfeurs)
 - [ ] Portage TypeScript : `TournamentSystem.ts`
 
-### Priorité 6 — Interface Mobile
+### Priorité 6 — Fichiers Data ← EN COURS
+- [ ] Analyse du format .chr (personnages golfeurs)
+- [ ] Analyse du format .glf (données golfeurs)
+- [ ] Analyse du format .pro (profils)
+- [ ] Analyse du format .fot (polices bitmap)
+- [ ] Analyse du format .sve (sauvegardes)
+- [ ] Parseur TypeScript pour les formats data
+- [ ] Portage des polices bitmap (.fot → Web fonts)
+- [ ] Portage des profils golfeurs (.pro → JSON)
+
+### Priorité 7 — Interface Mobile
 - [ ] Analyse des fichiers PCX (extraction textures depuis le CD)
 - [ ] Adaptation tactile (drag-and-drop, appui long)
 - [ ] Écran principal de construction
