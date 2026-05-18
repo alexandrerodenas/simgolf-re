@@ -171,7 +171,12 @@ Voir `MAPPING.md` pour le détail des 38 exports.
 - [x] Pipeline de conversion BMP → PNG (2 671 textures, zéro erreur)
 - [x] Catalogue JSON des textures (web_port/assets/texture_catalog.json)
 - [x] TextureManager.ts (chargement, cache, sélection par variante)
-- [ ] Analyse et conversion des 646 PCX (UI/sprites)
+- [x] Analyse et conversion des 649 PCX (UI/sprites)
+  - interface/ (137 fichiers) : panneaux, boutons, écrans, infos
+  - flics/ (450 fichiers) : palettes de sprites/animations
+  - heads/ (11 fichiers) : portraits golfeurs
+  - bodies/ (42 fichiers) : corps des golfeurs
+  - other/ (9 fichiers) : logo, splash, etc.
 - [ ] Analyse des 1893 FLC (animations sprites)
 - [x] Intégration des textures dans le rendu isométrique (IsometricRenderer.ts)
 - [x] Mapping TileType → TerrainType avec prefix match

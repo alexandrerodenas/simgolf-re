@@ -1,0 +1,4701 @@
+{
+  "total": 649,
+  "errors": 0,
+  "categories": {
+    "bodies": {
+      "count": 42,
+      "examples": [
+        {
+          "file": "bodies/barrel.png",
+          "w": 60,
+          "h": 120
+        },
+        {
+          "file": "bodies/barrel_pal.png",
+          "w": 60,
+          "h": 60
+        },
+        {
+          "file": "bodies/femalebody_defaultpal.png",
+          "w": 60,
+          "h": 60
+        },
+        {
+          "file": "bodies/femalepls.png",
+          "w": 60,
+          "h": 120
+        },
+        {
+          "file": "bodies/femalepls_sm.png",
+          "w": 60,
+          "h": 120
+        }
+      ]
+    },
+    "flics": {
+      "count": 450,
+      "examples": [
+        {
+          "file": "flics/desert_tiles.png",
+          "w": 800,
+          "h": 600
+        },
+        {
+          "file": "flics/desert.png",
+          "w": 800,
+          "h": 600
+        },
+        {
+          "file": "flics/links.png",
+          "w": 800,
+          "h": 600
+        },
+        {
+          "file": "flics/parkland.png",
+          "w": 800,
+          "h": 600
+        },
+        {
+          "file": "flics/tropical.png",
+          "w": 800,
+          "h": 600
+        }
+      ]
+    },
+    "heads": {
+      "count": 11,
+      "examples": [
+        {
+          "file": "heads/f_head_template.png",
+          "w": 140,
+          "h": 420
+        },
+        {
+          "file": "heads/head_template.png",
+          "w": 320,
+          "h": 420
+        },
+        {
+          "file": "heads/m_head_template.png",
+          "w": 140,
+          "h": 420
+        },
+        {
+          "file": "heads/m_lee.png",
+          "w": 140,
+          "h": 420
+        },
+        {
+          "file": "heads/m_meade.png",
+          "w": 140,
+          "h": 420
+        }
+      ]
+    },
+    "interface": {
+      "count": 137,
+      "examples": [
+        {
+          "file": "interface/3mainlowerleft.png",
+          "w": 800,
+          "h": 600
+        },
+        {
+          "file": "interface/3mainlowerleft_a.png",
+          "w": 800,
+          "h": 600
+        },
+        {
+          "file": "interface/amenitiespanel.png",
+          "w": 800,
+          "h": 600
+        },
+        {
+          "file": "interface/amenitiespanel_a.png",
+          "w": 800,
+          "h": 600
+        },
+        {
+          "file": "interface/barrel.png",
+          "w": 60,
+          "h": 120
+        }
+      ]
+    },
+    "other": {
+      "count": 9,
+      "examples": [
+        {
+          "file": "other/bldg.png",
+          "w": 800,
+          "h": 600
+        },
+        {
+          "file": "other/gbubbles.png",
+          "w": 640,
+          "h": 480
+        },
+        {
+          "file": "other/jackal.png",
+          "w": 81,
+          "h": 101
+        },
+        {
+          "file": "other/radiobut.png",
+          "w": 80,
+          "h": 100
+        },
+        {
+          "file": "other/bink64.png",
+          "w": 64,
+          "h": 64
+        }
+      ]
+    }
+  },
+  "files": [
+    {
+      "file": "other/bldg.png",
+      "src": "BLDG.PCX",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/barrel.png",
+      "src": "Bodies/Barrel.pcx",
+      "w": 60,
+      "h": 120,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/barrel_pal.png",
+      "src": "Bodies/Barrel_pal.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/femalebody_defaultpal.png",
+      "src": "Bodies/FemaleBody_DefaultPal.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/femalepls.png",
+      "src": "Bodies/FemalePLS.pcx",
+      "w": 60,
+      "h": 120,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/femalepls_sm.png",
+      "src": "Bodies/FemalePLS_sm.pcx",
+      "w": 60,
+      "h": 120,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/femalepss.png",
+      "src": "Bodies/FemalePSS.pcx",
+      "w": 60,
+      "h": 120,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/femalepss_sm.png",
+      "src": "Bodies/FemalePSS_sm.pcx",
+      "w": 60,
+      "h": 120,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/femalesss.png",
+      "src": "Bodies/FemaleSSS.pcx",
+      "w": 60,
+      "h": 120,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/femalesss_sm.png",
+      "src": "Bodies/FemaleSSS_sm.pcx",
+      "w": 60,
+      "h": 120,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/femaleskss.png",
+      "src": "Bodies/FemaleSkSS.pcx",
+      "w": 60,
+      "h": 120,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/femaleskss_sm.png",
+      "src": "Bodies/FemaleSkSS_sm.pcx",
+      "w": 60,
+      "h": 120,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/femalesktt.png",
+      "src": "Bodies/FemaleSkTT.pcx",
+      "w": 60,
+      "h": 120,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/femalesktt_sm.png",
+      "src": "Bodies/FemaleSkTT_sm.pcx",
+      "w": 60,
+      "h": 120,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/femaleswap01.png",
+      "src": "Bodies/FemaleSwap01.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/femaleswap02.png",
+      "src": "Bodies/FemaleSwap02.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/femaleswap03.png",
+      "src": "Bodies/FemaleSwap03.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/femaleswap04.png",
+      "src": "Bodies/FemaleSwap04.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/femaleswap05.png",
+      "src": "Bodies/FemaleSwap05.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/femaleswap06.png",
+      "src": "Bodies/FemaleSwap06.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/femaleswap07.png",
+      "src": "Bodies/FemaleSwap07.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/femaleswap08.png",
+      "src": "Bodies/FemaleSwap08.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/femaleswap09.png",
+      "src": "Bodies/FemaleSwap09.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/femaleswap10.png",
+      "src": "Bodies/FemaleSwap10.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/malebody_defaultpal.png",
+      "src": "Bodies/MaleBody_DefaultPal.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/malekls.png",
+      "src": "Bodies/MaleKLS.pcx",
+      "w": 60,
+      "h": 120,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/malekls_sm.png",
+      "src": "Bodies/MaleKLS_sm.pcx",
+      "w": 60,
+      "h": 120,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/malepls.png",
+      "src": "Bodies/MalePLS.pcx",
+      "w": 60,
+      "h": 120,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/malepls_sm.png",
+      "src": "Bodies/MalePLS_sm.pcx",
+      "w": 60,
+      "h": 120,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/malepss.png",
+      "src": "Bodies/MalePSS.pcx",
+      "w": 60,
+      "h": 120,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/malepss_sm.png",
+      "src": "Bodies/MalePSS_sm.pcx",
+      "w": 60,
+      "h": 120,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/malesss.png",
+      "src": "Bodies/MaleSSS.pcx",
+      "w": 60,
+      "h": 120,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/malesss_sm.png",
+      "src": "Bodies/MaleSSS_sm.pcx",
+      "w": 60,
+      "h": 120,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/maleswap01.png",
+      "src": "Bodies/MaleSwap01.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/maleswap02.png",
+      "src": "Bodies/MaleSwap02.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/maleswap03.png",
+      "src": "Bodies/MaleSwap03.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/maleswap04.png",
+      "src": "Bodies/MaleSwap04.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/maleswap05.png",
+      "src": "Bodies/MaleSwap05.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/maleswap06.png",
+      "src": "Bodies/MaleSwap06.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/maleswap07.png",
+      "src": "Bodies/MaleSwap07.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/maleswap08.png",
+      "src": "Bodies/MaleSwap08.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/maleswap09.png",
+      "src": "Bodies/MaleSwap09.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "bodies/maleswap10.png",
+      "src": "Bodies/MaleSwap10.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/desert_tiles.png",
+      "src": "Data/desert tiles.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/desert.png",
+      "src": "Data/desert.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/links.png",
+      "src": "Data/links.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/parkland.png",
+      "src": "Data/parkland.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/tropical.png",
+      "src": "Data/tropical.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Animals_cranepal.png",
+      "src": "Flics/Animals/CranePal.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Animals_croc_palette.png",
+      "src": "Flics/Animals/Croc_palette.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Animals_duck_palette.png",
+      "src": "Flics/Animals/Duck_palette.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Animals_elkpal.png",
+      "src": "Flics/Animals/ELKPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Animals_elk_palette.png",
+      "src": "Flics/Animals/Elk_palette.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Animals_flamingopal.png",
+      "src": "Flics/Animals/FlamingoPal.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Animals_gila_palette.png",
+      "src": "Flics/Animals/Gila_Palette.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Animals_rr_palette.png",
+      "src": "Flics/Animals/RR_palette.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Animals_snake_palette.png",
+      "src": "Flics/Animals/Snake_palette.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Animals_sheep_palette.png",
+      "src": "Flics/Animals/sheep_palette.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Desert_casl2pal.png",
+      "src": "Flics/Bldgs/Desert/CasL2pal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Desert_des_drpal.png",
+      "src": "Flics/Bldgs/Desert/DES_DRpal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Desert_descartl2pal.png",
+      "src": "Flics/Bldgs/Desert/DEScartL2pal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Desert_descartpal.png",
+      "src": "Flics/Bldgs/Desert/DEScartpal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Desert_descasl2pal.png",
+      "src": "Flics/Bldgs/Desert/DEScasL2Pal.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Desert_descaspal.png",
+      "src": "Flics/Bldgs/Desert/DEScasPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Desert_desclubl2pal.png",
+      "src": "Flics/Bldgs/Desert/DESclubL2pal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Desert_deshol2pal.png",
+      "src": "Flics/Bldgs/Desert/DEShoL2pal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Desert_desprol2pal.png",
+      "src": "Flics/Bldgs/Desert/DESproL2pal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Desert_desputtl2pal.png",
+      "src": "Flics/Bldgs/Desert/DESputtL2pal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Desert_desputt_platl2pal.png",
+      "src": "Flics/Bldgs/Desert/DESputt_platL2pal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Desert_dessignpal.png",
+      "src": "Flics/Bldgs/Desert/DESsignPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Desert_dessnackl2pal.png",
+      "src": "Flics/Bldgs/Desert/DESsnackL2pal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Desert_dessnackpal.png",
+      "src": "Flics/Bldgs/Desert/DESsnackpal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Desert_desclubpal.png",
+      "src": "Flics/Bldgs/Desert/DesClubpal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Desert_deshotelpal.png",
+      "src": "Flics/Bldgs/Desert/DesHotelPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Desert_dhouseapal.png",
+      "src": "Flics/Bldgs/Desert/DhouseApal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Desert_hell2pal.png",
+      "src": "Flics/Bldgs/Desert/HelL2pal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Desert_dhouseconpal.png",
+      "src": "Flics/Bldgs/Desert/dhouseconpal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Desert_dpropal.png",
+      "src": "Flics/Bldgs/Desert/dproPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Desert_dputtpal.png",
+      "src": "Flics/Bldgs/Desert/dputtpal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Desert_helipal.png",
+      "src": "Flics/Bldgs/Desert/heliPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Desert_spal2pal.png",
+      "src": "Flics/Bldgs/Desert/spaL2pal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Desert_spapal.png",
+      "src": "Flics/Bldgs/Desert/spaPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Desert_tenpal.png",
+      "src": "Flics/Bldgs/Desert/tenPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_drivputtpal.png",
+      "src": "Flics/Bldgs/DrivPuttPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Park_airl1_palette.png",
+      "src": "Flics/Bldgs/Park/AirL1 palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Park_airl2_palette.png",
+      "src": "Flics/Bldgs/Park/AirL2 palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Park_drl1_palette.png",
+      "src": "Flics/Bldgs/Park/DRL1 palette.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Park_drl2_palette.png",
+      "src": "Flics/Bldgs/Park/DRL2 palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Park_hotell1_palette.png",
+      "src": "Flics/Bldgs/Park/HotelL1 palette.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Park_hotell2_palette.png",
+      "src": "Flics/Bldgs/Park/HotelL2 palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Park_house_apal.png",
+      "src": "Flics/Bldgs/Park/House_APal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Park_marl1_palette.png",
+      "src": "Flics/Bldgs/Park/MarL1 palette.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Park_marl2_palette.png",
+      "src": "Flics/Bldgs/Park/MarL2 palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Park_parkprol1_palette.png",
+      "src": "Flics/Bldgs/Park/ParkProL1 palette.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Park_parkprol2_palette.png",
+      "src": "Flics/Bldgs/Park/ParkProL2 palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Park_parksnackl1_palette.png",
+      "src": "Flics/Bldgs/Park/ParkSnackL1 palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Park_parksnackl2_palette.png",
+      "src": "Flics/Bldgs/Park/ParkSnackL2 palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Park_cartl1_palette.png",
+      "src": "Flics/Bldgs/Park/cartL1 palette.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Park_cartl2_palette.png",
+      "src": "Flics/Bldgs/Park/cartL2 palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Park_clubl1_palette.png",
+      "src": "Flics/Bldgs/Park/clubL1 palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Park_clubl2_palette.png",
+      "src": "Flics/Bldgs/Park/clubL2 palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Park_housebpal.png",
+      "src": "Flics/Bldgs/Park/houseBpal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Park_houseconpal.png",
+      "src": "Flics/Bldgs/Park/houseconpal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Park_puttl1_palette.png",
+      "src": "Flics/Bldgs/Park/puttL1 palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Park_puttl2_palette.png",
+      "src": "Flics/Bldgs/Park/puttL2 palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Park_signpal.png",
+      "src": "Flics/Bldgs/Park/signpal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Park_tenl1_palette.png",
+      "src": "Flics/Bldgs/Park/tenL1 palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Park_tenl2_palette.png",
+      "src": "Flics/Bldgs/Park/tenL2 palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Tropical_snackl2_palette.png",
+      "src": "Flics/Bldgs/Tropical/SnackL2_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Tropical_tropdrl2_palette.png",
+      "src": "Flics/Bldgs/Tropical/TROPDRL2_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Tropical_tropdrivingr1.png",
+      "src": "Flics/Bldgs/Tropical/TROPDrivingR1.pcx",
+      "w": 21,
+      "h": 24,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Tropical_troppgl2_palette.png",
+      "src": "Flics/Bldgs/Tropical/TROPPGL2_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Tropical_tropputtingg1.png",
+      "src": "Flics/Bldgs/Tropical/TROPPuttingG1.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Tropical_tropcartl1pal.png",
+      "src": "Flics/Bldgs/Tropical/TROPcartL1pal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Tropical_tropcartl2_palette.png",
+      "src": "Flics/Bldgs/Tropical/TROPcartL2_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Tropical_tropclubl1pal.png",
+      "src": "Flics/Bldgs/Tropical/TROPclubL1pal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Tropical_tropclubl2_palette.png",
+      "src": "Flics/Bldgs/Tropical/TROPclubL2_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Tropical_trophotell1pal.png",
+      "src": "Flics/Bldgs/Tropical/TROPhotelL1pal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Tropical_tropmarl1_palette.png",
+      "src": "Flics/Bldgs/Tropical/TROPmarL1_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Tropical_tropswiml1pal.png",
+      "src": "Flics/Bldgs/Tropical/TROPswimL1pal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Tropical_tropswiml2_palette.png",
+      "src": "Flics/Bldgs/Tropical/TROPswimL2_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Tropical_tropthemel1_palette.png",
+      "src": "Flics/Bldgs/Tropical/TROPthemeL1_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Tropical_tropthemel2_palette.png",
+      "src": "Flics/Bldgs/Tropical/TROPthemeL2_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Tropical_trophotell2_palette.png",
+      "src": "Flics/Bldgs/Tropical/TropHotelL2_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Tropical_trophousecon_palette.png",
+      "src": "Flics/Bldgs/Tropical/TropHouseCon_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Tropical_trophousesign_palette.png",
+      "src": "Flics/Bldgs/Tropical/TropHouseSign_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Tropical_tropmarl2_palette.png",
+      "src": "Flics/Bldgs/Tropical/TropMarL2_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Tropical_tropproshopl1_palette.png",
+      "src": "Flics/Bldgs/Tropical/TropProShopL1_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Tropical_tropproshopl2_palette.png",
+      "src": "Flics/Bldgs/Tropical/TropProShopL2_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Tropical_tropsnackl1_palette.png",
+      "src": "Flics/Bldgs/Tropical/TropSnackL1 palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_Tropical_trop_layout.png",
+      "src": "Flics/Bldgs/Tropical/trop layout.pcx",
+      "w": 751,
+      "h": 812,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_holemark.png",
+      "src": "Flics/Bldgs/holemark.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_links_cart_garagel2_palette.png",
+      "src": "Flics/Bldgs/links/Cart_garageL2_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_links_cart_garagepal.png",
+      "src": "Flics/Bldgs/links/Cart_garagePal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_links_castlel2_palette.png",
+      "src": "Flics/Bldgs/links/CastleL2_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_links_castlepal.png",
+      "src": "Flics/Bldgs/links/CastlePal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_links_churchl2_palette.png",
+      "src": "Flics/Bldgs/links/ChurchL2_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_links_churchpal.png",
+      "src": "Flics/Bldgs/links/ChurchPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_links_drl2_palette.png",
+      "src": "Flics/Bldgs/links/DRL2_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_links_hotell1_palette.png",
+      "src": "Flics/Bldgs/links/HotelL1_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_links_hotell2_palette.png",
+      "src": "Flics/Bldgs/links/HotelL2_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_links_hotelpal.png",
+      "src": "Flics/Bldgs/links/HotelPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_links_house_a_links_palette.png",
+      "src": "Flics/Bldgs/links/House_A_links_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_links_linksbridge_palette.png",
+      "src": "Flics/Bldgs/links/LinksBridge_palette.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_links_pg_l1_and_l2_palette.png",
+      "src": "Flics/Bldgs/links/PG_L1 and L2 palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_links_proshopl1_palette.png",
+      "src": "Flics/Bldgs/links/ProShopL1_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_links_proshopl2_palette.png",
+      "src": "Flics/Bldgs/links/ProShopL2_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_links_pro_shoppal.png",
+      "src": "Flics/Bldgs/links/Pro_shopPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_links_publ2_palette.png",
+      "src": "Flics/Bldgs/links/PubL2_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_links_pubpal.png",
+      "src": "Flics/Bldgs/links/PubPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_links_stablel1_palette.png",
+      "src": "Flics/Bldgs/links/StableL1_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_links_stablel2_palette.png",
+      "src": "Flics/Bldgs/links/StableL2_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_links_clubl1_palette.png",
+      "src": "Flics/Bldgs/links/clubL1_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_links_clubl2_palette.png",
+      "src": "Flics/Bldgs/links/clubL2_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_links_clubpal.png",
+      "src": "Flics/Bldgs/links/clubpal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_links_driving_rangel1_palette.png",
+      "src": "Flics/Bldgs/links/driving_rangeL1_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_links_driving_rangel2_palette.png",
+      "src": "Flics/Bldgs/links/driving_rangeL2_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_links_housecon_palette.png",
+      "src": "Flics/Bldgs/links/housecon_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_links_sign_links_palette.png",
+      "src": "Flics/Bldgs/links/sign_links_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bldgs_upgrade_bwasherpal.png",
+      "src": "Flics/Bldgs/upgrade bwasherPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bridges_desbridgepal.png",
+      "src": "Flics/Bridges/DESbridgepal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bridges_desscenicbridgepal.png",
+      "src": "Flics/Bridges/DESscenicbridgepal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bridges_linksbridgepalette.png",
+      "src": "Flics/Bridges/LinksBridgePalette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bridges_parkbridgepal.png",
+      "src": "Flics/Bridges/PARKbridgepal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bridges_pl_water_fx_palette.png",
+      "src": "Flics/Bridges/PL Water FX palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bridges_scenicgenpal.png",
+      "src": "Flics/Bridges/SCENICgenpal.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Bridges_tropbridgepal.png",
+      "src": "Flics/Bridges/TROPbridgepal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_agingstar_palette1.png",
+      "src": "Flics/Celebs/AgingStar_Palette1.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_agingstar_palette2.png",
+      "src": "Flics/Celebs/AgingStar_Palette2.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_agingstar_palette3.png",
+      "src": "Flics/Celebs/AgingStar_Palette3.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_agingstar_palette4.png",
+      "src": "Flics/Celebs/AgingStar_Palette4.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_agingstar_defaultpal.png",
+      "src": "Flics/Celebs/AgingStar_defaultPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_bballstar_defaultpal.png",
+      "src": "Flics/Celebs/BBallStar_DefaultPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_basketball_palette1.png",
+      "src": "Flics/Celebs/Basketball_Palette1.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_basketball_palette2.png",
+      "src": "Flics/Celebs/Basketball_Palette2.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_basketball_palette3.png",
+      "src": "Flics/Celebs/Basketball_Palette3.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_basketball_palette4.png",
+      "src": "Flics/Celebs/Basketball_Palette4.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_comedian_char010000.png",
+      "src": "Flics/Celebs/Comedian_Char010000.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_comedian_palette1.png",
+      "src": "Flics/Celebs/Comedian_Palette1.PCX",
+      "w": 160,
+      "h": 160,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_comicfem_defaultpal.png",
+      "src": "Flics/Celebs/ComicFem_DefaultPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_femcomic_palette1.png",
+      "src": "Flics/Celebs/FemComic_Palette1.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_femcomic_palette2.png",
+      "src": "Flics/Celebs/FemComic_Palette2.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_femcomic_palette3.png",
+      "src": "Flics/Celebs/FemComic_Palette3.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_femcomic_palette4.png",
+      "src": "Flics/Celebs/FemComic_Palette4.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_female_popsingerpalette1.png",
+      "src": "Flics/Celebs/Female_PopSingerPalette1.pcx",
+      "w": 160,
+      "h": 160,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_female_popsingerpalette2.png",
+      "src": "Flics/Celebs/Female_PopSingerPalette2.pcx",
+      "w": 160,
+      "h": 160,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_female_popsingerpalette3.png",
+      "src": "Flics/Celebs/Female_PopSingerPalette3.pcx",
+      "w": 160,
+      "h": 160,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_female_popsingerpalette4.png",
+      "src": "Flics/Celebs/Female_PopSingerPalette4.pcx",
+      "w": 160,
+      "h": 160,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_female_popsingerpalette5.png",
+      "src": "Flics/Celebs/Female_PopSingerPalette5.pcx",
+      "w": 160,
+      "h": 160,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_female_popstarchar010000.png",
+      "src": "Flics/Celebs/Female_PopStarChar010000.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_fitnessfem_defaultpal.png",
+      "src": "Flics/Celebs/FitnessFem_DefaultPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_fitnessfem_palette1.png",
+      "src": "Flics/Celebs/FitnessFem_Palette1.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_fitnessfem_palette2.png",
+      "src": "Flics/Celebs/FitnessFem_Palette2.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_fitnessfem_palette3.png",
+      "src": "Flics/Celebs/FitnessFem_Palette3.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_fitnessfem_palette4.png",
+      "src": "Flics/Celebs/FitnessFem_Palette4.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_genmale_defaultpal.png",
+      "src": "Flics/Celebs/GenMale_DefaultPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_genericmale_palette1.png",
+      "src": "Flics/Celebs/GenericMale_Palette1.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_genericmale_palette2.png",
+      "src": "Flics/Celebs/GenericMale_Palette2.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_genericmale_palette3.png",
+      "src": "Flics/Celebs/GenericMale_Palette3.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_genericmale_palette4.png",
+      "src": "Flics/Celebs/GenericMale_Palette4.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_movieprincess_defaultpal.png",
+      "src": "Flics/Celebs/MoviePrincess_DefaultPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_movieprincess_palette1.png",
+      "src": "Flics/Celebs/MoviePrincess_Palette1.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_movieprincess_palette2.png",
+      "src": "Flics/Celebs/MoviePrincess_Palette2.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_movieprincess_palette3.png",
+      "src": "Flics/Celebs/MoviePrincess_Palette3.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_movieprincess_palette4.png",
+      "src": "Flics/Celebs/MoviePrincess_Palette4.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_politician_char010000.png",
+      "src": "Flics/Celebs/Politician_Char010000.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_politician_palette1.png",
+      "src": "Flics/Celebs/Politician_Palette1.pcx",
+      "w": 160,
+      "h": 160,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_politician_palette2.png",
+      "src": "Flics/Celebs/Politician_Palette2.pcx",
+      "w": 160,
+      "h": 160,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_politician_palette3.png",
+      "src": "Flics/Celebs/Politician_Palette3.pcx",
+      "w": 160,
+      "h": 160,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_politician_palette4.png",
+      "src": "Flics/Celebs/Politician_Palette4.pcx",
+      "w": 160,
+      "h": 160,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_politician_palette5.png",
+      "src": "Flics/Celebs/Politician_Palette5.pcx",
+      "w": 160,
+      "h": 160,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_rockstar_defaultpal.png",
+      "src": "Flics/Celebs/RockStar_DefaultPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_rockstar_palette1.png",
+      "src": "Flics/Celebs/RockStar_Palette1.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_rockstar_palette2.png",
+      "src": "Flics/Celebs/RockStar_Palette2.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_rockstar_palette3.png",
+      "src": "Flics/Celebs/RockStar_Palette3.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_rockstar_palette4.png",
+      "src": "Flics/Celebs/RockStar_Palette4.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_supermodel_defaultpal.png",
+      "src": "Flics/Celebs/SuperModel_DefaultPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_supermodel_palette1.png",
+      "src": "Flics/Celebs/SuperModel_Palette1.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_supermodel_palette2.png",
+      "src": "Flics/Celebs/SuperModel_Palette2.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_supermodel_palette3.png",
+      "src": "Flics/Celebs/SuperModel_Palette3.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_supermodel_palette4.png",
+      "src": "Flics/Celebs/SuperModel_Palette4.pcx",
+      "w": 320,
+      "h": 320,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Celebs_actionstarpal.png",
+      "src": "Flics/Celebs/actionStarPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Employee_bev_walkpal.png",
+      "src": "Flics/Employee/Bev_WalkPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Employee_gkpal.png",
+      "src": "Flics/Employee/GKPal.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Employee_golfcelebpal.png",
+      "src": "Flics/Employee/GolfCelebPal.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Employee_greeterpal.png",
+      "src": "Flics/Employee/GreeterPal.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Employee_lawntechpal.png",
+      "src": "Flics/Employee/LawnTechPal.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Employee_marshallpal.png",
+      "src": "Flics/Employee/MarshallPal.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Employee_rangerpal.png",
+      "src": "Flics/Employee/RangerPal.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Employee_sodavendorpal.png",
+      "src": "Flics/Employee/SodaVendorPal.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Employee_traygirlpal.png",
+      "src": "Flics/Employee/TrayGirlPal.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Employee_bev_incartpal.png",
+      "src": "Flics/Employee/bev_InCartPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Female_femalebasepal.png",
+      "src": "Flics/Female/FemaleBasePal.pcx",
+      "w": 160,
+      "h": 160,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Female_femaleswap1.png",
+      "src": "Flics/Female/FemaleSwap1.pcx",
+      "w": 160,
+      "h": 160,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Female_femaleswap2.png",
+      "src": "Flics/Female/FemaleSwap2.pcx",
+      "w": 160,
+      "h": 160,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Female_femaleswap3.png",
+      "src": "Flics/Female/FemaleSwap3.pcx",
+      "w": 160,
+      "h": 160,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Female_femaleswap4.png",
+      "src": "Flics/Female/FemaleSwap4.pcx",
+      "w": 160,
+      "h": 160,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Female_femaleswap5.png",
+      "src": "Flics/Female/FemaleSwap5.pcx",
+      "w": 160,
+      "h": 160,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_blue_flowers.png",
+      "src": "Flics/Flowers/Blue Flowers.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_crabgrasspal.png",
+      "src": "Flics/Flowers/CrabgrassPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_desertflowersaquapal.png",
+      "src": "Flics/Flowers/DesertFlowersAquaPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_desertflowersbluepal.png",
+      "src": "Flics/Flowers/DesertFlowersBluePal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_desertflowersickypal.png",
+      "src": "Flics/Flowers/DesertFlowersIckyPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_desertflowersorgpal.png",
+      "src": "Flics/Flowers/DesertFlowersOrgPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_desertflowerspinkpal.png",
+      "src": "Flics/Flowers/DesertFlowersPinkPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_desertflowerspurppal.png",
+      "src": "Flics/Flowers/DesertFlowersPurpPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_desertflowersredpal.png",
+      "src": "Flics/Flowers/DesertFlowersRedPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_desertflowersyelpal.png",
+      "src": "Flics/Flowers/DesertFlowersYelPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_drygrasspal.png",
+      "src": "Flics/Flowers/DryGrassPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_flowerbeda_aquapal.png",
+      "src": "Flics/Flowers/FlowerbedA_AquaPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_flowerbeda_bluepal.png",
+      "src": "Flics/Flowers/FlowerbedA_BluePal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_flowerbeda_greenpal.png",
+      "src": "Flics/Flowers/FlowerbedA_GreenPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_flowerbeda_ickypal.png",
+      "src": "Flics/Flowers/FlowerbedA_IckyPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_flowerbeda_orgpal.png",
+      "src": "Flics/Flowers/FlowerbedA_OrgPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_flowerbeda_purppal.png",
+      "src": "Flics/Flowers/FlowerbedA_PurpPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_flowerbeda_redpal.png",
+      "src": "Flics/Flowers/FlowerbedA_RedPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_flowerbeda_whitepal.png",
+      "src": "Flics/Flowers/FlowerbedA_WhitePal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_flowerbeda_yelpal.png",
+      "src": "Flics/Flowers/FlowerbedA_YelPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_flowers_blue.png",
+      "src": "Flics/Flowers/Flowers_Blue.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_gazebopal.png",
+      "src": "Flics/Flowers/GazeboPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_green_flowers.png",
+      "src": "Flics/Flowers/Green Flowers.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_loversbenchpal.png",
+      "src": "Flics/Flowers/LoversBenchPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_oilslickpal.png",
+      "src": "Flics/Flowers/OilSlickPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_orange_flowers.png",
+      "src": "Flics/Flowers/Orange Flowers.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_pink_flowers.png",
+      "src": "Flics/Flowers/Pink Flowers.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_purple_flowers.png",
+      "src": "Flics/Flowers/Purple Flowers.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_red_flowers.png",
+      "src": "Flics/Flowers/Red Flowers.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_topiarypal.png",
+      "src": "Flics/Flowers/TopiaryPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_tropfb_pal.png",
+      "src": "Flics/Flowers/TropFB_Pal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_tropicalflowers_aquapal.png",
+      "src": "Flics/Flowers/TropicalFlowers_AquaPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_tropicalflowers_bluepal.png",
+      "src": "Flics/Flowers/TropicalFlowers_BluePal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_tropicalflowers_ickypal.png",
+      "src": "Flics/Flowers/TropicalFlowers_IckyPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_tropicalflowers_masterpal.png",
+      "src": "Flics/Flowers/TropicalFlowers_MasterPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_tropicalflowers_orgpal.png",
+      "src": "Flics/Flowers/TropicalFlowers_OrgPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_tropicalflowers_purppal.png",
+      "src": "Flics/Flowers/TropicalFlowers_PurpPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_tropicalflowers_redpal.png",
+      "src": "Flics/Flowers/TropicalFlowers_RedPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_tropicalflowers_yelpal.png",
+      "src": "Flics/Flowers/TropicalFlowers_YelPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_yellow_flowers.png",
+      "src": "Flics/Flowers/Yellow Flowers.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_backless_benchpal.png",
+      "src": "Flics/Flowers/backless benchPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_box_benchpal.png",
+      "src": "Flics/Flowers/box benchPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_dandelionpal.png",
+      "src": "Flics/Flowers/dandelionPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_grousepal.png",
+      "src": "Flics/Flowers/grousePal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_iron_benchpal.png",
+      "src": "Flics/Flowers/iron benchPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_purpleflowerspal.png",
+      "src": "Flics/Flowers/purpleflowersPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_redbenchpal.png",
+      "src": "Flics/Flowers/redbenchPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_rosebushpal.png",
+      "src": "Flics/Flowers/rosebushPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_round_wood_benchpal.png",
+      "src": "Flics/Flowers/round wood benchPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_swingpal.png",
+      "src": "Flics/Flowers/swingPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_whiteflowerspal.png",
+      "src": "Flics/Flowers/whiteflowersPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Flowers_wood_plankpal.png",
+      "src": "Flics/Flowers/wood plankPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Homes_1stsummer_palette.png",
+      "src": "Flics/Homes/1stSummer_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Homes_2ndsummer_palette.png",
+      "src": "Flics/Homes/2ndSummer_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Homes_artdeco_homepal.png",
+      "src": "Flics/Homes/ArtDeco_HomePal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Homes_desertcelebhouse_palette.png",
+      "src": "Flics/Homes/DesertCelebHouse_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Homes_fence.png",
+      "src": "Flics/Homes/FENCE.PCX",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Homes_ffb_single010015.png",
+      "src": "Flics/Homes/FFB_Single010015.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Homes_Regular_Desert_A_deshousea_palette.png",
+      "src": "Flics/Homes/Regular/Desert/A/DesHouseA_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Homes_Regular_Desert_B_deshouseb_palette.png",
+      "src": "Flics/Homes/Regular/Desert/B/DesHouseB_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Homes_Regular_Links_A_linkshousea_palette.png",
+      "src": "Flics/Homes/Regular/Links/A/LinksHouseA_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Homes_Regular_Links_B_linkshouseb_palette.png",
+      "src": "Flics/Homes/Regular/Links/B/LinksHouseB_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Homes_Regular_Parkland_A_parkhousea_palette.png",
+      "src": "Flics/Homes/Regular/Parkland/A/ParkHouseA_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Homes_Regular_Parkland_B_parkhouseb_palette.png",
+      "src": "Flics/Homes/Regular/Parkland/B/ParkHouseB_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Homes_Regular_Parkland_C_parkhousec_palette.png",
+      "src": "Flics/Homes/Regular/Parkland/C/ParkHouseC_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Homes_Regular_Tropical_A_trophousea_palette.png",
+      "src": "Flics/Homes/Regular/Tropical/A/TropHouseA_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Homes_Regular_Tropical_B_trophouseb_palette.png",
+      "src": "Flics/Homes/Regular/Tropical/B/TropHouseB_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Homes_sum_homepal.png",
+      "src": "Flics/Homes/Sum_homePal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Homes_arcade_gamepal.png",
+      "src": "Flics/Homes/arcade_gamePal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Homes_cars_Ferarri_ferarri010000.png",
+      "src": "Flics/Homes/cars/Ferarri/ferarri010000.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Homes_cars_Harley_harleypal.png",
+      "src": "Flics/Homes/cars/Harley/harleyPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Homes_cars_Lamborgini_lamborgini010000.png",
+      "src": "Flics/Homes/cars/Lamborgini/lamborgini010000.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Homes_cars_bmw_bmwpal.png",
+      "src": "Flics/Homes/cars/bmw/bmwPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Homes_cars_classic_car_classic_carpal.png",
+      "src": "Flics/Homes/cars/classic_car/classic_carpal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Homes_concrete_tile.png",
+      "src": "Flics/Homes/concrete_tile.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Homes_concrete_woodborder_tile.png",
+      "src": "Flics/Homes/concrete_woodborder_tile.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Homes_dirt_tile.png",
+      "src": "Flics/Homes/dirt_tile.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Homes_grillpal.png",
+      "src": "Flics/Homes/grillPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Homes_jacuzzipal.png",
+      "src": "Flics/Homes/jacuzziPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Homes_mansionpal.png",
+      "src": "Flics/Homes/mansionPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Homes_political_homepal.png",
+      "src": "Flics/Homes/political_homePal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Homes_punching_bagpal.png",
+      "src": "Flics/Homes/punching_bagPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Homes_stone_patio_tile.png",
+      "src": "Flics/Homes/stone_patio_tile.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Landmarks_chinesehousepal.png",
+      "src": "Flics/Landmarks/ChineseHousePal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Landmarks_easterpal.png",
+      "src": "Flics/Landmarks/EasterPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Landmarks_goldpal.png",
+      "src": "Flics/Landmarks/Goldpal.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Landmarks_hgardenpal.png",
+      "src": "Flics/Landmarks/Hgardenpal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Landmarks_lighthousebpal.png",
+      "src": "Flics/Landmarks/LighthouseBPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Landmarks_lighthousecpal.png",
+      "src": "Flics/Landmarks/LighthouseCPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Landmarks_radio_towerpal.png",
+      "src": "Flics/Landmarks/Radio TowerPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Landmarks_railroad_trackspal.png",
+      "src": "Flics/Landmarks/Railroad TracksPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Landmarks_red_oil_pump_pal.png",
+      "src": "Flics/Landmarks/Red Oil Pump Pal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Landmarks_rockgarden_010001.png",
+      "src": "Flics/Landmarks/Rockgarden_010001.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Landmarks_stonetwopal.png",
+      "src": "Flics/Landmarks/Stonetwopal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Landmarks_tarpitpal.png",
+      "src": "Flics/Landmarks/TarPitPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Landmarks_volcanopal.png",
+      "src": "Flics/Landmarks/VolcanoPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Landmarks_windmillpal.png",
+      "src": "Flics/Landmarks/WindmillPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Landmarks_barnpal.png",
+      "src": "Flics/Landmarks/barnPAL.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Landmarks_buddhapal.png",
+      "src": "Flics/Landmarks/buddhaPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Landmarks_cathedral_ruinspal.png",
+      "src": "Flics/Landmarks/cathedral_ruinsPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Landmarks_chapel_palette.png",
+      "src": "Flics/Landmarks/chapel_Palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Landmarks_civilwarcannonpal.png",
+      "src": "Flics/Landmarks/civilwarcannonPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Landmarks_civilwarstatuepal.png",
+      "src": "Flics/Landmarks/civilwarstatuePal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Landmarks_equestrianpal.png",
+      "src": "Flics/Landmarks/equestrianPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Landmarks_gargoylepal.png",
+      "src": "Flics/Landmarks/gargoylePal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Landmarks_pagodapal.png",
+      "src": "Flics/Landmarks/pagodaPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Landmarks_parklandrockpal.png",
+      "src": "Flics/Landmarks/parklandrockPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Landmarks_pyramidpal.png",
+      "src": "Flics/Landmarks/pyramidPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Landmarks_sundialpal.png",
+      "src": "Flics/Landmarks/sundialPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Landmarks_wmillapal.png",
+      "src": "Flics/Landmarks/wmillAPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Landmarks_wtow2pal.png",
+      "src": "Flics/Landmarks/wtow2Pal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Male_malepss_baspal.png",
+      "src": "Flics/Male/MalePSS_BasPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Male_malepss_swappals1.png",
+      "src": "Flics/Male/MalePSS_SwapPals1.pcx",
+      "w": 160,
+      "h": 160,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Male_malepss_swappals2.png",
+      "src": "Flics/Male/MalePSS_SwapPals2.pcx",
+      "w": 160,
+      "h": 160,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Male_malepss_swappals3.png",
+      "src": "Flics/Male/MalePSS_SwapPals3.pcx",
+      "w": 160,
+      "h": 160,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Male_malepss_swappals4.png",
+      "src": "Flics/Male/MalePSS_SwapPals4.pcx",
+      "w": 160,
+      "h": 160,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Male_malepss_swappals5.png",
+      "src": "Flics/Male/MalePSS_SwapPals5.pcx",
+      "w": 160,
+      "h": 160,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_aeriepal.png",
+      "src": "Flics/Scenic/AeriePal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_aspenpal.png",
+      "src": "Flics/Scenic/AspenPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_bamboopal.png",
+      "src": "Flics/Scenic/BambooPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_blackpinepal.png",
+      "src": "Flics/Scenic/BlackPinePal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_bougainvilleapal.png",
+      "src": "Flics/Scenic/BougainvilleaPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_bridgebrickpal.png",
+      "src": "Flics/Scenic/BridgeBrickpal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_bridgestonepal.png",
+      "src": "Flics/Scenic/BridgeStonepal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_cactusgroupapal.png",
+      "src": "Flics/Scenic/CactusGroupAPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_cactusgroupbpal.png",
+      "src": "Flics/Scenic/CactusGroupBPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_cattailspal.png",
+      "src": "Flics/Scenic/CattailsPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_cypresspal.png",
+      "src": "Flics/Scenic/CypressPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_deadswamptreespal.png",
+      "src": "Flics/Scenic/DeadSwampTreesPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_desert_water_rockpal.png",
+      "src": "Flics/Scenic/Desert Water RockPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_desertfountpal.png",
+      "src": "Flics/Scenic/DesertFountPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_desert_waterspraypal.png",
+      "src": "Flics/Scenic/Desert_watersprayPal.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_dogwoodpal.png",
+      "src": "Flics/Scenic/DogwoodPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_eaglepalette.png",
+      "src": "Flics/Scenic/EaglePalette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_ghog_palette.png",
+      "src": "Flics/Scenic/Ghog_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_hawk_palette.png",
+      "src": "Flics/Scenic/Hawk_Palette.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_hotairpal.png",
+      "src": "Flics/Scenic/HotAirPal.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_hotspringpal.png",
+      "src": "Flics/Scenic/HotSpringPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_japanesemaple_greenpal.png",
+      "src": "Flics/Scenic/JapaneseMaple_GreenPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_japanesemaple_orgpal.png",
+      "src": "Flics/Scenic/JapaneseMaple_OrgPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_japanesemaple_redpal.png",
+      "src": "Flics/Scenic/JapaneseMaple_RedPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_japanesemaple_yelpal.png",
+      "src": "Flics/Scenic/JapaneseMaple_YelPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_japanesetreepal.png",
+      "src": "Flics/Scenic/JapaneseTreePal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_koipondpal.png",
+      "src": "Flics/Scenic/KoipondPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_linkswaterrockpal.png",
+      "src": "Flics/Scenic/LinksWaterRockPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_links_waterspraypal.png",
+      "src": "Flics/Scenic/Links_watersprayPal.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_mangrovepal.png",
+      "src": "Flics/Scenic/MangrovePal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_mesquitepal.png",
+      "src": "Flics/Scenic/MesquitePal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_oasispal.png",
+      "src": "Flics/Scenic/OasisPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_peachtreepal.png",
+      "src": "Flics/Scenic/PeachTreePal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_pelican_palette.png",
+      "src": "Flics/Scenic/Pelican_Palette.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_plumpal.png",
+      "src": "Flics/Scenic/PlumPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_rhodypal.png",
+      "src": "Flics/Scenic/RhodyPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_rock_formpal.png",
+      "src": "Flics/Scenic/Rock FormPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_scenicbridgepalette.png",
+      "src": "Flics/Scenic/ScenicBridgePalette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_scenicelmpal.png",
+      "src": "Flics/Scenic/ScenicElmPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_scenicflowerspal.png",
+      "src": "Flics/Scenic/ScenicFlowersPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_sceniclinksrockspal.png",
+      "src": "Flics/Scenic/ScenicLinksRocksPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_scenic_ograsspal.png",
+      "src": "Flics/Scenic/Scenic_OGrassPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_scenic_treepal.png",
+      "src": "Flics/Scenic/Scenic_TreePal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_tropboulderpal.png",
+      "src": "Flics/Scenic/TropBoulderPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_trop_waterspraypal.png",
+      "src": "Flics/Scenic/Trop_watersprayPal.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_tropical_wildflowerspal.png",
+      "src": "Flics/Scenic/Tropical WildflowersPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_vulture_palette.png",
+      "src": "Flics/Scenic/Vulture_Palette.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_benwpal.png",
+      "src": "Flics/Scenic/benWPAL.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_blimpeapal.png",
+      "src": "Flics/Scenic/blimpEApal.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_blimpfxspal.png",
+      "src": "Flics/Scenic/blimpFXSpal.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_blimpmaxpal.png",
+      "src": "Flics/Scenic/blimpMAXpal.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_copterpal.png",
+      "src": "Flics/Scenic/copterpal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_cowskullpal.png",
+      "src": "Flics/Scenic/cowskullpal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_deadgolferpal.png",
+      "src": "Flics/Scenic/deadgolferpal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_dolphindesert_palette.png",
+      "src": "Flics/Scenic/dolphinDesert_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_dolphinlinks_palette.png",
+      "src": "Flics/Scenic/dolphinLinks_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_dolphinpal.png",
+      "src": "Flics/Scenic/dolphinPal.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_dolphintropical_palette.png",
+      "src": "Flics/Scenic/dolphinTropical_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_grousepal.png",
+      "src": "Flics/Scenic/grousePal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_heatherpal.png",
+      "src": "Flics/Scenic/heatherPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_naturalbridgepal.png",
+      "src": "Flics/Scenic/naturalbridgepal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_rainbow_sail_pal.png",
+      "src": "Flics/Scenic/rainbow sail PAL.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_sail_movepal.png",
+      "src": "Flics/Scenic/sail_movePal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_sailboatdesert_palette.png",
+      "src": "Flics/Scenic/sailboatDesert_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_sailboatlinks_palette.png",
+      "src": "Flics/Scenic/sailboatLinks_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_sailboattropical_palette.png",
+      "src": "Flics/Scenic/sailboatTropical_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_spraypal.png",
+      "src": "Flics/Scenic/spraypal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_vineyardpal.png",
+      "src": "Flics/Scenic/vineyardPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_waterspraypal.png",
+      "src": "Flics/Scenic/watersprayPal.pcx",
+      "w": 60,
+      "h": 60,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_wave_palette.png",
+      "src": "Flics/Scenic/wave_palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Scenic_wtowpal.png",
+      "src": "Flics/Scenic/wtowPAL.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Tees_flag_desertpal.png",
+      "src": "Flics/Tees/Flag_DESERTpal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Tees_flag_linkspal.png",
+      "src": "Flics/Tees/Flag_LINKSpal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Tees_flag_parkpal.png",
+      "src": "Flics/Tees/Flag_PARKpal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Tees_flag_troppal.png",
+      "src": "Flics/Tees/Flag_TROPpal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Tees_tvpal.png",
+      "src": "Flics/Tees/TVpal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Tees_teemarkerpal.png",
+      "src": "Flics/Tees/TeeMarkerPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Desert_cactusapal.png",
+      "src": "Flics/Trees/Desert/CactusAPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Desert_cactusbpal.png",
+      "src": "Flics/Trees/Desert/CactusBPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Desert_cactuscpal.png",
+      "src": "Flics/Trees/Desert/CactusCPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Desert_joshuatreepal.png",
+      "src": "Flics/Trees/Desert/JoshuaTreePal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Desert_palgreenercactus.png",
+      "src": "Flics/Trees/Desert/PalGreenerCactus.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Desert_paloriginalcactus.png",
+      "src": "Flics/Trees/Desert/PalOriginalCactus.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Desert_paltallpalm.png",
+      "src": "Flics/Trees/Desert/PalTallPalm.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Desert_palyellercactus.png",
+      "src": "Flics/Trees/Desert/PalYellerCactus.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Desert_palorangecactus.png",
+      "src": "Flics/Trees/Desert/PaloRANgeCactus.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Desert_tallpalmdesertpal.png",
+      "src": "Flics/Trees/Desert/TallPalmDesertPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Links_linkspinepal.png",
+      "src": "Flics/Trees/Links/LinksPinePal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Links_linkspinepal2.png",
+      "src": "Flics/Trees/Links/LinksPinePal2.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Links_linkspinepal3.png",
+      "src": "Flics/Trees/Links/LinksPinePal3.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Links_linkspinepal4.png",
+      "src": "Flics/Trees/Links/LinksPinePal4.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Links_linkstree3pal.png",
+      "src": "Flics/Trees/Links/LinksTree3Pal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Links_linkstree3pal2.png",
+      "src": "Flics/Trees/Links/LinksTree3Pal2.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Links_linkstree3pal3.png",
+      "src": "Flics/Trees/Links/LinksTree3Pal3.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Links_linkstree3pal4.png",
+      "src": "Flics/Trees/Links/LinksTree3Pal4.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Links_linkstree4pal.png",
+      "src": "Flics/Trees/Links/LinksTree4Pal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Links_linkstree4pal2.png",
+      "src": "Flics/Trees/Links/LinksTree4Pal2.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Links_linkstree4pal3.png",
+      "src": "Flics/Trees/Links/LinksTree4Pal3.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Links_linkstree4pal4.png",
+      "src": "Flics/Trees/Links/LinksTree4Pal4.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Links_scotspinepal.png",
+      "src": "Flics/Trees/Links/ScotsPinePal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Links_scotspinepal2.png",
+      "src": "Flics/Trees/Links/ScotsPinePal2.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Links_scotspinepal3.png",
+      "src": "Flics/Trees/Links/ScotsPinePal3.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Links_scotspinepal4.png",
+      "src": "Flics/Trees/Links/ScotsPinePal4.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_palbluemaple.png",
+      "src": "Flics/Trees/PalBlueMaple.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_palbluepalm.png",
+      "src": "Flics/Trees/PalBluePalm.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_palbrownmaple.png",
+      "src": "Flics/Trees/PalBrownMaple.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_palgreenmaple.png",
+      "src": "Flics/Trees/PalGreenMaple.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_palgreenpalm.png",
+      "src": "Flics/Trees/PalGreenPalm.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_palorangepalm.png",
+      "src": "Flics/Trees/PalOrangePalm.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_paloriginalpalm.png",
+      "src": "Flics/Trees/PalOriginalPalm.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_palpineblue.png",
+      "src": "Flics/Trees/PalPineBlue.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_palpinedarkgreen.png",
+      "src": "Flics/Trees/PalPineDarkGreen.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_palpineoriginal.png",
+      "src": "Flics/Trees/PalPineOriginal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_palpineyellow.png",
+      "src": "Flics/Trees/PalPineYellow.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_palplumpalm.png",
+      "src": "Flics/Trees/PalPlumPalm.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_palredmaple.png",
+      "src": "Flics/Trees/PalRedMaple.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Tropic_TreePalm_palbluepalm.png",
+      "src": "Flics/Trees/Tropic/TreePalm/PalBluePalm.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Tropic_TreePalm_palgreenpalm.png",
+      "src": "Flics/Trees/Tropic/TreePalm/PalGreenPalm.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Tropic_TreePalm_palorangepalm.png",
+      "src": "Flics/Trees/Tropic/TreePalm/PalOrangePalm.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Tropic_TreePalm_paloriginalpalm.png",
+      "src": "Flics/Trees/Tropic/TreePalm/PalOriginalPalm.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Tropic_TreePalm_palplumpalm.png",
+      "src": "Flics/Trees/Tropic/TreePalm/PalPlumPalm.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Tropic_TreePalm_paltallpalm.png",
+      "src": "Flics/Trees/Tropic/TreePalm/PalTallPalm.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Tropic_TreePalm_tallpalmdesertpal.png",
+      "src": "Flics/Trees/Tropic/TreePalm/TallPalmDesertPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Tropic_Tree_Cerc_palcerc.png",
+      "src": "Flics/Trees/Tropic/Tree_Cerc/PalCerc.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Tropic_Tree_Drac_paldrac.png",
+      "src": "Flics/Trees/Tropic/Tree_Drac/PalDrac.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Tropic_Tree_Tall_Palm_paltallpalm.png",
+      "src": "Flics/Trees/Tropic/Tree_Tall_Palm/PalTallPalm.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Tropic_Tree_Tall_Palm_tallpalmdesertpal.png",
+      "src": "Flics/Trees/Tropic/Tree_Tall_Palm/TallPalmDesertPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Tropic_tropbrushpal.png",
+      "src": "Flics/Trees/Tropic/TropBrushPal.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Tropic_tropbrushpal2.png",
+      "src": "Flics/Trees/Tropic/TropBrushPal2.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_Tropic_tropbrushpal3.png",
+      "src": "Flics/Trees/Tropic/TropBrushPal3.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_willowgreen.png",
+      "src": "Flics/Trees/WillowGreen.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_willowlemon.png",
+      "src": "Flics/Trees/WillowLemon.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_willowpink.png",
+      "src": "Flics/Trees/WillowPink.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Trees_willowwhite.png",
+      "src": "Flics/Trees/WillowWhite.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Water_deswater_palette.png",
+      "src": "Flics/Water/DesWater Palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Water_linkswater_palette.png",
+      "src": "Flics/Water/LinksWater Palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Water_parkwater_palette.png",
+      "src": "Flics/Water/ParkWater Palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "flics/Water_tropwater_palette.png",
+      "src": "Flics/Water/TropWater Palette.pcx",
+      "w": 480,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "other/gbubbles.png",
+      "src": "GBUBBLES.pcx",
+      "w": 640,
+      "h": 480,
+      "mode": "RGB"
+    },
+    {
+      "file": "heads/f_head_template.png",
+      "src": "Heads/F_Head Template.pcx",
+      "w": 140,
+      "h": 420,
+      "mode": "RGB"
+    },
+    {
+      "file": "heads/head_template.png",
+      "src": "Heads/Head Template.pcx",
+      "w": 320,
+      "h": 420,
+      "mode": "RGB"
+    },
+    {
+      "file": "heads/m_head_template.png",
+      "src": "Heads/M_Head Template.pcx",
+      "w": 140,
+      "h": 420,
+      "mode": "RGB"
+    },
+    {
+      "file": "heads/m_lee.png",
+      "src": "Heads/M_Lee.pcx",
+      "w": 140,
+      "h": 420,
+      "mode": "RGB"
+    },
+    {
+      "file": "heads/m_meade.png",
+      "src": "Heads/M_Meade.pcx",
+      "w": 140,
+      "h": 420,
+      "mode": "RGB"
+    },
+    {
+      "file": "heads/m_sid_head.png",
+      "src": "Heads/M_Sid Head.pcx",
+      "w": 140,
+      "h": 420,
+      "mode": "RGB"
+    },
+    {
+      "file": "heads/m_pixelmonkey.png",
+      "src": "Heads/M_pixelmonkey.pcx",
+      "w": 140,
+      "h": 420,
+      "mode": "RGB"
+    },
+    {
+      "file": "heads/golfballhalopage_female.png",
+      "src": "Heads/golfballhalopage_female.pcx",
+      "w": 1400,
+      "h": 840,
+      "mode": "RGB"
+    },
+    {
+      "file": "heads/golfballhalopage_male_.png",
+      "src": "Heads/golfballhalopage_male .pcx",
+      "w": 1400,
+      "h": 840,
+      "mode": "RGB"
+    },
+    {
+      "file": "heads/sim_female_all_expressionsflat.png",
+      "src": "Heads/sim_FEMALE_all_expressionsflat.pcx",
+      "w": 1000,
+      "h": 744,
+      "mode": "RGB"
+    },
+    {
+      "file": "heads/sim_male_all_expressionsflat.png",
+      "src": "Heads/sim_MALE_all_expressionsflat.pcx",
+      "w": 1000,
+      "h": 744,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/3mainlowerleft.png",
+      "src": "Interface/3mainLowerLeft.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/3mainlowerleft_a.png",
+      "src": "Interface/3mainLowerLeft_A.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/amenitiespanel.png",
+      "src": "Interface/AmenitiesPanel.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/amenitiespanel_a.png",
+      "src": "Interface/AmenitiesPanel_A.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/barrel.png",
+      "src": "Interface/Barrel.pcx",
+      "w": 60,
+      "h": 120,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/baseterrainpanel.png",
+      "src": "Interface/BaseTerrainPanel.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/baseterrainpanel_a.png",
+      "src": "Interface/BaseTerrainPanel_A.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/buildingpanel.png",
+      "src": "Interface/BuildingPanel.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/buildingpanel_a.png",
+      "src": "Interface/BuildingPanel_A.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/cgbuttons.png",
+      "src": "Interface/CGButtons.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/choosealphabuttons_a.png",
+      "src": "Interface/ChooseAlphaButtons_A.pcx",
+      "w": 800,
+      "h": 100,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/choosedesertbuttons.png",
+      "src": "Interface/ChooseDesertButtons.pcx",
+      "w": 800,
+      "h": 100,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/chooselinksbuttons.png",
+      "src": "Interface/ChooseLinksButtons.pcx",
+      "w": 800,
+      "h": 100,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/chooseparklandbuttons.png",
+      "src": "Interface/ChooseParklandButtons.pcx",
+      "w": 800,
+      "h": 100,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/choosetropicalbuttons.png",
+      "src": "Interface/ChooseTropicalButtons.pcx",
+      "w": 800,
+      "h": 100,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/custglfbckmale.png",
+      "src": "Interface/CustGlfBckMale.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/custgolfbckgrnd.png",
+      "src": "Interface/CustGolfBckgrnd.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/desertterrainbuttons.png",
+      "src": "Interface/DesertTerrainButtons.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/elevationpanel.png",
+      "src": "Interface/ElevationPanel.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/elevationpanel_a.png",
+      "src": "Interface/ElevationPanel_A.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/employeepanel.png",
+      "src": "Interface/EmployeePanel.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/employeepanel_a.png",
+      "src": "Interface/EmployeePanel_A.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/employees.png",
+      "src": "Interface/Employees.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/employees_a.png",
+      "src": "Interface/Employees_A.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/golferstats.png",
+      "src": "Interface/GolferStats.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/golferstats_a.png",
+      "src": "Interface/GolferStats_A.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/headbodybck.png",
+      "src": "Interface/HeadBodyBck.pcx",
+      "w": 115,
+      "h": 229,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/headselect.png",
+      "src": "Interface/HeadSelect.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/infobuttons.png",
+      "src": "Interface/InfoButtons.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/infobuttons_a.png",
+      "src": "Interface/InfoButtons_A.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/joecoolpanel.png",
+      "src": "Interface/JoeCoolPanel.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/joecoolpanel_a.png",
+      "src": "Interface/JoeCoolPanel_A.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/linksterrainbuttons.png",
+      "src": "Interface/LinksTerrainButtons.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/loadingscreen01.png",
+      "src": "Interface/Loading_Screens/LoadingScreen01.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/loadingscreen02.png",
+      "src": "Interface/Loading_Screens/LoadingScreen02.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/loadingscreen03.png",
+      "src": "Interface/Loading_Screens/LoadingScreen03.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/loadingscreen04.png",
+      "src": "Interface/Loading_Screens/LoadingScreen04.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/loadingscreen05.png",
+      "src": "Interface/Loading_Screens/LoadingScreen05.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/loadingscreen06.png",
+      "src": "Interface/Loading_Screens/LoadingScreen06.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/loadingscreen07.png",
+      "src": "Interface/Loading_Screens/LoadingScreen07.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/loadingscreen08.png",
+      "src": "Interface/Loading_Screens/LoadingScreen08.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/loadingscreen09.png",
+      "src": "Interface/Loading_Screens/LoadingScreen09.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/loadingscreen10.png",
+      "src": "Interface/Loading_Screens/LoadingScreen10.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/loadingscreen11.png",
+      "src": "Interface/Loading_Screens/LoadingScreen11.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/loadingscreen12.png",
+      "src": "Interface/Loading_Screens/LoadingScreen12.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/memberpanel.png",
+      "src": "Interface/MemberPanel.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/memberpanel_a.png",
+      "src": "Interface/MemberPanel_A.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/pairbase.png",
+      "src": "Interface/PairBase.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/pairbuttons.png",
+      "src": "Interface/PairButtons.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/parklandterrainbuttons.png",
+      "src": "Interface/ParkLandTerrainButtons.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/pictbckgrnd1.png",
+      "src": "Interface/Pictbckgrnd1.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/popupicons.png",
+      "src": "Interface/PopUpIcons.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/popupicons_a.png",
+      "src": "Interface/PopUpIcons_A.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/pop_upok.png",
+      "src": "Interface/Pop_UpOk.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/pop_upok_a.png",
+      "src": "Interface/Pop_UpOk_A.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/splash.png",
+      "src": "Interface/Splash.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/starsheartsetc.png",
+      "src": "Interface/StarsHeartsETC.pcx",
+      "w": 80,
+      "h": 20,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/trophyparts.png",
+      "src": "Interface/TROPHYparts.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/trophyparts_a.png",
+      "src": "Interface/TROPHYparts_A.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/tacksandarrow.png",
+      "src": "Interface/TacksandArrow.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/tacksandarrow_a.png",
+      "src": "Interface/TacksandArrow_A.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/titlebase.png",
+      "src": "Interface/TitleBASE.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/titlemo.png",
+      "src": "Interface/TitleMO.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/titleseldiffmo.png",
+      "src": "Interface/TitleSelDiffMO.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/titleseldiffunsel.png",
+      "src": "Interface/TitleSelDiffUnSel.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/titleunsel.png",
+      "src": "Interface/TitleUnSel.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/title_loadgame.png",
+      "src": "Interface/Title_LoadGame.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/title_loadgame_mo.png",
+      "src": "Interface/Title_LoadGame_MO.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/title_pickapro.png",
+      "src": "Interface/Title_Pickapro.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/title_themepacks.png",
+      "src": "Interface/Title_ThemePacks.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/title_themepacks_mo.png",
+      "src": "Interface/Title_ThemePacks_MO.pcx",
+      "w": 450,
+      "h": 150,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/top10_blank.png",
+      "src": "Interface/Top10_Blank.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/top10_charms.png",
+      "src": "Interface/Top10_Charms.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/top10_charms_a.png",
+      "src": "Interface/Top10_Charms_A.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/top10_trophies.png",
+      "src": "Interface/Top10_Trophies.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/transpopups.png",
+      "src": "Interface/TransPopups.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/transpopups_a.png",
+      "src": "Interface/TransPopups_A.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/trophymantle.png",
+      "src": "Interface/TrophyMantle.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/tropicalterrainbuttons.png",
+      "src": "Interface/TropicalTerrainButtons.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/worldbase.png",
+      "src": "Interface/WorldBase.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/worldbutton.png",
+      "src": "Interface/WorldButton.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/bulletinboardnmantlecork.png",
+      "src": "Interface/bulletinboard&mantlecork.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/bulletinboardnmantlewood.png",
+      "src": "Interface/bulletinboard&mantlewood.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/courseinfo.png",
+      "src": "Interface/courseinfo.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/courseinfo_a.png",
+      "src": "Interface/courseinfo_A.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/desert_layout.png",
+      "src": "Interface/desert layout.pcx",
+      "w": 751,
+      "h": 812,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/golfballhalopage_female.png",
+      "src": "Interface/golfballhalopage_female.pcx",
+      "w": 1400,
+      "h": 840,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/golfballhalopage_male_.png",
+      "src": "Interface/golfballhalopage_male .pcx",
+      "w": 1400,
+      "h": 840,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/endoyear.png",
+      "src": "Interface/infoscreens/ENDoYEAR.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/endoyear_alpha.png",
+      "src": "Interface/infoscreens/ENDoYEAR_alpha.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/financereport.png",
+      "src": "Interface/infoscreens/FINANCEreport.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/financereport_alpha.png",
+      "src": "Interface/infoscreens/FINANCEreport_alpha.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/holestat.png",
+      "src": "Interface/infoscreens/HoleSTAT.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/holestat_alpha.png",
+      "src": "Interface/infoscreens/HoleSTAT_alpha.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/okstates.png",
+      "src": "Interface/infoscreens/OkStates.pcx",
+      "w": 266,
+      "h": 131,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/playcomt.png",
+      "src": "Interface/infoscreens/PlayComt.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/playcomt_alpha.png",
+      "src": "Interface/infoscreens/PlayComt_alpha.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/sga.png",
+      "src": "Interface/infoscreens/SGA.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/sgareport_alpha.png",
+      "src": "Interface/infoscreens/SGAreport_alpha.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/black.png",
+      "src": "Interface/infoscreens/black.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/buy_land.png",
+      "src": "Interface/infoscreens/buy_land.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/buy_land_buttons.png",
+      "src": "Interface/infoscreens/buy_land_buttons.pcx",
+      "w": 700,
+      "h": 400,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/coursereport.png",
+      "src": "Interface/infoscreens/coursereport.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/coursereport_alpha.png",
+      "src": "Interface/infoscreens/coursereport_alpha.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/general_selectionbox.png",
+      "src": "Interface/infoscreens/general_selectionBOX.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/general_selectionbox_alpha.png",
+      "src": "Interface/infoscreens/general_selectionBOX_alpha.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/hire.png",
+      "src": "Interface/infoscreens/hire.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/hire_alpha.png",
+      "src": "Interface/infoscreens/hire_alpha.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/histograph.png",
+      "src": "Interface/infoscreens/histograph.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/histograph_alpha.png",
+      "src": "Interface/infoscreens/histograph_alpha.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/lowscore.png",
+      "src": "Interface/infoscreens/lowscore.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/lowscore_alpha.png",
+      "src": "Interface/infoscreens/lowscore_alpha.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/memberroster.png",
+      "src": "Interface/infoscreens/memberRoster.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/memberroster_alpha.png",
+      "src": "Interface/infoscreens/memberRoster_alpha.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/memberroster_buttons.png",
+      "src": "Interface/infoscreens/memberRoster_buttons.pcx",
+      "w": 300,
+      "h": 127,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/memberroster_scrollbar.png",
+      "src": "Interface/infoscreens/memberRoster_scrollbar.pcx",
+      "w": 18,
+      "h": 447,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/route_screens_aura.png",
+      "src": "Interface/infoscreens/route screens_aura.pcx",
+      "w": 800,
+      "h": 253,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/route_screens_bottom.png",
+      "src": "Interface/infoscreens/route screens_bottom.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/route_screens_course.png",
+      "src": "Interface/infoscreens/route screens_course.pcx",
+      "w": 800,
+      "h": 253,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/route_screens_employ.png",
+      "src": "Interface/infoscreens/route screens_employ.pcx",
+      "w": 800,
+      "h": 254,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/route_screens_value.png",
+      "src": "Interface/infoscreens/route screens_value.pcx",
+      "w": 800,
+      "h": 253,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/shortcuts.png",
+      "src": "Interface/infoscreens/shortcuts.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/shortcuts_alpha.png",
+      "src": "Interface/infoscreens/shortcuts_alpha.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/tournament_result.png",
+      "src": "Interface/infoscreens/tournament result.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/tournament_result_alpha.png",
+      "src": "Interface/infoscreens/tournament result_alpha.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/links_layout.png",
+      "src": "Interface/links layout.pcx",
+      "w": 751,
+      "h": 812,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/parklands_layout.png",
+      "src": "Interface/parklands layout.pcx",
+      "w": 751,
+      "h": 812,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/parklink.png",
+      "src": "Interface/parklink.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/parklink_a.png",
+      "src": "Interface/parklink_A.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/s_golferstats.png",
+      "src": "Interface/s_GolferStats.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/s_transpopups.png",
+      "src": "Interface/s_TransPopups.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/s_courseinfo.png",
+      "src": "Interface/s_courseinfo.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/tacsntees.png",
+      "src": "Interface/tacs&tees.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/tacsntees_a.png",
+      "src": "Interface/tacs&tees_A.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/trop_layout.png",
+      "src": "Interface/trop layout.pcx",
+      "w": 751,
+      "h": 812,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/tropdesert.png",
+      "src": "Interface/tropdesert.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "interface/tropdesert_a.png",
+      "src": "Interface/tropdesert_A.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "other/jackal.png",
+      "src": "Jackal.pcx",
+      "w": 81,
+      "h": 101,
+      "mode": "RGB"
+    },
+    {
+      "file": "other/radiobut.png",
+      "src": "Radiobut.pcx",
+      "w": 80,
+      "h": 100,
+      "mode": "RGB"
+    },
+    {
+      "file": "other/bink64.png",
+      "src": "bink64.pcx",
+      "w": 64,
+      "h": 64,
+      "mode": "RGB"
+    },
+    {
+      "file": "other/cliffs01.png",
+      "src": "cliffs01.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "other/course1.png",
+      "src": "course1.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "other/creditsbckgrd.png",
+      "src": "creditsbckgrd.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    },
+    {
+      "file": "other/logo.png",
+      "src": "logo.pcx",
+      "w": 800,
+      "h": 600,
+      "mode": "RGB"
+    }
+  ]
+}
