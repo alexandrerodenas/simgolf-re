@@ -47,19 +47,11 @@ export class MainMenu {
     }
 
     private bindEvents(): void {
-        // Boutons — pointerdown pour compatibilité tactile + souris
-        document.getElementById('btn-new-game')!.addEventListener('pointerdown', (e) => {
-            e.preventDefault();
-            this.callbacks.onNewGame?.(this.currentTheme);
-        });
-        document.getElementById('btn-load-game')!.addEventListener('pointerdown', () => {
-            this.callbacks.onLoadGame?.();
-        });
-        document.getElementById('btn-tutorial')!.addEventListener('pointerdown', () => {
-            this.callbacks.onTutorial?.();
-        });
-
-        // Sélecteurs de thème
+        // Les écouteurs sont gérés par le script inline (index.html)
+        // pour garantir le fonctionnement même si le module échoue.
+        // Les setters onNewGame/onLoadGame/onTutorial sont conservés
+        // pour que app.ts puisse définir les callbacks.
+        // Les sélecteurs de thème
         document.querySelectorAll('.theme-chip').forEach(chip => {
             chip.addEventListener('pointerdown', (e) => {
                 e.preventDefault();

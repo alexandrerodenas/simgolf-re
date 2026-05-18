@@ -192,9 +192,21 @@ async function init() {
 
     // Expose globally for fallback inline handler
     (window as any).__simgolfReady = true;
-    (window as any).__simgolfStartGame = (theme?: string) => {
-        (menu.onNewGame as any)(theme || 'Parkland');
-    };;
+    (window as any).__simgolfStartGame = (theme: string = 'Parkland') => {
+        const stored = (menu as any).callbacks?.onNewGame;
+        if (stored) stored(theme);
+        else console.error('[Menu] onNewGame callback not set');
+    };
+    (window as any).__simgolfLoadGame = () => {
+        const stored = (menu as any).callbacks?.onLoadGame;
+        if (stored) stored();
+        else console.error('[Menu] onLoadGame callback not set');
+    };
+    (window as any).__simgolfStartTutorial = () => {
+        const stored = (menu as any).callbacks?.onTutorial;
+        if (stored) stored();
+        else console.error('[Menu] onTutorial callback not set');
+    };
 
     // ============================================================
     // Build Info Panel (mini-carte, infos trou)
