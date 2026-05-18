@@ -166,7 +166,7 @@ Voir `MAPPING.md` pour le détail des 38 exports.
 - [x] 1 893 animations FLC (sprites) par catégorie
 - [x] Documentation tous formats dans game_data/DataFormatAnalysis.md
 
-### Priorité 7 — Textures & Rendu ← EN COURS
+### Priorité 7 — Textures & Rendu ✅
 - [x] Analyse des textures BMP (64×64, 24-bit, 4 thèmes)
 - [x] Pipeline de conversion BMP → PNG (2 671 textures, zéro erreur)
 - [x] Catalogue JSON des textures (web_port/assets/texture_catalog.json)
@@ -177,6 +177,17 @@ Voir `MAPPING.md` pour le détail des 38 exports.
 - [x] Mapping TileType → TerrainType avec prefix match
 - [x] TextureManager.getTileTexture() avec recherche par préfixe
 - [x] Support de 4 thèmes visuels (Desert, Links, Parkland, Tropical)
+
+### Priorité 8 — Interface Mobile ← EN COURS
+- [x] Layout mobile principal (GameShell) : canvas + UI overlay
+- [x] HUD mobile (score, par, trou, money)
+- [x] BuildToolbar tactile (Fairway, Rough, Sand, Tee, Green, Trees, Water)
+- [x] Touch handler (pan/drag, tap, pinch zoom, long-press)
+- [x] MainMenu mobile (Nouvelle Partie, Continuer, Options)
+- [x] Index.html + app.ts (point d'entrée)
+- [ ] Adaptation aux formats tablette et téléphone
+- [ ] Écran de construction complet
+- [ ] Mode jeu (parcours) – affichage scorecard
 
 ---
 
