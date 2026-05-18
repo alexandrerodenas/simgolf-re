@@ -117,7 +117,11 @@ Voir `MAPPING.md` pour le détail des 38 exports.
 - [x] `renderSingleTile()` avec textures
 - [x] `IsometricRenderer.ts` — Canvas 2D isométrique
 - [x] `JGLInterface.ts` — mapping JGL → Canvas 2D
-- [ ] `drawLine/drawCircle/BezierSpline/CardinalSpline` (optionnel)
+- [x] `drawLine/drawCircle/BezierSpline/CardinalSpline` (primitives de dessin)
+  - drawLine : prévisualisation chemins (solide, pointillé, traitillé)
+  - drawCircle : rayons de placement en projection isométrique (ellipse)
+  - drawBezierSpline : courbes de Bézier cubiques (fairway shaping)
+  - drawCardinalSpline : splines Catmull-Rom (chemins sinueux)
 
 ### Priorité 2 — Moteur Graphique JGL (jgld.dll) ✅
 - [x] Analyse complète (1199 fonctions, JackalClass)
