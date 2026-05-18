@@ -25,14 +25,19 @@
 │   └── disassemble_smart.py            (script fonction-par-fonction)
 │
 ├── cleaned_c/            ← Code C nettoyé et documenté
-│   ├── tile_struct.h                   (Structure Tile 584 bytes)
+│   ├── tile_struct.h                   (Structure Tile 584 bytes — v2)
 │   ├── terrain_tileAt.c                (Terrain::tileAt nettoyé)
 │   ├── tile_getters.c                  (getElevation, getType, getWall)
+│   ├── terrain_render.c                (Terrain::render — moteur isométrique)
+│   ├── terrain_render_helpers.c        (getScreenX/Y, isCulled, getView)
+│   ├── terrain_render_tile.c           (isVisible, renderSingleTile → glBindTexture)
 │   └── MAPPING.md                      (Table 38 exports Terrain.dll)
 │
 ├── web_port/             ← Portage TypeScript
-│   └── core/
-│       └── TerrainTileSystem.ts        (TerrainEngine singleton + tileAt)
+│   ├── core/
+│   │   └── TerrainTileSystem.ts        (TerrainEngine singleton + tileAt)
+│   └── view/
+│       └── IsometricRenderer.ts        (Rendu Canvas 2D isométrique)
 │
 └── game_data/            ← Binaires et données originales
     ├── exe/                            (golf.exe, DLLs originales)
@@ -84,11 +89,16 @@
 | 5 | `Tile::getElevation(int)` | 0x10001E40 | ✅ Nettoyé |
 | 6 | `Tile::getType()` | 0x10001F60 | ✅ Nettoyé |
 | 7 | `Tile::getWall(int)` | 0x10001ED0 | ✅ Nettoyé |
-| 8 | `Terrain::render(Tile*, float)` | 0x10005990 | 🔍 Partiel (assembleur dispo) |
-| 9 | `Terrain::renderTile(int, int, int, int, int)` | 0x100080E0 | 🔍 Partiel |
-| 10 | `Terrain::setWall(Tile*, int, int, bool)` | 0x1000A560 | ❌ Non traité |
-| 11 | `Terrain::hasPath(Tile*)` | 0x1000A510 | ❌ Non traité |
-| 12 | `Terrain::hasConnectedPath(int, int)` | 0x10001023 | ❌ Non traité |
+| 8 | `Terrain::render(Tile*, float)` | 0x10005990 | ✅ Nettoyé |
+| 9 | `Terrain::getView(float)` | 0x1000ADC0 | ✅ Nettoyé |
+| 10 | `Terrain::renderSingleTile(Tile*, float)` | 0x1000E6C0 | ✅ Nettoyé |
+| 11 | `Tile::getScreenX()` | 0x10006810 | ✅ Nettoyé |
+| 12 | `Tile::getScreenY()` | 0x10005960 | ✅ Nettoyé |
+| 13 | `Tile::isVisible()` | 0x10015460 | ✅ Nettoyé |
+| 14 | `Tile::isCulled(Tile*, float)` | 0x10006850 | ✅ Nettoyé |
+| 15 | `Terrain::setWall(Tile*, int, int, bool)` | 0x1000A560 | ❌ Non traité |
+| 16 | `Terrain::hasPath(Tile*)` | 0x1000A510 | ❌ Non traité |
+| 17 | `Terrain::hasConnectedPath(int, int)` | 0x10001023 | ❌ Non traité |
 | 13 | `Terrain::getInstance()` | 0x100031A0 | ❌ Non traité |
 | 14 | `Terrain::localRender(...)` | 0x1000117C | ❌ Non traité |
 | 15 | `Terrain::drawLine(...)` | 0x100011B3 | ❌ Non traité |
@@ -116,22 +126,25 @@
 | 37 | `Terrain::pathUpdateRender(...)` | 0x100011E0 | ❌ Non traité |
 | 38 | `Terrain::stripRender(Tile*, int, float)` | 0x10001299 | ❌ Non traité |
 
-### Structure Tile (584 bytes = 0x248)
+### Structure Tile (584 bytes = 0x248) — v2 (12 champs identifiés)
 
 ```
-Offset  Size    Champ         Source                  Statut
-------  ------  -----------   ----------------------  ------
- 0x000  16      elevation[4]  Tile::getElevation()    ✅ Confirmé
- 0x010   4      waterLevel?   Hypothèse               ⚠️
- 0x014   4      ?             Inconnu                 ❌
- 0x018   4      ?             Inconnu                 ❌
- 0x01C   4      ?             Inconnu                 ❌
- 0x020   4      ?             Inconnu                 ❌
- 0x024   4      type          Tile::getType()         ✅
- 0x028  524     unknown[524]  Non analysé             ❌
- 0x234   4      walls[4]      Tile::getWall()         ✅
- 0x238   ?      render_data?  Non analysé             ❌
-------  ------  -----------   ----------------------  ------
+Offset  Size    Champ             Source                  Statut
+------  ------  ---------------   ----------------------  ------
+ 0x000  16      elevation[4]      Tile::getElevation()    ✅
+ 0x010   4      waterLevel?       Hypothèse               ⚠️
+ 0x014   4      ?                 Inconnu                 ❌
+ 0x018   4      ?                 Inconnu                 ❌
+ 0x01C   4      renderCategory    Tile::isCulled()        ✅
+ 0x020   4      renderWidth       Tile::isCulled()        ✅
+ 0x024   4      type              Tile::getType()         ✅
+ 0x028   4      renderHeight      Tile::isCulled()        ✅
+ 0x02C   4      screenY           Tile::getScreenY()      ✅
+ 0x030   4      screenX           Tile::getScreenX()      ✅
+ 0x034  0x200   unknown[512]      Non analysé             ❌
+ 0x234   4      walls[4]          Tile::getWall()         ✅
+ 0x238   ?      render_data?      Non analysé             ❌
+------  ------  ---------------   ----------------------  ------
 Total:  584
 ```
 
@@ -151,24 +164,26 @@ Offset  Size    Champ         Source                  Statut
 
 ---
 
-## 🔄 Prochaines Étapes (Priorisées)
+|## 🔄 Prochaines Étapes (Priorisées)
 
-### Priorité 1 — Rendu Isométrique
-- [ ] Nettoyer `Terrain::render(Tile*, float)` (0x10005990)
-  - Code assembleur déjà extrait
-  - Boucles tuiles, matrices JGL, appels de rendu
-  - Comprendre le pipeline : setup → iterate tiles → draw
+### Priorité 1 — Rendu Isométrique ✅
+- [x] Nettoyer `Terrain::render(Tile*, float)` (0x10005990)
+  - Pipeline complet : setup JGL → boucles tuiles → culling → textures
+- [x] Nettoyer `Terrain::renderSingleTile()` + 5 helpers (getScreenX/Y, isVisible, isCulled, getView)
 - [ ] Nettoyer `Terrain::renderTile(int, int, int, int, int)` (0x100080E0)
 - [ ] Nettoyer `Terrain::stripRender(Tile*, int, float)` (0x10009270)
 - [ ] Nettoyer `Terrain::drawLine(...)` (0x100011B3)
 - [ ] Nettoyer `Terrain::drawCircle(...)` (0x10001186)
-- [ ] Portage TypeScript du pipeline de rendu
+- [ ] Portage TypeScript du pipeline de rendu (IsometricRenderer.ts) ✅ partiel
 
-### Priorité 2 — Moteur Graphique (jgld.dll)
+### Priorité 2 — Moteur Graphique JGL (jgld.dll) ← EN COURS
 - [ ] Analyser les exports de **jgld.dll** (1.1 Mo de code clair)
   - Wrapper OpenGL/DirectX ?
-  - Fonctions matricielles, textures, etc.
+  - Fonctions matricielles (push, pop, loadIdentity)
+  - Fonctions de texture (bind, create, delete)
+  - Fonctions de rendu (draw arrays, draw elements)
 - [ ] Cartographier les appels JGL utilisés par Terrain.dll
+- [ ] Interface TypeScript pour le rendu (PixiJS/Phaser)
 - [ ] Interface TypeScript pour le rendu (PixiJS/Phaser)
 
 ### Priorité 3 — Moteur Audio (sound.dll)
