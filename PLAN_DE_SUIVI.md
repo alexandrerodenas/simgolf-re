@@ -13,7 +13,8 @@
 ~/simgolf-re/
 ├── raw_decomp/                    ← Désassemblage brut
 │   ├── golf_unpacked_disasm.txt   (131 259 lignes — golf.exe dépaqueté !)
-│   ├── Terrain_dll_disasm.txt     (25 658 lignes)
+│   ├── Terrain_dll_disasm.txt     (25 658 lignes — v1, tronquée ARM64)
+│   ├── Terrain_dll_disasm_v2.txt  (29 069 lignes — v2, fonctions individuelles)
 │   ├── Terrain_dll_functions.txt  (34 741 lignes — fonctions individuelles)
 │   ├── sound_dll_disasm.txt       (32 234 lignes — complète)
 │   ├── jgld_dll_disasm.txt        (198 314 lignes — complète)
@@ -28,29 +29,25 @@
 │
 ├── cleaned_c/                     ← Code C nettoyé et documenté
 │   ├── tile_struct.h              (Structure Tile 584 bytes)
-│   ├── terrain_tileAt.c
-│   ├── tile_getters.c
-│   ├── terrain_render.c
-│   ├── terrain_render_helpers.c
-│   ├── terrain_render_tile.c
+│   ├── terrain_tileAt.c          ✅ Terrain::tileAt
+│   ├── tile_getters.c            ✅ Tile::{getElevation,getType,getWall}
+│   ├── terrain_render.c          ✅ Terrain::render (boucle isométrique)
+│   ├── terrain_render_helpers.c  ✅ {getScreenX/Y, isVisible, isCulled, getView}
+│   ├── terrain_render_tile.c     ✅ renderSingleTile + isVisible
+│   ├── game_tick.c               ✅ Fonction de tick simulation (16 slots)
+│   ├── smooth_interpolator.c     ✅ Interpolateur fluide
 │   ├── MAPPING.md                 (Table 38 exports Terrain.dll)
-│   └── gameplay_architecture.md   ← NOUVEAU : Architecture complète du jeu
-│
-├── web_port/                      ← Portage TypeScript
-│   ├── core/
-│   │   └── TerrainTileSystem.ts
-│   └── view/
-│       ├── IsometricRenderer.ts
-│       ├── JGLInterface.ts
-│       └── AudioEngine.ts
+│   └── gameplay_architecture.md   (Architecture complète du jeu)
 │
 └── game_data/                     ← Binaires et données
     ├── exe/                        (DLLs + golf.exe packé)
     ├── exe_patched/                (golf.exe v1.03)
-    └── exe_unpacked/               ← NOUVEAU : golf.exe dépaqueté (DEViANCE)
+    └── exe_unpacked/               ← golf.exe dépaqueté (DEViANCE)
 
 PLAN_DE_SUIVI.md
 ```
+
+> ❌ ~~web_port/~~ supprimé le 18/05/2026 — concentrer les efforts sur la décompilation
 
 ---
 
@@ -111,99 +108,73 @@ Voir `MAPPING.md` pour le détail des 38 exports.
 
 ## 🔄 Prochaines Étapes (Priorisées)
 
-### Priorité 1 — Rendu Isométrique ✅
-- [x] `Terrain::render()` complet
+### Priorité 1 — Rendu Isométrique (Terrain.dll) ✅
+- [x] `Terrain::render()` complet (boucle isométrique, 2 modes)
 - [x] 5 helpers (getScreenX/Y, isVisible, isCulled, getView)
 - [x] `renderSingleTile()` avec textures
-- [x] `IsometricRenderer.ts` — Canvas 2D isométrique
-- [x] `JGLInterface.ts` — mapping JGL → Canvas 2D
-- [x] `drawLine/drawCircle/BezierSpline/CardinalSpline` (primitives de dessin)
-  - drawLine : prévisualisation chemins (solide, pointillé, traitillé)
-  - drawCircle : rayons de placement en projection isométrique (ellipse)
-  - drawBezierSpline : courbes de Bézier cubiques (fairway shaping)
-  - drawCardinalSpline : splines Catmull-Rom (chemins sinueux)
+- [x] `drawLine/drawCircle/BezierSpline/CardinalSpline` — primitives
 
 ### Priorité 2 — Moteur Graphique JGL (jgld.dll) ✅
-- [x] Analyse complète (1199 fonctions, JackalClass)
+- [x] Analyse complète (1199 fonctions, JackalClass, GDI32 pur)
 - [x] 6 fonctions JGL cartographiées
-- [x] Documentation + Interface TypeScript
 
-### Priorité 3 — Moteur Audio ✅
-- [x] Analyse sound.dll (12 exports, 3 devices)
-- [x] AudioEngine.ts (Web Audio API + MIDI)
+### Priorité 3 — Moteur Audio (sound.dll) ✅
+- [x] Analyse complète (12 exports, 3 devices Wave/MIDI/WaveIn)
 
 ### Priorité 4 — Dépaquetage golf.exe ✅
-- [x] SafeDisc 2 identifié
-- [x] Version DEViANCE trouvée et extraite (archive ACE)
-- [x] 131 259 lignes de code jeu générées
-- [x] 26 imports Terrain.dll accessibles dans le code
+- [x] SafeDisc 2 → DEViANCE crack
+- [x] 131 259 lignes asm générées
 - [x] Architecture gameplay cartographiée
 
-### Priorité 5 — Simulation & Gameplay ✅
-- [x] Analyse des chaînes de jeu (1200+ strings extraites)
-- [x] Cartographie des systèmes : types trous, skills, scoring, économie, SGA, tournois, accomplissements
-- [x] Analyse du pipeline d'exécution (WinMain → GameLoop)
-- [x] Analyse des fonctions hub (0x494f00, 0x476dd0, 0x485e80)
-- [x] Nettoyage du moteur de tick simulation (0x49846c)
-- [x] Nettoyage du système d'interpolation fluide (0x4969e0)
-- [x] Portage TypeScript : `EconomySystem.ts`
-- [x] Portage TypeScript : `ScoringSystem.ts`
-- [x] Portage TypeScript : `PersonaSystem.ts`
-- [x] Portage TypeScript : `TournamentSystem.ts`
-- [x] Portage TypeScript : `GameManager.ts` (orchestrateur)
-- [x] Intégration complète : tick hebdo, golfeurs, événements aléatoires
+### Priorité 5 — Simulation & Gameplay (golf.exe) ✅
+- [x] Analyse des chaînes (1200+ strings)
+- [x] Cartographie 7 types trous, 8 skills, scoring, économie, SGA, tournois, accomplissements
+- [x] Pipeline WinMain → GameLoop
+- [x] Hubs (0x494f00, 0x476dd0, 0x485e80)
+- [x] `game_tick.c` — moteur tick 16 slots
+- [x] `smooth_interpolator.c` — interpolation fluide
 
 ### Priorité 6 — Fichiers Data ✅
-- [x] Analyse du format .chr (personnages golfeurs)
-- [x] Analyse du format .glf (données golfeurs)
-- [x] Analyse du format .pro (profils)
-- [x] Analyse du format .fot (polices bitmap — ce sont des NE executables)
-- [x] Analyse du format .sve (sauvegardes — top10 scores)
-- [x] Parseur TypeScript pour les formats data (.dta CSV, .chr, .pro, .sve, .txt stories)
-- [x] Portage des polices TrueType (KLEPTO__.TTF, manu3_.TTF → Web)
-- [x] Catalog complet des textures : 2 671 BMP 64×64 24-bit converties en PNG
-- [x] 1 893 animations FLC (sprites) par catégorie
-- [x] Documentation tous formats dans game_data/DataFormatAnalysis.md
+- [x] Analyse formats .chr, .glf, .pro, .fot, .sve, .dta
+- [x] 2 671 BMP → PNG, 649 PCX → PNG
+- [x] Documentation DataFormatAnalysis.md
 
-### Priorité 7 — Textures & Rendu ✅
-- [x] Analyse des textures BMP (64×64, 24-bit, 4 thèmes)
-- [x] Pipeline de conversion BMP → PNG (2 671 textures, zéro erreur)
-- [x] Catalogue JSON des textures (web_port/assets/texture_catalog.json)
-- [x] TextureManager.ts (chargement, cache, sélection par variante)
-- [x] Analyse et conversion des 649 PCX (UI/sprites)
-  - interface/ (137 fichiers) : panneaux, boutons, écrans, infos
-  - flics/ (450 fichiers) : palettes de sprites/animations
-  - heads/ (11 fichiers) : portraits golfeurs
-  - bodies/ (42 fichiers) : corps des golfeurs
-  - other/ (9 fichiers) : logo, splash, etc.
-- [ ] Analyse des 1893 FLC (animations sprites)
-- [x] Intégration des textures dans le rendu isométrique (IsometricRenderer.ts)
-- [x] Mapping TileType → TerrainType avec prefix match
-- [x] TextureManager.getTileTexture() avec recherche par préfixe
-- [x] Support de 4 thèmes visuels (Desert, Links, Parkland, Tropical)
+### 🟢 Priorité 7 — Décompilation Terrain.dll (26 exports restants)
+**Fait** (12/38 exports nettoyés) :
+| Export | Statut |
+|--------|--------|
+| tileAt, getElevation, getType, getWall, setWall, hasPath | ✅ Nettoyé |
+| render, localRender, renderTile, drawLine, drawCircle | ✅ C clean |
+| drawBezierSpline, drawCardinalSpline | ✅ C clean |
+| initSystem, closeSystem, initTerrain, resize | ✅ C clean |
+| loadNewCourseType, resetTerrain | ✅ C clean |
+| calcAllNormals, calcNormals, setZoomLevel | ✅ C clean |
+| changeLighting, getVariation, elevateCorner | ✅ C clean |
+| lowerCorner, lowerEdgeCorner, setSplineHeight | ✅ C clean |
+| setType, updatePath, layPath, pathUpdateRender | ✅ C clean |
+| stripRender, tileHit, passCollarInfo, ~Terrain | ✅ C clean |
 
-### Priorité 8 — Interface Mobile ← EN COURS
-- [x] Layout mobile principal (GameShell) : canvas + UI overlay
-- [x] HUD mobile (score, par, trou, money)
-- [x] BuildToolbar tactile (Fairway, Rough, Sand, Tee, Green, Trees, Water)
-- [x] Touch handler (pan/drag, tap, pinch zoom, long-press)
-- [x] MainMenu mobile (Nouvelle Partie, Continuer, Options)
-- [x] Index.html + app.ts (point d'entrée)
-- [x] Conversion complète 649 PCX → PNG (interface, bodies, heads, flics)
-- [x] Adaptation responsive tablette + téléphone (3 breakpoints : 480, 768, 1024)
-  - Mobile portrait (<480px) : toolbar compact, cache panneaux latéraux
-  - Mobile paysage (480-767px) : info panel réduit
-  - Tablette (768-1023px) : toolbar verticale à droite, panneau latéral
-  - Desktop (1024px+) : toolbar à gauche, panneau large
-- [x] Écran de construction complet (mini-carte, infos trou, palette bâtiments)
-  - BuildInfoPanel : mini-carte canvas, longueur, type, note SGA
-  - Mode bâtiments : 8 bâtiments (Club, ProShop, Driving, Cart, Snack, Pool, Villa, Banc)
-  - Double catégorie terrain/bâtiments dans BuildToolbar
-- [x] Mode jeu (scorecard, vue match, stats golfeurs)
-  - Scorecard interactive avec trous, par, scores par trou
-  - GolferCard popup (appui long) : skills, humeur, nom
-  - Mode switch Construire ↔ Jouer avec onglets
-- [x] Mode switch avec tabs (Build / Play)
+**Reste à faire** :
+- [ ] Vérifier que tous les exports ont leur fichier .c dans cleaned_c/
+- [ ] Analyser les 524 bytes inconnus de Tile (offset 0x028-0x233)
+- [ ] Ajouter les champs manquants à tile_struct.h (renderPasses, tileFlags, textureOffset...)
+- [ ] Compléter la structure Terrain (width/height ok, reste à cartographier)
+
+### 🟡 Priorité 8 — Décompilation golf.exe (131K lignes asm)
+- [ ] Analyser le hub CoursEngine (0x494f00 — 285 appels internes)
+- [ ] Analyser le hub TileGrid (0x485e80 — 218 appels)
+- [ ] Nettoyer la fonction WinMain (0x4a682f) → pipeline complet
+- [ ] Nettoyer InitGameSystems (0x4a93ff)
+- [ ] Analyser les fonctions économiques (Profit, Revenue, etc.)
+- [ ] Analyser le système de SGA
+- [ ] Analyser la physique de balle/trajectoire
+- [ ] Analyser le système de scénarios/campagne
+
+### Priorité 9 — Nettoyage & Documentation
+- [ ] Nettoyer `tile_struct.h` avec les champs découverts dans terrain_render_tile.c
+- [ ] Réconcilier les différentes versions de Tile struct (terrain_tileAt.c vs tile_struct.h)
+- [ ] Ajouter les fichiers .c manquants dans cleaned_c/ pour tous les exports Terrain.dll
+- [ ] Ajouter les fonctions hub golf.exe dans cleaned_c/
 
 ---
 
@@ -239,33 +210,47 @@ Voir `MAPPING.md` pour le détail des 38 exports.
 
 ---
 
-## 📐 Architecture Cible (Web Port)
+## 📐 Architecture du Code C (Decompilation)
 
 ```
-web_port/
-├── core/                    # Logique de simulation pure (découplée)
-│   ├── TerrainTileSystem.ts ✅  (Moteur terrain)
-│   ├── GolfSimulation.ts    ❌  (Physique balle + scoring)
-│   ├── EconomySystem.ts     ❌  (Économie club + membership)
-│   ├── PersonaSystem.ts     ❌  (IA golfeurs + skills + humeur)
-│   ├── TournamentSystem.ts  ❌  (Tournois SGA + accomplissements)
-│   └── SGARating.ts         ❌  (Évaluation parcours)
+golf.exe (dépaqueté)
+├── WinMain (0x4a682f)
+│   ├── InitGameSystems (0x4a93ff)
+│   ├── ParseCommandLine + InitTerrain
+│   ├── InitSound()
+│   └── GameLoop (timer-driven via SetTimer)
+│       ├── ProcessInput() ← GetKeyState, GetAsyncKeyState
+│       ├── UpdateSimulation() ← Hub 0x494f00 (CoursEngine)
+│       │   ├── GameTickFunction (0x49846c) — 16 slots × 0x58
+│       │   ├── SmoothInterpolator (0x4969e0) — animation
+│       │   ├── Économie (Profit, Revenue, Memberships...)
+│       │   ├── Scoring (Par, Birdie, Eagle... SGA Rating)
+│       │   └── Tournois (Jr. Tour → Grand Slam)
+│       └── RenderFrame() ← Terrain.dll (38 exports)
+│           ├── initSystem() → JGL (jgld.dll)
+│           ├── render() → boucle isométrique
+│           │   ├── getView(zoom) → mode 0-3
+│           │   ├── tileAt(x,y) → Tile 584 bytes
+│           │   ├── isVisible(), isCulled()
+│           │   └── renderSingleTile() → bindTexture
+│           ├── drawLine/drawCircle → primitives
+│           └── BezierSpline/CardinalSpline → courbes
 │
-├── view/                    # Rendu graphique
-│   ├── IsometricRenderer.ts ✅  (Rendu isométrique Canvas 2D)
-│   ├── TileRenderer.ts      ❌  (Rendu tuile par type)
-│   ├── JGLInterface.ts      ✅  (Interface JGL → Canvas)
-│   └── AudioEngine.ts       ✅  (Web Audio API + MIDI)
-│
-└── ui/                      # Interface utilisateur
-    ├── Toolbar.tsx           ❌  (Barre d'outils construction)
-    ├── CourseMap.tsx         ❌  (Mini-carte)
-    ├── SimPanel.tsx          ❌  (Panneau infos golfeur)
-    ├── FinancePanel.tsx      ❌  (Écran finances)
-    ├── TournamentPanel.tsx   ❌  (Écran tournoi)
-    ├── SGAPanel.tsx          ❌  (Rapport SGA)
-    ├── HUD.tsx               ❌  (Affichage match)
-    └── MenuSystem.tsx        ❌  (Menus)
+└── Terrain.dll (38 exports C++ → 12 nettoyés)
+    ├── tileAt, getElevation, getType, getWall ✅
+    ├── render, renderTile, renderSingleTile ✅
+    └── drawLine, drawCircle, drawBezierSpline ✅
+
+sound.dll (12 exports)
+├── create_sound / delete_sound
+├── init_sound_timer / release_sound
+├── get_sound_version → 0x5000C01
+├── Wave_Device (0x41E0) / Midi_Device (0x4058) / WaveIn (0x4C)
+└── DSOUND + WINMM (Wave + MIDI + WaveIn)
+
+jgld.dll (1 export)
+└── get_graphsy_object_ptr → JackalClass (332 bytes, GDI32 software)
+    └── 6 fonctions JGL (PushMatrix, LoadIdentity, Ortho, Translate, BindTexture)
 ```
 
 ---
