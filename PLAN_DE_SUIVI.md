@@ -211,10 +211,20 @@ WinMain
 ```
 
 ### Priorité 9 — Nettoyage & Documentation
-- [ ] Nettoyer `tile_struct.h` avec les champs découverts dans terrain_render_tile.c
-- [ ] Réconcilier les différentes versions de Tile struct (terrain_tileAt.c vs tile_struct.h)
-- [ ] Ajouter les fichiers .c manquants dans cleaned_c/ pour tous les exports Terrain.dll
-- [ ] Ajouter les fonctions hub golf.exe dans cleaned_c/
+
+**Systèmes de jeu — maintenant couverts :**
+
+| Fichier | Système | Chaînes référencées |
+|---------|---------|---------------------|
+| `game_economy.c` | Économie (Profit, Revenue, Greens Fees, Cash) | 0x4c3f5c, 0x4cfef0, 0x4cff98, 0x4d14bc |
+| `game_scoring_sga.c` | Scoring + SGA Rating (15 critères) | 0x4c56f8, 0x4d0e00, 0x4d0ff0, 0x4d1024, 0x4d103c |
+| `game_tournaments.c` | Tournois (10 niveaux) + 14 Accomplissements | 0x4d0c88, 0x4d0d6c, 0x4bf5bc, 0x4bf6a8 |
+| `game_scenarios.c` | 6 scénarios/campagnes | 0x4c3925, 0x4d1dc6, 0x4d212d |
+| `game_physics.c` | Physique balle (Lie, Drive, Putt, Wind, 8 skills) | 0x4c3ee0, 0x4cfcfc, 0x4cfca8 |
+
+**Reste :**
+- [ ] Analyse des 1 893 animations FLC (sprites)
+- [ ] Parseur C pour les fichiers .dta/.pro/.chr
 
 ---
 
