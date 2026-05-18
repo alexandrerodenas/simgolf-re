@@ -44,7 +44,7 @@ export class HUD {
         this.moneyEl = document.getElementById('hud-money')!;
 
         const menuBtn = document.getElementById('btn-menu')!;
-        menuBtn.addEventListener('click', () => this.menuCallback?.());
+        menuBtn.addEventListener('pointerdown', () => this.menuCallback?.());
     }
 
     set onMenu(fn: (() => void) | null) {

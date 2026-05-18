@@ -47,20 +47,22 @@ export class MainMenu {
     }
 
     private bindEvents(): void {
-        // Boutons
-        document.getElementById('btn-new-game')!.addEventListener('click', () => {
+        // Boutons — pointerdown pour compatibilité tactile + souris
+        document.getElementById('btn-new-game')!.addEventListener('pointerdown', (e) => {
+            e.preventDefault();
             this.callbacks.onNewGame?.(this.currentTheme);
         });
-        document.getElementById('btn-load-game')!.addEventListener('click', () => {
+        document.getElementById('btn-load-game')!.addEventListener('pointerdown', () => {
             this.callbacks.onLoadGame?.();
         });
-        document.getElementById('btn-tutorial')!.addEventListener('click', () => {
+        document.getElementById('btn-tutorial')!.addEventListener('pointerdown', () => {
             this.callbacks.onTutorial?.();
         });
 
         // Sélecteurs de thème
         document.querySelectorAll('.theme-chip').forEach(chip => {
-            chip.addEventListener('click', () => {
+            chip.addEventListener('pointerdown', (e) => {
+                e.preventDefault();
                 document.querySelectorAll('.theme-chip').forEach(c => c.classList.remove('active'));
                 chip.classList.add('active');
                 this.currentTheme = (chip as HTMLElement).dataset.theme as CourseTheme;
