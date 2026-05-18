@@ -1,108 +1,145 @@
-# jgld.dll — Analyse du moteur graphique JGL
+# jgld.dll / jgl.dll — Analyse du moteur graphique JGL (v2)
 
-> Source : jgld.dll (1.1 Mo PE32, MSVC++6.0)
-> Rôle : Renderer logiciel pur utilisant GDI32 (pas OpenGL)
+> Source : jgld.dll (1.2 Mo) / jgl.dll (396 Ko — version release packée ?)
+> PE32, MSVC++6.0
 > Export unique : `get_graphsy_object_ptr`
+>
+> **⚠️ CORRECTION MAJEURE v2** (Mai 2026) :
+> v1 disait "renderer logiciel GDI32 pur".
+> v1.5 a cru que JGL était OpenGL.
+> **La vérité est plus subtile : les deux coexistent.**
 
 ---
 
-## Architecture
+## Architecture Réelle (prouvée par les imports)
 
-jgld.dll est un **moteur de rendu 2D logiciel** qui :
+```
+golf.exe
+  │
+  ├──→ Terrain.dll ◄── LE VRAI MOTEUR 3D
+  │     ├── OPENGL32.dll (44 imports)   ← Rendu 3D isométrique
+  │     │    glBegin/glEnd, glVertex, glTexCoord, glNormal
+  │     │    glPushMatrix/PopMatrix, glTranslate, glRotate
+  │     │    glLightfv, glMaterialfv, glBindTexture
+  │     │    wglCreateContext, wglMakeCurrent
+  │     ├── GLU32.dll (2 imports)       ← Textures mipmaps
+  │     │    gluBuild1DMipmaps, gluBuild2DMipmaps
+  │     └── GDI32.dll (2 imports)       ← Setup fenêtre OpenGL
+  │          ChoosePixelFormat, SetPixelFormat
+  │
+  └──→ jgld.dll ◄── JGL = 2D SPRITE/UI OVERLAY
+        ├── KERNEL32.dll (87)  ← allocations, fichiers
+        ├── USER32.dll (27)    ← fenêtres, messages
+        └── GDI32.dll (25)     ← ★★★ SPRITES + POLICES ★★★
+             BitBlt, StretchBlt, CreateDIBSection,
+             CreateFontIndirect, TextOut, SelectObject,
+             CreateCompatibleDC, RealizePalette...
+```
 
-1. **Crée une fenêtre** (USER32 : CreateWindowEx, RegisterClass)
-2. **Dessine en mémoire** via des DIBSections (GDI32 : CreateDIBSection, BitBlt)
-3. **Expose une API JGL** via un objet à vtables (332 bytes, class name "JackalClass")
-4. **Gère le texte** (GDI32 : CreateFontIndirect, TextOut, GetTextExtentPoint32)
+### Explication
 
-## API JGL utilisée par Terrain.dll
+Terrain.dll fait le **rendu 3D isométrique en OpenGL** :
+- Transformations matricielles (push/pop, translate, rotate, scale)
+- Éclairage (glLightfv, glMaterialfv)
+- Textures (glTexImage2D, glBindTexture, gluBuild2DMipmaps)
+- Géométrie (glBegin/glEnd avec vertex + texcoord + normal)
 
-Les appels JGL sont faits via des pointeurs de fonction stockés dans la section `.idata` de Terrain.dll :
+jgld.dll fait le **rendu 2D overlay** en GDI32 :
+- Sprites (bitmaps 8-bit et 16-bit via DIBSection)
+- Polices (CreateFontIndirect, TextOut, GetTextExtentPoint32)
+- Compositing final (BitBlt, StretchBlt)
+- Fenêtrage (CreateWindowEx, RegisterClass, message loop)
 
-| Addr Terrain | Nom déduit | Rôle | Équivalent Canvas |
-|---|---|---|---|
-| `0x1011364c` | `JGL_PushMatrix()` | Sauvegarde matrice courante | `ctx.save()` |
-| `0x10113648` | `JGL_LoadIdentity()` | Réinitialise la matrice | `ctx.setTransform(1,0,0,1,0,0)` |
-| `0x10113634` | `JGL_Ortho()` | Projection orthographique | `ctx.scale()` |
-| `0x10113638` | `JGL_Translate(x,y,z)` | Translation 3D → 2D | `ctx.translate(x, y)` |
-| `0x1011363c` | `JGL_Translate2(x,y,z)` | Translation variante | `ctx.translate(x, y)` |
-| `0x10113624` | `JGL_BindTexture(GL_TEXTURE_2D, id)` | Sélection texture | Sélection image/sprite |
+### Pourquoi Terrain.dll a des thunks JGL ?
 
-## Fonction principale
+Les adresses citées dans terrain_render.c :
+```c
+#define JGL_PushMatrix()    ((void (*)(void))0x1011364c)()
+```
+
+**0x1011364c n'est PAS dans jgld.dll** — c'est dans la table d'import (.idata) de Terrain.dll, qui résout vers **OPENGL32!glPushMatrix** !
+
+Le nom "JGL" est un leak du code source : Terrain.dll appelait JGL pendant le développement, mais les vrais appels vont directement à OpenGL via l'import table. Les macros JGL_* sont juste des wrappers de commodité.
+
+## jgld.dll : Moteur 2D Sprite/UI
+
+### Exports (1 seul)
+
+| # | Nom | Rôle |
+|---|-----|------|
+| 1 | `get_graphsy_object_ptr` | Crée l'objet JackalClass (332 bytes) |
+
+### Objet JackalClass (332 bytes = 0x14C)
 
 ```c
-void* get_graphsy_object_ptr() {
-    // Alloue un objet Graphsy de 332 bytes (0x14C)
-    void* obj = HeapAlloc(0x14C);  // 0x1007f0f0
-    
-    if (obj != NULL) {
-        // Appelle le constructeur JackalClass
-        JackalClass_Constructor(obj);  // 0x100013f7
-    }
-    
-    // Stocke dans les globaux
-    g_graphsyObj = obj;           // 0x1012870c
-    g_graphsyObjCopy = obj;       // 0x10128420
-    
-    return obj;
-}
+struct JackalClass {
+    void** vtable;           // +0x00: méthodes virtuelles
+    HWND   hWnd;             // +0x04: fenêtre de rendu
+    HDC    hDC;              // +0x08: device context
+    HGLRC  hGLRC;            // +0x0C: ??? (pas d'OpenGL dans les imports)
+    HDC    hSpriteDC;        // +0x10: DC pour les sprites
+    HBITMAP hSpriteBMP;      // +0x14: DIBSection pour les sprites
+    // ... méthodes de rendu sprite, polices, palette
+};
 ```
 
-## Classe JackalClass (332 bytes)
+### Méthodes déduites (via vtable + noms .rdata)
 
-Le constructeur à `0x100013f7` initialise un objet avec une vtable. Les noms de fichiers sources trouvés dans `.rdata` :
-- `jglsprite.cpp` — gestion des sprites
-- `jglsprite_8_16c.cpp` — sprites 8/16 bits
+| Méthode | Rôle |
+|---------|------|
+| `jglsprite.cpp` | Rendu de sprites 2D |
+| `jglsprite_8_16c.cpp` | Sprites 8-bit (palettisés) et 16-bit (high color) |
 
-Cela suggère que JGL possède un **système de sprites** qui gère :
-- Des sprites 8 bits (palettisés) et 16 bits (high color)
-- Rendu via DIBSection GDI
-- Transformation matricielle
+### GDI32 Functions imported (25)
 
-## Structure de l'objet Graphsy (hypothèse, 332 bytes)
+Les fonctions GDI32 utilisées par jgld.dll :
+- **DIBSection** : CreateDIBSection, CreateCompatibleDC, SelectObject, DeleteDC
+- **BitBlt** : BitBlt, StretchBlt (compositing final)
+- **Palette** : RealizePalette, SelectPalette, CreatePalette
+- **Polices** : CreateFontIndirect, TextOut, GetTextExtentPoint32A
+- **Couleurs** : CreateSolidBrush, CreatePen, Rectangle
+
+## jgl.dll vs jgld.dll
+
+| DLL | Taille | .text entropie | Statut |
+|-----|:------:|:--------------:|:------|
+| `jgld.dll` | 1.2 Mo | 4.31 | Version debug, 1199 fonctions |
+| `jgl.dll` | 396 Ko | 6.56 | Version release packée/compressée |
+
+Mêmes imports (KERNEL32+USER32+GDI32), même export unique. jgl.dll est très probablement la version release (optimisée / strippée de symbols).
+
+## Résumé des pipelines de rendu
 
 ```
-Offset  Taille  Champ
-------  ------  -----------
-  0x00    4     vtable*
-  0x04    ?     Données internes
-  ...
-  0x14C   -     Fin (332 bytes)
+Pipeline 3D (terrain isométrique) :
+  Terrain.dll → OPENGL32.dll (44 fns) + GLU32.dll (2 fns)
+  → glBegin/glEnd, textures, lumière, matrices
+
+Pipeline 2D (sprites/UI) :
+  Terrain.dll → jgld.dll::get_graphsy_object_ptr → JackalClass
+  → GDI32::CreateDIBSection/BitBlt → sprites + polices
+
+Compositing final :
+  BitBlt(hDCWindow, ..., hSpriteDC, ...) superposition des couches
 ```
 
-La vtable contient probablement les pointeurs vers :
-- pushMatrix / popMatrix
-- loadIdentity
-- ortho / frustum
-- translate / rotate / scale
-- bindTexture / createTexture / deleteTexture
-- beginScene / endScene
-- clear
-- drawSprite
+## Stats mises à jour
+
+| Propriété | jgld.dll | Terrain.dll |
+|-----------|:--------:|:-----------:|
+| Taille .text | 385 KB | 385 KB |
+| Fonctions | 1 199 | ~760 |
+| Entropie .text | 4.31 | 4.55 |
+| Moteur | **GDI32** (2D sprites) | **OpenGL** (3D terrain) |
+| Imports graphiques | GDI32 (25) | OPENGL32 (44) + GLU32 (2) + GDI32 (2) |
+| Exports | 1 | 38 |
 
 ## Stratégie de portage Web
 
-Puisque JGL est un **renderer logiciel 2D**, on peut le remplacer directement par :
-
-| JGL | Web (Canvas/PixiJS) |
-|---|---|
-| PushMatrix / PopMatrix | `ctx.save()` / `ctx.restore()` |
-| LoadIdentity | `ctx.setTransform(1,0,0,1,0,0)` |
-| Translate(x, y, z) | `ctx.translate(x, y)` |
-| Ortho(...) | N/A (Canvas gère ça) |
-| BindTexture | Sélection d'image (Image / Sprite) |
-| GDI BitBlt | `ctx.drawImage()` |
-| DIBSection | Canvas pixel manipulation |
-
-**Pas besoin de rétro-ingénierer jgld.dll en détail** — l'API JGL est suffisamment petite (6 fonctions utilisées par Terrain.dll) pour être recréée directement.
-
-## Stats
-
-| Propriété | Valeur |
-|---|---|
-| Taille .text | 1 163 264 bytes |
-| Fonctions détectées | 1 199 |
-| Entropie .text | 4.31 (code clair) |
-| Imports | KERNEL32 (87), USER32 (27), GDI32 (25) |
-| Exports | 1 (`get_graphsy_object_ptr`) |
-| Classes suggérées | `JackalClass`, `Object` |
+| Composant | Technologie originale | Technologie web |
+|-----------|----------------------|-----------------|
+| Rendu 3D terrain | OpenGL 1.x (immediate mode) | **WebGL** (buffer geometry) |
+| Rendu 2D sprites | GDI32 DIBSection | **Canvas 2D** / PixiJS |
+| Polices | GDI32 CreateFontIndirect | **CSS @font-face** |
+| Palettes 8-bit | GDI32 palette | **Shaders WebGL** ou Canvas |
+| Compositing | BitBlt superposition | **Canvas layering** |
