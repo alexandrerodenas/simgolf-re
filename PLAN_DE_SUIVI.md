@@ -158,15 +158,57 @@ Voir `MAPPING.md` pour le détail des 38 exports.
 | `terrain_normals.c` | **calcAllNormals, calcNormals, setWall, hasPath, hasConnectedPath** |
 | `terrain_paths.c` | **updatePath, layPath, pathUpdateRender, stripRender, passCollarInfo, localRender, renderTile** |
 
-### 🟡 Priorité 8 — Décompilation golf.exe (131K lignes asm)
-- [ ] Analyser le hub CoursEngine (0x494f00 — 285 appels internes)
-- [ ] Analyser le hub TileGrid (0x485e80 — 218 appels)
-- [ ] Nettoyer la fonction WinMain (0x4a682f) → pipeline complet
-- [ ] Nettoyer InitGameSystems (0x4a93ff)
-- [ ] Analyser les fonctions économiques (Profit, Revenue, etc.)
-- [ ] Analyser le système de SGA
-- [ ] Analyser la physique de balle/trajectoire
-- [ ] Analyser le système de scénarios/campagne
+### 🟡 Priorité 8 — Décompilation golf.exe (131K lignes → 1.1M lignes)
+
+**Nouveau désassemblage fonction-level (script `disassemble_golf_functions.py`) :**
+- Ancien : 131 259 lignes (linear sweep, 45 fonctions standard)
+- Nouveau : **1 118 429 lignes, 182 fonctions, 1 106 cibles d'appels**
+- Prologues détectés : push ebp (116) + __thiscall + thunk targets (80) + connues (26)
+
+**Pipeline nettoyé (8 fichiers C) :**
+
+| Fichier | Fonctions | Insn |
+|---------|-----------|:----:|
+| `game_winmain.c` | WinMain + WndProc | 247 |
+| `game_init_systems.c` | InitGameSystems, SystemCheck, HeapSetup | 1 927 + 2 486 |
+| `game_loop.c` | GameLoopCallback, ProcessInput, RenderFrame | 1 876 |
+| `game_init_audio.c` | InitSound + InitGraphics | 1 403 + 1 332 |
+| `game_init_state.c` | InitGameState + ParseCommandLine | 1 894 |
+| `game_misc.c` | CreateMainWindow, InitInstance, CleanupAndExit | 1 083 + 1 442 + 1 569 |
+| `game_coursengine.c` | CoursEngine::Update (hub) | 14 926 |
+| `game_tilegrid.c` | TileGrid::Dispatch (hub) | 16 244 |
+
+**Pipeline complet cartographié :**
+```
+WinMain
+├── GetVersion()
+├── HeapSetup()                     ✅ game_init_systems.c
+├── SystemCheck()                   ✅ game_init_systems.c
+├── InitGameSystems()               ✅ game_init_systems.c
+│   ├── GetStartupInfoA + ParseCmdLine
+│   └── Pool allocation (32 × 0x24)
+├── GetCommandLineA()
+├── InitGraphics()                  ✅ game_init_audio.c
+│   └── get_graphsy_object_ptr (JGL)
+├── InitSound()                     ✅ game_init_audio.c
+│   └── sound.dll (3 devices)
+├── InitGameState()                 ✅ game_init_state.c
+│   ├── Chargement .dta/.pro/.chr
+│   ├── Économie + Tournois + SGA
+│   └── Écran titre + menu
+├── CreateMainWindow()              ✅ game_misc.c
+├── InitInstance + ShowWindow()     ✅ game_misc.c
+├── GameLoop (timer-driven)         ✅ game_loop.c
+│   ├── ProcessInput()
+│   ├── UpdateSimulation()
+│   │   ├── CoursEngine (14 926)   ✅ game_coursengine.c
+│   │   ├── TileGrid (16 244)      ✅ game_tilegrid.c
+│   │   ├── GameTickFunction       ✅ game_tick.c
+│   │   └── SmoothInterpolator     ✅ smooth_interpolator.c
+│   └── RenderFrame()
+│       └── Terrain.dll (38 exports)✅ 12 fichiers C
+└── CleanupAndExit()                ✅ game_misc.c
+```
 
 ### Priorité 9 — Nettoyage & Documentation
 - [ ] Nettoyer `tile_struct.h` avec les champs découverts dans terrain_render_tile.c
