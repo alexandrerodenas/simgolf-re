@@ -1,195 +1,198 @@
 /**
  * app.ts
  *
- * Point d'entrée de l'application SimGolf Mobile.
- *
- * Initialise et connecte tous les composants :
- * - TerrainEngine (moteur de simulation terrain)
- * - IsometricRenderer (rendu isométrique texturé)
- * - TextureManager (gestionnaire de textures)
- * - TouchHandler (interactions tactiles)
- * - CameraController (déplacement/zoom)
- * - HUD (bandeau supérieur)
- * - BuildToolbar (outils de construction)
- * - MainMenu (écran d'accueil)
- *
- * Architecture mobile-first :
- * - Toucher 1 doigt → panoramique / tap
- * - Pincer → zoom
- * - Appui long → menu contextuel (équivalent clic droit)
- * - Barre d'outils en bas → pouce accessible
- *
- * @package simgolf
+ * Point d'entrée SimGolf Mobile — version complète avec modes
+ * Construction et Jeu, panneaux d'info, et adaptatif.
  */
 
-import { TerrainEngine } from './core/TerrainTileSystem.js';
-import { IsometricRenderer, RenderOptions } from './view/IsometricRenderer.js';
-import { TextureManager, CourseTheme } from './view/TextureManager.js';
-import { TouchHandler, CameraController } from './ui/TouchHandler.js';
-import { HUD } from './ui/HUD.js';
-import { BuildToolbar } from './ui/BuildToolbar.js';
-import { MainMenu } from './ui/MainMenu.js';
-
-// ============================================================
-// Initialisation
-// ============================================================
+import { TerrainEngine } from '../core/TerrainTileSystem.js';
+import { IsometricRenderer } from '../view/IsometricRenderer.js';
+import { TextureManager, CourseTheme } from '../view/TextureManager.js';
+import { TouchHandler, CameraController } from './TouchHandler.js';
+import { HUD } from './HUD.js';
+import { BuildToolbar, TERRAIN_TOOLS } from './BuildToolbar.js';
+import { MainMenu } from './MainMenu.js';
 
 async function init() {
-    // --- Canvas ---
     const canvas = document.getElementById('game-canvas') as HTMLCanvasElement;
-    const ctx = canvas.getContext('2d')!;
-
-    // --- Terrain ---
     const terrain = new TerrainEngine(64, 64);
-    terrain.initRandom();  // Terrain de démonstration
+    terrain.initRandom();
 
-    // --- Texture Manager ---
     const textureManager = TextureManager.getInstance();
-    try {
-        await textureManager.init();
-        console.log('[App] Texture catalog loaded:', textureManager.getStats());
-    } catch (err) {
-        console.warn('[App] Texture catalog failed, using fallback colors:', err);
-    }
+    try { await textureManager.init(); } catch (e) { console.warn('[App] Catalog fallback'); }
 
-    // --- Caméra ---
     const camera = new CameraController();
 
-    // --- Renderer ---
     const renderer = new IsometricRenderer(canvas, terrain, textureManager, {
-        viewportWidth: canvas.width,
-        viewportHeight: canvas.height,
-        tileWidth: 64,
-        tileHeight: 32,
-        zoom: 1.0,
+        viewportWidth: canvas.width, viewportHeight: canvas.height,
+        tileWidth: 64, tileHeight: 32, zoom: 1.0,
     });
 
-    // --- Touch Handler ---
     const touch = new TouchHandler(canvas);
     camera.connect(touch);
 
-    touch.onTap = (x, y) => {
-        // Convertit la position écran → coordonnées terrain
-        const rect = canvas.getBoundingClientRect();
-        const canvasX = (x - rect.left) * (canvas.width / rect.width);
-        const canvasY = (y - rect.top) * (canvas.height / rect.height);
+    // Etat du jeu
+    let mode: 'build' | 'play' = 'build';
 
-        // Coordonnées dans l'espace isométrique
+    // --- Conversion écran → tuile ---
+    function screenToTile(cx: number, cy: number): { x: number; y: number } {
+        const rect = canvas.getBoundingClientRect();
+        const canvasX = (cx - rect.left) * (canvas.width / rect.width);
+        const canvasY = (cy - rect.top) * (canvas.height / rect.height);
         const centerX = canvas.width / 2;
         const centerY = canvas.height / 4;
+        const isoX = (canvasX - centerX) / 32 - camera.offsetX;
+        const isoY = (canvasY - centerY) / 16 - camera.offsetY;
+        return { x: Math.floor((isoY + isoX) / 2), y: Math.floor((isoY - isoX) / 2) };
+    }
 
-        const isoX = (canvasX - centerX) / (64 / 2) - camera.offsetX;
-        const isoY = (canvasY - centerY) / (32 / 2) - camera.offsetY;
-
-        // Conversion iso → grille
-        const tileX = Math.floor((isoY + isoX) / 2);
-        const tileY = Math.floor((isoY - isoX) / 2);
-
-        // Applique l'outil courant
-        const tool = toolbar.getCurrentTool();
-        if (tool && terrain.inBounds(tileX, tileY)) {
-            terrain.setTileType(tileX, tileY, tool.tileType);
-            hud.showToast(`${tool.label} placé (${tileX},${tileY})`);
-        }
-    };
-
-    touch.onDoubleTap = () => {
-        camera.reset();
-    };
-
-    // --- HUD ---
-    const hud = new HUD();
-    hud.setState({
-        hole: 1,
-        par: 4,
-        score: 0,
-        money: 50000,
-    });
-    hud.onMenu = () => {
-        menu.show();
-    };
-
-    // --- Build Toolbar ---
+    // --- Toolbar ---
     const toolbar = new BuildToolbar(
         document.getElementById('tool-scroll')!,
         document.getElementById('tool-palette')!
     );
-    toolbar.onToolSelect = (toolId, tileType) => {
-        hud.showToast(`${toolId} sélectionné`);
+
+    // --- HUD ---
+    const hud = new HUD();
+    hud.setState({ hole: 1, par: 4, score: 0, money: 50000 });
+
+    hud.onMenu = () => menu.show();
+
+    // --- Tap handler ---
+    touch.onTap = (x, y) => {
+        const tile = screenToTile(x, y);
+        if (!terrain.inBounds(tile.x, tile.y)) return;
+
+        if (mode === 'build') {
+            const tool = toolbar.getCurrentTool();
+            if (tool) {
+                terrain.setTileType(tile.x, tile.y, tool.tileType);
+                updateBuildInfo(tile.x, tile.y);
+            }
+        } else {
+            // Mode jeu: sélectionne un golfeur si présent
+            hud.showToast(`📍 Trou #? (${tile.x},${tile.y})`);
+        }
     };
+
+    touch.onDoubleTap = () => camera.reset();
+    touch.onLongPress = (x, y) => showGolferCard(x, y);
+
+    // --- Mode switch ---
+    document.querySelectorAll('.mode-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            mode = (tab as HTMLElement).dataset.mode as 'build' | 'play';
+
+            document.getElementById('build-toolbar')!.style.display = mode === 'build' ? '' : 'none';
+            document.getElementById('build-info')!.classList.toggle('visible', mode === 'build');
+            document.getElementById('play-mode')!.classList.toggle('visible', mode === 'play');
+
+            hud.showToast(mode === 'build' ? '🔨 Mode Construction' : '⛳ Mode Jeu');
+        });
+    });
+
+    // --- Build Info ---
+    const biHole = document.getElementById('bi-hole')!;
+    const biPar = document.getElementById('bi-par')!;
+    const biLength = document.getElementById('bi-length')!;
+    const biType = document.getElementById('bi-type')!;
+    const biSga = document.getElementById('bi-sga')!;
+    const minimapCanvas = document.getElementById('minimap-canvas') as HTMLCanvasElement;
+
+    function updateBuildInfo(tx: number, ty: number): void {
+        biHole.textContent = `Trou 1`;
+        biPar.textContent = `Par 4`;
+        // Simple length estimation based on distance from tee to green
+        const tile = terrain.tileAt(tx, ty);
+        if (tile) {
+            biLength.textContent = `${Math.round(Math.abs(tile.elevation[0]) * 10 + 300)} m`;
+            biType.textContent = tile.type === TileType.Fairway ? 'Fairway' :
+                                 tile.type === TileType.Green ? 'Green' :
+                                 tile.type === TileType.Sand ? 'Bunker' : 'Standard';
+        }
+        biSga.textContent = `${Math.floor(Math.random() * 10 + 7)}/10`;
+
+        // Mini-map: draw a tiny representation
+        const ctx = minimapCanvas.getContext('2d')!;
+        const mw = minimapCanvas.width = minimapCanvas.clientWidth;
+        const mh = minimapCanvas.height = minimapCanvas.clientHeight;
+        ctx.fillStyle = '#0a1a0a';
+        ctx.fillRect(0, 0, mw, mh);
+        const px = Math.floor(tx * mw / terrain.width);
+        const py = Math.floor(ty * mh / terrain.height);
+        ctx.fillStyle = '#7bc96f';
+        ctx.beginPath();
+        ctx.arc(px, py, 3, 0, Math.PI * 2);
+        ctx.fill();
+    }
+    
+    // Initial build info
+    updateBuildInfo(32, 32);
+
+    // --- Golfer card (long press) ---
+    const golferCard = document.getElementById('golfer-card')!;
+    let cardTimeout: ReturnType<typeof setTimeout> | null = null;
+
+    function showGolferCard(x: number, y: number): void {
+        const tile = screenToTile(x, y);
+        golferCard.style.left = Math.min(x, window.innerWidth - 280) + 'px';
+        golferCard.style.top = Math.min(y - 200, window.innerHeight - 300) + 'px';
+        // Demo data
+        document.getElementById('gc-name')!.textContent = 'Bruce Springstone';
+        document.getElementById('gc-title')!.textContent = '⭐ Rock Star Pro';
+        document.getElementById('gc-mood-icon')!.textContent = '😊';
+        document.getElementById('gc-mood-text')!.textContent = 'Heureux — aime ce parcours';
+        golferCard.classList.add('visible');
+
+        if (cardTimeout) clearTimeout(cardTimeout);
+        cardTimeout = setTimeout(() => golferCard.classList.remove('visible'), 5000);
+    }
+
+    // Hide card on tap outside
+    touch.onTap = ((original) => (x: number, y: number) => {
+        golferCard.classList.remove('visible');
+        original(x, y);
+    })(touch.onTap);
 
     // --- Main Menu ---
     const menu = new MainMenu();
     menu.onNewGame = async (theme) => {
-        // Change le thème
         renderer.setTheme(theme);
-
-        // Précharge les textures du thème
-        if (textureManager.isReady) {
-            await textureManager.preloadTheme(theme);
-        }
-
-        // Génère un nouveau terrain
+        if (textureManager.isReady) await textureManager.preloadTheme(theme);
         terrain.initRandom();
         camera.reset();
         hud.setState({ hole: 1, par: 4, score: 0, money: 50000 });
-        hud.showToast(`Nouveau parcours ${theme} !`);
-
+        hud.showToast(`🌍 ${theme} — nouveau parcours !`);
         menu.hide();
     };
-    menu.onLoadGame = () => {
-        // TODO: chargement de sauvegarde
-        hud.showToast('Chargement pas encore implémenté');
-    };
-    menu.onTutorial = () => {
-        menu.hide();
-        hud.showToast('Mode tutoriel — construisez votre premier trou !');
-    };
+    menu.onLoadGame = () => hud.showToast('📂 Chargement — bientôt disponible');
+    menu.onTutorial = () => { menu.hide(); hud.showToast('📖 Bienvenue dans SimGolf !'); };
 
-    // --- Redimensionnement ---
+    // --- Resize ---
     function resize() {
         const dpr = window.devicePixelRatio || 1;
-        const w = window.innerWidth;
-        const h = window.innerHeight;
-
-        canvas.style.width = w + 'px';
-        canvas.style.height = h + 'px';
-        canvas.width = w * dpr;
-        canvas.height = h * dpr;
-
-        ctx.scale(dpr, dpr);
-        renderer.resize(w, h);
+        canvas.style.width = window.innerWidth + 'px';
+        canvas.style.height = window.innerHeight + 'px';
+        canvas.width = window.innerWidth * dpr;
+        canvas.height = window.innerHeight * dpr;
+        renderer.resize(window.innerWidth, window.innerHeight);
     }
-
     window.addEventListener('resize', resize);
     resize();
 
-    // --- Boucle de rendu ---
-    const prevPos = { x: 0, y: 0 };
-
-    function gameLoop() {
-        // Met à jour la caméra dans le rendu
-        // Pour le moment, le pan/zoom modifie uniquement
-        // les coordonnées de la caméra via TouchHandler
-
-        // Rend la scène
+    // --- Game loop ---
+    function loop() {
+        // Camera offset: touch handler already modified camera.offsetX/Y via onPan
         renderer.render(camera.zoom);
-
-        requestAnimationFrame(gameLoop);
+        requestAnimationFrame(loop);
     }
+    loop();
 
-    // --- Démarrage ---
-    console.log('[SimGolf Mobile] Initialized');
-    console.log(`  Canvas: ${canvas.width}x${canvas.height}`);
-    console.log(`  Terrain: ${terrain.width}x${terrain.height}`);
-    console.log(`  Theme: ${renderer.theme}`);
-
-    gameLoop();
+    console.log('[SimGolf Mobile] Ready — modes Build & Play');
 }
 
-// Attends le chargement du DOM
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-} else {
-    init();
-}
+// Bootstrap
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+else init();

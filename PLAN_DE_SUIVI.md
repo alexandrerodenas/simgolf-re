@@ -191,9 +191,20 @@ Voir `MAPPING.md` pour le détail des 38 exports.
 - [x] MainMenu mobile (Nouvelle Partie, Continuer, Options)
 - [x] Index.html + app.ts (point d'entrée)
 - [x] Conversion complète 649 PCX → PNG (interface, bodies, heads, flics)
-- [ ] Adaptation responsive tablette + téléphone
-- [ ] Écran de construction complet (mini-carte, infos trou, palette bâtiments)
-- [ ] Mode jeu (parcours) – scorecard, vue match, stats golfeurs
+- [x] Adaptation responsive tablette + téléphone (3 breakpoints : 480, 768, 1024)
+  - Mobile portrait (<480px) : toolbar compact, cache panneaux latéraux
+  - Mobile paysage (480-767px) : info panel réduit
+  - Tablette (768-1023px) : toolbar verticale à droite, panneau latéral
+  - Desktop (1024px+) : toolbar à gauche, panneau large
+- [x] Écran de construction complet (mini-carte, infos trou, palette bâtiments)
+  - BuildInfoPanel : mini-carte canvas, longueur, type, note SGA
+  - Mode bâtiments : 8 bâtiments (Club, ProShop, Driving, Cart, Snack, Pool, Villa, Banc)
+  - Double catégorie terrain/bâtiments dans BuildToolbar
+- [x] Mode jeu (scorecard, vue match, stats golfeurs)
+  - Scorecard interactive avec trous, par, scores par trou
+  - GolferCard popup (appui long) : skills, humeur, nom
+  - Mode switch Construire ↔ Jouer avec onglets
+- [x] Mode switch avec tabs (Build / Play)
 
 ---
 

@@ -10,385 +10,223 @@
 /* ============================================================
    RESET & BASE
    ============================================================ */
-*, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    -webkit-tap-highlight-color: transparent;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+--safe-bottom:env(safe-area-inset-bottom,0px);--safe-top:env(safe-area-inset-top,0px);
+--ui-primary:#2d5a27;--ui-secondary:#4a7c3f;--ui-accent:#7bc96f;
+--ui-bg:#1a1a2e;--ui-surface:rgba(26,26,46,0.92);--ui-text:#e0e0e0;--ui-text-dim:#888;--ui-gold:#ffd700;
+--hud-h:48px;--toolbar-h:64px;--panel-radius:20px;
 }
-
-:root {
-    --safe-bottom: env(safe-area-inset-bottom, 0px);
-    --safe-top: env(safe-area-inset-top, 0px);
-    --ui-primary: #2d5a27;
-    --ui-secondary: #4a7c3f;
-    --ui-accent: #7bc96f;
-    --ui-bg: #1a1a2e;
-    --ui-surface: rgba(26, 26, 46, 0.92);
-    --ui-text: #e0e0e0;
-    --ui-text-dim: #888;
-    --ui-gold: #ffd700;
-    --toolbar-h: 64px;
-    --hud-h: 48px;
-}
-
-html, body {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: var(--ui-bg);
-    color: var(--ui-text);
-    -webkit-user-select: none;
-    user-select: none;
-    touch-action: none;
-}
+html,body{width:100%;height:100%;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--ui-bg);color:var(--ui-text);-webkit-user-select:none;user-select:none;touch-action:none}
 
 /* ============================================================
-   GAME SHELL — Layout principal
+   GAME SHELL
    ============================================================ */
-#game-shell {
-    position: fixed;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    background: #000;
-}
-
-/* Canvas — plein écran en arrière-plan */
-#game-canvas {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    touch-action: none;
-    z-index: 0;
-}
+#game-shell{position:fixed;inset:0;background:#000}
+#game-canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;z-index:0}
 
 /* ============================================================
-   HUD — Bandeau supérieur
+   MODE SWITCHER (Build / Play)
    ============================================================ */
-#hud {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: var(--hud-h);
-    padding-top: var(--safe-top);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: linear-gradient(180deg, var(--ui-surface) 60%, transparent);
-    z-index: 10;
-    padding-left: 12px;
-    padding-right: 12px;
-    font-size: 14px;
-    pointer-events: none;
+#mode-tabs{
+position:absolute;top:calc(var(--hud-h) + var(--safe-top) + 4px);left:50%;transform:translateX(-50%);z-index:11;
+display:flex;gap:2px;background:rgba(0,0,0,0.5);border-radius:12px;padding:3px;pointer-events:auto;
 }
-
-#hud > * {
-    pointer-events: auto;
+.mode-tab{
+padding:6px 18px;border-radius:10px;border:none;font-size:13px;font-weight:600;cursor:pointer;
+background:transparent;color:var(--ui-text-dim);transition:all 0.2s;
 }
-
-.hud-left  { display: flex; align-items: center; gap: 8px; }
-.hud-center { display: flex; align-items: center; gap: 6px; font-weight: 600; }
-.hud-right { display: flex; align-items: center; gap: 8px; }
-
-.hud-hole {
-    background: var(--ui-primary);
-    padding: 2px 10px;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 13px;
-}
-.hud-par {
-    font-size: 12px;
-    color: var(--ui-text-dim);
-}
-.hud-score {
-    font-weight: 700;
-    font-size: 18px;
-}
-.hud-money {
-    background: rgba(255, 215, 0, 0.15);
-    color: var(--ui-gold);
-    padding: 2px 10px;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 13px;
-}
-.hud-btn {
-    background: rgba(255,255,255,0.1);
-    border: none;
-    color: var(--ui-text);
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    cursor: pointer;
-}
-.hud-btn:active {
-    background: rgba(255,255,255,0.25);
-}
+.mode-tab.active{background:var(--ui-primary);color:var(--ui-accent);box-shadow:0 2px 8px rgba(0,0,0,0.3)}
+@media(min-width:768px){.mode-tab{padding:8px 24px;font-size:14px}}
 
 /* ============================================================
-   BUILD TOOLBAR — Barre d'outils en bas
+   HUD
    ============================================================ */
-#build-toolbar {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding-bottom: var(--safe-bottom);
-    z-index: 10;
-    pointer-events: none;
+#hud{
+position:absolute;top:0;left:0;right:0;height:var(--hud-h);padding-top:var(--safe-top);
+display:flex;align-items:center;justify-content:space-between;
+background:linear-gradient(180deg,var(--ui-surface) 60%,transparent);z-index:10;
+padding:0 10px;font-size:14px;pointer-events:none;
 }
+#hud>*{pointer-events:auto}
+.hud-left,.hud-right{display:flex;align-items:center;gap:6px}
+.hud-center{display:flex;align-items:center;gap:4px;font-weight:600}
+.hud-hole{background:var(--ui-primary);padding:2px 10px;border-radius:12px;font-weight:700;font-size:13px;white-space:nowrap}
+.hud-par{font-size:12px;color:var(--ui-text-dim)}
+.hud-score{font-weight:700;font-size:20px}
+.hud-money{background:rgba(255,215,0,0.15);color:var(--ui-gold);padding:2px 10px;border-radius:12px;font-weight:600;font-size:12px;white-space:nowrap}
+.hud-btn{background:rgba(255,255,255,0.1);border:none;color:var(--ui-text);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer}
+.hud-btn:active{background:rgba(255,255,255,0.25)}
+#hud-toast{
+position:absolute;top:calc(var(--hud-h) + var(--safe-top) + 44px);left:50%;transform:translateX(-50%);
+background:rgba(0,0,0,0.85);color:white;padding:8px 20px;border-radius:20px;font-size:14px;z-index:20;
+white-space:nowrap;animation:fadeInOut 2s ease;pointer-events:none;
+}
+@keyframes fadeInOut{0%{opacity:0;transform:translateX(-50%) translateY(8px)}15%{opacity:1;transform:translateX(-50%) translateY(0)}85%{opacity:1}to{opacity:0}}
 
-.toolbar-content {
-    background: var(--ui-surface);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-top: 1px solid rgba(255,255,255,0.08);
-    padding: 8px 8px 4px;
-    pointer-events: auto;
+/* ============================================================
+   BUILD TOOLBAR
+   ============================================================ */
+#build-toolbar{
+position:absolute;bottom:0;left:0;right:0;padding-bottom:var(--safe-bottom);z-index:10;pointer-events:none;
 }
+.toolbar-content{
+background:var(--ui-surface);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+border-top:1px solid rgba(255,255,255,0.08);padding:8px 8px 4px;pointer-events:auto;
+}
+.tool-scroll{display:flex;gap:6px;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:0 4px}
+.tool-scroll::-webkit-scrollbar{display:none}
+.tool-btn{
+flex:0 0 52px;height:52px;border-radius:12px;border:2px solid transparent;
+background:rgba(255,255,255,0.06);color:var(--ui-text);
+display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
+font-size:9px;cursor:pointer;transition:all 0.15s;
+}
+.tool-btn .tool-icon{font-size:22px;line-height:1}
+.tool-btn:active{transform:scale(0.92)}
+.tool-btn.active{background:var(--ui-primary);border-color:var(--ui-accent);color:var(--ui-accent)}
+.tool-palette{display:flex;gap:4px;padding:6px 8px;overflow-x:auto;scrollbar-width:none}
+.tool-palette::-webkit-scrollbar{display:none}
+.palette-btn{flex:0 0 36px;height:36px;border-radius:8px;border:2px solid transparent;cursor:pointer}
+.palette-btn.active{border-color:#fff;transform:scale(1.1)}
 
-/* Rangée d'outils (scroll horizontal) */
-.tool-scroll {
-    display: flex;
-    gap: 6px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    padding: 0 4px;
+/* ============================================================
+   BUILD INFO PANEL (mini-carte + stats trou)
+   ============================================================ */
+#build-info{
+position:absolute;left:12px;bottom:calc(64px + var(--safe-bottom) + 8px);z-index:11;
+background:var(--ui-surface);backdrop-filter:blur(12px);border-radius:16px;padding:12px;
+width:min(260px,40vw);pointer-events:auto;display:none;
 }
-.tool-scroll::-webkit-scrollbar { display: none; }
+#build-info.visible{display:block}
+.build-info-title{font-size:12px;color:var(--ui-text-dim);margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.build-info-row{display:flex;justify-content:space-between;font-size:13px;padding:2px 0}
+.build-info-row .label{color:var(--ui-text-dim);font-size:11px}
+.build-info-row .value{font-weight:600}
+.build-minimap{width:100%;height:80px;background:rgba(255,255,255,0.05);border-radius:8px;margin:8px 0;overflow:hidden;position:relative}
+.build-minimap canvas{width:100%;height:100%}
+@media(max-width:480px){#build-info{left:8px;width:min(200px,45vw);padding:8px;font-size:12px}.build-info-row{font-size:12px}}
 
-.tool-btn {
-    flex: 0 0 52px;
-    height: 52px;
-    border-radius: 12px;
-    border: 2px solid transparent;
-    background: rgba(255,255,255,0.06);
-    color: var(--ui-text);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2px;
-    font-size: 9px;
-    cursor: pointer;
-    transition: all 0.15s;
-    -webkit-touch-callout: none;
+/* ============================================================
+   PLAY MODE — SCORECARD
+   ============================================================ */
+#play-mode{
+position:absolute;left:8px;bottom:calc(64px + var(--safe-bottom) + 8px);right:8px;z-index:11;
+pointer-events:none;display:none;
 }
-.tool-btn .tool-icon {
-    font-size: 22px;
-    line-height: 1;
-}
-.tool-btn:active {
-    transform: scale(0.92);
-}
-.tool-btn.active {
-    background: var(--ui-primary);
-    border-color: var(--ui-accent);
-    color: var(--ui-accent);
-}
+#play-mode.visible{display:block}
 
-/* Palette de couleurs / sous-options */
-.tool-palette {
-    display: flex;
-    gap: 4px;
-    padding: 6px 8px;
-    overflow-x: auto;
-    scrollbar-width: none;
+.scorecard{
+background:var(--ui-surface);backdrop-filter:blur(12px);border-radius:16px;padding:12px;pointer-events:auto;
+max-height:45vh;overflow-y:auto;max-width:500px;margin:0 auto;
 }
-.tool-palette::-webkit-scrollbar { display: none; }
+.scorecard-title{font-size:14px;font-weight:700;margin-bottom:8px;display:flex;justify-content:space-between}
+.scorecard table{width:100%;border-collapse:collapse;font-size:13px}
+.scorecard th{text-align:left;color:var(--ui-text-dim);font-weight:500;font-size:11px;padding:2px 6px;border-bottom:1px solid rgba(255,255,255,0.1)}
+.scorecard td{padding:4px 6px;border-bottom:1px solid rgba(255,255,255,0.05)}
+.scorecard .hole-num{color:var(--ui-text-dim);width:28px;text-align:center}
+.scorecard .score-par{color:var(--ui-accent);font-weight:700}
+.scorecard .score-bogey{color:#ef4444;font-weight:700}
+.scorecard .score-birdie{color:#7bc96f;font-weight:700}
+.scorecard .golfer-name{display:flex;align-items:center;gap:6px}
+.scorecard .golfer-avatar{width:24px;height:24px;border-radius:50%;background:var(--ui-secondary)}
+.scorecard-footer{display:flex;justify-content:space-between;margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.1);font-size:12px;color:var(--ui-text-dim)}
 
-.palette-btn {
-    flex: 0 0 36px;
-    height: 36px;
-    border-radius: 8px;
-    border: 2px solid transparent;
-    cursor: pointer;
-    transition: all 0.15s;
+/* ============================================================
+   GOLFER DETAIL CARD (popup sur appui long)
+   ============================================================ */
+#golfer-card{
+position:absolute;z-index:30;background:var(--ui-surface);backdrop-filter:blur(16px);
+border-radius:16px;padding:16px;min-width:220px;max-width:280px;
+box-shadow:0 8px 40px rgba(0,0,0,0.5);display:none;pointer-events:auto;
 }
-.palette-btn.active {
-    border-color: white;
-    transform: scale(1.1);
-}
+#golfer-card.visible{display:block}
+.golfer-card-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.golfer-card-avatar{width:48px;height:48px;border-radius:50%;background:var(--ui-secondary)}
+.golfer-card-name{font-weight:700;font-size:16px}
+.golfer-card-title{font-size:12px;color:var(--ui-text-dim)}
+.golfer-card-skills{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.skill-bar{display:flex;align-items:center;gap:6px;font-size:11px}
+.skill-bar-fill{flex:1;height:6px;border-radius:3px;background:rgba(255,255,255,0.1)}
+.skill-bar-fill-inner{height:100%;border-radius:3px;background:var(--ui-accent);transition:width 0.5s}
+.skill-label{color:var(--ui-text-dim);width:60px}
+.golfer-card-mood{display:flex;align-items:center;gap:8px;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.1);font-size:13px}
 
 /* ============================================================
    MAIN MENU
    ============================================================ */
-#main-menu {
-    position: fixed;
-    inset: 0;
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #0a1a0a 0%, #1a3a1a 50%, #0d260d 100%);
-    padding: 40px 24px;
+#main-menu{
+position:fixed;inset:0;z-index:100;
+display:flex;flex-direction:column;align-items:center;justify-content:center;
+background:linear-gradient(135deg,#0a1a0a,#1a3a1a 50%,#0d260d);padding:40px 24px;
 }
-
-.menu-title {
-    font-size: clamp(28px, 8vw, 52px);
-    font-weight: 800;
-    color: white;
-    text-align: center;
-    margin-bottom: 4px;
-    text-shadow: 0 2px 20px rgba(0,0,0,0.5);
-    letter-spacing: -1px;
+.menu-title{font-size:clamp(28px,8vw,52px);font-weight:800;color:#fff;text-align:center;margin-bottom:4px;text-shadow:0 2px 20px rgba(0,0,0,0.5)}
+.menu-subtitle{font-size:clamp(12px,3vw,18px);color:var(--ui-accent);margin-bottom:48px;text-align:center}
+.menu-btn{
+width:min(320px,80vw);padding:16px 24px;border-radius:16px;border:none;font-size:17px;font-weight:600;
+cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:12px;transition:transform 0.15s
 }
-.menu-subtitle {
-    font-size: clamp(12px, 3vw, 18px);
-    color: var(--ui-accent);
-    margin-bottom: 48px;
-    text-align: center;
-}
-
-.menu-btn {
-    width: min(320px, 80vw);
-    padding: 16px 24px;
-    border-radius: 16px;
-    border: none;
-    font-size: 17px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: transform 0.15s, box-shadow 0.15s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 12px;
-}
-.menu-btn:active {
-    transform: scale(0.95);
-}
-.menu-btn.primary {
-    background: var(--ui-accent);
-    color: #0a1a0a;
-    box-shadow: 0 4px 20px rgba(123, 201, 111, 0.3);
-}
-.menu-btn.secondary {
-    background: rgba(255,255,255,0.1);
-    color: var(--ui-text);
-    border: 1px solid rgba(255,255,255,0.15);
-}
-.menu-btn .menu-icon {
-    font-size: 20px;
-}
-
-.menu-themes {
-    display: flex;
-    gap: 8px;
-    margin-top: 24px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-.theme-chip {
-    padding: 6px 14px;
-    border-radius: 20px;
-    border: 1px solid rgba(255,255,255,0.15);
-    background: rgba(255,255,255,0.06);
-    color: var(--ui-text-dim);
-    font-size: 12px;
-    cursor: pointer;
-}
-.theme-chip.active {
-    background: var(--ui-primary);
-    border-color: var(--ui-accent);
-    color: var(--ui-accent);
-}
+.menu-btn:active{transform:scale(0.95)}
+.menu-btn.primary{background:var(--ui-accent);color:#0a1a0a;box-shadow:0 4px 20px rgba(123,201,111,0.3)}
+.menu-btn.secondary{background:rgba(255,255,255,0.1);color:var(--ui-text);border:1px solid rgba(255,255,255,0.15)}
+.menu-btn .menu-icon{font-size:20px}
+.menu-themes{display:flex;gap:8px;margin-top:24px;flex-wrap:wrap;justify-content:center}
+.theme-chip{padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.06);color:var(--ui-text-dim);font-size:12px;cursor:pointer;transition:all 0.2s}
+.theme-chip.active{background:var(--ui-primary);border-color:var(--ui-accent);color:var(--ui-accent)}
 
 /* ============================================================
-   PANELS (glissants depuis le bas)
+   PANELS (bottom sheet)
    ============================================================ */
-.panel-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.5);
-    z-index: 50;
-    opacity: 0;
-    transition: opacity 0.3s;
-    pointer-events: none;
+.panel-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:50;opacity:0;transition:opacity 0.3s;pointer-events:none}
+.panel-overlay.open{opacity:1;pointer-events:auto}
+.panel-sheet{
+position:fixed;bottom:0;left:0;right:0;z-index:51;background:var(--ui-surface);
+backdrop-filter:blur(16px);border-radius:var(--panel-radius) var(--panel-radius) 0 0;
+padding:16px 20px calc(16px + var(--safe-bottom));
+transform:translateY(100%);transition:transform 0.35s cubic-bezier(0.32,0.72,0,1);
+max-height:75vh;overflow-y:auto;
 }
-.panel-overlay.open {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.panel-sheet {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 51;
-    background: var(--ui-surface);
-    backdrop-filter: blur(16px);
-    border-radius: 20px 20px 0 0;
-    padding: 16px 20px calc(16px + var(--safe-bottom));
-    transform: translateY(100%);
-    transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
-    max-height: 75vh;
-    overflow-y: auto;
-}
-.panel-sheet.open {
-    transform: translateY(0);
-}
-
-.panel-handle {
-    width: 36px;
-    height: 4px;
-    border-radius: 2px;
-    background: rgba(255,255,255,0.2);
-    margin: 0 auto 12px;
-}
+.panel-sheet.open{transform:translateY(0)}
+.panel-handle{width:36px;height:4px;border-radius:2px;background:rgba(255,255,255,0.2);margin:0 auto 12px}
 
 /* ============================================================
-   RESPONSIVE
+   RESPONSIVE BREAKPOINTS
    ============================================================ */
-@media (min-width: 768px) {
-    /* Tablets: toolbar plus compact, à droite */
-    #build-toolbar {
-        left: auto;
-        right: 12px;
-        top: calc(var(--hud-h) + var(--safe-top) + 8px);
-        bottom: auto;
-        width: 64px;
-    }
-    .toolbar-content {
-        background: var(--ui-surface);
-        border-radius: 20px;
-        border: 1px solid rgba(255,255,255,0.08);
-        padding: 8px;
-    }
-    .tool-scroll {
-        flex-direction: column;
-        overflow-x: hidden;
-        overflow-y: auto;
-    }
-    .tool-btn {
-        flex: 0 0 48px;
-        width: 48px;
-        height: 48px;
-    }
-    .hud-hole { font-size: 15px; }
+/* Téléphone portrait (<480px) */
+@media(max-width:479px){
+:root{--hud-h:42px;--toolbar-h:58px}
+.hud-score{font-size:17px}
+.hud-money{font-size:11px;padding:1px 8px}
+.tool-btn{flex:0 0 46px;height:46px}
+.tool-btn .tool-icon{font-size:18px}
+#build-info{display:none !important}
+.scorecard{font-size:12px;padding:8px;max-height:50vh}
+.scorecard th,.scorecard td{padding:2px 4px}
 }
 
-@media (min-width: 1024px) {
-    /* Desktop: toolbar en colonne fixe */
-    #build-toolbar {
-        left: 12px;
-        right: auto;
-        top: calc(var(--hud-h) + var(--safe-top) + 8px);
-        width: 56px;
-    }
+/* Téléphone paysage / petite tablette (480-767px) */
+@media(min-width:480px) and (max-width:767px){
+#build-info{width:200px}
+}
+
+/* Tablette (768-1023px) */
+@media(min-width:768px){
+#build-toolbar{left:auto;right:12px;top:calc(var(--hud-h) + var(--safe-top) + 48px);bottom:auto;width:64px}
+.toolbar-content{background:var(--ui-surface);border-radius:20px;border:1px solid rgba(255,255,255,0.08);padding:8px}
+.tool-scroll{flex-direction:column;overflow-x:hidden;overflow-y:auto;max-height:50vh}
+.tool-btn{flex:0 0 48px;width:48px;height:48px}
+.tool-btn .tool-icon{font-size:20px}
+.hud-hole{font-size:14px}
+#build-info{left:auto;right:84px;bottom:auto;top:calc(var(--hud-h) + var(--safe-top) + 48px);width:240px}
+#play-mode{left:auto;right:84px;bottom:auto;top:calc(var(--hud-h) + var(--safe-top) + 48px);width:min(420px,50vw)}
+.scorecard{max-height:60vh}
+}
+
+/* Desktop (1024px+) */
+@media(min-width:1024px){
+#build-toolbar{left:12px;right:auto;top:calc(var(--hud-h) + var(--safe-top) + 48px);width:56px}
+#build-info{left:80px;right:auto;width:280px}
+#play-mode{left:80px;right:auto;width:500px}
 }
 </style>
 </head>
@@ -397,18 +235,10 @@ html, body {
 <!-- MAIN MENU -->
 <div id="main-menu">
     <div class="menu-title">SimGolf</div>
-    <div class="menu-subtitle">Course Tycoon &bull; Mobile Edition</div>
-    
-    <button class="menu-btn primary" id="btn-new-game">
-        <span class="menu-icon">⛳</span> Nouvelle Partie
-    </button>
-    <button class="menu-btn secondary" id="btn-load-game">
-        <span class="menu-icon">📂</span> Continuer
-    </button>
-    <button class="menu-btn secondary" id="btn-tutorial">
-        <span class="menu-icon">📖</span> Tutoriel
-    </button>
-    
+    <div class="menu-subtitle">Course Tycoon • Mobile Edition</div>
+    <button class="menu-btn primary" id="btn-new-game"><span class="menu-icon">⛳</span> Nouvelle Partie</button>
+    <button class="menu-btn secondary" id="btn-load-game"><span class="menu-icon">📂</span> Continuer</button>
+    <button class="menu-btn secondary" id="btn-tutorial"><span class="menu-icon">📖</span> Tutoriel</button>
     <div class="menu-themes">
         <span class="theme-chip active" data-theme="Parkland">🌳 Parkland</span>
         <span class="theme-chip" data-theme="Desert">🏜️ Desert</span>
@@ -420,7 +250,7 @@ html, body {
 <!-- GAME SHELL -->
 <div id="game-shell" style="display:none;">
     <canvas id="game-canvas"></canvas>
-    
+
     <!-- HUD -->
     <div id="hud">
         <div class="hud-left">
@@ -433,19 +263,73 @@ html, body {
         </div>
         <div class="hud-right">
             <span class="hud-money" id="hud-money">💰 $0</span>
+            <button class="hud-btn" id="btn-golfers">👥</button>
         </div>
     </div>
-    
+
+    <!-- Mode switch -->
+    <div id="mode-tabs">
+        <button class="mode-tab active" data-mode="build">🔨 Construire</button>
+        <button class="mode-tab" data-mode="play">⛳ Jouer</button>
+    </div>
+
     <!-- BUILD TOOLBAR -->
     <div id="build-toolbar">
         <div class="toolbar-content">
-            <div class="tool-scroll" id="tool-scroll">
-                <!-- Rempli dynamiquement par BuildToolbar -->
+            <div class="tool-scroll" id="tool-scroll"></div>
+            <div class="tool-palette" id="tool-palette" style="display:none;"></div>
+        </div>
+    </div>
+
+    <!-- BUILD INFO PANEL -->
+    <div id="build-info">
+        <div class="build-info-title">📍 <span id="bi-hole">Trou 1</span> · <span id="bi-par">Par 4</span></div>
+        <div class="build-minimap"><canvas id="minimap-canvas"></canvas></div>
+        <div class="build-info-row"><span class="label">Longueur</span><span class="value" id="bi-length">~</span></div>
+        <div class="build-info-row"><span class="label">Type</span><span class="value" id="bi-type">Classique</span></div>
+        <div class="build-info-row"><span class="label">Note SGA</span><span class="value" id="bi-sga">—</span></div>
+    </div>
+
+    <!-- PLAY MODE SCORECARD -->
+    <div id="play-mode">
+        <div class="scorecard" id="scorecard">
+            <div class="scorecard-title">
+                <span>🏆 Scorecard</span>
+                <span id="sc-round-par">Par 72</span>
             </div>
-            <div class="tool-palette" id="tool-palette" style="display:none;">
-                <!-- Sous-options de l'outil sélectionné -->
+            <table>
+                <thead><tr><th>Trou</th><th>Par</th><th id="sc-name-header">Golfeur 1</th><th>Golfeur 2</th></tr></thead>
+                <tbody id="sc-rows">
+                    <tr><td class="hole-num">1</td><td>4</td><td class="score-par">3</td><td class="score-bogey">5</td></tr>
+                    <tr><td class="hole-num">2</td><td>3</td><td>4</td><td class="score-par">3</td></tr>
+                    <tr><td class="hole-num">3</td><td>5</td><td class="score-birdie">4</td><td>6</td></tr>
+                </tbody>
+            </table>
+            <div class="scorecard-footer">
+                <span id="sc-golfer1-total">Golfeur 1: E</span>
+                <span id="sc-golfer2-total">Golfeur 2: +2</span>
             </div>
         </div>
+    </div>
+</div>
+
+<!-- GOLFER DETAIL CARD -->
+<div id="golfer-card">
+    <div class="golfer-card-header">
+        <div class="golfer-card-avatar"></div>
+        <div>
+            <div class="golfer-card-name" id="gc-name">Golfeur</div>
+            <div class="golfer-card-title" id="gc-title">Amateur</div>
+        </div>
+    </div>
+    <div class="golfer-card-mood">
+        <span id="gc-mood-icon">😊</span>
+        <span id="gc-mood-text">Heureux</span>
+    </div>
+    <div class="golfer-card-skills" id="gc-skills">
+        <div class="skill-bar"><span class="skill-label">Length</span><div class="skill-bar-fill"><div class="skill-bar-fill-inner" style="width:60%"></div></div></div>
+        <div class="skill-bar"><span class="skill-label">Accuracy</span><div class="skill-bar-fill"><div class="skill-bar-fill-inner" style="width:45%"></div></div></div>
+        <div class="skill-bar"><span class="skill-label">Imagination</span><div class="skill-bar-fill"><div class="skill-bar-fill-inner" style="width:80%"></div></div></div>
     </div>
 </div>
 
