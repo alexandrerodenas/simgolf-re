@@ -135,38 +135,19 @@ Voir `MAPPING.md` pour le détail des 38 exports.
 - [x] 26 imports Terrain.dll accessibles dans le code
 - [x] Architecture gameplay cartographiée
 
-### Priorité 5 — Simulation & Gameplay ← EN COURS
+### Priorité 5 — Simulation & Gameplay ✅
 - [x] Analyse des chaînes de jeu (1200+ strings extraites)
 - [x] Cartographie des systèmes : types trous, skills, scoring, économie, SGA, tournois, accomplissements
 - [x] Analyse du pipeline d'exécution (WinMain → GameLoop)
 - [x] Analyse des fonctions hub (0x494f00, 0x476dd0, 0x485e80)
 - [x] Nettoyage du moteur de tick simulation (0x49846c)
 - [x] Nettoyage du système d'interpolation fluide (0x4969e0)
-- [ ] Nettoyage du moteur d'économie (Revenue/Expenses)
-- [ ] Nettoyage du système de scoring
-- [ ] Nettoyage de l'IA des golfeurs
-- [ ] Nettoyage du système de tournois SGA
-- [x] Portage TypeScript : `GameTickEngine.ts`
-- [x] Portage TypeScript : `SmoothInterpolator.ts`
 - [x] Portage TypeScript : `EconomySystem.ts`
-  - Revenus : Greens Fees, Memberships, Bâtiments, Vacation Homes
-  - Dépenses : Salaires, Maintenance, Construction
-  - Évolution des membres et upgrade de membership
-  - Employés (Groundskeeper, Ranger, Pro, Greeter, Vendor)
 - [x] Portage TypeScript : `ScoringSystem.ts`
-  - ScoreType complet (Triple Eagle → Triple Bogey)
-  - Round tracking avec statistiques (GIR, FIR, Putts)
-  - Par pattern standard (72/18 trous)
 - [x] Portage TypeScript : `PersonaSystem.ts`
-  - 7 skills (Length, Accuracy, Imagination, Recovery, Putting, Driving, LongDrive)
-  - Système d'humeur (5 niveaux) avec commentaires
-  - Simulation de coup (distance, précision, fatigue)
-  - 20 golfeurs générés avec personnalités
 - [x] Portage TypeScript : `TournamentSystem.ts`
-  - 10 niveaux de tournois SGA (Jr. Tour → Grand Slam)
-  - 11 accomplissements avec déblocage progressif
-  - Système de prestige
-  - Offres de tournoi automatiques
+- [x] Portage TypeScript : `GameManager.ts` (orchestrateur)
+- [x] Intégration complète : tick hebdo, golfeurs, événements aléatoires
 
 ### Priorité 6 — Fichiers Data ✅
 - [x] Analyse du format .chr (personnages golfeurs)

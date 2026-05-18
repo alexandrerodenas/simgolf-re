@@ -1,17 +1,25 @@
 /**
  * app.ts
  *
- * Point d'entrée SimGolf Mobile — version complète avec modes
- * Construction et Jeu, panneaux d'info, et adaptatif.
+ * Point d'entrée SimGolf Mobile — version complète avec GameManager.
+ * Orchestre tous les systèmes (terrain, économie, golfeurs, scoring, tournois).
+ *
+ * Flux principal (équivalent WinMain → GameLoop C original) :
+ * 1. Init terrain + textures + UI
+ * 2. MainMenu → Nouvelle Partie
+ * 3. GameManager.tickWeek() chaque semaine (timer)
+ * 4. Golfeurs jouent, économie tourne, tournois proposés
+ * 5. Le joueur construit et interagit via le canvas
  */
 
-import { TerrainEngine } from '../core/TerrainTileSystem.js';
-import { IsometricRenderer } from '../view/IsometricRenderer.js';
-import { TextureManager, CourseTheme } from '../view/TextureManager.js';
-import { TouchHandler, CameraController } from './TouchHandler.js';
-import { HUD } from './HUD.js';
-import { BuildToolbar, TERRAIN_TOOLS } from './BuildToolbar.js';
-import { MainMenu } from './MainMenu.js';
+import { TerrainEngine, TileType } from '../core/TerrainTileSystem';
+import { IsometricRenderer } from '../view/IsometricRenderer';
+import { TextureManager, CourseTheme } from '../view/TextureManager';
+import { TouchHandler, CameraController } from './TouchHandler';
+import { HUD } from './HUD';
+import { BuildToolbar, TERRAIN_TOOLS, BUILDING_TOOLS } from './BuildToolbar';
+import { MainMenu } from './MainMenu';
+import { GameManager } from '../core/GameManager';
 
 async function init() {
     const canvas = document.getElementById('game-canvas') as HTMLCanvasElement;
@@ -22,7 +30,6 @@ async function init() {
     try { await textureManager.init(); } catch (e) { console.warn('[App] Catalog fallback'); }
 
     const camera = new CameraController();
-
     const renderer = new IsometricRenderer(canvas, terrain, textureManager, {
         viewportWidth: canvas.width, viewportHeight: canvas.height,
         tileWidth: 64, tileHeight: 32, zoom: 1.0,
@@ -31,10 +38,17 @@ async function init() {
     const touch = new TouchHandler(canvas);
     camera.connect(touch);
 
-    // Etat du jeu
-    let mode: 'build' | 'play' = 'build';
+    // ============================================================
+    // Game Manager — le cerveau du jeu
+    // ============================================================
+    const game = new GameManager(terrain);
 
-    // --- Conversion écran → tuile ---
+    let mode: 'build' | 'play' = 'build';
+    let weekTimer: ReturnType<typeof setInterval> | null = null;
+
+    // ============================================================
+    // Conversion écran → coordonnées tuile
+    // ============================================================
     function screenToTile(cx: number, cy: number): { x: number; y: number } {
         const rect = canvas.getBoundingClientRect();
         const canvasX = (cx - rect.left) * (canvas.width / rect.width);
@@ -46,19 +60,45 @@ async function init() {
         return { x: Math.floor((isoY + isoX) / 2), y: Math.floor((isoY - isoX) / 2) };
     }
 
-    // --- Toolbar ---
+    // ============================================================
+    // UI Components
+    // ============================================================
+    const hud = new HUD();
+    hud.setState({ hole: 1, par: 4, score: 0, money: 50000 });
+    hud.onMenu = () => menu.show();
+
     const toolbar = new BuildToolbar(
         document.getElementById('tool-scroll')!,
         document.getElementById('tool-palette')!
     );
 
-    // --- HUD ---
-    const hud = new HUD();
-    hud.setState({ hole: 1, par: 4, score: 0, money: 50000 });
+    const menu = new MainMenu();
 
-    hud.onMenu = () => menu.show();
+    // ============================================================
+    // Événements jeu → UI
+    // ============================================================
+    game.onEvent = (event) => {
+        hud.showToast(event.message);
+    };
 
-    // --- Tap handler ---
+    game.onWeekComplete = (summary) => {
+        console.log(`[Semaine ${game.state.week}] ${summary}`);
+        hud.showToast(summary, 3000);
+    };
+
+    game.onStateChange = (state) => {
+        const e = game.economy.state;
+        hud.setState({
+            hole: Math.min(game.countHoles(), 18) || 1,
+            par: 4,
+            score: state.bestScore || 0,
+            money: e.cash,
+        });
+    };
+
+    // ============================================================
+    // Interactions tactiles
+    // ============================================================
     touch.onTap = (x, y) => {
         const tile = screenToTile(x, y);
         if (!terrain.inBounds(tile.x, tile.y)) return;
@@ -66,19 +106,35 @@ async function init() {
         if (mode === 'build') {
             const tool = toolbar.getCurrentTool();
             if (tool) {
-                terrain.setTileType(tile.x, tile.y, tool.tileType);
-                updateBuildInfo(tile.x, tile.y);
+                if (tool.category === 'buildings') {
+                    game.buildStructure(tool.id, 2000, tile.x, tile.y);
+                } else {
+                    game.paintTile(tile.x, tile.y, tool.tileType);
+                }
             }
         } else {
-            // Mode jeu: sélectionne un golfeur si présent
-            hud.showToast(`📍 Trou #? (${tile.x},${tile.y})`);
+            // Mode jeu : montre les infos du golfeur à cet endroit
+            const golfers = game.state.activeGolfers;
+            if (golfers.length > 0) {
+                const g = golfers[Math.floor(Math.random() * golfers.length)];
+                hud.showToast(`💬 ${g.firstName}: "${game.personas.getComment(g.id)}"`);
+            }
         }
     };
 
     touch.onDoubleTap = () => camera.reset();
-    touch.onLongPress = (x, y) => showGolferCard(x, y);
 
-    // --- Mode switch ---
+    touch.onLongPress = (x, y) => {
+        const tile = screenToTile(x, y);
+        if (mode === 'build') {
+            // Vente de terrain résidentiel
+            game.buyLand(tile.x, tile.y);
+        }
+    };
+
+    // ============================================================
+    // Mode switch (Construire / Jouer)
+    // ============================================================
     document.querySelectorAll('.mode-tab').forEach(tab => {
         tab.addEventListener('click', () => {
             document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
@@ -86,91 +142,93 @@ async function init() {
             mode = (tab as HTMLElement).dataset.mode as 'build' | 'play';
 
             document.getElementById('build-toolbar')!.style.display = mode === 'build' ? '' : 'none';
-            document.getElementById('build-info')!.classList.toggle('visible', mode === 'build');
-            document.getElementById('play-mode')!.classList.toggle('visible', mode === 'play');
 
-            hud.showToast(mode === 'build' ? '🔨 Mode Construction' : '⛳ Mode Jeu');
+            if (mode === 'play') {
+                // Démarre la simulation hebdomadaire
+                game.scoring.startRound(game.state.courseName);
+                if (!weekTimer) {
+                    weekTimer = setInterval(() => {
+                        game.tickWeek();
+                        hud.showToast(`📅 Semaine ${game.state.week} terminée`, 2000);
+                    }, 15000); // 15s = 1 semaine (ajustable)
+                }
+                hud.showToast('⛳ Simulation hebdomadaire enclenchée');
+            } else {
+                // Pause la simulation
+                if (weekTimer) {
+                    clearInterval(weekTimer);
+                    weekTimer = null;
+                }
+                hud.showToast('🔨 Mode Construction');
+            }
         });
     });
 
-    // --- Build Info ---
-    const biHole = document.getElementById('bi-hole')!;
-    const biPar = document.getElementById('bi-par')!;
-    const biLength = document.getElementById('bi-length')!;
-    const biType = document.getElementById('bi-type')!;
-    const biSga = document.getElementById('bi-sga')!;
-    const minimapCanvas = document.getElementById('minimap-canvas') as HTMLCanvasElement;
-
-    function updateBuildInfo(tx: number, ty: number): void {
-        biHole.textContent = `Trou 1`;
-        biPar.textContent = `Par 4`;
-        // Simple length estimation based on distance from tee to green
-        const tile = terrain.tileAt(tx, ty);
-        if (tile) {
-            biLength.textContent = `${Math.round(Math.abs(tile.elevation[0]) * 10 + 300)} m`;
-            biType.textContent = tile.type === TileType.Fairway ? 'Fairway' :
-                                 tile.type === TileType.Green ? 'Green' :
-                                 tile.type === TileType.Sand ? 'Bunker' : 'Standard';
-        }
-        biSga.textContent = `${Math.floor(Math.random() * 10 + 7)}/10`;
-
-        // Mini-map: draw a tiny representation
-        const ctx = minimapCanvas.getContext('2d')!;
-        const mw = minimapCanvas.width = minimapCanvas.clientWidth;
-        const mh = minimapCanvas.height = minimapCanvas.clientHeight;
-        ctx.fillStyle = '#0a1a0a';
-        ctx.fillRect(0, 0, mw, mh);
-        const px = Math.floor(tx * mw / terrain.width);
-        const py = Math.floor(ty * mh / terrain.height);
-        ctx.fillStyle = '#7bc96f';
-        ctx.beginPath();
-        ctx.arc(px, py, 3, 0, Math.PI * 2);
-        ctx.fill();
-    }
-    
-    // Initial build info
-    updateBuildInfo(32, 32);
-
-    // --- Golfer card (long press) ---
-    const golferCard = document.getElementById('golfer-card')!;
-    let cardTimeout: ReturnType<typeof setTimeout> | null = null;
-
-    function showGolferCard(x: number, y: number): void {
-        const tile = screenToTile(x, y);
-        golferCard.style.left = Math.min(x, window.innerWidth - 280) + 'px';
-        golferCard.style.top = Math.min(y - 200, window.innerHeight - 300) + 'px';
-        // Demo data
-        document.getElementById('gc-name')!.textContent = 'Bruce Springstone';
-        document.getElementById('gc-title')!.textContent = '⭐ Rock Star Pro';
-        document.getElementById('gc-mood-icon')!.textContent = '😊';
-        document.getElementById('gc-mood-text')!.textContent = 'Heureux — aime ce parcours';
-        golferCard.classList.add('visible');
-
-        if (cardTimeout) clearTimeout(cardTimeout);
-        cardTimeout = setTimeout(() => golferCard.classList.remove('visible'), 5000);
-    }
-
-    // Hide card on tap outside
-    touch.onTap = ((original) => (x: number, y: number) => {
-        golferCard.classList.remove('visible');
-        original(x, y);
-    })(touch.onTap);
-
-    // --- Main Menu ---
-    const menu = new MainMenu();
+    // ============================================================
+    // Main Menu
+    // ============================================================
     menu.onNewGame = async (theme) => {
         renderer.setTheme(theme);
         if (textureManager.isReady) await textureManager.preloadTheme(theme);
         terrain.initRandom();
         camera.reset();
+
+        // Reset game state
+        const fresh = new GameManager(terrain);
+        Object.assign(game, fresh);
+
         hud.setState({ hole: 1, par: 4, score: 0, money: 50000 });
-        hud.showToast(`🌍 ${theme} — nouveau parcours !`);
+        hud.showToast(`🌍 ${theme} — construisez votre premier trou !`);
         menu.hide();
     };
-    menu.onLoadGame = () => hud.showToast('📂 Chargement — bientôt disponible');
-    menu.onTutorial = () => { menu.hide(); hud.showToast('📖 Bienvenue dans SimGolf !'); };
 
-    // --- Resize ---
+    menu.onLoadGame = () => hud.showToast('📂 Chargement — bientôt disponible');
+    menu.onTutorial = () => {
+        menu.hide();
+        hud.showToast('📖 Construisez un tee + un green pour créer un trou !');
+    };
+
+    // ============================================================
+    // Build Info Panel (mini-carte, infos trou)
+    // ============================================================
+    function updateBuildInfo(tx: number, ty: number): void {
+        document.getElementById('bi-hole')!.textContent = `Trou ${game.countHoles() || 1}`;
+        document.getElementById('bi-par')!.textContent = `Par ${ScoringSystem.getParForHole(game.countHoles() || 1, 18)}`;
+        const tile = terrain.tileAt(tx, ty);
+        if (tile) {
+            document.getElementById('bi-length')!.textContent = `${300 + Math.abs(tile.elevation[0]) * 10} m`;
+            const typeNames: Record<number, string> = {
+                [TileType.Fairway]: 'Fairway', [TileType.Green]: 'Green', [TileType.Sand]: 'Bunker',
+                [TileType.Water]: 'Eau', [TileType.Tee]: 'Départ', [TileType.Rough]: 'Rough',
+                [TileType.Tree]: 'Arbres', [TileType.Path]: 'Chemin', [TileType.Building]: 'Bâtiment',
+            };
+            document.getElementById('bi-type')!.textContent = typeNames[tile.type] || 'Terrain';
+        }
+        document.getElementById('bi-sga')!.textContent = `${game.calcCourseQuality()}/100`;
+    }
+
+    // Patch tap to also update build info
+    const originalTap = touch.onTap;
+    touch.onTap = (x, y) => {
+        const tile = screenToTile(x, y);
+        if (terrain.inBounds(tile.x, tile.y)) updateBuildInfo(tile.x, tile.y);
+
+        const tool = toolbar.getCurrentTool();
+        if (tool && mode === 'build') {
+            originalTap(x, y);
+        } else if (mode === 'play') {
+            // Show golfer info
+            const golfers = game.state.activeGolfers;
+            if (golfers.length > 0) {
+                const g = golfers[Math.floor(Math.random() * golfers.length)];
+                hud.showToast(`💬 ${g.firstName}: "${game.personas.getComment(g.id)}"`);
+            }
+        }
+    };
+
+    // ============================================================
+    // Canvas resize
+    // ============================================================
     function resize() {
         const dpr = window.devicePixelRatio || 1;
         canvas.style.width = window.innerWidth + 'px';
@@ -182,17 +240,27 @@ async function init() {
     window.addEventListener('resize', resize);
     resize();
 
-    // --- Game loop ---
+    // ============================================================
+    // Game loop (rendu)
+    // ============================================================
     function loop() {
-        // Camera offset: touch handler already modified camera.offsetX/Y via onPan
+        // Met à jour les animations
+        const now = performance.now();
+
+        // Rendu
         renderer.render(camera.zoom);
+
         requestAnimationFrame(loop);
     }
-    loop();
 
-    console.log('[SimGolf Mobile] Ready — modes Build & Play');
+    // ============================================================
+    // Tournament buttons (from scorecard UI)
+    // ============================================================
+    // + could add tournament entry button in the HUD
+
+    loop();
+    console.log('[SimGolf Mobile] GameManager orchestrating all systems');
 }
 
-// Bootstrap
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
 else init();
