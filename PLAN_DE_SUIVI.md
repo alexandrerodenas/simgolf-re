@@ -164,29 +164,28 @@ Offset  Size    Champ         Source                  Statut
 
 ---
 
-|## 🔄 Prochaines Étapes (Priorisées)
+## 🔄 Prochaines Étapes (Priorisées)
 
 ### Priorité 1 — Rendu Isométrique ✅
-- [x] Nettoyer `Terrain::render(Tile*, float)` (0x10005990)
-  - Pipeline complet : setup JGL → boucles tuiles → culling → textures
-- [x] Nettoyer `Terrain::renderSingleTile()` + 5 helpers (getScreenX/Y, isVisible, isCulled, getView)
-- [ ] Nettoyer `Terrain::renderTile(int, int, int, int, int)` (0x100080E0)
-- [ ] Nettoyer `Terrain::stripRender(Tile*, int, float)` (0x10009270)
-- [ ] Nettoyer `Terrain::drawLine(...)` (0x100011B3)
-- [ ] Nettoyer `Terrain::drawCircle(...)` (0x10001186)
-- [ ] Portage TypeScript du pipeline de rendu (IsometricRenderer.ts) ✅ partiel
+- [x] `Terrain::render(Tile*, float)` — pipeline complet JGL + boucles tuiles
+- [x] 5 helpers : getScreenX/Y, isVisible, isCulled, getView
+- [x] `Terrain::renderSingleTile()` — bind textures OpenGL
+- [x] `IsometricRenderer.ts` — portage Canvas 2D isométrique
+- [x] `JGLInterface.ts` — mapping JGL → Canvas 2D (pushMatrix, translate, etc.)
+- [ ] `Terrain::renderTile(int, int, int, int, int)` (optionnel — rendu avancé)
+- [ ] `Terrain::stripRender(Tile*, int, float)` (optionnel — rendu strip)
+- [ ] `Terrain::drawLine/drawCircle/BezierSpline/CardinalSpline` (optionnel — primitives)
 
-### Priorité 2 — Moteur Graphique JGL (jgld.dll) ← EN COURS
-- [ ] Analyser les exports de **jgld.dll** (1.1 Mo de code clair)
-  - Wrapper OpenGL/DirectX ?
-  - Fonctions matricielles (push, pop, loadIdentity)
-  - Fonctions de texture (bind, create, delete)
-  - Fonctions de rendu (draw arrays, draw elements)
-- [ ] Cartographier les appels JGL utilisés par Terrain.dll
-- [ ] Interface TypeScript pour le rendu (PixiJS/Phaser)
-- [ ] Interface TypeScript pour le rendu (PixiJS/Phaser)
+### Priorité 2 — Moteur Graphique JGL (jgld.dll) ✅
+- [x] Analyse complète de jgld.dll : renderer logiciel GDI (1199 fonctions)
+- [x] Export unique `get_graphsy_object_ptr` → objet JackalClass (332 bytes)
+- [x] 6 fonctions JGL cartographiées (pushMatrix, loadIdentity, ortho, translate, bindTexture)
+- [x] `jgld_analysis.md` — documentation complète
+- [x] `JGLInterface.ts` — interface TypeScript pour Canvas 2D
 
-### Priorité 3 — Moteur Audio (sound.dll)
+### Priorité 3 — Moteur Audio (sound.dll) ← EN COURS
+
+### Priorité 3 — Moteur Audio (sound.dll) ← EN COURS
 - [ ] Analyser les exports de sound.dll
 - [ ] Portage Web Audio API
 
