@@ -1,35 +1,43 @@
 #!/usr/bin/env python3
-"""Extract economic/gameplay strings from golf.exe"""
-with open('game_data/exe_unpacked/golf.exe', 'rb') as f:
+"""Find economy-related strings in golf.exe unpacked binary."""
+with open("game_data/exe_unpacked/golf.exe", "rb") as f:
     data = f.read()
 
-keywords = [
-    b'Profit', b'Revenue', b'Expense', b'Budget', b'Cash', b'Fee', 
-    b'Par', b'Eagle', b'Birdie', b'Bogey', b'Stroke', b'Score',
-    b'SGA', b'Rating', b'Length', b'Accuracy', b'Imagination',
-    b'Recovery', b'Green', b'Fairway', b'Rough', b'Sand', b'Bunker',
-    b'Tournament', b'Championship', b'Grand Slam',
-    b'Groundskeeper', b'Ranger', b'Pro', b'Member',
-    b'Scenario', b'Campaign', b'Tutorial',
-    b'Course', b'Hole', b'Club', b'Golfer',
-    b'Skill', b'Drive', b'Putt', b'Chip',
-    b'Mood', b'Energy', b'Crowd', b'Prestige',
-    b'Revenue', b'Total', b'Weekly',
-]
-seen = set()
-for kw in keywords:
-    pos = 0
-    while True:
-        pos = data.find(kw, pos)
-        if pos < 0:
-            break
-        addr = 0x400000 + pos
-        if addr not in seen:
-            seen.add(addr)
-            end = pos
-            while end < len(data) and data[end] != 0:
-                end += 1
-            s = data[pos:end].decode('latin-1', errors='replace').strip()
-            if len(s) > 3 and len(s) < 100:
-                print(f'  0x{addr:08x} -> {s}')
-        pos += 1
+# Known economy string addresses from game_systems mapping
+# 0x4c3f5c = "Profit:"
+# 0x4cfef0 = "Revenue"
+# 0x4cff98 = "Greens Fees"
+# 0x4d14bc = "Cash Reserve"
+
+targets = {
+    b"Profit": "Economy",
+    b"Revenue": "Economy", 
+    b"Greens Fee": "Economy",
+    b"Cash Reserve": "Economy",
+    b"Course Value": "Economy",
+    b"Maintenance": "Economy",
+    b"Cost": "Economy",
+    b"Expense": "Economy",
+    b"Skill Rating": "Scoring",
+    b"Length skill": "Skills",
+    b"Accuracy skill": "Skills",
+    b"Imagination": "Skills",
+}
+
+for t, category in sorted(targets.items(), key=lambda x: -len(x[0])):
+    idx = data.find(t)
+    if idx >= 0:
+        # The file offset equals RVA for standard PE sections in this exe
+        addr = 0x00400000 + idx
+        # Extract readable context
+        start = idx
+        end = min(len(data), idx + 64)
+        raw = data[start:end]
+        # Find null terminator
+        null_pos = raw.find(b'\x00')
+        if null_pos >= 0:
+            raw = raw[:null_pos]
+        s = raw.decode("ascii", errors="replace")
+        print(f"  0x{addr:08x} [{category:10s}] \"{s}\"")
+    else:
+        print(f"  {t.decode():20s} NOT FOUND")
