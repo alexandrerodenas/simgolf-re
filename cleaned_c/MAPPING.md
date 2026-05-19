@@ -77,5 +77,6 @@
 |- ✅ **Analyse variantes tuiles** — 4 axes de variation, comptages par thème (analyse_variantes_tuiles.md)
 |- ✅ **Décompilation StartGolferAction** (0x49acf0) — lancement tour golfeur (game_start_action.c)
 |- ✅ **Découverte menu vitesse** — 4 vitesses : 5s/10s/20s/30s entre tirs (game_start_action.c)
+|- ✅ **Décompilation sound.dll** — 12 exports, 3 devices (Wave/MIDI/WaveIn), SoundManager singleton (sound_manager.c)
 |- 🔜 Per-golfer simulation (vtable[0x68]) — dispatchée dynamiquement, nécessite traceur
 |- 🔜 Parseur C pour les données (.dta/.pro/.chr)
