@@ -80,3 +80,4 @@
 |- ✅ **Décompilation sound.dll** — 12 exports, 3 devices (Wave/MIDI/WaveIn), SoundManager singleton (sound_manager.c)
 |- ✅ **Décompilation jgld.dll** — moteur 2D GDI32 (libpng 1.0.5, sprites 8/16-bit, polices, fenêtrage) (jgld_engine.c)
 |- ✅ **Parseur C données** — .dta (CSV), .pro/.glf/.chr (binaires + PCX), .sve (game_data_parser.h + test)
+|- ✅ **Économie** — fonctions financières (profit, revenue, greens fee), ASM partiel (game_economy.c)
