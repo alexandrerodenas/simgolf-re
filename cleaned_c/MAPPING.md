@@ -65,10 +65,15 @@
 4. Analyser sound.dll — moteur audio
 5. Dépaqueter le golf.exe principal pour accéder aux fonctions de jeu
 
-## Compléments récents (Mai 2026)
-
-- ✅ **38/38 exports nettoyés** (MAPPING complet ci-dessus)
-- ✅ **Architecture corrigée v2** : Terrain.dll = OpenGL 3D, jgld.dll = GDI32 sprites
-- ✅ **1 892 animations FLC converties** en PNG (cf. `game_data/converted/flc_catalog.json`)
-- ✅ **Parseur Python** pour 80 golfeurs pros + 50 célébrités (fichiers .dta)
-- 🔜 Parseur C pour les données (.dta/.pro/.chr)
+|## Compléments récents (Mai 2026)
+|
+|- ✅ **38/38 exports nettoyés** (MAPPING complet ci-dessus)
+|- ✅ **Architecture corrigée v2** : Terrain.dll = OpenGL 3D, jgld.dll = GDI32 sprites
+|- ✅ **1 892 animations FLC converties** en PNG (cf. `game_data/converted/flc_catalog.json`)
+|- ✅ **Parseur Python** pour 80 golfeurs pros + 50 célébrités (fichiers .dta)
+|- ✅ **Décompilation GameTickFunction** (0x49846c) — boucle 16 slots, SEH, timeout (game_tick_v2.c)
+|- ✅ **Décompilation AdvanceSimulation** (0x49ab40) — avancement timer (game_advance_sim.c)
+|- ✅ **Décompilation InputHandler** (0x49b7b0) — événements clavier/souris (game_input_handler.c)
+|- ✅ **Analyse variantes tuiles** — 4 axes de variation, comptages par thème (analyse_variantes_tuiles.md)
+|- 🔜 Per-golfer simulation (vtable[0x68]) — dispatchée dynamiquement, nécessite traceur
+|- 🔜 Parseur C pour les données (.dta/.pro/.chr)
