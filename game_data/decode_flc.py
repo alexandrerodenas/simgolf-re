@@ -1,13 +1,19 @@
 #!/usr/bin/env python3
 """
-Decodeur FLC SimGolf → PNG spritesheets.
-Le format est du FLC standard mais avec un header de 4 bytes supplementaire
-(offset 0-3 = taille du fichier, le vrai header FLC commence à l'offset 4).
+Decodeur FLC SimGolf → PNG spritesheets (CORRIGE).
+Le format est du FLC standard avec un header custom de 128 bytes
+(offset 0-3 = taille fichier, header FLC standard commence a +4,
+frames data commence a +0x80).
+
+Opcodes corriges :
+  0x07 = FLI_SS2  (word-oriented delta, PAS palette)
+  0x0B = FLI_COLOR (palette)
+  0x0C = FLI_LC   (byte-oriented delta)
+  0x0D = FLI_BLACK
+  0x0F = FLI_BRUN (byte run-length encoding, PAS SS2)
+  0x10 = FLI_COPY (full frame copy)
 
 Usage: python3 decode_flc.py [--all] [--sheet] [--frames]
-  --all      : decodes all 1893 FLC files to PNG
-  --sheet    : generates spritesheets per animation
-  --frames   : extracts individual frames as PNG
 """
 
 import os, sys, struct
@@ -17,59 +23,187 @@ FLC_DIR = os.path.expanduser("~/simgolf-re/game_data/extracted/Flics")
 OUT_DIR = os.path.expanduser("~/simgolf-re/game_data/converted/sprites")
 
 # ================================================================
-# FLC Decoder (offset +4 variant)
+# FLC Decoder (corrige)
 # ================================================================
 
 class FLCDecoder:
-    """Decodes SimGolf FLC files (standard FLC with +4 byte offset)."""
+    """Decodes SimGolf FLC files (standard FLC with custom 128-byte header)."""
     
-    FLI_COLOR_256 = 0x07
-    FLI_LC = 0x0B
-    FLI_BLACK = 0x0D
-    FLI_SS2 = 0x0F
-    FLI_COPY = 0x10
-    FLI_COLOR_64 = 0x0C
+    # Opcodes FLC standard (corriges)
+    FLI_SS2 = 0x07       # Word-oriented delta compression
+    FLI_COLOR = 0x0B     # Palette update
+    FLI_LC = 0x0C        # Byte-oriented delta compression
+    FLI_BLACK = 0x0D     # Black frame
+    FLI_BRUN = 0x0F      # Byte run-length encoding
+    FLI_COPY = 0x10      # Full frame copy
     
-    def __init__(self, path):
+    def __init__(self, path, palette_path=None):
         self.path = path
+        self.palette_path = palette_path
         self.frames = []
         self.palette = [(0, 0, 0)] * 256
         
         with open(path, 'rb') as f:
             self.data = f.read()
         
-        # Parse header at offset 4
+        # Load external palette if provided (or auto-discover)
+        found_pal = self._find_palette_auto()
+        if found_pal:
+            self._load_palette_from_pcx(found_pal)
+        
         self._parse_header()
         self._parse_frames()
     
+    def _find_palette_auto(self):
+        """Auto-discover palette file for this FLC.
+        
+        Search strategies:
+        1. Same dir: Pal{BaseName}.pcx, {BaseName}Pal*.pcx
+        2. Same dir: *Pal*.pcx containing first word of FLC name
+        3. Same dir: any Pal*.pcx
+        4. Same dir: any *_palette.pcx
+        5. Same dir: any *.pal
+        """
+        if self.palette_path and os.path.exists(self.palette_path):
+            return self.palette_path
+        
+        base = os.path.dirname(self.path)
+        name = os.path.splitext(os.path.basename(self.path))[0]
+        
+        # Strategy 1: Pal{Name}.pcx (common for tree palettes)
+        pal_name = f'Pal{name}'
+        for f in os.listdir(base):
+            if f.startswith(pal_name) and f.lower().endswith(('.pcx', '.pal')):
+                return os.path.join(base, f)
+        
+        # Strategy 2: {Name}Pal*.pcx (common for Links trees)
+        for f in os.listdir(base):
+            if name in f and 'Pal' in f and f.lower().endswith('.pcx'):
+                return os.path.join(base, f)
+        
+        # Strategy 2b: palette shares a common word (≥3 chars) with the FLC name.
+        # Score by number of shared words, pick the best match.
+        # Handles: FlagPARK_open.flc ↔ Flag_PARKpal.pcx, etc.
+        import re
+        def extract_words(s):
+            # Split on underscores and PascalCase boundaries
+            parts = re.split(r'[_]', s)
+            words = set()
+            for part in parts:
+                for w in re.findall(r'[A-Z]{2,}|[A-Z][a-z]+|[a-z]+', part):
+                    if len(w) >= 3:
+                        words.add(w.lower())
+            return words
+        
+        flc_words = extract_words(name)
+        best_pal = None
+        best_score = -1
+        for f in os.listdir(base):
+            if not (f.lower().endswith('.pcx') and 'pal' in f.lower()):
+                continue
+            pal_name_only = os.path.splitext(f)[0]
+            pal_words = extract_words(pal_name_only)
+            overlap = flc_words & pal_words
+            # Score: prefer specific thematic matches over generic ones
+            generic = {'pal', 'flag', 'tree', 'shadow', 'open', 'pop', 'close', 'anim'}
+            score = sum(2 for w in overlap if w not in generic) + sum(0.5 for w in overlap if w in generic)
+            if score > best_score:
+                best_score = score
+                best_pal = f
+        if best_pal and best_score > 0.5:
+            return os.path.join(base, best_pal)
+        
+        # Strategy 3: any Pal*.pcx in same directory
+        pal_files = [f for f in os.listdir(base) 
+                     if f.lower().startswith('pal') and f.lower().endswith('.pcx')]
+        if pal_files:
+            return os.path.join(base, pal_files[0])
+        
+        # Strategy 4: any *_palette.pcx in same directory
+        pal_files = [f for f in os.listdir(base) if f.lower().endswith('_palette.pcx')]
+        if pal_files:
+            return os.path.join(base, pal_files[0])
+        
+        # Strategy 5: any .pal file in same directory
+        pal_files = [f for f in os.listdir(base) if f.lower().endswith('.pal')]
+        if pal_files:
+            return os.path.join(base, pal_files[0])
+        
+        return None
+    
+    def _load_palette_from_pcx(self, pcx_path):
+        """Load 256-color palette from a PCX palette file or raw .pal file."""
+        ext = os.path.splitext(pcx_path)[1].lower()
+        
+        if ext == '.pal':
+            # Raw palette file: 256 * 3 bytes = 768 bytes RGB
+            self._load_palette_raw(pcx_path)
+            return
+        
+        try:
+            from PIL import Image as PILImage
+            img = PILImage.open(pcx_path)
+            if img.mode == 'P' and img.palette:
+                pal_data = img.palette.palette
+                for i in range(256):
+                    r = pal_data[i * 3] if i * 3 < len(pal_data) else 0
+                    g = pal_data[i * 3 + 1] if i * 3 + 1 < len(pal_data) else 0
+                    b = pal_data[i * 3 + 2] if i * 3 + 2 < len(pal_data) else 0
+                    self.palette[i] = (r, g, b)
+            elif img.mode == 'P':
+                # PCX with embedded palette in the file data
+                with open(pcx_path, 'rb') as f:
+                    data = f.read()
+                # PCX v3 palette is stored at EOF: byte 0x0C followed by 768 bytes
+                if len(data) >= 769 and data[-769] == 0x0C:
+                    pal_data = data[-768:]
+                    for i in range(256):
+                        r = pal_data[i * 3]
+                        g = pal_data[i * 3 + 1]
+                        b = pal_data[i * 3 + 2]
+                        self.palette[i] = (r, g, b)
+        except Exception as e:
+            print(f"  Warning: could not load palette from {pcx_path}: {e}")
+    
+    def _load_palette_raw(self, pal_path):
+        """Load raw 768-byte RGB palette file."""
+        try:
+            with open(pal_path, 'rb') as f:
+                data = f.read()
+            if len(data) >= 768:
+                for i in range(256):
+                    r = data[i * 3]
+                    g = data[i * 3 + 1]
+                    b = data[i * 3 + 2]
+                    self.palette[i] = (r, g, b)
+        except Exception as e:
+            print(f"  Warning: could not load raw palette {pal_path}: {e}")
+    
     def _parse_header(self):
         d = self.data
-        if len(d) < 20:
+        if len(d) < 132:
             raise ValueError("File too small")
         
         # SimGolf custom FLC header:
         # 0x00-0x03: File size (uint32)
         # 0x04-0x05: FLC magic (0xAF12)
-        # 0x06-0x07: Unknown (not standard frame count!)
+        # 0x06-0x07: Frames count (uint16, low word)
         # 0x08-0x09: Width (uint16)
         # 0x0A-0x0B: Height (uint16)
         # 0x0C-0x0D: Depth (uint16, always 8)
-        # 0x0E-0x0F: Flags/Speed ?
-        # 0x10-0x13: Frame count (uint32) ← CUSTOM OFFSET!
-        # 0x14-0x4F: Unknown/padding
-        # 0x50+: Frame data starts
+        # 0x0E-0x0F: Flags (uint16)
+        # 0x10-0x13: Speed (ms per frame, uint32)
+        # 0x14-0x7F: Padding (reserved)
+        # 0x80+: Frame data starts
         
         self.file_size = struct.unpack('<I', d[0:4])[0]
         self.magic = struct.unpack('<H', d[4:6])[0]
+        self.frames_count = struct.unpack('<H', d[6:8])[0]
         self.width = struct.unpack('<H', d[8:10])[0]
         self.height = struct.unpack('<H', d[10:12])[0]
         self.depth = struct.unpack('<H', d[12:14])[0]
         self.flags = struct.unpack('<H', d[14:16])[0]
-        self.frames_count = struct.unpack('<I', d[0x10:0x14])[0]  # Custom offset!
-        
-        # Speed/ms per frame might be in the frame data itself
-        # (speed = 0 means render every frame, ~33ms at 30fps)
-        self.speed = 0  # To be determined from frame data
+        self.speed = struct.unpack('<I', d[0x10:0x14])[0]
         
         if self.magic != 0xAF12:
             print(f"  Warning: magic=0x{self.magic:04x} (expected 0xAF12)")
@@ -77,41 +211,35 @@ class FLCDecoder:
     def _parse_frames(self):
         d = self.data
         
-        # Frame data starts after the custom header
-        # Header is variable size - need to find first frame marker
-        # Look for 0xF1FA frame magic in the file
+        # Frame data starts at offset 0x80 always
+        # But some files might have a different layout - search for 0xF1FA
         frame_positions = []
-        for i in range(0x50, min(len(d) - 4, 0x200), 2):
-            if d[i:i+2] == b'\xfa\xf1':  # 0xF1FA in little-endian
-                frame_positions.append(i - 4)  # Point to frame size field
+        search_start = 0x50  # Start search early just in case
+        for i in range(search_start, len(d) - 4):
+            if d[i:i+2] == b'\xfa\xf1':
+                frame_positions.append(i - 4)
                 if len(frame_positions) >= self.frames_count:
                     break
         
-        if len(frame_positions) < self.frames_count:
-            # Alternative: search for 0xF1FA anywhere
-            frame_positions = []
-            for i in range(0x50, len(d) - 4):
-                if d[i:i+2] == b'\xfa\xf1':
-                    frame_positions.append(i - 4)
-                    if len(frame_positions) >= self.frames_count:
-                        break
-        
         if len(frame_positions) == 0:
-            # Fallback: assume frames start at 0x50 with standard FLC frames
-            pos = 0x50
+            # Fallback: assume sequential frames starting at 0x80
+            pos = 0x80
             for _ in range(self.frames_count):
                 if pos + 8 > len(d):
                     break
                 frame_size = struct.unpack('<I', d[pos:pos+4])[0]
-                if frame_size > 0 and pos + frame_size <= len(d):
+                if 16 <= frame_size <= min(100000, len(d) - pos):
                     frame_positions.append(pos)
                     pos += frame_size
                 else:
                     break
         
         # Parse each frame
-        for i, pos in enumerate(frame_positions):
-            if i >= self.frames_count:
+        frame_pixels = None
+        prev_pixels = None
+        
+        for idx, pos in enumerate(frame_positions):
+            if idx >= self.frames_count:
                 break
             if pos + 16 > len(d):
                 break
@@ -126,177 +254,222 @@ class FLCDecoder:
             if frame_magic != 0xF1FA:
                 continue
             
+            # Parse sub-chunks within this frame
             chunk_pos = pos + 16
             chunk_end = pos + frame_size
             
-            frame_decoded = False
+            # Start with previous frame for delta decoding, or blank
+            if prev_pixels is not None:
+                pixels = bytearray(prev_pixels)
+            else:
+                pixels = bytearray(self.width * self.height)
+            
+            decoded_this_frame = False
             
             while chunk_pos < chunk_end and chunk_pos + 6 < len(d):
-                chunk_size = struct.unpack('<I', d[chunk_pos:chunk_pos+4])[0]
-                chunk_type = struct.unpack('<H', d[chunk_pos+4:chunk_pos+6])[0]
+                ck_size = struct.unpack('<I', d[chunk_pos:chunk_pos+4])[0]
+                ck_type = struct.unpack('<H', d[chunk_pos+4:chunk_pos+6])[0]
                 
-                if chunk_size < 6 or chunk_pos + chunk_size > len(d):
-                    chunk_pos += 6
-                    continue
-                    
-                chunk_data = d[chunk_pos+6:chunk_pos+chunk_size]
+                # Sanity check: chunk must be within frame bounds, 
+                # and type must be a known FLC opcode
+                if ck_size < 6 or chunk_pos + ck_size > chunk_end:
+                    # Invalid chunk - frame data ended
+                    break
                 
-                if chunk_type == self.FLI_COLOR_256 or chunk_type == self.FLI_COLOR_64:
-                    self._decode_palette(chunk_data, chunk_type)
+                if ck_type not in (self.FLI_COLOR, self.FLI_COPY, self.FLI_BRUN,
+                                   self.FLI_LC, self.FLI_SS2, self.FLI_BLACK):
+                    # Unknown chunk type - might be garbage data at end of frame
+                    break
                 
-                elif chunk_type == self.FLI_COPY:
-                    pixels = chunk_data[:self.width * self.height]
-                    if len(pixels) == self.width * self.height:
-                        self._add_frame(pixels)
-                        frame_decoded = True
+                chunk_data = d[chunk_pos+6:chunk_pos+ck_size]
                 
-                elif chunk_type == self.FLI_LC:
-                    self._decode_delta_lc(chunk_data)
-                    frame_decoded = True
+                if ck_type == self.FLI_COLOR:
+                    self._decode_palette(chunk_data)
                 
-                elif chunk_type == self.FLI_SS2:
-                    self._decode_delta_ss2(chunk_data)
-                    frame_decoded = True
+                elif ck_type == self.FLI_COPY:
+                    # Full frame copy - raw pixel data
+                    total_pixels = self.width * self.height
+                    data_len = min(len(chunk_data), total_pixels)
+                    pixels[:data_len] = chunk_data[:data_len]
+                    decoded_this_frame = True
                 
-                elif chunk_type == self.FLI_BLACK:
-                    self._add_frame(bytes(self.width * self.height))
-                    frame_decoded = True
+                elif ck_type == self.FLI_BRUN:
+                    self._decode_brun(chunk_data, pixels)
+                    decoded_this_frame = True
                 
-                chunk_pos += chunk_size
+                elif ck_type == self.FLI_LC:
+                    self._decode_delta_lc(chunk_data, pixels)
+                    decoded_this_frame = True
+                
+                elif ck_type == self.FLI_SS2:
+                    self._decode_delta_ss2(chunk_data, pixels)
+                    decoded_this_frame = True
+                
+                elif ck_type == self.FLI_BLACK:
+                    # Black frame = all zeros
+                    pixels = bytearray(self.width * self.height)
+                    decoded_this_frame = True
+                
+                chunk_pos += ck_size
             
-            if not frame_decoded and not self.frames:
-                self._add_frame(bytes(self.width * self.height))
+            prev_pixels = bytes(pixels)
+            self.frames.append(bytes(pixels))
     
-    def _decode_palette(self, data, chunk_type):
-        """Decode FLI_COLOR_256 palette chunk."""
-        if chunk_type == self.FLI_COLOR_256:
+    def _decode_palette(self, data):
+        """Decode FLI_COLOR palette chunk (type 0x0B)."""
+        if len(data) < 2:
+            return
+        
+        try:
             packet_count = struct.unpack('<H', data[0:2])[0]
-            pos = 2
-            for _ in range(packet_count):
-                if pos + 1 > len(data): break
-                skip = data[pos]
-                count = data[pos+1] if data[pos+1] > 0 else 256
-                pos += 2
-                for j in range(count):
-                    if pos + 3 > len(data) or skip + j >= 256: break
-                    self.palette[skip + j] = (
-                        data[pos] << 2,
-                        data[pos+1] << 2,
-                        data[pos+2] << 2
-                    )
-                    pos += 3
-        elif chunk_type == self.FLI_COLOR_64:
-            packet_count = struct.unpack('<H', data[0:2])[0]
-            pos = 2
-            for _ in range(packet_count):
-                if pos + 1 > len(data): break
-                skip = data[pos]
-                count = data[pos+1] if data[pos+1] > 0 else 64
-                pos += 2
-                for j in range(count):
-                    if pos + 3 > len(data) or skip + j >= 256: break
-                    self.palette[skip + j] = (
-                        (data[pos] & 0xFC) | (data[pos] >> 6),
-                        (data[pos+1] & 0xFC) | (data[pos+1] >> 6),
-                        (data[pos+2] & 0xFC) | (data[pos+2] >> 6)
-                    )
-                    pos += 3
+        except:
+            return
+        
+        pos = 2
+        for _ in range(packet_count):
+            if pos + 1 >= len(data):
+                break
+            skip = data[pos]
+            count = data[pos + 1]
+            if count == 0:
+                count = 256
+            pos += 2
+            for j in range(count):
+                if pos + 2 >= len(data) or skip + j >= 256:
+                    break
+                r = (data[pos] << 2) | (data[pos] >> 6)
+                g = (data[pos + 1] << 2) | (data[pos + 1] >> 6)
+                b = (data[pos + 2] << 2) | (data[pos + 2] >> 6)
+                self.palette[skip + j] = (r, g, b)
+                pos += 3
     
-    def _decode_delta_lc(self, data):
-        """Decode FLI_LC byte-oriented delta compressed frame."""
-        if len(data) < 6: return
+    def _decode_brun(self, data, pixels):
+        """Decode FLI_BRUN byte run-length encoding (type 0x0F).
+        
+        SimGolf variant: flat RLE pairs covering the entire image.
+        Each pair: (run_length: uint8, color_index: uint8).
+        No per-line headers — runs span across line boundaries.
+        """
+        w = self.width
+        h = self.height
+        total_pixels = w * h
+        dst = 0
+        pos = 0
+        
+        while dst < total_pixels and pos + 1 < len(data):
+            run_len = data[pos]
+            color = data[pos + 1]
+            pos += 2
+            
+            for _ in range(run_len):
+                if dst < total_pixels:
+                    pixels[dst] = color
+                    dst += 1
+    
+    def _decode_delta_lc(self, data, pixels):
+        """Decode FLI_LC byte-oriented delta compressed frame (type 0x0C)."""
+        if len(data) < 6:
+            return
+        
         lines_to_skip = struct.unpack('<H', data[0:2])[0]
         lines_to_do = struct.unpack('<H', data[2:4])[0]
-        # data[4:6] = rest of header
         pos = 6
-        
-        # Start with a copy of the previous frame or blank
-        if self.frames:
-            frame = bytearray(self.frames[-1])
-        else:
-            frame = bytearray(self.width * self.height)
+        w = self.width
+        h = self.height
+        total_pixels = w * h
         
         for line in range(lines_to_do):
-            if pos >= len(data): break
-            line_offset = (lines_to_skip + line) * self.width
+            if pos >= len(data):
+                break
+            line_offset = (lines_to_skip + line) * w
             packets = data[pos]
             pos += 1
+            
             for _ in range(packets):
-                if pos + 1 >= len(data): break
+                if pos + 1 >= len(data):
+                    break
                 skip_count = data[pos]
-                size_count = data[pos+1]
+                size_count = data[pos + 1]
                 pos += 2
+                
                 if size_count > 0:
                     line_offset += skip_count
                     chunk = data[pos:pos + size_count]
                     pos += size_count
                     for j, pixel in enumerate(chunk):
-                        if line_offset + j < len(frame):
-                            frame[line_offset + j] = pixel
+                        idx = line_offset + j
+                        if idx < total_pixels:
+                            pixels[idx] = pixel
                     line_offset += size_count
                 else:
-                    # Run-length encoded
+                    # Run-length: skip_count pixels, then a run
                     line_offset += skip_count
-                    if pos >= len(data): break
+                    if pos >= len(data):
+                        break
                     run_value = data[pos]
                     pos += 1
                     for j in range(size_count & 0xFF):
-                        if line_offset + j < len(frame):
-                            frame[line_offset + j] = run_value
+                        idx = line_offset + j
+                        if idx < total_pixels:
+                            pixels[idx] = run_value
                     line_offset += (size_count & 0xFF)
-        
-        self._add_frame(bytes(frame))
     
-    def _decode_delta_ss2(self, data):
-        """Decode FLI_SS2 word-oriented delta compressed frame."""
-        if len(data) < 6: return
+    def _decode_delta_ss2(self, data, pixels):
+        """Decode FLI_SS2 word-oriented delta compressed frame (type 0x07).
+        
+        Similar to FLI_LC but operates on word boundaries.
+        Each packet affects 2-pixel columns.
+        """
+        if len(data) < 6:
+            return
+        
         lines_to_skip = struct.unpack('<H', data[0:2])[0]
         lines_to_do = struct.unpack('<H', data[2:4])[0]
         pos = 6
-        
-        if self.frames:
-            frame = bytearray(self.frames[-1])
-        else:
-            frame = bytearray(self.width * self.height)
+        w = self.width
+        h = self.height
+        total_pixels = w * h
         
         for line in range(lines_to_do):
-            if pos >= len(data): break
-            line_offset = (lines_to_skip + line) * self.width
-            packets = struct.unpack('<H', data[pos:pos+2])[0]
-            pos += 2
+            if pos >= len(data):
+                break
+            line_offset = (lines_to_skip + line) * w
+            
+            if pos + 1 >= len(data):
+                break
+            packets = data[pos]
+            pos += 1
+            
             for _ in range(packets):
-                if pos + 1 >= len(data): break
+                if pos + 1 >= len(data):
+                    break
                 skip_count = data[pos]
-                size_count = data[pos+1]
+                size_count = data[pos + 1]
                 pos += 2
+                
                 if size_count > 0:
-                    line_offset += skip_count * 2
+                    # Skip specified columns (2px per skip_count)
+                    line_offset += skip_count
+                    # Copy size_count pixel-pairs (word-oriented: read top byte of each word)
                     chunk = data[pos:pos + size_count * 2]
                     pos += size_count * 2
                     for j in range(size_count):
                         idx = line_offset + j
-                        if idx < len(frame) and j * 2 + 1 < len(chunk):
-                            frame[idx] = chunk[j * 2]
+                        if idx < total_pixels and j < len(chunk):
+                            pixels[idx] = chunk[j]
                     line_offset += size_count
                 else:
-                    line_offset += skip_count * 2
-                    if pos >= len(data): break
+                    # Run-length
+                    line_offset += skip_count
+                    if pos >= len(data):
+                        break
                     run_value = data[pos]
                     pos += 1
                     for j in range(size_count & 0xFF):
                         idx = line_offset + j
-                        if idx < len(frame):
-                            frame[idx] = run_value
+                        if idx < total_pixels:
+                            pixels[idx] = run_value
                     line_offset += size_count
-        
-        self._add_frame(bytes(frame))
-    
-    def _add_frame(self, pixel_data):
-        """Add decoded frame to list."""
-        self.frames.append(pixel_data)
-        
-        # Sync decoder palette: use the first non-palette frame's palette
-        # (the palette is global, set at the start of the animation)
     
     def get_image(self, frame_index=0):
         """Get a PIL Image for a specific frame."""
@@ -305,14 +478,28 @@ class FLCDecoder:
         
         img = Image.new('P', (self.width, self.height))
         img.putdata(list(self.frames[frame_index]))
-        img.putpalette([c for rgb in self.palette for c in rgb])
+        flat_palette = [c for rgb in self.palette for c in rgb]
+        img.putpalette(flat_palette)
         return img
     
     def save_frame(self, frame_index, out_path):
         """Save a specific frame as PNG."""
         img = self.get_image(frame_index)
         if img:
-            img.save(out_path)
+            img = img.convert('RGBA')
+            data = img.getdata()
+            new_data = []
+            for pixel in data:
+                r, g, b, a = pixel
+                # FLC chroma keys:
+                # - Color index 0 is typically background (green-screen)
+                # - Pure magenta (255,0,255) is a common FLC transparency color
+                if (r == 0 and g == 0 and b == 0) or (r == 255 and g == 0 and b == 255):
+                    new_data.append((0, 0, 0, 0))
+                else:
+                    new_data.append(pixel)
+            img.putdata(new_data)
+            img.save(out_path, 'PNG')
             return True
         return False
     
@@ -326,7 +513,8 @@ class FLCDecoder:
         rows = (n + cols - 1) // cols
         
         sheet = Image.new('P', (self.width * cols, self.height * rows))
-        sheet.putpalette([c for rgb in self.palette for c in rgb])
+        flat_palette = [c for rgb in self.palette for c in rgb]
+        sheet.putpalette(flat_palette)
         
         for i, frame in enumerate(self.frames):
             col = i % cols
@@ -335,6 +523,17 @@ class FLCDecoder:
             img.putdata(list(frame))
             sheet.paste(img, (col * self.width, row * self.height))
         
+        # Convert to RGBA and handle chroma keys
+        sheet = sheet.convert('RGBA')
+        data = list(sheet.getdata())
+        new_data = []
+        for pixel in data:
+            r, g, b, a = pixel
+            if (r == 0 and g == 0 and b == 0) or (r == 255 and g == 0 and b == 255):
+                new_data.append((0, 0, 0, 0))
+            else:
+                new_data.append(pixel)
+        sheet.putdata(new_data)
         sheet.save(out_path)
         return True
 
@@ -422,7 +621,6 @@ def scan_only():
     for d, count in sorted(dirs.items()):
         print(f"  {d}: {count}")
     
-    # Size distribution
     sizes = [info['size'] for info in catalog.values() if 'size' in info]
     if sizes:
         print(f"\nSize range: {min(sizes)} - {max(sizes)} bytes")
@@ -452,22 +650,40 @@ if __name__ == '__main__':
     else:
         # Test on a few files
         test_files = [
-            'Tees/FlagLINKS_openShadow.flc',
-            'Male/Golfer_Male_A.flc',
-            'Celebs/Ranger.flc',
+            ('Tees/FlagLINKS_openShadow.flc', None),
+            ('Tees/FlagPARK_open.flc', 'Tees/Flag_PARKpal.pcx'),
+            ('Trees/TreeMapleLarge.flc', None),
+            ('Trees/TreePalmLg.flc', None),
+            ('Trees/TreePineLarge.flc', None),
+            ('Celebs/Ranger.flc', None),
+            ('Water/Wave.flc', None),
         ]
         base = FLC_DIR
-        for rel in test_files:
+        for rel, pal_rel in test_files:
             path = os.path.join(base, rel)
             if os.path.exists(path):
+                pal_path = os.path.join(base, pal_rel) if pal_rel else None
                 print(f"\n=== {rel} ===")
+                if pal_rel:
+                    print(f"    Palette: {pal_rel}")
                 try:
-                    dec = FLCDecoder(path)
+                    dec = FLCDecoder(path, pal_path)
                     print(f"  Size: {dec.width}x{dec.height}, Frames: {len(dec.frames)}, Speed: {dec.speed}ms")
+                    print(f"  Palette non-zero entries: {sum(1 for c in dec.palette if c != (0,0,0))}")
+                    if dec.frames:
+                        unique_vals = len(set(dec.frames[0]))
+                        print(f"  Frame 0 unique pixel values: {unique_vals}")
                     
                     # Save test frame
                     out = f'/tmp/flc_{os.path.basename(rel).replace(".flc","")}.png'
                     dec.save_frame(0, out)
                     print(f"  Frame 0 saved: {out}")
+                    
+                    if len(dec.frames) > 1:
+                        out2 = f'/tmp/flc_{os.path.basename(rel).replace(".flc","")}_mid.png'
+                        dec.save_frame(len(dec.frames)//2, out2)
+                        print(f"  Frame {len(dec.frames)//2} saved: {out2}")
                 except Exception as e:
                     print(f"  Error: {e}")
+                    import traceback
+                    traceback.print_exc()

@@ -162,33 +162,35 @@ Chaque dossier de thème a ses propres palettes pour garantir la cohérence des 
 
 ---
 
-## 6. Convertisseur FLC → PNG
+### Convertisseur FLC → PNG
 
-Le pipeline de conversion (script Python) :
+Le pipeline de conversion (script Python, corrigé et validé) :
 
 ```
-analyze_flc.py   → Analyse l'en-tête, valide le format
-decode_flc.py    → Décodeur FLC → frames individuelles + spritesheet
-convert_flc.py   → Batch conversion avec catalogue
-```
+decode_flc.py   → Décodeur FLC complet avec :
+                   - Opcodes corrigés (0x07=SS2, 0x0F=BRUN, 0x0B=COLOR)
+                   - BRUN flat RLE (paires longueur/couleur sur toute l'image)
+                   - Palette externe auto-découverte (PCX *Pal*.pcx, *_palette.pcx, .pal)
+                   - Chroma key (magenta 255,0,255 + index 0 → transparent)
+                   - Gestion des frames delta (SS2/LC)
+
+**Bugs corrigés :**
+| Problème | Cause | Correction |
+|----------|-------|------------|
+| Pixels gris uniformes | Opcodes 0x07 et 0x0F inversés | 0x07=SS2, 0x0F=BRUN (norme FLC) |
+| Palette jamais chargée | Palette stockée dans fichiers PCX séparés | Auto-discovery + chargement depuis PCX/.pal |
+| Plantes/objets transparents | Index 0 converti en alpha | Seul le magenta pur (255,0,255) + index 0 → transparent |
+| Flag sans couleur | Palette non trouvée | Matching par mots-clés thématiques (PARK→Flag_PARKpal) |
+| Frame 0 vide | BRUN supposait un format par ligne | BRUN modifié en RLE plat sur toute l'image |
 
 **Résultat pour chaque fichier FLC :**
-- `sprites/NomAnimation.png` — Spritesheet (frames horizontales)
-- `sprites/NomAnimation/Frame_000.png` — Frame individuelle
-- `flc_catalog.json` — Métadonnées (width, height, frames, sheet)
+- `sprites/<Cat>/<NomAnimation>.png` — Spritesheet (8 frames par ligne)
+- `sprites/<Cat>/<NomAnimation>/Frame_000.png` — Frame individuelle
 
-### Format du catalogue
-
-```json
-{
-  "Male/MaleNormalSwing_000.flc": {
-    "width": 64,
-    "height": 130,
-    "frames": 16,
-    "sheet": "MaleNormalSwing_000.png"
-  }
-}
-```
+**Statistiques de conversion :**
+- 1 893 fichiers FLC → 130 831 PNGs
+- Taille totale : ~68 Mo
+- Palettes chargées : Tree 256c, Flag ~256c, Bâtiments ~256c
 
 ---
 
