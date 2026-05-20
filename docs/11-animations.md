@@ -1,6 +1,6 @@
 # Animations FLC
 
-> **Confiance :** ✅ Élevée — 1 892 fichiers FLC convertis en PNG, format analysé
+> **Confiance :** ✅ Élevée — 1 893 fichiers FLC convertis en Animated WebP, format analysé
 
 ---
 
@@ -162,34 +162,32 @@ Chaque dossier de thème a ses propres palettes pour garantir la cohérence des 
 
 ---
 
-### Convertisseur FLC → PNG
+### Convertisseur FLC → Animated WebP
 
 Le pipeline de conversion (script Python, corrigé et validé) :
 
 ```
-decode_flc.py   → Décodeur FLC complet avec :
-                   - Opcodes corrigés (0x07=SS2, 0x0F=BRUN, 0x0B=COLOR)
-                   - BRUN flat RLE (paires longueur/couleur sur toute l'image)
-                   - Palette externe auto-découverte (PCX *Pal*.pcx, *_palette.pcx, .pal)
-                   - Chroma key (magenta 255,0,255 + index 0 → transparent)
-                   - Gestion des frames delta (SS2/LC)
+decode_flc.py     → Décodeur FLC complet avec :
+                     - Opcodes corrigés (0x07=SS2, 0x0F=BRUN, 0x0B=COLOR)
+                     - BRUN flat RLE (paires longueur/couleur sur toute l'image)
+                     - Palette externe auto-découverte (PCX *Pal*.pcx, *_palette.pcx, .pal)
+                     - Chroma key (magenta 255,0,255 + index 0 → transparent)
+                     - Gestion des frames delta (SS2/LC)
+                     - Export Animated WebP (save_animated_webp)
 
-**Bugs corrigés :**
-| Problème | Cause | Correction |
-|----------|-------|------------|
-| Pixels gris uniformes | Opcodes 0x07 et 0x0F inversés | 0x07=SS2, 0x0F=BRUN (norme FLC) |
-| Palette jamais chargée | Palette stockée dans fichiers PCX séparés | Auto-discovery + chargement depuis PCX/.pal |
-| Plantes/objets transparents | Index 0 converti en alpha | Seul le magenta pur (255,0,255) + index 0 → transparent |
-| Flag sans couleur | Palette non trouvée | Matching par mots-clés thématiques (PARK→Flag_PARKpal) |
-| Frame 0 vide | BRUN supposait un format par ligne | BRUN modifié en RLE plat sur toute l'image |
+convert_all_to_webp.py → Convertisseur unifié :
+                          - PCX / BMP → WebP lossless
+                          - FLC → Animated WebP (via decode_flc.py)
+                          - Extraction des tuiles 64×64 des atlas de terrain
+
+**Bugs corrigés (idem) :** … cf. historique git
 
 **Résultat pour chaque fichier FLC :**
-- `sprites/<Cat>/<NomAnimation>.png` — Spritesheet (8 frames par ligne)
-- `sprites/<Cat>/<NomAnimation>/Frame_000.png` — Frame individuelle
+- `animations/<Cat>/<NomAnimation>.webp` — **Animated WebP** (1 fichier, toutes les frames)
 
 **Statistiques de conversion :**
-- 1 893 fichiers FLC → 130 831 PNGs
-- Taille totale : ~68 Mo
+- 1 893 fichiers FLC → **1 893 Animated WebP**
+- Taille totale : **34 Mo** (vs 588 Mo en PNG, −94%)
 - Palettes chargées : Tree 256c, Flag ~256c, Bâtiments ~256c
 
 ---

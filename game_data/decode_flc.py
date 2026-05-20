@@ -537,6 +537,46 @@ class FLCDecoder:
         sheet.save(out_path)
         return True
 
+    def save_animated_webp(self, out_path):
+        """Save all frames as animated WebP (un seul fichier)."""
+        if not self.frames:
+            return False
+
+        duration = self.speed  # ms par frame
+
+        images = []
+        for i in range(len(self.frames)):
+            img = Image.new('P', (self.width, self.height))
+            img.putdata(list(self.frames[i]))
+            flat_palette = [c for rgb in self.palette for c in rgb]
+            img.putpalette(flat_palette)
+            img = img.convert('RGBA')
+            # Chroma key : noir (0,0,0) et magenta (255,0,255) → transparent
+            data = list(img.getdata())
+            new_data = []
+            for pixel in data:
+                r, g, b, a = pixel
+                if (r == 0 and g == 0 and b == 0) or (r == 255 and g == 0 and b == 255):
+                    new_data.append((0, 0, 0, 0))
+                else:
+                    new_data.append(pixel)
+            img.putdata(new_data)
+            images.append(img)
+
+        if images:
+            images[0].save(
+                out_path,
+                'WEBP',
+                save_all=True,
+                append_images=images[1:],
+                duration=duration,
+                loop=0,
+                lossless=True,
+                method=6,
+            )
+            return True
+        return False
+
 
 # ================================================================
 # Main
@@ -568,6 +608,38 @@ def scan_flcs():
                     catalog[rel] = {'error': str(e)}
     
     return catalog, total
+
+
+def decode_all_webp():
+    """Convert all FLC files to animated WebP."""
+    out_dir = os.path.expanduser("~/simgolf-re/game_data/converted/animations")
+    os.makedirs(out_dir, exist_ok=True)
+    count = 0
+
+    for root, dirs, files in os.walk(FLC_DIR):
+        for f in sorted(files):
+            if f.lower().endswith('.flc'):
+                path = os.path.join(root, f)
+                rel = os.path.relpath(path, FLC_DIR)
+                base = os.path.splitext(f)[0]
+
+                # Preserve subdirectory structure
+                rel_dir = os.path.dirname(rel)
+                out_subdir = os.path.join(out_dir, rel_dir)
+                os.makedirs(out_subdir, exist_ok=True)
+
+                webp_path = os.path.join(out_subdir, f'{base}.webp')
+
+                try:
+                    dec = FLCDecoder(path)
+                    dec.save_animated_webp(webp_path)
+                    count += 1
+                    if count % 200 == 0:
+                        print(f'  Converted {count}/1893...')
+                except Exception as e:
+                    print(f'  Error: {rel}: {e}')
+
+    print(f'  Converted {count} FLC to Animated WebP')
 
 
 def decode_all():
@@ -643,6 +715,8 @@ def generate_catalog():
 if __name__ == '__main__':
     if '--all' in sys.argv:
         decode_all()
+    elif '--webp' in sys.argv:
+        decode_all_webp()
     elif '--scan' in sys.argv:
         scan_only()
     elif '--catalog' in sys.argv:

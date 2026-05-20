@@ -123,7 +123,17 @@ interface/golfballhalopage_male.pcx
 | Scenic | ~100 | Drapeaux, bancs, lampadaires |
 | Effects | ~92 | Éclairs, étincelles, fumée |
 
-> Les FLC ont été convertis en PNG via `decode_flc.py` — cf. [11-animations.md](11-animations.md) pour les détails de conversion (opcodes, palettes, chroma key)
+> Tous les assets sont désormais convertis en **WebP** via `convert_all_to_webp.py` :
+> - **FLC** → **Animated WebP** (1 WebP par animation, cf. [11-animations.md](11-animations.md))
+> - **PCX** → **WebP** (lossless, chroma key)
+> - **BMP** → **WebP** (lossless, chroma key)
+>
+> Les WebP se trouvent dans :
+> - `game_data/converted/webp/` — images fixes (PCX/BMP)
+> - `game_data/converted/animations/` — animations (FLC)
+> - `game_data/converted/webp/tiles/` — tuiles 64×64 extraites des atlas
+>
+> Résultat : 828 Mo → **67 Mo** (−92%)
 
 ---
 
