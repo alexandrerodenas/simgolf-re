@@ -104,10 +104,14 @@ Save character      → Sauvegarde du profil golfeur
 ```
 
 Les fonctions Windows utilisées pour la persistence :
+- `CreateFileA` — ouverture/création de fichiers
+- `ReadFile` — lecture de données
+- `WriteFile` — écriture de données
+- `DeleteFileA` — suppression de fichiers
+- `CreateFileMappingA` — mapping mémoire pour fichiers
 - `LoadLibraryA` — chargement DLL
 - `LoadImageA` — chargement image
 - `LoadCursorA` — chargement curseur
-- `LoadStringA` — chargement chaîne (via ressource?)
 
 ---
 

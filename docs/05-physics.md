@@ -19,8 +19,21 @@ InputHandler (clic terrain)
             ├── 4. Animation (FLC)
             └── 5. Résultat → mise à jour score
 ```
+vtable[0x68] du GameState. Il est initialisé
+**dynamiquement** dans le constructeur de GameState.
 
-La vtable[0x68] est initialisée **dynamiquement** dans le constructeur de GameState à `0x4a6ab8` — impossible à tracer statiquement. Trois candidates FPU ont été identifiées mais aucune ne contient la simulation complète.
+### Adresse de la vtable
+
+**Découverte :** La vtable[0x68] pointe vers `0x4048a0` — qui est un simple `return 0;`
+(thunk). La vraie fonction de simulation est résolue dynamiquement via le dispatch
+virtuel et n'est pas trouvable statiquement.
+
+**Candidates FPU identifiées et analysées :**
+- `0x4048a0` — vtable[0x68] (thunk `return 0`) — PAS la simulation
+- `0x417333` — `fsqrt` (calcul distance pour affichage club recommandé)
+- `0x464EE0` — `fild`+`fmul`×0.05 (calcul distance = property_byte × 0.05)
+- `0x491c29` — `fsin` (génération de table pour terrain/hauteurs)
+- `0x460cf0` — Fonction principale de la balle (40+ refs à `0x81ca10`)
 
 ---
 
