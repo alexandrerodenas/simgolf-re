@@ -17,40 +17,55 @@ Le dossier [`docs/`](docs/index.md) contient un guide de référence complet pou
 | [Scoring](docs/06-scoring.md) | Score SGA, évaluation |
 | [Tournois](docs/07-tournaments.md) | Types, scheduling, prize money |
 | [Économie](docs/08-economy.md) | Green fees, revenus, coûts |
-| [UI](docs/09-ui.md) | Écrans, panels, input, 84 PCX |
+| [UI](docs/09-ui.md) | Écrans, panels, input |
 | [Audio](docs/10-audio.md) | sound.dll, WAVE/MIDI |
-| [Animations](docs/11-animations.md) | ⚠️ FLC, sprites |
+| [Animations](docs/11-animations.md) | FLC, sprites, format |
 | [Data Formats](docs/12-data-formats.md) | .dta, .pro, .chr, .glf, .sve |
 | [Save System](docs/13-save-system.md) | ⚠️ À compléter |
 | [Scenarios](docs/14-scenarios.md) | ⚠️ À compléter |
-| [Asset Inventory](docs/15-asset-inventory.md) | PCX, FLC, WAV, textures |
+| [Asset Inventory](docs/15-asset-inventory.md) | PCX, FLC, WAV, textures BMP |
 | [Function Map](docs/16-function-map.md) | Adresses ASM de toutes les fonctions |
 | [Known Unknowns](docs/17-known-unknowns.md) | Ce qui reste à découvrir |
+| [Analyse Variantes Tuiles](docs/analyse_variantes_tuiles.md) | Variations de textures par type de terrain |
 
-## Structure
+## Structure du Projet
 
 ```
 simgolf-re/
-├── raw_decomp/          ← Désassemblage brut (1.1M lignes)
-│   ├── golf_exe/         golf.exe dépaqueté (131K → 1.1M lignes)
-│   ├── Terrain_dll/      Terrain.dll — 38 exports, moteur 3D OpenGL
-│   ├── jgld_dll/         jgld.dll — 1 199 fonctions, sprites GDI32
-│   ├── sound_dll/        sound.dll — 12 exports, Wave/MIDI/WaveIn
-│   └── scripts/          17 scripts Python d'analyse
+├── docs/                ← Documentation complète (18 docs + analyses)
 │
-├── cleaned_c/           ← Code C nettoyé et documenté
-│   ├── terrain_*.c       12 fichiers (38/38 exports Terrain.dll)
-│   ├── game_*.c          13 fichiers (pipeline complet golf.exe)
-│   └── *.md              architecture, mapping, analyses
+├── tools/               ← Scripts Python organisés par thème
+│   ├── analyze/         ← Analyse binaire et formats (3 scripts)
+│   ├── convert/         ← Conversion d'assets (6 scripts, dont decode_flc.py)
+│   ├── parse/           ← Parsing des fichiers de données (.chr, .glf, .pro, .dta)
+│   └── shell/           ← Scripts shell (vide — à venir)
 │
-├── game_data/           ← Binaires et données originales
-│   ├── exe/              DLLs + golf.exe packé
-│   ├── exe_unpacked/     golf.exe dépaqueté DEViANCE (946 Ko)
-│   ├── extracted/        Textures (2 671 BMP→PNG), UI (649 PCX→PNG)
-│   ├── converted/        Animations FLC → PNG (1 892/1 893)
-│   └── scripts/          9 scripts Python extraction/conversion
+├── data/                ← Données du jeu
+│   ├── raw/             ← Assets originaux extraits du CD (PCX, BMP, FLC, WAV, DLL)
+│   ├── converted/       ← Convertis en WebP
+│   │   ├── webp/        ←   → Images fixes (PCX/BMP → WebP lossless)
+│   │   ├── animations/  ←   → Animations (FLC → Animated WebP)
+│   │   └── tiles/       ←   → Tuiles 64×64 extraites des atlas de terrain
+│   ├── exe/             ← Binaires .exe et DLL packés (version CD)
+│   ├── exe_patched/     ← .exe patché
+│   └── exe_unpacked/    ← .exe dépaqueté DEViANCE (946 Ko)
 │
-└── PLAN_DE_SUIVI.md
+├── ref/                 ← Références rétro-ingénierie
+│   ├── decompiled/      ← Code C nettoyé et documenté
+│   ├── raw_disasm/      ← Désassemblage brut (1.1M lignes)
+│   │   ├── golf_exe_full_disasm.txt
+│   │   ├── Terrain_dll_disasm.txt
+│   │   ├── jgld_dll_disasm.txt
+│   │   ├── sound_dll_disasm.txt
+│   │   └── scripts/     17 scripts Python d'analyse
+│   └── ...
+│
+├── src/                 ← Code source du projet (simgolf-web)
+│   └── types/           ← Définitions TypeScript des structures
+│       └── game_data_types.ts
+│
+├── README.md
+└── .gitignore
 ```
 
 ## Statut
@@ -61,8 +76,8 @@ simgolf-re/
 | Nettoyage C — Terrain.dll (38/38 exports) | ✅ |
 | Nettoyage C — golf.exe (pipeline complet) | ✅ |
 | Nettoyage C — Systèmes de jeu (éco, scoring, etc.) | ✅ |
-| Conversion textures (BMP→PNG, PCX→PNG) | ✅ |
-| Décodeur animations FLC (1 892/1 893) | ✅ |
+| Conversion textures (BMP, PCX → WebP) | ✅ |
+| Conversion animations (FLC → Animated WebP) | ✅ |
 | Parseur données (.chr, .glf, .pro, .dta) | ✅ (Python) |
 | Portage Web TypeScript | 🔜 |
 
@@ -73,3 +88,9 @@ simgolf-re/
 - **sound.dll** → WINMM : Wave/MIDI/WaveIn
 
 > *Correction majeure v2* : Terrain.dll NE passe PAS par GDI32 — c'est de l'OpenGL immediate mode (glBegin/glEnd, lumière, textures). JGL était un wrapper interne renommé, pas un moteur séparé.
+
+## Dernières stats
+
+```bash
+python3 tools/convert/convert_all_to_webp.py --stats
+```

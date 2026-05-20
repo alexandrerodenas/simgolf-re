@@ -100,3 +100,7 @@ Ce document sert de **cahier des charges technique** pour quiconque voudrait :
 - **Pas de Ghidra/IDA** — outils CLI uniquement
 - **Pas de débogueur** — l'EXE ne peut pas être exécuté sur l'environnement actuel
 - **Validation :** croisement entre le code ASM, les chaînes extraites, et les fichiers de données
+
+> **Ressources converties :** Tous les assets (PCX, BMP, FLC) sont disponibles en **WebP** dans `data/converted/` (images fixes + animated WebP). Voir [15-asset-inventory.md](15-asset-inventory.md).
+
+> **Plan de suivi :** cf. [PLAN_DE_SUIVI.md](./PLAN_DE_SUIVI.md) pour l'état d'avancement global du projet.
