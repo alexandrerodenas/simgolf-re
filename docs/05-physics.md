@@ -197,3 +197,60 @@ Ce qu'on **ne sait pas** :
 - L'effet du vent et du spin
 - La gestion des collisions (arbres, obstacles)
 - Le système de putt (lecture de pente)
+
+---
+
+## 6. Références Théoriques pour la Simulation Balistique
+
+> ⚠️ Cette section est une **référence théorique** issue de la littérature sur la physique du golf et de projets open-source (OpenShotGolf, GolfSim). Ces équations ne sont PAS confirmées dans le binaire SimGolf original — elles servent de base pour une réimplémentation.
+
+### 6.1 Équations du Vol Aérodynamique
+
+Le mouvement d'une balle de golf dans l'espace 3D est régi par 3 forces principales :
+
+**Gravité :** `F_G = m × g` (constante, vers le bas, `g = 9.81 m/s²`)
+
+**Traînée aérodynamique (Drag) :** `F_D = ½ × ρ × v² × C_D × S`
+
+| Variable | Description | Valeur typique |
+|----------|-------------|:--------------:|
+| ρ | Densité de l'air | 1.225 kg/m³ (niveau mer) |
+| v | Vélocité instantanée | Variable |
+| C_D | Coefficient de traînée | ~0.25-0.35 (dépend du nombre de Reynolds) |
+| S | Section transversale | π × r² (r ≈ 0.0213m) |
+
+**Portance de Magnus (Spin) :** `F_L = ½ × ρ × v² × C_L × S`
+
+`C_L` dépend du **ratio de spin** `S = ω × r / v` où ω = vitesse angulaire de rotation.
+
+### 6.2 Intégration Numérique
+
+Pour traduire les forces continues en positions discrètes, le jeu utilise probablement une intégration numérique. Deux approches :
+
+**Euler explicite (instable pour les rebonds) :**
+```
+position += velocity × Δt
+velocity += acceleration × Δt
+```
+
+**Euler symplectique (semi-implicite, recommandé) :**
+```
+velocity += acceleration × Δt    // vélocité d'abord
+position += velocity × Δt         // puis position
+```
+
+L'Euler symplectique préserve mieux l'énergie du système et évite les rebonds exponentiels.
+
+### 6.3 Phases de la Balle
+
+```
+1. FLIGHT (vol)     : Ballistics + drag + Magnus → 3D
+   ↓ impact
+2. RUN (rebond)     : Restitution × vélocité, coefficient selon sol
+   ↓ friction
+3. ROLL (roulement) : Décélération par friction jusqu'à arrêt
+   ↓ v ≈ 0
+4. REST (arrêt)     : Position finale
+```
+
+⚠️ **Problème du tunneling :** Une balle rapide peut traverser une surface entre deux ticks de simulation. Solution : raycasting continu (CCD — Continuous Collision Detection).

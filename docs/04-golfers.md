@@ -152,6 +152,32 @@ Basée sur (déduit du code ASM) :
 4. Skill du golfeur
 5. Conditions météo (vent)
 
+#### Heuristique à 4 Facteurs (Référence Théorique)
+
+Une taxonomie plus détaillée de la décision de club, issue de l'analyse de projets open-source (OpenShotGolf) et de la littérature sur l'IA de golf :
+
+| Facteur | Paramètres évalués | Impact sur la décision |
+|---------|-------------------|----------------------|
+| **Topologie & Élévation** | Dénivelé (montée/descente) | Ajuste la distance projetée ; modifie le loft pour l'angle parabolique |
+| **Sol (Lie)** | Type de surface (fairway/rough/bunker) | Facteur d'atténuation sur le transfert d'énergie ; force un wedge en bunker |
+| **Vent** | Force et direction | Translation vectorielle de la cible ; modifie la hauteur d'apogée |
+| **Risque** | Profil de l'IA (Imagination) | Pondère le coût d'un échec vs. lay-up stratégique |
+
+L'attribut **Imagination** du golfeur influence directement la tolérance au risque. Une IA conservatrice choisira un club plus court pour "poser" la balle avant un obstacle d'eau (lay-up), même si un club plus long serait mathématiquement optimal.
+
+#### Pathfinding (Navigation)
+
+L'IA utilise l'algorithme **A\*** pour naviguer sur le parcours. Les coûts heuristiques des tuiles varient selon le type de terrain :
+
+| Type de terrain | Coût heuristique | Effet |
+|----------------|:----------------:|-------|
+| **Path** (chemin pavé) | Très bas | Attire l'IA, optimise le trafic des voiturettes |
+| **Fairway / Green** | Modéré | Coût standard (G-cost nominal) |
+| **Rough / DeepRough** | Élevé | L'IA contourne sauf si ligne droite plus courte |
+| **Eau / Obstacles** | Infini (impassable) | Bloque le graphe de navigation |
+
+> ⚠️ Ces coûts heuristiques sont déduits du comportement observé des golfeurs dans le jeu original, pas du code ASM.
+
 ### Logique de Tir (StartGolferAction @ 0x49acf0)
 
 ```

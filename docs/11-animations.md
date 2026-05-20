@@ -23,6 +23,27 @@ La **ring frame** (frame de bouclage) est standard.
 
 Les frames sont stockées en **delta compression** — chaque frame ne contient que les pixels qui changent par rapport à la frame précédente. Pas de compression complexe.
 
+### Opcodes FLIC
+
+Le format FLIC utilise des **opcodes** (codes opératoires) qui définissent comment chaque frame est décodée. Les opcodes essentiels pour SimGolf :
+
+| Opcode | Hex | Nom | Description |
+|:------:|:---:|-----|-------------|
+| 11 | `0x0B` | **FLI_COLOR** | Modification de la palette de couleurs indexée. Crucial pour les effets de cycle de palette (color cycling) utilisés pour animer l'eau ou l'interface. |
+| 12 | `0x0C` | **FLI_LC** | Compression par ligne. Spécifie exactement quels pixels d'une ligne donnée sont modifiés par rapport à la frame précédente. |
+| 13 | `0x0D` | **FLI_BLACK** | Remplit la frame entière en noir (frame vide / reset). |
+| 15 | `0x0F` | **FLI_BRUN** | Compression par codage par plages (Run-Length Encoding) sur les octets. Efficace pour les grandes zones de couleur unie (herbe, ciel). |
+| 16 | `0x10` | **FLI_COPY** | Copie la frame entière sans compression (keyframe / image clé). |
+
+**Stratégie de décodage pour un portage :**
+1. Charger tout le fichier `.flc` en mémoire
+2. Itérer sur les frames, appliquer les opcodes séquentiellement
+3. Maintenir un framebuffer delta entre les frames
+4. Transcodage vers une spritesheet PNG (pour éviter le décodage en temps réel)
+5. Libérer le fichier FLC original
+
+> Bibliothèque recommandée pour le décodage : `libflic` (Rust/C, bindings disponibles). Alternative : FFMPEG (flicvideo.c).
+
 ---
 
 ## 2. Inventaire des Animations (1 892 fichiers)

@@ -71,11 +71,40 @@ Chaque tuile a **4 coins** (TL, TR, BR, BL — TopLeft, TopRight, BottomRight, B
 **Plage de valeurs :** 0-4 (unités de hauteur)
 **Déclivité maximale :** 1 niveau de différence entre coins adjacents (contrainte vérifiée par `setType()`)
 
+#### Modèle 5 Niveaux (Confirmé par ASM)
+
+Notre analyse ASM confirme 5 niveaux de hauteur distincts (0-4) par coin :
+
+| Niveau | Hauteur | Usage |
+|:------:|:-------:|-------|
+| 0 | Base | Terrain plat |
+| 1 | Faible | Petite bosse |
+| 2 | Moyen | Colline |
+| 3 | Haut | Haute colline |
+| 4 | Max | Point culminant |
+
 **Fonctions d'élévation :**
 - `getElevation(tile, corner)` @ 0x10001de0 — lire hauteur d'un coin
 - `elevateCorner(tile, corner)` @ 0x1000a5c0 — monter un coin
 - `lowerCorner(tile, corner)` @ 0x1000a620 — descendre un coin
 - `lowerEdgeCorner(tile, corner, ...)` @ 0x10001154 — bord de terrain
+
+#### Propagation Récursive de l'Élévation
+
+Quand un coin d'une tuile est surélevé ou abaissé, les coins partagés des tuiles adjacentes doivent être mis à jour pour éviter des déchirures visuelles entre les tuiles.
+
+**Algorithme de propagation :**
+
+```
+raiseTile(x, y):
+  1. Modifier le(s) coin(s) de la tuile (x, y)
+  2. Pour chaque tuile adjacente (x-1, y-1), (x, y-1), (x+1, y), etc. :
+     - Vérifier si un coin partagé existe
+     - Si oui, appliquer la même modification
+  3. Redessiner toutes les tuiles affectées
+```
+
+> 🧠 **Note de recherche :** Une discussion technique (Gemini) décrit un modèle alternatif où chaque coin est binaire (0/1, surélevé ou pas) avec un masque 4 bits (N=1, E=2, S=4, W=8) donnant 16 états (0-15) par tuile. Ce modèle n'est **pas** confirmé par notre analyse ASM qui montre 5 niveaux de hauteur (0-4). Il est possible que ce soit une approximation utilisée pour le calcul des textures de transition (auto-tiling) plutôt que pour l'élévation elle-même. À valider.
 
 **Géométries d'élévation (A-E) :**
 
@@ -335,6 +364,36 @@ Utilisées pour l'éditeur de terrain (surbrillance de sélection, placement d'o
 - `hasConnectedPath(x, y)` @ 0x1000a450 — vérifie la connectivité des chemins
 
 Le hit-test convertit les coordonnées écran (x, y) en coordonnées tuile (tx, ty) via une transformation inverse de la projection isométrique.
+
+### Mathématiques de la Projection Isométrique
+
+La projection utilisée par SimGolf est **dimétrique** (rapport 2:1), pas une vraie isométrique (120°). Les formules sont :
+
+**World → Screen (projection) :**
+```
+screenX = (mapX - mapY) × TILE_W/2
+screenY = (mapX + mapY) × TILE_H/2
+```
+
+Avec les valeurs typiques : `TILE_W = 128` px, `TILE_H = 64` px.
+
+**Screen → World (picking) :**
+```
+mapX = (screenX / (TILE_W/2) + screenY / (TILE_H/2)) / 2
+mapY = (screenY / (TILE_H/2) - screenX / (TILE_W/2)) / 2
+```
+
+**Avec décalage de caméra (pan) :**
+```
+relX = screenX - cameraOffsetX
+relY = screenY - cameraOffsetY
+mapX = (relX / (TILE_W/2) + relY / (TILE_H/2)) / 2
+mapY = (relY / (TILE_H/2) - relX / (TILE_W/2)) / 2
+tileX = floor(mapX)
+tileY = floor(mapY)
+```
+
+**⚠️ Problème des hauteurs (Z) :** En isométrique, une tuile surélevée est décalée visuellement vers le haut. Le picking 2D pur donne un tile incorrect si la hauteur n'est pas prise en compte. La solution robuste utilise un **tampon de profondeur** (Z-buffer) ou un **raycasting** qui intersecte la géométrie 3D réelle.
 
 ---
 
