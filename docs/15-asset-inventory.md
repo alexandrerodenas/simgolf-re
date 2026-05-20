@@ -123,7 +123,7 @@ interface/golfballhalopage_male.pcx
 | Scenic | ~100 | Drapeaux, bancs, lampadaires |
 | Effects | ~92 | Éclairs, étincelles, fumée |
 
-> Les FLC ont été convertis en PNG via `convert_flc.py`
+> Les FLC ont été convertis en PNG via `decode_flc.py` — cf. [11-animations.md](11-animations.md) pour les détails de conversion (opcodes, palettes, chroma key)
 
 ---
 
