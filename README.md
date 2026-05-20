@@ -2,6 +2,31 @@
 
 Repo de rétro-ingénierie complète de **SimGolf** (Firaxis/Maxis 2002) vers un remake web mobile-first (Canvas 2D + WebGL).
 
+## Documentation Complète
+
+Le dossier [`docs/`](docs/index.md) contient un guide de référence complet pour toute refonte :
+
+| Document | Contenu |
+|----------|---------|
+| [Index](docs/index.md) | Structure du guide, aperçu du jeu |
+| [Architecture](docs/01-architecture.md) | EXE + DLLs, mémoire, boucle de jeu |
+| [Terrain](docs/02-terrain.md) | Tuiles, élévation, rendu isométrique |
+| [Graphismes](docs/03-graphics.md) | JGL (2D) + Terrain.dll (OpenGL) |
+| [Golfeurs](docs/04-golfers.md) | Pros, célébrités, stats, IA |
+| [Physique](docs/05-physics.md) | ⚠️ À compléter |
+| [Scoring](docs/06-scoring.md) | Score SGA, évaluation |
+| [Tournois](docs/07-tournaments.md) | Types, scheduling, prize money |
+| [Économie](docs/08-economy.md) | Green fees, revenus, coûts |
+| [UI](docs/09-ui.md) | Écrans, panels, input, 84 PCX |
+| [Audio](docs/10-audio.md) | sound.dll, WAVE/MIDI |
+| [Animations](docs/11-animations.md) | ⚠️ FLC, sprites |
+| [Data Formats](docs/12-data-formats.md) | .dta, .pro, .chr, .glf, .sve |
+| [Save System](docs/13-save-system.md) | ⚠️ À compléter |
+| [Scenarios](docs/14-scenarios.md) | ⚠️ À compléter |
+| [Asset Inventory](docs/15-asset-inventory.md) | PCX, FLC, WAV, textures |
+| [Function Map](docs/16-function-map.md) | Adresses ASM de toutes les fonctions |
+| [Known Unknowns](docs/17-known-unknowns.md) | Ce qui reste à découvrir |
+
 ## Structure
 
 ```
