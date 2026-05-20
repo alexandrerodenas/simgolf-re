@@ -148,6 +148,10 @@ Les passes sont rendues par `renderSingleTile` qui boucle sur `renderPassCount` 
 
 ### Auto-Tiling (Transition entre types)
 
+Le système d'auto-tiling détermine quelle texture afficher pour chaque tuile en fonction de ses voisines. Deux approches complémentaires existent :
+
+#### Approche Originale SimGolf (RE)
+
 Quand 2 terrains de types différents sont adjacents, le jeu sélectionne une texture de bordure via `AutoTiler` :
 
 ```
@@ -160,7 +164,98 @@ AutoTiler.computeNeighborMask():
 Priorité : N > E > S > W (bit 0 = N, bit 1 = E, etc.)
 ```
 
-### Éclairage
+**Par rapport aux textures :** Ce système à 4 bits (N/E/S/W) correspond aux suffixes A-D dans les noms de fichiers BMP (`RoughA0001` = côté N, `RoughB0001` = côté E, etc.). La priorisation fait qu'une seule orientation est choisie par tuile.
+
+#### Approche Généralisée par Sous-Tuiles (MadcoreTom / WebGL2)
+
+Une approche plus flexible (supportant N types de terrain simultanément) divise chaque tuile en **4 sous-tuiles** (2×2) et examine 3 voisins locaux pour chaque sous-tuile :
+
+```
+Pour chaque sous-tuile (sx, sy) ∈ [0,1]×[0,1] :
+  1. Lire le type de la tuile centrale
+  2. Lire les 3 voisins locaux :
+     - sameH : voisin horizontal (même ligne, colonne adjacente)
+     - sameV : voisin vertical (même colonne, ligne adjacente)
+     - sameD : voisin diagonal
+  3. Sélectionner selon le pattern :
+     ┌──────────────────────────────────┬──────────┐
+     │ Pattern                          │ Résultat │
+     ├──────────────────────────────────┼──────────┤
+     │ sameV && sameH && sameD          │ Full (F) │
+     │ sameV && sameH                   │ Side (S) │
+     │ sameH                            │ Outer In │
+     │ sameV                            │ Inner In │
+     │ aucun                            │ Full Alt │
+     └──────────────────────────────────┴──────────┘
+```
+
+**Avantage :** Fonctionne avec un nombre arbitraire de types de terrain dans une seule texture 3D. La texture source (8×8 sous-tuiles) contient tous les cas pour tous les types.
+
+---
+
+### Triangle Layout (Choix de la Diagonale)
+
+Chaque tuile carrée est divisée en **2 triangles**. Le choix de la diagonale de division est critique pour un rendu correct des reliefs :
+
+**Règle :** La diagonale relie les **2 coins ayant la plus petite différence de hauteur**.
+
+```
+B0(tile) = |height(TL) - height(BR)| < |height(TR) - height(BL)| ? 0 : 1
+
+0 → diagonale TL↔BR (les deux coins les plus proches)
+1 → diagonale TR↔BL
+```
+
+**Pourquoi c'est important :**
+- Un pic (pyramide) n'est correctement rendu qu'avec la bonne diagonale
+- Sans ce choix, un pic serait rendu comme une pente directionnelle
+- SimCity 2000 utilise la règle inverse (diagonale entre les plus éloignés), ce qui donne des artefacts sur les sommets
+
+**Layout des sommets (B0=0, diagonale TL-BR) :**
+```
+Triangle 1 : [TL, TR, BL]
+Triangle 2 : [TR, BR, BL]
+```
+
+**Layout des sommets (B0=1, diagonale TR-BL) :**
+```
+Triangle 1 : [TL, TR, BR]
+Triangle 2 : [TR, BR, BL] → alternatif
+```
+
+**Layout mémoire (6 sommets × 8 floats) :**
+```
+position (3) : x, y, z
+normale   (3) : nx, ny, nz
+texcoord  (2) : u, v
+```
+
+Chaque tuile génère 6 sommets (2 triangles × 3 sommets), soit 48 floats par tuile.
+
+---
+
+### Interpolation de Hauteur (Barycentrique)
+
+Pour positionner un objet (golfeur, arbre, drapeau) sur le terrain à des coordonnées flottantes (x, y), on interpole la hauteur en utilisant le **triangle layout** de la tuile :
+
+```
+interpolateHeight(tile, fx, fy) :
+  1. Déterminer le layout B0 de la tuile
+  2. Coordonnées locales : lx = fx % 1, ly = fy % 1
+  3. Si B0 = 0 (diagonale TL-BR):
+     Si lx + ly > 1 → triangle BR : 
+       h = (lx+ly-1)×h_BR + (1-lx)×h_BL + (1-ly)×h_TR
+     Sinon → triangle TL :
+       h = (1-lx-ly)×h_TL + lx×h_TR + ly×h_BL
+  4. Si B0 = 1 (diagonale TR-BL):
+     Idem après rotation 90° des coordonnées (lx'=ly, ly'=1-lx)
+```
+
+C'est une interpolation **barycentrique** sur le bon triangle. Cette méthode garantit une hauteur cohérente avec le rendu visuel.
+
+---
+
+### Normales et Éclairage
 
 Terrain.dll importe `glLight*` d'OpenGL. Le jeu a :
 - `changeLighting(level)` @ 0x100011c2 — change les paramètres d'éclairage
