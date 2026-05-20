@@ -51,6 +51,7 @@ Ce guide est organisé en fichiers indépendants par domaine. Chaque fichier peu
 | [15-asset-inventory.md](../docs/15-asset-inventory.md) | Inventaire complet des assets (PCX, FLC, sons) | ✅ Élevée |
 | [16-function-map.md](../docs/16-function-map.md) | Carte des fonctions ASM et adresses | ✅ Élevée |
 | [17-known-unknowns.md](../docs/17-known-unknowns.md) | Ce qu'on ne sait pas encore | ✅ Sûr |
+| [18-trees.md](../docs/18-trees.md) | Système des arbres : tuiles Woods (ID 14) + sprites FLC animés | ✅ Élevée |
 | [reference-opengolf-tycoon.md](../docs/reference-opengolf-tycoon.md) | Leçons du projet OpenGolfTycoon (loopmachine) | 🧠 Source externe |
 | [reference-madcoretom-heightmap.md](../docs/reference-madcoretom-heightmap.md) | Techniques WebGL2 : heightmap, auto-tiling, sous-tuiles, picking (MadcoreTom) | 🧠 Source externe |
 
