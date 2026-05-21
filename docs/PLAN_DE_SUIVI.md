@@ -1,9 +1,9 @@
 # SimGolf RE — Plan de Suivi & Status
 
 > Projet : Rétro-ingénierie de Sid Meier's SimGolf (Firaxis/Maxis, 2002)  
-> Cible : Portage Web Mobile-First (TypeScript, Canvas 2D + WebGL)  
+> Cible : Reverse Engineering complet  
 > Début : 17 Mai 2026  
-> Méthode : Décompilation → C propre → TypeScript
+> Méthode : Décompilation → C propre
 
 ---
 
@@ -82,7 +82,7 @@ Voir `MAPPING.md` pour le détail des 38 exports.
 ### Analyse sound.dll → FAIT
 - 12 exports, 3 devices (Wave/DirectSound, WaveIn, MIDI)
 - SoundManager 92 bytes, Wave_Device 16 Ko
-- Portage Web Audio API + MIDI
+- Analyse complète Wave/MIDI/WaveIn
 
 ### Architecture Gameplay (golf.exe dépaqueté) → ANALYSÉ
 131 259 lignes de désassemblage générées. Cartographie complète :
@@ -255,10 +255,10 @@ WinMain
 - [ ] Parseur C pour `celebrities.dta` (50 célébrités)
 - [ ] Parseur C pour fichiers .chr (21 personnages)
 - [ ] Parseur C pour .pro profils golfeur
-- [ ] Intégration structures de données dans le portage TypeScript
+- [ ] Intégration structures de données dans le parseur C
 
 **Reste :** [Le parseur C est déplacé en Priorité 11]
-- La documentation est à jour. Prochaine étape : attaquer le portage typeScript.
+- La documentation est à jour. Prochaine étape : attaquer la décompilation restante.
 
 ---
 
@@ -345,4 +345,4 @@ jgld.dll (1 export)
 ---
 
 *Document généré le 20 Mai 2026 — Hermes-RE*  
-*Prochaine mise à jour : avant le début du portage web*
+*Prochaine mise à jour : avant la fin de l'analyse complète*

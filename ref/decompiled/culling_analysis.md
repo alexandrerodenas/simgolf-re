@@ -130,7 +130,7 @@ sans avoir besoin de tri Z explicite (coordinateur isométrique).
 Pour le mode focus, l'ordre s'adapte dynamiquement selon la position de la tuile focale
 et peut changer selon le niveau de zoom (4 chemins différents dans l'ASM).
 
-### Notes pour le portage web
+### Notes d'implémentation du culling
 
 1. Le render complet fait **toujours** 31×31 = 961 tuiles — indépendamment de la taille de la carte
 2. Le render focalisé itère sur une fenêtre dynamique de ~50 tuiles autour du focus

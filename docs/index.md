@@ -1,4 +1,4 @@
-# SimGolf (2002) — Guide de Référence Complet pour Refonte
+# SimGolf (2002) — Guide de Référence Complet
 
 > Document généré par rétro-ingénierie du binaire original (golf.exe + DLLs)
 > Mai 2026 — Projet `simgolf-re`
@@ -54,17 +54,26 @@ Ce guide est organisé en fichiers indépendants par domaine. Chaque fichier peu
 | [18-trees.md](../docs/18-trees.md) | Système des arbres : tuiles Woods (ID 14) + sprites FLC animés | ✅ Élevée |
 | [reference-opengolf-tycoon.md](../docs/reference-opengolf-tycoon.md) | Leçons du projet OpenGolfTycoon (loopmachine) | 🧠 Source externe |
 | [reference-madcoretom-heightmap.md](../docs/reference-madcoretom-heightmap.md) | Techniques WebGL2 : heightmap, auto-tiling, sous-tuiles, picking (MadcoreTom) | 🧠 Source externe |
+| [ui_analysis.md](../ref/decompiled/ui_analysis.md) | Analyse RE de l'interface UI : structures, machine d'état, écrans | ✅ Élevée |
+
+### Analyses Systématiques (Ghidra 12.1)
+
+| Fichier | Contenu | Confiance |
+|---------|---------|:---------:|
+| [ANALYSE_PASSE1_PERSISTANCE.md](ANALYSE_PASSE1_PERSISTANCE.md) | Données & Persistance : GameState, formats .sve/.dta/.pro, sérialisation | ✅ Élevée |
+| [ANALYSE_PASSE2_SYSTEMIQUE.md](ANALYSE_PASSE2_SYSTEMIQUE.md) | Simulation & IA : boucle jeux, physique balle, IA golfeurs, économie | ✅ Élevée |
+| [ANALYSE_PASSE4_ACTION.md](ANALYSE_PASSE4_ACTION.md) | Interface & Actions : machine d'état UI, événements, dialogues | ✅ Élevée |
+| [SYNTHESE_GLOBALE.md](SYNTHESE_GLOBALE.md) | Carte complète golf.exe, index interfaces TS, index algorithmes | ✅ Élevée |
 
 ---
 
 ## 🎯 Objectif du Guide
 
-Ce document sert de **cahier des charges technique** pour quiconque voudrait :
+Ce document sert de **cahier des charges technique** pour :
 
 1. **Comprendre le fonctionnement interne** du jeu SimGolf original
-2. **Porter le jeu** vers une plateforme moderne (web, mobile, native)
-3. **Réimplémenter** des systèmes spécifiques (rendu, IA, économie)
-4. **Créer un clone** ou un successeur spirituel
+2. **Réimplémenter** des systèmes spécifiques (rendu, IA, économie)
+3. **Documenter** chaque structure de données, format de fichier, et algorithme
 
 **Principe :** Chaque information est annotée avec son niveau de confiance.
 - ✅ **Confirmé** — issu du désassemblage direct ou des données binaires
@@ -93,13 +102,13 @@ Ce document sert de **cahier des charges technique** pour quiconque voudrait :
 
 ---
 
-## 🔍 Méthodologie de Rétro-Ingénierrie
+## 🔍 Méthodologie de Rétro-Ingénierie
 
-- **Désassemblage :** objdump + Capstone (Python), balayage linéaire et par fonction
-- **Analyse statique :** recherche de chaînes, de références croisées, de patterns d'accès mémoire
-- **Pas de Ghidra/IDA** — outils CLI uniquement
-- **Pas de débogueur** — l'EXE ne peut pas être exécuté sur l'environnement actuel
-- **Validation :** croisement entre le code ASM, les chaînes extraites, et les fichiers de données
+- **Analyse statique (objdump + Capstone) :** désassemblage complet du .text (1,1M lignes)
+- **Analyse dynamique (Ghidra 12.1 + ghidra-cli) :** décompilation C, fonctions identifiées (1839), structures reconstituées
+- **Analyse de chaînes :** extraction des strings, tables de constantes, et références aux assets
+- **Parsing binaire :** formats de fichiers (PCX, FLC, .dta, .pro, .glf, .chr, .sve)
+- **Validation :** croisement ASM ↔ chaînes ↔ données ↔ comportement observé
 
 > **Ressources converties :** Tous les assets (PCX, BMP, FLC) sont disponibles en **WebP** dans `data/converted/` (images fixes + animated WebP). Voir [15-asset-inventory.md](15-asset-inventory.md).
 

@@ -207,260 +207,84 @@ Les vidéos Bink (.bik) ne sont pas dans le dump actuel — elles sont probablem
 
 ---
 
-## 9. Techniques WebGL2 pour un Portage Moderne
+## 9. Analyse OpenGL 1.x du rendu isométrique
 
-Cette section décrit les techniques WebGL2/OpenGL ES 3.0 utilisables pour implémenter le rendu isométrique de SimGolf dans un contexte moderne. Elles sont indépendantes de tout framework (Phaser, Three.js, etc.) — chaque framework a ses propres wrappers.
+Cette section décrit le rendu isométrique de SimGolf tel qu'implémenté dans Terrain.dll via OpenGL 1.x. L'analyse est basée sur le désassemblage des 38 exports de Terrain.dll et la compréhension du pipeline OpenGL 1.x à contexte immédiat (glBegin/glEnd).
 
-### 9.1 VBO Dynamique (Dynamic VBO)
+### 9.1 Pipeline de rendu OpenGL 1.x
 
-Le maillage du terrain est stocké dans un VBO avec `DYNAMIC_DRAW` pour permettre des mises à jour partielles :
+Le rendu d'une frame suit cette séquence :
 
-```ts
-// Création
-const vbo = gl.createBuffer();
-gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
-gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(initialData), gl.DYNAMIC_DRAW);
-
-// Mise à jour partielle d'une tuile
-gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
-gl.bufferSubData(gl.ARRAY_BUFFER,
-  tileIndex * 48 * Float32Array.BYTES_PER_ELEMENT,
-  new Float32Array(tileVertices));
+```
+Terrain::render()
+├── glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+├── Configuration matrice projection + caméra (glMatrixMode, glLoadIdentity)
+├── Pour chaque tuile visible (18×18 max) :
+│   ├── glBindTexture(texture_tuile)
+│   ├── glBegin(GL_TRIANGLE_STRIP)
+│   ├── glTexCoord2f + glVertex3f × 4 sommets
+│   └── glEnd()
+├── Rendu objets (arbres, bâtiments) via sprites OpenGL
+├── Rendu chemins (splines Bezier/Cardinal)
+└── SwapBuffers(hDC)
 ```
 
-**Layout par sommet (8 floats = 32 bytes) :**
+### 9.2 Structure d'une tuile (4 sommets)
 
-| Offset | Champ | Type |
-|:------:|-------|:----:|
-| 0-2 | `position` (x, y, z) | vec3 |
-| 3-5 | `normal` (nx, ny, nz) | vec3 |
-| 6-7 | `texcoord` (u, v) | vec2 |
+Chaque tuile du terrain est un quadrilatère défini par 4 sommets :
 
-**Par tuile :** 6 sommets × 8 floats = 48 floats = 192 bytes
-**Par grille 18×18 :** 324 tuiles × 48 floats = 15 552 floats = 62 Ko
+| Sommet | Position | Rôle |
+|--------|----------|------|
+| TL | (x, y, h_TL) | Haut-gauche |
+| TR | (x+2, y, h_TR) | Haut-droit |
+| BL | (x, y+2, h_BL) | Bas-gauche |
+| BR | (x+2, y+2, h_BR) | Bas-droit |
 
-**Attributs VAO :**
-```ts
-const stride = 8 * Float32Array.BYTES_PER_ELEMENT;
-gl.vertexAttribPointer(aPos, 3, gl.FLOAT, false, stride, 0);
-gl.vertexAttribPointer(aNorm, 3, gl.FLOAT, false, stride, 3 * Float32Array.BYTES_PER_ELEMENT);
-gl.vertexAttribPointer(aTex, 2, gl.FLOAT, false, stride, 6 * Float32Array.BYTES_PER_ELEMENT);
-```
+Le pas horizontal/vertical est de 2 unités OpenGL. La hauteur (z) est lue depuis le tableau d'élévations (heightmap) stocké dans la structure Terrain.
 
-### 9.2 Texture 3D pour les Tuiles (WebGL2 uniquement)
+### 9.3 Triangle layout (choix de diagonale)
 
-Alternative au sprite sheet classique : charger toutes les tuiles dans une **texture 3D** (une tuile par couche Z).
+Le quad est divisé en 2 triangles. La diagonale choisie est celle entre les deux coins les plus proches en altitude :
 
-**Initialisation :**
-```ts
-const texture = gl.createTexture();
-gl.bindTexture(gl.TEXTURE_3D, texture);
-gl.texStorage3D(gl.TEXTURE_3D, 1, gl.RGBA8, tileWidth, tileHeight, numTiles);
-gl.texParameteri(gl.TEXTURE_3D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
-gl.texParameteri(gl.TEXTURE_3D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
-gl.texParameteri(gl.TEXTURE_3D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-gl.texParameteri(gl.TEXTURE_3D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-gl.texParameteri(gl.TEXTURE_3D, gl.TEXTURE_WRAP_R, gl.CLAMP_TO_EDGE);
-```
-
-**Chargement des couches :**
-```ts
-// Depuis un sprite sheet 2D découpé en regions
-for (let i = 0; i < numTiles; i++) {
-  const x = i % cols;
-  const y = Math.floor(i / cols);
-  const data = ctx.getImageData(x * tileWidth, y * tileHeight, tileWidth, tileHeight).data;
-  gl.texSubImage3D(gl.TEXTURE_3D, 0, 0, 0, i, tileWidth, tileHeight, 1, gl.RGBA, gl.UNSIGNED_BYTE, data);
+```c
+// Réimplémentation d'après l'ASM de renderSingleTile
+int getTriangleLayout(float hTL, float hTR, float hBR, float hBL) {
+    float d1 = fabsf(hTL - hBR);  // diagonale TL↔BR
+    float d2 = fabsf(hTR - hBL);  // diagonale TR↔BL
+    return (d1 < d2) ? 0 : 1;     // 0 = TL-BR, 1 = TR-BL
 }
 ```
 
-**Fragment shader :**
-```glsl
-#version 300 es
-precision mediump float;
-precision mediump sampler3D;
+Cette logique évite les artéfacts visuels (arêtes vives au milieu d'une pente). Le même algorithme est utilisé dans le projet de référence MadcoreTom.
 
-uniform sampler2D uTileMap;   // carte 2D des index de tuiles
-uniform sampler3D uTileTex;   // textures 3D des tuiles
-uniform vec2 uMapSize;        // dimensions de la carte
+### 9.4 Textures et sous-tuiles
 
-in vec2 vUv;
-in vec3 vNorm;
-out vec4 fragColor;
+Le jeu utilise des tuiles de terrain texturées. Les textures sont chargées via OpenGL (glBindTexture) et appliquées avec glTexCoord2f. Le système de sous-tuiles (2×2 subdivisions par tuile) permet les transitions entre types de terrain (gazon, green, rough, désert, etc.).
 
-void main(void) {
-  // Lire l'index de tuile depuis la carte
-  float tileIndex = texture(uTileMap, vUv / uMapSize).r;
+Le choix de la sous-texture dépend des 4 voisins cardinaux (N/E/S/W) et de la diagonale, comme analysé dans l'ASM de `renderSingleTile` (fichiers `terrain_render_tile.c`).
 
-  // Coordonnées dans la sous-tuile (2×2)
-  vec2 subUv = mod(vUv * 2.0, 1.0);
+### 9.5 Éclairage OpenGL 1.x
 
-  // Échantillonner la texture 3D
-  vec4 texel = texture(uTileTex, vec3(subUv, tileIndex));
+L'éclairage est géré par le pipeline OpenGL 1.x matériel (glLight*, glLightModel*) :
 
-  // Éclairage simple (lumière directionnelle verticale)
-  float light = vNorm.z * vNorm.z;
-  fragColor = vec4(texel.rgb * light, 1.0);
-}
-```
+- **Lumière directionnelle** (probablement verticale ou semi-verticale)
+- **Normales** calculées par différence finie sur la heightmap (voir `terrain_normals.c`)
+- **Couleur finale** = texture × éclairage (modulation OpenGL)
 
-**Avantages :**
-- Pas de gap entre les tuiles (problème classique des sprite sheets)
-- NEAREST filtering parfait pour le pixel art
-- Mise à jour partielle : `texSubImage2D` sur la tile map
-- Supporte N types de terrain dans une seule texture
+Les appels `glLightfv` positionnent la source. Les normales sont transmises via `glNormal3f` entre glBegin/glEnd.
 
-**Inconvénients :**
-- WebGL2 uniquement (pas WebGL 1.0)
-- Pas de mipmaps (CLAMP_TO_EDGE obligatoire)
-- Consommation mémoire : layerDepth × tileWidth × tileHeight × 4 bytes
+### 9.6 Spécificités du rendu SimGolf (OpenGL 1.x)
 
-### 9.3 Picking par Encodage RGB
+| Aspect | Implémentation originale (OpenGL 1.x) |
+|--------|---------------------------------------|
+| **Primitives** | glBegin/glEnd (mode immédiat) |
+| **Textures** | glBindTexture par tuile (changement fréquent) |
+| **Éclairage** | Pipeline fixed-function (glLight*) |
+| **Picking** | Conversion coordonnées souris → tuile via inversion projection + test hauteur |
+| **Tuiles** | Texture individuelle BMP/PCX par type de terrain |
+| **Décorations** | Sprites PCX palette 8-bit superposés |
+| **Mise à jour** | Re-rendu complet à chaque frame (pas de diff) |
+| **Carte éditable** | Mémoire CPU → mise à jour heightmap → re-rendu |
+| **Polices UI** | GDI TextOut (couche jgld.dll séparée) |
 
-Technique pour détecter quelle tuile/vertex est sous le curseur, sans raycasting complexe.
-
-**Principe :** Une passe de rendu séparée dessine toute la scène avec les coordonnées (x, y, z) encodées en (R, G, B). On lit un seul pixel avec `readPixels`.
-
-**Vertex shader (pass picking) :**
-```glsl
-#version 300 es
-in vec3 aPos;
-uniform mat4 uProjMat;
-uniform vec2 uTerrainSize;
-
-out vec3 vPos;
-
-void main(void) {
-  gl_Position = uProjMat * vec4(aPos, 1.0);
-  vPos = aPos / vec3(uTerrainSize, 1.0);  // normalisé dans [0,1]
-}
-```
-
-**Fragment shader (pass picking) :**
-```glsl
-precision mediump float;
-in vec3 vPos;
-out vec4 fragColor;
-
-void main(void) {
-  fragColor = vec4(vPos, 1.0);
-}
-```
-
-**Lecture du résultat :**
-```ts
-const pixel = new Uint8Array(4);
-gl.readPixels(clickX, viewportHeight - clickY, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, pixel);
-
-// Vertex précis
-const vertX = Math.round((pixel[0] / 255) * terrainWidth);
-const vertY = Math.round((pixel[1] / 255) * terrainHeight);
-
-// Tuile entière
-const tileX = Math.floor((pixel[0] / 255) * terrainWidth);
-const tileY = Math.floor((pixel[1] / 255) * terrainHeight);
-
-// Si pixel[2] < 255 → le clic est sur le terrain
-// Si pixel[2] == 255 → le clic est sur le ciel/fond
-const hitTerrain = pixel[2] < 255;
-```
-
-**Configuration :**
-```ts
-// FBO de picking (même taille que le viewport)
-const pickerFbo = gl.createFramebuffer();
-gl.bindFramebuffer(gl.FRAMEBUFFER, pickerFbo);
-gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, pickerTex, 0);
-
-// Avant le readPixels, on bind le FBO et on rend la scène
-gl.bindFramebuffer(gl.FRAMEBUFFER, pickerFbo);
-gl.viewport(0, 0, viewportWidth, viewportHeight);
-gl.clearColor(0, 0, 1, 1);  // bleu = ciel
-gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-// ... rendu normal de la scène avec le shader picking ...
-gl.readPixels(clickX, clickY, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, pixel);
-gl.bindFramebuffer(gl.FRAMEBUFFER, null);
-```
-
-**Avantages :**
-- Simple à implémenter
-- Fonctionne pour n'importe quelle géométrie (terrain déformé, objets 3D)
-- Pas de calcul mathématique complexe (pas d'inversion de projection)
-- Résolution limitée par la précision du readPixels (8 bits par canal)
-
-**Précision :** Avec des canaux 8 bits et une grille de 256×256 max, la précision est suffisante pour distinguer chaque vertex. Pour des grilles plus grandes, on peut utiliser 2 canaux par axe (ex: R+G pour X = 16 bits).
-
-### 9.4 Framebuffer pour Carte Éditable
-
-La carte des types de terrain (tile map) est stockée dans une texture 2D attachée à un FBO. Les modifications se font par `texSubImage2D`.
-
-**Création du FBO :**
-```ts
-function createTileMapFBO(gl, width, height) {
-  const tex = gl.createTexture();
-  gl.bindTexture(gl.TEXTURE_2D, tex);
-  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, width, height, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
-
-  const depthBuffer = gl.createRenderbuffer();
-  gl.bindRenderbuffer(gl.RENDERBUFFER, depthBuffer);
-  gl.renderbufferStorage(gl.RENDERBUFFER, gl.DEPTH_COMPONENT16, width, height);
-
-  const fb = gl.createFramebuffer();
-  gl.bindFramebuffer(gl.FRAMEBUFFER, fb);
-  gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, tex, 0);
-  gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, depthBuffer);
-
-  return { tex, fb, width, height };
-}
-```
-
-**Modification d'une tuile :**
-```ts
-function setTile(map, tileX, tileY, tileType) {
-  gl.bindTexture(gl.TEXTURE_2D, map.tex);
-  const pixel = new Uint8Array([tileType * 64, 0, 0, 255]);  // R = index (0-255)
-  gl.texSubImage2D(gl.TEXTURE_2D, 0, tileX, tileY, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, pixel);
-  gl.bindTexture(gl.TEXTURE_2D, null);
-}
-```
-
-**Note sur la résolution :** Pour une grille 18×18 avec le système de sous-tuiles (2×2), la tile map fait 36×36 pixels. Chaque pixel stocke l'index du type de terrain dans le canal R.
-
-### 9.5 Calcul des Normales
-
-Pour un éclairage cohérent, les normales doivent être calculées pour chaque sommet en fonction des hauteurs des coins voisins :
-
-```ts
-function calculateNormal(heightMap, x, y) {
-  // Différences finies
-  const hL = heightMap.get(x - 1, y) ?? heightMap.get(x, y);
-  const hR = heightMap.get(x + 1, y) ?? heightMap.get(x, y);
-  const hD = heightMap.get(x, y - 1) ?? heightMap.get(x, y);
-  const hU = heightMap.get(x, y + 1) ?? heightMap.get(x, y);
-
-  // Vecteurs tangents
-  const dx = [2, 0, hR - hL];   // pas horizontal = 2 unités
-  const dy = [0, 2, hU - hD];   // pas vertical = 2 unités
-
-  // Normale = produit vectoriel
-  return normalize(cross(dx, dy));
-}
-```
-
-Pour la continuité visuelle (éviter les cassures d'éclairage), chaque tuile doit utiliser les normales calculées à partir des hauteurs des tuiles adjacentes, pas seulement les 4 coins de la tuile elle-même.
-
-### 9.6 Comparaison : OpenGL 1.x (Original) vs WebGL2
-
-| Aspect | SimGolf Original (OpenGL 1.x) | Portage Moderne (WebGL2) |
-|--------|:-----------------------------:|:------------------------:|
-| **Primitives** | `glBegin/glEnd` (immédiat) | VBO + VAO (tampon) |
-| **Textures** | `glBindTexture` par passe | 3D texture + tile map |
-| **Éclairage** | `glLight*` matériel | Shader manuel |
-| **Picking** | `gluUnProject` + inversion matrice | Encodage RGB + FBO |
-| **Tuiles** | Une texture BMP par tuile | Une texture 3D pour tout |
-| **Décorations** | Sprites PCX palette 8-bit | Textures RGBA + alpha |
-| **Mise à jour** | `glTexSubImage2D` (possible) | `gl.bufferSubData` + `texSubImage2D` |
-| **Carte éditable** | Mémoire CPU → re-rendu | FBO GPU → `texSubImage2D` |
-| **Polices UI** | GDI TextOut | Canvas 2D ou SDF
+Cette analyse sert de documentation pour la compréhension du moteur de rendu original — aucune cible de portage n'est définie à ce stade. Le code C nettoyé (12 fichiers dans `cleaned_c/`) constitue la seule implémentation de référence.

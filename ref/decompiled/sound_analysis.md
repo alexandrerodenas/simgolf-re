@@ -110,7 +110,7 @@ delete_sound(soundObj)
 | DSOUND (ordinal 2) | DirectSoundCreate | Lecture audio principale |
 | ole32 | CoInitialize, CoCreateInstance | COM (probablement DirectSound) |
 
-## Stratégie de portage Web
+## Analyse du moteur audio
 
 | sound.dll | Web |
 |---|---|

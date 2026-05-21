@@ -9,7 +9,7 @@
 
 ## Résumé pour notre projet SimGolf
 
-Ce blog décrit la **création d'un éditeur de terrain isométrique type SimGolf/SimCity 2000 en WebGL2**. L'auteur a reproduit exactement le rendu par tuiles et le système de transition de terrain. **C'est la référence la plus proche de notre portage.**
+Ce blog décrit la **création d'un éditeur de terrain isométrique type SimGolf/SimCity 2000 en WebGL2**. L'auteur a reproduit exactement le rendu par tuiles et le système de transition de terrain. **C'est la référence la plus proche du rendu original.**
 
 ---
 
@@ -58,7 +58,7 @@ const Er = [0,0,0, 1,0,0, 0,0,0,  ... 0,0,0, 1,0,0, 0,0,0];
 
 Chaque sommet : `[x, y, z, nx, ny, nz, u, v]` = **8 floats**.
 
-### 🔥 Pour notre portage
+### 🔥 Pour notre analyse
 
 C'est exactement ce qu'on voit dans SimGolf RE. La fonction ASM `renderSingleTile` fait le même calcul avec les `tileHeight` des coins. On peut implémenter ça directement :
 
@@ -128,7 +128,7 @@ function getSubTile(tileMap, col, row, numTypes) {
 | `sameV` | **Inner corner** (in) | Seul le vertical est pareil → coin intérieur |
 | Aucun | **Full alt** | Aucun voisin pareil → autre texture pleine |
 
-### 🔥 Pour notre portage
+### 🔥 Pour notre analyse
 
 C'est **exactement** le même système que les textures A–D de SimGolf RE, mais généralisé à N types de terrain. Notre `AutoTiler.computeNeighborMask()` fait la même chose. On peut remplacer notre système à 4 orientations (N/E/S/W) par ce système à 4 sous-tuiles × 4 configurations, ce qui est plus générique et supporte N types de terrain.
 
@@ -218,7 +218,7 @@ gl.texSubImage2D(gl.TEXTURE_2D, 0, pix[0], pix[1], 1, 1, gl.RGBA, gl.UNSIGNED_BY
 gl.bindTexture(gl.TEXTURE_2D, null);
 ```
 
-### 🔥 Pour notre portage
+### 🔥 Pour notre analyse
 
 En WebGL2 (Phaser 4 utilise WebGL2), on peut utiliser cette technique pour remplacer le sprite batching classique. Avantage : support natif du `NEAREST` filtering, pas de gap entre les tuiles, mise à jour partielle avec `texSubImage2D`. **Inconvénient** : pas de support dans Phaser 4 directement (faudrait un custom pipeline ou un render texture).
 
@@ -254,7 +254,7 @@ const vertX = Math.round(red / 255 * width);   // vertex précis
 const tileX = Math.floor(red / 255 * width);    // tuile entière
 ```
 
-### 🔥 Pour notre portage
+### 🔥 Pour notre analyse
 
 Dans SimGolf, le picking est géré par la fenêtre de jeu (messages Windows `WM_LBUTTONDOWN` → conversion en tuile via la matrice de projection). En Web, on peut utiliser cette technique ou bien un raycast plus classique. La technique RGB-position est **ultra simple** et fonctionne pour n'importe quel terrain déformé.
 
@@ -283,7 +283,7 @@ gl.bufferSubData(gl.ARRAY_BUFFER, offset * Float32Array.BYTES_PER_ELEMENT, new F
 Position (3) + Normal (3) + TexCoord (2) = 8 floats × 4 bytes = 32 bytes/sommet
 ```
 
-### 🔥 Pour notre portage
+### 🔥 Pour notre analyse
 
 En Phaser 4, on peut utiliser `Mesh` ou `Rope` pour un VBO dynamique. Mais pour SimGolf, le nombre de tuiles est fixe (12×12 à 18×18) — on peut aussi pré-générer tout le mesh en statique et ne modifier que les hauteurs avec `mesh.updateVertices()`.
 

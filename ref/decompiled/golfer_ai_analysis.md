@@ -160,8 +160,7 @@ type Target = 'pin' | 'center' | 'layup' | 'safe';
 
 ## 5. Recommandation
 
-Pour un portage web crédible, l'IA des golfeurs peut être **réimplémentée proprement**
-plutôt que décompilée. Ce qu'il faut :
+L'IA des golfeurs peut être résumée ainsi :
 
 1. Un système de sélection de club basé sur distance + skills (facile)
 2. Un système de précision basé sur skills + difficulté (facile)

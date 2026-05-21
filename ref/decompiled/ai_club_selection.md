@@ -82,51 +82,11 @@ Les commentaires audio/textes sont déclenchés par l'état :
 "Nice putt"                      → bon putt
 ```
 
-## Implémentation recommandée pour le portage web
-
-```typescript
-type ClubType = 'driver' | 'wood' | 'long_iron' | 'medium_iron' | 
-                'wedge' | 'sand_wedge' | 'putter' | 'chip';
-
-type ShotType = 'normal' | 'draw' | 'fade' | 'high' | 'low';
-
-interface GolferSkills {
-    length: number;         // 1-15
-    accuracy: number;       // 1-15
-    imagination: number;    // 1-15
-    recovery: number;       // 1-15
-    backspin: number;       // 1-15
-    putter: number;         // 1-15
-    driverAccuracy: number; // 1-15
-    driverLength: number;   // 1-15
-}
-
-function selectClub(distance: number, lie: string, skills: GolferSkills): ClubType {
-    if (lie === 'sand') return 'sand_wedge';
-    if (lie === 'green' && distance < 30) return 'putter';
-    if (distance > 200 && (lie === 'tee' || lie === 'fairway') && skills.driverLength >= 5) return 'driver';
-    if (distance > 150) return 'wood';
-    if (distance > 100) return skills.accuracy >= 7 ? 'long_iron' : 'medium_iron';
-    if (distance > 50 || lie === 'green') return 'wedge';
-    if (distance < 50 && lie !== 'green') return 'chip';
-    return 'wedge';
-}
-
-function selectShotType(club: ClubType, distance: number, lie: string, 
-                        skills: GolferSkills, wind: WindState): ShotType {
-    if (skills.backspin >= 10 && lie !== 'green' && distance < 80) return 'high';
-    if (wind.direction === 'head' && wind.speed > 15) return 'low';
-    if (skills.imagination >= 8 && distance > 100 && Math.random() > 0.5) {
-        return Math.random() > 0.5 ? 'draw' : 'fade';
-    }
-    return 'normal';
-}
-```
-
-## Notes
+## Notes pour la réimplémentation
 
 - Les seuils exacts (valeurs > 200, > 150, > 100) sont **confirmés par les strings du binaire**
 - Les conditions skill > seuil (>= 7, >= 8, >= 10) sont **estimées** — la logique exacte
   nécessite de tracer la GolferProcessFunction dans le binaire
-- Le `Math.random()` pour Draw/Fade est une simplification — le binaire utilise probablement
-  un RNG déterministe avec seed fixe
+- Le choix Draw/Fade utilise un RNG déterministe avec seed fixe dans le binaire original
+
+

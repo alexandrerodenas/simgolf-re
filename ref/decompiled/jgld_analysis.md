@@ -134,9 +134,10 @@ Compositing final :
 | Imports graphiques | GDI32 (25) | OPENGL32 (44) + GLU32 (2) + GDI32 (2) |
 | Exports | 1 | 38 |
 
-## Stratégie de portage Web
+## Analyse du moteur JGL
 
-| Composant | Technologie originale | Technologie web |
+| Composant | Technologie originale | Technologies modernes équivalentes |
+|:---|:---|:---|
 |-----------|----------------------|-----------------|
 | Rendu 3D terrain | OpenGL 1.x (immediate mode) | **WebGL** (buffer geometry) |
 | Rendu 2D sprites | GDI32 DIBSection | **Canvas 2D** / PixiJS |
