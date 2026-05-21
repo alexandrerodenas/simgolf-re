@@ -67,6 +67,7 @@ Ce guide est organisé en fichiers indépendants par domaine. Chaque fichier peu
 | [ANALYSE_TILE_528.md](ANALYSE_TILE_528.md) | Cartographie complète des 584 octets d'une tuile (offsets + auto-tiling + flags) | ✅ Élevée |
 | [ANALYSE_PASSE1_SCENARIOS.md](ANALYSE_PASSE1_SCENARIOS.md) | Format .cse, 6 scénarios, parsing FindFirstFile, section .data compressée | ✅ Élevée |
 | [ANALYSE_OPENGL_DEADCODE.md](ANALYSE_OPENGL_DEADCODE.md) | Preuve : OpenGL actif (169+ appels), pas de code mort, vrai rendu 3D isométrique | ✅ Élevée |
+| [GUIDE_REIMPLANTATION.md](GUIDE_REIMPLANTATION.md) | Guide complet clé-en-main : toutes les structures, algorithmes, mécaniques | ✅ Synthèse |
 
 ---
 
