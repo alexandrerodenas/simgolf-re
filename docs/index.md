@@ -64,6 +64,9 @@ Ce guide est organisé en fichiers indépendants par domaine. Chaque fichier peu
 | [ANALYSE_PASSE2_SYSTEMIQUE.md](ANALYSE_PASSE2_SYSTEMIQUE.md) | Simulation & IA : boucle jeux, physique balle, IA golfeurs, économie | ✅ Élevée |
 | [ANALYSE_PASSE4_ACTION.md](ANALYSE_PASSE4_ACTION.md) | Interface & Actions : machine d'état UI, événements, dialogues | ✅ Élevée |
 | [SYNTHESE_GLOBALE.md](SYNTHESE_GLOBALE.md) | Carte complète golf.exe, index interfaces TS, index algorithmes | ✅ Élevée |
+| [ANALYSE_TILE_528.md](ANALYSE_TILE_528.md) | Cartographie complète des 584 octets d'une tuile (offsets + auto-tiling + flags) | ✅ Élevée |
+| [ANALYSE_PASSE1_SCENARIOS.md](ANALYSE_PASSE1_SCENARIOS.md) | Format .cse, 6 scénarios, parsing FindFirstFile, section .data compressée | ✅ Élevée |
+| [ANALYSE_OPENGL_DEADCODE.md](ANALYSE_OPENGL_DEADCODE.md) | Preuve : OpenGL actif (169+ appels), pas de code mort, vrai rendu 3D isométrique | ✅ Élevée |
 
 ---
 
