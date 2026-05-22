@@ -12,7 +12,7 @@
 2. [Structures de Données](#2-structures-de-données)
 3. [Système de Terrain](#3-système-de-terrain)
 4. [Rendu Isométrique](#4-rendu-isométrique)
-5. [Auto-Tiling & Textures](#5-auto-tiling--textures) — 5.1→5.16 (groupes AE, orientations AD, variation cosmétique, bordures voisins, eau, overgrowth, table complète) | ✅ Décompilé
+5. [Auto-Tiling & Textures](#5-auto-tiling--textures) — 5.1→5.17 (groupes AE, orientations AD, variation cosmétique, bordures voisins, eau, overgrowth, multi-passes ASM) | ✅ Décompilé
 6. [Élévation du Terrain](#6-élévation-du-terrain)
 7. [Chemins (Paths)](#7-chemins-paths)
 8. [Murs (Walls)](#8-murs-walls)
@@ -1328,6 +1328,199 @@ TYPES DE TERRAIN
 Tous les types à **ÉLÉVATION** (A-E ou A-D géométrie) : les 4 hauteurs des coins déterminent la forme de la tuile.
 Tous les types à **BORDURE** (A-D orientation) : la direction du voisin de famille différente détermine la texture.
 Tous les types **PLATS** (A seulement) : texture de remplissage sans variation géométrique ni de bordure.
+
+### 5.17 Rendu Multi-Passes — Architecture Complète
+
+#### 5.17.1 Principe Général
+
+Chaque tuile peut être composée de **1 à 4 textures superposées** (passes de rendu). La passe 0 est la texture de base du type de terrain ; les passes 1-3 sont des textures de bordure générées quand un voisin est de famille différente.
+
+```
+Tuile = [Passe 0: texture de base] + [Passe 1: bordure N] + [Passe 2: bordure E] + [Passe 3: bordure S/O]
+```
+
+#### 5.17.2 Structures Mémoire
+
+Le système utilise **deux tableaux parallèles** de 4 entrées (stride 0x38 = 56 bytes) :
+
+```c
+// Carte mémoire Tile (extrait multi-passes)
+// Offset  Taille  Champ             Rôle
+// ------  ------  -----------       --------------------------------
+// +0x034  16      renderObjects[4]  Pointeurs vers 4 voisins (N/E/S/O)
+// +0x044  4       renderPassCount   Nombre de passes (1-4)
+// +0x048  224     perPassData[4]    Données géométriques (stride 0x38)
+// +0x06c  224     textureRefs[4]    Handles textures OpenGL (stride 0x38)
+```
+
+**perPassData[pass]** (56 bytes, à `tile+0x48+pass×0x38`) :
+```
++0x00: vertexA_X (float)   — Sommet A, coord X
++0x04: vertexA_Y (float)   — Sommet A, coord Y
++0x08: vertexB_X (float)
++0x0c: vertexB_Y (float)
++0x10: vertexC_X (float)
++0x14: vertexC_Y (float)
++0x18: uvIndexA  (int16)   — Index dans la table UV globale
++0x1a: uvIndexB  (int16)
++0x1c: uvIndexC  (int16)
++0x1e-0x37: padding / flags de rendu
+```
+
+**textureRefs[pass]** (56 bytes, à `tile+0x6c+pass×0x38`) :
+```
++0x00: textureID (GLuint, 4 bytes)  — Handle OpenGL de la texture
++0x04: texCoordType (byte, 1 byte)  — Type de coordonnée de texture
++0x05-0x37: padding
+```
+
+#### 5.17.3 populateRenderPasses @ 0x10012ec0
+
+Cette fonction détermine les textures de chaque passe selon le type et les voisins :
+
+```asm
+; populateRenderPasses(Tile* this)
+1.  type = this->type                    ; tile+0x24
+2.  switch(type - 1)                     ; jump table @ 0x100131d6
+    case tree(13) : → renderPass type = 0x0d
+    case path(4)  : → renderPass type = 4
+    default :
+        if (tileFlags == 1)    → type 0x17
+        if (tileFlags == 2)    → type 0x18
+        if (tileFlags & 0x80)  → type 0x1a
+
+3.  orientation = tileFlags & 3          ; bits 0-1 = N(0)/E(1)/S(2)/O(3)
+    switch(orientation):
+        0 → type 0x1b   ; orientation A (Nord)
+        1 → type 0x1c   ; orientation B (Est)
+        2 → type 0x1d   ; orientation C (Sud)
+        3 → type 0x1e   ; orientation D (Ouest)
+
+4.  textureRefs[0] = lookupTexture(g_textureTable, type, orientation, variation)
+5.  Pour chaque voisin de famille différente :
+    textureRefs[n] = lookupTexture(g_textureTable, borderType, neighborSide, variation)
+```
+
+Les types de passes se divisent en **5 catégories** :
+| Catégorie | Types | Description |
+|:----------|:-----:|:------------|
+| **Base** | < 0x17 | Texture de remplissage standard |
+| **Spéciale** | 0x17-0x1a | Chemins, constructions, overlay |
+| **Bordure A** | 0x1b | Bordure côté Nord (side 2) |
+| **Bordure B** | 0x1c | Bordure côté Est (side 1) |
+| **Bordure C** | 0x1d | Bordure côté Sud (side 3) |
+| **Bordure D** | 0x1e | Bordure côté Ouest (side 0) |
+
+#### 5.17.4 renderSingleTile @ 0x1000e6c0
+
+Le rendu effectif de chaque passe :
+
+```c
+void Terrain::renderSingleTile(Tile* tile, float zoom) {
+    static GLuint lastTextureID = NULL;  // Cache anti-binds redondants
+
+    for (int pass = 0; pass < tile->renderPassCount; pass++) {
+        if (g_currentViewMode == 0) {  // Mode normal (vue par défaut)
+            // Bind texture de cette passe (avec cache)
+            GLuint texID = tile->textureRefs[pass].textureID;
+            if (texID != lastTextureID) {
+                glBindTexture(GL_TEXTURE_2D, texID);
+                lastTextureID = texID;
+            }
+
+            // Dessine 1 triangle (demi-tuile)
+            glBegin(GL_TRIANGLES);  // Mode 4
+            for (int v = 0; v < 3; v++) {
+                // UV depuis la table globale @ 0x10063ca0
+                // Index = perPassData[pass].uvIndex[v] × stride + viewMode × 8
+                float* uv = &UV_TABLE[
+                    perPassData[pass].uvIndexA * 0x60 +
+                    perPassData[pass].uvIndexB * 0x20 +
+                    g_currentViewMode * 8
+                ];
+                glTexCoord2fv(uv);
+                glVertex3fv(&perPassData[pass].vertex[v]);
+            }
+            glEnd();
+
+        } else {  // Mode vue spéciale (zoom 90°/180°)
+            // Chemin alternatif : texture basée sur viewDelta
+            // Uniquement pour type 7 (eau en vue non-standard)
+            if (tile->type == 7) {
+                int viewDelta = ((tileFlags & 3) - g_currentViewMode) % 4;
+                int idx = (viewDelta + 27) * 0x384 + textureOffset * 0x24;
+                glBindTexture(GL_TEXTURE_2D, g_textureTable[idx]);
+            }
+        }
+    }
+}
+```
+
+#### 5.17.5 La Table UV Globale @ 0x10063ca0
+
+Les coordonnées UV ne sont pas stockées par tuile — elles sont lues depuis une table globale :
+
+```c
+// UV_TABLE[viewMode][vertexIdx] = { u, v }  (float × 2)
+// 4 modes de vue × 3 sommets = 12 entrées
+//
+// Organisée comme un tableau 3D :
+//   addr = 0x10063ca0 + uvIndexA × 0x60 + uvIndexB × 0x20 + viewMode × 8
+```
+
+| ViewMode | Nom | Usage |
+|:--------:|:----|:------|
+| 0 | Normal | Vue isométrique par défaut |
+| 1 | Top-down (90°) | Vue de dessus |
+| 2 | Inverted (180°) | Vue inversée |
+| 3 | Default | Mode par défaut |
+
+Ce système évite de recalculer les UV à chaque frame et permet de changer de perspective sans modifier les données par tuile.
+
+#### 5.17.6 Cas Concrets
+
+| Tuile | Pass 0 (base) | Pass 1 | Pass 2 | Pass 3 |
+|:------|:-------------:|:------:|:------:|:------:|
+| **Rough** (aucun voisin diff.) | RoughA000X | — | — | — |
+| **Rough** (eau au Nord) | RoughA000X | WaterA000X | — | — |
+| **Water** (terre au Sud+Est) | WaterA000X | WaterC000X | WaterB000X | — |
+| **SandBunker** (herbe N+O) | SandA000X | GrassySandA | GrassySandD | — |
+| **Fairway** (4 voisins diff.) | FairwayA000X | GrassBunkerA | GrassBunkerB | GrassBunkerC |
+| **Carrefour 4 types** | TypeBase | BordureA | BordureB | BordureC+D |
+
+**Règle de priorité des bordures :** Nord > Est > Sud > Ouest (side 2 > 1 > 3 > 0). Si les 4 côtés sont différents, la bordure D (Ouest) partage la passe 3 avec la bordure C (Sud) ?
+
+#### 5.17.7 Implémentation simgolf-web
+
+Le port Canvas 2D (TileRenderer.ts) simplifie ce système :
+
+```typescript
+// computeRenderPasses() dans terrain.ts
+function computeRenderPasses(tile, tiles, w, h): IRenderPass[] {
+    // Pass 0 : texture de base (suffixe géométrique A-E)
+    passes.push({ type, variation, suffix: geomSuffix });
+
+    // Pass 1+ : bordures A-D pour chaque voisin de famille différente
+    if (family !== 'grass' && hasBorderTextures(type)) {
+        const mask = computeNeighborMask(tiles, w, h, tile.x, tile.y);
+        for (const dir of [{bit:1,suffix:'A'}, {bit:2,suffix:'B'}, {bit:4,suffix:'C'}, {bit:8,suffix:'D'}]) {
+            if (mask & dir.bit)
+                passes.push({ type, variation, suffix: dir.suffix });
+        }
+    }
+    return passes;
+}
+
+// renderMap() dans TileRenderer.ts — superposition alpha
+for (const tile of tiles in painter order) {
+    const images = getImages(tileIdx);  // 1-4 images
+    for (const img of images) {
+        ctx.drawImage(img, 0, 0, 64, 64);  // Alpha compositing
+    }
+}
+```
+
+La superposition utilise **l'alpha compositing natif du Canvas 2D** : les textures BMP originales ont des zones transparentes qui laissent voir la passe précédente. C'est ainsi que les bordures se fondent dans la texture de base.
 
 ---
 
