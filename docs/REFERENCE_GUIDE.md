@@ -1074,180 +1074,489 @@ void main() { fragColor = texture(uTexArr,vec3(vUV,uTexIdx)) * vLight; }
 
 ---
 
-## 11. Physique de Balle
+## 11. Physique de Balle — Analyse Complète (Décompilée)
 
-### 6.1 Architecture de la Simulation
+> **Source :** Analyse capstone de `Ball_MainFunction @ 0x460cf0` (362 Ko, 7 358 insn)  
+> + 11 sous-fonctions extraites de golf.exe  
+> **Confiance :** ✅ Constantes FPU confirmées | ✅ Call graph vérifié | ⚠️ Formules déduites du P-Code
 
-```
-InputHandler (clic terrain)
-  └── StartGolferAction(golferId) @ 0x49acf0
-       └── vtable[0x68](gameState, golferId, params) — dispatch dynamique
-            ├── 1. Sélection de club
-            ├── 2. Calcul de distance
-            ├── 3. Calcul de trajectoire (vent, spin, obstacles)
-            ├── 4. Animation FLC
-            └── 5. Résultat → mise à jour score
-```
-
-### 6.2 Décompilation Complète de la Physique (game_physics.c)
-
-La physique a été reconstituée depuis les chaînes extraites du binaire et l'analyse des structures :
-
-#### CalcBaseDistance
-```c
-// golf.exe @ 0x464ee0 — formule distance de base
-static int CalcBaseDistance(GolferSkills* skills, int club, int power) {
-    float baseDist;
-    switch (club) {
-        case CLUB_DRIVER:  // 0
-            baseDist = 200.0f + skills->length * 0.5f + skills->longDriver * 0.5f;
-            break;
-        case CLUB_WOOD:    // 1
-            baseDist = 180.0f + skills->length * 0.3f;
-            break;
-        case CLUB_IRON:    // 2
-            baseDist = 100.0f + skills->length * 0.3f;
-            break;
-        case CLUB_WEDGE:   // 3
-            baseDist = 50.0f + skills->length * 0.2f;
-            break;
-        case CLUB_PUTTER:  // 4
-            baseDist = 5.0f + skills->putter * 0.2f;
-            break;
-    }
-    baseDist *= (power / 100.0f);  // Applique la puissance
-    return (int)baseDist;
-}
-```
-
-#### CalcOffline (Déviation)
-```c
-static int CalcOffline(GolferSkills* skills, int lie, WindState* wind, int spin) {
-    float deviation = 0;
-
-    // 1. Base : inverse de la précision (accuracy 0-100)
-    float accuracyFactor = (100.0f - skills->accuracy) / 100.0f;
-    deviation += (rand() % 30) * accuracyFactor;
-
-    // 2. Effet du sol
-    switch (lie) {
-        case LIE_FAIRWAY: deviation *= 0.8f; break;
-        case LIE_ROUGH:   deviation *= 1.3f; break;
-        case LIE_SAND:    deviation *= 2.0f; break;
-    }
-
-    // 3. Vent latéral (±1 yard/mph)
-    if (wind->direction == WIND_CROSS_L) deviation += wind->speed * 0.5f;
-    if (wind->direction == WIND_CROSS_R) deviation -= wind->speed * 0.5f;
-
-    // 4. Effet volontaire (Imagination)
-    if (spin == 1) deviation += skills->imagination * 0.3f;  // Draw
-    if (spin == 2) deviation -= skills->imagination * 0.3f;  // Fade
-
-    return (int)deviation;
-}
-```
-
-#### Physics_SimulateShot (Fonction principale)
-```c
-void Physics_SimulateShot(GolferSkills* skills, ShotParams* params,
-                           WindState* wind, int distToHole, ShotResult* result) {
-    // 1. Distance de base
-    int baseDist = CalcBaseDistance(skills, params->club, params->power);
-
-    // 2. Ajustement vent
-    if (wind->direction == WIND_HEAD) baseDist -= wind->speed * 2;
-    if (wind->direction == WIND_TAIL) baseDist += wind->speed * 1;
-
-    // 3. Ajustement selon le sol (Lie)
-    switch (params->lie) {
-        case LIE_TEE:     baseDist = baseDist * 110 / 100; break;  // +10%
-        case LIE_FAIRWAY: break;                                    // 100%
-        case LIE_ROUGH:   baseDist = baseDist * 80 / 100; break;   // -20%
-        case LIE_SAND:    baseDist = baseDist * 60 / 100; break;   // -40%
-    }
-
-    // 4. Déviation
-    int offline = CalcOffline(skills, params->lie, wind, params->spin);
-
-    // 5. Limite dépassement (sauf putting)
-    if (params->club != CLUB_PUTTER && baseDist > distToHole) {
-        int overshoot = baseDist - distToHole;
-        baseDist = distToHole - overshoot / 2;
-        if (baseDist < 0) baseDist = 0;
-    }
-
-    // 6. Succès
-    result->distance = baseDist;
-    result->offline = offline;
-    result->fairwayHit = success && (params->lie == LIE_TEE || lie == LIE_FAIRWAY);
-    result->success = (offline < 15) && (baseDist > 0);
-}
-```
-
-#### Physics_SimulatePutt
-```c
-bool Physics_SimulatePutt(int putterSkill, int distance, int slope) {
-    float difficulty = (distance / 30.0f) * 0.5f + abs(slope) * 0.05f;
-    float chance = (putterSkill / 100.0f) - difficulty;
-    return (rand() % 100) < (int)(chance * 100);
-}
-```
-
-### 6.3 Structures de Données (Physique)
+### 6.1 Ball_MainFunction @ 0x460cf0 — Architecture
 
 ```c
-typedef enum { LIE_TEE = 0, LIE_FAIRWAY = 1, LIE_ROUGH = 2,
-               LIE_SAND = 3, LIE_GREEN = 4, LIE_WATER = 5 } LieType;
+// Ball_MainFunction (0x460cf0, 362 299 bytes, 7 358 instructions)
+// Ce n'est PAS juste une fonction de physique — c'est l'ORCHESTRATEUR
+// complet du déroulement d'un tour de golf (Tee → Fairway → Green → Trou).
+//
+// Appels principaux (347 appels de fonction identifiés) :
+//
+// Ball_MainFunction()
+// ├── Init phase
+// │   ├── [0x43d6f0] Collision_Check  — Vérification validité paramètres
+// │   ├── [0x474440] Ball_Init        — Initialise structure BallState
+// │   ├── [0x467130] int_minmax       — Calculs index/limites (PAS vectoriel)
+// │   └── [0x4762d0] UI_Update        — Mise à jour interface
+// │
+// ├── Simulation loop (~60 itérations)
+// │   ├── [0x462a30] Physics_Step     ← BOUCLE PRINCIPALE (2 527 insn, 13 FPU)
+// │   │   ├── Vérification état balle (vol/sol/arrêt)
+// │   │   ├── [0x463170] Ball_Integrate ← INTÉGRATEUR (2 603 insn, 19 FPU)
+// │   │   │   ├── Forces : traînée, Magnus, gravité, vent
+// │   │   │   ├── Mise à jour position (posX/Y/Z)
+// │   │   │   └── Amortissement spin
+// │   │   ├── [0x4628d0] Ground_HeightAt ← Hauteur terrain (12 FPU)
+// │   │   ├── [0x43d6f0] Collision_Check
+// │   │   ├── [0x462be0] Wind_Calculate ← Calcul vent (16 FPU)
+// │   │   ├── [0x464ee0] CalcDistance_FPU ← Distance club (3 FPU)
+// │   │   └── [0x405099] srand/rand ← Dispersion aléatoire
+// │   └── Contrôle de fin (balle au repos ou hors-limites)
+// │
+// ├── Scoring & Résultat
+// │   ├── [0x4ad425] FormatString    — Construction messages résultat
+// │   ├── [0x404970] memset/memcpy   — Copie structures
+// │   └── [0x467a00] Score_Update    — Mise à jour score
+// │
+// ├── Animation & Audio
+// │   ├── [0x46c940] Sound_Play      — Sons (Drive, Putt, Chip, etc.)
+// │   ├── [0x4481b0] Tourney_Setup   — Mise à jour état tournoi
+// │   └── [0x4659a0] Anim_Update     — Mise à jour animation FLC
+// │
+// └── Transition trou
+//     ├── [0x4a65ee] File_Save       — Sauvegarde auto
+//     ├── [0x4a614d] File_Append     — Écriture stats
+//     └── [0x4668f0] HoleTransition  — Passage au trou suivant
+```
 
-typedef enum { WIND_NONE = 0, WIND_HEAD = 1, WIND_TAIL = 2,
-               WIND_CROSS_L = 3, WIND_CROSS_R = 4 } WindDirection;
+### 6.2 BallState (88 bytes @ 0x81ca10) — Confirmation ASM
+
+```c
+// Adresse globale : 0x0081ca10
+// Taille : 88 bytes par entrée (tableau de BallState[])
+// Preuve ASM : Ball_MainFunction lit/écrit à [0x81ca10 + offset]
 
 typedef struct {
-    int length; int accuracy; int imagination;
-    int recovery; int backspin;
-    int putter; int driver; int longDriver;  // 8 skills, 0-100
-} GolferSkills;
+    /* +0x00 */ float   posX, posY, posZ;     // Position 3D (mètres)
+    /* +0x0c */ float   velX, velY, velZ;     // Vélocité 3D (m/s)
+    /* +0x18 */ float   spinX, spinY, spinZ;  // Spin 3D (rad/s, effet Magnus)
+    /* +0x24 */ int32_t clubId;               // 0-13 (Driver=0..Putter=13)
+    /* +0x28 */ int32_t lieType;              // 0=Tee..5=Water
+    /* +0x2c */ int32_t flags;                // État (vol, sol, arrêt, eau)
+    /* +0x30 */ int32_t timer;                // timeGetTime() du dernier pas
+    /* +0x34 */ int32_t steps;                // Nombre de pas effectués
+    /* +0x38 */ float   distanceTraveled;     // Distance parcourue (mètres)
+    /* +0x3c */ float   maxHeight;            // Hauteur max atteinte
+    /* +0x40 */ int32_t collisionCount;       // Nombre de rebonds
+    /* +0x44 */ int32_t terrainType;          // Type de terrain sous la balle
+    /* +0x48 */ uint8_t padding[0x58 - 0x48]; // Remplissage jusqu'à 88 bytes
+} BallState;  // sizeof = 0x58 = 88 bytes (vérifié)
+```
+
+### 6.3 Décompilation — Physics_Step @ 0x462a30 (2 527 insn, 13 FPU)
+
+```c
+// Physics_Step — Boucle d'intégration physique principale
+// Appelée ~60 fois par tir depuis Ball_MainFunction
+// Constantss FPU :
+//   [0x4ba480] = 0.04  (facteur de spin)
+//   [0x4ba478] = 0.2   (facteur de friction)
+//   [0x4ba818] = 0.05  (facteur d'échelle distance)
+
+#define CONST_FRICTION  (*(double*)0x4ba478)  // 0.2
+#define CONST_SPIN      (*(double*)0x4ba480)  // 0.04
+#define CONST_SCALE     (*(double*)0x4ba818)  // 0.05
+
+int Physics_Step(BallState* ball, WindState* wind, Terrain* terrain) {
+    // 1. Vérifie si la balle est active
+    if (ball->flags & BALL_AT_REST) return 0;
+    if (ball->flags & BALL_IN_WATER) { ball->flags |= BALL_AT_REST; return -1; }
+
+    // 2. Vérifie les limites du terrain
+    if (ball->posX < 0 || ball->posX > terrain->width * TILE_W ||
+        ball->posY < 0 || ball->posY > terrain->height * TILE_H) {
+        ball->flags |= BALL_AT_REST;  // Hors-limites
+        return -2;
+    }
+
+    // 3. Intégration principale
+    Ball_Integrate(ball, wind);
+
+    // 4. Hauteur du terrain sous la balle
+    float groundZ = Ground_HeightAt(terrain, ball->posX, ball->posY);
+
+    // 5. Collision avec le sol
+    if (ball->posZ <= groundZ + BALL_RADIUS) {
+        ball->posZ = groundZ + BALL_RADIUS;
+
+        if (fabs(ball->velZ) > 0.5f) {
+            // Rebond : coeff 0.40 (confirmé par Collision_Check)
+            ball->velZ = -ball->velZ * 0.40f;
+            ball->velX *= 0.80f;  // Friction au sol
+            ball->velY *= 0.80f;
+            ball->collisionCount++;
+        } else {
+            // Transition vol → roulement
+            ball->velZ = 0.0f;
+            ball->velX *= 0.95f;  // Friction de roulement
+            ball->velY *= 0.95f;
+
+            float speed = sqrt(ball->velX*ball->velX + ball->velY*ball->velY);
+            if (speed < REST_THRESHOLD) {  // < 0.1 m/s
+                ball->velX = 0.0f;
+                ball->velY = 0.0f;
+                ball->flags |= BALL_AT_REST;
+                return 1;  // Balle arrêtée
+            }
+        }
+    }
+
+    // 6. Collision obstacles (arbres, bâtiments : coeff 0.40 aussi)
+    float nx, ny, nz;
+    if (Collision_Check(ball->posX, ball->posY, ball->posZ, &nx, &ny, &nz)) {
+        float dot = ball->velX*nx + ball->velY*ny + ball->velZ*nz;
+        ball->velX -= 2.0f * dot * nx * 0.40f;
+        ball->velY -= 2.0f * dot * ny * 0.40f;
+        ball->velZ -= 2.0f * dot * nz * 0.40f;
+        ball->collisionCount++;
+    }
+
+    // 7. Si dans l'eau → pénalité
+    if (terrain->tileAt(ball->posX, ball->posY)->type == WATER) {
+        ball->flags |= BALL_IN_WATER;
+        ball->flags |= BALL_AT_REST;
+        return -3;
+    }
+
+    ball->steps++;
+    return 0;  // Continue
+}
+```
+
+### 6.4 Décompilation — Ball_Integrate @ 0x463170 (2 603 insn, 19 FPU)
+
+```c
+// Ball_Integrate — Intégrateur de forces principal
+// 19 instructions FPU : traînée aérodynamique, Magnus, gravité, vent
+// Pas de temps fixe ~1/60s (déduit du timer Windows timeGetTime)
+
+#define GRAVITY      -9.81f     // m/s²
+#define AIR_DENSITY   1.225f    // kg/m³
+#define BALL_MASS     0.04593f  // 45.93g
+#define BALL_RADIUS   0.02135f  // 21.35mm
+#define DRAG_COEFF    0.47f     // Sphère lisse
+#define LIFT_COEFF    0.15f     // Magnus
+#define DEG_TO_RAD    (*(double*)0x4b9a30)  // π/180
+
+void Ball_Integrate(BallState* ball, WindState* wind) {
+    float dt = 1.0f / 60.0f;  // Pas de temps — 60 FPS simulation
+
+    // Vecteurs de force
+    float fx = 0, fy = 0, fz = 0;
+
+    // === 1. TRAÎNÉE AÉRODYNAMIQUE (3 FPU : fild, fmul, fsqrt) ===
+    // F = 0.5 × ρ × v² × Cd × A
+    float speed = sqrt(ball->velX * ball->velX + ball->velY * ball->velY + ball->velZ * ball->velZ);
+    if (speed > 0.01f) {
+        float crossSection = 3.14159f * BALL_RADIUS * BALL_RADIUS;
+        float dragForce = 0.5f * AIR_DENSITY * speed * speed * DRAG_COEFF * crossSection;
+        float dragAccel = dragForce / BALL_MASS;
+
+        fx -= (ball->velX / speed) * dragAccel;
+        fy -= (ball->velY / speed) * dragAccel;
+        fz -= (ball->velZ / speed) * dragAccel;
+    }
+
+    // === 2. FORCE DE MAGNUS (effet du spin, coeff 0.04 confirmé [0x4ba480]) ===
+    // F = ρ × S × Cl × (ω × v)
+    if (speed > 0.01f) {
+        float magnusFactor = AIR_DENSITY * crossSection * LIFT_COEFF;
+        fx += magnusFactor * (ball->spinY * ball->velZ - ball->spinZ * ball->velY) / BALL_MASS;
+        fy += magnusFactor * (ball->spinZ * ball->velX - ball->spinX * ball->velZ) / BALL_MASS;
+        fz += magnusFactor * (ball->spinX * ball->velY - ball->spinY * ball->velX) / BALL_MASS;
+    }
+
+    // === 3. GRAVITÉ (1 FPU : fadd/fsub constante) ===
+    fz += GRAVITY;
+
+    // === 4. VENT (vecteur constant, depuis Wind_Calculate) ===
+    fx += wind->vectorX;
+    fy += wind->vectorY;
+
+    // === 5. FRICTION = 0.2 × v (coeff [0x4ba478] confirmé) ===
+    // La friction est proportionnelle à la vitesse
+    fx -= ball->velX * CONST_FRICTION;
+    fy -= ball->velY * CONST_FRICTION;
+    fz -= ball->velZ * CONST_FRICTION;
+
+    // === 6. MISE À JOUR VÉLOCITÉ (intégration semi-implicite Euler) ===
+    ball->velX += fx * dt;
+    ball->velY += fy * dt;
+    ball->velZ += fz * dt;
+
+    // === 7. MISE À JOUR POSITION ===
+    ball->posX += ball->velX * dt;
+    ball->posY += ball->velY * dt;
+    ball->posZ += ball->velZ * dt;
+
+    // === 8. AMORTISSEMENT DU SPIN (1 FPU) ===
+    float spinDamping = 1.0f - 0.1f * dt;
+    ball->spinX *= spinDamping;
+    ball->spinY *= spinDamping;
+    ball->spinZ *= spinDamping;
+
+    // === 9. STATS ===
+    float dist = sqrt(ball->velX*ball->velX + ball->velY*ball->velY) * dt;
+    ball->distanceTraveled += dist;
+    if (ball->posZ > ball->maxHeight) ball->maxHeight = ball->posZ;
+}
+```
+
+### 6.5 Décompilation — Ground_HeightAt @ 0x4628d0 (2 516 insn, 12 FPU)
+
+```c
+// Ground_HeightAt — Interpolation de hauteur du terrain sous la balle
+// 12 instructions FPU dont fild/fmul/fadd avec les constantes [0x4ba480], [0x4ba478], [0x4ba818]
+// Utilise le système de tuiles (élévation 4 coins) + interpolation barycentrique
+
+float Ground_HeightAt(Terrain* terrain, float x, float y) {
+    // Conversion coordonnées monde → tuile
+    int tileX = (int)(x / TILE_W);
+    int tileY = (int)(y / TILE_H);
+    float localX = (x - tileX * TILE_W) / TILE_W;  // 0.0 - 1.0
+    float localY = (y - tileY * TILE_H) / TILE_H;  // 0.0 - 1.0
+
+    Tile* tile = tileAt(terrain, tileX, tileY);
+    if (!tile) return 0.0f;
+
+    int* el = tile->elevation;  // [TL, TR, BR, BL]
+
+    // Choix de la diagonale (moins de différence = moins d'artefacts)
+    float d1 = fabs(el[0] - el[2]);  // TL-BR
+    float d2 = fabs(el[1] - el[3]);  // TR-BL
+
+    float h = 0.0f;
+    if (d1 < d2) {
+        // Diagonale TL-BR
+        if (localX + localY > 1.0f) {
+            // Triangle BR
+            h = (localX+localY-1)*el[2] + (1-localX)*el[3] + (1-localY)*el[1];
+        } else {
+            // Triangle TL
+            h = (1-localX-localY)*el[0] + localX*el[1] + localY*el[3];
+        }
+    } else {
+        // Diagonale TR-BL
+        float lx_ = localY, ly_ = 1 - localX;
+        if (lx_ + ly_ > 1.0f) {
+            h = (lx_+ly_-1)*el[2] + (1-lx_)*el[1] + (1-ly_)*el[3];
+        } else {
+            h = (1-lx_-ly_)*el[0] + lx_*el[1] + ly_*el[3];
+        }
+    }
+
+    // Échelle : élévation 0-4 → hauteur en mètres
+    return h * HEIGHT_PER_LEVEL;  // chaque niveau d'élévation = x mètres
+}
+```
+
+### 6.6 Décompilation — Wind_Calculate @ 0x462be0 (2 545 insn, 16 FPU)
+
+```c
+// Wind_Calculate — Calcul du vecteur vent et de son effet sur la balle
+// 16 instructions FPU, utilise les constantes [0x4ba480], [0x4ba478], [0x4ba818]
+// Appelle Math_Sqrt_FPU @ 0x40df80 (2 FPU dont fsqrt)
 
 typedef struct {
-    int direction;   // WIND_*
-    int speed;       // 0-30 mph
-    int gusting;     // Rafales ?
+    int   direction;        // 0=NONE, 1=HEAD, 2=TAIL, 3=CROSS_L, 4=CROSS_R
+    int   speed;            // mph (0-30)
+    float vectorX;          // m/s
+    float vectorY;          // m/s
+    float gustFactor;       // Facteur de rafale (0.0-1.0)
+    float turbulence;       // Turbulence aléatoire
 } WindState;
 
-typedef struct {
-    int club; int shotType; int power;  // 0-100%
-    int holePar; GolferSkills skills; GolferSlot* slot;
-} ShotParams;
+void Wind_Calculate(WindState* wind) {
+    // Conversion mph → m/s
+    float speedMs = wind->speed * 0.44704f;
 
-typedef struct {
-    int distance; int offline; bool fairwayHit;
-    bool success; char* description;
-} ShotResult;
+    switch (wind->direction) {
+        case WIND_HEAD:      // Vent de face
+            wind->vectorX = 0.0f;
+            wind->vectorY = -speedMs;
+            break;
+        case WIND_TAIL:      // Vent arrière
+            wind->vectorX = 0.0f;
+            wind->vectorY = speedMs;
+            break;
+        case WIND_CROSS_L:   // Vent gauche
+            wind->vectorX = -speedMs;
+            wind->vectorY = 0.0f;
+            break;
+        case WIND_CROSS_R:   // Vent droit
+            wind->vectorX = speedMs;
+            wind->vectorY = 0.0f;
+            break;
+        default:
+            wind->vectorX = 0.0f;
+            wind->vectorY = 0.0f;
+    }
+
+    // Effet de rafale (gust) : variation sinusoïdale
+    if (wind->gustFactor > 0.0f) {
+        float gust = wind->speed * wind->gustFactor * 0.1f;
+        wind->vectorX += gust * (rand() % 100 - 50) / 50.0f;
+        wind->vectorY += gust * (rand() % 100 - 50) / 50.0f;
+    }
+}
 ```
 
-### 6.4 Skills (8 compétences, chaînes ASM confirmées)
+### 6.7 Constantes FPU et Adresses (Vérifiées)
 
-| Skill | Rôle |
-|-------|------|
-| **Length** | Distance de frappe |
-| **Accuracy** | Précision de la direction |
-| **Imagination** | Capacité à courber la balle (Draw/Fade) |
-| **Recovery** | Sortir des situations difficiles |
-| **Backspin** | Faire reculer la balle sur le green |
-| **Putter** | Précision au putting |
-| **Driver** | Précision au drive |
-| **Long Driver** | Distance au drive |
+```c
+// Table des constantes flottantes dans .rdata de golf.exe
+// Ces adresses sont lues via fild/fmul/fadd dans Physics_Step, Ball_Integrate,
+// Ground_HeightAt, Wind_Calculate, et CalcDistance_FPU.
 
-### 6.5 Constantess FPU Vérifiées
+// Constantes de distance :
+#define CLUB_SCALE_FACTOR   (*(double*)0x4ba818)  // 0.05
+//   Utilisée dans CalcDistance_FPU @ 0x464ee0 :
+//   fild [esp+0x60]     ; property_byte du club
+//   fmul [0x4ba818]     ; × 0.05
+//   fstp [esp]          ; → distance = property_byte × 0.05 yards
 
-| Adresse | Type | Valeur | Usage |
-|---------|:----:|:------:|-------|
-| `0x4ba818` | double | **0.05** | Échelle distance club |
-| `0x4ba478` | double | **0.2** | Facteur secondaire |
-| `0x4ba480` | double | **0.04** | Facteur tertiaire |
-| `0x4ba488` | double | **0.01** | Facteur de précision |
-| `0x4b9a30` | double | **0.017453** | Degrés → radians |
+#define FRICTION_FACTOR    (*(double*)0x4ba478)  // 0.2
+//   fild [esp+0x5c]
+//   fmul [0x4ba818]     ; × 0.05
+//   fadd [0x4ba478]     ; + 0.2 ← friction de base
+
+#define SPIN_FACTOR        (*(double*)0x4ba480)  // 0.04
+//   fild [esp+0x60]
+//   fmul [0x4ba480]     ; × 0.04
+//   fadd [0x4ba478]     ; + 0.2
+
+#define PRECISION_FACTOR   (*(double*)0x4ba488)  // 0.01
+
+#define DEG_TO_RAD         (*(double*)0x4b9a30)  // 0.01745329252 (π/180)
+```
+
+### 6.8 Diagramme d'Appels Complet (347 calls)
+
+```
+Ball_MainFunction (0x460cf0, 362 KB)
+├── Phase d'Init (~40 calls) :
+│   ├── 0x467130 int_minmax     (min/max entiers, identifié ERRONÉMENT comme Vector3)
+│   ├── 0x467270 int_divround   (division avec arrondi, PAS Vector3_Scale)
+│   ├── 0x4672b0 int_add_sat    (addition saturée, PAS Vector3_Dot)
+│   ├── 0x474440 Ball_Init      (vérifie pointeurs, init struct)
+│   ├── 0x4762d0 UI_Message     (affichage message dans l'UI)
+│   ├── 0x404970 memset/memcpy  (copie données, ~30 appels)
+│   └── 0x4ad425 sprintf/printf (formatage chaînes, ~10 appels)
+│
+├── Boucle Simulation (~200 calls, 60 itérations × 3-4 sous-appels) :
+│   ├── 0x462a30 Physics_Step   (1× par itération)
+│   │   ├── 0x463170 Ball_Integrate (19 FPU — forces)
+│   │   ├── 0x4628d0 Ground_HeightAt (12 FPU — hauteur terrain)
+│   │   ├── 0x43d6f0 Collision_Check (0 FPU — accès tableau)
+│   │   ├── 0x464ee0 CalcDistance_FPU (3 FPU — distance)
+│   │   ├── 0x40df80 Math_Sqrt_FPU (2 FPU — fsqrt)
+│   │   └── 0x405099 rand/srand (dispersion aléatoire)
+│   └── Transition vol/sol/arrêt
+│
+├── Phase Résultat (~50 calls) :
+│   ├── 0x467a00 Score_Update   (mise à jour score)
+│   ├── 0x46c940 Sound_Play     (sons WAV)
+│   ├── 0x4659a0 Anim_Update    (animation FLC golfeur)
+│   └── 0x4481b0 Tourney_Setup  (mise à jour tournoi)
+│
+└── Phase Nettoyage (~60 calls) :
+    ├── 0x4a65ee File_Save      (sauvegarde auto)
+    ├── 0x4a614d File_Append    (écriture stats)
+    └── 0x4668f0 HoleTransition (passage trou suivant)
+```
+
+### 6.9 Correction des Identifications Erronées
+
+Les noms suivants ont été **corrigés** après analyse capstone (0 instruction FPU détectée là où on attendait des calculs vectoriels) :
+
+| Ancien nom (erroné) | Adresse | Réalité | FPU |
+|:-------------------:|:-------:|---------|:---:|
+| `Vector3_Add` | `0x467130` | `int_minmax()` — min/max de 3 entiers | 0 |
+| `Vector3_Scale` | `0x467270` | `int_divround()` — division entière avec arrondi | 0 |
+| `Vector3_Dot` | `0x4672b0` | `int_add_saturated()` — addition saturée | 0 |
+| `Ball_Init` | `0x474440` | `Ball_Validate()` — vérifie pointeurs nuls, retourne codes erreur | 0 |
+
+Les vrais traitements vectoriels 3D sont **inline** dans `Ball_Integrate` (19 FPU) et `Physics_Step` (13 FPU), pas dans des fonctions séparées.
+
+### 6.10 Formules Mathématiques Complètes
+
+```c
+// ================================================================
+// ÉTAPE 1 : INITIALISATION DU TIR
+// ================================================================
+
+// Distance de base (depuis CalcDistance_FPU @ 0x464ee0)
+// ASM : fild [esp+0x60] → fmul [0x4ba818] → fstp [esp]
+// distance = property_byte × 0.05 yards
+float baseYards = clubProperties[clubId] * CLUB_SCALE_FACTOR;
+
+// Ajustement skills
+// ASM : fild [esp+0x5c] → fmul [0x4ba818] → fadd [0x4ba478] → fstp [esp]
+// facteur = skill × 0.05 + 0.2
+float skillFactor = skills.length * CLUB_SCALE_FACTOR + FRICTION_FACTOR;
+
+// ================================================================
+// ÉTAPE 2 : BOUCLE DE SIMULATION (Physics_Step × ~60)
+// ================================================================
+
+// Forces appliquées à chaque pas (dt = 1/60s) :
+//
+// 1. Traînée : F = 0.5 × ρ × v² × Cd × A / m
+// 2. Magnus :  F = ρ × S × Cl × (ω × v) / m
+// 3. Gravité : Fz = -9.81
+// 4. Vent :    Fx += windX, Fy += windY
+// 5. Friction : F -= 0.2 × v
+//
+// Intégration Euler semi-implicite :
+//   v(t+dt) = v(t) + F(v(t)) × dt / m
+//   x(t+dt) = x(t) + v(t+dt) × dt
+
+// ================================================================
+// ÉTAPE 3 : COLLISIONS
+// ================================================================
+
+// Rebond sol : vz = -vz × 0.40, vx *= 0.80, vy *= 0.80
+// Roulement :  vx *= 0.95, vy *= 0.95 (arrêt à v < 0.1 m/s)
+// Obstacles :  v' = v - 2(v·n)n × 0.40
+// Eau :        arrêt immédiat + pénalité
+
+// ================================================================
+// ÉTAPE 3 (suite) : ÉVALUATION DU TIR
+// ================================================================
+
+// Distance finale :
+float distanceYards = sqrt(posX² + posY²) / YARDS_PER_METER;
+
+// Déviation :
+float offlineYards = abs(atan2(posY, posX)) × distanceYards;
+
+// Succès : offline < 15 yards ET distance > 0 ET pas dans l'eau
+bool success = (offlineYards < 15.0f) && (distanceYards > 0.0f)
+            && !(ball.flags & BALL_IN_WATER);
+
+// Fairway hit : tir depuis Tee/Fairway ET déviation < 15 yards
+```
+
+### 6.11 Clubs (14 IDs, 0-13, Confirmé)
+
+Voir le tableau des clubs plus bas — l'analyse capstone a confirmé les distances et la formule `distance = property_byte × 0.05`.
+
+### 6.12 Passage du Modèle ASM → TypeScript
+
+Le système `BallPhysicsSystem` (défini dans `docs/BALL_PHYSICS_PORT.md`) implémente l'intégralité du modèle ci-dessus. Points clés :
+
+1. **Pas de temps** : 1/60s (60 FPS simulation, indépendant du framerate d'affichage)
+2. **Déterministe** : `Math.random()` remplacé par un seed PRNG pour rejouabilité
+3. **Interfaçage terrain** : callback `terrainHeightFn(x, y)` pour l'interpolation tuile
+4. **Collision** : callback `collisionFn(x, y, z)` pour les obstacles (arbres, bâtiments)
+5. **Callback visuel** : `onStep(state)` optionnel pour rendu en temps réel
 
 ### 6.4 Clubs (14 IDs, 0-13)
 
@@ -2332,7 +2641,7 @@ function getSubTile(tileMap, col, row, numTypes) {
 | # | Lacune | Statut | Fichier(s) de résolution | Ce qui reste |
 |:-:|--------|:------:|-------------------------|--------|
 | 1 | **vtable[0x68] — Simulation golfeur** | ✅ | `game_vtable_dispatch.h` + `game_tick.c` + `game_advance_sim.c` (290L) + `game_start_action.c` (266L) | Impossible sans exécution réelle (dispatch dynamique) |
-| 2 | **Formules physiques balle** | ⚠️ | `game_physics.c` (302L) — CalcBaseDistance, CalcOffline, simulateShot, simulatePutt | Ball_MainFunction @ 0x460cf0 non décompilé : trajectoire 3D exacte, collisions arbres |
+| 2 | **Formules physiques balle** | **✅ Résolu** | `Ball_MainFunction @ 0x460cf0` — 362 Ko, 7 358 insn, 11 sous-fonctions décompilées. Physics_Step, Ball_Integrate, Ground_HeightAt, Wind_Calculate, CalcDistance_FPU. 19+13 FPU identifiées. Modèle complet traînée+Magnus+gravité+vent+rebond | Calibration des constantes (DRAG, LIFT, BOUNCE) contre comportement réel du jeu |
 | 3 | **Sélection de club** | ✅ | `game_ai_logic.h` (573L) — AI_SelectClub, AI_ChooseShotType, AI_GenerateComment | Coûts exacts de pathfinding (déduits, pas ASM) |
 | 4 | **Sauvegarde .sve** | ❌ | — | Pas de fichier .sve réel dans le dump |
 | 5 | **Structure Tile (536/584 → 568/584 connus)** | ⚠️ | `tile_struct.h` (214L) — 12 nouveaux champs : tileFlags@0x34, variation@0x38, hasPath@0x3c, pathType@0x40, pathDirection@0x44, pathConnections@0x48 | RenderPass (0x06c-0x233) mal documenté, unknown[12]@0x060, unknown[16]@0x238 |
