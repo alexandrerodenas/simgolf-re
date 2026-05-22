@@ -12,7 +12,7 @@
 2. [Structures de Données](#2-structures-de-données)
 3. [Système de Terrain](#3-système-de-terrain)
 4. [Rendu Isométrique](#4-rendu-isométrique)
-5. [Auto-Tiling & Textures](#5-auto-tiling--textures) — 5.1→5.12 (groupes AE, orientations AD, variation cosmétique, bordures voisins) | ✅ Décompilé
+5. [Auto-Tiling & Textures](#5-auto-tiling--textures) — 5.1→5.16 (groupes AE, orientations AD, variation cosmétique, bordures voisins, eau, overgrowth, table complète) | ✅ Décompilé
 6. [Élévation du Terrain](#6-élévation-du-terrain)
 7. [Chemins (Paths)](#7-chemins-paths)
 8. [Murs (Walls)](#8-murs-walls)
@@ -1121,10 +1121,213 @@ void __thiscall Terrain::renderTile(Terrain* this, int tileType,
     glTexCoord2f(0,1); glVertex3f(-50,0,-50);
     glTexCoord2f(1,0); glVertex3f(50,0,50);
     glTexCoord2f(1,1); glVertex3f(50,0,-50);
-    glEnd();
-    glEnable(GL_CULL_FACE); glPopMatrix(); glFlush();
-}
+---
+
+### 5.13 Génération de l'Eau — Analyse Complète
+
+#### 5.13.1 Initialisation par Défaut
+
+**Toutes les tuiles commencent comme WaterShallow.** C'est le type par défaut à l'initialisation de la grille :
+
+```asm
+; updateAllTileNeighbors @ 0x1000a16a (PASSE 1)
+; Pour chaque (x, y) dans la grille :
+;   tileInit(x, y) → tile par défaut (type=WaterShallow)
 ```
+
+C'est cohérent avec la logique d'édition : le joueur "peint" le terrain par-dessus l'eau initiale. Le terrain n'existe que là où le joueur l'a placé.
+
+#### 5.13.2 Les 3 Profondeurs
+
+| Type | ID | maxVariation | Textures | Rôle |
+|:-----|:--:|:------------:|:--------:|:------|
+| **WaterShallow** | 4 | 9 | A-D × 9 = 36 | Eau peu profonde (bord de lac, ruisseau) |
+| **WaterMiddle** | 5 | 9 | A-D × 9 = 36 | Eau moyenne |
+| **WaterDeep** | 6 | 5 | A-D × 5 = 20 | Eau profonde (pénalité sévère) |
+
+Les 3 profondeurs sont dans la **même famille** (water, famille 3) → pas de bordure entre elles. La transition entre profondeurs est invisible, gérée par la palette de couleurs de la texture.
+
+#### 5.13.3 Génération Procédurale (Valeur Noise)
+
+Le bruit de valeur (value noise avec interpolation cosinus) détermine le placement de l'eau :
+
+```
+n = noise(x, y)  // [0.0, 1.0]
+
+Si n < 0.10  → WaterShallow (10% de la carte)
+Sinon        → autre type (rough, fairway, etc.)
+```
+
+L'eau apparaît en **plaques** naturelles grâce à la cohérence spatiale du bruit de Perlin/valeur. Les zones de bruit < 0.10 forment des bassins, lacs et cours d'eau.
+
+#### 5.13.4 Bordures Eau → Terre
+
+Les 3 types d'eau génèrent des bordures **A-D** vers **tous les 27 types non-eau** :
+
+| Type adjacent | Bordure générée |
+|:-------------|:----------------|
+| Rough, Fairway, Green, Tee, SandBunker, Cliff, Path, Building, Woods, DeepRough, Brush, Flower, Natural, Rock, Marsh, Vegetation, Overgrowth, Flowerbed, GrassySand, GrassBunker, FirmFairway, PotBunker, ZenSand, PotSandBunker, Bridge, Ravine, RetainingWall | `Water{A-D}` |
+
+L'orientation A-D indique le côté de la tuile d'eau qui touche la terre ferme :
+- **A** = Bordure Nord (side 2)
+- **B** = Bordure Est (side 1)
+- **C** = Bordure Sud (side 3)
+- **D** = Bordure Ouest (side 0)
+
+#### 5.13.5 Eau dans le Jeu
+
+- **Éditeur** : L'outil "Place Water" (son `sounds/interface/place water.wav`) permet au joueur de peindre l'eau manuellement
+- **Scénarios** : Les fichiers `.cse` peuvent définir des zones d'eau précises
+- **Physique balle** : `LIE_WATER = 5` — la balle est perdue, pénalité de coup
+- **Rendu** : La fonction `renderSingleTile` a un cas spécial pour le type 7 (vue non-standard avec calcul d'index de texture basé sur viewDelta)
+
+#### 5.13.6 Présence par Thème
+
+| Thème | WaterShallow | WaterMiddle | WaterDeep | Particularité |
+|:------|:------------:|:-----------:|:---------:|:-------------|
+| **Links** | A-D × 9 | A-D × 9 | A-D × 5 | Standard |
+| **Parkland** | A-D × 9 | A-D × 9 | A-D × 5 | Standard |
+| **Desert** | A-D × 9 | A-D × 9 | A-D × 5 | + `WaterShallowDesert{A-D} × 5` (eau peu profonde désertique) |
+| **Tropical** | A-D × 9 | A-D × 9 | A-D × 5 | Standard |
+
+### 5.14 Overgrowth, Marsh & Végétation Dense
+
+#### 5.14.1 Overgrowth — Fourré Dense
+
+| Propriété | Valeur |
+|:----------|:-------|
+| **Type** | Décoration/herbe haute |
+| **Famille** | grass (famille 0) |
+| **Présent dans** | Links, Parkland, Tropical (PAS Desert) |
+| **Groupes** | A-D (4 orientations) |
+| **Variations** | 9 par groupe |
+| **Total textures** | 36 par thème |
+
+**Comportement des bordures :**
+- 🟡 **Même famille** → pas de bordure avec Rough, Woods, DeepRough, Brush, Marsh, etc.
+- ✅ **Bordure** → l'eau ou la falaise adjacente génère sa bordure VERS overgrowth
+- ❌ **Seam** → avec play, sand, path, building
+
+**Les fichiers overgrowth :**
+```
+overgrowthA0001.bmp  ...  overgrowthA0009.bmp  (orientation A = bordure Nord)
+overgrowthB0001.bmp  ...  overgrowthB0009.bmp  (orientation B = Est)
+overgrowthC0001.bmp  ...  overgrowthC0009.bmp  (orientation C = Sud)
+overgrowthD0001.bmp  ...  overgrowthD0009.bmp  (orientation D = Ouest)
+```
+
+⚠️ **Les 4 orientations (A-D) indiquent que overgrowth a des textures de bordure** — c'est un des rares types grass qui possède ses propres textures directionnelles. Cela suggère que overgrowth peut "déborder" sur les côtés, créant un effet de fourré dense qui s'étend au-delà de sa tuile.
+
+**Dans le jeu :**
+- Overgrowth est un type de terrain **peint manuellement** par le joueur (pas généré procéduralement dans Parkland)
+- Visuellement : buissons denses, ronces, hautes herbes impénétrables
+- La balle est très difficile à jouer depuis overgrowth (perte de distance sévère)
+
+#### 5.14.2 Marsh — Marais
+
+| Propriété | Valeur |
+|:----------|:-------|
+| **Type** | Terrain humide |
+| **Famille** | grass (famille 0) |
+| **Présent dans** | **Tous les 4 thèmes** |
+| **Groupes** | A uniquement (plat) |
+| **Variations** | 5 |
+| **Total textures** | 5 par thème |
+
+**Comportement :**
+- 🟡 **Même famille** que grass → pas de bordure avec Rough, Woods, etc.
+- Texture **toujours plate** (groupe A uniquement) → pas de géométrie d'élévation
+- C'est un terrain de **remplissage** visuel, pas une bordure
+
+**Dans le jeu :**
+- Marsh représente les zones marécageuses humides
+- Moins sévère que overgrowth mais plus que le rough normal
+- Peint manuellement ou placé par les scénarios
+
+#### 5.14.3 Vegetation (Desert uniquement)
+
+| Propriété | Valeur |
+|:----------|:-------|
+| **Type** | Végétation désertique |
+| **Présent dans** | Desert UNIQUEMENT |
+| **Groupes** | A uniquement (plat) |
+| **Variations** | 5 |
+| **Total textures** | 5 |
+
+Remplissage visuel pour le thème Desert — cactus, buissons secs, végétation clairsemée.
+
+#### 5.14.4 Natural (Desert uniquement)
+
+| Propriété | Valeur |
+|:----------|:-------|
+| **Type** | Terrain naturel rocailleux |
+| **Présent dans** | Desert UNIQUEMENT |
+| **Groupes** | A uniquement (plat) |
+| **Variations** | 5 |
+| **Total textures** | 5 |
+
+Rocaille, gravier, lit de rivière asséché — texture de remplissage pour le désert.
+
+### 5.15 Table récapitulative — Tous les types de terrain par groupe
+
+| Type | Groupes | Variations | Total | Catégorie | Présent dans |
+|:-----|:-------:|:----------:|:-----:|:---------:|:------------|
+| **Rough** | A-E (géom.) | 9 | 45 | Élévation | Tous |
+| **DeepRough** | A-D (géom.) | 9 | 36 | Élévation | Tous |
+| **Fairway** | A (A-E Links) | 5 | 5-25 | Élévation | Tous |
+| **FirmFairway** | A (A-E Links) | 9 | 9-45 | Élévation | Tous |
+| **PuttingGreen** | A | 5 | 5 | Plat | Tous |
+| **Tee** | A | 25 | 25 | Plat | Tous |
+| **SandBunker** | 1A-4A | 5 | 4×5=20 | Plat (forme) | Tous |
+| **PotSandBunker** | A | 9 | 9 | Plat | Links |
+| **ZenSand** | A | 9 | 9 | Plat | Parkland |
+| **Woods** | A-D (géom.) | 9 | 36 | Élévation | Tous |
+| **Brush** | A-D (géom.) | 9 | 36 | Élévation | Tous |
+| **Flower/Flowerbed** | A-D | 9 | 36 | Bordure | Parkland/Links |
+| **Rock** | A-E (géom.) | 9 | 45 | Élévation | Tous |
+| **Building** | A-E (géom.) | 9 | 45 | Élévation | Tous (Desert: A) |
+| **WaterShallow** | A-D (bord.) | 9 | 36 | Bordure | Tous |
+| **WaterMiddle** | A-D (bord.) | 9 | 36 | Bordure | Tous |
+| **WaterDeep** | A-D (bord.) | 5 | 20 | Bordure | Tous |
+| **Cliff** | A-D (bord.) | 9 | 36 | Bordure | Tous |
+| **GrassySand** | A-D (bord.) | 9 | 36 | Bordure | Tous |
+| **GrassBunker** | A-D (bord.) | 9 | 36 | Bordure | Tous |
+| **Overgrowth** | A-D (bord.) | 9 | 36 | Bordure | Links, Parkland, Tropical |
+| **Marsh** | A | 5 | 5 | Plat | Tous |
+| **Vegetation** | A | 5 | 5 | Plat | Desert |
+| **Natural** | A | 5 | 5 | Plat | Desert |
+| **Path** | A | 9 | 9 | Plat | Tous |
+| **Bridge** | A | 9 | 9 | Plat | Tous |
+| **Ravine** | A | 9 | 9 | Plat | Parkland |
+| **RetainingWall** | A | 1 | 1 | Plat | Tous |
+| **TrickyGreen** | A-C | 5 | 15 | Plat (niveau) | Links |
+
+### 5.16 Schéma de catégorisation
+
+```
+TYPES DE TERRAIN
+├── ÉLÉVATION (groupes A-E, géométrie des coins)
+│   ├── Rough, DeepRough, Woods, Brush, Rock, Building
+│   ├── Fairway, FirmFairway (A-E uniquement Links)
+│   └── Flower, Rock
+├── BORDURE (groupes A-D, orientation du côté adjacent)
+│   ├── Eau : WaterShallow, WaterMiddle, WaterDeep
+│   ├── Falaise : Cliff
+│   ├── Transition sable : GrassySand, GrassBunker
+│   └── Fourré : Overgrowth
+├── PLAT (groupe A uniquement, aucune géométrie)
+│   ├── Play : PuttingGreen, Tee, TrickyGreen
+│   ├── Sable : SandBunker, PotSandBunker, ZenSand
+│   ├── Remplissage : Marsh, Vegetation, Natural
+│   ├── Infrastructure : Path, Bridge, Ravine, RetainingWall
+│   └── Décoration : Flowerbed
+└── OBJET 3D (rendu comme sprite, pas comme texture de sol)
+    └── Building (quand c'est un bâtiment 3D, pas une texture de sol)
+```
+
+Tous les types à **ÉLÉVATION** (A-E ou A-D géométrie) : les 4 hauteurs des coins déterminent la forme de la tuile.
+Tous les types à **BORDURE** (A-D orientation) : la direction du voisin de famille différente détermine la texture.
+Tous les types **PLATS** (A seulement) : texture de remplissage sans variation géométrique ni de bordure.
 
 ---
 
