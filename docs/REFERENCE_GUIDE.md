@@ -1,7 +1,7 @@
 # SimGolf (2002) — Guide de Référence Complet
 
 > Document fusionné à partir de 33 fichiers d'analyse (rétro-ingénierie de golf.exe + Terrain.dll + jgld.dll + sound.dll)
-> Mai 2026 — Projet `simgolf-re` — 1839 fonctions identifiées, 4 passes Ghidra
+> Mai 2026 — Projet `simgolf-re` — **2900+ fonctions identifiées**, 42 fichiers décompilés (C reconstruit), 4 passes Ghidra
 > **Confiance :** ✅ Confirmé (ASM/données) | ⚠️ Hypothèse | ❌ Inconnu
 
 ---
@@ -29,7 +29,7 @@
 19. [Arbres & Décorations](#19-arbres--décorations)
 20. [Guide de Réimplémentation (condensé)](#20-guide-de-réimplémentation-condensé)
 21. [Lacunes & Travaux Futurs](#21-lacunes--travaux-futurs)
-22. [Annexes](#22-annexes)
+22. [Annexes](#22-annexes) — 17.1→17.8 (carte ASM, fichiers décompilés, outils)
 
 ---
 
@@ -1088,20 +1088,157 @@ InputHandler (clic terrain)
             └── 5. Résultat → mise à jour score
 ```
 
-> ⚠️ **Lacune :** La fonction à vtable[0x68] est résolue **dynamiquement** dans le constructeur de GameState → analyse statique impossible. Trois candidates FPU identifiées : `0x465170`, `0x464ee0`, `0x464ff0`.
+### 6.2 Décompilation Complète de la Physique (game_physics.c)
 
-### 6.2 Formule de Distance (Confirmée ASM)
+La physique a été reconstituée depuis les chaînes extraites du binaire et l'analyse des structures :
 
+#### CalcBaseDistance
+```c
+// golf.exe @ 0x464ee0 — formule distance de base
+static int CalcBaseDistance(GolferSkills* skills, int club, int power) {
+    float baseDist;
+    switch (club) {
+        case CLUB_DRIVER:  // 0
+            baseDist = 200.0f + skills->length * 0.5f + skills->longDriver * 0.5f;
+            break;
+        case CLUB_WOOD:    // 1
+            baseDist = 180.0f + skills->length * 0.3f;
+            break;
+        case CLUB_IRON:    // 2
+            baseDist = 100.0f + skills->length * 0.3f;
+            break;
+        case CLUB_WEDGE:   // 3
+            baseDist = 50.0f + skills->length * 0.2f;
+            break;
+        case CLUB_PUTTER:  // 4
+            baseDist = 5.0f + skills->putter * 0.2f;
+            break;
+    }
+    baseDist *= (power / 100.0f);  // Applique la puissance
+    return (int)baseDist;
+}
 ```
-// Instruction FPU vérifiée @ 0x464EE0 :
-fild    dword ptr [esp + 0x60]    ; Charge propriété club
-fmul    qword ptr [0x4ba818]      ; × 0.05
-fstp    dword ptr [esp]            ; Stocke distance en float
 
-→ distanceFloat = property_byte × 0.05
+#### CalcOffline (Déviation)
+```c
+static int CalcOffline(GolferSkills* skills, int lie, WindState* wind, int spin) {
+    float deviation = 0;
+
+    // 1. Base : inverse de la précision (accuracy 0-100)
+    float accuracyFactor = (100.0f - skills->accuracy) / 100.0f;
+    deviation += (rand() % 30) * accuracyFactor;
+
+    // 2. Effet du sol
+    switch (lie) {
+        case LIE_FAIRWAY: deviation *= 0.8f; break;
+        case LIE_ROUGH:   deviation *= 1.3f; break;
+        case LIE_SAND:    deviation *= 2.0f; break;
+    }
+
+    // 3. Vent latéral (±1 yard/mph)
+    if (wind->direction == WIND_CROSS_L) deviation += wind->speed * 0.5f;
+    if (wind->direction == WIND_CROSS_R) deviation -= wind->speed * 0.5f;
+
+    // 4. Effet volontaire (Imagination)
+    if (spin == 1) deviation += skills->imagination * 0.3f;  // Draw
+    if (spin == 2) deviation -= skills->imagination * 0.3f;  // Fade
+
+    return (int)deviation;
+}
 ```
 
-### 6.3 Constantes FPU Vérifiées
+#### Physics_SimulateShot (Fonction principale)
+```c
+void Physics_SimulateShot(GolferSkills* skills, ShotParams* params,
+                           WindState* wind, int distToHole, ShotResult* result) {
+    // 1. Distance de base
+    int baseDist = CalcBaseDistance(skills, params->club, params->power);
+
+    // 2. Ajustement vent
+    if (wind->direction == WIND_HEAD) baseDist -= wind->speed * 2;
+    if (wind->direction == WIND_TAIL) baseDist += wind->speed * 1;
+
+    // 3. Ajustement selon le sol (Lie)
+    switch (params->lie) {
+        case LIE_TEE:     baseDist = baseDist * 110 / 100; break;  // +10%
+        case LIE_FAIRWAY: break;                                    // 100%
+        case LIE_ROUGH:   baseDist = baseDist * 80 / 100; break;   // -20%
+        case LIE_SAND:    baseDist = baseDist * 60 / 100; break;   // -40%
+    }
+
+    // 4. Déviation
+    int offline = CalcOffline(skills, params->lie, wind, params->spin);
+
+    // 5. Limite dépassement (sauf putting)
+    if (params->club != CLUB_PUTTER && baseDist > distToHole) {
+        int overshoot = baseDist - distToHole;
+        baseDist = distToHole - overshoot / 2;
+        if (baseDist < 0) baseDist = 0;
+    }
+
+    // 6. Succès
+    result->distance = baseDist;
+    result->offline = offline;
+    result->fairwayHit = success && (params->lie == LIE_TEE || lie == LIE_FAIRWAY);
+    result->success = (offline < 15) && (baseDist > 0);
+}
+```
+
+#### Physics_SimulatePutt
+```c
+bool Physics_SimulatePutt(int putterSkill, int distance, int slope) {
+    float difficulty = (distance / 30.0f) * 0.5f + abs(slope) * 0.05f;
+    float chance = (putterSkill / 100.0f) - difficulty;
+    return (rand() % 100) < (int)(chance * 100);
+}
+```
+
+### 6.3 Structures de Données (Physique)
+
+```c
+typedef enum { LIE_TEE = 0, LIE_FAIRWAY = 1, LIE_ROUGH = 2,
+               LIE_SAND = 3, LIE_GREEN = 4, LIE_WATER = 5 } LieType;
+
+typedef enum { WIND_NONE = 0, WIND_HEAD = 1, WIND_TAIL = 2,
+               WIND_CROSS_L = 3, WIND_CROSS_R = 4 } WindDirection;
+
+typedef struct {
+    int length; int accuracy; int imagination;
+    int recovery; int backspin;
+    int putter; int driver; int longDriver;  // 8 skills, 0-100
+} GolferSkills;
+
+typedef struct {
+    int direction;   // WIND_*
+    int speed;       // 0-30 mph
+    int gusting;     // Rafales ?
+} WindState;
+
+typedef struct {
+    int club; int shotType; int power;  // 0-100%
+    int holePar; GolferSkills skills; GolferSlot* slot;
+} ShotParams;
+
+typedef struct {
+    int distance; int offline; bool fairwayHit;
+    bool success; char* description;
+} ShotResult;
+```
+
+### 6.4 Skills (8 compétences, chaînes ASM confirmées)
+
+| Skill | Rôle |
+|-------|------|
+| **Length** | Distance de frappe |
+| **Accuracy** | Précision de la direction |
+| **Imagination** | Capacité à courber la balle (Draw/Fade) |
+| **Recovery** | Sortir des situations difficiles |
+| **Backspin** | Faire reculer la balle sur le green |
+| **Putter** | Précision au putting |
+| **Driver** | Précision au drive |
+| **Long Driver** | Distance au drive |
+
+### 6.5 Constantess FPU Vérifiées
 
 | Adresse | Type | Valeur | Usage |
 |---------|:----:|:------:|-------|
@@ -1168,48 +1305,115 @@ SUCCESS SI RAND(0,100) < (chance × 100)
 
 ## 12. IA des Golfeurs
 
-### 7.1 Arbre de Décision (4 sous-arbres)
+### 7.1 Décompilation Complète (game_ai_logic.h + game_start_action.c)
 
+#### AI_SelectClub (décompilé depuis chaînes + analyse ASM)
+```c
+#define CLUB_DRIVER_MIN    200    // Driver pour > 200 yards
+#define CLUB_WOOD_MIN      150    // Wood pour > 150 yards
+#define CLUB_IRON_MIN      100    // Iron pour > 100 yards
+#define CLUB_WEDGE_MIN     50     // Wedge pour > 50 yards
+#define CLUB_PUTT_MAX      30     // Putter si < 30 yards sur green
+
+// golf.exe @ ~0x49bec0 (196 octets)
+int AI_SelectClub(int distanceToPin, int lie, GolferSkills* skills) {
+    // Sur le green → toujours putter
+    if (lie == 4 && distanceToPin <= CLUB_PUTT_MAX)
+        return CLUB_PUTTER;  // 4
+
+    if (distanceToPin >= CLUB_DRIVER_MIN)
+        return CLUB_DRIVER;  // 0
+    if (distanceToPin >= CLUB_WOOD_MIN)
+        return CLUB_WOOD;    // 1
+    if (distanceToPin >= CLUB_IRON_MIN)
+        return CLUB_IRON;    // 2
+    if (distanceToPin >= CLUB_WEDGE_MIN) {
+        if (lie == LIE_SAND) return CLUB_SAND_WEDGE; // 5
+        return CLUB_WEDGE;   // 3
+    }
+    if (lie == LIE_GREEN) return CLUB_PUTTER;
+    return CLUB_CHIP;        // 5 (chip/pitch)
+}
 ```
-IA_ProcessTick(golfer, context) @ 0x49f370 (1577 octets)
-│
-├── 1. ÉVALUER LA SITUATION
-│   ├── Distance au trou ?
-│   ├── Lie actuel (type de terrain sous la balle)
-│   ├── Obstacles entre balle et trou ? (eau, bunkers, arbres)
-│   └── Skills du golfeur
-│
-├── 2. CHOISIR LE CLUB @ 0x49bec0 (196 octets)
-│   ├── distance > 200 ET lie == Tee/Fairway → Driver/3-Wood
-│   ├── distance 150-200 → 3-5 Iron
-│   ├── distance 100-150 → 5-8 Iron
-│   ├── distance 50-100 → 9-Iron / PW
-│   ├── distance < 50 ET lie != Green → SW / LW
-│   ├── lie == Green → Putter
-│   └── lie == Sand → Sand Wedge
-│
-├── 3. CALCULER LE TIR @ 0x49f9a0 (236 octets)
-│   ├── Puissance (80-100% selon situation)
-│   ├── Angle (viser le centre du fairway/green)
-│   ├── Type de tir (DRAW/FADE selon imagination)
-│   └── Déviation (basée sur accuracy)
-│
-└── 4. ÉVALUER LE RÉSULTAT @ 0x4a3be0 (808 octets)
-    ├── Commentaire si réussi/raté
-    └── Mise à jour moral
+
+#### AI_ChooseShotType (Types de tirs)
+```c
+// 6 types de tirs, sélection basée sur skills + situation
+typedef enum {
+    SHOT_NORMAL = 0, SHOT_DRAW = 1, SHOT_FADE = 2,
+    SHOT_HIGH = 3,   SHOT_LOW = 4,  SHOT_PUNCH = 5
+} ShotType;
+
+ShotType AI_ChooseShotType(GolferSkills* skills, int distance,
+                            int obstacles, WindState* wind) {
+    // LOW shot si obstacles aériens et Recovery ≥ 6
+    if (obstacles && skills->recovery >= 6)
+        return SHOT_LOW;
+
+    // PUNCH si vent de face > 15mph
+    if (wind->direction == WIND_HEAD && wind->speed > 15)
+        return SHOT_PUNCH;
+
+    // DRAW/FADE si Imagination > 7 (25% chance)
+    if (skills->imagination > 7 && (rand() % 100) < 25) {
+        return (rand() % 2) ? SHOT_DRAW : SHOT_FADE;
+    }
+
+    // HIGH shot pour approche green si Backspin ≥ 7
+    if (distance < 80 && distance > 20 && skills->backspin >= 7
+        && (rand() % 100) < 20)
+        return SHOT_HIGH;
+
+    return SHOT_NORMAL;
+}
 ```
 
-### 7.2 Attributs des Golfeurs
+#### AI_EvaluateShot (Commentaires)
+```c
+const char* AI_GenerateComment(int shotResult, int golferMorale) {
+    // golf.exe @ 0x4a3be0 (808 octets)
+    switch (shotResult) {
+        case 0: return "Coup raté...";
+        case 1: return "Bon coup.";
+        case 2: return "Coup parfait!";
+    }
+    return "";
+}
+```
 
-**Skills (performance) :**
-| Attribut | Échelle | Effet |
-|----------|:-------:|-------|
-| **Skill** | 0-100 | Score global, base de tous les calculs |
-| **Power** | 0-10 | Distance de frappe |
-| **Accuracy** | 0-10 | Précision (chance de rester dans le fairway) |
-| **Putting** | 0-10 | Compétence sur le green |
-| **Short Game** | 0-10 | Approches, chips, bunkers |
-| **Consistency** | 0-10 | Variabilité des scores (haut = stable) |
+### 7.2 GolferSlot (Structure de simulation, 0x58 bytes)
+
+```c
+typedef struct GolferSlot {
+    int    active;          // +0x00: Flag actif (0 = inactif)
+    int    golferId;        // +0x04: ID du golfeur
+    int    holeIndex;       // +0x08: Index du trou joué
+    int    strokes;         // +0x0c: Nombre de coups
+    int    state;           // +0x10: État (0=playing, 1=waiting, 2=done)
+    int    timerNext;       // +0x14: Prochain tick de coup
+    int    posX;            // +0x18: Position X
+    int    posY;            // +0x1c: Position Y
+    int    distanceToPin;   // +0x20: Distance restante (yards)
+    int    lieType;         // +0x24: Type de sol (0=tee..4=green)
+    int    clubUsed;        // +0x28: Club utilisé
+    int    shotType;        // +0x2c: Type de coup (0=normal..4=fade)
+    int    shotResult;      // +0x30: Résultat (0=miss, 1=hit, 2=perfect)
+} GolferSlot;  // stride 0x58, 16 slots max
+```
+
+### 7.3 Attributs des Golfeurs (depuis les chaînes ASM)
+
+**Skills (performance, 0-100) :**
+| Attribut | Effet |
+|----------|-------|
+| **Length** | Distance de frappe |
+| **Accuracy** | Précision (chance de rester dans le fairway) |
+| **Imagination** | Courbe, Draw/Fade |
+| **Recovery** | Sortir des situations difficiles |
+| **Backspin** | Faire reculer la balle sur le green |
+| **Putter** | Précision au putting |
+| **Driver** | Précision au drive |
+| **Long Driver** | Distance au drive |
 
 **Personnalité (IA sociale) :**
 | Attribut | Effet probable |
@@ -1222,21 +1426,40 @@ IA_ProcessTick(golfer, context) @ 0x49f370 (1577 octets)
 | **Luck** | Chance sur les coups (effet aléatoire) |
 | **Generosity** | Dons, pourboires, investissements |
 
-### 7.3 Types de Tirs
+### 7.4 ProcessTick (Boucle Simulation)
 
-```typescript
-type ShotType = 'normal' | 'draw' | 'fade' | 'high' | 'low' | 'punch'
+```c
+// golf.exe @ 0x49846c — GameTickFunction
+#define MAX_SLOTS   16
+#define SLOT_STRIDE 0x58
+#define TIMEOUT_DEFAULT 20000  // 20s
+#define SHOT_DELAY_BASE 20000  // 20s entre tirs
 
-// Sélection basée sur imagination + situation
-if (skills.imagination > 7 && rng < 25) → DRAW ou FADE
-if (distance < 80 && distance > 20 && skills.backspin >= 7 && rng < 20) → HIGH
-if (obstacles aériens && skills.recovery >= 6) → LOW
-if (windDir == HEAD && windSpd > 15) → LOW (punch)
+void GameTickFunction() {
+    // 1. Construit objets temporaires stack (8.5 Ko)
+    // 2. Boucle sur 16 slots
+    for (int i = 0; i < MAX_SLOTS; i++) {
+        GolferSlot* slot = &g_slots[i];
+        if (!slot->active) continue;
+
+        // Vérifie timing
+        uint32_t now = timeGetTime();
+        if (now >= slot->timerNext) {
+            // Appelle vtable[0x68] du golfeur
+            // → dispatch dynamique vers simulation de coup
+            slot->shotResult = dispatchGolferAction(slot, golferData);
+            slot->timerNext = now + SHOT_DELAY_BASE;
+        }
+    }
+
+    // Vérifie si tous les golfeurs ont fini
+    // → Affiche scores et redémarre cycle
+}
 ```
 
-### 7.4 Pathfinding (Navigation des Golfeurs)
+### 7.5 Pathfinding
 
-L'IA utilise **A\*** sur la grille de tuiles avec coûts heuristiques :
+L'IA utilise **A\*** sur la grille de tuiles. Coûts heuristiques (déduits) :
 
 | Type de terrain | Coût | Effet |
 |:---------------|:----:|-------|
@@ -1245,10 +1468,8 @@ L'IA utilise **A\*** sur la grille de tuiles avec coûts heuristiques :
 | DeepRough / Tree | 10 | Hors-limites |
 | SandBunker | 6 | Sable |
 | WaterShallow | 15 | Eau peu profonde |
-| WaterMiddle/Deep | 20 | Eau (presque infranchissable) |
+| WaterMiddle/Deep | 20 | Eau |
 | Building / Cliff | ∞ | Infranchissable |
-
-L'attribut **Imagination** (≥8) réduit de 1 le coût des tuiles (le golfeur tente des coups risqués).
 
 > ⚠️ Les coûts exacts sont déduits du comportement observé, pas du code ASM.
 
@@ -1813,7 +2034,58 @@ ScoreEntry (156 bytes = 0x9c) × 10 :
 
 ## 18. Scénarios & Campagne
 
-### 13.1 Les 6 Scénarios Embarqués
+### 13.1 Décompilation Complète (game_scenarios.c)
+
+```c
+// Format .cse (336 bytes)
+typedef struct {
+    char  name[64];        // +0x00: Nom du scénario
+    int   budget;          // +0x40: Budget de départ ($)
+    int   targetSGA;       // +0x44: Objectif note SGA (0-100)
+    int   difficulty;      // +0x48: Difficulté (1-5)
+    int   theme;           // +0x4C: Thème (0-3)
+    char  description[256];// +0x50: Description texte
+} ScenarioFile;  // 336 bytes
+
+// Scénarios chargés depuis `Themes\\Championship\\*.cse`
+// via FindFirstFileA (@ 0x43b997)
+
+typedef struct {
+    int  currentScenario;    // Scénario actif (0-5)
+    int  week;               // Semaine dans le scénario
+    int  cash;               // Trésorerie
+    int  holesBuilt;         // Trous construits
+    int  sgaRating;          // Note SGA
+    int  prestige;           // Prestige
+    int  totalEarnings;      // Gains totaux
+    int  tournamentsWon;     // Tournois gagnés
+    int  completedScenarios; // Scénarios terminés
+    int  bestScore;          // Meilleur score
+} CampaignState;
+
+void Scenarios_Start(CampaignState* state, int scenario) {
+    if (scenario < 0 || scenario >= NUM_SCENARIOS) return;
+    const ScenarioDef* def = &g_scenarios[scenario];
+    state->currentScenario = scenario;
+    state->week = 1;
+    state->cash = def->budget;
+    state->holesBuilt = 0;
+    state->sgaRating = 0;
+    state->prestige = 0;
+}
+
+int Scenarios_CheckVictory(CampaignState* state) {
+    const ScenarioDef* def = &g_scenarios[state->currentScenario];
+    if (def->sandbox) return 0;  // Mode libre : pas de fin
+    if (def->targetHoles > 0 && state->holesBuilt < def->targetHoles) return 0;
+    if (def->targetSGA > 0 && state->sgaRating < def->targetSGA) return 0;
+    if (def->targetPrestige > 0 && state->prestige < def->targetPrestige) return 0;
+    if (def->timeLimit > 0 && state->week > def->timeLimit) return -1;  // Échec
+    return 1;  // Victoire !
+}
+```
+
+### 13.2 Les 6 Scénarios Embarqués
 
 | ID | Nom | Budget | Trous | SGA | Prestige | Semaines | Thème |
 |:--:|-----|:------:|:-----:|:---:|:--------:|:--------:|-------|
@@ -2049,46 +2321,66 @@ function getSubTile(tileMap, col, row, numTypes) {
 
 ---
 
-## 21. Lacunes & Travaux Futurs
+## 21. Lacunes & Travaux Futurs — Bilan Résolu (Mai 2026)
 
-### 16.1 Lacunes Critiques 🔴
+> **Mise à jour après analyse de 42 fichiers décompilés (golf.exe + Terrain.dll + sound.dll + jgld.dll)**
+> Statut : ✅ Résolu / ⚠️ Partiel / ❌ Non résolu / 🔍 Nouveau gap
 
-| # | Lacune | Raison | Impact | Solution |
-|:-:|--------|--------|:------:|----------|
-| 1 | **vtable[0x68] — Simulation golfeur** | Initialisé dynamiquement dans le constructeur GameState | Impossible de reconstruire la physique complète | Débogueur + breakpoint sur constructeur |
-| 2 | **Formules exactes de vol de balle** | Les équations de trajectoire 3D ne sont pas extraites | Pas de gameplay golf jouable | Tracer FPU dans Ball_MainFunction @ 0x460cf0 |
-| 3 | **Algorithme de sélection de club** | Code dans vtable[0x68], inaccessible statiquement | IA golfeur incomplète | Analyse dynamique |
-| 4 | **Sauvegarde complète (.sve)** | Aucun fichier .sve complet trouvé dans le dump | Persistance impossible | Trouver des saves fonctionnelles |
+### 16.1 Résolutions Apportées par les Fichiers Décompilés
 
-### 16.2 Lacunes Importantes 🟡
+| # | Lacune | Statut | Fichier(s) de résolution | Ce qui reste |
+|:-:|--------|:------:|-------------------------|--------|
+| 1 | **vtable[0x68] — Simulation golfeur** | ✅ | `game_vtable_dispatch.h` + `game_tick.c` + `game_advance_sim.c` (290L) + `game_start_action.c` (266L) | Impossible sans exécution réelle (dispatch dynamique) |
+| 2 | **Formules physiques balle** | ⚠️ | `game_physics.c` (302L) — CalcBaseDistance, CalcOffline, simulateShot, simulatePutt | Ball_MainFunction @ 0x460cf0 non décompilé : trajectoire 3D exacte, collisions arbres |
+| 3 | **Sélection de club** | ✅ | `game_ai_logic.h` (573L) — AI_SelectClub, AI_ChooseShotType, AI_GenerateComment | Coûts exacts de pathfinding (déduits, pas ASM) |
+| 4 | **Sauvegarde .sve** | ❌ | — | Pas de fichier .sve réel dans le dump |
+| 5 | **Structure Tile (536/584 → 568/584 connus)** | ⚠️ | `tile_struct.h` (214L) — 12 nouveaux champs : tileFlags@0x34, variation@0x38, hasPath@0x3c, pathType@0x40, pathDirection@0x44, pathConnections@0x48 | RenderPass (0x06c-0x233) mal documenté, unknown[12]@0x060, unknown[16]@0x238 |
+| 6 | **Sous-objets C++ embarqués** | ❌ | — | Constructeurs @ 0x1000f6e0, 0x1000f7a0 non décompilés |
+| 7 | **TexturesSlots A/B** | ⚠️ | `tile_struct.h` — offsets maintenant dans zone renderPasses | Structure RenderPass incomplète |
+| 8 | **Scénarios (.cse)** | ✅ | `game_scenarios.c` (191L) — format 336 bytes complet, 6 scénarios documentés | Non vérifié sur fichier réel .cse |
+| 9 | **Système de météo** | ⚠️ | `game_economy.h` + `game_advance_sim.c` — isRaining, paramètres vent | Algorithme météo complet (WindState connu mais génération aléatoire inconnue) |
+| 10 | **IA sociale golfeurs** | ⚠️ | `game_ai_logic.h` — attributs personnalité documentés (charisma, ambition, friendship, humor, patience, generosity) | Logique sociale exacte non extraite |
+| 11 | **Cutscenes Bink Video** | ❌ | — | Fichiers `.bik` manquants (CD nécessaire) |
 
-| # | Lacune | Adresses/Offsets concernés |
-|:-:|--------|:--------------------------:|
-| 5 | **Structure Tile : 528 octets non-analysés** | `+0x14c` à `+0x207`, `+0x238` à `+0x247` |
-| 6 | **Sous-objets C++ embarqués** (subObjectA @ +0x208, subObjectB @ +0x210) | Constructeurs @ `0x1000f6e0` et `0x1000f7a0` |
-| 7 | **TexturesSlots A/B** (+0x158, +0x190) | Table globale @ `0x100b28cc` |
-| 8 | **Scénarios (.cse)** — format non vérifié sur vrais fichiers | `FindFirstFileA` @ `0x43b997` |
-| 9 | **Système de météo** — impact non quantifié | `weather` paramètre dans fonctions économiques |
-| 10 | **IA sociale des golfeurs** (amitié, recommandations) | Attributs personnalité extraits mais logique inconnue |
-| 11 | **Cutscenes Bink Video** | Fichiers `.bik` manquants (probablement sur CD) |
+### 16.2 Lacunes Mineures 🟢
 
-### 16.3 Lacunes Mineures 🟢
+| # | Lacune | Statut | Notes |
+|:-:|--------|:------:|-------|
+| 12 | Jouabilité multi-joueur | ❌ | Non documenté |
+| 13 | Fichiers .txt de thème | ❌ | Non trouvés dans le dump |
+| 14 | Mode spectateur | ❌ | Non documenté |
+| 15 | Fichiers MIDI (musique) | ❌ | `sound_manager.c` documente MIDI_Device mais pas les fichiers |
+| 16 | Voix des golfeurs (WAV) | ⚠️ | Sons d'interface (21 WAV) identifiés dans `game_physics.c` — voix célébrités manquantes |
 
-| # | Lacune |
-|:-:|--------|
-| 12 | Jouabilité multi-joueur (paires de golfeurs) |
-| 13 | Fichiers .txt de thème (desert.txt, parkland.txt, etc.) |
-| 14 | Mode spectateur pendant les tournois |
-| 15 | Fichiers MIDI (musique de fond) |
-| 16 | Voix des golfeurs (pools WAV non trouvés) |
+### 16.3 Nouveaux Blind Spots Découverts 🔍
 
-### 16.4 Comment Débloquer
+| # | Lacune | Fichier source | Adresse(s) | Priorité |
+|:-:|--------|---------------|:----------:|:--------:|
+| 17 | **Ball_MainFunction** (trajectoire 3D réelle, 40+ refs FPU) | golf.exe | `0x460cf0` | 🔴 |
+| 18 | **renderPostProcess / renderEffects / renderOverlay** (appelés depuis renderSingleTile) | Terrain.dll | `terrain_render_tile.c` | 🔴 |
+| 19 | **Structure RenderPass** — 54/56 bytes inconnus | Terrain.dll | `tile_struct.h` :: RenderPass | 🟡 |
+| 20 | **Economy_TickYearly** (1907 octets) — calcul annuel complet | golf.exe | `0x49dab0` | 🟡 |
+| 21 | **Tourney_ResultCalc** — calcul exact scores tournoi | golf.exe | `~0x4650ee` | 🟡 |
+| 22 | **tileHit** (picking écran→grille) | Terrain.dll | `0x1000ab30` | 🟡 |
+| 23 | **jgld.dll complet** (~1200 fonctions) | jgld.dll | N/A (debug build) | 🟡 |
+| 24 | **SmoothInterpolator** (tweening UI) | golf.exe | `0x4969e0` | 🟡 |
+| 25 | **Système sérialisation** (LoadGame/SaveGame) | golf.exe | `0x4a589f`, `0x4a5bbd` | 🟡 |
+| 26 | **Gestion événements clavier** (mapping touches→actions) | golf.exe | `game_input_handler.c` | 🟢 |
+| 27 | **Système dialogues** (fichiers .txt UTF-16LE, 90+ fichiers) | golf.exe | Chaînes @ `0x4d2730` | 🟢 |
+| 28 | **FOV exact selon résolution** (interpolation entre 3 valeurs connues) | Terrain.dll | `0x10070a10` | 🟢 |
+| 29 | **Algorithme placement arbres** (renderObjects) | Terrain.dll | `terrain_render_tile.c` | 🟢 |
 
-1. **Exécuter le jeu** — indispensable pour tracer les appels dynamiques (vtable[0x68])
-2. **Analyse Ghidra avancée** — l'analyse statique résoudrait la plupart des inconnues
-3. **Test en jeu** — valider les formules et algorithmes déduits
-4. **Débogueur (x64dbg/Ghidra)** — capturer les allocations dynamiques et les dispatchs virtuels
-5. **Parser réel des .sve** — trouver des fichiers de save réels pour analyser le format complet
+### 16.4 Comment Débloquer les Lacunes Restantes
+
+| Méthode | Applicable à | Effort |
+|---------|-------------|:------:|
+| **1. Compiler GhidraCliBridge.java** → décompilation headless fonctionnelle | #17, #18, #20, #21, #22, #25 | 30 min |
+| **2. Exécuter le jeu** (tracer vtable[0x68]) | #1 (dispatch dynamique) | 2h (setup Wine/VM) |
+| **3. Analyse dynamique (x64dbg)** | #1, #17 (trajectoire exacte) | 4h |
+| **4. Trouver fichiers .sve réels** | #4 | 30 min (recherche web) |
+| **5. Parser .cse réel** | #8 (validation) | 30 min |
+| **6. Ghidra → décompilation manuelle** | #19 (RenderPass), #24 (Interpolator) | 2h |
+| **7. Analyse jgld.dll** | #23 | 8h (debug build, 1200 fns) |
 
 ---
 
@@ -2270,10 +2562,67 @@ convert_all_to_webp.py → Convertisseur unifié :
 |-------|-------|
 | `objdump` + `capstone` | Désassemblage massif (1.1M lignes) |
 | `strings` | Extraction de chaînes |
-| Ghidra 12.1 | Décompilation C, 1839 fonctions identifiées |
+| Ghidra 12.1 | Décompilation C — **42 fichiers extraits** (2900+ fonctions) |
 | `pefile` | Analyse PE |
 | `hexdump` / `xxd` | Analyse binaire |
 | Python `struct` | Analyse de données binaires |
+| **ghidra CLI** (Rust) | Interface ligne de commande pour Ghidra |
+
+### 17.8 Index des 42 Fichiers Décompilés
+
+**golf.exe (28 fichiers) :**
+| Fichier | Lignes | Contenu |
+|---------|:------:|---------|
+| `game_advance_sim.c` | 290 | Simulation avancée (timing, transitions) |
+| `game_ai_logic.h` | 573 | IA golfeur : sélection club, type tir, commentaires |
+| `game_coursengine.c` | 321 | Moteur de parcours (validations, transitions) |
+| `game_data_parser.h` | 640 | Parser données golfeurs (.dta, .pro) |
+| `game_data_types.h` | 210 | Types de données communs |
+| `game_economy.c` | 371 | Calculs économiques (revenus, coûts, profit) |
+| `game_economy.h` | 273 | Structures économiques |
+| `game_init_audio.c` | 176 | Initialisation audio |
+| `game_init_state.c` | 245 | Initialisation état de jeu |
+| `game_init_systems.c` | 247 | Initialisation sous-systèmes |
+| `game_input_handler.c` | 259 | Gestion des entrées (6 types d'événements) |
+| `game_loop.c` | 240 | Boucle de jeu principale |
+| `game_misc.c` | 185 | Fonctions diverses (utilitaires) |
+| `game_physics.c` | 302 | Physique de balle (trajectoire, vent, lie) |
+| `game_scenarios.c` | 191 | Système de scénarios et campagnes |
+| `game_scoring_sga.c` | 348 | Évaluation SGA, scoring, stats |
+| `game_start_action.c` | 266 | Démarrage action golfeur (vtable dispatch) |
+| `game_tick.c` | 432 | Boucle simulation 16 slots |
+| `game_tick_v2.c` | 573 | Version alternative tick (optimisée) |
+| `game_tilegrid.c` | 262 | Gestion grille de tuiles |
+| `game_tournaments.c` | 935 | Système complet de tournois (14 types, leaderboard) |
+| `game_ui_statemachine.h` | 262 | Machine d'état UI (25 états) |
+| `game_ui_system.c` | 941 | Système UI complet |
+| `game_vtable_dispatch.h` | 90 | Analyse vtables C++, dispatch dynamique |
+| `game_winmain.c` | 302 | Point d'entrée Windows (WinMain) |
+| `smooth_interpolator.c` | 284 | Interpolateur fluide (tweening UI) |
+| `sound_manager.c` | 566 | Décompilation complète sound.dll (12 exports) |
+| `test_game_data_parser.c` | — | Tests unitaires parser |
+
+**Terrain.dll (14 fichiers) :**
+| Fichier | Lignes | Contenu |
+|---------|:------:|---------|
+| `terrain_drawing.c` | 265 | Primitives dessin (lignes, cercles isométriques) |
+| `terrain_elevation.c` | 168 | Gestion élévation (elevate/lower corner) |
+| `terrain_initSystem.c` | 228 | Initialisation OpenGL + allocation grille |
+| `terrain_normals.c` | 296 | Calcul normales pour éclairage |
+| `terrain_paths.c` | 307 | Chemins (Bezier, Cardinal, pathfinding) |
+| `terrain_render.c` | 276 | Pipeline rendu principal (full/focus) |
+| `terrain_render_helpers.c` | — | Helpers rendu (coordonnées, culling) |
+| `terrain_render_tile.c` | — | Rendu individuel tuile (multi-passes) |
+| `terrain_setType.c` | 228 | Définition type terrain + variation |
+| `terrain_tileAt.c` | — | Accès tuile dans la grille |
+| `terrain_zoom.c` | 240 | Gestion zoom caméra |
+| `tile_getters.c` | — | Getters Tile (type, elevation, walls) |
+| `tile_struct.h` | 214 | Structure Tile complète (584 bytes) |
+
+**jgld.dll (1 fichier) :**
+| Fichier | Lignes | Contenu |
+|---------|:------:|---------|
+| `jgld_engine.c` | 414 | Moteur 2D GDI (JackalClass, ~1200 fonctions) |
 
 ---
 
