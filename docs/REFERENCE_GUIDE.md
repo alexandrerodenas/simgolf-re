@@ -764,84 +764,112 @@ La table `typeInfo` à `this + 0x40` contient les métadonnées de chaque type d
 - Champs identifiés :
   - `+0x00` : **maxVariation** (int32) — utilisé par setType pour `rand() % maxVariation`
   - `+0x04` : **family** (int32) — groupe de voisinage (0=grass, 1=play, 2=sand, 3=water, etc.)
-  - `+0x08` : **renderMode** (int32) — 0=élévation, 1=bordure, 2=spécial
-  - `+0x0c-0x17` : flags, seuils, limites d'élévation
+  - `+0x08` : **renderMode** (int32) — 0=élévation, 1=bordure, 2=objet3D
+  - `+0x0c` : **borderOverride** (int32) — type de texture de bordure à utiliser (ex: GrassBunker=9, GrassySand=8)
+  - `+0x10-0x17` : flags, seuils, limites d'élévation
 
-**Mapping des familles (déduit du comportement observé + analyse ASM) :**
+**Mapping des familles (complet, déduit du comportement + fichiers présents) :**
 
-| Famille | Types membres | Transition visible |
-|:-------:|:-------------:|:-----------------:|
-| **grass** (0) | Rough(0), Tree(14), Flower(15), DeepRough(7), Brush | Non — même famille |
-| **play** (1) | Fairway(1), Tee(10), Green(2) | Non — même famille |
-| **sand** (2) | SandBunker(3), GrassySand(8), GrassBunker(9) | Non — même famille |
-| **water** (3) | WaterShallow(4), WaterMiddle(5), WaterDeep(6) | Non — même famille |
-| **path** (4) | Path(12), Bridge | Non — même famille |
-| **building** (5) | Building(13) | N/A — singleton |
-| **cliff** (6) | Cliff(11) | N/A — singleton |
+| Famille | ID | Types membres |
+|:-------:|:--:|:-------------|
+| **grass** | 0 | Rough(0), DeepRough(7), Brush, Woods(14), Flower(15), Natural, Marsh, Vegetation, Overgrowth |
+| **play** | 1 | Fairway(1), Tee(10), Green(2), FirmFairway |
+| **sand** | 2 | SandBunker(3), GrassySand(8, transition), GrassBunker(9, transition), PotBunker, ZenSand, PotSandBunker |
+| **water** | 3 | WaterShallow(4), WaterMiddle(5), WaterDeep(6) |
+| **path** | 4 | Path(12), Bridge, Ravine |
+| **building** | 5 | Building(13) |
+| **cliff** | 6 | Cliff(11) |
+| **rock** | 7 | Rock |
+| **decoration** | 8 | Flowerbed, RetainingWall |
 
-#### 5.8.4 Algorithme de Bordure — Étape par Étape
+#### 5.8.4 Matrice Exhaustive des Transitions entre Types de Terrain
 
-Quand deux tuiles adjacentes ont des **types différents**, la bordure est générée ainsi :
+La règle est simple : **Une bordure n'apparaît que si le type a une texture de bordure dans son set de fichiers BMP.** La bordure est toujours **monodirectionnelle** (portée par le type qui a `borderOverride ≠ -1` dans la table `typeInfo`).
 
-```
-Étape 1 : DÉTECTION
-  Pour chaque côté side ∈ {0,1,2,3} (O,N,E,S) :
-    neighbor = tile->renderObjects[side]
-    Si neighbor == NULL → pas de bordure (bord de la carte)
-    Si neighbor->type == tile->type → pas de bordure (même type)
-    Si familyTable[neighbor->type] == familyTable[tile->type] → pas de bordure (même famille)
-    SINON → bordure détectée sur ce côté
+Légende :
+- ✅ **Bordure** = une texture de transition spécifique remplace la texture de base sur le côté concerné
+- ❌ **Seam** = pas de texture de bordure, les deux textures de base se rencontrent directement
+- 🟡 **Même famille** = pas de bordure, les types se fondent visuellement
+- 🎯 **Qui porte la bordure** = quelle tuile (du couple) affiche la texture de bordure
 
-Étape 2 : SÉLECTION DE L'ORIENTATION (A/B/C/D)
-  La fonction renderSingleTile ou le système de renderPass choisit :
-    side 0 (Ouest) → texture suffixe D
-    side 1 (Est)   → texture suffixe B
-    side 2 (Nord)  → texture suffixe A
-    side 3 (Sud)   → texture suffixe C
+| Tuile A | Tuile B | Familles | Bordure ? | Texture sur A | Texture sur B |
+|:-------:|:-------:|:--------:|:---------:|:-------------|:-------------|
+| **Rough** | **Rough** | grass/grass | 🟡 Non | RoughA-E | RoughA-E |
+| **Rough** | **Fairway** | grass/play | ❌ Seam | RoughA-E | FairwayA-E |
+| **Rough** | **SandBunker** | grass/sand | ✅ **Oui** | **GrassBunker{A-D}** ← sand side | **GrassySand{A-D}** ← grass side |
+| **Rough** | **Green** | grass/play | ❌ Seam | RoughA-E | GreenA |
+| **Rough** | **Tee** | grass/play | ❌ Seam | RoughA-E | TeeA |
+| **Rough** | **WaterShallow** | grass/water | ✅ **Oui** (porté par l'eau) | RoughA-E | **WaterShallow{A-D}** |
+| **Rough** | **WaterMiddle** | grass/water | ✅ Oui (porté par l'eau) | RoughA-E | **WaterMiddle{A-D}** |
+| **Rough** | **WaterDeep** | grass/water | ✅ Oui (porté par l'eau) | RoughA-E | **WaterDeep{A-D}** |
+| **Rough** | **Cliff** | grass/cliff | ✅ Oui (porté par la falaise) | RoughA-E | **Cliff{A-D}** |
+| **Rough** | **Path** | grass/path | ❌ Seam | RoughA-E | Path |
+| **Rough** | **Building** | grass/building | ❌ Seam | RoughA-E | Building (3D) |
+| **Rough** | **DeepRough** | grass/grass | 🟡 Non (même famille) | RoughA-E | DeepRoughA-E |
+| **Rough** | **Woods** | grass/grass | 🟡 Non (même famille) | RoughA-E | WoodsA-D |
+| **Rough** | **Brush** | grass/grass | 🟡 Non (même famille) | RoughA-E | BrushA-D |
+| **Rough** | **Flower** | grass/grass | 🟡 Non (même famille) | RoughA-E | Flower |
+| **Fairway** | **Fairway** | play/play | 🟡 Non | FairwayA-E | FairwayA-E |
+| **Fairway** | **Rough** | play/grass | ❌ Seam | FairwayA-E | RoughA-E |
+| **Fairway** | **SandBunker** | play/sand | ✅ **Oui** | **GrassBunker{A-D}** | **GrassySand{A-D}** |
+| **Fairway** | **Green** | play/play | 🟡 Non (même famille) | FairwayA-E | GreenA |
+| **Fairway** | **Tee** | play/play | 🟡 Non (même famille) | FairwayA-E | TeeA |
+| **Fairway** | **WaterShallow** | play/water | ✅ Oui (porté par l'eau) | FairwayA-E | **WaterShallow{A-D}** |
+| **Fairway** | **Cliff** | play/cliff | ✅ Oui (porté par falaise) | FairwayA-E | **Cliff{A-D}** |
+| **Fairway** | **Woods** | play/grass | ❌ Seam | FairwayA-E | WoodsA-D |
+| **Fairway** | **DeepRough** | play/grass | ❌ Seam | FairwayA-E | DeepRoughA-E |
+| **Green** | **Rough** | play/grass | ❌ Seam | GreenA | RoughA-E |
+| **Green** | **Fairway** | play/play | 🟡 Non (même famille) | GreenA | FairwayA-E |
+| **Green** | **SandBunker** | play/sand | ✅ **Oui** | **GrassBunker{A-D}** | **GrassySand{A-D}** |
+| **Green** | **Water** | play/water | ✅ Oui (porté par l'eau) | GreenA | **Water{A-D}** |
+| **Tee** | **Rough** | play/grass | ❌ Seam | TeeA | RoughA-E |
+| **Tee** | **Fairway** | play/play | 🟡 Non (même famille) | TeeA | FairwayA-E |
+| **Tee** | **SandBunker** | play/sand | ✅ **Oui** | **GrassBunker{A-D}** | **GrassySand{A-D}** |
+| **Tee** | **Water** | play/water | ✅ Oui | TeeA | **Water{A-D}** |
+| **Woods** | **Woods** | grass/grass | 🟡 Non | WoodsA-D | WoodsA-D |
+| **Woods** | **Rough** | grass/grass | 🟡 Non (même famille) | WoodsA-D | RoughA-E |
+| **Woods** | **Fairway** | grass/play | ❌ Seam | WoodsA-D | FairwayA-E |
+| **Woods** | **SandBunker** | grass/sand | ✅ **Oui** | **GrassBunker{A-D}** | **GrassySand{A-D}** |
+| **Woods** | **Water** | grass/water | ✅ Oui (porté par l'eau) | WoodsA-D | **Water{A-D}** |
+| **Woods** | **Cliff** | grass/cliff | ✅ Oui (porté par falaise) | WoodsA-D | **Cliff{A-D}** |
+| **SandBunker** | **SandBunker** | sand/sand | 🟡 Non | SandBunkerA | SandBunkerA |
+| **SandBunker** | **Rough** | sand/grass | ✅ **Oui** | **GrassySand{A-D}** | **GrassBunker{A-D}** |
+| **SandBunker** | **Fairway** | sand/play | ✅ **Oui** | **GrassySand{A-D}** | **GrassBunker{A-D}** |
+| **SandBunker** | **Water** | sand/water | ✅ Oui | **GrassySand{A-D}** | **Water{A-D}** |
+| **SandBunker** | **Green** | sand/play | ✅ **Oui** | **GrassySand{A-D}** | **GrassBunker{A-D}** |
+| **SandBunker** | **Cliff** | sand/cliff | ✅ Oui (les deux) | **GrassySand{A-D}** | **Cliff{A-D}** |
+| **WaterShallow** | **WaterShallow** | water/water | 🟡 Non | WaterShallowA | WaterShallowA |
+| **WaterShallow** | **Rough** | water/grass | ✅ Oui (porté par l'eau) | **WaterShallow{A-D}** | RoughA-E |
+| **WaterShallow** | **Fairway** | water/play | ✅ Oui (porté par l'eau) | **WaterShallow{A-D}** | FairwayA-E |
+| **WaterShallow** | **SandBunker** | water/sand | ✅ Oui (les deux) | **WaterShallow{A-D}** | **GrassySand{A-D}** |
+| **WaterShallow** | **Cliff** | water/cliff | ✅ Oui | **WaterShallow{A-D}** | **Cliff{A-D}** |
+| **WaterMiddle** | *(any non-water)* | water/X | ✅ Oui (porté par l'eau) | **WaterMiddle{A-D}** | *(base)* |
+| **WaterDeep** | *(any non-water)* | water/X | ✅ Oui (porté par l'eau) | **WaterDeep{A-D}** | *(base)* |
+| **Cliff** | *(any non-cliff)* | cliff/X | ✅ **Oui** (porté par falaise) | **Cliff{A-D}** | *(base)* |
+| **Path** | *(any)* | path/X | ❌ Seam | Path | *(base)* |
+| **Building** | *(any)* | building/X | ❌ Objet 3D | Building (3D) | *(base)* |
+| **DeepRough** | **Rough** | grass/grass | 🟡 Non (même famille) | DeepRoughA-E | RoughA-E |
+| **DeepRough** | **Fairway** | grass/play | ❌ Seam | DeepRoughA-E | FairwayA-E |
+| **DeepRough** | **SandBunker** | grass/sand | ✅ **Oui** | **GrassBunker{A-D}** | **GrassySand{A-D}** |
+| **DeepRough** | **Water** | grass/water | ✅ Oui (porté par l'eau) | DeepRoughA-E | **Water{A-D}** |
 
-  Si la tuile a plusieurs voisins de types différents :
-    La PRIORITÉ est : Nord > Est > Sud > Ouest (side 2 > 1 > 3 > 0)
-    Seul le premier côté détecté est utilisé pour la texture de bordure.
+#### 5.8.5 Cas Particuliers
 
-Étape 3 : SÉLECTION DE LA TEXTURE DE BORDURE
-  Chaque type de terrain a des textures de bordure spécifiques :
-    - Tile type Sable(3) + bordure → texture GrassySand{A-D}
-    - Tile type Herbe + bordure sable → texture GrassBunker{A-D}
-    - Tile type Eau(4,5,6) + bordure → texture WaterShallow/A/B{C-D}
-    - Tile type Falaise(11) + bordure → texture Cliff{A-D}
+**Woods(14) vs Rough(0) : même famille grass → pas de bordure**
+Les Woods (arbres en texture de sol) et le Rough sont dans la **même famille** (grass). Quand ils sont adjacents, le jeu ne génère **aucune bordure**. La distinction visuelle est assurée uniquement par les motifs de texture différents (`WoodsA0001` vs `RoughA0001`). Les deux types utilisent leur texture de base selon leur élévation (A-D pour Woods, A-E pour Rough).
 
-Étape 4 : MULTI-PASSES (pour les coins/intersections)
-  Une tuile peut avoir jusqu'à 4 renderPasses (renderPassCount). 
-  Chaque passe peut avoir une texture de bordure différente, permettant
-  de gérer les coins (ex: eau avec bordure Nord ET Est simultanément).
-```
+**Fairway(1) vs Rough(0) : familles différentes mais AUCUNE texture de bordure**
+Bien que `play` (Fairway) et `grass` (Rough) soient des familles différentes, **il n'existe pas de fichier BMP de transition** entre eux. Le jeu laisse les deux textures se rejoindre directement (seam). C'est pourquoi dans le jeu, on voit une ligne nette entre le fairway tondu et le rough — il n'y a pas de zone de transition texturée comme pour l'eau ou le sable.
 
-#### 5.8.5 Exemple Concret : Eau à côté de Herbe
+**Double bordure : Sable à côté d'Herbe**
+Quand un bunker (SandBunker) est adjacent à du Rough, **DEUX bordures sont générées** simultanément :
+- Côté sable : `GrassySand{A-D}` (la partie sable qui touche l'herbe devient "sableuse-herbeuse")
+- Côté herbe : `GrassBunker{A-D}` (la partie herbe qui touche le sable devient "herbeuse-sableuse")
 
-```
-Grille (vue du dessus) :
-  ┌─────┬─────┐
-  │ Eau │ Herbe│
-  │ (4) │ (0) │
-  └─────┴─────┘
+Ces deux textures sont des types distincts (GrassySand=8, GrassBunker=9) avec leurs propres entrées dans `typeInfo`, leurs propres `maxVariation` (9), et leurs propres textures A-D.
 
-Pour la tuile Eau (4) :
-  renderObjects[1] (Est) = Herbe(0)
-  family[4] = water ≠ family[0] = grass → BORDURE DÉTECTÉE côté Est (side 1)
-  Texture sélectionnée : WaterShallowB (side 1 = Est → suffixe B)
-
-Pour la tuile Herbe(0) :
-  renderObjects[3] (Ouest) = Eau(4)
-  family[0] = grass ≠ family[4] = water → BORDURE DÉTECTÉE côté Ouest (side 3)
-  Texture sélectionnée : la famille grass n'a PAS de texture de bordure
-  → La texture reste RoughA (la bordure est portée par l'eau, pas par l'herbe)
-```
-
-**Règle importante :** La bordure est portée par la tuile qui a une texture de bordure dans son set.
-- L'eau a `WaterShallow{A-D}` → c'est l'eau qui prend la bordure
-- Le sable a `GrassySand{A-D}` → c'est le sable qui prend la bordure
-- L'herbe a `GrassBunker{A-D}` → c'est l'herbe près du sable qui prend la bordure
-- La falaise a `Cliff{A-D}` → c'est la falaise qui prend la bordure
+**Coin à 4 familles (Water + Sand + Grass + Cliff)**
+Une tuile peut avoir jusqu'à 4 renderPasses. Dans le cas d'un carrefour où 4 types différents se rencontrent, chaque côté peut avoir une texture de bordure différente. La hiérarchie de priorité est : Nord > Est > Sud > Ouest (side 2 > 1 > 3 > 0).
 
 #### 5.8.6 Texture Table (g_textureTable@0x100687f8) — Organisation
 
