@@ -12,7 +12,7 @@
 2. [Structures de Données](#2-structures-de-données)
 3. [Système de Terrain](#3-système-de-terrain)
 4. [Rendu Isométrique](#4-rendu-isométrique)
-5. [Auto-Tiling & Textures](#5-auto-tiling--textures) — 5.1→5.17 (groupes AE, orientations AD, variation cosmétique, bordures voisins, eau, overgrowth, multi-passes ASM) | ✅ Décompilé
+5. [Auto-Tiling & Textures](#5-auto-tiling--textures) — 5.1→5.18 (groupes AE, orientations AD, variation cosmétique, bordures voisins, eau, overgrowth, multi-passes ASM) | ✅ Décompilé
 6. [Élévation du Terrain](#6-élévation-du-terrain)
 7. [Chemins (Paths)](#7-chemins-paths)
 8. [Murs (Walls)](#8-murs-walls)
@@ -1528,6 +1528,61 @@ Ce système évite de recalculer les UV à chaque frame et permet de changer de 
 | **Carrefour 4 types** | TypeBase | BordureA | BordureB | BordureC+D |
 
 **Règle de priorité des bordures :** Nord > Est > Sud > Ouest (side 2 > 1 > 3 > 0). Si les 4 côtés sont différents, la bordure D (Ouest) partage la passe 3 avec la bordure C (Sud) ?
+
+#### 5.17.8 Deux Tuiles Identiques Côte à Côte — Pas de Blending
+
+**Le jeu original ne fait RIEN de spécial entre deux tuiles de même type.** Il n'y a pas de blending, pas de lissage, pas de jointure calculée.
+
+Puisque les UV couvrent le plein [0,1] × [0,1], chaque tuile affiche sa texture 64×64 indépendamment :
+
+```c
+// UVs pour une tuile (vue normale, triangle TL-BR-BL) :
+// glTexCoord2f(0, 0) → glVertex3f(tile.x, tile.y, elevation)
+// glTexCoord2f(1, 1) → glVertex3f(tile.x+1, tile.y+1, elevation)
+// glTexCoord2f(0, 1) → glVertex3f(tile.x, tile.y+1, elevation)
+// PAS de modification des UV selon le voisinage.
+```
+
+**La continuité visuelle repose sur 3 facteurs :**
+
+**1. Textures tileables** — Chaque BMP 64×64 est conçu pour se répéter sans jointure visible. Les bords gauche/droit et haut/bas de chaque texture s'alignent parfaitement :
+
+```
+Texture A (tuile 1)  Texture A (tuile 2)
+┌──────────┐         ┌──────────┐
+│ ▓▓░░▓▓░░▓▓│ ← seam → │▓▓░░▓▓░░▓▓│
+│ ░░▓▓░░▓▓░░│         │░░▓▓░░▓▓░░│
+└──────────┘         └──────────┘
+      ↑ textures conçues pour que le bord
+        droit de l'une = bord gauche de l'autre
+```
+
+**2. Variations cosmétiques (0001-0009)** — Chaque variation est une texture différente du même type. Même si deux Rough sont côte à côte, ils ont probablement des variations différentes (0001 vs 0004), ce qui brise la répétition du motif :
+
+```typescript
+// Exemple : 2 Rough adjacents
+// Tuile [x,y]:   RoughA0001  ← variation 1
+// Tuile [x+1,y]: RoughA0005  ← variation 5 (différente)
+// L'œil ne voit pas la jointure car le motif change
+```
+
+**3. Différence de géométrie (A-E)** — Deux Rough côte à côte ont presque toujours des groupes d'élévation différents (l'un est plat A, l'autre est en pente B ou en coin C), ce qui change le motif de texture et masque la jointure :
+
+```
+RoughA0001 (plat)  │  RoughB0003 (pente N)
+    ▓▓░░▓▓          │      ░░▓▓░░
+    ░░▓▓░░          │  ▓▓░░  ░░▓▓  ← motif visuellement différent
+```
+
+**4. Pas de transition calculée** — Contrairement aux types de familles différentes (qui génèrent des passes de bordure A-D), les tuiles de même famille n'ont **jamais** de passe supplémentaire. Le `computeNeighborMask()` ignore les voisins de même famille, donc `renderPassCount = 1`.
+
+```typescript
+// computeNeighborMask pour 2 Rough côte à côte :
+// Rough = grass family (0)
+// Voisin = grass family (0)
+// Même famille → mask &= ~bit → PAS de bordure
+// Résultat : 1 seule passe (base texture)
+```
 
 #### 5.17.7 Implémentation simgolf-web
 
