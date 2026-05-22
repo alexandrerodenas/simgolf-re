@@ -13,18 +13,23 @@
 3. [Système de Terrain](#3-système-de-terrain)
 4. [Rendu Isométrique](#4-rendu-isométrique)
 5. [Auto-Tiling & Textures](#5-auto-tiling--textures)
-6. [Physique de Balle](#6-physique-de-balle)
-7. [IA des Golfeurs](#7-ia-des-golfeurs)
-8. [Économie & Gestion](#8-économie--gestion)
-9. [Scoring & Tournois](#9-scoring--tournois)
-10. [Interface Utilisateur](#10-interface-utilisateur)
-11. [Audio & Animations](#11-audio--animations)
-12. [Sauvegarde & Formats de Fichier](#12-sauvegarde--formats-de-fichier)
-13. [Scénarios & Campagne](#13-scénarios--campagne)
-14. [Arbres & Décorations](#14-arbres--décorations)
-15. [Guide de Réimplémentation (condensé)](#15-guide-de-réimplémentation-condensé)
-16. [Lacunes & Travaux Futurs](#16-lacunes--travaux-futurs)
-17. [Annexes](#17-annexes)
+6. [Élévation du Terrain](#6-élévation-du-terrain)
+7. [Chemins (Paths)](#7-chemins-paths)
+8. [Murs (Walls)](#8-murs-walls)
+9. [Éclairage (Lighting)](#9-éclairage-lighting)
+10. [Guide de Port Phaser 4 / WebGL](#10-guide-de-port-phaser-4--webgl)
+11. [Physique de Balle](#11-physique-de-balle)
+12. [IA des Golfeurs](#12-ia-des-golfeurs)
+13. [Économie & Gestion](#13-économie--gestion)
+14. [Scoring & Tournois](#14-scoring--tournois)
+15. [Interface Utilisateur](#15-interface-utilisateur)
+16. [Audio & Animations](#16-audio--animations)
+17. [Sauvegarde & Formats de Fichier](#17-sauvegarde--formats-de-fichier)
+18. [Scénarios & Campagne](#18-scénarios--campagne)
+19. [Arbres & Décorations](#19-arbres--décorations)
+20. [Guide de Réimplémentation (condensé)](#20-guide-de-réimplémentation-condensé)
+21. [Lacunes & Travaux Futurs](#21-lacunes--travaux-futurs)
+22. [Annexes](#22-annexes)
 
 ---
 
@@ -505,9 +510,91 @@ function calcTileNormal(tile: Tile): Vec3 {
 
 ### 4.7 Caméra et Zoom
 
-- `setZoomLevel(level)` @ 0x10008fc0 — 4 niveaux : ×0.5, ×1, ×2
-- `SmoothInterpolator` @ 0x4969e0 — animation fluide caméra/zoom (~300 insn)
-- FOV ajusté selon résolution : 38.86° (800×600), 40.58° (1024×768), 40.83° (1280×1024)
+Le système de caméra gère 4 angles de vue (0°, 90°, 180°, 270°) avec un zoom variable.
+
+**Zoom :** `setZoomLevel(level)` @ 0x10008fc0 — 4 niveaux : ×0.5, ×1, ×2
+**Animation :** `SmoothInterpolator` @ 0x4969e0 — animation fluide (~300 insn)
+**FOV :** Ajusté selon résolution :
+- 800×600   → 38.86°
+- 1024×768  → 40.58°
+- 1280×1024 → 40.83°
+
+**Décompilation de `localRender`** — Gestion de la rotation caméra :
+
+```c
+// Terrain::localRender @ 0x1000117c
+// Rendu avec frustum culling basé sur l'angle
+void __thiscall Terrain::localRender(Terrain* this, Tile* centerTile,
+                                     Tile* cameraTile, float angle) {
+    glLoadIdentity();
+    glPushMatrix();
+
+    // Rotation FOV (axe Y)
+    glRotated(g_fovY, 0, 1, 0, 0, 0, 0);
+    // Inclinaison de la vue
+    glRotatef(g_angleOffset + angle, 0, 1, 0);
+
+    // Centrage sur la tuile caméra
+    if (cameraTile != NULL) {
+        int tileZ = getTileZ(cameraTile);     // Coord Z dans la grille
+        int tileX = getTileX(cameraTile);     // Coord X dans la grille
+        float zoom = (float)(19 - tileZ) * g_zoomFactor;
+        float x = (float)(19 - tileX) * g_zoomFactor;
+        glTranslatef(x, 0, zoom);
+    }
+
+    // Éclairage selon angle
+    setupLighting(angle);
+
+    // Les 4 angles déterminent l'ordre de rendu (painter's algorithm)
+    // pour éviter les artefacts de profondeur :
+    if (angle == 0.0f) {          // Vue Nord
+        for (int z = -2; z <= 2; z++)
+            for (int x = 2; x >= -2; x--)
+                renderTile(tileAt(this, cx+x, cz+z));
+    }
+    else if (angle == 90.0f) {    // Vue Est
+        for (int x = 2; x >= -2; x--)
+            for (int z = -2; z <= 2; z++)
+                renderTile(tileAt(this, cx+x, cz+z));
+    }
+    else if (angle == 180.0f) {   // Vue Sud
+        for (int z = -2; z <= 2; z++)
+            for (int x = -2; x <= 2; x++)
+                renderTile(tileAt(this, cx+x, cz+z));
+    }
+    else {                        // Vue Ouest (défaut)
+        for (int z = -2; z <= 2; z++)
+            for (int x = -2; x <= 2; x++)
+                renderTile(tileAt(this, cx+x, cz+z));
+    }
+
+    // Itérateur global — rend les tuiles non visitées
+    Iterator it = createIterator(&this->tileIterator);
+    while (hasNext(it)) {
+        renderSingleTile((Tile*)next(it));
+        step(it);
+    }
+    destroy(it);
+
+    glPopMatrix();
+    glFlush();
+}
+```
+
+**Fonctions de coordonnées tuile :**
+```c
+int getTileX(Tile* tile);  // @ 0x10005960 — retourne coordonnée X
+int getTileZ(Tile* tile);  // @ 0x10006810 — retourne coordonnée Z (=Y grille)
+Tile* tileAt(Terrain*, int x, int z);  // @ 0x1000108c — accès grille
+```
+
+**Variables globales caméra :**
+```c
+extern float _DAT_1005f340;   // Facteur de zoom (translate)
+extern float _DAT_1005f344;   // Offset d'angle de vue
+extern float _DAT_10070a10;   // FOV axe Y (38.86–40.83 selon résolution)
+```
 
 ### 4.8 jgld.dll — Moteur 2D
 
@@ -637,18 +724,356 @@ Population faite par `loadNewCourseType()` (0x10001af0) au changement de thème.
 | Eau profonde (6) | `WaterDeep{A-D}` | water |
 | Falaise (11) | `Cliff{A-D}` | cliff |
 
-### 5.9 Architecture du Thème Parkland (setType @ 0x100032f0)
+### 5.9 setType — Code Décompilé
 
-La fonction `setType(Tile* tile, int type, int variation)` :
+```c
+// Terrain::setType @ 0x100032f0
+void __thiscall Terrain::setType(Terrain* this, Tile* tile,
+                                 int type, int variationParam) {
+    int maxVariation = *(int*)((int)this + type * 24 + 0x40);
+    if (maxVariation < 1) {
+        setTextureOffset(tile, 0);
+    } else {
+        int variation = rand() % maxVariation; // ← rand(), pas un compteur !
+        setTextureOffset(tile, variation);
+    }
+    notifyGameEngine(tile, variationParam);
+    updateNeighbors(tile, type);
+}
+```
 
-1. Lit `maxVariation` depuis `typeInfo[type]` (offset `this + type×24 + 0x40`)
-2. Si variation > 0 : appelle `rand() % maxVariation` → stocke dans `tile->textureOffset`
-3. Appelle callback vers golf.exe (notifyGameEngine)
-4. Met à jour les voisins (recalcul normales, rendu)
+### 5.10 renderSingleTile — Code Décompilé
+
+```c
+struct RenderPass {     // 0x38 = 56 bytes
+    int textureID;      // +0x00
+    byte texCoord;      // +0x04
+    byte padding[51];   // +0x05
+    int indexA;         // +0x48 : Sommet A
+    int indexB;         // +0x4c : Sommet B
+    int indexC;         // +0x50 : Sommet C
+    byte vertexA;       // +0x54
+    byte vertexB;       // +0x58
+    byte vertexC;       // +0x5c
+    byte texCoordA;     // +0x60
+    byte texCoordB;     // +0x64
+    byte texCoordC;     // +0x68
+    byte passFlags;     // +0x70
+};
+
+void __fastcall Terrain::renderSingleTile(Tile* tile) {
+    int currentTex = -1;
+    for (int pass = 0; pass < tile->renderPassCount; pass++) {
+        RenderPass* rp = &tile->renderPasses[pass];
+        if (g_viewMode == 0 || tile->type == 7) {
+            if (rp->textureID != currentTex) {
+                glBindTexture(GL_TEXTURE_2D, rp->textureID);
+                currentTex = rp->textureID;
+            }
+        } else {
+            int orientation = tile->tileFlags & 3;
+            int tableIdx = (orientation + 27) * 900
+                         + tile->textureOffset * 36
+                         + rp->texCoord * 4;
+            int tex = *(int*)(g_textureTable + tableIdx);
+            if (tex != currentTex) {
+                glBindTexture(GL_TEXTURE_2D, tex);
+                currentTex = tex;
+            }
+        }
+        glBegin(GL_TRIANGLES);
+        glTexCoord2fv(&texCoordTable[...]);
+        glArrayElement(rp->indexA);
+        glTexCoord2fv(&texCoordTable[...]);
+        glArrayElement(rp->indexB);
+        glTexCoord2fv(&texCoordTable[...]);
+        glArrayElement(rp->indexC);
+        glEnd();
+    }
+    if (tile->hasOverlay) renderOverlay(tile);
+    renderPostProcess(tile);
+    renderEffects(tile, 3);
+}
+```
+
+### 5.11 initSystem — Décompilation
+
+```c
+void __thiscall Terrain::initSystem(Terrain* this, int w, int h,
+                                    HDC__* hdc, bool useTexture) {
+    if (*(int*)this == 0) {
+        if (hdc != NULL) {
+            int pf = ChoosePixelFormat(hdc, &pfd);
+            SetPixelFormat(hdc, pf, &pfd);
+            this->glContext = wglCreateContext(hdc);
+            wglMakeCurrent(hdc, this->glContext);
+        }
+        this->useTexture = useTexture;
+        initGLStates(); initTextureSystem(); initTypeInfo();
+        resize(this, w, h);
+        if (w==800 && h==600)      g_fovY = 38.8647f;
+        else if (w==1024 && h==768) g_fovY = 40.5835f;
+        else if (w==1280 && h==1024) g_fovY = 40.8302f;
+    }
+}
+```
+
+### 5.12 Structure de la Table Globale
+
+```c
+// g_textureTable @ 0x100687f8
+// Organisation : type × orientation × variation
+// Chaque type :       900 bytes (225 entrées × 4)
+// Chaque orientation :  36 bytes (9 entrées × 4)
+// Chaque variation :     4 bytes (1 handle GLuint)
+// Index = g_textureTable + type*900 + orientation*36 + variation*4
+```
+
+### 5.13 Fonctions auxiliaires
+
+**getVariation** @ 0x10003390 :
+```c
+int __thiscall Terrain::getVariation(Terrain* this, Tile* tile) {
+    return getTileVariation(tile);  // lit tile->textureOffset
+}
+```
+
+**setTextureOffset** @ 0x10002f80 :
+```c
+void FUN_10002f80(Tile* tile, int variation) {
+    tile->textureOffset = variation;
+}
+```
+
+**renderTile (minimap)** @ 0x100011ea :
+```c
+void __thiscall Terrain::renderTile(Terrain* this, int tileType,
+        int sx, int sy, int aw, int ah) {
+    float scale = (float)aw/(float)ah;
+    glLoadIdentity(); glPushMatrix();
+    glTranslatef((sx-432)*g_s, (sy-300)*g_s, 0);
+    glRotated(g_fovY, 0,1,0);
+    glRotatef(45, 0,1,0);
+    glScalef(scale,scale,scale);
+    glDisable(GL_CULL_FACE);
+    glBindTexture(GL_TEXTURE_2D, g_textureTable[tileType * 900]);
+    glBegin(GL_TRIANGLES);
+    glNormal3f(0,1,0);
+    glTexCoord2f(0,1); glVertex3f(-50,0,-50);
+    glTexCoord2f(0,0); glVertex3f(-50,0,50);
+    glTexCoord2f(1,0); glVertex3f(50,0,50);
+    glTexCoord2f(0,1); glVertex3f(-50,0,-50);
+    glTexCoord2f(1,0); glVertex3f(50,0,50);
+    glTexCoord2f(1,1); glVertex3f(50,0,-50);
+    glEnd();
+    glEnable(GL_CULL_FACE); glPopMatrix(); glFlush();
+}
+```
 
 ---
 
-## 6. Physique de Balle
+## 6. Élévation du Terrain
+
+### 6.1 elevateCorner @ 0x1000133e
+```c
+void __thiscall Terrain::elevateCorner(Terrain* this, Tile* tile, int idx) {
+    if (tile) FUN_1000c7b0(tile, idx);  // Incrémente elevation[idx]
+}
+```
+### 6.2 lowerCorner @ 0x10001127
+```c
+void __thiscall Terrain::lowerCorner(Terrain* this, Tile* tile, int idx) {
+    if (tile) FUN_1000ccc0(tile, idx);  // Décrémente elevation[idx]
+}
+```
+### 6.3 lowerEdgeCorner @ 0x10001154
+Abaisse un coin ainsi que les coins adjacents sur les tuiles voisines.
+### 6.4 getElevation @ 0x10001343
+```c
+int __thiscall Terrain::getElevation(Terrain* t, Tile* tile, int idx) {
+    // Lit tile->elevation[idx] (offset 0x000 + idx*4)
+}
+```
+### 6.5 setSplineHeight @ 0x10001339
+```c
+void __thiscall Terrain::setSplineHeight(Terrain* this, float h) {
+    // Stocke hauteur pour les splines de chemins
+}
+```
+### 6.6 calcAllNormals @ 0x100010d2
+```c
+void __thiscall Terrain::calcAllNormals(Terrain* t, Tile* c) {
+    int r = 0xd << (*(byte*)&t->field_1c & 0x1f);
+    int sz = getTileZ(c) - r;
+    do {
+        int sx = getTileX(c) + r;
+        do {
+            Tile* t2 = tileAt(t, sx, sz);
+            if (t2) recalcTileNormal(t2);
+            sx--;
+        } while (sx >= getTileX(c) - r);
+        sz++;
+    } while (sz <= getTileZ(c) + r);
+}
+```
+
+---
+
+## 7. Chemins (Paths)
+
+### 7.1 drawBezierSpline @ 0x100010a5
+```c
+void __thiscall Terrain::drawBezierSpline(Terrain* t,
+    int x1,int y1,int x2,int y2,int x3,int y3,
+    int color,int width,int alpha) {
+    float r = ((color>>7)&0xf8)/255.0f;
+    float g = ((color>>2)&0xf8)/255.0f;
+    float b = ((color&0x1f)<<3)/255.0f;
+    int len = abs(x1-x3)+abs(y1-y3)+abs(x3-x2)+abs(y3-y2);
+    float stepSize = g_step / ((float)len/g_div);
+    float pts[4] = {(float)x1,(float)y1,(float)x2,(float)y2};
+    glMatrixMode(GL_PROJECTION); glPushMatrix(); glLoadIdentity();
+    glOrtho(0,scrW,0,scrH,-1,1);
+    glMatrixMode(GL_MODELVIEW); glPushMatrix(); glLoadIdentity();
+    glDisable(GL_CULL_FACE); glDisable(GL_TEXTURE_2D);
+    glEnable(GL_BLEND); glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
+    glLineWidth((float)width);
+    glColor4f(r,g,b,(float)alpha/g_div);
+    glBegin(GL_LINE_STRIP);
+    glVertex2fv(pts);
+    for (float t = stepSize; t < 1.0f; t += stepSize) {
+        float pt[2] = {0,0};
+        for (int i = 0; i < 3; i++) {
+            float basis = bernstein(t,i);
+            pt[0] += basis * pts[i*2]; pt[1] += basis * pts[i*2+1];
+        }
+        glVertex2fv(pt);
+    }
+    glVertex2i(x3,y3);
+    glEnd();
+    glEnable(GL_CULL_FACE); glEnable(GL_TEXTURE_2D);
+    glDisable(GL_BLEND); glPopMatrix();
+    glMatrixMode(GL_PROJECTION); glPopMatrix();
+    glMatrixMode(GL_MODELVIEW); glFlush();
+}
+```
+### 7.2 drawLine @ 0x100011b3 / drawCardinalSpline @ 0x10001244
+Même pipeline OpenGL 2D avec glBegin/glEnd. Lines pour drawLine, LINE_STRIP
+pour drawCardinalSpline (spline cardinale avec paramètre de tension).
+### 7.3 layPath / updatePath / hasPath / hasConnectedPath
+```c
+void layPath(Terrain* t, Tile* tile, int dir, int type) {
+    FUN_10013400(tile, dir==0?0:1, type);
+}
+bool hasConnectedPath(Terrain* t, int x, int y) {
+    return FUN_10013360(tileAt(t,x,y));
+}
+```
+
+---
+
+## 8. Murs (Walls)
+
+### 8.1 setWall @ 0x10001014
+```c
+void __thiscall Terrain::setWall(Terrain* t, Tile* tile,
+                                 int side, int height, bool enable) {
+    FUN_10015400(tile, side, height, enable);
+    // side: 0=N,1=E,2=S,3=O
+}
+```
+### 8.2 getWall @ 0x100012bc
+```c
+bool __thiscall Terrain::getWall(Terrain* t, Tile* tile, int side) {}
+```
+
+---
+
+## 9. Éclairage (Lighting)
+
+### 9.1 changeLighting @ 0x100011c2
+```c
+void __thiscall Terrain::changeLighting(Terrain* t, int dir) {
+    if (dir==0) { // Assombrir
+        if (g_minAmb < *(float*)(t+4)) {
+            *(float*)(t+4)  -= g_step; *(float*)(t+8)  -= g_step;
+            *(float*)(t+0xc) -= g_step;
+        }
+    } else { // Éclaircir
+        if (*(float*)(t+4) < 1.0f) {
+            *(float*)(t+4)  += g_step; *(float*)(t+8)  += g_step;
+            *(float*)(t+0xc) += g_step;
+        }
+    }
+    float dir[4] = {-0.5f,0.1f,-1.0f,0.0f};
+    glLightfv(GL_LIGHT0,GL_POSITION,dir);
+    glLightfv(GL_LIGHT0,GL_AMBIENT,&t->ambient);
+    glLightfv(GL_LIGHT0,GL_DIFFUSE,&diffuse);
+    glLightfv(GL_LIGHT0,GL_SPECULAR,&specular);
+    glEnable(GL_LIGHT0);
+}
+```
+
+---
+
+## 10. Guide de Port Phaser 4 / WebGL
+
+### 10.1 Architecture recommandée
+```
+Phaser 4 / WebGL 2.0
+├── Scene
+│   ├── Tilemap Layer — textures via TextureArray
+│   ├── Decoration Layer — sprites billboardés, Z-order Y
+│   ├── Path Layer — Graphics ou Mesh pour splines
+│   └── Shaders
+│       ├── TerrainShader (TextureArray + éclairage)
+│       └── DecorationShader (billboarding)
+├── Camera Phaser
+│   ├── Scroll, Zoom (×0.5, ×1, ×2), Rotation 0°/90°/180°/270°
+```
+
+### 10.2 OpenGL 1.x → WebGL 2.0
+| OpenGL 1.x | WebGL 2.0 |
+|---|---|
+| glBegin/glEnd | BufferGeometry + drawElements |
+| glPush/PopMatrix | mat4 uniform dans shaders |
+| glRotatef/Translatef | vertex shader × matrices |
+| Fixed Function | Shaders GLSL personnalisés |
+| glLightfv | Uniforms lumière dans shader |
+
+### 10.3 Shader GLSL
+```glsl
+// Vertex
+#version 300 es
+layout(location=0) in vec3 aPos;
+layout(location=1) in vec2 aUV;
+layout(location=2) in vec3 aNorm;
+uniform mat4 uMVP; uniform vec3 uLightDir;
+out vec2 vUV; out float vLight;
+void main() {
+    gl_Position = uMVP * vec4(aPos,1);
+    vUV = aUV; vLight = mix(0.3,1.0,max(dot(aNorm,normalize(uLightDir)),0.0));
+}
+// Fragment
+#version 300 es
+precision highp float;
+uniform sampler2DArray uTexArr; uniform int uTexIdx;
+in vec2 vUV; in float vLight; out vec4 fragColor;
+void main() { fragColor = texture(uTexArr,vec3(vUV,uTexIdx)) * vLight; }
+```
+
+### 10.4 Recommandations clés
+1. **Multi-passes** → `TextureArray` au lieu de multiples `glBindTexture`
+2. **Hauteurs 3D** → `BufferGeometry` avec vrais vertex Z (pas de tile isométrique plat)
+3. **Painter's Algorithm** → `setDepth(Y + Z)` en Phaser
+4. **Chemins** → `Phaser.GameObjects.Graphics` ou `Mesh` splines
+5. **Variation `rand()`** → Remplacer par hash déterministe `(x*31 + y*37) % N`
+6. **Table globale** → `type*900 + orientation*36 + variation*4` à préserver
+7. **Éclairage** → Shader Lambertian avec direction lumière fixe `(-0.5, 0.1, -1.0)`
+
+---
+
+## 11. Physique de Balle
 
 ### 6.1 Architecture de la Simulation
 
@@ -741,7 +1166,7 @@ SUCCESS SI RAND(0,100) < (chance × 100)
 
 ---
 
-## 7. IA des Golfeurs
+## 12. IA des Golfeurs
 
 ### 7.1 Arbre de Décision (4 sous-arbres)
 
@@ -829,7 +1254,7 @@ L'attribut **Imagination** (≥8) réduit de 1 le coût des tuiles (le golfeur t
 
 ---
 
-## 8. Économie & Gestion
+## 13. Économie & Gestion
 
 ### 8.1 Principes Généraux
 
@@ -930,7 +1355,7 @@ function determineCourseClass(prestige: number): 1|2|3|4|5 {
 
 ---
 
-## 9. Scoring & Tournois
+## 14. Scoring & Tournois
 
 ### 9.1 Système SGA (Sim Golf Association)
 
@@ -1063,7 +1488,7 @@ int CalculateWorldRanking(int prestige, int wins, int totalPrize) {
 
 ---
 
-## 10. Interface Utilisateur
+## 15. Interface Utilisateur
 
 ### 10.1 Principes Généraux
 
@@ -1174,7 +1599,7 @@ function DialogBox_Create(formatStr, msgStr): DialogResult {
 
 ---
 
-## 11. Audio & Animations
+## 16. Audio & Animations
 
 ### 11.1 Système Audio (sound.dll)
 
@@ -1260,7 +1685,7 @@ MaleNormalSwing_045.flc  → Direction 45° (diagonale)
 
 ---
 
-## 12. Sauvegarde & Formats de Fichier
+## 17. Sauvegarde & Formats de Fichier
 
 ### 12.1 Formats Supportés
 
@@ -1386,7 +1811,7 @@ ScoreEntry (156 bytes = 0x9c) × 10 :
 
 ---
 
-## 13. Scénarios & Campagne
+## 18. Scénarios & Campagne
 
 ### 13.1 Les 6 Scénarios Embarqués
 
@@ -1433,7 +1858,7 @@ Le joueur est toujours appelé `PARTNER` dans les dialogues.
 
 ---
 
-## 14. Arbres & Décorations
+## 19. Arbres & Décorations
 
 ### 14.1 Dualité du Système d'Arbres
 
@@ -1508,7 +1933,7 @@ Terrain::render()
 
 ---
 
-## 15. Guide de Réimplémentation (condensé)
+## 20. Guide de Réimplémentation (condensé)
 
 ### 15.1 Architecture Recommandée
 
@@ -1624,7 +2049,7 @@ function getSubTile(tileMap, col, row, numTypes) {
 
 ---
 
-## 16. Lacunes & Travaux Futurs
+## 21. Lacunes & Travaux Futurs
 
 ### 16.1 Lacunes Critiques 🔴
 
@@ -1667,7 +2092,7 @@ function getSubTile(tileMap, col, row, numTypes) {
 
 ---
 
-## 17. Annexes
+## 22. Annexes
 
 ### 17.1 Carte des Fonctions ASM — golf.exe
 
