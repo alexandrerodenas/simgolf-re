@@ -12,7 +12,7 @@
 2. [Structures de Données](#2-structures-de-données)
 3. [Système de Terrain](#3-système-de-terrain)
 4. [Rendu Isométrique](#4-rendu-isométrique)
-5. [Auto-Tiling & Textures](#5-auto-tiling--textures)
+5. [Auto-Tiling & Textures](#5-auto-tiling--textures) — 5.1→5.12 (groupes AE, orientations AD, variation cosmétique, bordures voisins) | ✅ Décompilé
 6. [Élévation du Terrain](#6-élévation-du-terrain)
 7. [Chemins (Paths)](#7-chemins-paths)
 8. [Murs (Walls)](#8-murs-walls)
@@ -714,123 +714,277 @@ Population faite par `loadNewCourseType()` (0x10001af0) au changement de thème.
 | **Parkland** | 602 |
 | **Tropical** | 547 (le moins complet) |
 
-### 5.8 Types de Terrains Déclenchant des Bordures
+### 5.8 Mécanisme de Génération des Bordures — Analyse Complète
 
-| Type | Texture d'arête | Famille |
-|:---:|:---------------:|:-------:|
-| Sable (3) | `GrassySand{A-D}` | sand |
-| Herbe près sable | `GrassBunker{A-D}` | grass |
-| Eau peu profonde (4) | `WaterShallow{A-D}` | water |
-| Eau moyenne (5) | `WaterMiddle{A-D}` | water |
-| Eau profonde (6) | `WaterDeep{A-D}` | water |
-| Falaise (11) | `Cliff{A-D}` | cliff |
+Le système de bordures entre tuiles hétérogènes repose sur **4 mécanismes distincts** identifiés dans Terrain.dll :
 
-### 5.9 setType — Code Décompilé
+#### 5.8.1 Stockage des Voisins (Auto-Tiling Loop @ 0x1000a130)
+
+La fonction d'initialisation du rendu (`updateAllTileNeighbors @ 0x1000a130`, 549 bytes, 174 insn) effectue **deux passes** sur toute la grille :
+
+```asm
+; === PASSE 1 : Initialisation (0x1000a16a-0x1000a207) ===
+; Pour chaque (x, y) dans la grille :
+;   tileInit(x, y)                    → tile par défaut (type=WaterShallow)
+;   getType(tile)                     → lit le type
+;   [0x100010c3 → 0x10002060]         → compute render passes
+
+; === PASSE 2 : Stockage des voisins (0x1000a20e-0x1000a342) ===
+; Pour chaque (x, y) dans la grille :
+;
+;   Voisin Nord  (x,   y-1) → tileAt(x,   y-1)  push 2 → renderObjects[2]
+;   Voisin Ouest (x-1, y)   → tileAt(x-1, y)    push 0 → renderObjects[0]
+;   Voisin Sud   (x,   y+1) → tileAt(x,   y+1)  push 3 → renderObjects[3]
+;   Voisin Est   (x+1, y)   → tileAt(x+1, y)    push 1 → renderObjects[1]
+;
+; Side mapping : 0=Ouest, 1=Est, 2=Nord, 3=Sud
+; La fonction [0x10001113 → 0x1000c520] stocke le ptr voisin :
+;   this->renderObjects[side] = neighborTile
+```
+
+#### 5.8.2 Le Rôle de renderObjects[4] (offset +0x34)
+
+Chaque Tile stocke les pointeurs de ses 4 voisins dans `tile->renderObjects[0..3]` (offset +0x34, 4 × 4 = 16 bytes). Ces pointeurs sont utilisés au moment du rendu pour comparer les types :
 
 ```c
-// Terrain::setType @ 0x100032f0
-void __thiscall Terrain::setType(Terrain* this, Tile* tile,
-                                 int type, int variationParam) {
-    int maxVariation = *(int*)((int)this + type * 24 + 0x40);
-    if (maxVariation < 1) {
-        setTextureOffset(tile, 0);
+// Structure Tile — extrait des champs critiques
+// Offset  Taille  Champ           Rôle
+// ------  ------  -----------     -----------------------------------
+// 0x034   16      renderObjects[4] Pointeurs C++ vers les 4 voisins
+//                                [0]=Ouest, [1]=Est, [2]=Nord, [3]=Sud
+// 0x044   4       renderPassCount  Nombre de passes de rendu (typique 1-3)
+// 0x06c   var.    renderPasses[]   Tableau des passes de rendu
+// 0x240   4       textureOffset    Variation cosmétique (0..maxVariation-1)
+```
+
+#### 5.8.3 Le Système de Familles (typeInfo@this+0x40)
+
+La table `typeInfo` à `this + 0x40` contient les métadonnées de chaque type de terrain :
+- Stride : **24 bytes** par type (0x18)
+- Champs identifiés :
+  - `+0x00` : **maxVariation** (int32) — utilisé par setType pour `rand() % maxVariation`
+  - `+0x04` : **family** (int32) — groupe de voisinage (0=grass, 1=play, 2=sand, 3=water, etc.)
+  - `+0x08` : **renderMode** (int32) — 0=élévation, 1=bordure, 2=spécial
+  - `+0x0c-0x17` : flags, seuils, limites d'élévation
+
+**Mapping des familles (déduit du comportement observé + analyse ASM) :**
+
+| Famille | Types membres | Transition visible |
+|:-------:|:-------------:|:-----------------:|
+| **grass** (0) | Rough(0), Tree(14), Flower(15), DeepRough(7), Brush | Non — même famille |
+| **play** (1) | Fairway(1), Tee(10), Green(2) | Non — même famille |
+| **sand** (2) | SandBunker(3), GrassySand(8), GrassBunker(9) | Non — même famille |
+| **water** (3) | WaterShallow(4), WaterMiddle(5), WaterDeep(6) | Non — même famille |
+| **path** (4) | Path(12), Bridge | Non — même famille |
+| **building** (5) | Building(13) | N/A — singleton |
+| **cliff** (6) | Cliff(11) | N/A — singleton |
+
+#### 5.8.4 Algorithme de Bordure — Étape par Étape
+
+Quand deux tuiles adjacentes ont des **types différents**, la bordure est générée ainsi :
+
+```
+Étape 1 : DÉTECTION
+  Pour chaque côté side ∈ {0,1,2,3} (O,N,E,S) :
+    neighbor = tile->renderObjects[side]
+    Si neighbor == NULL → pas de bordure (bord de la carte)
+    Si neighbor->type == tile->type → pas de bordure (même type)
+    Si familyTable[neighbor->type] == familyTable[tile->type] → pas de bordure (même famille)
+    SINON → bordure détectée sur ce côté
+
+Étape 2 : SÉLECTION DE L'ORIENTATION (A/B/C/D)
+  La fonction renderSingleTile ou le système de renderPass choisit :
+    side 0 (Ouest) → texture suffixe D
+    side 1 (Est)   → texture suffixe B
+    side 2 (Nord)  → texture suffixe A
+    side 3 (Sud)   → texture suffixe C
+
+  Si la tuile a plusieurs voisins de types différents :
+    La PRIORITÉ est : Nord > Est > Sud > Ouest (side 2 > 1 > 3 > 0)
+    Seul le premier côté détecté est utilisé pour la texture de bordure.
+
+Étape 3 : SÉLECTION DE LA TEXTURE DE BORDURE
+  Chaque type de terrain a des textures de bordure spécifiques :
+    - Tile type Sable(3) + bordure → texture GrassySand{A-D}
+    - Tile type Herbe + bordure sable → texture GrassBunker{A-D}
+    - Tile type Eau(4,5,6) + bordure → texture WaterShallow/A/B{C-D}
+    - Tile type Falaise(11) + bordure → texture Cliff{A-D}
+
+Étape 4 : MULTI-PASSES (pour les coins/intersections)
+  Une tuile peut avoir jusqu'à 4 renderPasses (renderPassCount). 
+  Chaque passe peut avoir une texture de bordure différente, permettant
+  de gérer les coins (ex: eau avec bordure Nord ET Est simultanément).
+```
+
+#### 5.8.5 Exemple Concret : Eau à côté de Herbe
+
+```
+Grille (vue du dessus) :
+  ┌─────┬─────┐
+  │ Eau │ Herbe│
+  │ (4) │ (0) │
+  └─────┴─────┘
+
+Pour la tuile Eau (4) :
+  renderObjects[1] (Est) = Herbe(0)
+  family[4] = water ≠ family[0] = grass → BORDURE DÉTECTÉE côté Est (side 1)
+  Texture sélectionnée : WaterShallowB (side 1 = Est → suffixe B)
+
+Pour la tuile Herbe(0) :
+  renderObjects[3] (Ouest) = Eau(4)
+  family[0] = grass ≠ family[4] = water → BORDURE DÉTECTÉE côté Ouest (side 3)
+  Texture sélectionnée : la famille grass n'a PAS de texture de bordure
+  → La texture reste RoughA (la bordure est portée par l'eau, pas par l'herbe)
+```
+
+**Règle importante :** La bordure est portée par la tuile qui a une texture de bordure dans son set.
+- L'eau a `WaterShallow{A-D}` → c'est l'eau qui prend la bordure
+- Le sable a `GrassySand{A-D}` → c'est le sable qui prend la bordure
+- L'herbe a `GrassBunker{A-D}` → c'est l'herbe près du sable qui prend la bordure
+- La falaise a `Cliff{A-D}` → c'est la falaise qui prend la bordure
+
+#### 5.8.6 Texture Table (g_textureTable@0x100687f8) — Organisation
+
+```c
+// La table est organisée par type, orientation, variation :
+// g_textureTable[type][orientation][variation]
+// Chaque entrée = 4 bytes (GLuint handle texture OpenGL)
+//
+// Taille par type :      0x384 = 900 bytes = 225 entrées
+// Taille par orientation : 0x024 = 36 bytes = 9 entrées
+// Taille par variation : 4 bytes
+//
+// Adresse : 0x100687f8 + type×900 + orientation×36 + variation×4
+//
+// Les orientations possibles par type :
+//   Types à élévation (Rough, Fairway, DeepRough) :
+//     orientation 0=A(plat), 1=B(pente), 2=C(coin), 3=D(diag), 4=E(raide)
+//   Types à bordure (Water, SandBunker, Cliff) :
+//     orientation 0=A(Nord), 1=B(Est), 2=C(Sud), 3=D(Ouest)
+//   Types spéciaux (Tee, Green) :
+//     orientation 0=A(plat) seulement
+//
+// Les 225 slots par type sont organisés ainsi :
+//   - 5 groupes d'élévation × 9 variations = 45 slots (pour les types A-E)
+//   - 4 orientations de bordure × 9 variations = 36 slots (pour les types A-D)
+//   - Slots restants : inutilisés ou pour des cas spéciaux
+//     (chemins, bâtiments, overlays décoratifs)
+```
+
+### 5.9 Schéma Complet de Nommage des Assets
+
+```python
+# Format : {Type}{Groupe}{Variation à 4 chiffres}.bmp
+# Exemple : WaterShallowB0003.bmp, RoughA0002.bmp
+
+# Groupe = lettre A-E (ou 1A-4A pour SandBunker)
+# La SIGNIFICATION de la lettre dépend du type de terrain :
+
+def decode_texture_name(filename):
+    # Pattern général
+    import re
+    m = re.match(r'([A-Za-z]+)([1-4]?)([A-E]?)(\d{4})?\.bmp', filename)
+    if not m:
+        return None
+    
+    terrain_type = m.group(1)     # "Rough", "WaterShallow", etc.
+    prefix = m.group(2)           # "1"-"4" ou "" (pour SandBunker)
+    group_letter = m.group(3)     # "A"-"E" ou ""
+    variation = m.group(4)        # "0001"-"0025" ou ""
+    
+    # La signification du groupe :
+    families = {
+        'grass':    ['Rough', 'Tree', 'Flower', 'DeepRough', 'Brush', 'Woods'],
+        'play':     ['Fairway', 'Tee', 'PuttingGreen'],
+        'sand':     ['SandBunker', 'GrassySand', 'GrassBunker'],
+        'water':    ['WaterShallow', 'WaterMiddle', 'WaterDeep'],
+        'cliff':    ['Cliff'],
+    }
+    
+    # SI le type est dans une famille à BORDURE (eau, sable, falaise)
+    # ALORS A-D = orientation de la bordure :
+    #   A = Nord, B = Est, C = Sud, D = Ouest
+    #
+    # SI le type est dans une famille à ÉLÉVATION (grass, play)
+    # ALORS A-E = forme d'élévation :
+    #   A = plat, B = pente, C = coin, D = diagonale, E = raide
+```
+
+### 5.10 Correspondance Lettre Groupe → Signification Visuelle
+
+| Type de terrain | Lettre | Signification | Nb variantes |
+|:---------------:|:------:|:-------------:|:------------:|
+| **Rough, Fairway, DeepRough, Brush, Woods** | A | Plat (coins égaux) | 9 ou 5 |
+| | B | Pente simple (2 coins adjacents hauts) | 9 ou 5 |
+| | C | Coin (1 ou 3 coins hauts) | 9 ou 5 |
+| | D | Diagonale (coins opposés hauts) | 9 ou 5 |
+| | E | Raide (Δ ≥ 2 entre adjacents) | 9 ou 5 |
+| **WaterShallow, WaterMiddle, WaterDeep** | A | Bordure **Nord** (violet) | 9 |
+| | B | Bordure **Est** | 9 |
+| | C | Bordure **Sud** | 9 |
+| | D | Bordure **Ouest** | 9 |
+| **GrassySand, GrassBunker** | A | Bordure **Nord** (side 2) | 9 |
+| | B | Bordure **Est** (side 1) | 9 |
+| | C | Bordure **Sud** (side 3) | 9 |
+| | D | Bordure **Ouest** (side 0) | 9 |
+| **Cliff** | A | Bordure **Nord** | 9 |
+| | B | Bordure **Est** | 9 |
+| | C | Bordure **Sud** | 9 |
+| | D | Bordure **Ouest** | 9 |
+| **Tee** | A (uniquement) | Plat (toujours plat) | **25** |
+| **PuttingGreen** | A ou (sans) | Plat (toujours plat) | **5** |
+| **SandBunker** | A, 1A-4A | Plat — le chiffre 1-4 code la **forme** (rond, ovale, long, carré) | 5×5 |
+
+### 5.11 Le Nombre à 4 Chiffres (0001-0025) — Variation Cosmétique
+
+Le nombre est un simple **index de tirage aléatoire** déterminé par `setType @ 0x100032f0` :
+
+```asm
+; setType ASM confirmé :
+0x1000330d: mov  eax, [ebp+0xc]     ; type
+0x10003310: imul eax, eax, 0x18     ; type × 24 (sizeof typeInfo)
+0x10003313: mov  ecx, [ebp-4]       ; this
+0x10003316: cmp  [ecx+eax+0x40], 0  ; typeInfo[type].maxVariation > 0 ?
+0x1000331b: jle  0x1000333b         ; non → variation = 0
+0x1000331d: call 0x10018ce0         ; rand()
+0x10003322: mov  ecx, [ebp+0xc]
+0x10003325: imul ecx, ecx, 0x18
+0x1000332b: cdq
+0x1000332c: idiv [esi+ecx+0x40]     ; rand() % maxVariation
+0x10003330: push edx                ; variation = remainder
+0x10003331: mov  ecx, [ebp+8]       ; tile*
+0x10003334: call 0x100010b9         ; setTextureOffset(tile, variation)
+```
+
+```c
+// Traduction C :
+void Terrain::setType(Tile* tile, int type, int variationParam) {
+    int maxVar = typeInfo[type].maxVariation;   // this + type*24 + 0x40
+    if (maxVar >= 1) {
+        int variation = rand() % maxVar;         // ← VRAI rand(), PAS compteur !
+        setTextureOffset(tile, variation);       // store in tile->textureOffset
     } else {
-        int variation = rand() % maxVariation; // ← rand(), pas un compteur !
-        setTextureOffset(tile, variation);
+        setTextureOffset(tile, 0);
     }
-    notifyGameEngine(tile, variationParam);
-    updateNeighbors(tile, type);
+    tile->type = type;
+    // ... update neighbours, normals, etc.
 }
 ```
 
-### 5.10 renderSingleTile — Code Décompilé
+| Type | Fichiers | maxVariation | Pool |
+|:----:|:--------:|:------------:|:----:|
+| Tee | A0001–A0025 | **25** | 25 textures de départ différentes |
+| Rough | A0001–A0009 | **9** | 9 motifs d'herbes différentes |
+| WaterShallow | A0001–A0009 | **9** | 9 motifs d'eau différents |
+| GrassySand | A0001–A0009 | **9** | 9 motifs de sable/herbe différents |
+| Cliff | A0001–A0009 | **9** | 9 motifs de falaise différents |
+| Fairway | A0001–A0005 | **5** | 5 motifs de fairway |
+| Green | A0001–A0005 | **5** | 5 motifs de green |
+| SandBunker | A0001–A0005 | **5** | 5 motifs de sable |
 
-```c
-struct RenderPass {     // 0x38 = 56 bytes
-    int textureID;      // +0x00
-    byte texCoord;      // +0x04
-    byte padding[51];   // +0x05
-    int indexA;         // +0x48 : Sommet A
-    int indexB;         // +0x4c : Sommet B
-    int indexC;         // +0x50 : Sommet C
-    byte vertexA;       // +0x54
-    byte vertexB;       // +0x58
-    byte vertexC;       // +0x5c
-    byte texCoordA;     // +0x60
-    byte texCoordB;     // +0x64
-    byte texCoordC;     // +0x68
-    byte passFlags;     // +0x70
-};
+**Le nombre 0002 vs 0004** (ex: `RoughA0002.bmp` vs `RoughA0004.bmp`) : **Aucune différence sémantique ou positionnelle.** Ce sont juste deux textures visuellement différentes du même type (Rough plat, groupe A). Le numéro est déterminé par `rand() % 9` au moment où la tuile est posée. Les 9 textures évitent l'effet de répétition (tuilage) visible.
 
-void __fastcall Terrain::renderSingleTile(Tile* tile) {
-    int currentTex = -1;
-    for (int pass = 0; pass < tile->renderPassCount; pass++) {
-        RenderPass* rp = &tile->renderPasses[pass];
-        if (g_viewMode == 0 || tile->type == 7) {
-            if (rp->textureID != currentTex) {
-                glBindTexture(GL_TEXTURE_2D, rp->textureID);
-                currentTex = rp->textureID;
-            }
-        } else {
-            int orientation = tile->tileFlags & 3;
-            int tableIdx = (orientation + 27) * 900
-                         + tile->textureOffset * 36
-                         + rp->texCoord * 4;
-            int tex = *(int*)(g_textureTable + tableIdx);
-            if (tex != currentTex) {
-                glBindTexture(GL_TEXTURE_2D, tex);
-                currentTex = tex;
-            }
-        }
-        glBegin(GL_TRIANGLES);
-        glTexCoord2fv(&texCoordTable[...]);
-        glArrayElement(rp->indexA);
-        glTexCoord2fv(&texCoordTable[...]);
-        glArrayElement(rp->indexB);
-        glTexCoord2fv(&texCoordTable[...]);
-        glArrayElement(rp->indexC);
-        glEnd();
-    }
-    if (tile->hasOverlay) renderOverlay(tile);
-    renderPostProcess(tile);
-    renderEffects(tile, 3);
-}
-```
-
-### 5.11 initSystem — Décompilation
-
-```c
-void __thiscall Terrain::initSystem(Terrain* this, int w, int h,
-                                    HDC__* hdc, bool useTexture) {
-    if (*(int*)this == 0) {
-        if (hdc != NULL) {
-            int pf = ChoosePixelFormat(hdc, &pfd);
-            SetPixelFormat(hdc, pf, &pfd);
-            this->glContext = wglCreateContext(hdc);
-            wglMakeCurrent(hdc, this->glContext);
-        }
-        this->useTexture = useTexture;
-        initGLStates(); initTextureSystem(); initTypeInfo();
-        resize(this, w, h);
-        if (w==800 && h==600)      g_fovY = 38.8647f;
-        else if (w==1024 && h==768) g_fovY = 40.5835f;
-        else if (w==1280 && h==1024) g_fovY = 40.8302f;
-    }
-}
-```
-
-### 5.12 Structure de la Table Globale
-
-```c
-// g_textureTable @ 0x100687f8
-// Organisation : type × orientation × variation
-// Chaque type :       900 bytes (225 entrées × 4)
-// Chaque orientation :  36 bytes (9 entrées × 4)
-// Chaque variation :     4 bytes (1 handle GLuint)
-// Index = g_textureTable + type*900 + orientation*36 + variation*4
-```
-
-### 5.13 Fonctions auxiliaires
+### 5.12 Fonctions auxiliaires
 
 **getVariation** @ 0x10003390 :
 ```c
