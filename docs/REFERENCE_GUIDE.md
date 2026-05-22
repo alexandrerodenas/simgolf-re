@@ -1,7 +1,7 @@
 # SimGolf (2002) — Guide de Référence Complet
 
 > Document fusionné à partir de 33 fichiers d'analyse (rétro-ingénierie de golf.exe + Terrain.dll + jgld.dll + sound.dll)
-> Mai 2026 — Projet `simgolf-re` — **2900+ fonctions identifiées**, 42 fichiers décompilés (C reconstruit), 4 passes Ghidra
+> Mai 2026 — Projet `simgolf-re` — **2900+ fonctions identifiées**, 42 fichiers décompilés (C reconstruit), 5 736 assets documentés
 > **Confiance :** ✅ Confirmé (ASM/données) | ⚠️ Hypothèse | ❌ Inconnu
 
 ---
@@ -30,6 +30,7 @@
 20. [Guide de Réimplémentation (condensé)](#20-guide-de-réimplémentation-condensé)
 21. [Lacunes & Travaux Futurs](#21-lacunes--travaux-futurs)
 22. [Annexes](#22-annexes) — 17.1→17.8 (carte ASM, fichiers décompilés, outils)
+23. [Pipeline d'Assets](#23-pipeline-dassets--analyse-complète)
 
 ---
 
@@ -2626,6 +2627,336 @@ convert_all_to_webp.py → Convertisseur unifié :
 
 ---
 
-> **Document fusionné** à partir de 33 fichiers source du projet `simgolf-re` (Mai 2026).
-> **Licence :** Document technique — utilisation libre avec attribution.
-> **Contact :** Projet de rétro-ingénierie communautaire SimGolf.
+## 23. Pipeline d'Assets — Analyse Complète
+
+> Analyse basée sur : 42 fichiers décompilés + 6 scripts de conversion + structure des dossiers data/raw/
+> **Confiance :** ✅ Confirmé (données extraites) | ⚠️ Reconstruit (code C déduit) | ❌ Non extrait
+
+### 23.1 Architecture Globale des Assets
+
+```
+simgolf-re/data/raw/
+├── Data/           (589 fichiers) — Textures de terrain BMP + atlas PCX
+│   ├── Textures/                 — Textures BMP par thème (desert/parkland/links/tropical)
+│   ├── {theme}.pcx               — Atlas de textures (planches 64×64)
+│   └── {Type}{Groupe}{Variation}.bmp — Textures individuelles
+├── Flics/          (1 892 fichiers) — Animations FLC
+│   ├── Male/      (~500) — Golfeurs (30 animations × 8 directions)
+│   ├── Female/    (~400) — Golfeuses
+│   ├── Trees/     (~200) — 4 thèmes × espèces
+│   ├── Bldgs/     (~100) — Bâtiments
+│   ├── Homes/     (~100) — Maisons
+│   ├── Flowers/   (~50)  — Fleurs
+│   ├── Water/     (~50)  — Eau animée
+│   ├── Animals/   (~30)  — Animaux
+│   ├── Celebs/    (~30)  — Célébrités
+│   ├── Employee/  (~30)  — Employés
+│   ├── Bridges/   (~30)  — Ponts
+│   ├── Scenic/    (~50)  — Décorations
+│   └── Tees/      (~20)  — Marqueurs de départ
+├── Interface/      (646 fichiers) — UI sprites PCX
+│   ├── {Name}.pcx / {Name}_A.pcx  — Sprite normal + alpha mask
+│   ├── Panels/                    — Barres d'outils (5 panels × 2)
+│   ├── Buttons/                   — Boutons d'interface
+│   └── Popups/                    — Fenêtres modales
+├── Themes/         (5 dossiers) — Données de thème
+│   ├── Championship/             — Scénarios (.cse, .pro)
+│   ├── Standard/                 — Textures de base
+│   ├── Firaxis/ More_Stories/ The_Sims/ — Packs additionnels
+├── Sounds/         (21+ WAV) — Audio
+│   ├── Golf sfx/                — Sons de golf (Drive, Putt, Chip, etc.)
+│   ├── Effects/                 — Effets (vent, eau, oiseaux)
+│   ├── Celebs/                  — Voix célébrités
+│   └── Emotion/                 — Émotions des golfeurs
+├── Bodies/         — Corps des golfeurs (sprites)
+├── Heads/          — Têtes des golfeurs (portraits)
+└── *.bik           — Cutscenes Bink Video (2 fichiers)
+```
+
+### 23.2 Le Format FLC (Animations)
+
+#### Header Custom SimGolf (128 bytes)
+
+```python
+# decode_flc.py — FLCDecoder._parse_header()
+# Offset  Champ           Type    Description
+# 0x00    file_size       uint32  Taille totale du fichier
+# 0x04    magic           uint16  Toujours 0xAF12 (FLC standard)
+# 0x06    frames_count    uint16  Nombre de frames
+# 0x08    width           uint16  Largeur en pixels
+# 0x0A    height          uint16  Hauteur en pixels
+# 0x0C    depth           uint16  Toujours 8 (256 couleurs)
+# 0x0E    flags           uint16  Drapeaux
+# 0x10    speed           uint32  ms par frame (delay)
+# 0x14-0x7F padding       —       Réservé (128 bytes total)
+# 0x80+   frame_data      —       Données de frames
+```
+
+Différence avec FLC standard : le header custom SimGolf a **4 bytes supplémentaires au début** (file_size), décalant le header FLC standard de +4 bytes. Les données de frame commencent toujours à 0x80.
+
+#### Structure d'une Frame
+
+```python
+# Chaque frame commence par :
+# offset 0: frame_size    uint32  Taille de cette frame
+# offset 4: magic         uint16  0xF1FA (FLC frame magic)
+# offset 6: chunks_count  uint16  Nombre de chunks dans cette frame
+# offset 8: padding[8]    —       Réservé
+# offset 16: chunk_data[] —       Données des chunks
+
+# Chaque chunk :
+# offset 0: chunk_size    uint32  Taille de ce chunk
+# offset 4: chunk_type    uint16  Type d'opcode
+# offset 6: payload       —       Données du chunk
+```
+
+#### Opcodes Supportés (5 types)
+
+| Opcode | Hex | Nom | Description |
+|:------:|:---:|-----|-------------|
+| 0x07 | `0x0B` → corrigé | **FLI_SS2** | Delta word-oriented (2-px columns) — compression par paires de colonnes |
+| 0x0B | `0x0B` | **FLI_COLOR** | Mise à jour palette (256 couleurs, format RGB 6-bit → 8-bit) |
+| 0x0C | `0x0C` | **FLI_LC** | Delta byte-oriented (compression par ligne) |
+| 0x0D | `0x0D` | **FLI_BLACK** | Frame noire (reset pixels à 0) |
+| 0x0F | `0x0F` | **FLI_BRUN** | Byte RLE (run-length encoding plat, pas de lignes) |
+| 0x10 | `0x10` | **FLI_COPY** | Keyframe (copie brute de tous les pixels) |
+
+#### Palette System
+
+```python
+# FLI_COLOR decode:
+def _decode_palette(self, data):
+    packet_count = struct.unpack('<H', data[0:2])[0]  # nombre de packets
+    pos = 2
+    for _ in range(packet_count):
+        skip = data[pos]          # index de début (0-255)
+        count = data[pos + 1]     # nombre de couleurs (0 = 256)
+        pos += 2
+        for j in range(count):
+            # RGB 6-bit → 8-bit (décalage)
+            r = (data[pos] << 2) | (data[pos] >> 6)
+            g = (data[pos+1] << 2) | (data[pos+1] >> 6)
+            b = (data[pos+2] << 2) | (data[pos+2] >> 6)
+            palette[skip + j] = (r, g, b)
+            pos += 3
+```
+
+**Les palettes initiales** sont stockées dans des fichiers `.pcx` dédiés (ex: `Flag_DESERTpal.pcx`). Le décodeur FLC les découvre automatiquement par :
+1. Correspondance exacte : `Pal{BaseName}.pcx`
+2. Correspondance par mot-clé : `{BaseName}Pal*.pcx`
+3. Correspondance par mots communs (≥3 chars)
+4. Dossier partagé : `*Pal*.pcx`, `*_palette.pcx`, `*.pal`
+
+**Chroma key :** 
+- Index 0 (noir) → transparent
+- Magenta (255,0,255) → transparent
+
+#### Golfeur Animations (30 types × 8 directions)
+
+```python
+# Les golfeurs ont 30 animations, chacune dans 8 directions (0°-315°) :
+animations = {
+    'NormalAddress', 'NormalSwing', 'NormalFollowThru',
+    'NormalWalk', 'TiredWalk',
+    'PuttAddress', 'PuttSwing', 'PuttFollowThru', 'LineUpPutt',
+    'PitchSwing', 'PitchFollowThru',
+    'SandSwing', 'SandFollowThru',
+    'SuccessA', 'SuccessB', 'Sad',
+    'Sitting', 'LeanLeft', 'LeanRight',
+    'LookAtShot', 'TipHat',
+    'ThrowClub', 'KickBag',
+    'Shadow'
+}
+
+# Convention de nommage :
+# Male{NomAnimation}_000.flc  → Direction 0° (face caméra)
+# Male{NomAnimation}_045.flc  → Direction 45°
+# ... jusqu'à 315° (8 directions)
+
+# Tailles des sprites :
+# Golfeur : 64×130 px
+# Arbre   : 48×96 px
+# Fleur   : 32×32 px
+# Bâtiment: 96×128 px
+```
+
+### 23.3 Le Format PCX (UI, Portraits, Palettes)
+
+**Format PCX standard** (ZSoft PCX, v3/v5) avec :
+- Palette 256 couleurs en fin de fichier (byte 0x0C + 768 bytes RGB)
+- Compression RLE simple
+
+```python
+# convert_all_to_webp.py — convert_image_to_webp()
+# Pipeline de conversion PCX → WebP :
+img = Image.open(src_path).convert('RGBA')
+# Chroma key : noir (0,0,0) et magenta (255,0,255) → transparent
+for r, g, b, a in data:
+    if (r == 0 and g == 0 and b == 0) or (r == 255 and g == 0 and b == 255):
+        new_data.append((0, 0, 0, 0))  # transparent
+```
+
+**UI Sprites :** Chaque sprite UI existe en deux versions :
+- `{Nom}.pcx` — Sprite normal
+- `{Nom}_A.pcx` — Masque alpha (transparence)
+
+Le compositing utilise la technique GDI classique : `SRCAND` + `SRCPAINT`.
+
+**Portraits des golfeurs :** Stockés dans les fichiers `.pro` / `.chr` après le marqueur `*PCXFILE` (offset 0x722). Format PCX standard.
+
+### 23.4 Atlas de Textures (PCX → BMP tuiles)
+
+Les textures de terrain sont stockées dans des **atlas PCX** :
+```
+Data/parkland.pcx    (512×512 px) → 64×64 = 64 tuiles
+Data/desert.pcx      (512×512 px)
+Data/links.pcx       (512×512 px)
+Data/tropical.pcx    (512×512 px)
+```
+
+Chaque atlas est une grille de **tuiles 64×64 px**. Le nombre exact de tuiles varie par thème :
+- Desert : 732 fichiers BMP individuels (+ planche PCX)
+- Links : 644
+- Parkland : 602
+- Tropical : 547
+
+Les tuiles individuelles sont extraites via `extract_atlas_tiles()` (découpage en 64×64). Les textures individuelles sont des `.bmp` nommées selon la convention `{Type}{Orientation}{Variation à 4 chiffres}.bmp`.
+
+### 23.5 Le Moteur 2D JGL (jgld.dll)
+
+#### Architecture
+
+```c
+// jgld.dll — Jackal Graphics Library (1.2 MB Debug, 396 KB Release)
+// Export unique : get_graphsy_object_ptr() → JackalClass*
+
+JackalClass (332 bytes = 0x14C)
+├── vtable            (pointeur vtable C++)
+├── hWnd              (fenêtre principale)
+├── hDC               (device context fenêtre)
+├── hSpriteDC         (DC off-screen pour sprites)
+├── hSpriteBMP        (DIBSection framebuffer sprites)
+├── hPalette          (palette 8-bit)
+├── screenWidth       (800+)
+├── screenHeight      (600+)
+├── bitsPerPixel      (8 ou 16)
+├── framebuffer*      (pointeur DIBSection)
+├── framebufferPitch  (stride bytes)
+├── gammaCorrection   (correction gamma)
+└── hFont             (police GDI courante)
+```
+
+#### Pipeline de Rendu 2D
+
+```c
+// Compositing final (chaque frame) :
+BitBlt(hDCWindow, dstX, dstY, w, h, hSpriteDC, srcX, srcY, SRCCOPY);
+
+// Sprites avec transparence (alpha mask + sprite) :
+// 1. Dessiner alpha mask : SRCAND (préserve fond)
+// 2. Dessiner sprite : SRCPAINT (superpose)
+BitBlt(hDC, x, y, w, h, hMaskDC, 0, 0, SRCAND);
+BitBlt(hDC, x, y, w, h, hSpriteDC, 0, 0, SRCPAINT);
+```
+
+#### Sous-systèmes Identifiés
+
+| Sous-système | Fichiers source estimés | Rôle |
+|-------------|:----------------------:|------|
+| `jglmain.cpp` | ? | Point d'entrée, initialisation, boucle message |
+| `jglsprite.cpp` | ? | Rendu sprites 2D (BitBlt/StretchBlt) |
+| `jglsprite_8_16c.cpp` | ? | Sprites 8-bit palettisés / 16-bit high-color |
+| `jglfont.cpp` | ? | Polices GDI (CreateFontIndirect, TextOut) |
+| `jglpng.cpp` | ? | Chargement PNG (via libpng 1.0.5 intégrée) |
+| `jglsystem.cpp` | ? | Gestion fenêtre, résolution, palette |
+| libpng 1.0.5 | ? | Bibliothèque PNG intégrée au binaire |
+
+### 23.6 Rendu des Sprites 3D (Overlay / Billboarding)
+
+Les sprites 3D (arbres, golfeurs, bâtiments) sont rendus dans `renderObjects()` en OpenGL **après** le terrain :
+
+```glsl
+// Pipeline de rendu overlay :
+Terrain::render()
+├── renderTile() × N          // Terrain isométrique (OpenGL 3D)
+├── renderObjects()           // ← Sprites billboardés
+│   ├── glBindTexture(textureID)   // Texture du sprite (FLC frame courante)
+│   ├── glBegin(GL_TRIANGLE_STRIP)
+│   │   glTexCoord2f(0,1); glVertex3f(x-W/2, y, z)     // TL
+│   │   glTexCoord2f(0,0); glVertex3f(x-W/2, y+H, z)   // BL
+│   │   glTexCoord2f(1,1); glVertex3f(x+W/2, y, z)     // TR
+│   │   glTexCoord2f(1,0); glVertex3f(x+W/2, y+H, z)   // BR
+│   └── glEnd()
+├── renderPaths()             // Chemins (splines)
+└── SwapBuffers()             // Présentation
+```
+
+**Billboarding :** Les sprites sont toujours face à la caméra (dans le plan XY perpendiculaire à l'axe Z). La sélection de frame FLC dépend de l'angle de vue (parmi 8 directions :
+
+```c
+// Mapping direction golfeur → fichier FLC
+// angle 0° → _000.flc (face)
+// angle 45° → _045.flc
+// angle 90° → _090.flc
+// ... jusqu'à 315°
+int flcDirection = ((cameraAngle + 22) / 45) * 45;  // snap to nearest 45°
+```
+
+### 23.7 Système Audio (sound.dll)
+
+```c
+// 12 exports, 3 types de devices :
+// - Wave_Device  (DirectSound/WaveOut) — 16864 bytes
+// - Midi_Device  (WINMM midiOut) — 16472 bytes
+// - WaveIn_Device (WINMM waveIn) — 76 bytes
+
+// Sons WAV identifiés (21 fichiers) :
+// Boutons UI : button1-3.wav, bass down/up, slide pop up, check box, text box
+// Construction : building.wav, path.wav, bridge.wav, bench.wav, place rocks/water
+// Golf : Drive With Ball.wav, Putt.wav, Chip.wav, Sand.wav, Fairway.wav, Hole.wav
+// Autres : unavailable.wav, wrong.wav, violin down, test{2,7,9,10}.wav
+
+// MIDI : fichiers non trouvés dans le dump actuel
+// Voix célébrités : Sounds/Celebs/*.wav — non extraites
+```
+
+### 23.8 Pipeline de Conversion (Assets bruts → WebP)
+
+```
+raw/                       converted/
+├── Data/*.pcx             ├── webp/          ← Images fixes
+│   └── (atlas 512×512)    │   └── tiles/     ← Tuiles 64×64 extraites
+├── Data/Textures/*.bmp    │   └── *.webp     ← Textures individuelles
+├── Flics/*.flc            ├── animations/    ← Animated WebP
+├── Interface/*.pcx        │   └── *.webp     ← UI sprites
+├── Bodies/*.pcx           │                  ← Corps golfeurs
+├── Heads/*.pcx            │                  ← Têtes/portraits
+└── Sounds/*.wav           └── (non converti) ← Audio natif
+```
+
+**Résultat de la conversion :** 5 736 fichiers sources → WebP (188 Mo) :
+- 2 671 BMP → WebP (34 Mo)
+- 646 PCX → WebP (85 Mo)
+- 1 893 FLC → animated WebP (34 Mo) vs 588 Mo en PNG (−94%)
+- 36 TGA → WebP (5 Mo)
+
+### 23.9 Inventaire Complet des Assets
+
+| Catégorie | Format | Fichiers | Taille brute | Usage |
+|-----------|:------:|:--------:|:------------:|-------|
+| Textures terrain | BMP + PCX | 2,671 + 4 atlas | ~70 Mo | Rendu isométrique 3D |
+| UI Sprites | PCX | 646 | ~85 Mo | Interface utilisateur |
+| Animations golfeurs | FLC | ~900 | ~60 Mo | 30 types × 8 dir × 2 sexes |
+| Animations arbres | FLC | ~200 | ~15 Mo | 4 thèmes × espèces |
+| Animations bâtiments | FLC | ~100 | ~10 Mo | Constructions |
+| Animations eau | FLC | ~50 | ~5 Mo | Cascades, fontaines |
+| Décors divers | FLC | ~595 | ~40 Mo | Fleurs, animaux, ponts |
+| Sons WAV | WAV | 21+ | ~2 Mo | UI, golf, ambiances |
+| MIDI | MIDI | ? | ? | Musique de fond |
+| Cutscenes | BIK | 2 | ~50 Mo | Intros |
+| Textures chemins | TGA | 36 | ~5 Mo | Tarmac, sable, ponts |
+| Polices | TTF | 2 | ~0.5 Mo | Polices TrueType |
+| Dialogues | TXT | 90+ | ~1 Mo | UTF-16LE scénario |
+| Profils golfeurs | PRO/CHR/DTA | ~100 | ~2 Mo | Binaires + PCX portraits |
+| Scénarios | CSE | 6+ | ~2 KB | Binaires 336 bytes |
+| Thèmes | Txt | ~5 | ~1 KB | Configurations couleur
