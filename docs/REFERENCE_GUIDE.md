@@ -784,119 +784,192 @@ La table `typeInfo` à `this + 0x40` contient les métadonnées de chaque type d
 
 #### 5.8.4 Matrice Exhaustive des Transitions entre Types de Terrain
 
-La règle est simple : **Une bordure n'apparaît que si le type a une texture de bordure dans son set de fichiers BMP.** La bordure est toujours **monodirectionnelle** (portée par le type qui a `borderOverride ≠ -1` dans la table `typeInfo`).
+> **Règle fondamentale :** Une bordure apparaît **uniquement** quand le type adjacent a une texture de bordure dans son set de fichiers BMP (groupes A–D). La bordure est **monodirectionnelle** — portée par le type qui a une texture de bordure, pas par celui qui ne l'a pas.
+>
+> **3 comportements possibles :**
+> - 🟡 **Même famille** → pas de bordure, les types se fondent visuellement
+> - ❌ **Seam** → familles différentes mais aucun type n'a de texture de bordure, jonction nette
+> - ✅ **Bordure** → le type qui a une texture A–D génère la bordure sur le côté adjacent
 
-Légende :
-- ✅ **Bordure** = une texture de transition spécifique remplace la texture de base sur le côté concerné
-- ❌ **Seam** = pas de texture de bordure, les deux textures de base se rencontrent directement
-- 🟡 **Même famille** = pas de bordure, les types se fondent visuellement
-- 🎯 **Qui porte la bordure** = quelle tuile (du couple) affiche la texture de bordure
+**Types avec textures de bordure (A–D) :** `WaterShallow`, `WaterMiddle`, `WaterDeep`, `Cliff`, `GrassySand`, `GrassBunker`
 
-| Tuile A | Tuile B | Familles | Bordure ? | Texture sur A | Texture sur B |
-|:-------:|:-------:|:--------:|:---------:|:-------------|:-------------|
-| **Rough** | **Rough** | grass/grass | 🟡 Non | RoughA-E | RoughA-E |
-| **Rough** | **Fairway** | grass/play | ❌ Seam | RoughA-E | FairwayA-E |
-| **Rough** | **SandBunker** | grass/sand | ✅ **Oui** | **GrassBunker{A-D}** ← sand side | **GrassySand{A-D}** ← grass side |
-| **Rough** | **Green** | grass/play | ❌ Seam | RoughA-E | GreenA |
-| **Rough** | **Tee** | grass/play | ❌ Seam | RoughA-E | TeeA |
-| **Rough** | **WaterShallow** | grass/water | ✅ **Oui** (porté par l'eau) | RoughA-E | **WaterShallow{A-D}** |
-| **Rough** | **WaterMiddle** | grass/water | ✅ Oui (porté par l'eau) | RoughA-E | **WaterMiddle{A-D}** |
-| **Rough** | **WaterDeep** | grass/water | ✅ Oui (porté par l'eau) | RoughA-E | **WaterDeep{A-D}** |
-| **Rough** | **Cliff** | grass/cliff | ✅ Oui (porté par la falaise) | RoughA-E | **Cliff{A-D}** |
-| **Rough** | **Path** | grass/path | ❌ Seam | RoughA-E | Path |
-| **Rough** | **Building** | grass/building | ❌ Seam | RoughA-E | Building (3D) |
-| **Rough** | **DeepRough** | grass/grass | 🟡 Non (même famille) | RoughA-E | DeepRoughA-E |
-| **Rough** | **Woods** | grass/grass | 🟡 Non (même famille) | RoughA-E | WoodsA-D |
-| **Rough** | **Brush** | grass/grass | 🟡 Non (même famille) | RoughA-E | BrushA-D |
-| **Rough** | **Flower** | grass/grass | 🟡 Non (même famille) | RoughA-E | Flower |
-| **Fairway** | **Fairway** | play/play | 🟡 Non | FairwayA-E | FairwayA-E |
-| **Fairway** | **Rough** | play/grass | ❌ Seam | FairwayA-E | RoughA-E |
-| **Fairway** | **SandBunker** | play/sand | ✅ **Oui** | **GrassBunker{A-D}** | **GrassySand{A-D}** |
-| **Fairway** | **Green** | play/play | 🟡 Non (même famille) | FairwayA-E | GreenA |
-| **Fairway** | **Tee** | play/play | 🟡 Non (même famille) | FairwayA-E | TeeA |
-| **Fairway** | **WaterShallow** | play/water | ✅ Oui (porté par l'eau) | FairwayA-E | **WaterShallow{A-D}** |
-| **Fairway** | **Cliff** | play/cliff | ✅ Oui (porté par falaise) | FairwayA-E | **Cliff{A-D}** |
-| **Fairway** | **Woods** | play/grass | ❌ Seam | FairwayA-E | WoodsA-D |
-| **Fairway** | **DeepRough** | play/grass | ❌ Seam | FairwayA-E | DeepRoughA-E |
-| **Green** | **Rough** | play/grass | ❌ Seam | GreenA | RoughA-E |
-| **Green** | **Fairway** | play/play | 🟡 Non (même famille) | GreenA | FairwayA-E |
-| **Green** | **SandBunker** | play/sand | ✅ **Oui** | **GrassBunker{A-D}** | **GrassySand{A-D}** |
-| **Green** | **Water** | play/water | ✅ Oui (porté par l'eau) | GreenA | **Water{A-D}** |
-| **Tee** | **Rough** | play/grass | ❌ Seam | TeeA | RoughA-E |
-| **Tee** | **Fairway** | play/play | 🟡 Non (même famille) | TeeA | FairwayA-E |
-| **Tee** | **SandBunker** | play/sand | ✅ **Oui** | **GrassBunker{A-D}** | **GrassySand{A-D}** |
-| **Tee** | **Water** | play/water | ✅ Oui | TeeA | **Water{A-D}** |
-| **Woods** | **Woods** | grass/grass | 🟡 Non | WoodsA-D | WoodsA-D |
-| **Woods** | **Rough** | grass/grass | 🟡 Non (même famille) | WoodsA-D | RoughA-E |
-| **Woods** | **Fairway** | grass/play | ❌ Seam | WoodsA-D | FairwayA-E |
-| **Woods** | **SandBunker** | grass/sand | ✅ **Oui** | **GrassBunker{A-D}** | **GrassySand{A-D}** |
-| **Woods** | **Water** | grass/water | ✅ Oui (porté par l'eau) | WoodsA-D | **Water{A-D}** |
-| **Woods** | **Cliff** | grass/cliff | ✅ Oui (porté par falaise) | WoodsA-D | **Cliff{A-D}** |
-| **SandBunker** | **SandBunker** | sand/sand | 🟡 Non | SandBunkerA | SandBunkerA |
-| **SandBunker** | **Rough** | sand/grass | ✅ **Oui** | **GrassySand{A-D}** | **GrassBunker{A-D}** |
-| **SandBunker** | **Fairway** | sand/play | ✅ **Oui** | **GrassySand{A-D}** | **GrassBunker{A-D}** |
-| **SandBunker** | **Water** | sand/water | ✅ Oui | **GrassySand{A-D}** | **Water{A-D}** |
-| **SandBunker** | **Green** | sand/play | ✅ **Oui** | **GrassySand{A-D}** | **GrassBunker{A-D}** |
-| **SandBunker** | **Cliff** | sand/cliff | ✅ Oui (les deux) | **GrassySand{A-D}** | **Cliff{A-D}** |
-| **WaterShallow** | **WaterShallow** | water/water | 🟡 Non | WaterShallowA | WaterShallowA |
-| **WaterShallow** | **Rough** | water/grass | ✅ Oui (porté par l'eau) | **WaterShallow{A-D}** | RoughA-E |
-| **WaterShallow** | **Fairway** | water/play | ✅ Oui (porté par l'eau) | **WaterShallow{A-D}** | FairwayA-E |
-| **WaterShallow** | **SandBunker** | water/sand | ✅ Oui (les deux) | **WaterShallow{A-D}** | **GrassySand{A-D}** |
-| **WaterShallow** | **Cliff** | water/cliff | ✅ Oui | **WaterShallow{A-D}** | **Cliff{A-D}** |
-| **WaterMiddle** | *(any non-water)* | water/X | ✅ Oui (porté par l'eau) | **WaterMiddle{A-D}** | *(base)* |
-| **WaterDeep** | *(any non-water)* | water/X | ✅ Oui (porté par l'eau) | **WaterDeep{A-D}** | *(base)* |
-| **Cliff** | *(any non-cliff)* | cliff/X | ✅ **Oui** (porté par falaise) | **Cliff{A-D}** | *(base)* |
-| **Path** | *(any)* | path/X | ❌ Seam | Path | *(base)* |
-| **Building** | *(any)* | building/X | ❌ Objet 3D | Building (3D) | *(base)* |
-| **DeepRough** | **Rough** | grass/grass | 🟡 Non (même famille) | DeepRoughA-E | RoughA-E |
-| **DeepRough** | **Fairway** | grass/play | ❌ Seam | DeepRoughA-E | FairwayA-E |
-| **DeepRough** | **SandBunker** | grass/sand | ✅ **Oui** | **GrassBunker{A-D}** | **GrassySand{A-D}** |
-| **DeepRough** | **Water** | grass/water | ✅ Oui (porté par l'eau) | DeepRoughA-E | **Water{A-D}** |
+**Types sans bordure (A–E ou A) :** tous les autres (`Rough`, `Fairway`, `Green`, `Tee`, `SandBunker`, `Path`, `Building`, `Woods`, `DeepRough`, `Brush`, `Flower`, `Natural`, `Rock`, `Marsh`, `Vegetation`, `Overgrowth`, `Flowerbed`, `FirmFairway`, `PotBunker`, `ZenSand`, `PotSandBunker`, `Bridge`, `Ravine`, `RetainingWall`)
 
-#### 5.8.5 Cas Particuliers
+---
 
-**Woods(14) vs Rough(0) : même famille grass → pas de bordure**
-Les Woods (arbres en texture de sol) et le Rough sont dans la **même famille** (grass). Quand ils sont adjacents, le jeu ne génère **aucune bordure**. La distinction visuelle est assurée uniquement par les motifs de texture différents (`WoodsA0001` vs `RoughA0001`). Les deux types utilisent leur texture de base selon leur élévation (A-D pour Woods, A-E pour Rough).
+##### 5.8.4.1 Rough (grass, 29 types adjacents)
 
-**Fairway(1) vs Rough(0) : familles différentes mais AUCUNE texture de bordure**
-Bien que `play` (Fairway) et `grass` (Rough) soient des familles différentes, **il n'existe pas de fichier BMP de transition** entre eux. Le jeu laisse les deux textures se rejoindre directement (seam). C'est pourquoi dans le jeu, on voit une ligne nette entre le fairway tondu et le rough — il n'y a pas de zone de transition texturée comme pour l'eau ou le sable.
+| Catégorie | Résultat | Voisins |
+|:---------:|:--------:|:--------|
+| 🟡 **Même famille** (10) | Pas de bordure | `Woods`, `DeepRough`, `Brush`, `Flower`, `Natural`, `Rock`, `Marsh`, `Vegetation`, `Overgrowth`, `Flowerbed` |
+| ✅ **Bordure** (6) | Le type eau/cliff/sable porte la bordure | `WaterShallow` → **WaterShallowA-D**, `WaterMiddle` → **WaterMiddleA-D**, `WaterDeep` → **WaterDeepA-D**, `Cliff` → **CliffA-D**, `GrassySand` → **GrassySandA-D**, `GrassBunker` → **GrassBunkerA-D** |
+| ❌ **Seam** (13) | Jonction directe, pas de transition | `Fairway`, `Green`, `Tee`, `SandBunker`, `Path`, `Building`, `FirmFairway`, `PotBunker`, `ZenSand`, `PotSandBunker`, `Bridge`, `Ravine`, `RetainingWall` |
 
-**Double bordure : Sable à côté d'Herbe**
-Quand un bunker (SandBunker) est adjacent à du Rough, **DEUX bordures sont générées** simultanément :
-- Côté sable : `GrassySand{A-D}` (la partie sable qui touche l'herbe devient "sableuse-herbeuse")
-- Côté herbe : `GrassBunker{A-D}` (la partie herbe qui touche le sable devient "herbeuse-sableuse")
+---
 
-Ces deux textures sont des types distincts (GrassySand=8, GrassBunker=9) avec leurs propres entrées dans `typeInfo`, leurs propres `maxVariation` (9), et leurs propres textures A-D.
+##### 5.8.4.2 Woods (grass, 29 types adjacents)
 
-**Coin à 4 familles (Water + Sand + Grass + Cliff)**
-Une tuile peut avoir jusqu'à 4 renderPasses. Dans le cas d'un carrefour où 4 types différents se rencontrent, chaque côté peut avoir une texture de bordure différente. La hiérarchie de priorité est : Nord > Est > Sud > Ouest (side 2 > 1 > 3 > 0).
+| Catégorie | Résultat | Voisins |
+|:---------:|:--------:|:--------|
+| 🟡 **Même famille** (10) | Pas de bordure | `Rough`, `DeepRough`, `Brush`, `Flower`, `Natural`, `Rock`, `Marsh`, `Vegetation`, `Overgrowth`, `Flowerbed` |
+| ✅ **Bordure** (6) | Le type eau/cliff/sable porte | `WaterShallow` → **WaterShallowA-D**, `WaterMiddle` → **WaterMiddleA-D**, `WaterDeep` → **WaterDeepA-D**, `Cliff` → **CliffA-D**, `GrassySand` → **GrassySandA-D**, `GrassBunker` → **GrassBunkerA-D** |
+| ❌ **Seam** (13) | Jonction directe | `Fairway`, `Green`, `Tee`, `SandBunker`, `Path`, `Building`, `FirmFairway`, `PotBunker`, `ZenSand`, `PotSandBunker`, `Bridge`, `Ravine`, `RetainingWall` |
 
-#### 5.8.6 Texture Table (g_textureTable@0x100687f8) — Organisation
+---
+
+##### 5.8.4.3 DeepRough (grass, 29 types adjacents)
+
+| Catégorie | Résultat | Voisins |
+|:---------:|:--------:|:--------|
+| 🟡 **Même famille** (10) | Pas de bordure | `Rough`, `Woods`, `Brush`, `Flower`, `Natural`, `Rock`, `Marsh`, `Vegetation`, `Overgrowth`, `Flowerbed` |
+| ✅ **Bordure** (6) | Le type eau/cliff/sable porte | `WaterShallow` → **WaterShallowA-D**, `WaterMiddle` → **WaterMiddleA-D**, `WaterDeep` → **WaterDeepA-D**, `Cliff` → **CliffA-D**, `GrassySand` → **GrassySandA-D**, `GrassBunker` → **GrassBunkerA-D** |
+| ❌ **Seam** (13) | Jonction directe | `Fairway`, `Green`, `Tee`, `SandBunker`, `Path`, `Building`, `FirmFairway`, `PotBunker`, `ZenSand`, `PotSandBunker`, `Bridge`, `Ravine`, `RetainingWall` |
+
+---
+
+##### 5.8.4.4 Fairway / Green / Tee / FirmFairway (play, 29 types adjacents chacun)
+
+| Catégorie | Résultat | Voisins |
+|:---------:|:--------:|:--------|
+| 🟡 **Même famille** (3) | Pas de bordure | entre eux (`Fairway↔Green`, `Fairway↔Tee`, `Fairway↔FirmFairway`, `Green↔Tee`, `Green↔FirmFairway`, `Tee↔FirmFairway`) |
+| ✅ **Bordure** (6) | Le type eau/cliff/sable porte | `WaterShallow` → **WaterShallowA-D**, `WaterMiddle` → **WaterMiddleA-D**, `WaterDeep` → **WaterDeepA-D**, `Cliff` → **CliffA-D**, `GrassySand` → **GrassySandA-D**, `GrassBunker` → **GrassBunkerA-D** |
+| ❌ **Seam** (20) | Jonction directe, limite visible entre fairway et rough/grass | `Rough`, `Woods`, `DeepRough`, `Brush`, `Flower`, `Natural`, `Rock`, `Marsh`, `Vegetation`, `Overgrowth`, `Flowerbed`, `SandBunker`, `Path`, `Building`, `PotBunker`, `ZenSand`, `PotSandBunker`, `Bridge`, `Ravine`, `RetainingWall` |
+
+> ⚠️ **Fairway → Rough = Seam** : c'est la transition la plus fréquente sur un vrai parcours. Le fairway tondu rencontre le rough directement — il n'y a **aucune** texture de transition, juste une limite visuelle nette entre les deux textures de base.
+
+---
+
+##### 5.8.4.5 WaterShallow / WaterMiddle / WaterDeep (water, 29 types adjacents chacun)
+
+| Catégorie | Résultat | Voisins |
+|:---------:|:--------:|:--------|
+| 🟡 **Même famille** (2) | Pas de bordure | `WaterShallow↔WaterMiddle`, `WaterShallow↔WaterDeep`, `WaterMiddle↔WaterDeep` |
+| ✅ **Bordure** (27) | L'eau porte sa bordure vers **tous** les autres types | `Rough`, `Fairway`, `Green`, `Tee`, `SandBunker`, `Cliff`, `Path`, `Building`, `Woods`, `DeepRough`, `Brush`, `Flower`, `Natural`, `Rock`, `Marsh`, `Vegetation`, `Overgrowth`, `Flowerbed`, `GrassySand`, `GrassBunker`, `FirmFairway`, `PotBunker`, `ZenSand`, `PotSandBunker`, `Bridge`, `Ravine`, `RetainingWall` — chaque voisin affiche **Water{A-D}** sur le côté adjacent à l'eau |
+| ❌ **Seam** (0) | Aucun — l'eau génère toujours une bordure | — |
+
+> 💡 **L'eau est le type le plus connectif** : elle génère une bordure vers 27 types sur 29. Seuls les autres types d'eau (même famille) sont exempts.
+
+---
+
+##### 5.8.4.6 Cliff (cliff, 29 types adjacents)
+
+| Catégorie | Résultat | Voisins |
+|:---------:|:--------:|:--------|
+| 🟡 **Même famille** (0) | Cliff est seul dans sa famille | — |
+| ✅ **Bordure** (29) | La falaise porte sa bordure vers **tous** les autres types | `Rough`, `Fairway`, `Green`, `Tee`, `WaterShallow`, `WaterMiddle`, `WaterDeep`, `SandBunker`, `Path`, `Building`, `Woods`, `DeepRough`, `Brush`, `Flower`, `Natural`, `Rock`, `Marsh`, `Vegetation`, `Overgrowth`, `Flowerbed`, `GrassySand`, `GrassBunker`, `FirmFairway`, `PotBunker`, `ZenSand`, `PotSandBunker`, `Bridge`, `Ravine`, `RetainingWall` |
+| ❌ **Seam** (0) | Aucun | — |
+
+> 💡 **Cliff est le type le plus connectif** : il génère une bordure vers les 29 autres types. C'est normal pour une falaise qui peut borde n'importe quel terrain.
+
+---
+
+##### 5.8.4.7 SandBunker / PotBunker / ZenSand / PotSandBunker (sand, 29 types adjacents chacun)
+
+| Catégorie | Résultat | Voisins |
+|:---------:|:--------:|:--------|
+| 🟡 **Même famille** (5) | Pas de bordure entre bunkers | entre eux (`SandBunker↔PotBunker`, `SandBunker↔ZenSand`, `SandBunker↔PotSandBunker`, etc.) + `GrassySand`, `GrassBunker` |
+| ✅ **Bordure** (4) | Le type eau/cliff porte, ou les types sable de transition | `WaterShallow` → **WaterShallowA-D**, `WaterMiddle` → **WaterMiddleA-D**, `WaterDeep` → **WaterDeepA-D**, `Cliff` → **CliffA-D** |
+| ❌ **Seam** (20) | Jonction directe avec grass/play/path | `Rough`, `Fairway`, `Green`, `Tee`, `Path`, `Building`, `Woods`, `DeepRough`, `Brush`, `Flower`, `Natural`, `Rock`, `Marsh`, `Vegetation`, `Overgrowth`, `Flowerbed`, `FirmFairway`, `Bridge`, `Ravine`, `RetainingWall` |
+
+> ⚠️ **SandBunker → Rough = Seam** : le sable du bunker et le rough se rencontrent directement. Pour les bunkers adjacents au rough, la bordure vient du côté rough uniquement (GrassBunker) — mais si le rough est le type de base, il n'a pas de bordure, donc le seam est visible.
+
+---
+
+##### 5.8.4.8 GrassySand / GrassBunker (sand, 29 types adjacents chacun)
+
+| Catégorie | Résultat | Voisins |
+|:---------:|:--------:|:--------|
+| 🟡 **Même famille** (5) | Pas de bordure | `SandBunker`, `PotBunker`, `ZenSand`, `PotSandBunker`, et entre GrassySand↔GrassBunker |
+| ✅ **Bordure** (24) | Le type de transition sable génère vers la majorité des types | Vers tous sauf les 5 sand + `Bridge`, `Ravine` (même famille path) |
+| ❌ **Seam** (0) | Aucun | — |
+
+> 💡 **GrassySand et GrassBunker sont des types de bordure spécialisés** : ils n'ont pas de seam car ils existent uniquement pour générer des transitions. GrassySand borde le côté sable (il montre l'herbe dans le sable), GrassBunker borde le côté herbe (il montre le sable dans l'herbe).
+
+---
+
+##### 5.8.4.9 Path / Bridge / Ravine (path, 29 types adjacents chacun)
+
+| Catégorie | Résultat | Voisins |
+|:---------:|:--------:|:--------|
+| 🟡 **Même famille** (2) | Pas de bordure | `Path↔Bridge`, `Path↔Ravine`, `Bridge↔Ravine` |
+| ✅ **Bordure** (6) | Le type eau/cliff/sable porte | `WaterShallow` → **WaterShallowA-D**, `WaterMiddle` → **WaterMiddleA-D**, `WaterDeep` → **WaterDeepA-D**, `Cliff` → **CliffA-D**, `GrassySand` → **GrassySandA-D**, `GrassBunker` → **GrassBunkerA-D** |
+| ❌ **Seam** (21) | Jonction directe | Tous les autres types (grass, play, building, decoration) |
+
+---
+
+##### 5.8.4.10 Building (building, 29 types adjacents)
+
+| Catégorie | Résultat | Voisins |
+|:---------:|:--------:|:--------|
+| 🟡 **Même famille** (0) | Building seul dans sa famille | — |
+| ✅ **Bordure** (6) | Le type eau/cliff/sable porte | `WaterShallow` → **WaterShallowA-D**, `WaterMiddle` → **WaterMiddleA-D**, `WaterDeep` → **WaterDeepA-D**, `Cliff` → **CliffA-D**, `GrassySand` → **GrassySandA-D**, `GrassBunker` → **GrassBunkerA-D** |
+| ❌ **Seam** (23) | Jonction directe avec grass/play/path/decor | `Rough`, `Fairway`, `Green`, `Tee`, `SandBunker`, `Path`, `Woods`, `DeepRough`, `Brush`, `Flower`, `Natural`, `Rock`, `Marsh`, `Vegetation`, `Overgrowth`, `Flowerbed`, `FirmFairway`, `PotBunker`, `ZenSand`, `PotSandBunker`, `Bridge`, `Ravine`, `RetainingWall` |
+
+---
+
+##### 5.8.4.11 RetainingWall (decoration, 29 types adjacents)
+
+| Catégorie | Résultat | Voisins |
+|:---------:|:--------:|:--------|
+| 🟡 **Même famille** (0) | Seul dans sa famille | — |
+| ✅ **Bordure** (6) | Le type eau/cliff/sable porte | `WaterShallow` → **WaterShallowA-D**, `WaterMiddle` → **WaterMiddleA-D**, `WaterDeep` → **WaterDeepA-D**, `Cliff` → **CliffA-D**, `GrassySand` → **GrassySandA-D**, `GrassBunker` → **GrassBunkerA-D** |
+| ❌ **Seam** (23) | Jonction directe | Tous les autres types |
+
+---
+
+##### 5.8.4.12 Résumé : statistiques de connectivité
+
+| Type | Bordures possibles | Même famille | Seam possibles |
+|:----|:------------------:|:-------------:|:---------------:|
+| **Cliff** | **29** (max) | 0 | 0 |
+| **Water** (les 3) | **27** | 2 | 0 |
+| **GrassySand / GrassBunker** | **24** | 5 | 0 |
+| **Rough / Woods / DeepRough / Brush / Flower / Natural / Rock / Marsh / Vegetation / Overgrowth / Flowerbed** | **6** | 10 | 13 |
+| **Fairway / Green / Tee / FirmFairway** | **6** | 3 | 20 |
+| **SandBunker / PotBunker / ZenSand / PotSandBunker** | **4** | 5 | 20 |
+| **Path / Bridge / Ravine** | **6** | 2 | 21 |
+| **Building / RetainingWall** | **6** | 0 | 23 |
+
+---
+
+##### 5.8.4.13 Les réponses aux questions fréquentes
+
+**Fairway → Rough :** ❌ **Seam** — pas de bordure. Les deux textures de base se rencontrent directement. Le fairway (play) et le rough (grass) sont dans des familles différentes, mais ni l'un ni l'autre n'a de texture de bordure. Résultat : une limite visuelle nette entre le gazon tondu et l'herbe haute.
+
+**Woods → Rough :** 🟡 **Pas de bordure** — même famille (grass). Woods et Rough se fondent visuellement. La distinction vient uniquement du motif de texture différent (`WoodsA0001` vs `RoughA0001`).
+
+**Fairway → SandBunker :** ✅ **Double bordure** — `GrassBunker{A-D}` côté fairway + `GrassySand{A-D}` côté bunker. Les deux types de transition sont générés simultanément.
+
+**WaterShallow → WaterMiddle :** 🟡 **Pas de bordure** — même famille (water). Les deux eaux se rencontrent sans transition visible. C'est pourquoi les plans d'eau de profondeur variable ont un aspect naturel (même texture, profondeur variable dans les shaders).
+
+#### 5.8.5 Cas Particuliers (vraies exceptions non couvertes par la matrice)
+
+**Multi-pass rendering :** Une tuile peut avoir jusqu'à 4 `renderPasses`. Dans le cas d'un carrefour où 4 types différents se rencontrent, chaque côté peut avoir une texture de bordure différente. La hiérarchie de priorité est : Nord > Est > Sud > Ouest (side 2 > 1 > 3 > 0).
+
+**RoughE (élévation raide) :** Le groupe E (Δ ≥ 2) n'existe que pour certains types (`Rough`, `DeepRough`, `Natural`, `Rock`, `Building`). La lettre E signifie toujours élévation, pas orientation. Woods, Water, GrassySand n'ont **jamais** de groupe E.
+
+**SandBunker 1A-4A :** Le préfixe numérique (1-4) code la **forme du bunker** (rond, ovale, long, carré), pas l'orientation. Contrairement à A-D pour les autres types de bordure, le préfixe n'est pas cardinal mais géométrique.
+
+**Tee avec 25 variations :** Tee a `maxVariation = 25` (le plus élevé de tous les types). Cela suggère que chaque texture de tee est visuellement distincte (marquage, couleur, motif différent pour chaque tee) plutôt que d'être une simple variation cosmétique.
+
+#### 5.8.6 Texture Table — Clarification
+
+> ⚠️ **Correction par rapport aux analyses précédentes :** Woods, Brush, DeepRough et tous les types grass NON-eau **utilisent A-E comme élévation**, PAS comme orientation. Seuls les 6 types avec bordure (`WaterShallow`, `WaterMiddle`, `WaterDeep`, `Cliff`, `GrassySand`, `GrassBunker`) utilisent A-D pour l'orientation.
 
 ```c
-// La table est organisée par type, orientation, variation :
-// g_textureTable[type][orientation][variation]
-// Chaque entrée = 4 bytes (GLuint handle texture OpenGL)
-//
-// Taille par type :      0x384 = 900 bytes = 225 entrées
-// Taille par orientation : 0x024 = 36 bytes = 9 entrées
-// Taille par variation : 4 bytes
-//
-// Adresse : 0x100687f8 + type×900 + orientation×36 + variation×4
-//
-// Les orientations possibles par type :
-//   Types à élévation (Rough, Fairway, DeepRough) :
-//     orientation 0=A(plat), 1=B(pente), 2=C(coin), 3=D(diag), 4=E(raide)
-//   Types à bordure (Water, SandBunker, Cliff) :
-//     orientation 0=A(Nord), 1=B(Est), 2=C(Sud), 3=D(Ouest)
-//   Types spéciaux (Tee, Green) :
-//     orientation 0=A(plat) seulement
-//
-// Les 225 slots par type sont organisés ainsi :
-//   - 5 groupes d'élévation × 9 variations = 45 slots (pour les types A-E)
-//   - 4 orientations de bordure × 9 variations = 36 slots (pour les types A-D)
-//   - Slots restants : inutilisés ou pour des cas spéciaux
-//     (chemins, bâtiments, overlays décoratifs)
+// g_textureTable @ 0x100687f8 — organisation CORRIGÉE
+// Stride par type : 0x384 = 900 bytes
+// Stride par orientation : 0x24 = 36 bytes (9 variations × 4 bytes)
+// Stride par variation : 4 bytes
+
+// Types à ÉLÉVATION ( Rough, Fairway, DeepRough, etc. ) :
+//   orientation 0=A(plat), 1=B(pente), 2=C(coin), 3=D(diag), 4=E(raide)
+//   → 5 × 9 = 45 slots actifs
+// Types à BORDURE (Water, Cliff, GrassySand, GrassBunker) :
+//   orientation 0=A(Nord), 1=B(Est), 2=C(Sud), 3=D(Ouest)
+//   → 4 × 9 = 36 slots actifs
+
+// Adresse d'une texture : base + type×0x384 + orientation×0x24 + variation×4
 ```
 
 ### 5.9 Schéma Complet de Nommage des Assets
