@@ -768,19 +768,58 @@ La table `typeInfo` à `this + 0x40` contient les métadonnées de chaque type d
   - `+0x0c` : **borderOverride** (int32) — type de texture de bordure à utiliser (ex: GrassBunker=9, GrassySand=8)
   - `+0x10-0x17` : flags, seuils, limites d'élévation
 
-**Mapping des familles (complet, déduit du comportement + fichiers présents) :**
+**Mapping des familles (complet, vérifié par analyse ASM + fichiers réels) :**
 
 | Famille | ID | Types membres |
 |:-------:|:--:|:-------------|
-| **grass** | 0 | Rough(0), DeepRough(7), Brush, Woods(14), Flower(15), Natural, Marsh, Vegetation, Overgrowth |
-| **play** | 1 | Fairway(1), Tee(10), Green(2), FirmFairway |
-| **sand** | 2 | SandBunker(3), GrassySand(8, transition), GrassBunker(9, transition), PotBunker, ZenSand, PotSandBunker |
+| **grass** | 0 | Rough(0), DeepRough(7), Brush, Woods(14), Flower(15), Natural, Marsh, Vegetation, Overgrowth(18) ⚠️, Rock(16) |
+| **play** | 1 | Fairway(1), Tee(10), Green(2), FirmFairway(19), TrickyGreen(22) |
+| **sand** | 2 | SandBunker(3), GrassySand(8), GrassBunker(9), PotSandBunker(20), ZenSand(21) |
 | **water** | 3 | WaterShallow(4), WaterMiddle(5), WaterDeep(6) |
-| **path** | 4 | Path(12), Bridge, Ravine |
-| **building** | 5 | Building(13) |
+| **path** | 4 | Path(12), Bridge(23), Ravine(24) |
+| **building** | 5 | Building(13), RetainingWall(25) |
 | **cliff** | 6 | Cliff(11) |
-| **rock** | 7 | Rock |
-| **decoration** | 8 | Flowerbed, RetainingWall |
+| **rock** | 7 | Rock(16) — peut être grass(0) selon le build |
+
+⚠️ **Overgrowth est le SEUL type grass qui possède des textures A-D directionnelles** (renderMode=1). Tous les autres types grass utilisent A-E uniquement pour la géométrie d'élévation.
+
+#### Les 3 Mécanismes de Génération de Bordure
+
+Le jeu original utilise la table `typeInfo` (stride 24 bytes, 30+ entrées) pour déterminer si un type génère des bordures. Trois cas possibles :
+
+**1. Auto-bordure (renderMode=1) :** Le type a ses propres textures A-D qui sont des bordures directionnelles.
+
+| Type | Famille | Textures | Génère bordure vers |
+|:-----|:-------:|:--------:|:--------------------|
+| WaterShallow(4) | water | A-D × 9 | 27 types (tous sauf water) |
+| WaterMiddle(5) | water | A-D × 9 | 27 types |
+| WaterDeep(6) | water | A-D × 5 | 27 types |
+| Cliff(11) | cliff | A-D × 9 | **29 types (tous)** |
+| GrassBunker(9) | sand | A-D × 9 | 24 types (tous sauf sand) |
+| GrassySand(8) | sand | A-D (par thème) | 24 types |
+| Overgrowth(18) | **grass** ⚠️ | A-D × 9 | 19 types (tous sauf grass) |
+| Ravine(24) | path | A-D × 9 | 23 types (tous sauf path) |
+
+**2. borderOverride (borderOverride ≠ -1) :** Le type n'a pas ses propres textures A-D, mais utilise celles d'un autre type via le champ `borderOverride` (offset +0x0c dans typeInfo).
+
+| Type | borderOverride | Utilise les textures de | Pourquoi |
+|:-----|:--------------:|:------------------------|:---------|
+| SandBunker(3) | **8** | **GrassySand** | Le sable du bunker borde l'herbe via GrassySand A-D |
+| PotSandBunker(20) | **8** | **GrassySand** | Idem pour les pot bunkers |
+| Fairway(1) | **9** | **GrassBunker** | Le fairway borde le rough via GrassBunker A-D |
+| FirmFairway(19) | **9** | **GrassBunker** | Idem pour le fairway dur |
+
+**3. Seam (borderOverride = -1) :** Le type ne génère aucune bordure. Les textures adjacentes se rencontrent directement.
+
+| Type | Famille | Pourquoi pas de bordure |
+|:-----|:-------:|:------------------------|
+| Rough(0), DeepRough(7) | grass | A-E = géométrie, pas bordures |
+| Woods(14), Brush, Rock(16) | grass | Idem |
+| PuttingGreen(2), Tee(10) | play | Types plats, pas de textures A-D |
+| Marsh(17), Natural, Vegetation | grass | Types de remplissage, groupe A seulement |
+| Path(12), Bridge(23) | path | Types plats |
+| Building(13), RetainingWall(25) | building | Types bâtiment |
+| ZenSand(21) | sand | Sable décoratif plat |
 
 #### 5.8.4 Matrice Exhaustive des Transitions entre Types de Terrain
 
