@@ -53,18 +53,65 @@ Les fichiers `WaterShallowA0001` - `WaterShallowD0001` montrent visuellement une
 
 ## 3. Origine des variations
 
-### 3.1 Variation косметическая (cosmétique, 0001-0009)
+### 3.1 Variation cosmétique (cosmétique, 0001-0009)
 
 Stockée dans `Tile.textureOffset` (offset 0x240, 4 bytes).
 
-**Mécanisme ASM (setType @ 0x1000330d) :**
-```c
-// Dans terrain_setType.c:
-// - La table typeInfo (this+0x40, stride 24) contient maxVariation
-// - Un compteur global est incrémenté à chaque placement
-// - variation = globalCounter % maxVariation
-// - tile->textureOffset = variation
+**Mécanisme ASM (setType @ 0x100032f0, thunk → 0x100010b9 → 0x10002f80) :**
+```asm
+;; setType (Terrain.dll @ 0x100032f0)
+;; Params: this=Terrain*, tilePtr=Tile*, typeId=int, subType=int
+0x1000330d:  mov  eax, [ebp + 0x0c]       ; eax = typeId
+0x10003310:  imul eax, eax, 0x18          ; eax = typeId × 24 (sizeof typeInfo)
+0x10003316:  cmp  [ecx + eax + 0x40], 0    ; if maxVariation > 0
+0x1000331b:  jle  0x1000333b              ;   else → variation = 0
+0x1000331d:  call 0x10018ce0              ;   ++counter (incrémente le compteur du type)
+0x10003322:  mov  ecx, [ebp + 0x0c]        ;重新计算 typeId × 24
+0x10003325:  imul ecx, ecx, 0x18
+0x10003328:  mov  esi, [ebp - 4]          ; esi = Terrain (this)
+0x1000332b:  cdq
+0x1000332c:  idiv [esi + ecx + 0x40]      ; counter / maxVariation
+0x10003330:  push edx                     ; edx = remainder = variation (0..max-1)
+0x10003331:  mov  ecx, [ebp + 8]          ; ecx = Tile*
+0x10003334:  call 0x100010b9              ; → setTextureOffset()
+
+;; setTextureOffset (Terrain.dll @ 0x10002f80)
+0x10002fa7:  mov  dword ptr [eax + 0x240], ecx  ; Tile.textureOffset = variation
 ```
+
+**Formule :**
+```
+variation = (counter[typeId]++) % maxVariation
+```
+
+**La variation change à chaque placement de tuile — round-robin déterministe, zéro aléatoire.**
+
+#### Table typeInfo — 30 entrées × 24 bytes (@ Terrain + 0x40)
+
+| Offset | Champ | Rôle |
+|:---:|:---|:---|
+| `+0x00` | `tileType` | ID du type (0–29) |
+| `+0x04` | `familyId` | Groupe de famille (grass/sand/water/etc.) |
+| `+0x08` | `textureSuffix` | Suffixe du fichier (A/B/C/D/E ou vide) |
+| `+0x0c` | `borderOverride` | Type de bordure (-1 = auto, sinon fix) |
+| `+0x10` | `elevationGroup` | 0=plat, 1=slope, 2=corner, 3=diagonal, 4=steep |
+| `+0x14` | `renderPassCount` | Nb de passes de rendu |
+| `+0x18` | `renderPassTypes[3]` | Types par passe |
+| `+0x24` | padding | |
+| `+0x40` | **counter** | **Le compteur — incrémenté à chaque placement** |
+| `+0x44` | **maxVariation** | **Diviseur (9 pour Rough, 5 pour Fairway)** |
+
+#### Ce qui NE change PAS la variation
+
+| Facteur | Effet sur variation |
+|:---|:---|
+| Position X/Y sur la grille | ❌ Aucun |
+| Élévation des coins | ❌ Aucun (c'est le groupe A-E, pas la variation) |
+| Voisins (N/E/S/O) | ❌ Aucun (c'est l'orientation A-D des bordures) |
+| Seed / random | ❌ Aucun — round-robin déterministe |
+| Thème | ❌ Aucun (seules les images changent) |
+
+La variation change **uniquement** quand `setType(tilePtr, typeId, subType)` est appelé : placement éditeur, outil de terrain, génération procédurale. Pas de dependency sur la position, la hauteur, ou les voisins.
 
 **Valeurs par type (table typeInfo) :**
 | Type | maxVariation | Variations réelles |
