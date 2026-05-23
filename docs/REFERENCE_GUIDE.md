@@ -12,7 +12,7 @@
 2. [Structures de Données](#2-structures-de-données)
 3. [Système de Terrain](#3-système-de-terrain)
 4. [Rendu Isométrique](#4-rendu-isométrique)
-5. [Auto-Tiling & Textures](#5-auto-tiling--textures) — 5.1→5.18 (groupes AE, orientations AD, variation cosmétique, bordures voisins, eau, overgrowth, multi-passes ASM) | ✅ Décompilé
+5. [Auto-Tiling & Textures](#5-auto-tiling--textures) — 5.1→5.19 (groupes AE, orientations AD, variation cosmétique, bordures voisins, eau, overgrowth, multi-passes ASM, sub-tiling 4 quadrants) | ✅ Décompilé
 6. [Élévation du Terrain](#6-élévation-du-terrain)
 7. [Chemins (Paths)](#7-chemins-paths)
 8. [Murs (Walls)](#8-murs-walls)
@@ -804,10 +804,10 @@ Le jeu original utilise la table `typeInfo` (stride 24 bytes, 30+ entrées) pour
 
 | Type | borderOverride | Utilise les textures de | Pourquoi |
 |:-----|:--------------:|:------------------------|:---------|
-| SandBunker(3) | **8** | **GrassySand** | Le sable du bunker borde l'herbe via GrassySand A-D |
-| PotSandBunker(20) | **8** | **GrassySand** | Idem pour les pot bunkers |
-| Fairway(1) | **9** | **GrassBunker** | Le fairway borde le rough via GrassBunker A-D |
-| FirmFairway(19) | **9** | **GrassBunker** | Idem pour le fairway dur |
+| SandBunker(3) | **9** | **GrassBunker** | Le sable du bunker borde l'herbe via GrassBunker A-D (brun) |
+| PotSandBunker(20) | **9** | **GrassBunker** | Idem pour les pot bunkers |
+| Fairway(1) | **8** | **GrassySand** | Le fairway borde le rough via GrassySand A-D (vert) |
+| FirmFairway(19) | **8** | **GrassySand** | Idem pour le fairway dur |
 
 **3. Seam (borderOverride = -1) :** Le type ne génère aucune bordure. Les textures adjacentes se rencontrent directement.
 
@@ -1380,16 +1380,24 @@ Tuile = [Passe 0: texture de base] + [Passe 1: bordure N] + [Passe 2: bordure E]
 
 #### 5.17.2 Structures Mémoire
 
-Le système utilise **deux tableaux parallèles** de 4 entrées (stride 0x38 = 56 bytes) :
+Le système utilise **deux tableaux parallèles** pouvant contenir jusqu'à **8 entrées** (stride 0x38 = 56 bytes) par tuile. Cela correspond au découpage d'une tuile en **4 quadrants × 2 triangles** :
 
 ```c
-// Carte mémoire Tile (extrait multi-passes)
+// Carte mémoire Tile (extrait multi-passes — version CORRIGÉE)
 // Offset  Taille  Champ             Rôle
 // ------  ------  -----------       --------------------------------
 // +0x034  16      renderObjects[4]  Pointeurs vers 4 voisins (N/E/S/O)
-// +0x044  4       renderPassCount   Nombre de passes (1-4)
-// +0x048  224     perPassData[4]    Données géométriques (stride 0x38)
-// +0x06c  224     textureRefs[4]    Handles textures OpenGL (stride 0x38)
+// +0x044  4       renderPassCount   Nombre de passes (1-8, typique 1-4)
+// +0x048  448     perPassData[8]    Données géométriques (stride 0x38, max 8)
+// +0x06c  448     textureRefs[8]    Handles textures OpenGL (stride 0x38, max 8)
+//          ↑ slot 0 = 0x06c
+//          ↑ slot 1 = 0x0a4
+//          ↑ slot 2 = 0x0dc
+//          ↑ slot 3 = 0x114
+//          ↑ slot 4 = 0x14c
+//          ↑ slot 5 = 0x184
+//          ↑ slot 6 = 0x1bc
+//          ↑ slot 7 = 0x1f4
 ```
 
 **perPassData[pass]** (56 bytes, à `tile+0x48+pass×0x38`) :
@@ -1495,16 +1503,55 @@ void Terrain::renderSingleTile(Tile* tile, float zoom) {
 }
 ```
 
-#### 5.17.5 La Table UV Globale @ 0x10063ca0
+#### 5.17.5 La Table UV Globale @ 0x10063ca0 — Sub-Texturing
 
-Les coordonnées UV ne sont pas stockées par tuile — elles sont lues depuis une table globale :
+Les coordonnées UV ne sont pas stockées par tuile — elles sont lues depuis une table globale à 0x10063ca0. Cette table contient **12 entrées de 2 floats** (96 bytes) qui permettent le **sub-texturing** (découpage d'une texture 64×64 en sous-régions) :
 
 ```c
-// UV_TABLE[viewMode][vertexIdx] = { u, v }  (float × 2)
-// 4 modes de vue × 3 sommets = 12 entrées
+// UV_TABLE[12] — entiers float32 × 2
+// Adresse : 0x10063ca0
+
+Entrée  [0] (0.00, 0.00)  → coin TL (pleine texture)
+Entrée  [1] (1.00, 0.00)  → coin TR
+Entrée  [2] (1.00, 1.00)  → coin BR
+Entrée  [3] (0.00, 1.00)  → coin BL
+
+Entrée  [4] (0.00, 1.00)  → BL (ordre inversé)
+Entrée  [5] (0.00, 0.00)  → TL
+Entrée  [6] (1.00, 0.00)  → TR
+Entrée  [7] (1.00, 1.00)  → BR
+
+Entrée  [8] (0.00, 0.50)  → centre ARÊTE GAUCHE   ┐
+Entrée  [9] (0.50, 0.00)  → centre ARÊTE HAUT     │ SUB-TEXTURE
+Entrée [10] (1.00, 0.50)  → centre ARÊTE DROITE   │ Entrées [8-11]
+Entrée [11] (0.50, 1.00)  → centre ARÊTE BAS      ┘ pour découpage quadrant
+```
+
+**Les entrées [8-11] sont la clé du sub-tiling.** Elles permettent de sélectionner des sous-régions 32×32 de la texture 64×64 :
+
+```
+Texture 64×64 :
+      (0,0)
+   TL ────┬──── TR
+    │ Q1  │ Q2  │
+(0,.5)───(.5,.5)───(1,.5)    Q1 = coins {0, 9, 8}  = NW quadrant
+    │ Q3  │ Q4  │             Q2 = coins {9, 1, 10} = NE quadrant
+   BL ────┴──── BR             Q3 = coins {8, 11, 3} = SW quadrant
+      (0,1)     (1,1)          Q4 = coins {11, 10, 2} = SE quadrant
+```
+
+Les 4 entrées restantes (au-delà de ces 12) sont à explorer — un stride de `uvIndexA × 0x60 + uvIndexB × 0x20` suggère un tableau 3D `[row][col][viewMode]` où les index A et B sélectionnent une permutation spécifique.
+
+**Organisation mémoire (déduite du stride 0x60 × 0x20) :**
+```c
+// addr = 0x10063ca0 + A × 0x60 + B × 0x20 + viewMode × 8
+//   A = 0-1 : ligne dans un bloc de 3 sommets
+//   B = 0-1 : colonne dans un bloc
+//   viewMode = 0-3 : mode de vue (normal, 90°, 180°, défaut)
 //
-// Organisée comme un tableau 3D :
-//   addr = 0x10063ca0 + uvIndexA × 0x60 + uvIndexB × 0x20 + viewMode × 8
+// Exemple: pour les 4 coins d'un quadrant, A et B sélectionnent
+// le bon ensemble de 3 UVs (un triangle).
+// ViewMode 0 = vue isométrique, 1 = top-down, 2 = inversé, 3 = défaut
 ```
 
 | ViewMode | Nom | Usage |
@@ -1514,20 +1561,87 @@ Les coordonnées UV ne sont pas stockées par tuile — elles sont lues depuis u
 | 2 | Inverted (180°) | Vue inversée |
 | 3 | Default | Mode par défaut |
 
-Ce système évite de recalculer les UV à chaque frame et permet de changer de perspective sans modifier les données par tuile.
+#### 5.17.6 Sub-Tiling : Le Découpage en 4 Quadrants ⚠️ CORRECTION MAJEURE
 
-#### 5.17.6 Cas Concrets
+> **Les analyses précédentes décrivaient Fairway→Rough comme un « seam » (jonction nette). C'est FAUX.** Le jeu original produit des bordures arrondies à 45° entre Fairway et Rough, visibles sur les captures d'écran.
 
-| Tuile | Pass 0 (base) | Pass 1 | Pass 2 | Pass 3 |
-|:------|:-------------:|:------:|:------:|:------:|
-| **Rough** (aucun voisin diff.) | RoughA000X | — | — | — |
-| **Rough** (eau au Nord) | RoughA000X | WaterA000X | — | — |
-| **Water** (terre au Sud+Est) | WaterA000X | WaterC000X | WaterB000X | — |
-| **SandBunker** (herbe N+O) | SandA000X | GrassySandA | GrassySandD | — |
-| **Fairway** (4 voisins diff.) | FairwayA000X | GrassBunkerA | GrassBunkerB | GrassBunkerC |
-| **Carrefour 4 types** | TypeBase | BordureA | BordureB | BordureC+D |
+Le mécanisme est le **Sub-Tiling** : chaque tuile logique (64×64 px) est rendue comme **4 quadrants indépendants** de 32×32 px, chacun pouvant avoir une texture différente.
 
-**Règle de priorité des bordures :** Nord > Est > Sud > Ouest (side 2 > 1 > 3 > 0). Si les 4 côtés sont différents, la bordure D (Ouest) partage la passe 3 avec la bordure C (Sud) ?
+#### Principe
+
+```
+      TL (0,0)
+      ┌──────┬──────┐
+      │ Q1   │ Q2   │      Q1 = quadrant NW
+      │ NW   │ NE   │      Q2 = quadrant NE
+(0,.5)├──────┼──────┤(1,.5) Q3 = quadrant SW
+      │ Q3   │ Q4   │      Q4 = quadrant SE
+      │ SW   │ SE   │
+      └──────┴──────┘
+    BL (0,1)    BR (1,1)
+```
+
+Chaque quadrant est rendu avec **2 triangles** (8 triangles max par tuile, correspondant aux 8 slots de renderPass). Les UV de chaque quadrant sélectionnent uniquement sa sous-région de la texture 64×64 via la table UV [8-11].
+
+#### Algorithme de transition
+
+Quand un voisin est de famille différente, les quadrants adjacents au voisin reçoivent la texture de bordure (déterminée par `borderOverride`) :
+
+```
+Rough au NORD du Fairway :
+      ┌──────┬──────┐
+      │Grassy │Grassy│    ← Q1 et Q2 remplacent Fairway par GrassySand
+      │  Sand │  Sand│
+      ├──────┼──────┤
+      │Fairway│Fairway│   ← Q3 et Q4 gardent Fairway
+      │       │       │
+      └──────┴──────┘
+      → LIGNE HORIZONTALE NETTE au centre de la tuile
+```
+
+```
+Rough au NORD + à l'EST (coin) :
+      ┌──────┬──────┐
+      │Grassy │Grassy│    ← Q1, Q2, Q4 border
+      │  Sand │  Sand│
+      ├──────┼──────┤
+      │Fairway│Grassy│    ← Q3 garde Fairway
+      │       │  Sand│
+      └──────┴──────┘
+      → ANGLE ARRONDI À 45° ! Le quadrant Q4 crée la courbe
+```
+
+```
+Rough au NORD + SUD (les deux côtés verticaux) :
+      ┌──────┬──────┐
+      │Grassy │Grassy│
+      │  Sand │  Sand│
+      ├──────┼──────┤
+      │Grassy │Grassy│
+      │  Sand │  Sand│
+      └──────┴──────┘
+      → TUILE ENTIÈREMENT EN BORDURE (effet couloir)
+```
+
+**Les transitions lisses à 45° proviennent du fait que le quadrant d'angle (Q4 pour NE) n'est que PARTIELLEMENT affecté par le voisinage. Un quadrant mesure 32×32 px, ce qui donne une pente douce sur 16 px de part et d'autre du centre de la tuile.**
+
+#### borderOverride corrigé
+
+| Type | Ancienne valeur (erroneé) | Valeur corrigée | Texture de bordure | Couleur |
+|:-----|:------------------------:|:---------------:|:-------------------|:--------|
+| **Fairway(1)** | GrassBunker(9) | **GrassySand(8)** | 🟢 Vert (transition fairway→rough) |
+| **FirmFairway(19)** | GrassBunker(9) | **GrassySand(8)** | 🟢 Vert |
+| **SandBunker(3)** | GrassySand(8) | **GrassBunker(9)** | 🟤 Brun (transition sable→herbe) |
+| **PotSandBunker(20)** | GrassySand(8) | **GrassBunker(9)** | 🟤 Brun |
+
+#### Implémentation
+
+Le rendu d'une tuile en 4 quadrants nécessite de remplacer la simple passe de texture par 4 sous-passades, une par quadrant, chacune sélectionnant :
+
+1. La bonne texture (base ou border selon la direction du voisin)
+2. Les bonnes UVs (coins + centre-arêtes [8-11] pour sélectionner le quadrant 32×32)
+
+Le `renderPassCount` passe de 1 (tuile simple) à 4 (tuile sub-tilée) pour les tuiles qui ont au moins un voisin de famille différente.
 
 #### 5.17.8 Deux Tuiles Identiques Côte à Côte — Pas de Blending
 
