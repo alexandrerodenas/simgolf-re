@@ -1730,6 +1730,66 @@ for (const tile of tiles in painter order) {
 
 La superposition utilise **l'alpha compositing natif du Canvas 2D** : les textures BMP originales ont des zones transparentes qui laissent voir la passe précédente. C'est ainsi que les bordures se fondent dans la texture de base.
 
+#### 5.17.9 Validation Ghidra — Ce qui est Confirmé vs Théorique
+
+Une analyse complémentaire du désassemblage (Terrain.dll, fonctions render @ 0x10005990 et renderSingleTile @ 0x1000e6c0) a permis de confirmer et corriger certains points :
+
+**Confirmé (infrastructure matérielle) :**
+
+| Trouvé | Source |
+|:-------|:-------|
+| `sizeof(Tile) = 584 bytes (0x248)` | `Terrain_tileAt` — calcul d'index × 0x248 |
+| `tiles[]` à offset `0x3a4` dans Terrain | `Terrain_tileAt` |
+| `renderPassCount` à offset `0x05c` | `tile_struct.h` |
+| `renderPasses[]` à offset `0x06c` (stride 0x38) | `tile_struct.h` |
+| `screenX` à offset `0x030`, `screenY` à offset `0x02c` | `tile_struct.h` |
+| Chaque passe = `glBindTexture + glBegin(GL_TRIANGLES) + 3 sommets` | `renderSingleTile` @ 0x1000e6c0 |
+| Table UV globale à `0x10063ca0` avec 12 entrées (dont [8-11]) | ASM brute |
+| `gridX`/`gridY` stockés sur la Tile | `tile_struct.h` |
+| Propagation `elevation` entre tuiles voisines | `terrain_elevation.c` |
+
+**Le projet source s'appelle `3DTerrainLowPoly`** (chaîne trouvée dans le `.rdata` de Terrain.dll) :
+
+```
+C:\Projects\3DTerrainLowPoly\Terrain.cpp
+```
+
+Ce nom confirme la philosophie du moteur : chaque tuile est un **quad unique** (2 triangles), sans subdivision géométrique. La puissance vient des **multi-passes texture**, pas de la complexité polygonale.
+
+**Projection écran (dimétrique 2:1) — confirmée depuis `drawCircle` :**
+
+```c
+// Terrain_drawCircle — confirme le scaling écran
+float rx = radius * 32.0f;    // demi-largeur de tuile = 32px
+float ry = radius * 16.0f;    // demi-hauteur de tuile = 16px
+float screenX = center->screenX * 32.0f;
+float screenY = center->screenY * 16.0f;
+```
+
+→ Chaque tuile fait **64×32 px à l'écran** (2:1). `screenX`/`screenY` sont des **coordonnées entières pré-calculées** sur la Tile, multipliées par 32/16 au moment du rendu.
+
+**Interprétation des 8 passes :**
+
+La section 5.17.6 interprète les 8 slots de renderPass comme `4 quadrants × 2 triangles`. Une lecture alternative, compatible avec le nom "LowPoly" :
+
+| Interprétation | Nb passes | Nb triangles | Nb couches texture |
+|:---|---:|:---:|:---:|
+| Quadrants (5.17.6) | 8 | 8 (4×2) | 1 couche (4 quadrants) |
+| Multi-couches (LowPoly) | 8 | 8 (4×2) | **4 couches** (2 tri/couche) |
+
+**Dans l'interprétation multi-couches :**
+- Les passes 0-1 = 1 quad complet = couche texture 0 (base)
+- Les passes 2-3 = 1 quad complet = couche texture 1 (bordure N)
+- Les passes 4-5 = couche texture 2 (bordure E)
+- Les passes 6-7 = couche texture 3 (bordure S/O)
+
+Chaque couche utilise les mêmes 2 triangles pour couvrir le diamant complet, avec des UV standards [0-3]. Les entrées UV [8-11] servent alors pour des **effets de sub-texture** (ex: dégradés d'eau, transitions lissées), pas pour un découpage systématique en quadrants.
+
+**Les deux théories coexistent** — le désassemblage seul ne peut trancher car les vertex positions X/Y de chaque passe (`perPassData.vertexA_X/Y` etc.) n'ont pas été extraites. Seul un trace mémoire (debugger) ou une analyse dynamique pourrait lever l'ambiguïté.
+
+**En pratique pour simgolf-web :**
+Le rendu **Canvas 2D multi-passes actuel** (1 image par passe, dessinée pleine taille) est une approximation correcte du comportement observé. L'écran de jeu original montre des transitions lisses, ce que le multi-texturing superposé produit naturellement.
+
 ---
 
 ## 6. Élévation du Terrain
