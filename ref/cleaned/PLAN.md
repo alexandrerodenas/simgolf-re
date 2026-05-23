@@ -1,40 +1,30 @@
-# Nettoyage du Code Décompilé — Plan de Travail
+# Nettoyage du Code Décompilé — Plan de Travail (mis à jour)
 
-## Principe
-- Un sous-dossier par module système (terrain, rendu, audio, ui, etc.)
-- Chaque fichier `.c` nettoyé = le C Ghidra original + structures typées + noms
-- Chaque décision sourcée : « d'après l'ASM à 0xXXXX, le guide §5.8.6, la texture WaterShallowB0003.bmp »
-- Rien n'est deviné ou « guessé »
+## État d'avancement
 
-## Modules (ordre de priorité)
+| Phase | Module | Fichiers | Statut |
+|:------|:-------|:---------|:------:|
+| 1 | Structures (Tile, Terrain, TypeInfo) | `structs/tile.h` | ✅ 20+ offsets confirmés |
+| 1 | Set texture + variation | `terrain/set_texture.c` | ✅ rand()%maxVariation |
+| 2 | Render pipeline | `terrain/render.c` | ✅ 4 directions, PotSandBunker skip |
+| 2 | Render tile | `terrain/render_tile.c` | ✅ Multi-passes OpenGL |
+| 2 | Tile access | `terrain/tile_at.c` | ✅ Getters type/wall/elev |
+| 2 | Élévation | `terrain/elevation.c` | ✅ FUN_1000c7b0, corner switch 1/3/5/7 |
+| 3 | Caméra / Zoom | `terrain/camera.c` | ✅ Projection ortho |
+| 3 | Splines / Chemins | `terrain/paths.c` | ✅ Bézier + Cardinal |
+| 3 | Normales | `terrain/normals.c` | ✅ Dirty flag, propagation voisins |
+| 4 | System init/shutdown | `terrain/system.c` | ✅ OpenGL context, résolutions |
+| _5_ | _Audio (sound.dll)_ | — | 🔜 |
+| _6_ | _UI System_ | — | 🔜 |
+| _7_ | _Game State_ | — | 🔜 |
+| _8_ | _IA / Golf_ | — | 🔜 |
+| _9_ | _Économie_ | — | 🔜 |
+| _10_ | _Physique balle_ | — | 🔜 |
 
-### Phase 1 — Terrain (le mieux compris)
-1. `structs/tile.h` — Structure Tile complète (recoupée Ghidra + ASM + guide)
-2. `structs/terrain.h` — Structure Terrain (classe C++ complète)
-3. `terrain/set_type.c` — setType + FUN_10002f80 (variation)
-4. `terrain/render_tile.c` — renderTile + FUN_1000e6c0 (renderSingleTile)
-5. `terrain/render.c` — FUN_10005990 (Terrain_render)
-6. `terrain/elevation.c` — elevateCorner / lowerCorner
-7. `terrain/auto_tile.c` — neighbour mask + sélection orientation
-8. `terrain/paths.c` — chemins + splines
-9. `terrain/normals.c` — calcul normales
-
-### Phase 2 — Rendu / JGLD
-...
-
-### Phase 3 — Audio / Sound
-...
-
-### Phase 4 — UI
-...
-
-### Phase 5 — IA / Golf
-...
-
-## Règles de vérification
+## Règles de vérification (inchangées)
 Avant d'écrire un nom de variable ou de structure :
-1. Vérifier dans le Ghidra C original — les offsets sont-ils cohérents ?
-2. Vérifier dans le désassemblage brut (`ref/raw_disasm/`) — est-ce que l'ASM confirme ?
-3. Vérifier dans `REFERENCE_GUIDE.md` — y a-t-il une analyse antérieure ?
-4. Vérifier les constantes — `0xde1` = GL_TEXTURE_2D, `0x3f800000` = 1.0f
-5. Si une info manque, la marquer `/* TODO: vérifier */` — pas d'invention
+1. Vérifier dans le C Ghidra original
+2. Vérifier dans le désassemblage brut
+3. Vérifier dans REFERENCE_GUIDE.md
+4. Vérifier les constantes (0xde1=GL_TEXTURE_2D, etc.)
+5. Si une info manque → `/* TODO */` — pas d'invention
