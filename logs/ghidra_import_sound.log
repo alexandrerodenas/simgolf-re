@@ -1,0 +1,133 @@
+openjdk version "21.0.11" 2026-04-21
+OpenJDK Runtime Environment (build 21.0.11+10-1-deb13u2-Debian)
+OpenJDK 64-Bit Server VM (build 21.0.11+10-1-deb13u2-Debian, mixed mode)
+INFO  Using log config file: jar:file:/home/roden/ghidra/Ghidra/Framework/Generic/lib/Generic.jar!/generic.log4j.xml (LoggingInitialization)  
+INFO  Using log file: /home/roden/.config/ghidra/ghidra_12.1_PUBLIC/application.log (LoggingInitialization)  
+INFO  Loading user preferences: /home/roden/.config/ghidra/ghidra_12.1_PUBLIC/preferences (Preferences)  
+INFO  Searching for classes... (ClassSearcher)  
+INFO  Class search complete (1240 ms) (ClassSearcher)  
+INFO  Initializing SSL Context (DefaultSSLContextInitializer)  
+INFO  Initializing Random Number Generator... (SecureRandomFactory)  
+INFO  Random Number Generator initialization complete: NativePRNGNonBlocking (SecureRandomFactory)  
+INFO  Trust manager disabled, cacerts have not been set (DefaultTrustManagerFactory)  
+INFO  Headless startup complete (3189 ms) (AnalyzeHeadless)  
+INFO  Class searcher loaded 59 extension points (20 false positives) (ClassSearcher)  
+INFO  HEADLESS Script Paths:
+    /home/roden/ghidra/Ghidra/Features/FileFormats/ghidra_scripts
+    /home/roden/ghidra/Ghidra/Processors/DATA/ghidra_scripts
+    /home/roden/ghidra/Ghidra/Processors/JVM/ghidra_scripts
+    /home/roden/ghidra/Ghidra/Features/PDB/ghidra_scripts
+    /home/roden/ghidra/Ghidra/Features/SystemEmulation/ghidra_scripts
+    /home/roden/ghidra/Ghidra/Debug/Debugger/ghidra_scripts
+    /home/roden/ghidra/Ghidra/Features/FunctionID/ghidra_scripts
+    /home/roden/ghidra/Ghidra/Features/GnuDemangler/ghidra_scripts
+    /home/roden/ghidra/Ghidra/Features/MicrosoftCodeAnalyzer/ghidra_scripts
+    /home/roden/ghidra/Ghidra/Features/PyGhidra/ghidra_scripts
+    /home/roden/ghidra/Ghidra/Processors/8051/ghidra_scripts
+    /home/roden/ghidra/Ghidra/Processors/Atmel/ghidra_scripts
+    /home/roden/ghidra/Ghidra/Processors/PIC/ghidra_scripts
+    /home/roden/ghidra/Ghidra/Features/Base/ghidra_scripts
+    /home/roden/ghidra/Ghidra/Features/WildcardAssembler/ghidra_scripts
+    /home/roden/ghidra/Ghidra/Features/BytePatterns/ghidra_scripts
+    /home/roden/ghidra/Ghidra/Features/Decompiler/ghidra_scripts
+    /home/roden/ghidra/Ghidra/Features/SwiftDemangler/ghidra_scripts
+    /home/roden/ghidra_scripts
+    /home/roden/ghidra/Ghidra/Features/VersionTracking/ghidra_scripts
+    /home/roden/ghidra/Ghidra/Debug/Debugger-rmi-trace/ghidra_scripts
+    /home/roden/ghidra/Ghidra/Features/BSim/ghidra_scripts
+    /home/roden/ghidra/Ghidra/Features/DecompilerDependent/ghidra_scripts (HeadlessAnalyzer)  
+INFO  HEADLESS: execution starts (HeadlessAnalyzer)  
+INFO  Opening existing project: /home/roden/ghidra_projects/simgolf (HeadlessAnalyzer)  
+INFO  Opening project: /home/roden/ghidra_projects/simgolf (HeadlessProject)  
+INFO  REPORT: Processing input files:  (HeadlessAnalyzer)  
+INFO       project: /home/roden/ghidra_projects/simgolf (HeadlessAnalyzer)  
+INFO  IMPORTING: file:///home/roden/simgolf-re/data/exe/sound.dll (HeadlessAnalyzer)  
+INFO  Using Loader: Portable Executable (PE) (ProgramLoader)  
+INFO  Using Language/Compiler: x86:LE:32:default:windows (ProgramLoader)  
+INFO  Using Library Search Path: [., /bin, /lib, /lib64, /lib/x86_64-linux-gnu, /lib/aarch64-linux-gnu, /usr/bin, /usr/lib, /usr/X11R6/bin, /usr/X11R6/lib, /usr/java/packages/lib, /usr/lib/aarch64-linux-gnu/jni, /usr/lib/aarch64-linux-gnu, /usr/lib/jni] (ProgramLoader)  
+INFO  Additional info:
+Loading file:///home/roden/simgolf-re/data/exe/sound.dll?MD5=93f8b776945a0c07907136a1984e66fd...
+------------------------------------------------
+
+Searching 8 paths for library DSOUND.DLL...
+Library not found.
+------------------------------------------------
+
+Searching 8 paths for library KERNEL32.DLL...
+Library not found.
+------------------------------------------------
+
+Searching 8 paths for library OLE32.DLL...
+Library not found.
+------------------------------------------------
+
+Searching 8 paths for library USER32.DLL...
+Library not found.
+------------------------------------------------
+
+Searching 8 paths for library WINMM.DLL...
+Library not found.
+------------------------------------------------
+
+Linking the External Programs of 'sound.dll' to imported libraries...
+  [KERNEL32.DLL] -> not found in project
+  [USER32.DLL] -> not found in project
+  [OLE32.DLL] -> not found in project
+  [WINMM.DLL] -> not found in project
+  [DSOUND.DLL] -> not found in project
+------------------------------------------------
+
+ (ProgramLoader)  
+INFO  IMPORTING: Loaded 0 additional files (HeadlessAnalyzer)  
+INFO  ANALYZING all memory and code: file:///home/roden/simgolf-re/data/exe/sound.dll (HeadlessAnalyzer)  
+WARN  Ignoring leading '_' chars on no-return name '___raise_securityfailure' specified in file: /home/roden/ghidra/Ghidra/Features/Base/data/PEFunctionsThatDoNotReturn (NoReturnFunctionAnalyzer)  
+WARN  Ignoring leading '_' chars on no-return name '___report_rangecheckfailure' specified in file: /home/roden/ghidra/Ghidra/Features/Base/data/PEFunctionsThatDoNotReturn (NoReturnFunctionAnalyzer)  
+INFO  Skipping PDB processing: missing PDB information in program metadata (PdbUniversalAnalyzer)  
+INFO  Packed database cache: /var/tmp/roden-ghidra/packed-db-cache (PackedDatabaseCache)  
+INFO  Applied data type archive: windows_vs12_32 (ApplyDataArchiveAnalyzer)  
+INFO  Applied data type archive: windows_vs12_32 (ApplyDataArchiveAnalyzer)  
+INFO  -----------------------------------------------------
+    ASCII Strings                              0.692 secs
+    Apply Data Archives                        0.333 secs
+    Call Convention ID                         0.017 secs
+    Call-Fixup Installer                       0.092 secs
+    Create Address Tables                      0.146 secs
+    Create Address Tables - One Time           0.297 secs
+    Create Function                            0.947 secs
+    Data Reference                             0.319 secs
+    Decompiler Parameter ID                   10.695 secs
+    Decompiler Switch Analysis                 8.248 secs
+    Demangler Microsoft                        0.070 secs
+    Disassemble                                3.244 secs
+    Disassemble Entry Points                   0.406 secs
+    Embedded Media                             0.024 secs
+    External Entry References                  0.001 secs
+    Function ID                                1.727 secs
+    Function Start Pre Search                  0.023 secs
+    Function Start Search                      1.745 secs
+    Function Start Search After Code           0.066 secs
+    Function Start Search After Data           1.087 secs
+    Function Start Search delayed - One Time   0.002 secs
+    Non-Returning Functions - Discovered       0.258 secs
+    Non-Returning Functions - Known            0.013 secs
+    PDB Universal                              0.003 secs
+    Reference                                  0.425 secs
+    Scalar Operand References                  1.084 secs
+    Shared Return Calls                        0.382 secs
+    Stack                                      5.526 secs
+    Subroutine References                      0.481 secs
+    Subroutine References - One Time           0.022 secs
+    Windows x86 PE Exception Handling          4.036 secs
+    Windows x86 PE RTTI Analyzer               0.141 secs
+    Windows x86 Thread Environment Block (TEB) Analyzer     0.036 secs
+    WindowsResourceReference                   0.349 secs
+    X86 Function Callee Purge                  0.374 secs
+    x86 Constant Reference Analyzer            5.289 secs
+-----------------------------------------------------
+     Total Time   48 secs
+-----------------------------------------------------
+ (AutoAnalysisManager)  
+INFO  REPORT: Analysis succeeded for file: file:///home/roden/simgolf-re/data/exe/sound.dll (HeadlessAnalyzer)  
+INFO  /sound.dll: file created (roden) (LocalFileSystem)  
+INFO  REPORT: Save succeeded for: /sound.dll (simgolf:/sound.dll) (HeadlessAnalyzer)  
+INFO  REPORT: Import succeeded (HeadlessAnalyzer)  

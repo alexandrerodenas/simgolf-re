@@ -2,163 +2,147 @@
 
 Projet de rétro-ingénierie complète du binaire **golf.exe** et de ses DLLs associées (**Terrain.dll**, **jgld.dll**, **sound.dll**) du jeu *SimGolf* (Firaxis/Maxis, 2002). L'objectif est de documenter intégralement l'architecture, les formats de données, les algorithmes et les mécaniques du jeu original par analyse statique et désassemblage.
 
-## Documentation Complète
+## Documentation
 
-Le dossier [`docs/`](docs/index.md) contient un guide de référence complet couvrant tous les systèmes du jeu :
+Le guide de référence complet se trouve dans [`docs/REFERENCE_GUIDE.md`](docs/REFERENCE_GUIDE.md) — 4000+ lignes couvrant :
 
-### Analyses détaillées par passe
+- **§1-2** : Architecture technique, boucle de jeu, mémoire
+- **§3** : Système de terrain (tuiles, élévation, types, familles, auto-tiling)
+- **§4** : Rendu isométrique (caméra, projection dimétrique 2:1, TileGrid, culling)
+- **§5** : Textures & Auto-Tiling exhaustif (5.1→5.17) :
+  - 5.2 : Groupes géométriques A-E (élévation)
+  - 5.3 : Masque de voisinage N/E/S/O
+  - 5.4-5.10 : Inventaire complet des textures par type et thème
+  - 5.8 : Matrice exhaustive des transitions entre types
+  - 5.11 : borderOverride et border textures (Fairway→GrassBunker, SandBunker→GrassySand)
+  - 5.17 : Rendu multi-passes — architecture complète de `populateRenderPasses` @ 0x10012ec0
+- **§6-18** : Simulation, physique, IA golfeurs, économie, UI, audio, animations FLC, formats de données, sauvegardes, scénarios
 
-| Document | Contenu |
-|----------|---------|
-| [ANALYSE_PASSE1_PERSISTANCE.md](docs/ANALYSE_PASSE1_PERSISTANCE.md) | P1 — Data Layer : I/O, sérialisation, formats de fichiers, GameState |
-| [analyse_passe2_couche_systemique.md](docs/analyse_passe2_couche_systemique.md) | P2 — Simulation Layer : physique, IA golfeurs, économie, tournois |
-| [ANALYSE_PASSE4_ACTION.md](docs/ANALYSE_PASSE4_ACTION.md) | P4 — Action Layer : UI, événements, dialogues, machine à états |
-| [SYNTHESE_GLOBALE.md](docs/SYNTHESE_GLOBALE.md) | Synthèse transverse : bilans, dépendances, schémas globaux |
+Le spec d'auto-tiling des textures est également disponible dans [`SPECS_TEXTURE_AUTOTILING.md`](SPECS_TEXTURE_AUTOTILING.md).
 
-### Index du guide complet
+## Projet Web
 
-| Document | Contenu |
-|----------|---------|
-| [Index](docs/index.md) | Structure du guide, aperçu du jeu, méthodologie |
-| [01-architecture.md](docs/01-architecture.md) | Architecture technique : EXE + DLLs, mémoire, boucle de jeu |
-| [02-terrain.md](docs/02-terrain.md) | Système de terrain : tuiles, élévation, rendu isométrique |
-| [03-graphics.md](docs/03-graphics.md) | Pipeline graphique : JGL (2D) + Terrain.dll (OpenGL) |
-| [04-golfers.md](docs/04-golfers.md) | Golfeurs : pros, célébrités, stats, IA |
-| [05-physics.md](docs/05-physics.md) | Physique de balle, sélection de club, trajectoires |
-| [06-scoring.md](docs/06-scoring.md) | Score SGA, évaluation des trous, classement |
-| [07-tournaments.md](docs/07-tournaments.md) | Tournois SGA : types, scheduling, prize money |
-| [08-economy.md](docs/08-economy.md) | Économie : green fees, revenus, coûts, valeur |
-| [09-ui.md](docs/09-ui.md) | Interface utilisateur : écrans, panels, input |
-| [10-audio.md](docs/10-audio.md) | Audio : sound.dll, WAVE/MIDI, sons UI |
-| [11-animations.md](docs/11-animations.md) | Animations FLC : sprites, formats, conversion |
-| [12-data-formats.md](docs/12-data-formats.md) | Formats de données : .dta, .pro, .chr, .glf, .sve |
-| [13-save-system.md](docs/13-save-system.md) | Système de sauvegarde : top10.sve, save games |
-| [14-scenarios.md](docs/14-scenarios.md) | Scénarios et campagnes |
-| [15-asset-inventory.md](docs/15-asset-inventory.md) | Inventaire complet des assets (PCX, FLC, sons) |
-| [16-function-map.md](docs/16-function-map.md) | Carte des fonctions ASM et adresses |
-| [17-known-unknowns.md](docs/17-known-unknowns.md) | Ce qu'on ne sait pas encore |
-| [18-trees.md](docs/18-trees.md) | Système des arbres : tuiles Woods (ID 14) + sprites FLC animés |
-| [Analyse Variantes Tuiles](docs/analyse_variantes_tuiles.md) | Variations de textures par type de terrain |
-| [DataFormatAnalysis.md](docs/DataFormatAnalysis.md) | Analyse complémentaire des formats binaires |
-| [PLAN_DE_SUIVI.md](docs/PLAN_DE_SUIVI.md) | État d'avancement global du projet |
+Le port web du moteur de rendu est dans un dépôt séparé :
+
+- **[simgolf-web](https://github.com/alexandrerodenas/simgolf-web)** — Rendu Canvas 2D avec système multi-passes fidèle à l'original, textures Parkland converties en WebP, auto-tiling bitmask + overlays directionnels A-D.
 
 ## Structure du Projet
 
 ```
 simgolf-re/
-├── docs/                ← Documentation complète (20+ docs + analyses par passe)
+├── docs/                          ← Documentation
+│   ├── REFERENCE_GUIDE.md         ← Guide de référence complet (tout le jeu)
+│   └── index.md                   ← Table des matières
 │
-├── tools/               ← Scripts Python organisés par thème
-│   ├── analyze/         ← Analyse binaire et formats (3 scripts)
-│   ├── convert/         ← Conversion d'assets (6 scripts, dont decode_flc.py)
-│   ├── parse/           ← Parsing des fichiers de données (.chr, .glf, .pro, .dta)
-│   └── shell/           ← Scripts shell d'analyse et batch
-│
-├── data/                ← Données du jeu
-│   ├── raw/             ← Assets originaux extraits du CD (PCX, BMP, FLC, WAV, DLL)
-│   ├── converted/       ← Convertis en WebP
-│   │   ├── webp/        ←   → Images fixes (PCX/BMP → WebP lossless)
-│   │   ├── animations/  ←   → Animations (FLC → Animated WebP)
-│   │   └── tiles/       ←   → Tuiles 64×64 extraites des atlas de terrain
-│   ├── exe/             ← Binaires .exe et DLL packés (version CD)
-│   ├── exe_patched/     ← .exe patché
-│   └── exe_unpacked/    ← .exe dépaqueté DEViANCE (946 Ko)
-│
-├── ref/                 ← Références rétro-ingénierie
-│   ├── decompiled/      ← Code C reconstitué, nettoyé et documenté
-│   ├── raw_disasm/      ← Désassemblage brut (1.1M+ lignes)
+├── ref/                           ← Références rétro-ingénierie
+│   ├── cleaned/                   ← Code C reconstitué et nettoyé
+│   │   ├── ai/                    ←   IA des golfeurs
+│   │   ├── audio/                 ←   Système audio
+│   │   ├── game/                  ←   Moteur de jeu (physique, économie, scoring)
+│   │   ├── physics/               ←   Physique de balle
+│   │   ├── structs/               ←   Structures de données
+│   │   ├── terrain/               ←   Moteur de terrain (render, tiles, elevation)
+│   │   └── ui/                    ←   Interface utilisateur
+│   │
+│   ├── decompiled/                ← Décompilations Ghidra + manuelles
+│   │   ├── *.c                    ←   Anciennes décompilations manuelles
+│   │   └── ghidra/                ←   Décompilations Ghidra par module
+│   │       ├── crt/               ←   Fonctions runtime C
+│   │       ├── golf/              ←   golf.exe (UI, simulation, jeu)
+│   │       ├── jgl/               ←   jgl.dll (moteur OpenGL software)
+│   │       ├── jgld/              ←   jgld.dll (wrapper GDI/OpenGL)
+│   │       ├── sound/             ←   sound.dll (Wave/MIDI)
+│   │       └── terrain/           ←   Terrain.dll (rendu isométrique)
+│   │
+│   ├── raw_disasm/                ← Désassemblage brut (1.1M+ lignes)
 │   │   ├── golf_exe_full_disasm.txt
 │   │   ├── Terrain_dll_disasm.txt
 │   │   ├── jgld_dll_disasm.txt
 │   │   ├── sound_dll_disasm.txt
-│   │   └── scripts/     17+ scripts Python d'analyse
-│   └── ...
+│   │   └── scripts/               ← 17+ scripts Python d'analyse ASM
+│   │
+│   └── types/                     ← Définitions TypeScript des structures C
+│       └── game_data_types.ts
 │
-├── src/
-│   └── types/           ← Types de référence (définitions C/C++ transcrites)
+├── data/                          ← Données du jeu
+│   ├── raw/                       ← Assets originaux extraits du CD
+│   │   ├── Bodies/                ←   Sprites golfeurs
+│   │   ├── Data/                  ←   Textures, données de jeu
+│   │   ├── Flics/                 ←   Animations FLC
+│   │   ├── Heads/                 ←   Portraits golfeurs
+│   │   ├── Interface/             ←   UI sprites
+│   │   ├── SimsFX/                ←   Effets visuels
+│   │   ├── Sounds/                ←   Audio WAV
+│   │   └── Themes/                ←   Thèmes visuels (Parkland, Links, Desert, Tropical)
+│   │
+│   ├── converted/                 ← Assets convertis
+│   │   ├── webp/                  ←   Images fixes (PCX/BMP → WebP lossless)
+│   │   ├── animations/            ←   Animations (FLC → Animated WebP)
+│   │   └── tiles/                 ←   Tuiles 64×64 extraites des atlas de terrain
+│   │
+│   ├── exe/                       ← Binaires packés (version CD)
+│   ├── exe_patched/               ← .exe patché
+│   └── exe_unpacked/              ← .exe dépaqueté DEViANCE (946 Ko)
+│
+├── tools/                         ← Scripts Python organisés par thème
+│   ├── analyze/                   ← Analyse binaire et formats
+│   │   ├── analyze_data_formats.py
+│   │   ├── analyze_flc.py
+│   │   └── check_flc.py
+│   ├── convert/                   ← Conversion d'assets
+│   │   ├── convert_all_textures.py
+│   │   ├── convert_all_to_webp.py
+│   │   ├── convert_flc.py
+│   │   ├── convert_pcx.py
+│   │   ├── convert_textures.py
+│   │   └── decode_flc.py
+│   ├── parse/                     ← Parsing des fichiers de données
+│   │   └── parse_game_data.py
+│   ├── shell/                     ← Scripts shell d'analyse
+│   └── types/                     ← Définitions de types (partagé avec ref/types)
 │       └── game_data_types.ts
 │
 ├── README.md
+├── SPECS_TEXTURE_AUTOTILING.md
 └── .gitignore
 ```
 
-> **Note :** Le dossier `src/types/` contient les définitions de types (structures, énumérations) transcrites depuis le code C reconstitué, servant de documentation des structures de données — pas de code exécutable.
+## Méthodologie
 
-## Méthodologie de Reverse Engineering
+Le projet suit 4 passes d'analyse :
 
-Le projet suit une approche systématique en **4 passes** d'analyse, chacune ciblant une couche spécifique du jeu :
+| Passe | Couche | Contenu | Statut |
+|:-----:|:-------|:--------|:------:|
+| **P1** | Data Layer | I/O, formats de fichiers, sérialisation, GameState | ✅ |
+| **P2** | Simulation Layer | Physique, IA golfeurs, économie, scoring, tournois | ✅ |
+| **P3** | Engine Layer | Terrain, tuiles, auto-tiling, rendu isométrique, multi-passes | ✅ |
+| **P4** | Action Layer | UI, événements, dialogues, machine à états | ✅ |
 
-### P1 — Data Layer (I/O, GameState)
-Analyse des formats de fichiers, de la sérialisation, du chargement/sauvegarde de l'état du jeu, et de la gestion des assets. Cette passe établit la **couche de persistance** : comment le jeu lit et écrit ses données.
+### Découvertes clés (P3 — Moteur de terrain)
 
-- Désassemblage des fonctions de `LoadGame` / `SaveGame`
-- Analyse des formats binaires (.dta, .pro, .chr, .glf, .sve)
-- Extraction et conversion des assets (textures, animations, sons)
-- Cartographie des structures de GameState en mémoire
-
-### P2 — Simulation Layer (physique, IA, économie)
-Analyse des systèmes de simulation : physique de la balle, comportement des golfeurs (IA), économie du club, scoring SGA, tournois. Cette passe décode les **règles du jeu** elles-mêmes.
-
-- Désassemblage des algorithmes de trajectoire et de collision
-- Analyse des tables de décision de l'IA des golfeurs
-- Reconstruction du modèle économique (green fees, salaires, prestige)
-- Logique de déroulement des tournois et calcul des scores
-
-### P3 — Engine Layer (terrain, tuiles, collisions)
-Analyse du moteur de rendu et de la géométrie du terrain : système de tuiles, élévation, rendu isométrique OpenGL, culling, collisions spatiales.
-
-- Désassemblage de Terrain.dll (38 exports, pipeline OpenGL immediate mode)
-- Système de grille de tuiles (TileGrid) : types, variations, connectivité
-- Calcul des normales, lissage d'élévation, génération de terrain
-- Rendu isométrique 3D : caméra, zoom, clipping
-
-### P4 — Action Layer (UI, événements, dialogues)
-Analyse de la couche interactive : machine à états de l'UI, gestion des entrées, dialogues, notifications, boucle d'événements.
-
-- Désassemblage du système UI custom (jgld.dll : sprites 2D, polices, overlay GDI)
-- Machine à états des écrans (menu principal, éditeur, jeu, options)
-- Gestion des clics, sélection, drag & drop sur le terrain
-- Dialogues, popups, messages système
-
-**Validation croisée :** Chaque découverte est vérifiée par confrontation entre le code ASM, les chaînes extraites, les fichiers de données originaux et les observations de comportement in-game.
+- **Tile** : 584 bytes (`0x248`), tableau row-major dans `Terrain` à offset `+0x3a4`
+- **Voisins** : stockés comme pointeurs dans `tile->renderObjects[4]` (offset `+0x034`)
+- **Familles** : table `typeInfo` à `Terrain+0x40`, stride 24 bytes — 7 familles (grass, play, sand, water, path, building, cliff)
+- **Multi-passes** : `renderPassCount` à `+0x05c`, `renderPasses[]` à `+0x06c`, stride `0x38` (56 bytes)
+- **`populateRenderPasses` @ 0x10012ec0** : détermine les textures de chaque passe selon le type, le borderOverride et les voisins
+- **`renderSingleTile` @ 0x1000e6c0** : boucle OpenGL sur les passes, un triangle par passe, avec cache de texture
+- **borderOverride** : Fairway→GrassBunker, SandBunker→GrassySand — un type emprunte les textures de bordure d'un autre
+- **Auto-tiling** : les textures A-D directionnelles sont superposées en passes d'overlay alpha, pas encodées dans la variation
 
 ## Outils utilisés
 
 | Outil | Usage |
-|-------|-------|
-| **objdump** (GNU binutils) | Désassemblage brut par sections, extraction de chaînes, analyse d'en-têtes PE |
-| **Ghidra 12.1** | Analyse statique avancée : décompilation en C, graphiques de flux, référencement croisé |
-| **ghidra-cli** | Automatisation des analyses Ghidra en mode headless pour traitement par lots |
-| **Python / Capstone** | Désassemblage programmatique, scripts d'analyse personnalisés, parsing des formats binaires |
-| **analyseHeadless** (Ghidra) | Exécution de scripts d'analyse Ghidra sans interface graphique, production de rapports |
+|:------|:------|
+| **objdump** (GNU binutils) | Désassemblage brut, extraction de chaînes, analyse PE |
+| **Ghidra 12.1** | Analyse statique avancée, décompilation C, graphiques de flux |
+| **ghidra-cli** (Rust) | Automatisation headless des analyses Ghidra |
+| **Python / Capstone** | Désassemblage programmatique, scripts d'analyse, parsing binaire |
+| **ImageMagick / cwebp** | Conversion et optimisation des textures (BMP/PCX → WebP) |
 
-## Pipeline de rendu (découvert)
+## Statistiques
 
-- **Terrain.dll** → OpenGL (44 imports) : rendu isométrique 3D du terrain
-- **jgld.dll** → GDI32 (25 imports) : sprites 2D + polices overlay
-- **sound.dll** → WINMM : Wave/MIDI/WaveIn
-
-> *Correction majeure v2* : Terrain.dll NE passe PAS par GDI32 — c'est de l'OpenGL immediate mode (glBegin/glEnd, lumière, textures). JGL était un wrapper interne renommé, pas un moteur séparé.
-
-## Statut
-
-| Étape | Statut |
-|-------|:------:|
-| Reverse engineering binaires PE32 (4 DLLs + EXE) | ✅ |
-| Nettoyage C — Terrain.dll (38/38 exports) | ✅ |
-| Nettoyage C — golf.exe (pipeline complet) | ✅ |
-| Nettoyage C — Systèmes de jeu (éco, scoring, etc.) | ✅ |
-| P1 — Data Layer (I/O, GameState, formats) | ✅ |
-| P2 — Simulation Layer (physique, IA, économie) | ✅ |
-| P3 — Engine Layer (terrain, tuiles, collisions) | 🔜 |
-| P4 — Action Layer (UI, événements, dialogues) | ✅ |
-| Conversion textures (BMP, PCX → WebP) | ✅ |
-| Conversion animations (FLC → Animated WebP) | ✅ |
-| Parseur données (.chr, .glf, .pro, .dta) | ✅ (Python) |
-| Synthèse globale et analyse transverse | ✅ |
-
-## Dernières stats
-
-```bash
-python3 tools/convert/convert_all_to_webp.py --stats
-```
+- **4 binaires** analysés (golf.exe, Terrain.dll, jgld.dll, sound.dll)
+- **3961 lignes** de documentation dans le REFERENCE_GUIDE
+- **~40 fonctions** de Terrain.dll décompilées en C
+- **600+ textures** Parkland converties en WebP
+- **200+ animations** FLC converties en WebP animé
