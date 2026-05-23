@@ -1,481 +1,14 @@
 /**
- * func_00493080 — Auto-décompilé
- * Adresse: 0x00493080 [golf.exe]
- * Taille: 74780 bytes, Type: std_prologue
- * Appel: __cdecl, Locals: 0B, SEH: True
- * Appelle: dword, 0x492ed0, 0x493080, 0x492fa0, 0x493000, 0x4932d0, 0x493100, 0x405097
+ * func_004935b0 — Auto-décompilé
+ * Adresse: 0x004935b0 [golf.exe]
+ * Taille: 74660 bytes, Type: std_prologue
+ * Appel: __thiscall, Locals: 0B, SEH: True
+ * Appelle: dword, 0x405097, 0x48e1c0, 0x480870, 0x476310, 0x4762d0, 0x493ef0, 0x4887c0
  * Constantes: 0x493fca, 0x47d130, 0x49b930, 0x497746, 0x494dd6, 0x496930, 0x49e78e, 0x493eab
  */
-void func_00493080(void) {
-    /* 14956 instructions */
+void func_004935b0(void) {
+    /* 14932 instructions */
 
-    // push ebp
-    // mov ebp, esp
-    // push ebx
-    // push edi
-    // push edi
-    // mov ebx, dword ptr [ebp + 0xc]
-    // cmp ebx, dword ptr [0x83d35c]
-    // if (...) GOTO(0x4930ee)
-    // mov ecx, dword ptr [ebp + 8]
-    // cmp ecx, dword ptr [0x83d38c]
-    // if (...) GOTO(0x4930ee)
-    // sub ebx, ecx
-    // if (...) GOTO(0x4930ee)
-    // mov ecx, dword ptr [ebp + 0xc]
-    // cmp ecx, dword ptr [0x83d38c]
-    // if (...) GOTO(0x4930b4)
-    // mov ecx, dword ptr [0x83d38c]
-    // mov dword ptr [ebp + 0xc], ecx
-    // mov edi, dword ptr [ebp + 8]
-    // cmp edi, dword ptr [0x83d35c]
-    // if (...) GOTO(0x4930c8)
-    // mov edi, dword ptr [0x83d35c]
-    // mov dword ptr [ebp + 8], edi
-    // sub ecx, edi
-    // if (...) GOTO(0x4930ee)
-    // mov eax, dword ptr [0x83d384]
-    // imul dword ptr [0x83d388]
-    // add eax, dword ptr [ebp + 8]
-    // add eax, dword ptr [0x83d380]
-    // mov edi, eax
-    // mov ah, byte ptr [0x83d34c]
-    // mov byte ptr [edi], ah
-    // inc edi
-    // dec ecx
-    // if (...) GOTO(0x4930e8)
-    // pop edi
-    // pop edi
-    // pop ebx
-    // pop ebp
-    // return;
-    // CALL(dword)
-    // // nop
-    // // nop
-    // // nop
-    // // nop
-    // // nop
-    // // nop
-    // // nop
-    // sub esp, 0x48
-    // push ebx
-    // push esi
-    // mov esi, dword ptr [esp + 0x58]
-    // test esi, esi
-    // if (...) GOTO(0x4932c4)
-    // mov ebx, dword ptr [esp + 0x54]
-    // test ebx, ebx
-    // if (...) GOTO(0x4932c4)
-    // mov ecx, dword ptr [ebx + 4]
-    // test ecx, ecx
-    // if (...) GOTO(0x493128)
-    // xor eax, eax
-    // if (...) GOTO(0x49312d)
-    // mov eax, dword ptr [ecx]
-    // CALL(dword)
-    // push ebp
-    // push edi
-    // test eax, eax
-    // mov dword ptr [0x83d380], eax
-    // if (...) GOTO(0x4932ac)
-    // mov ebp, dword ptr [esp + 0x64]
-    // mov ecx, dword ptr [esp + 0x68]
-    // mov dword ptr [0x83d358], esi
-    // mov dword ptr [0x83d378], ebp
-    // mov dword ptr [0x83d34c], ecx
-    // mov ecx, dword ptr [ebx + 4]
-    // test ecx, ecx
-    // if (...) GOTO(0x493167)
-    // mov edx, dword ptr [ecx]
-    // CALL(dword)
-    // if (...) GOTO(0x493169)
-    // xor eax, eax
-    // mov dword ptr [0x83d388], eax
-    // mov ecx, dword ptr [ebx + 4]
-    // test ecx, ecx
-    // if (...) GOTO(0x4932ac)
-    // mov eax, dword ptr [ecx]
-    // CALL(dword)
-    // test eax, eax
-    // if (...) GOTO(0x4932ac)
-    // mov ecx, dword ptr [eax + 8]
-    // mov edi, 0xffff8003
-    // dec ecx
-    // mov esi, 0x7fff
-    // mov dword ptr [0x83d38c], ecx
-    // mov edx, dword ptr [eax]
-    // mov dword ptr [0x83d35c], edx
-    // mov ecx, dword ptr [eax + 0xc]
-    // dec ecx
-    // mov dword ptr [0x83d390], ecx
-    // mov edx, dword ptr [eax + 4]
-    // xor ecx, ecx
-    // mov dword ptr [0x83d360], edx
-    // test ebp, ebp
-    // if (...) GOTO(0x4932ac)
-    // mov edx, dword ptr [0x83d358]
-    // mov ebx, dword ptr [esp + 0x60]
-    // sub ebx, edx
-    // lea eax, [edx + 4]
-    // mov edx, dword ptr [ebx + eax]
-    // cmp edx, esi
-    // if (...) GOTO(0x4931e2)
-    // mov esi, dword ptr [eax]
-    // mov ebp, dword ptr [esp + 0x64]
-    // mov dword ptr [esp + 0x60], ecx
-    // cmp edx, edi
-    // if (...) GOTO(0x4931ee)
-    // mov edi, dword ptr [eax]
-    // mov dword ptr [0x83d350], ecx
-    // inc ecx
-    // add eax, 8
-    // cmp ecx, ebp
-    // if (...) GOTO(0x4931d1)
-    // cmp esi, edi
-    // if (...) GOTO(0x4932a8)
-    // mov dword ptr [0x83d384], esi
-    // mov esi, dword ptr [esp + 0x60]
-    // lea eax, [esp + 0x10]
-    // push esi
-    // push eax
-    // mov dword ptr [esp + 0x18], 0xffffffff
-    // CALL(0x492ed0)
-    // add esp, 8
-    // test eax, eax
-    // if (...) GOTO(0x4932a8)
-    // lea ecx, [esp + 0x34]
-    // push esi
-    // push ecx
-    // mov dword ptr [esp + 0x3c], 1
-    // CALL(0x492ed0)
-    // add esp, 8
-    // test eax, eax
-    // if (...) GOTO(0x4932a8)
-    // mov eax, dword ptr [0x83d384]
-    // mov ecx, dword ptr [0x83d390]
-    // cmp eax, ecx
-    // if (...) GOTO(0x4932a8)
-    // cmp eax, dword ptr [0x83d360]
-    // if (...) GOTO(0x493271)
-    // mov eax, dword ptr [esp + 0x1c]
-    // mov ecx, dword ptr [esp + 0x40]
-    // cmp eax, ecx
-    // if (...) GOTO(0x493267)
-    // push ecx
-    // push eax
-    // if (...) GOTO(0x493269)
-    // push eax
-    // push ecx
-    // CALL(0x493080)
-    // add esp, 8
-    // lea edx, [esp + 0x10]
-    // push edx
-    // CALL(0x492fa0)
-    // add esp, 4
-    // test eax, eax
-    // if (...) GOTO(0x4932a8)
-    // lea eax, [esp + 0x34]
-    // push eax
-    // CALL(0x492fa0)
-    // add esp, 4
-    // test eax, eax
-    // if (...) GOTO(0x4932a8)
-    // mov eax, dword ptr [0x83d384]
-    // mov ecx, dword ptr [0x83d390]
-    // inc eax
-    // cmp eax, ecx
-    // mov dword ptr [0x83d384], eax
-    // if (...) GOTO(0x49324f)
-    // mov ebx, dword ptr [esp + 0x5c]
-    // mov ecx, dword ptr [ebx + 4]
-    // pop edi
-    // test ecx, ecx
-    // pop ebp
-    // if (...) GOTO(0x4932bc)
-    // mov edx, dword ptr [ecx]
-    // push 1
-    // CALL(dword)
-    // pop esi
-    // xor eax, eax
-    // pop ebx
-    // add esp, 0x48
-    // return;
-    // pop esi
-    // mov eax, 0x10
-    // pop ebx
-    // add esp, 0x48
-    // return;
-    // // nop
-    // sub esp, 0x48
-    // push ebx
-    // push ebp
-    // mov ebp, dword ptr [esp + 0x58]
-    // push esi
-    // test ebp, ebp
-    // push edi
-    // if (...) GOTO(0x493505)
-    // mov ebx, dword ptr [esp + 0x5c]
-    // test ebx, ebx
-    // if (...) GOTO(0x493505)
-    // mov ecx, dword ptr [ebx + 4]
-    // test ecx, ecx
-    // if (...) GOTO(0x4932fa)
-    // xor eax, eax
-    // if (...) GOTO(0x4932ff)
-    // mov eax, dword ptr [ecx]
-    // CALL(dword)
-    // test eax, eax
-    // mov dword ptr [0x83d37c], eax
-    // if (...) GOTO(0x4934ed)
-    // mov esi, dword ptr [esp + 0x68]
-    // test esi, 0x80000000
-    // if (...) GOTO(0x493379)
-    // mov edi, dword ptr [0x83ad0c]
-    // test edi, edi
-    // if (...) GOTO(0x493379)
-    // mov ecx, dword ptr [ebx + 4]
-    // test ecx, ecx
-    // if (...) GOTO(0x493333)
-    // mov edx, dword ptr [ecx]
-    // CALL(dword)
-    // if (...) GOTO(0x493335)
-    // xor eax, eax
-    // mov eax, dword ptr [eax + 4]
-    // sub eax, 0
-    // if (...) GOTO(0x49335b)
-    // dec eax
-    // if (...) GOTO(0x49334d)
-    // pop edi
-    // pop esi
-    // pop ebp
-    // mov eax, 1
-    // pop ebx
-    // add esp, 0x48
-    // return;
-    // mov ecx, dword ptr [edi + 4]
-    // test ecx, ecx
-    // if (...) GOTO(0x493369)
-    // mov eax, dword ptr [ecx]
-    // CALL(dword)
-    // if (...) GOTO(0x49336b)
-    // mov ecx, dword ptr [edi + 4]
-    // test ecx, ecx
-    // if (...) GOTO(0x493369)
-    // mov edx, dword ptr [ecx]
-    // CALL(dword)
-    // if (...) GOTO(0x49336b)
-    // xor eax, eax
-    // and esi, 0xff
-    // xor ecx, ecx
-    // mov cx, word ptr [eax + esi*2]
-    // mov esi, ecx
-    // mov dword ptr [0x83d358], ebp
-    // mov ebp, dword ptr [esp + 0x64]
-    // and esi, 0xffff
-    // mov dword ptr [0x83d378], ebp
-    // mov dword ptr [0x83d34c], esi
-    // mov ecx, dword ptr [ebx + 4]
-    // test ecx, ecx
-    // if (...) GOTO(0x4933a6)
-    // mov edx, dword ptr [ecx]
-    // CALL(dword)
-    // if (...) GOTO(0x4933a8)
-    // xor eax, eax
-    // add eax, eax
-    // mov dword ptr [0x83d388], eax
-    // mov ecx, dword ptr [ebx + 4]
-    // test ecx, ecx
-    // if (...) GOTO(0x4934ed)
-    // mov edx, dword ptr [ecx]
-    // CALL(dword)
-    // test eax, eax
-    // if (...) GOTO(0x4934ed)
-    // mov ecx, dword ptr [eax + 8]
-    // mov edi, 0xffff8003
-    // dec ecx
-    // mov esi, 0x7fff
-    // mov dword ptr [0x83d38c], ecx
-    // mov edx, dword ptr [eax]
-    // mov dword ptr [0x83d35c], edx
-    // mov ecx, dword ptr [eax + 0xc]
-    // dec ecx
-    // mov dword ptr [0x83d390], ecx
-    // mov edx, dword ptr [eax + 4]
-    // xor ecx, ecx
-    // mov dword ptr [0x83d360], edx
-    // test ebp, ebp
-    // if (...) GOTO(0x4934ed)
-    // mov edx, dword ptr [0x83d358]
-    // mov ebx, dword ptr [esp + 0x60]
-    // sub ebx, edx
-    // lea eax, [edx + 4]
-    // mov edx, dword ptr [ebx + eax]
-    // cmp edx, esi
-    // if (...) GOTO(0x493423)
-    // mov esi, dword ptr [eax]
-    // mov ebp, dword ptr [esp + 0x64]
-    // mov dword ptr [esp + 0x60], ecx
-    // cmp edx, edi
-    // if (...) GOTO(0x49342f)
-    // mov edi, dword ptr [eax]
-    // mov dword ptr [0x83d350], ecx
-    // inc ecx
-    // add eax, 8
-    // cmp ecx, ebp
-    // if (...) GOTO(0x493412)
-    // cmp esi, edi
-    // if (...) GOTO(0x4934e9)
-    // mov dword ptr [0x83d384], esi
-    // mov esi, dword ptr [esp + 0x60]
-    // lea eax, [esp + 0x10]
-    // push esi
-    // push eax
-    // mov dword ptr [esp + 0x18], 0xffffffff
-    // CALL(0x492ed0)
-    // add esp, 8
-    // test eax, eax
-    // if (...) GOTO(0x4934e9)
-    // lea ecx, [esp + 0x34]
-    // push esi
-    // push ecx
-    // mov dword ptr [esp + 0x3c], 1
-    // CALL(0x492ed0)
-    // add esp, 8
-    // test eax, eax
-    // if (...) GOTO(0x4934e9)
-    // mov eax, dword ptr [0x83d384]
-    // mov ecx, dword ptr [0x83d390]
-    // cmp eax, ecx
-    // if (...) GOTO(0x4934e9)
-    // cmp eax, dword ptr [0x83d360]
-    // if (...) GOTO(0x4934b2)
-    // mov eax, dword ptr [esp + 0x1c]
-    // mov ecx, dword ptr [esp + 0x40]
-    // cmp eax, ecx
-    // if (...) GOTO(0x4934a8)
-    // push ecx
-    // push eax
-    // if (...) GOTO(0x4934aa)
-    // push eax
-    // push ecx
-    // CALL(0x493000)
-    // add esp, 8
-    // lea edx, [esp + 0x10]
-    // push edx
-    // CALL(0x492fa0)
-    // add esp, 4
-    // test eax, eax
-    // if (...) GOTO(0x4934e9)
-    // lea eax, [esp + 0x34]
-    // push eax
-    // CALL(0x492fa0)
-    // add esp, 4
-    // test eax, eax
-    // if (...) GOTO(0x4934e9)
-    // mov eax, dword ptr [0x83d384]
-    // mov ecx, dword ptr [0x83d390]
-    // inc eax
-    // cmp eax, ecx
-    // mov dword ptr [0x83d384], eax
-    // if (...) GOTO(0x493490)
-    // mov ebx, dword ptr [esp + 0x5c]
-    // mov ecx, dword ptr [ebx + 4]
-    // test ecx, ecx
-    // if (...) GOTO(0x4934fb)
-    // mov edx, dword ptr [ecx]
-    // push 1
-    // CALL(dword)
-    // pop edi
-    // pop esi
-    // pop ebp
-    // xor eax, eax
-    // pop ebx
-    // add esp, 0x48
-    // return;
-    // pop edi
-    // pop esi
-    // pop ebp
-    // mov eax, 0x10
-    // pop ebx
-    // add esp, 0x48
-    // return;
-    // // nop
-    // // nop
-    // // nop
-    // // nop
-    // // nop
-    // // nop
-    // // nop
-    // // nop
-    // // nop
-    // // nop
-    // // nop
-    // // nop
-    // // nop
-    // // nop
-    // push esi
-    // mov esi, dword ptr [esp + 8]
-    // mov ecx, dword ptr [esi + 4]
-    // test ecx, ecx
-    // if (...) GOTO(0x493536)
-    // mov eax, dword ptr [ecx]
-    // CALL(dword)
-    // if (...) GOTO(0x493538)
-    // xor eax, eax
-    // mov eax, dword ptr [eax]
-    // cmp eax, 8
-    // if (...) GOTO(0x493565)
-    // cmp eax, 0x10
-    // if (...) GOTO(0x49354b)
-    // mov eax, 0x17
-    // pop esi
-    // return;
-    // mov ecx, dword ptr [esp + 0x14]
-    // mov edx, dword ptr [esp + 0x10]
-    // mov eax, dword ptr [esp + 0xc]
-    // push ecx
-    // push edx
-    // push eax
-    // push esi
-    // CALL(0x4932d0)
-    // add esp, 0x10
-    // pop esi
-    // return;
-    // mov ecx, dword ptr [esp + 0x14]
-    // mov edx, dword ptr [esp + 0x10]
-    // mov eax, dword ptr [esp + 0xc]
-    // push ecx
-    // push edx
-    // push eax
-    // push esi
-    // CALL(0x493100)
-    // add esp, 0x10
-    // pop esi
-    // return;
-    // // nop
-    // mov eax, dword ptr [esp + 4]
-    // mov ecx, dword ptr [esp + 8]
-    // cmp eax, ecx
-    // if (...) GOTO(0x4935a6)
-    // mov edx, dword ptr [ecx]
-    // push esi
-    // mov esi, dword ptr [eax]
-    // xor esi, edx
-    // mov dword ptr [eax], esi
-    // mov edx, esi
-    // mov esi, dword ptr [ecx]
-    // xor esi, edx
-    // mov dword ptr [ecx], esi
-    // mov edx, dword ptr [eax]
-    // mov ecx, esi
-    // pop esi
-    // xor edx, ecx
-    // mov dword ptr [eax], edx
-    // return;
-    // CALL(dword)
-    // // nop
-    // // nop
-    // // nop
     // push ebp
     // mov ebp, esp
     // push ecx
@@ -14965,4 +14498,447 @@ void func_00493080(void) {
     // if (...) GOTO(0x49f3ef)
     // mov edx, dword ptr [ecx + 8]
     // or eax, 0xffffffff
+    // mov dword ptr [ecx + 0xc], edx
+    // cdq 
+    // xor eax, edx
+    // sub eax, edx
+    // cmp eax, edi
+    // if (...) GOTO(0x49f3ef)
+    // cmp eax, ebp
+    // if (...) GOTO(0x49f3ec)
+    // mov edx, dword ptr [ecx + 0xc]
+    // dec eax
+    // mov edx, dword ptr [edx + 0x10]
+    // mov dword ptr [ecx + 0xc], edx
+    // if (...) GOTO(0x49f3e0)
+    // mov dword ptr [ecx + 0x14], ebx
+    // mov eax, dword ptr [esp + 0x34]
+    // cmp eax, ebp
+    // if (...) GOTO(0x49f4ee)
+    // mov dword ptr [esp + 0x18], eax
+    // mov eax, dword ptr [esi]
+    // mov ecx, dword ptr [eax + 8]
+    // mov eax, dword ptr [ecx + esi + 0xc8]
+    // cmp eax, ebp
+    // lea ecx, [ecx + esi + 0xc0]
+    // if (...) GOTO(0x49f432)
+    // mov edx, dword ptr [ecx + 0xc]
+    // mov edi, dword ptr [ecx + 0x14]
+    // inc edi
+    // mov eax, dword ptr [edx + 0xc]
+    // mov edx, dword ptr [ecx + 0x10]
+    // mov dword ptr [ecx + 0xc], eax
+    // mov eax, edi
+    // cmp eax, edx
+    // mov dword ptr [ecx + 0x14], edi
+    // if (...) GOTO(0x49f432)
+    // mov dword ptr [ecx + 0x14], ebp
+    // cmp dword ptr [ecx + 0xc], ebp
+    // if (...) GOTO(0x49f4df)
+    // CALL(0x402160)
+    // cmp dword ptr [eax + 8], 1
+    // if (...) GOTO(0x49f4df)
+    // mov eax, dword ptr [esi]
+    // mov ecx, dword ptr [eax + 8]
+    // lea eax, [ecx + esi + 0xc0]
+    // mov ecx, dword ptr [ecx + esi + 0xc8]
+    // cmp ecx, ebp
+    // if (...) GOTO(0x49f470)
+    // mov edx, dword ptr [eax + 0xc]
+    // mov eax, dword ptr [edx + 8]
+    // mov eax, dword ptr [eax + 8]
+    // mov dword ptr [esp + 0x14], eax
+    // if (...) GOTO(0x49f474)
+    // mov dword ptr [esp + 0x14], ebp
+    // mov edi, dword ptr [esi]
+    // mov ecx, dword ptr [edi + 8]
+    // mov edx, dword ptr [edi + 4]
+    // mov ebp, dword ptr [ecx + esi + 0x6c]
+    // lea ebx, [ecx + esi]
+    // lea ecx, [edx + esi + 0x274]
+    // CALL(0x477580)
+    // imul eax, dword ptr [esp + 0x14]
+    // cmp ebp, eax
+    // if (...) GOTO(0x49f49c)
+    // mov eax, ebp
+    // if (...) GOTO(0x49f4c8)
+    // mov eax, dword ptr [ebx + 0xc8]
+    // test eax, eax
+    // if (...) GOTO(0x49f4b4)
+    // mov eax, dword ptr [ebx + 0xcc]
+    // mov eax, dword ptr [eax + 8]
+    // mov ebx, dword ptr [eax + 8]
+    // if (...) GOTO(0x49f4b6)
+    // xor ebx, ebx
+    // mov ecx, dword ptr [edi + 4]
+    // lea ecx, [ecx + esi + 0x274]
+    // CALL(0x477580)
+    // imul eax, ebx
+    // mov edx, dword ptr [esi]
+    // mov ecx, dword ptr [edx + 8]
+    // mov edx, dword ptr [ecx + esi + 0x6c]
+    // mov ecx, dword ptr [esp + 0x10]
+    // sub eax, edx
+    // add ecx, eax
+    // xor ebp, ebp
+    // mov dword ptr [esp + 0x10], ecx
+    // mov eax, dword ptr [esp + 0x18]
+    // dec eax
+    // mov dword ptr [esp + 0x18], eax
+    // if (...) GOTO(0x49f3ff)
+    // mov edx, dword ptr [esi]
+    // mov eax, dword ptr [edx + 8]
+    // mov ebx, dword ptr [eax + esi + 0x5c]
+    // lea ecx, [eax + esi]
+    // mov eax, dword ptr [esp + 0x34]
+    // cdq 
+    // idiv ebx
+    // mov edi, dword ptr [ecx + 0x48]
+    // mov ebp, dword ptr [ecx + 0x68]
+    // add ebp, edi
+    // mov edx, dword ptr [ecx + 0x44]
+    // imul ebp, eax
+    // imul eax, ebx
+    // add ebp, edx
+    // mov edx, dword ptr [esp + 0x34]
+    // mov ebx, edx
+    // sub ebx, eax
+    // mov eax, dword ptr [ecx + 0x6c]
+    // add eax, edi
+    // imul ebx, eax
+    // mov eax, dword ptr [esp + 0x10]
+    // add eax, ebx
+    // mov ebx, dword ptr [ecx + 0xd0]
+    // sar edi, 1
+    // add edi, eax
+    // lea eax, [ebx - 1]
+    // cmp edx, eax
+    // mov dword ptr [esp + 0x10], edi
+    // if (...) GOTO(0x49f98f)
+    // mov eax, dword ptr [ecx + 0xc8]
+    // mov edi, edx
+    // test edi, edi
+    // mov dword ptr [ecx + 0xcc], eax
+    // if (...) GOTO(0x49f57f)
+    // mov eax, edi
+    // cdq 
+    // xor eax, edx
+    // sub eax, edx
+    // cmp eax, ebx
+    // if (...) GOTO(0x49f98f)
+    // test eax, eax
+    // if (...) GOTO(0x49f57a)
+    // mov edx, dword ptr [ecx + 0xcc]
+    // dec eax
+    // mov edx, dword ptr [edx + 0x10]
+    // mov dword ptr [ecx + 0xcc], edx
+    // if (...) GOTO(0x49f568)
+    // lea edx, [ebx + edi]
+    // if (...) GOTO(0x49f593)
+    // if (...) GOTO(0x49f593)
+    // mov eax, dword ptr [ecx + 0xcc]
+    // dec edi
+    // mov eax, dword ptr [eax + 0xc]
+    // mov dword ptr [ecx + 0xcc], eax
+    // if (...) GOTO(0x49f581)
+    // mov dword ptr [ecx + 0xd4], edx
+    // mov eax, dword ptr [esi]
+    // mov ecx, dword ptr [eax + 8]
+    // lea eax, [ecx + esi + 0xc0]
+    // mov ecx, dword ptr [ecx + esi + 0xc8]
+    // test ecx, ecx
+    // if (...) GOTO(0x49f5bf)
+    // mov edx, dword ptr [eax + 0xc]
+    // mov eax, dword ptr [edx + 8]
+    // mov eax, dword ptr [eax + 8]
+    // mov dword ptr [esp + 0x18], eax
+    // if (...) GOTO(0x49f5c7)
+    // mov dword ptr [esp + 0x18], 0
+    // mov ebx, dword ptr [esi]
+    // mov ecx, dword ptr [ebx + 8]
+    // mov eax, dword ptr [ebx + 4]
+    // mov edx, dword ptr [ecx + esi + 0x6c]
+    // lea edi, [ecx + esi]
+    // lea ecx, [eax + esi + 0x274]
+    // mov dword ptr [esp + 0x14], edx
+    // CALL(0x477580)
+    // imul eax, dword ptr [esp + 0x18]
+    // mov ecx, dword ptr [esp + 0x14]
+    // cmp ecx, eax
+    // if (...) GOTO(0x49f5f7)
+    // mov ebx, ecx
+    // if (...) GOTO(0x49f625)
+    // mov eax, dword ptr [edi + 0xc8]
+    // test eax, eax
+    // if (...) GOTO(0x49f60f)
+    // mov ecx, dword ptr [edi + 0xcc]
+    // mov eax, dword ptr [ecx + 8]
+    // mov edi, dword ptr [eax + 8]
+    // if (...) GOTO(0x49f611)
+    // xor edi, edi
+    // mov edx, dword ptr [ebx + 4]
+    // lea ecx, [edx + esi + 0x274]
+    // CALL(0x477580)
+    // mov ebx, eax
+    // imul ebx, edi
+    // mov eax, dword ptr [esi]
+    // mov edx, dword ptr [esp + 0x10]
+    // mov ecx, dword ptr [eax + 8]
+    // mov ecx, dword ptr [esi + ecx + 0x68]
+    // mov dword ptr [esp + 0x24], edx
+    // add ecx, ebp
+    // add edx, ebx
+    // mov dword ptr [esp + 0x28], ecx
+    // mov ecx, dword ptr [esp + 0x38]
+    // test ecx, ecx
+    // mov dword ptr [esp + 0x20], ebp
+    // mov dword ptr [esp + 0x2c], edx
+    // if (...) GOTO(0x49f655)
+    // mov edx, 2
+    // if (...) GOTO(0x49f66a)
+    // mov ecx, dword ptr [eax + 8]
+    // mov edi, dword ptr [esp + 0x34]
+    // xor edx, edx
+    // mov ecx, dword ptr [esi + ecx + 0xf4]
+    // cmp ecx, edi
+    // sete dl
+    // test esi, esi
+    // if (...) GOTO(0x49f674)
+    // mov dword ptr [esp + 0x18], esi
+    // if (...) GOTO(0x49f67d)
+    // mov ecx, dword ptr [eax + 4]
+    // add ecx, esi
+    // mov dword ptr [esp + 0x18], ecx
+    // mov ecx, dword ptr [esp + 0x1c]
+    // mov edi, dword ptr [ecx]
+    // lea ecx, [esp + 0x20]
+    // push ecx
+    // push edx
+    // mov edx, dword ptr [esp + 0x3c]
+    // mov ecx, esi
+    // push edx
+    // mov edx, dword ptr [eax + 8]
+    // add ecx, edx
+    // CALL(0x489a30)
+    // push eax
+    // mov eax, dword ptr [esp + 0x24]
+    // mov edx, edi
+    // mov edi, dword ptr [esp + 0x28]
+    // push eax
+    // mov ecx, edi
+    // CALL(dword)
+    // test eax, eax
+    // if (...) GOTO(0x49f769)
+    // test esi, esi
+    // if (...) GOTO(0x49f6bb)
+    // xor ecx, ecx
+    // if (...) GOTO(0x49f6c7)
+    // mov eax, dword ptr [esi]
+    // mov ecx, dword ptr [eax + 4]
+    // lea ecx, [ecx + esi + 0x274]
+    // mov edx, dword ptr [esi]
+    // push ebx
+    // mov ebx, dword ptr [esp + 0x14]
+    // mov eax, dword ptr [edx + 8]
+    // mov edx, dword ptr [eax + esi + 0x68]
+    // add eax, esi
+    // push edx
+    // push ebx
+    // push ebp
+    // mov edx, dword ptr [eax + 0x2c]
+    // mov eax, dword ptr [eax + 0x28]
+    // add edx, ebx
+    // add eax, ebp
+    // push edx
+    // push eax
+    // push ecx
+    // lea ecx, [edi + 0x274]
+    // CALL(0x475c60)
+    // mov eax, dword ptr [esi + 0x14]
+    // test eax, eax
+    // if (...) GOTO(0x49f769)
+    // mov ecx, dword ptr [esi + 0x10]
+    // test ecx, ecx
+    // if (...) GOTO(0x49f769)
+    // mov edx, dword ptr [esp + 0x38]
+    // test edx, edx
+    // if (...) GOTO(0x49f738)
+    // test esi, esi
+    // if (...) GOTO(0x49f710)
+    // xor ecx, ecx
+    // if (...) GOTO(0x49f71c)
+    // mov ecx, dword ptr [esi]
+    // mov edx, dword ptr [ecx + 4]
+    // lea ecx, [edx + esi + 0x274]
+    // mov edx, dword ptr [esp + 0x2c]
+    // mov edi, dword ptr [eax + 0x1c]
+    // sub edx, edi
+    // mov edi, dword ptr [esp + 0x24]
+    // sub edx, edi
+    // push 0
+    // sar edx, 1
+    // add edx, ebx
+    // push edx
+    // push ebp
+    // push ecx
+    // mov ecx, eax
+    // if (...) GOTO(0x49f764)
+    // test esi, esi
+    // if (...) GOTO(0x49f740)
+    // xor eax, eax
+    // if (...) GOTO(0x49f74c)
+    // mov eax, dword ptr [esi]
+    // mov edx, dword ptr [eax + 4]
+    // lea eax, [edx + esi + 0x274]
+    // mov edx, dword ptr [esp + 0x2c]
+    // mov edi, dword ptr [ecx + 0x1c]
+    // sub edx, edi
+    // mov edi, dword ptr [esp + 0x24]
+    // sub edx, edi
+    // push 0
+    // sar edx, 1
+    // add edx, ebx
+    // push edx
+    // push ebp
+    // push eax
+    // CALL(0x473e60)
+    // mov eax, dword ptr [esi]
+    // mov edi, dword ptr [esp + 0x24]
+    // mov ecx, dword ptr [eax + 4]
+    // mov edx, dword ptr [ecx + esi + 0x2d0]
+    // mov ecx, dword ptr [edx + 0x1c]
+    // add edi, ecx
+    // mov dword ptr [esp + 0x24], edi
+    // mov edx, dword ptr [eax + 8]
+    // mov ecx, dword ptr [esi + edx + 0x38]
+    // mov edx, dword ptr [esp + 0x20]
+    // add edx, ecx
+    // mov dword ptr [esp + 0x20], edx
+    // mov edx, dword ptr [eax + 8]
+    // mov ecx, dword ptr [esi + edx + 0xc8]
+    // lea eax, [esi + edx + 0xc0]
+    // test ecx, ecx
+    // if (...) GOTO(0x49f8cb)
+    // mov ecx, dword ptr [eax + 0xc]
+    // mov ecx, dword ptr [ecx + 8]
+    // mov edx, dword ptr [ecx + 8]
+    // mov ecx, dword ptr [eax + 8]
+    // cmp edx, 1
+    // if (...) GOTO(0x49f8bc)
+    // test ecx, ecx
+    // if (...) GOTO(0x49f7d0)
+    // mov edx, dword ptr [eax + 0xc]
+    // mov eax, dword ptr [edx + 8]
+    // mov eax, dword ptr [eax + 4]
+    // if (...) GOTO(0x49f7d2)
+    // xor eax, eax
+    // push(0x7c)
+    // push eax
+    // CALL(0x4a6170)
+    // mov ebx, eax
+    // add esp, 8
+    // test ebx, ebx
+    // if (...) GOTO(0x49f83b)
+    // mov ebx, dword ptr [esi]
+    // mov eax, dword ptr [ebx + 8]
+    // mov ecx, dword ptr [eax + esi + 0xc8]
+    // lea eax, [eax + esi + 0xc0]
+    // test ecx, ecx
+    // if (...) GOTO(0x49f98f)
+    // mov ecx, dword ptr [eax + 0xc]
+    // mov eax, dword ptr [ecx + 8]
+    // mov edx, dword ptr [eax + 4]
+    // test edx, edx
+    // if (...) GOTO(0x49f98f)
+    // mov edi, edx
+    // or ecx, 0xffffffff
+    // xor eax, eax
+    // repne scasb al, byte ptr es:[edi]
+    // not ecx
+    // dec ecx
+    // lea eax, [esp + 0x20]
+    // push ecx
+    // mov ecx, dword ptr [ebx + 4]
+    // push eax
+    // push edx
+    // lea ecx, [ecx + esi + 0x274]
+    // CALL(0x477cd0)
+    // pop edi
+    // pop esi
+    // pop ebp
+    // pop ebx
+    // add esp, 0x20
+    // return;
+    // mov byte ptr [ebx], 0
+    // mov ebp, dword ptr [esi]
+    // mov edx, dword ptr [ebp + 8]
+    // mov ecx, dword ptr [edx + esi + 0xc8]
+    // lea eax, [edx + esi + 0xc0]
+    // test ecx, ecx
+    // if (...) GOTO(0x49f884)
+    // mov eax, dword ptr [eax + 0xc]
+    // mov eax, dword ptr [eax + 8]
+    // mov edx, dword ptr [eax + 4]
+    // test edx, edx
+    // if (...) GOTO(0x49f884)
+    // mov edi, edx
+    // or ecx, 0xffffffff
+    // xor eax, eax
+    // repne scasb al, byte ptr es:[edi]
+    // not ecx
+    // dec ecx
+    // push ecx
+    // lea ecx, [esp + 0x24]
+    // push ecx
+    // push edx
+    // mov edx, dword ptr [ebp + 4]
+    // lea ecx, [edx + esi + 0x274]
+    // CALL(0x477cd0)
+    // mov byte ptr [ebx], 0x7c
+    // inc ebx
+    // if (...) GOTO(0x49f98f)
+    // mov edi, ebx
+    // or ecx, 0xffffffff
+    // xor eax, eax
+    // repne scasb al, byte ptr es:[edi]
+    // not ecx
+    // dec ecx
+    // lea eax, [esp + 0x20]
+    // push ecx
+    // mov ecx, dword ptr [esi]
+    // push eax
+    // push ebx
+    // mov edx, dword ptr [ecx + 4]
+    // lea ecx, [edx + esi + 0x274]
+    // CALL(0x4781f0)
+    // pop edi
+    // pop esi
+    // pop ebp
+    // pop ebx
+    // add esp, 0x20
+    // return;
+    // test ecx, ecx
+    // if (...) GOTO(0x49f8cb)
+    // mov eax, dword ptr [eax + 0xc]
+    // mov eax, dword ptr [eax + 8]
+    // mov eax, dword ptr [eax + 4]
+    // if (...) GOTO(0x49f8cd)
+    // xor eax, eax
+    // push(0x7c)
+    // push eax
+    // CALL(0x4a6170)
+    // mov ebx, eax
+    // add esp, 8
+    // test ebx, ebx
+    // if (...) GOTO(0x49f925)
+    // mov ecx, dword ptr [esi]
+    // mov edx, dword ptr [ecx + 8]
+    // lea eax, [edx + esi + 0xc0]
+    // mov edx, dword ptr [edx + esi + 0xc8]
+    // test edx, edx
+    // if (...) GOTO(0x49f900)
+    // mov eax, dword ptr [eax + 0xc]
+    // mov eax, dword ptr [eax + 8]
+    // mov eax, dword ptr [eax + 4]
+    // if (...) GOTO(0x49f902)
 }
