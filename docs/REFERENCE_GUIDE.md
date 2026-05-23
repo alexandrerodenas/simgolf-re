@@ -3837,8 +3837,18 @@ convert_all_to_webp.py → Convertisseur unifié :
 | **jgl.dll** | 541 | 384 Ko |
 | **Total** | **5 516** | **28 Mo** |
 
-> Fichiers dans `ref/decompiled/ghidra/` — format: `{FunctionName}.c`
-> Générés via `ghidra_batch_export.py` (PyGhidra 3.1.0 / Ghidra 12.1)
+> Fichiers dans `ref/decompiled/ghidra/` — organisés par binaire :
+> - `ref/decompiled/ghidra/golf/`     — 1 631 fonctions (golf.exe)
+> - `ref/decompiled/ghidra/terrain/`  —   722 fonctions (Terrain.dll)
+> - `ref/decompiled/ghidra/sound/`    — 1 100 fonctions (sound.dll)
+> - `ref/decompiled/ghidra/jgld/`     — 1 181 fonctions (jgld.dll)
+> - `ref/decompiled/ghidra/jgl/`      —   524 fonctions (jgl.dll)
+> - `ref/decompiled/ghidra/crt/`      —   358 fonctions (CRT/exceptions)
+> 
+> Format: `{FunctionName}.c` avec en-tête Ghidra (binaire source, adresse, taille)
+> 39 fonctions terrain renommées avec des noms parlants (render_single_tile.c, etc.)
+
+---
 
 ---
 
