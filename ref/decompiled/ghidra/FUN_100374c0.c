@@ -1,0 +1,11 @@
+/* Ghidra decompiled: Terrain.dll */
+/* Function: FUN_100374c0 @ 0x100374C0 */
+/* Body size: 17 addresses */
+
+
+int __fastcall FUN_100374c0(int param_1)
+
+{
+  return param_1 + 8;
+}
+

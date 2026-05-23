@@ -1,0 +1,21 @@
+/* Ghidra decompiled: Terrain.dll */
+/* Function: FUN_1001dfc0 @ 0x1001DFC0 */
+/* Body size: 92 addresses */
+
+
+void __cdecl FUN_1001dfc0(undefined4 *param_1)
+
+{
+  int iVar1;
+  HMODULE pHVar2;
+  
+  *param_1 = 0;
+  pHVar2 = GetModuleHandleA((LPCSTR)0x0);
+  if (((short)pHVar2->unused == 0x5a4d) && (pHVar2[0xf].unused != 0)) {
+    iVar1 = pHVar2[0xf].unused;
+    *(undefined1 *)param_1 = *(undefined1 *)((int)&pHVar2[6].unused + iVar1 + 2);
+    *(undefined1 *)((int)param_1 + 1) = *(undefined1 *)((int)&pHVar2[6].unused + iVar1 + 3);
+  }
+  return;
+}
+

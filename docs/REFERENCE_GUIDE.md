@@ -1,7 +1,12 @@
 # SimGolf (2002) — Guide de Référence Complet
 
 > Document fusionné à partir de 33 fichiers d'analyse (rétro-ingénierie de golf.exe + Terrain.dll + jgld.dll + sound.dll)
-> Mai 2026 — Projet `simgolf-re` — **2900+ fonctions identifiées**, 42 fichiers décompilés (C reconstruit), 5 736 assets documentés
+> Mai 2026 — Projet `simgolf-re` — **5 516 fonctions décompilées (Ghidra C)**, 5 736 assets documentés
+> 5 516 fichiers .c générés via Ghidra 12.1
+>
+> **Les fichiers ci-dessous (42 fichiers) sont la décompilation manuelle antérieure** — ils restent pertinents pour la structure globale et les commentaires. Les 5 516 fichiers Ghidra sont dans `ref/decompiled/ghidra/`.
+>
+> **Vue d'ensemble des 5 516 fichiers Ghidra par binaire :** — répartis: golf.exe (1 634), jgld.dll (1 315), sound.dll (1 270), Terrain.dll (756), jgl.dll (541)
 > **Confiance :** ✅ Confirmé (ASM/données) | ⚠️ Hypothèse | ❌ Inconnu
 
 ---
@@ -1010,6 +1015,30 @@ Le jeu original utilise la table `typeInfo` (stride 24 bytes, 30+ entrées) pour
 
 // Adresse d'une texture : base + type×0x384 + orientation×0x24 + variation×4
 ```
+
+> ✅ **Validé par le C Ghidra** (`FUN_1000e6c0` @ 0x1000E6C0 — 703 adresses) :
+> ```c
+> // Sélection texture dans renderSingleTile (ligne 44-46 du C Ghidra) :
+> local_18 = *(int*)(&DAT_100687f8 +
+>     (uint)*(byte*)(tile + pass * 0x38 + 0x70) * 4 +   // terrainType * 4
+>     *(int*)(tile + 0x240) * 0x24 +                      // textureOffset * 36
+>     (local_1c + 0x1b) * 900);                            // orientation * 900
+> ```
+>
+> La variation est stockée à `tile->textureOffset` (offset 0x240), écrite par `FUN_10002f80` (appelée par `setType`) :
+> ```c
+> // FUN_10002f80 @ 0x10002F80 :
+> *(int*)(tile + 0x240) = variation;  // simple setter
+> ```
+>
+> L'orientation est calculée à partir de `tileFlags & 3` moins la passe courante :
+> ```c
+> // renderSingleTile, calcul de l'orientation (lignes 35-43) :
+> orientation = (tile->flags & 3) - currentPass;
+> if (orientation < 0) orientation += 4;  // wrap modulo
+> ```
+>
+> 🎯 **Variation aléatoire** : dans `setType`, la variation est `rand() % maxVariation` (pas un compteur global).
 
 ### 5.9 Schéma Complet de Nommage des Assets
 
@@ -3791,13 +3820,29 @@ convert_all_to_webp.py → Convertisseur unifié :
 |-------|-------|
 | `objdump` + `capstone` | Désassemblage massif (1.1M lignes) |
 | `strings` | Extraction de chaînes |
-| Ghidra 12.1 | Décompilation C — **42 fichiers extraits** (2900+ fonctions) |
+|| Ghidra 12.1 | Décompilation C — **5 516 fichiers .c** (via PyGhidra batch export) |
 | `pefile` | Analyse PE |
 | `hexdump` / `xxd` | Analyse binaire |
 | Python `struct` | Analyse de données binaires |
 | **ghidra CLI** (Rust) | Interface ligne de commande pour Ghidra |
 
-### 17.8 Index des 42 Fichiers Décompilés
+### 17.8 Index des Fichiers Décompilés
+
+| Binaire | Fonctions | Taille |
+|:---|---:|---:|
+| **golf.exe** | 1 634 | 946 Ko |
+| **jgld.dll** | 1 315 | 1.2 Mo |
+| **sound.dll** | 1 270 | 448 Ko |
+| **Terrain.dll** | 756 | 445 Ko |
+| **jgl.dll** | 541 | 384 Ko |
+| **Total** | **5 516** | **28 Mo** |
+
+> Fichiers dans `ref/decompiled/ghidra/` — format: `{FunctionName}.c`
+> Générés via `ghidra_batch_export.py` (PyGhidra 3.1.0 / Ghidra 12.1)
+
+---
+
+### 17.8.1 Décompilation Manuelle Antérieure (42 fichiers)
 
 **golf.exe (28 fichiers) :**
 | Fichier | Lignes | Contenu |
@@ -3857,8 +3902,8 @@ convert_all_to_webp.py → Convertisseur unifié :
 
 ## 23. Pipeline d'Assets — Analyse Complète
 
-> Analyse basée sur : 42 fichiers décompilés + 6 scripts de conversion + structure des dossiers data/raw/
-> **Confiance :** ✅ Confirmé (données extraites) | ⚠️ Reconstruit (code C déduit) | ❌ Non extrait
+> Analyse basée sur : 5 516 fichiers Ghidra C + 42 fichiers décompilés manuellement + 6 scripts de conversion + structure des dossiers data/raw/
+> **Confiance :** ✅ Confirmé (données extraites + C Ghidra) | ⚠️ Reconstruit | ❌ Non extrait
 
 ### 23.1 Architecture Globale des Assets
 

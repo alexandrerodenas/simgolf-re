@@ -1,0 +1,115 @@
+/* Ghidra decompiled: golf.exe */
+/* Function: FUN_00479c40 @ 0x00479C40 */
+/* Body size: 708 addresses */
+
+
+undefined4 * __fastcall FUN_00479c40(undefined4 *param_1)
+
+{
+  undefined4 *unaff_FS_OFFSET;
+  undefined4 local_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  local_4 = 0xffffffff;
+  puStack_8 = &LAB_004b7be8;
+  local_c = *unaff_FS_OFFSET;
+  *unaff_FS_OFFSET = &local_c;
+  FUN_00495d30();
+  local_4 = 0;
+  FUN_00492850();
+  param_1[0x4d] = &PTR_FUN_004baa10;
+  param_1[0x4e] = 0;
+  param_1[0x4f] = 0;
+  param_1[0x50] = 0;
+  param_1[0x51] = 0;
+  param_1[0x52] = 0;
+  *param_1 = &PTR_FUN_004ba8b4;
+  param_1[0x2c] = param_1;
+  param_1[0x8a] = 0;
+  param_1[0x89] = 0;
+  param_1[0x8b] = 0;
+  param_1[0x28] = 0;
+  param_1[0x29] = 0;
+  param_1[0x2a] = 0;
+  param_1[0x2b] = 0;
+  param_1[0x2d] = 0;
+  param_1[0x2e] = 0;
+  param_1[0x69] = 0;
+  param_1[0x6a] = 0;
+  param_1[0x82] = 0;
+  param_1[0x83] = 0;
+  param_1[0x84] = 0;
+  param_1[0x85] = 0;
+  param_1[0x86] = 0;
+  param_1[0x81] = 0;
+  param_1[0x4c] = 0;
+  param_1[0x57] = 0;
+  param_1[0x87] = 0;
+  param_1[0x67] = 0;
+  param_1[0x68] = 1;
+  param_1[0x5a] = DAT_0083ab64;
+  param_1[0x5b] = DAT_004e42c8;
+  param_1[0x60] = DAT_004e42cc;
+  param_1[0x5c] = DAT_0083ab6c;
+  param_1[0x5d] = DAT_004e42d0;
+  param_1[0x5e] = DAT_004e42d4;
+  param_1[0x5f] = DAT_004e42d8;
+  param_1[0x61] = DAT_004e42dc;
+  param_1[0x62] = DAT_004e42e0;
+  param_1[99] = DAT_004e42e4;
+  param_1[100] = DAT_0083ab70;
+  param_1[0x65] = DAT_004e42e8;
+  param_1[0x59] = DAT_0083ab68;
+  param_1[0x53] = 0;
+  param_1[0x66] = 0;
+  param_1[0x54] = 0;
+  param_1[0x55] = 0;
+  param_1[0x56] = 0;
+  param_1[0x9b] = 0;
+  param_1[0x9c] = 0;
+  param_1[0x58] = 0;
+  param_1[0x73] = 0;
+  param_1[0x74] = 0;
+  param_1[0x75] = 0;
+  param_1[0x76] = 0;
+  param_1[0x6b] = 0;
+  param_1[0x6c] = 0;
+  param_1[0x6d] = 0;
+  param_1[0x6e] = 0;
+  param_1[0x6f] = 0;
+  param_1[0x70] = 0;
+  param_1[0x71] = 0;
+  param_1[0x72] = 0;
+  param_1[0x47] = 0;
+  param_1[0x4a] = 0;
+  param_1[0x49] = 0;
+  param_1[0x48] = 0;
+  param_1[0x7b] = 0;
+  param_1[0x7c] = 0;
+  param_1[0x27] = 0;
+  param_1[0x7d] = 1;
+  param_1[0x7e] = 1;
+  param_1[0x7f] = 1;
+  param_1[0x80] = 1;
+  param_1[0x8c] = 0;
+  param_1[0x8d] = 0;
+  param_1[0x8e] = 0;
+  param_1[0x8f] = 0;
+  param_1[0x90] = 0;
+  param_1[0x91] = 0;
+  param_1[0x92] = 0;
+  param_1[0x93] = 0;
+  param_1[0x94] = 0;
+  param_1[0x95] = 0;
+  param_1[0x96] = 0;
+  param_1[0x97] = 0;
+  param_1[0x98] = 0;
+  param_1[0x99] = 0;
+  param_1[0x9a] = 0;
+  param_1[0x4b] = 0;
+  param_1[0x88] = 2;
+  *unaff_FS_OFFSET = local_c;
+  return param_1;
+}
+

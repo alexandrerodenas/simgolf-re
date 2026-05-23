@@ -1,0 +1,47 @@
+/* Ghidra decompiled: jgl.dll */
+/* Function: FUN_10042930 @ 0x10042930 */
+/* Body size: 78 addresses */
+
+
+int __cdecl FUN_10042930(int param_1,uint param_2,uint param_3)
+
+{
+  int iVar1;
+  byte *pbVar2;
+  byte *pbVar3;
+  bool bVar4;
+  bool bVar5;
+  
+  if (param_3 < 9) {
+    if (param_3 == 0) {
+      return 0;
+    }
+  }
+  else {
+    param_3 = 8;
+  }
+  if (7 < param_2) {
+    return 0;
+  }
+  if (8 < param_2 + param_3) {
+    param_3 = 8 - param_2;
+  }
+  bVar4 = false;
+  iVar1 = 0;
+  bVar5 = true;
+  pbVar2 = (byte *)(param_1 + param_2);
+  pbVar3 = &DAT_10055734 + param_2;
+  do {
+    if (param_3 == 0) break;
+    param_3 = param_3 - 1;
+    bVar4 = *pbVar2 < *pbVar3;
+    bVar5 = *pbVar2 == *pbVar3;
+    pbVar2 = pbVar2 + 1;
+    pbVar3 = pbVar3 + 1;
+  } while (bVar5);
+  if (!bVar5) {
+    iVar1 = (1 - (uint)bVar4) - (uint)(bVar4 != 0);
+  }
+  return iVar1;
+}
+

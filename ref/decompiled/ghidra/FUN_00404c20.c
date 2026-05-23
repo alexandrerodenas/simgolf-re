@@ -1,0 +1,24 @@
+/* Ghidra decompiled: golf.exe */
+/* Function: FUN_00404c20 @ 0x00404C20 */
+/* Body size: 200 addresses */
+
+
+void FUN_00404c20(void)
+
+{
+  FUN_004a55d2(&DAT_0059ca58,0x2c,0x50,FUN_00473ab0,&LAB_004041f0);
+  FUN_00473ab0();
+  FUN_004a55d2(&DAT_0056a250,0x2c,0x10,FUN_00473ab0,&LAB_004041f0);
+  FUN_004a55d2(&DAT_00540950,0x2c,2,FUN_00473ab0,&LAB_004041f0);
+  FUN_004a55d2(&DAT_005439e0,0x2c,0x10,FUN_00473ab0,&LAB_004041f0);
+  FUN_00473ab0();
+  FUN_004a55d2(&DAT_0055e5b0,0x2c,0x14,FUN_00473ab0,&LAB_004041f0);
+  FUN_00473ab0();
+  FUN_00473ab0();
+  FUN_00473ab0();
+  FUN_00473ab0();
+  FUN_00473ab0();
+  FUN_00473ab0();
+  return;
+}
+

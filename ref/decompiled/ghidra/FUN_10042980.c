@@ -1,0 +1,45 @@
+/* Ghidra decompiled: jgl.dll */
+/* Function: FUN_10042980 @ 0x10042980 */
+/* Body size: 100 addresses */
+
+
+undefined4 * __cdecl FUN_10042980(int *param_1,int param_2,int param_3)
+
+{
+  undefined4 *puVar1;
+  int iVar2;
+  uint uVar3;
+  uint uVar4;
+  undefined4 *puVar5;
+  
+  uVar4 = param_2 * param_3;
+  puVar1 = FUN_10042cc0(param_1,uVar4);
+  if (0x8000 < uVar4) {
+    puVar5 = puVar1;
+    for (iVar2 = 0x2000; iVar2 != 0; iVar2 = iVar2 + -1) {
+      *puVar5 = 0;
+      puVar5 = puVar5 + 1;
+    }
+    puVar5 = puVar1 + 0x2000;
+    for (uVar3 = uVar4 - 0x8000 >> 2; uVar3 != 0; uVar3 = uVar3 - 1) {
+      *puVar5 = 0;
+      puVar5 = puVar5 + 1;
+    }
+    for (uVar4 = uVar4 - 0x8000 & 3; uVar4 != 0; uVar4 = uVar4 - 1) {
+      *(undefined1 *)puVar5 = 0;
+      puVar5 = (undefined4 *)((int)puVar5 + 1);
+    }
+    return puVar1;
+  }
+  puVar5 = puVar1;
+  for (uVar3 = uVar4 >> 2; uVar3 != 0; uVar3 = uVar3 - 1) {
+    *puVar5 = 0;
+    puVar5 = puVar5 + 1;
+  }
+  for (uVar4 = uVar4 & 3; uVar4 != 0; uVar4 = uVar4 - 1) {
+    *(undefined1 *)puVar5 = 0;
+    puVar5 = (undefined4 *)((int)puVar5 + 1);
+  }
+  return puVar1;
+}
+

@@ -1,0 +1,24 @@
+/* Ghidra decompiled: jgld.dll */
+/* Function: FUN_10008360 @ 0x10008360 */
+/* Body size: 72 addresses */
+
+
+void __cdecl FUN_10008360(int *param_1,int param_2,int param_3,int param_4,int param_5)
+
+{
+  int iVar1;
+  undefined4 *puVar2;
+  undefined4 local_44 [16];
+  
+  puVar2 = local_44;
+  for (iVar1 = 0x10; iVar1 != 0; iVar1 = iVar1 + -1) {
+    *puVar2 = 0xcccccccc;
+    puVar2 = puVar2 + 1;
+  }
+  *param_1 = param_2;
+  param_1[1] = param_3;
+  param_1[2] = param_2 + param_4;
+  param_1[3] = param_3 + param_5;
+  return;
+}
+
