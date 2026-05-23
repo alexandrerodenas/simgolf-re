@@ -1,30 +1,19 @@
-# Nettoyage du Code Décompilé — Plan de Travail (mis à jour)
+# Nettoyage du Code Décompilé — Plan de Travail (v3)
 
 ## État d'avancement
 
-| Phase | Module | Fichiers | Statut |
-|:------|:-------|:---------|:------:|
-| 1 | Structures (Tile, Terrain, TypeInfo) | `structs/tile.h` | ✅ 20+ offsets confirmés |
-| 1 | Set texture + variation | `terrain/set_texture.c` | ✅ rand()%maxVariation |
-| 2 | Render pipeline | `terrain/render.c` | ✅ 4 directions, PotSandBunker skip |
-| 2 | Render tile | `terrain/render_tile.c` | ✅ Multi-passes OpenGL |
-| 2 | Tile access | `terrain/tile_at.c` | ✅ Getters type/wall/elev |
-| 2 | Élévation | `terrain/elevation.c` | ✅ FUN_1000c7b0, corner switch 1/3/5/7 |
-| 3 | Caméra / Zoom | `terrain/camera.c` | ✅ Projection ortho |
-| 3 | Splines / Chemins | `terrain/paths.c` | ✅ Bézier + Cardinal |
-| 3 | Normales | `terrain/normals.c` | ✅ Dirty flag, propagation voisins |
-| 4 | System init/shutdown | `terrain/system.c` | ✅ OpenGL context, résolutions |
-| _5_ | _Audio (sound.dll)_ | — | 🔜 |
-| _6_ | _UI System_ | — | 🔜 |
-| _7_ | _Game State_ | — | 🔜 |
-| _8_ | _IA / Golf_ | — | 🔜 |
-| _9_ | _Économie_ | — | 🔜 |
-| _10_ | _Physique balle_ | — | 🔜 |
+| Module | Fichiers | Statut |
+|:-------|:---------|:------:|
+| **Terrain** (10 fichiers) | structs/tile.h, set_texture, render_tile, render, elevation, tile_at, camera, paths, normals, system | ✅ Complet |
+| **Audio** (1 fichier) | audio/sound.c | ✅ Structure + 3 devices |
+| **Game State** (1 fichier) | structs/game_state.h | ✅ Golfeur, Tournoi, Économie, Ball |
+| **Physique** (1 fichier) | physics/ball.c | ✅ Shot simulation |
+| UI System | — | 🔜 |
+| IA Golfeur | — | 🔜 |
+| Tournois / Scoring | — | 🔜 |
+| Init / Boucle | — | 🔜 |
 
-## Règles de vérification (inchangées)
-Avant d'écrire un nom de variable ou de structure :
-1. Vérifier dans le C Ghidra original
-2. Vérifier dans le désassemblage brut
-3. Vérifier dans REFERENCE_GUIDE.md
-4. Vérifier les constantes (0xde1=GL_TEXTURE_2D, etc.)
-5. Si une info manque → `/* TODO */` — pas d'invention
+## Statistiques
+- **13 fichiers nettoyés** dans `ref/cleaned/`
+- **~7 600 lignes** de code C documenté
+- **25+ offsets de structures vérifiés** contre le C Ghidra
