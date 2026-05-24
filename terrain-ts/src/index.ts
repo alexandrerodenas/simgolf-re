@@ -5,7 +5,7 @@
  * en TypeScript, prête à l'emploi.
  */
 
-export { Terrain, terrain, TERRAIN_FAMILY, MAX_VARIATION } from './terrain.js';
+export { Terrain, terrain, TERRAIN_FAMILY, MAX_VARIATION, getGeometryType } from './terrain.js';
 export { GLTileRenderer, type TileVertex } from './gl-renderer.js';
 export { parseLightingConfig } from './lighting.js';
 export { bezierSpline, cardinalSpline, isometricCircle } from './splines.js';

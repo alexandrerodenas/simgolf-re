@@ -123,7 +123,7 @@ const NUM_TEXTURED_TILES = 21; // string constant from Terrain.dll
  * D = diagonale (opposés égaux)
  * E = raide   (écart ≥ 2 entre adjacents)
  */
-function getGeometryType(e: [number, number, number, number]): string {
+export function getGeometryType(e: [number, number, number, number]): string {
   const [a, b, c, d] = e;
   if (Math.abs(a - b) >= 2 || Math.abs(b - c) >= 2 ||
       Math.abs(c - d) >= 2 || Math.abs(d - a) >= 2) return 'E';
