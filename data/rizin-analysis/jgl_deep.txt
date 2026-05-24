@@ -1,0 +1,205 @@
+=== jgl.dll — Deep Analysis ===
+
+=== File Info ===
+fd       3
+file     /home/roden/simgolf-re/data/exe/jgl.dll
+size     0x60000
+humansz  384K
+mode     r-x
+format   pe
+iorw     false
+block    0x100
+type     DLL (Dynamic Link Library)
+arch     x86
+cpu      N/A
+features N/A
+baddr    0x10000000
+binsz    0x00060000
+bintype  pe
+bits     32
+retguard false
+class    PE32
+cmp.csum 0x0006afc0
+compiled Thu Dec 20 00:25:13 2001 UTC+1
+compiler Linker 06.00
+dbg_file N/A
+endian   LE
+hdr.csum 0x00000000
+guid     N/A
+intrp    N/A
+laddr    0x00000000
+lang     c
+machine  i386
+maxopsz  16
+minopsz  1
+os       windows
+overlay  false
+cc       cdecl
+pcalign  1
+rpath    N/A
+signed   false
+subsys   Windows GUI
+stripped false
+crypto   false
+havecode true
+va       true
+sanitiz  false
+static   false
+linenum  true
+lsyms    true
+canary   false
+PIE      false
+RELROCS  false
+NX       false
+
+=== Sections ===
+     paddr    size      vaddr   vsize align perm name   type flags                                
+--------------------------------------------------------------------------------------------------
+0x00001000 0x52000 0x10001000 0x52000   0x0 -r-x .text       CNT_CODE
+0x00053000  0x2000 0x10053000  0x2000   0x0 -r-- .rdata      CNT_INITIALIZED_DATA
+0x00055000  0x3000 0x10055000  0x6000   0x0 -rw- .data       CNT_INITIALIZED_DATA
+0x00058000  0x8000 0x1005b000  0x8000   0x0 -r-- .reloc      CNT_INITIALIZED_DATA,MEM_DISCARDABLE
+
+=== Imports ===
+nth      vaddr bind type lib          name                        
+------------------------------------------------------------------
+  1 0x10053068 NONE FUNC KERNEL32.dll GetCurrentDirectoryA
+  2 0x1005306c NONE FUNC KERNEL32.dll QueryPerformanceCounter
+  3 0x10053070 NONE FUNC KERNEL32.dll FormatMessageA
+  4 0x10053074 NONE FUNC KERNEL32.dll GetModuleHandleA
+  5 0x10053078 NONE FUNC KERNEL32.dll OutputDebugStringA
+  6 0x1005307c NONE FUNC KERNEL32.dll UnmapViewOfFile
+  7 0x10053080 NONE FUNC KERNEL32.dll DeleteCriticalSection
+  8 0x10053084 NONE FUNC KERNEL32.dll InitializeCriticalSection
+  9 0x10053088 NONE FUNC KERNEL32.dll SetEndOfFile
+ 10 0x1005308c NONE FUNC KERNEL32.dll CloseHandle
+ 11 0x10053090 NONE FUNC KERNEL32.dll SetFilePointer
+ 12 0x10053094 NONE FUNC KERNEL32.dll CreateFileMappingA
+ 13 0x10053098 NONE FUNC KERNEL32.dll CreateFileA
+ 14 0x1005309c NONE FUNC KERNEL32.dll GetLastError
+ 15 0x100530a0 NONE FUNC KERNEL32.dll GetVersion
+ 16 0x100530a4 NONE FUNC KERNEL32.dll GetCommandLineA
+ 17 0x100530a8 NONE FUNC KERNEL32.dll RaiseException
+ 18 0x100530ac NONE FUNC KERNEL32.dll LCMapStringW
+ 19 0x100530b0 NONE FUNC KERNEL32.dll LCMapStringA
+ 20 0x100530b4 NONE FUNC KERNEL32.dll GetStringTypeW
+ 21 0x100530b8 NONE FUNC KERNEL32.dll GetStringTypeA
+ 22 0x100530bc NONE FUNC KERNEL32.dll MultiByteToWideChar
+ 23 0x100530c0 NONE FUNC KERNEL32.dll LoadLibraryA
+ 24 0x100530c4 NONE FUNC KERNEL32.dll GetOEMCP
+ 25 0x100530c8 NONE FUNC KERNEL32.dll GetACP
+ 26 0x100530cc NONE FUNC KERNEL32.dll GetCPInfo
+ 27 0x100530d0 NONE FUNC KERNEL32.dll FlushFileBuffers
+ 28 0x100530d4 NONE FUNC KERNEL32.dll SetStdHandle
+ 29 0x100530d8 NONE FUNC KERNEL32.dll MapViewOfFile
+ 30 0x100530dc NONE FUNC KERNEL32.dll IsBadCodePtr
+ 31 0x100530e0 NONE FUNC KERNEL32.dll GetProcAddress
+ 32 0x100530e4 NONE FUNC KERNEL32.dll ReadFile
+ 33 0x100530e8 NONE FUNC KERNEL32.dll WriteFile
+ 34 0x100530ec NONE FUNC KERNEL32.dll SetUnhandledExceptionFilter
+ 35 0x100530f0 NONE FUNC KERNEL32.dll GetEnvironmentStrings
+ 36 0x100530f4 NONE FUNC KERNEL32.dll WideCharToMultiByte
+ 37 0x100530f8 NONE FUNC KERNEL32.dll GetEnvironmentStringsW
+ 38 0x100530fc NONE FUNC KERNEL32.dll FreeEnvironmentStringsA
+ 39 0x10053100 NONE FUNC KERNEL32.dll GetModuleFileNameA
+ 40 0x10053104 NONE FUNC KERNEL32.dll FreeEnvironmentStringsW
+ 41 0x10053108 NONE FUNC KERNEL32.dll GetFileType
+ 42 0x1005310c NONE FUNC KERNEL32.dll RtlUnwind
+ 43 0x10053110 NONE FUNC KERNEL32.dll ExitProcess
+ 44 0x10053114 NONE FUNC KERNEL32.dll TerminateProcess
+ 45 0x10053118 NONE FUNC KERNEL32.dll GetCurrentProcess
+ 46 0x1005311c NONE FUNC KERNEL32.dll HeapFree
+ 47 0x10053120 NONE FUNC KERNEL32.dll HeapAlloc
+ 48 0x10053124 NONE FUNC KERNEL32.dll HeapReAlloc
+ 49 0x10053128 NONE FUNC KERNEL32.dll IsBadReadPtr
+ 50 0x1005312c NONE FUNC KERNEL32.dll GetStdHandle
+ 51 0x10053130 NONE FUNC KERNEL32.dll GetStartupInfoA
+ 52 0x10053134 NONE FUNC KERNEL32.dll HeapSize
+ 53 0x10053138 NONE FUNC KERNEL32.dll HeapDestroy
+ 54 0x1005313c NONE FUNC KERNEL32.dll HeapCreate
+ 55 0x10053140 NONE FUNC KERNEL32.dll VirtualFree
+ 56 0x10053144 NONE FUNC KERNEL32.dll VirtualAlloc
+ 57 0x10053148 NONE FUNC KERNEL32.dll IsBadWritePtr
+ 58 0x1005314c NONE FUNC KERNEL32.dll SetHandleCount
+  1 0x10053154 NONE FUNC USER32.dll   IntersectRect
+  2 0x10053158 NONE FUNC USER32.dll   MessageBoxA
+  3 0x1005315c NONE FUNC USER32.dll   EqualRect
+  4 0x10053160 NONE FUNC USER32.dll   ChangeDisplaySettingsA
+  5 0x10053164 NONE FUNC USER32.dll   UnregisterClassA
+  6 0x10053168 NONE FUNC USER32.dll   DestroyWindow
+  7 0x1005316c NONE FUNC USER32.dll   GetSystemMetrics
+  8 0x10053170 NONE FUNC USER32.dll   GetDC
+  9 0x10053174 NONE FUNC USER32.dll   CreateWindowExA
+ 10 0x10053178 NONE FUNC USER32.dll   EnumDisplaySettingsA
+ 11 0x1005317c NONE FUNC USER32.dll   RegisterClassA
+ 12 0x10053180 NONE FUNC USER32.dll   LoadIconA
+ 13 0x10053184 NONE FUNC USER32.dll   GetWindowRect
+ 14 0x10053188 NONE FUNC USER32.dll   InvalidateRect
+ 15 0x1005318c NONE FUNC USER32.dll   ScreenToClient
+ 16 0x10053190 NONE FUNC USER32.dll   GetCursorPos
+ 17 0x10053194 NONE FUNC USER32.dll   SetWindowPos
+ 18 0x10053198 NONE FUNC USER32.dll   ShowWindow
+ 19 0x1005319c NONE FUNC USER32.dll   PostMessageA
+ 20 0x100531a0 NONE FUNC USER32.dll   DefWindowProcA
+ 21 0x100531a4 NONE FUNC USER32.dll   ReleaseDC
+ 22 0x100531a8 NONE FUNC USER32.dll   EndPaint
+ 23 0x100531ac NONE FUNC USER32.dll   BeginPaint
+ 24 0x100531b0 NONE FUNC USER32.dll   PeekMessageA
+ 25 0x100531b4 NONE FUNC USER32.dll   WaitMessage
+ 26 0x100531b8 NONE FUNC USER32.dll   TranslateMessage
+ 27 0x100531bc NONE FUNC USER32.dll   DispatchMessageA
+  1 0x10053000 NONE FUNC GDI32.dll    StretchBlt
+  2 0x10053004 NONE FUNC GDI32.dll    RealizePalette
+  3 0x10053008 NONE FUNC GDI32.dll    DeleteObject
+  4 0x1005300c NONE FUNC GDI32.dll    GetTextExtentPoint32A
+  5 0x10053010 NONE FUNC GDI32.dll    SelectObject
+  6 0x10053014 NONE FUNC GDI32.dll    SetTextAlign
+  7 0x10053018 NONE FUNC GDI32.dll    DeleteDC
+  8 0x1005301c NONE FUNC GDI32.dll    CreateDIBSection
+  9 0x10053020 NONE FUNC GDI32.dll    CreateCompatibleDC
+ 10 0x10053024 NONE FUNC GDI32.dll    SetBkMode
+ 11 0x10053028 NONE FUNC GDI32.dll    CreateRectRgnIndirect
+ 12 0x1005302c NONE FUNC GDI32.dll    SetDIBColorTable
+ 13 0x10053030 NONE FUNC GDI32.dll    SelectClipRgn
+ 14 0x10053034 NONE FUNC GDI32.dll    SetTextColor
+ 15 0x10053038 NONE FUNC GDI32.dll    TextOutA
+ 16 0x1005303c NONE FUNC GDI32.dll    GetStockObject
+ 17 0x10053040 NONE FUNC GDI32.dll    GetTextMetricsA
+ 18 0x10053044 NONE FUNC GDI32.dll    CreatePalette
+ 19 0x10053048 NONE FUNC GDI32.dll    AnimatePalette
+ 20 0x1005304c NONE FUNC GDI32.dll    SelectPalette
+ 21 0x10053050 NONE FUNC GDI32.dll    CreateFontIndirectA
+ 22 0x10053054 NONE FUNC GDI32.dll    BitBlt
+ 23 0x10053058 NONE FUNC GDI32.dll    RemoveFontResourceA
+ 24 0x1005305c NONE FUNC GDI32.dll    CreateScalableFontResourceA
+ 25 0x10053060 NONE FUNC GDI32.dll    AddFontResourceA
+
+=== Exports ===
+nth      paddr      vaddr bind   type size lib     name                   
+--------------------------------------------------------------------------
+  1 0x0003ae70 0x1003ae70 GLOBAL FUNC    0 jgl.dll get_graphsy_object_ptr
+
+=== Entry Point ===
+            ;-- entry0:
+            0x10046d7a      push  ebp
+            0x10046d7b      mov   ebp, esp
+            0x10046d7d      push  ebx
+            0x10046d7e      mov   ebx, dword [ebp + 8]
+            0x10046d81      push  esi
+            0x10046d82      mov   esi, dword [ebp + 0xc]
+            0x10046d85      push  edi
+            0x10046d86      mov   edi, dword [ebp + 0x10]
+            0x10046d89      test  esi, esi
+        ┌─< 0x10046d8b      jne   0x10046d96
+        │   0x10046d8d      cmp   dword [0x10057dfc], 0                ; [0x10057dfc:4]=0
+       ┌──< 0x10046d94      jmp   0x10046dbc
+       │└─> 0x10046d96      cmp   esi, 1                               ; 1
+       │┌─< 0x10046d99      je    0x10046da0
+       ││   0x10046d9b      cmp   esi, 2                               ; 2
+      ┌───< 0x10046d9e      jne   0x10046dc2
+      ││└─> 0x10046da0      mov   eax, dword [0x1005a408]              ; [0x1005a408:4]=0
+      ││    0x10046da5      test  eax, eax
+      ││┌─< 0x10046da7      je    0x10046db2
+      │││   0x10046da9      push  edi
+
+=== Relocations ===
