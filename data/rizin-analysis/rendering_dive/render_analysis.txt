@@ -1,0 +1,3101 @@
+================================================================================
+TERRAIN.DLL — RENDERING PIPELINE DEEP DIVE
+================================================================================
+
+
+======================================================================
+FUNCTION: render @ 0x1000104b
+======================================================================
+┌ sym.Terrain.dll_public:_bool___thiscall_Terrain::render_class_Tile____float();
+└       ┌─< 0x1000104b      jmp   fcn.10005990                         ; public: bool __thiscall Terrain::render(class Tile *, float)
+        │   ; CALL XREF from fcn.100032f0 @ 0x1000334c
+┌ fcn.10001050();
+└      ┌──< 0x10001050      jmp   fcn.10015380
+       ││   ; XREFS(22)
+┌ fcn.10001055();
+└     ┌───< 0x10001055      jmp   fcn.1000afe0
+┌ sym.Terrain.dll_public:_int___thiscall_Terrain::getVariation_class_Tile();
+└    ┌────< 0x1000105a      jmp   fcn.10003390                         ; public: int __thiscall Terrain::getVariation(class Tile *)
+     ││││   ; CALL XREF from fcn.1000c2c0 @ 0x1000c36d
+     ││││   ; CALL XREF from fcn.1000f690 @ 0x1000f6b0
+┌ fcn.1000105f();
+└   ┌─────< 0x1000105f      jmp   fcn.1000f6e0
+   ┌──────< 0x10001064      jmp   fcn.10001c00
+   ││││││   ; CALL XREF from fcn.1000ba40 @ 0x1000ba5e
+┌ fcn.10001069();
+└ ┌───────< 0x10001069      jmp   fcn.1000bab0
+  ────────< 0x1000106e      jmp   fcn.1000bb70
+  │││││││   ; CALL XREF from fcn.10005230 @ 0x1000551f
+┌ fcn.10001073();
+└ ────────< 0x10001073      jmp   fcn.10005750
+  │││││││   ; CALL XREF from fcn.1000b750 @ 0x1000b774
+┌ fcn.10001078();
+└ ────────< 0x10001078      jmp   fcn.1000b9b0
+┌ sym.Terrain.dll_public:_bool___thiscall_Terrain::hasPath_class_Tile();
+└ ────────< 0x1000107d      jmp   fcn.1000a510                         ; public: bool __thiscall Terrain::hasPath(class Tile *)
+  │││││││   ; XREFS: CALL 0x10006647  CALL 0x100076a0  CALL 0x10008b96  
+  │││││││   ; XREFS: CALL 0x10008c59  CALL 0x10008d1c  CALL 0x10008dd2  
+  │││││││   ; XREFS: CALL 0x100094c2  CALL 0x10009621  CALL 0x10009780  
+  │││││││   ; XREFS: CALL 0x100098df  
+┌ fcn.10001082();
+└ ────────< 0x10001082      jmp   fcn.100381a0
+  ────────< 0x10001087      jmp   fcn.10001900
+  │││││││   ; XREFS(62)
+┌ sym.Terrain.dll_public:_class_Tile_____thiscall_Terrain::tileAt_int__int();
+└ ────────< 0x1000108c      jmp   fcn.10001d50                         ; public: class Tile * __thiscall Terrain::tileAt(int, int)
+  │││││││   ; XREFS: CALL 0x10006677  CALL 0x10008dff  CALL 0x1000990f  
+  │││││││   ; XREFS: CALL 0x1000af03  CALL 0x1000b243  CALL 0x10038230  
+  │││││││   ; XREFS: CALL 0x100383ed  CALL 0x100385aa  CALL 0x1003875a  
+┌ fcn.10001091();
+└ ────────< 0x10001091      jmp   fcn.1000af70
+  │││││││   ; XREFS: CALL 0x10013527  CALL 0x1001353d  CALL 0x1001355f  
+  │││││││   ; XREFS: CALL 0x10013575  CALL 0x10013597  CALL 0x100135ad  
+  │││││││   ; XREFS: CALL 0x100135cf  CALL 0x100135e5  CALL 0x10013607  
+┌ fcn.10001096();
+└ ────────< 0x10001096      jmp   fcn.10013670
+┌ sym.Terrain.dll_public:_class_Tile_____thiscall_Terrain::tileHit_int__int();
+└ ────────< 0x1000109b      jmp   fcn.1000ab30                         ; public: class Tile * __thiscall Terrain::tileHit(int, int)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::resetTerrain_void();
+└ ────────< 0x100010a0      jmp   fcn.1000aa10                         ; public: void __thiscall Terrain::resetTerrain(void)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::drawBezierSpline_int__int__int__int__int__int__int__int__int();
+└ ────────< 0x100010a5      jmp   fcn.10005230                         ; public: void __thiscall Terrain::drawBezierSpline(int, int, int, int, int, int, int, int, int)
+  │││││││   ; XREFS(68)
+┌ fcn.100010aa();
+└ ────────< 0x100010aa      jmp   fcn.100153c0
+  │││││││   ; XREFS: CALL 0x1000668c  CALL 0x10008e14  CALL 0x10009924  
+  │││││││   ; XREFS: CALL 0x1000b4ab  CALL 0x1000b826  CALL 0x1003827b  
+  │││││││   ; XREFS: CALL 0x1003832e  CALL 0x10038438  CALL 0x100384eb  
+  │││││││   ; XREFS: CALL 0x100385f5  CALL 0x100386a8  CALL 0x100387ab  
+  │││││││   ; XREFS: CALL 0x1003886a  
+┌ fcn.100010af();
+└ ────────< 0x100010af      jmp   fcn.1000b320
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::passCollarInfo_int___const__int();
+└ ────────< 0x100010b4      jmp   fcn.1000a880                         ; public: void __thiscall Terrain::passCollarInfo(int * const, int)
+  │││││││   ; CALL XREFS from fcn.100032f0 @ 0x10003334, 0x10003340
+┌ fcn.100010b9();
+└ ────────< 0x100010b9      jmp   fcn.10002f80
+  │││││││   ; CALL XREF from fcn.10002ae0 @ 0x10002b48
+┌ fcn.100010be();
+└ ────────< 0x100010be      jmp   fcn.1000ae60
+  │││││││   ; CALL XREF from fcn.1000a130 @ 0x1000a202
+┌ fcn.100010c3();
+└ ────────< 0x100010c3      jmp   fcn.10002060
+  │││││││   ; CALL XREF from fcn.100032b0 @ 0x100032cd
+┌ fcn.100010c8();
+└ ────────< 0x100010c8      jmp   fcn.10013fc0
+  ────────< 0x100010cd      jmp   fcn.10002750
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::calcAllNormals_class_Tile();
+└ ────────< 0x100010d2      jmp   fcn.1000a740                         ; public: void __thiscall Terrain::calcAllNormals(class Tile *)
+  │││││││   ; CALL XREF from fcn.1000a130 @ 0x1000a15b
+┌ fcn.100010d7();
+└ ────────< 0x100010d7      jmp   fcn.1000c560
+  │││││││   ; CALL XREF from fcn.1000a620 @ 0x1000a64a
+  │││││││   ; CALL XREF from fcn.1000a680 @ 0x1000a6be
+┌ fcn.100010dc();
+└ ────────< 0x100010dc      jmp   fcn.1000ccc0
+  │││││││   ; XREFS: CALL 0x1000af94  CALL 0x1000b173  CALL 0x1000b542  
+  │││││││   ; XREFS: CALL 0x1000b7c3  CALL 0x1000b839  CALL 0x1000b852  
+  │││││││   ; XREFS: CALL 0x1000b870  
+┌ fcn.100010e1();
+└ ────────< 0x100010e1      jmp   fcn.1000b600
+  │││││││   ; CALL XREF from fcn.10003390 @ 0x100033b0
+  │││││││   ; CALL XREFS from fcn.10015650 @ 0x100156a9, 0x100156ce
+┌ fcn.100010e6();
+└ ────────< 0x100010e6      jmp   fcn.10015340
+  │││││││   ; CALL XREF from fcn.10006410 @ 0x100065fc
+  │││││││   ; CALL XREF from fcn.1000a510 @ 0x1000a530
+┌ fcn.100010eb();
+└ ────────< 0x100010eb      jmp   fcn.10013320
+  │││││││   ; CALL XREFS from fcn.10003540 @ 0x1000362b, 0x10003645
+  │││││││   ; CALL XREFS from fcn.10006dd0 @ 0x10007192, 0x100071af
+┌ fcn.100010f0();
+└ ────────< 0x100010f0      jmp   fcn.10003a50
+  │││││││   ; CALL XREF from fcn.1000a6f0 @ 0x1000a716
+  │││││││   ; CALL XREF from fcn.1000a740 @ 0x1000a7ed
+┌ fcn.100010f5();
+└ ────────< 0x100010f5      jmp   fcn.10012cf0
+  │││││││   ; CALL XREF from fcn.1000a5c0 @ 0x1000a5ea
+┌ fcn.100010fa();
+└ ────────< 0x100010fa      jmp   fcn.1000c7b0
+  ────────< 0x100010ff      jmp   fcn.1000bba0
+  │││││││   ; CALL XREFS from fcn.10006850 @ 0x100069c0, 0x10006a72, 0x10006b27, 0x10006bc8
+┌ fcn.10001104();
+└ ────────< 0x10001104      jmp   fcn.10015500
+  │││││││   ; CALL XREF from fcn.1000bbd0 @ 0x1000bc10
+┌ fcn.10001109();
+└ ────────< 0x10001109      jmp   fcn.10001b60
+  │││││││   ; XREFS: CALL 0x100018d4  CALL 0x10034b0e  CALL 0x10034c09  
+  │││││││   ; XREFS: CALL 0x10034c8d  CALL 0x10034d14  CALL 0x10037954  
+┌ fcn.1000110e();
+└ ────────< 0x1000110e      jmp   fcn.10003f80
+  │││││││   ; XREFS: CALL 0x1000a285  CALL 0x1000a2bf  CALL 0x1000a2f9  
+  │││││││   ; XREFS: CALL 0x1000a333  CALL 0x1000c461  CALL 0x1000c479  
+  │││││││   ; XREFS: CALL 0x1000c491  CALL 0x1000c4a9  
+┌ fcn.10001113();
+└ ────────< 0x10001113      jmp   fcn.1000c520
+  │││││││   ; CALL XREF from fcn.1000a680 @ 0x1000a6b2
+┌ fcn.10001118();
+└ ────────< 0x10001118      jmp   fcn.10038900
+  │││││││   ; XREFS: CALL 0x100136e5  CALL 0x100136f7  CALL 0x10013709  
+  │││││││   ; XREFS: CALL 0x1001371b  CALL 0x100137cd  CALL 0x10013815  
+  │││││││   ; XREFS: CALL 0x10013891  CALL 0x100138d9  
+┌ fcn.1000111d();
+└ ────────< 0x1000111d      jmp   fcn.10015650
+  │││││││   ; CALL XREF from fcn.1000e6c0 @ 0x1000e957
+┌ fcn.10001122();
+└ ────────< 0x10001122      jmp   fcn.100108f0
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::lowerCorner_class_Tile____int();
+└ ────────< 0x10001127      jmp   fcn.1000a620                         ; public: void __thiscall Terrain::lowerCorner(class Tile *, int)
+  │││││││   ; CALL XREF from fcn.10006dd0 @ 0x10006e38
+┌ fcn.1000112c();
+└ ────────< 0x1000112c      jmp   fcn.10002510
+  │││││││   ; CALL XREF from fcn.1000a4b0 @ 0x1000a4e3
+┌ fcn.10001131();
+└ ────────< 0x10001131      jmp   fcn.100133a0
+┌ sym.Terrain.dll_public:_static_class_Terrain_____cdecl_Terrain::getInstance_void();
+└ ────────< 0x10001136      jmp   fcn.100031a0                         ; public: static class Terrain * __cdecl Terrain::getInstance(void)
+  │││││││   ; CALL XREF from fcn.1000c210 @ 0x1000c25d
+┌ fcn.1000113b();
+└ ────────< 0x1000113b      jmp   fcn.1000f690
+  │││││││   ; XREFS: CALL 0x100066a7  CALL 0x10008e2f  CALL 0x1000993f  
+  │││││││   ; XREFS: CALL 0x1000b494  CALL 0x10038250  CALL 0x100382ef  
+  │││││││   ; XREFS: CALL 0x1003834b  CALL 0x1003840d  CALL 0x100384ac  
+  │││││││   ; XREFS: CALL 0x10038508  CALL 0x100385ca  CALL 0x10038669  
+  │││││││   ; XREFS: CALL 0x100386c5  CALL 0x1003877d  CALL 0x10038828  
+  │││││││   ; XREFS: CALL 0x1003888a  
+┌ fcn.10001140();
+└ ────────< 0x10001140      jmp   fcn.1000b3d0
+  │││││││   ; XREFS(81)
+┌ fcn.10001145();
+└ ────────< 0x10001145      jmp   fcn.10006810
+  │││││││   ; DATA XREF from fcn.10002ae0 @ 0x10002b17
+  │││││││   ;-- data.1000114a:
+  │││││││   0x1000114a      jmp   fcn.1000c210
+  │││││││   ; CALL XREF from fcn.10014020 @ 0x10014073
+┌ fcn.1000114f();
+└ │││││││   0x1000114f      jmp   fcn.10014190
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::lowerEdgeCorner_class_Tile____int__class_Tile____float();
+└ │││││││   0x10001154      jmp   fcn.1000a680                         ; public: void __thiscall Terrain::lowerEdgeCorner(class Tile *, int, class Tile *, float)
+  │││││││   ; XREFS: CALL 0x1000b12c  CALL 0x1000b149  CALL 0x1000b157  
+  │││││││   ; XREFS: CALL 0x1000b168  CALL 0x1000b567  CALL 0x1000b847  
+  │││││││   ; XREFS: CALL 0x1000b862  CALL 0x1000b87b  
+┌ fcn.10001159();
+└ │││││││   0x10001159      jmp   fcn.1000b630
+  │││││││   ; CALL XREF from fcn.1000b100 @ 0x1000b120
+  │││││││   ; CALL XREF from fcn.1000b800 @ 0x1000b82d
+┌ fcn.1000115e();
+└ │││││││   0x1000115e      jmp   fcn.1000b710
+  │││││││   ; CALL XREF from fcn.1000a970 @ 0x1000a9b9
+  │││││││   ; CALL XREF from fcn.1000aa10 @ 0x1000aac3
+┌ fcn.10001163();
+└ │││││││   0x10001163      jmp   fcn.10003270
+  │││││││   ; CALL XREF from fcn.10014020 @ 0x10014062
+┌ fcn.10001168();
+└ │││││││   0x10001168      jmp   fcn.100149e0
+  │││││││   ; XREFS: CALL 0x10013988  CALL 0x100139e8  CALL 0x10013a47  
+  │││││││   ; XREFS: CALL 0x10013aa6  CALL 0x10013b06  CALL 0x10013b65  
+  │││││││   ; XREFS: CALL 0x10013bc4  CALL 0x10013c24  
+┌ fcn.1000116d();
+└ │││││││   0x1000116d      jmp   fcn.10012ec0
+  │││││││   ; XREFS: CALL 0x100105f5  CALL 0x10033d90  CALL 0x10034a27  
+  │││││││   ; XREFS: CALL 0x100354a9  CALL 0x10035588  CALL 0x100367ea  
+  │││││││   ; XREFS: CALL 0x1003694b  CALL 0x10036a38  
+┌ fcn.10001172();
+└ │││││││   0x10001172      jmp   fcn.10037930
+  │││││││   ; XREFS: CALL 0x100078dc  CALL 0x100079cf  CALL 0x10007af9  
+  │││││││   ; XREFS: CALL 0x10007b95  CALL 0x10007eb6  CALL 0x10007f24  
+  │││││││   ; XREFS: CALL 0x10007f92  
+┌ fcn.10001177();
+└ │││││││   0x10001177      jmp   fcn.1000bbd0
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::localRender_class_Tile____class_Tile____float();
+└ │││││││   0x1000117c      jmp   fcn.100089e0                         ; public: void __thiscall Terrain::localRender(class Tile *, class Tile *, float)
+  │││││││   ; CALL XREF from fcn.1000a970 @ 0x1000a990
+  │││││││   ; CALL XREF from fcn.1000aa10 @ 0x1000aa9a
+┌ fcn.10001181();
+└ │││││││   0x10001181      jmp   fcn.1000a130
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::drawCircle_class_Tile____float();
+└ │││││││   0x10001186      jmp   fcn.100042a0                         ; public: void __thiscall Terrain::drawCircle(class Tile *, float)
+  │││││││   ; CALL XREF from fcn.1000b9f0 @ 0x1000ba11
+┌ fcn.1000118b();
+└ │││││││   0x1000118b      jmp   fcn.1000bb40
+  │││││││   ; CALL XREF from fcn.10003a50 @ 0x10003a6c
+┌ fcn.10001190();
+└ │││││││   0x10001190      jmp   fcn.10001880
+  │││││││   ; XREFS: CALL 0x10007c3b  CALL 0x10007c83  CALL 0x10007ccb  
+  │││││││   ; XREFS: CALL 0x10007d13  CALL 0x10007d70  CALL 0x10007db8  
+  │││││││   ; XREFS: CALL 0x10007e00  CALL 0x10007e48  
+┌ fcn.10001195();
+└ │││││││   0x10001195      jmp   fcn.1000be30
+  │││││││   ; XREFS(77)
+┌ fcn.1000119a();
+└ │││││││   0x1000119a      jmp   fcn.10001f60
+  │││││││   ; CALL XREF from fcn.10002ae0 @ 0x10002c10
+  │││││││   ; CALL XREF from fcn.1000a130 @ 0x1000a1c8
+  │││││││   ; CALL XREF from fcn.1000aa10 @ 0x1000aa8e
+┌ fcn.1000119f();
+└ │││││││   0x1000119f      jmp   fcn.1000c2c0
+  │││││││   ; CALL XREF from fcn.1000c210 @ 0x1000c248
+┌ fcn.100011a4();
+└ │││││││   0x100011a4      jmp   fcn.10001fa0
+  │││││││   ; XREFS: CALL 0x10003651  CALL 0x100071be  CALL 0x10011e83  
+  │││││││   ; XREFS: CALL 0x100122a4  CALL 0x100122bc  CALL 0x100122d6  
+  │││││││   ; XREFS: CALL 0x1001254f  CALL 0x1001256a  CALL 0x100127fa  
+  │││││││   ; XREFS: CALL 0x10012815  CALL 0x10012a00  CALL 0x10012df6  
+┌ fcn.100011a9();
+└ │││││││   0x100011a9      jmp   fcn.10037c80
+  │││││││   ; CALL XREF from fcn.1000c210 @ 0x1000c26b
+┌ fcn.100011ae();
+└ │││││││   0x100011ae      jmp   fcn.1000f750
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::drawLine_int__int__int__int__int__int__int();
+└ │││││││   0x100011b3      jmp   fcn.100048a0                         ; public: void __thiscall Terrain::drawLine(int, int, int, int, int, int, int)
+  │││││││   ; XREFS: CALL 0x10006e6c  CALL 0x10006eab  CALL 0x10006ec6  
+  │││││││   ; XREFS: CALL 0x10006f6b  CALL 0x10006faa  CALL 0x10006fc5  
+  │││││││   ; XREFS: CALL 0x1000706a  CALL 0x100070a9  CALL 0x100070c4  
+┌ fcn.100011b8();
+└ │││││││   0x100011b8      jmp   fcn.10010590
+  │││││││   0x100011bd      jmp   fcn.10002900
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::changeLighting_int();
+└ │││││││   0x100011c2      jmp   fcn.10003540                         ; public: void __thiscall Terrain::changeLighting(int)
+  │││││││   ; CALL XREF from fcn.1000c2c0 @ 0x1000c37b
+  │││││││   ; CALL XREF from fcn.1000f750 @ 0x1000f770
+┌ fcn.100011c7();
+└ │││││││   0x100011c7      jmp   fcn.1000f7a0
+  │││││││   ; CALL XREF from fcn.1000aed0 @ 0x1000af21
+  │││││││   ; CALL XREF from fcn.1000b800 @ 0x1000b8a3
+┌ fcn.100011cc();
+└ │││││││   0x100011cc      jmp   fcn.1000b5b0
+  │││││││   ; CALL XREF from fcn.1000a560 @ 0x1000a58c
+┌ fcn.100011d1();
+└ │││││││   0x100011d1      jmp   fcn.10015400
+  │││││││   ; CALL XREF from fcn.1000a970 @ 0x1000a998
+  │││││││   ; CALL XREF from fcn.1000aa10 @ 0x1000aaa2
+┌ fcn.100011d6();
+└ │││││││   0x100011d6      jmp   fcn.100032b0
+  │││││││   ; CALL XREF from fcn.100381a0 @ 0x100381dc
+┌ fcn.100011db();
+└ │││││││   0x100011db      jmp   fcn.1000b280
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::pathUpdateRender_class_Tile____float();
+└ │││││││   0x100011e0      jmp   fcn.10006410                         ; public: void __thiscall Terrain::pathUpdateRender(class Tile *, float)
+  │││││││   ; CALL XREF from fcn.10006410 @ 0x100066cf
+  │││││││   ; CALL XREF from fcn.100089e0 @ 0x10008e57
+  │││││││   ; CALL XREF from fcn.10009270 @ 0x10009967
+┌ fcn.100011e5();
+└ │││││││   0x100011e5      jmp   fcn.1000b210
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::renderTile_int__int__int__int__int();
+└ │││││││   0x100011ea      jmp   fcn.100080e0                         ; public: void __thiscall Terrain::renderTile(int, int, int, int, int)
+  │││││││   ; CALL XREF from fcn.1000aed0 @ 0x1000af12
+  │││││││   ; CALL XREF from fcn.1000b210 @ 0x1000b252
+┌ fcn.100011ef();
+└ │││││││   0x100011ef      jmp   fcn.1000b470
+  │││││││   ; CALL XREF from fcn.10003270 @ 0x1000328d
+┌ fcn.100011f4();
+└ │││││││   0x100011f4      jmp   fcn.10013ff0
+  │││││││   ; CALL XREFS from fcn.100381a0 @ 0x10038219, 0x100383d6, 0x10038593, 0x10038743
+┌ fcn.100011f9();
+└ │││││││   0x100011f9      jmp   fcn.1000b090
+  │││││││   ; CALL XREF from fcn.1000b280 @ 0x1000b2a0
+┌ fcn.100011fe();
+└ │││││││   0x100011fe      jmp   fcn.1000b6e0
+  │││││││   ; CALL XREF from fcn.10014020 @ 0x100140b7
+┌ fcn.10001203();
+└ │││││││   0x10001203      jmp   fcn.1000d540
+  │││││││   ; CALL XREFS from fcn.10005750 @ 0x1000576f, 0x10005784, 0x10005797
+┌ fcn.10001208();
+└ │││││││   0x10001208      jmp   fcn.100058a0
+  │││││││   ; CALL XREF from fcn.10001de0 @ 0x10001e0a
+┌ fcn.1000120d();
+└ │││││││   0x1000120d      jmp   fcn.10001e40
+  │││││││   ; XREFS: CALL 0x1000665b  CALL 0x100076b8  CALL 0x10008baa  
+  │││││││   ; XREFS: CALL 0x10008c6d  CALL 0x10008d30  CALL 0x10008de6  
+  │││││││   ; XREFS: CALL 0x100094d6  CALL 0x10009635  CALL 0x10009794  
+  │││││││   ; XREFS: CALL 0x100098f3  
+┌ fcn.10001212();
+└ │││││││   0x10001212      jmp   fcn.10007380
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::closeSystem_void();
+└ │││││││   0x10001217      jmp   fcn.10009ba0                         ; public: void __thiscall Terrain::closeSystem(void)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::setType_class_Tile____int__int();
+└ │││││││   0x1000121c      jmp   fcn.100032f0                         ; public: void __thiscall Terrain::setType(class Tile *, int, int)
+  │││││││   ; CALL XREF from fcn.1000b320 @ 0x1000b348
+┌ fcn.10001221();
+└ │││││││   0x10001221      jmp   fcn.1000b7a0
+  │││││││   ; CALL XREF from fcn.1000b470 @ 0x1000b4ba
+┌ fcn.10001226();
+└ │││││││   0x10001226      jmp   fcn.1000b800
+  │││││││   ; CALL XREF from fcn.10001af0 @ 0x10001b33
+  │││││││   ; CALL XREF from fcn.10002ae0 @ 0x10002edc
+  │││││││   ; CALL XREF from fcn.10009c80 @ 0x10009dc2
+┌ fcn.1000122b();
+└ │││││││   0x1000122b      jmp   fcn.100076e0
+  │││││││   ; CALL XREF from fcn.10014020 @ 0x100140cf
+┌ fcn.10001230();
+└ │││││││   0x10001230      jmp   fcn.1000de60
+  │││││││   ; CALL XREF from fcn.100032f0 @ 0x10003358
+┌ fcn.10001235();
+└ │││││││   0x10001235      jmp   fcn.10014020
+  │││││││   ; CALL XREF from fcn.1000b800 @ 0x1000b897
+┌ fcn.1000123a();
+└ │││││││   0x1000123a      jmp   fcn.1000b9f0
+
+
+======================================================================
+FUNCTION: localRender @ 0x1000117c
+======================================================================
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::localRender_class_Tile____class_Tile____float();
+└       ┌─< 0x1000117c      jmp   fcn.100089e0                         ; public: void __thiscall Terrain::localRender(class Tile *, class Tile *, float)
+        │   ; CALL XREF from fcn.1000a970 @ 0x1000a990
+        │   ; CALL XREF from fcn.1000aa10 @ 0x1000aa9a
+┌ fcn.10001181();
+└      ┌──< 0x10001181      jmp   fcn.1000a130
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::drawCircle_class_Tile____float();
+└     ┌───< 0x10001186      jmp   fcn.100042a0                         ; public: void __thiscall Terrain::drawCircle(class Tile *, float)
+      │││   ; CALL XREF from fcn.1000b9f0 @ 0x1000ba11
+┌ fcn.1000118b();
+└    ┌────< 0x1000118b      jmp   fcn.1000bb40
+     ││││   ; CALL XREF from fcn.10003a50 @ 0x10003a6c
+┌ fcn.10001190();
+└   ┌─────< 0x10001190      jmp   fcn.10001880
+    │││││   ; XREFS: CALL 0x10007c3b  CALL 0x10007c83  CALL 0x10007ccb  
+    │││││   ; XREFS: CALL 0x10007d13  CALL 0x10007d70  CALL 0x10007db8  
+    │││││   ; XREFS: CALL 0x10007e00  CALL 0x10007e48  
+┌ fcn.10001195();
+└  ┌──────< 0x10001195      jmp   fcn.1000be30
+   ││││││   ; XREFS(77)
+┌ fcn.1000119a();
+└ ┌───────< 0x1000119a      jmp   fcn.10001f60
+  │││││││   ; CALL XREF from fcn.10002ae0 @ 0x10002c10
+  │││││││   ; CALL XREF from fcn.1000a130 @ 0x1000a1c8
+  │││││││   ; CALL XREF from fcn.1000aa10 @ 0x1000aa8e
+┌ fcn.1000119f();
+└ ────────< 0x1000119f      jmp   fcn.1000c2c0
+  │││││││   ; CALL XREF from fcn.1000c210 @ 0x1000c248
+┌ fcn.100011a4();
+└ ────────< 0x100011a4      jmp   fcn.10001fa0
+  │││││││   ; XREFS: CALL 0x10003651  CALL 0x100071be  CALL 0x10011e83  
+  │││││││   ; XREFS: CALL 0x100122a4  CALL 0x100122bc  CALL 0x100122d6  
+  │││││││   ; XREFS: CALL 0x1001254f  CALL 0x1001256a  CALL 0x100127fa  
+  │││││││   ; XREFS: CALL 0x10012815  CALL 0x10012a00  CALL 0x10012df6  
+┌ fcn.100011a9();
+└ ────────< 0x100011a9      jmp   fcn.10037c80
+  │││││││   ; CALL XREF from fcn.1000c210 @ 0x1000c26b
+┌ fcn.100011ae();
+└ ────────< 0x100011ae      jmp   fcn.1000f750
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::drawLine_int__int__int__int__int__int__int();
+└ ────────< 0x100011b3      jmp   fcn.100048a0                         ; public: void __thiscall Terrain::drawLine(int, int, int, int, int, int, int)
+  │││││││   ; XREFS: CALL 0x10006e6c  CALL 0x10006eab  CALL 0x10006ec6  
+  │││││││   ; XREFS: CALL 0x10006f6b  CALL 0x10006faa  CALL 0x10006fc5  
+  │││││││   ; XREFS: CALL 0x1000706a  CALL 0x100070a9  CALL 0x100070c4  
+┌ fcn.100011b8();
+└ ────────< 0x100011b8      jmp   fcn.10010590
+  ────────< 0x100011bd      jmp   fcn.10002900
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::changeLighting_int();
+└ ────────< 0x100011c2      jmp   fcn.10003540                         ; public: void __thiscall Terrain::changeLighting(int)
+  │││││││   ; CALL XREF from fcn.1000c2c0 @ 0x1000c37b
+  │││││││   ; CALL XREF from fcn.1000f750 @ 0x1000f770
+┌ fcn.100011c7();
+└ ────────< 0x100011c7      jmp   fcn.1000f7a0
+  │││││││   ; CALL XREF from fcn.1000aed0 @ 0x1000af21
+  │││││││   ; CALL XREF from fcn.1000b800 @ 0x1000b8a3
+┌ fcn.100011cc();
+└ ────────< 0x100011cc      jmp   fcn.1000b5b0
+  │││││││   ; CALL XREF from fcn.1000a560 @ 0x1000a58c
+┌ fcn.100011d1();
+└ ────────< 0x100011d1      jmp   fcn.10015400
+  │││││││   ; CALL XREF from fcn.1000a970 @ 0x1000a998
+  │││││││   ; CALL XREF from fcn.1000aa10 @ 0x1000aaa2
+┌ fcn.100011d6();
+└ ────────< 0x100011d6      jmp   fcn.100032b0
+  │││││││   ; CALL XREF from fcn.100381a0 @ 0x100381dc
+┌ fcn.100011db();
+└ ────────< 0x100011db      jmp   fcn.1000b280
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::pathUpdateRender_class_Tile____float();
+└ ────────< 0x100011e0      jmp   fcn.10006410                         ; public: void __thiscall Terrain::pathUpdateRender(class Tile *, float)
+  │││││││   ; CALL XREF from fcn.10006410 @ 0x100066cf
+  │││││││   ; CALL XREF from fcn.100089e0 @ 0x10008e57
+  │││││││   ; CALL XREF from fcn.10009270 @ 0x10009967
+┌ fcn.100011e5();
+└ ────────< 0x100011e5      jmp   fcn.1000b210
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::renderTile_int__int__int__int__int();
+└ ────────< 0x100011ea      jmp   fcn.100080e0                         ; public: void __thiscall Terrain::renderTile(int, int, int, int, int)
+  │││││││   ; CALL XREF from fcn.1000aed0 @ 0x1000af12
+  │││││││   ; CALL XREF from fcn.1000b210 @ 0x1000b252
+┌ fcn.100011ef();
+└ ────────< 0x100011ef      jmp   fcn.1000b470
+  │││││││   ; CALL XREF from fcn.10003270 @ 0x1000328d
+┌ fcn.100011f4();
+└ ────────< 0x100011f4      jmp   fcn.10013ff0
+  │││││││   ; CALL XREFS from fcn.100381a0 @ 0x10038219, 0x100383d6, 0x10038593, 0x10038743
+┌ fcn.100011f9();
+└ ────────< 0x100011f9      jmp   fcn.1000b090
+  │││││││   ; CALL XREF from fcn.1000b280 @ 0x1000b2a0
+┌ fcn.100011fe();
+└ ────────< 0x100011fe      jmp   fcn.1000b6e0
+  │││││││   ; CALL XREF from fcn.10014020 @ 0x100140b7
+┌ fcn.10001203();
+└ ────────< 0x10001203      jmp   fcn.1000d540
+  │││││││   ; CALL XREFS from fcn.10005750 @ 0x1000576f, 0x10005784, 0x10005797
+┌ fcn.10001208();
+└ ────────< 0x10001208      jmp   fcn.100058a0
+  │││││││   ; CALL XREF from fcn.10001de0 @ 0x10001e0a
+┌ fcn.1000120d();
+└ ────────< 0x1000120d      jmp   fcn.10001e40
+  │││││││   ; XREFS: CALL 0x1000665b  CALL 0x100076b8  CALL 0x10008baa  
+  │││││││   ; XREFS: CALL 0x10008c6d  CALL 0x10008d30  CALL 0x10008de6  
+  │││││││   ; XREFS: CALL 0x100094d6  CALL 0x10009635  CALL 0x10009794  
+  │││││││   ; XREFS: CALL 0x100098f3  
+┌ fcn.10001212();
+└ ────────< 0x10001212      jmp   fcn.10007380
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::closeSystem_void();
+└ ────────< 0x10001217      jmp   fcn.10009ba0                         ; public: void __thiscall Terrain::closeSystem(void)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::setType_class_Tile____int__int();
+└ ────────< 0x1000121c      jmp   fcn.100032f0                         ; public: void __thiscall Terrain::setType(class Tile *, int, int)
+  │││││││   ; CALL XREF from fcn.1000b320 @ 0x1000b348
+┌ fcn.10001221();
+└ ────────< 0x10001221      jmp   fcn.1000b7a0
+  │││││││   ; CALL XREF from fcn.1000b470 @ 0x1000b4ba
+┌ fcn.10001226();
+└ ────────< 0x10001226      jmp   fcn.1000b800
+  │││││││   ; CALL XREF from fcn.10001af0 @ 0x10001b33
+  │││││││   ; CALL XREF from fcn.10002ae0 @ 0x10002edc
+  │││││││   ; CALL XREF from fcn.10009c80 @ 0x10009dc2
+┌ fcn.1000122b();
+└ ────────< 0x1000122b      jmp   fcn.100076e0
+  │││││││   ; CALL XREF from fcn.10014020 @ 0x100140cf
+┌ fcn.10001230();
+└ ────────< 0x10001230      jmp   fcn.1000de60
+  │││││││   ; CALL XREF from fcn.100032f0 @ 0x10003358
+┌ fcn.10001235();
+└ ────────< 0x10001235      jmp   fcn.10014020
+  │││││││   ; CALL XREF from fcn.1000b800 @ 0x1000b897
+┌ fcn.1000123a();
+└ ────────< 0x1000123a      jmp   fcn.1000b9f0
+  │││││││   ; CALL XREFS from fcn.100381a0 @ 0x100381fe, 0x100383bb, 0x10038578, 0x10038728
+┌ fcn.1000123f();
+└ ────────< 0x1000123f      jmp   fcn.1000b040
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::drawCardinalSpline_int__int__int__int__int__int__int__int__int__int__int();
+└ ────────< 0x10001244      jmp   fcn.10004c70                         ; public: void __thiscall Terrain::drawCardinalSpline(int, int, int, int, int, int, int, int, int, int, int)
+  │││││││   ; CALL XREF from fcn.10009c80 @ 0x10009dba
+┌ fcn.10001249();
+└ ────────< 0x10001249      jmp   fcn.100037e0
+┌ sym.Terrain.dll_public:_int___thiscall_Terrain::getType_class_Tile();
+└ ────────< 0x1000124e      jmp   fcn.10001f10                         ; public: int __thiscall Terrain::getType(class Tile *)
+  │││││││   ; CALL XREF from fcn.10005990 @ 0x10005aa5
+  │││││││   ; CALL XREF from fcn.100089e0 @ 0x10008aec
+  │││││││   ; CALL XREF from fcn.10009270 @ 0x10009363
+  │││││││   ; CALL XREF from fcn.10038900 @ 0x10038a0d
+┌ fcn.10001253();
+└ ────────< 0x10001253      jmp   fcn.1000adc0
+  │││││││   ; CALL XREFS from fcn.10014020 @ 0x100140c5, 0x100140db, 0x100140fd
+┌ fcn.10001258();
+└ ────────< 0x10001258      jmp   fcn.1000d480
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::updatePath_int__int__int();
+└ ────────< 0x1000125d      jmp   fcn.1000a4b0                         ; public: void __thiscall Terrain::updatePath(int, int, int)
+  │││││││   ; XREFS: CALL 0x1001395f  CALL 0x100139bf  CALL 0x10013a1f  
+  │││││││   ; XREFS: CALL 0x10013a7d  CALL 0x10013add  CALL 0x10013b3d  
+  │││││││   ; XREFS: CALL 0x10013b9b  CALL 0x10013bfb  
+┌ fcn.10001262();
+└ ────────< 0x10001262      jmp   fcn.10013dd0
+  │││││││   ; CALL XREF from fcn.1000b910 @ 0x1000b933
+┌ fcn.10001267();
+└ ────────< 0x10001267      jmp   fcn.1000bae0
+  │││││││   ; XREFS(27)
+┌ fcn.1000126c();
+└ ────────< 0x1000126c      jmp   fcn.1000b2d0
+  │││││││   ; CALL XREF from fcn.1000b100 @ 0x1000b188
+  │││││││   ; CALL XREF from fcn.1000b2d0 @ 0x1000b2f3
+  │││││││   ; CALL XREF from fcn.1000b800 @ 0x1000b88b
+┌ fcn.10001271();
+└ ────────< 0x10001271      jmp   fcn.1000b660
+  │││││││   ; CALL XREF from fcn.1000b500 @ 0x1000b522
+┌ fcn.10001276();
+└ ────────< 0x10001276      jmp   fcn.1000b910
+  │││││││   ; CALL XREF from fcn.10010590 @ 0x100105b9
+  │││││││   ; CALL XREF from fcn.10033d70 @ 0x10033d7b
+  │││││││   ; CALL XREF from fcn.10035440 @ 0x10035453
+  │││││││   ; CALL XREF from fcn.10036790 @ 0x100367a3
+  │││││││   ; CALL XREF from fcn.100369a0 @ 0x100369b3
+┌ fcn.1000127b();
+└ │││││││   0x1000127b      jmp   fcn.100018b0
+  │││││││   ; CALL XREF from fcn.10003090 @ 0x1000312d
+  │││││││   ; CALL XREF from fcn.10038900 @ +0x87d7
+  │││││││   ; CALL XREF from data.100410dd @ +0x4a
+┌ fcn.10001280();
+└ │││││││   0x10001280      jmp   fcn.1000aed0
+  │││││││   ; CALL XREF from fcn.10013670 @ 0x10013746
+┌ fcn.10001285();
+└ │││││││   0x10001285      jmp   fcn.100154a0
+  │││││││   ; CALL XREFS from fcn.1000a3e0 @ 0x1000a40c, 0x1000a41c
+┌ fcn.1000128a();
+└ │││││││   0x1000128a      jmp   fcn.10013400
+  │││││││   ; CALL XREF from fcn.1000b3d0 @ 0x1000b3f4
+  │││││││   ; CALL XREFS from fcn.100381a0 @ 0x10038298, 0x10038455, 0x10038612, 0x100387cb
+┌ fcn.1000128f();
+└ │││││││   0x1000128f      jmp   fcn.1000b380
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::setZoomLevel_int();
+└ │││││││   0x10001294      jmp   fcn.10008fc0                         ; public: void __thiscall Terrain::setZoomLevel(int)
+  │││││││   ; XREFS: CALL 0x10009398  CALL 0x100093aa  CALL 0x100094f7  
+  │││││││   ; XREFS: CALL 0x10009509  CALL 0x10009656  CALL 0x10009668  
+  │││││││   ; XREFS: CALL 0x100097b5  CALL 0x100097c7  
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::stripRender_class_Tile____int__float();
+└ │││││││   0x10001299      jmp   fcn.10009270                         ; public: void __thiscall Terrain::stripRender(class Tile *, int, float)
+  │││││││   ; CALL XREF from fcn.1000ae60 @ 0x1000ae8e
+  │││││││   ; CALL XREF from fcn.1000b100 @ 0x1000b13e
+┌ fcn.1000129e();
+└ │││││││   0x1000129e      jmp   fcn.1000b500
+  │││││││   ; CALL XREF from fcn.10038900 @ 0x10038e62
+┌ fcn.100012a3();
+└ │││││││   0x100012a3      jmp   fcn.10003830
+  │││││││   ; XREFS: CALL 0x1000b0c7  CALL 0x100382cf  CALL 0x1003839b  
+  │││││││   ; XREFS: CALL 0x1003848c  CALL 0x10038558  CALL 0x10038649  
+  │││││││   ; XREFS: CALL 0x10038715  CALL 0x10038805  CALL 0x100388da  
+┌ fcn.100012a8();
+└ │││││││   0x100012a8      jmp   fcn.1000b100
+  │││││││   ; XREFS(81)
+┌ fcn.100012ad();
+└ │││││││   0x100012ad      jmp   fcn.10005960
+  │││││││   ; CALL XREF from fcn.1000e6c0 @ 0x1000e95f
+┌ fcn.100012b2();
+└ │││││││   0x100012b2      jmp   fcn.1000f7f0
+  │││││││   ; XREFS: CALL 0x10002158  CALL 0x10002180  CALL 0x100021a2  
+  │││││││   ; XREFS: CALL 0x100021d3  CALL 0x100021fe  CALL 0x1000222f  
+  │││││││   ; XREFS: CALL 0x100022f5  CALL 0x1000231d  CALL 0x10002348  
+  │││││││   ; XREFS: CALL 0x10002379  CALL 0x100023a4  CALL 0x100023cc  
+┌ fcn.100012b7();
+└ │││││││   0x100012b7      jmp   fcn.10002010
+  │││││││   ; XREFS: CALL 0x100073e5  CALL 0x1000742b  CALL 0x10007483  
+  │││││││   ; XREFS: CALL 0x100074c9  CALL 0x10007521  CALL 0x10007567  
+  │││││││   ; XREFS: CALL 0x100075b2  CALL 0x100075f8  
+┌ sym.Terrain.dll_public:_bool___thiscall_Terrain::getWall_class_Tile____int();
+└ │││││││   0x100012bc      jmp   fcn.10001e80                         ; public: bool __thiscall Terrain::getWall(class Tile *, int)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::layPath_class_Tile____int__int();
+└ │││││││   0x100012c1      jmp   fcn.1000a3e0                         ; public: void __thiscall Terrain::layPath(class Tile *, int, int)
+  │││││││   ; XREFS(39)
+┌ fcn.100012c6();
+└ │││││││   0x100012c6      jmp   fcn.10011d60
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::initTerrain_void();
+└ │││││││   0x100012cb      jmp   fcn.1000a970                         ; public: void __thiscall Terrain::initTerrain(void)
+  │││││││   ; CALL XREF from fcn.10004c70 @ 0x10004ecf
+┌ fcn.100012d0();
+└ │││││││   0x100012d0      jmp   fcn.10005090
+  │││││││   ; CALL XREF from fcn.100031a0 @ 0x100031fa
+┌ fcn.100012d5();
+└ │││││││   0x100012d5      jmp   fcn.10002ae0
+  │││││││   ; CALL XREF from fcn.10001e80 @ 0x10001ea4
+┌ fcn.100012da();
+└ │││││││   0x100012da      jmp   fcn.10001ed0
+  │││││││   ; CALL XREF from fcn.1000bbd0 @ 0x1000bbf0
+┌ fcn.100012df();
+└ │││││││   0x100012df      jmp   fcn.100016a0
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::initSystem_int__int__struct_HDC______bool();
+└ │││││││   0x100012e4      jmp   fcn.10009c80                         ; public: void __thiscall Terrain::initSystem(int, int, struct HDC__ *, bool)
+  │││││││   ; CALL XREF from fcn.10014020 @ 0x100140e5
+┌ fcn.100012e9();
+└ │││││││   0x100012e9      jmp   fcn.10015230
+  │││││││   ; CALL XREF from fcn.10001af0 @ 0x10001b2b
+  │││││││   ; CALL XREF from fcn.10003090 @ 0x1000311b
+  │││││││   ; CALL XREF from fcn.100076e0 @ 0x10007772
+  │││││││   ; CALL XREF from fcn.10009ba0 @ 0x10009c3d
+┌ fcn.100012ee();
+└ │││││││   0x100012ee      jmp   fcn.100380a0
+  │││││││   ; CALL XREF from fcn.10009c80 @ 0x10009db2
+┌ fcn.100012f3();
+└ │││││││   0x100012f3      jmp   fcn.100033e0
+  │││││││   ; CALL XREF from fcn.10008fc0 @ 0x100090a1
+  │││││││   ; CALL XREF from fcn.10009c80 @ 0x10009dd2
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::resize_int__int();
+└ │││││││   0x100012f8      jmp   fcn.10009ed0                         ; public: void __thiscall Terrain::resize(int, int)
+  │││││││   ; CALL XREFS from fcn.10003980 @ 0x100039bd, 0x100039cc, 0x100039db, 0x100039ea, 0x100039f9
+┌ fcn.100012fd();
+└ │││││││   0x100012fd      jmp   fcn.10006dd0
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::_destructor_void();
+└ │││││││   0x10001302      jmp   fcn.10003090                         ; public: void __thiscall Terrain::~destructor(void)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::calcNormals_class_Tile();
+└ │││││││   0x10001307      jmp   fcn.1000a6f0                         ; public: void __thiscall Terrain::calcNormals(class Tile *)
+  │││││││   ; CALL XREF from fcn.10001af0 @ 0x10001b23
+  │││││││   ; CALL XREF from fcn.100037e0 @ 0x10003800
+┌ fcn.1000130c();
+└ │││││││   0x1000130c      jmp   fcn.10003980
+  │││││││   ; XREFS: CALL 0x1001377b  CALL 0x100137ae  CALL 0x100137f6  
+  │││││││   ; XREFS: CALL 0x1001383f  CALL 0x10013872  CALL 0x100138ba  
+  │││││││   ; XREFS: CALL 0x100138ff  CALL 0x1001392f  
+┌ fcn.10001311();
+└ │││││││   0x10001311      jmp   fcn.100155b0
+  │││││││   ; XREFS: CALL 0x10005c1b  CALL 0x10005cd5  CALL 0x10005d8f  
+  │││││││   ; XREFS: CALL 0x10005e3c  CALL 0x1000662a  CALL 0x1000767f  
+  │││││││   ; XREFS: CALL 0x100094a5  CALL 0x10009604  CALL 0x10009763  
+  │││││││   ; XREFS: CALL 0x100098c2  
+┌ fcn.10001316();
+└ │││││││   0x10001316      jmp   fcn.10006850
+  │││││││   ; CALL XREFS from fcn.10012cf0 @ 0x10012d28, 0x10012d34, 0x10012d40, 0x10012d4c
+┌ fcn.1000131b();
+└ │││││││   0x1000131b      jmp   fcn.10011ef0
+  │││││││   ; CALL XREF from fcn.1000b690 @ 0x1000b6b5
+┌ fcn.10001320();
+└ │││││││   0x10001320      jmp   fcn.1000ba40
+  │││││││   ; CALL XREFS from fcn.10005750 @ 0x100057b9, 0x100057e6
+┌ fcn.10001325();
+└ │││││││   0x10001325      jmp   fcn.10005840
+  │││││││   ; CALL XREF from fcn.1000a450 @ 0x1000a47f
+┌ fcn.1000132a();
+└ │││││││   0x1000132a      jmp   fcn.10013360
+  │││││││   ; XREFS: CALL 0x10007917  CALL 0x10007a0a  CALL 0x10007b35  
+  │││││││   ; XREFS: CALL 0x10007bcc  CALL 0x10007c4a  CALL 0x10007c92  
+  │││││││   ; XREFS: CALL 0x10007cda  CALL 0x10007d22  CALL 0x10007d7f  
+  │││││││   ; XREFS: CALL 0x10007dc7  CALL 0x10007e0f  CALL 0x10007e57  
+  │││││││   ; XREFS: CALL 0x10007ec5  CALL 0x10007f33  CALL 0x10007fa1  
+┌ fcn.1000132f();
+└ │││││││   0x1000132f      jmp   fcn.10012e70
+  │││││││   ; CALL XREF from fcn.1000b5b0 @ 0x1000b5d6
+┌ fcn.10001334();
+└ │││││││   0x10001334      jmp   fcn.1000b960
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::setSplineHeight_float();
+└ │││││││   0x10001339      jmp   fcn.1000a840                         ; public: void __thiscall Terrain::setSplineHeight(float)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::elevateCorner_class_Tile____int();
+└ │││││││   0x1000133e      jmp   fcn.1000a5c0                         ; public: void __thiscall Terrain::elevateCorner(class Tile *, int)
+┌ sym.Terrain.dll_public:_int___thiscall_Terrain::getElevation_class_Tile____int();
+└ │││││││   0x10001343      jmp   fcn.10001de0                         ; public: int __thiscall Terrain::getElevation(class Tile *, int)
+  │││││││   ; CALL XREF from fcn.1000c3d0 @ 0x1000c4bb
+  │││││││   ; CALL XREFS from data.1004117c @ +0x1a, +0x3a
+┌ fcn.10001348();
+└ │││││││   0x10001348      jmp   fcn.10001fe0
+  │││││││   ; CALL XREF from fcn.100108f0 @ 0x100113da
+┌ fcn.1000134d();
+└ │││││││   0x1000134d      jmp   fcn.100116d0
+  │││││││   0x10001352      int3
+  │││││││   0x10001353      int3
+  │││││││   0x10001354      int3
+  │││││││   0x10001355      int3
+  │││││││   0x10001356      int3
+  │││││││   0x10001357      int3
+
+
+======================================================================
+FUNCTION: renderTile @ 0x100011ea
+======================================================================
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::renderTile_int__int__int__int__int();
+└       ┌─< 0x100011ea      jmp   fcn.100080e0                         ; public: void __thiscall Terrain::renderTile(int, int, int, int, int)
+        │   ; CALL XREF from fcn.1000aed0 @ 0x1000af12
+        │   ; CALL XREF from fcn.1000b210 @ 0x1000b252
+┌ fcn.100011ef();
+└      ┌──< 0x100011ef      jmp   fcn.1000b470
+       ││   ; CALL XREF from fcn.10003270 @ 0x1000328d
+┌ fcn.100011f4();
+└     ┌───< 0x100011f4      jmp   fcn.10013ff0
+      │││   ; CALL XREFS from fcn.100381a0 @ 0x10038219, 0x100383d6, 0x10038593, 0x10038743
+┌ fcn.100011f9();
+└    ┌────< 0x100011f9      jmp   fcn.1000b090
+     ││││   ; CALL XREF from fcn.1000b280 @ 0x1000b2a0
+┌ fcn.100011fe();
+└   ┌─────< 0x100011fe      jmp   fcn.1000b6e0
+    │││││   ; CALL XREF from fcn.10014020 @ 0x100140b7
+┌ fcn.10001203();
+└  ┌──────< 0x10001203      jmp   fcn.1000d540
+   ││││││   ; CALL XREFS from fcn.10005750 @ 0x1000576f, 0x10005784, 0x10005797
+┌ fcn.10001208();
+└ ┌───────< 0x10001208      jmp   fcn.100058a0
+  │││││││   ; CALL XREF from fcn.10001de0 @ 0x10001e0a
+┌ fcn.1000120d();
+└ ────────< 0x1000120d      jmp   fcn.10001e40
+  │││││││   ; XREFS: CALL 0x1000665b  CALL 0x100076b8  CALL 0x10008baa  
+  │││││││   ; XREFS: CALL 0x10008c6d  CALL 0x10008d30  CALL 0x10008de6  
+  │││││││   ; XREFS: CALL 0x100094d6  CALL 0x10009635  CALL 0x10009794  
+  │││││││   ; XREFS: CALL 0x100098f3  
+┌ fcn.10001212();
+└ ────────< 0x10001212      jmp   fcn.10007380
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::closeSystem_void();
+└ ────────< 0x10001217      jmp   fcn.10009ba0                         ; public: void __thiscall Terrain::closeSystem(void)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::setType_class_Tile____int__int();
+└ ────────< 0x1000121c      jmp   fcn.100032f0                         ; public: void __thiscall Terrain::setType(class Tile *, int, int)
+  │││││││   ; CALL XREF from fcn.1000b320 @ 0x1000b348
+┌ fcn.10001221();
+└ ────────< 0x10001221      jmp   fcn.1000b7a0
+  │││││││   ; CALL XREF from fcn.1000b470 @ 0x1000b4ba
+┌ fcn.10001226();
+└ ────────< 0x10001226      jmp   fcn.1000b800
+  │││││││   ; CALL XREF from fcn.10001af0 @ 0x10001b33
+  │││││││   ; CALL XREF from fcn.10002ae0 @ 0x10002edc
+  │││││││   ; CALL XREF from fcn.10009c80 @ 0x10009dc2
+┌ fcn.1000122b();
+└ ────────< 0x1000122b      jmp   fcn.100076e0
+  │││││││   ; CALL XREF from fcn.10014020 @ 0x100140cf
+┌ fcn.10001230();
+└ ────────< 0x10001230      jmp   fcn.1000de60
+  │││││││   ; CALL XREF from fcn.100032f0 @ 0x10003358
+┌ fcn.10001235();
+└ ────────< 0x10001235      jmp   fcn.10014020
+  │││││││   ; CALL XREF from fcn.1000b800 @ 0x1000b897
+┌ fcn.1000123a();
+└ ────────< 0x1000123a      jmp   fcn.1000b9f0
+  │││││││   ; CALL XREFS from fcn.100381a0 @ 0x100381fe, 0x100383bb, 0x10038578, 0x10038728
+┌ fcn.1000123f();
+└ ────────< 0x1000123f      jmp   fcn.1000b040
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::drawCardinalSpline_int__int__int__int__int__int__int__int__int__int__int();
+└ ────────< 0x10001244      jmp   fcn.10004c70                         ; public: void __thiscall Terrain::drawCardinalSpline(int, int, int, int, int, int, int, int, int, int, int)
+  │││││││   ; CALL XREF from fcn.10009c80 @ 0x10009dba
+┌ fcn.10001249();
+└ ────────< 0x10001249      jmp   fcn.100037e0
+┌ sym.Terrain.dll_public:_int___thiscall_Terrain::getType_class_Tile();
+└ ────────< 0x1000124e      jmp   fcn.10001f10                         ; public: int __thiscall Terrain::getType(class Tile *)
+  │││││││   ; CALL XREF from fcn.10005990 @ 0x10005aa5
+  │││││││   ; CALL XREF from fcn.100089e0 @ 0x10008aec
+  │││││││   ; CALL XREF from fcn.10009270 @ 0x10009363
+  │││││││   ; CALL XREF from fcn.10038900 @ 0x10038a0d
+┌ fcn.10001253();
+└ ────────< 0x10001253      jmp   fcn.1000adc0
+  │││││││   ; CALL XREFS from fcn.10014020 @ 0x100140c5, 0x100140db, 0x100140fd
+┌ fcn.10001258();
+└ ────────< 0x10001258      jmp   fcn.1000d480
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::updatePath_int__int__int();
+└ ────────< 0x1000125d      jmp   fcn.1000a4b0                         ; public: void __thiscall Terrain::updatePath(int, int, int)
+  │││││││   ; XREFS: CALL 0x1001395f  CALL 0x100139bf  CALL 0x10013a1f  
+  │││││││   ; XREFS: CALL 0x10013a7d  CALL 0x10013add  CALL 0x10013b3d  
+  │││││││   ; XREFS: CALL 0x10013b9b  CALL 0x10013bfb  
+┌ fcn.10001262();
+└ ────────< 0x10001262      jmp   fcn.10013dd0
+  │││││││   ; CALL XREF from fcn.1000b910 @ 0x1000b933
+┌ fcn.10001267();
+└ ────────< 0x10001267      jmp   fcn.1000bae0
+  │││││││   ; XREFS(27)
+┌ fcn.1000126c();
+└ ────────< 0x1000126c      jmp   fcn.1000b2d0
+  │││││││   ; CALL XREF from fcn.1000b100 @ 0x1000b188
+  │││││││   ; CALL XREF from fcn.1000b2d0 @ 0x1000b2f3
+  │││││││   ; CALL XREF from fcn.1000b800 @ 0x1000b88b
+┌ fcn.10001271();
+└ ────────< 0x10001271      jmp   fcn.1000b660
+  │││││││   ; CALL XREF from fcn.1000b500 @ 0x1000b522
+┌ fcn.10001276();
+└ ────────< 0x10001276      jmp   fcn.1000b910
+  │││││││   ; CALL XREF from fcn.10010590 @ 0x100105b9
+  │││││││   ; CALL XREF from fcn.10033d70 @ 0x10033d7b
+  │││││││   ; CALL XREF from fcn.10035440 @ 0x10035453
+  │││││││   ; CALL XREF from fcn.10036790 @ 0x100367a3
+  │││││││   ; CALL XREF from fcn.100369a0 @ 0x100369b3
+┌ fcn.1000127b();
+└ ────────< 0x1000127b      jmp   fcn.100018b0
+  │││││││   ; CALL XREF from fcn.10003090 @ 0x1000312d
+  │││││││   ; CALL XREF from fcn.10038900 @ +0x87d7
+  │││││││   ; CALL XREF from data.100410dd @ +0x4a
+┌ fcn.10001280();
+└ ────────< 0x10001280      jmp   fcn.1000aed0
+  │││││││   ; CALL XREF from fcn.10013670 @ 0x10013746
+┌ fcn.10001285();
+└ ────────< 0x10001285      jmp   fcn.100154a0
+  │││││││   ; CALL XREFS from fcn.1000a3e0 @ 0x1000a40c, 0x1000a41c
+┌ fcn.1000128a();
+└ ────────< 0x1000128a      jmp   fcn.10013400
+  │││││││   ; CALL XREF from fcn.1000b3d0 @ 0x1000b3f4
+  │││││││   ; CALL XREFS from fcn.100381a0 @ 0x10038298, 0x10038455, 0x10038612, 0x100387cb
+┌ fcn.1000128f();
+└ ────────< 0x1000128f      jmp   fcn.1000b380
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::setZoomLevel_int();
+└ ────────< 0x10001294      jmp   fcn.10008fc0                         ; public: void __thiscall Terrain::setZoomLevel(int)
+  │││││││   ; XREFS: CALL 0x10009398  CALL 0x100093aa  CALL 0x100094f7  
+  │││││││   ; XREFS: CALL 0x10009509  CALL 0x10009656  CALL 0x10009668  
+  │││││││   ; XREFS: CALL 0x100097b5  CALL 0x100097c7  
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::stripRender_class_Tile____int__float();
+└ ────────< 0x10001299      jmp   fcn.10009270                         ; public: void __thiscall Terrain::stripRender(class Tile *, int, float)
+  │││││││   ; CALL XREF from fcn.1000ae60 @ 0x1000ae8e
+  │││││││   ; CALL XREF from fcn.1000b100 @ 0x1000b13e
+┌ fcn.1000129e();
+└ ────────< 0x1000129e      jmp   fcn.1000b500
+  │││││││   ; CALL XREF from fcn.10038900 @ 0x10038e62
+┌ fcn.100012a3();
+└ ────────< 0x100012a3      jmp   fcn.10003830
+  │││││││   ; XREFS: CALL 0x1000b0c7  CALL 0x100382cf  CALL 0x1003839b  
+  │││││││   ; XREFS: CALL 0x1003848c  CALL 0x10038558  CALL 0x10038649  
+  │││││││   ; XREFS: CALL 0x10038715  CALL 0x10038805  CALL 0x100388da  
+┌ fcn.100012a8();
+└ ────────< 0x100012a8      jmp   fcn.1000b100
+  │││││││   ; XREFS(81)
+┌ fcn.100012ad();
+└ ────────< 0x100012ad      jmp   fcn.10005960
+  │││││││   ; CALL XREF from fcn.1000e6c0 @ 0x1000e95f
+┌ fcn.100012b2();
+└ ────────< 0x100012b2      jmp   fcn.1000f7f0
+  │││││││   ; XREFS: CALL 0x10002158  CALL 0x10002180  CALL 0x100021a2  
+  │││││││   ; XREFS: CALL 0x100021d3  CALL 0x100021fe  CALL 0x1000222f  
+  │││││││   ; XREFS: CALL 0x100022f5  CALL 0x1000231d  CALL 0x10002348  
+  │││││││   ; XREFS: CALL 0x10002379  CALL 0x100023a4  CALL 0x100023cc  
+┌ fcn.100012b7();
+└ ────────< 0x100012b7      jmp   fcn.10002010
+  │││││││   ; XREFS: CALL 0x100073e5  CALL 0x1000742b  CALL 0x10007483  
+  │││││││   ; XREFS: CALL 0x100074c9  CALL 0x10007521  CALL 0x10007567  
+  │││││││   ; XREFS: CALL 0x100075b2  CALL 0x100075f8  
+┌ sym.Terrain.dll_public:_bool___thiscall_Terrain::getWall_class_Tile____int();
+└ ────────< 0x100012bc      jmp   fcn.10001e80                         ; public: bool __thiscall Terrain::getWall(class Tile *, int)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::layPath_class_Tile____int__int();
+└ ────────< 0x100012c1      jmp   fcn.1000a3e0                         ; public: void __thiscall Terrain::layPath(class Tile *, int, int)
+  │││││││   ; XREFS(39)
+┌ fcn.100012c6();
+└ ────────< 0x100012c6      jmp   fcn.10011d60
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::initTerrain_void();
+└ ────────< 0x100012cb      jmp   fcn.1000a970                         ; public: void __thiscall Terrain::initTerrain(void)
+  │││││││   ; CALL XREF from fcn.10004c70 @ 0x10004ecf
+┌ fcn.100012d0();
+└ ────────< 0x100012d0      jmp   fcn.10005090
+  │││││││   ; CALL XREF from fcn.100031a0 @ 0x100031fa
+┌ fcn.100012d5();
+└ ────────< 0x100012d5      jmp   fcn.10002ae0
+  │││││││   ; CALL XREF from fcn.10001e80 @ 0x10001ea4
+┌ fcn.100012da();
+└ ────────< 0x100012da      jmp   fcn.10001ed0
+  │││││││   ; CALL XREF from fcn.1000bbd0 @ 0x1000bbf0
+┌ fcn.100012df();
+└ ────────< 0x100012df      jmp   fcn.100016a0
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::initSystem_int__int__struct_HDC______bool();
+└ ────────< 0x100012e4      jmp   fcn.10009c80                         ; public: void __thiscall Terrain::initSystem(int, int, struct HDC__ *, bool)
+  │││││││   ; CALL XREF from fcn.10014020 @ 0x100140e5
+┌ fcn.100012e9();
+└ │││││││   0x100012e9      jmp   fcn.10015230
+  │││││││   ; CALL XREF from fcn.10001af0 @ 0x10001b2b
+  │││││││   ; CALL XREF from fcn.10003090 @ 0x1000311b
+  │││││││   ; CALL XREF from fcn.100076e0 @ 0x10007772
+  │││││││   ; CALL XREF from fcn.10009ba0 @ 0x10009c3d
+┌ fcn.100012ee();
+└ │││││││   0x100012ee      jmp   fcn.100380a0
+  │││││││   ; CALL XREF from fcn.10009c80 @ 0x10009db2
+┌ fcn.100012f3();
+└ │││││││   0x100012f3      jmp   fcn.100033e0
+  │││││││   ; CALL XREF from fcn.10008fc0 @ 0x100090a1
+  │││││││   ; CALL XREF from fcn.10009c80 @ 0x10009dd2
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::resize_int__int();
+└ │││││││   0x100012f8      jmp   fcn.10009ed0                         ; public: void __thiscall Terrain::resize(int, int)
+  │││││││   ; CALL XREFS from fcn.10003980 @ 0x100039bd, 0x100039cc, 0x100039db, 0x100039ea, 0x100039f9
+┌ fcn.100012fd();
+└ │││││││   0x100012fd      jmp   fcn.10006dd0
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::_destructor_void();
+└ │││││││   0x10001302      jmp   fcn.10003090                         ; public: void __thiscall Terrain::~destructor(void)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::calcNormals_class_Tile();
+└ │││││││   0x10001307      jmp   fcn.1000a6f0                         ; public: void __thiscall Terrain::calcNormals(class Tile *)
+  │││││││   ; CALL XREF from fcn.10001af0 @ 0x10001b23
+  │││││││   ; CALL XREF from fcn.100037e0 @ 0x10003800
+┌ fcn.1000130c();
+└ │││││││   0x1000130c      jmp   fcn.10003980
+  │││││││   ; XREFS: CALL 0x1001377b  CALL 0x100137ae  CALL 0x100137f6  
+  │││││││   ; XREFS: CALL 0x1001383f  CALL 0x10013872  CALL 0x100138ba  
+  │││││││   ; XREFS: CALL 0x100138ff  CALL 0x1001392f  
+┌ fcn.10001311();
+└ │││││││   0x10001311      jmp   fcn.100155b0
+  │││││││   ; XREFS: CALL 0x10005c1b  CALL 0x10005cd5  CALL 0x10005d8f  
+  │││││││   ; XREFS: CALL 0x10005e3c  CALL 0x1000662a  CALL 0x1000767f  
+  │││││││   ; XREFS: CALL 0x100094a5  CALL 0x10009604  CALL 0x10009763  
+  │││││││   ; XREFS: CALL 0x100098c2  
+┌ fcn.10001316();
+└ │││││││   0x10001316      jmp   fcn.10006850
+  │││││││   ; CALL XREFS from fcn.10012cf0 @ 0x10012d28, 0x10012d34, 0x10012d40, 0x10012d4c
+┌ fcn.1000131b();
+└ │││││││   0x1000131b      jmp   fcn.10011ef0
+  │││││││   ; CALL XREF from fcn.1000b690 @ 0x1000b6b5
+┌ fcn.10001320();
+└ │││││││   0x10001320      jmp   fcn.1000ba40
+  │││││││   ; CALL XREFS from fcn.10005750 @ 0x100057b9, 0x100057e6
+┌ fcn.10001325();
+└ │││││││   0x10001325      jmp   fcn.10005840
+  │││││││   ; CALL XREF from fcn.1000a450 @ 0x1000a47f
+┌ fcn.1000132a();
+└ │││││││   0x1000132a      jmp   fcn.10013360
+  │││││││   ; XREFS: CALL 0x10007917  CALL 0x10007a0a  CALL 0x10007b35  
+  │││││││   ; XREFS: CALL 0x10007bcc  CALL 0x10007c4a  CALL 0x10007c92  
+  │││││││   ; XREFS: CALL 0x10007cda  CALL 0x10007d22  CALL 0x10007d7f  
+  │││││││   ; XREFS: CALL 0x10007dc7  CALL 0x10007e0f  CALL 0x10007e57  
+  │││││││   ; XREFS: CALL 0x10007ec5  CALL 0x10007f33  CALL 0x10007fa1  
+┌ fcn.1000132f();
+└ │││││││   0x1000132f      jmp   fcn.10012e70
+  │││││││   ; CALL XREF from fcn.1000b5b0 @ 0x1000b5d6
+┌ fcn.10001334();
+└ │││││││   0x10001334      jmp   fcn.1000b960
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::setSplineHeight_float();
+└ │││││││   0x10001339      jmp   fcn.1000a840                         ; public: void __thiscall Terrain::setSplineHeight(float)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::elevateCorner_class_Tile____int();
+└ │││││││   0x1000133e      jmp   fcn.1000a5c0                         ; public: void __thiscall Terrain::elevateCorner(class Tile *, int)
+┌ sym.Terrain.dll_public:_int___thiscall_Terrain::getElevation_class_Tile____int();
+└ │││││││   0x10001343      jmp   fcn.10001de0                         ; public: int __thiscall Terrain::getElevation(class Tile *, int)
+  │││││││   ; CALL XREF from fcn.1000c3d0 @ 0x1000c4bb
+  │││││││   ; CALL XREFS from data.1004117c @ +0x1a, +0x3a
+┌ fcn.10001348();
+└ │││││││   0x10001348      jmp   fcn.10001fe0
+  │││││││   ; CALL XREF from fcn.100108f0 @ 0x100113da
+┌ fcn.1000134d();
+└ │││││││   0x1000134d      jmp   fcn.100116d0
+  │││││││   0x10001352      int3
+  │││││││   0x10001353      int3
+  │││││││   0x10001354      int3
+  │││││││   0x10001355      int3
+  │││││││   0x10001356      int3
+  │││││││   0x10001357      int3
+  │││││││   0x10001358      int3
+  │││││││   0x10001359      int3
+  │││││││   0x1000135a      int3
+  │││││││   0x1000135b      int3
+  │││││││   0x1000135c      int3
+  │││││││   0x1000135d      int3
+  │││││││   0x1000135e      int3
+  │││││││   0x1000135f      int3
+  │││││││   0x10001360      int3
+  │││││││   0x10001361      int3
+  │││││││   0x10001362      int3
+  │││││││   0x10001363      int3
+  │││││││   0x10001364      int3
+  │││││││   0x10001365      int3
+  │││││││   0x10001366      int3
+  │││││││   0x10001367      int3
+  │││││││   0x10001368      int3
+  │││││││   0x10001369      int3
+  │││││││   0x1000136a      int3
+  │││││││   0x1000136b      int3
+  │││││││   0x1000136c      int3
+  │││││││   0x1000136d      int3
+
+
+======================================================================
+FUNCTION: stripRender @ 0x10001299
+======================================================================
+            ; XREFS: CALL 0x10009398  CALL 0x100093aa  CALL 0x100094f7  
+            ; XREFS: CALL 0x10009509  CALL 0x10009656  CALL 0x10009668  
+            ; XREFS: CALL 0x100097b5  CALL 0x100097c7  
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::stripRender_class_Tile____int__float();
+└       ┌─< 0x10001299      jmp   fcn.10009270                         ; public: void __thiscall Terrain::stripRender(class Tile *, int, float)
+        │   ; CALL XREF from fcn.1000ae60 @ 0x1000ae8e
+        │   ; CALL XREF from fcn.1000b100 @ 0x1000b13e
+┌ fcn.1000129e();
+└      ┌──< 0x1000129e      jmp   fcn.1000b500
+       ││   ; CALL XREF from fcn.10038900 @ 0x10038e62
+┌ fcn.100012a3();
+└     ┌───< 0x100012a3      jmp   fcn.10003830
+      │││   ; XREFS: CALL 0x1000b0c7  CALL 0x100382cf  CALL 0x1003839b  
+      │││   ; XREFS: CALL 0x1003848c  CALL 0x10038558  CALL 0x10038649  
+      │││   ; XREFS: CALL 0x10038715  CALL 0x10038805  CALL 0x100388da  
+┌ fcn.100012a8();
+└    ┌────< 0x100012a8      jmp   fcn.1000b100
+     ││││   ; XREFS(81)
+┌ fcn.100012ad();
+└   ┌─────< 0x100012ad      jmp   fcn.10005960
+    │││││   ; CALL XREF from fcn.1000e6c0 @ 0x1000e95f
+┌ fcn.100012b2();
+└  ┌──────< 0x100012b2      jmp   fcn.1000f7f0
+   ││││││   ; XREFS: CALL 0x10002158  CALL 0x10002180  CALL 0x100021a2  
+   ││││││   ; XREFS: CALL 0x100021d3  CALL 0x100021fe  CALL 0x1000222f  
+   ││││││   ; XREFS: CALL 0x100022f5  CALL 0x1000231d  CALL 0x10002348  
+   ││││││   ; XREFS: CALL 0x10002379  CALL 0x100023a4  CALL 0x100023cc  
+┌ fcn.100012b7();
+└ ┌───────< 0x100012b7      jmp   fcn.10002010
+  │││││││   ; XREFS: CALL 0x100073e5  CALL 0x1000742b  CALL 0x10007483  
+  │││││││   ; XREFS: CALL 0x100074c9  CALL 0x10007521  CALL 0x10007567  
+  │││││││   ; XREFS: CALL 0x100075b2  CALL 0x100075f8  
+┌ sym.Terrain.dll_public:_bool___thiscall_Terrain::getWall_class_Tile____int();
+└ ────────< 0x100012bc      jmp   fcn.10001e80                         ; public: bool __thiscall Terrain::getWall(class Tile *, int)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::layPath_class_Tile____int__int();
+└ ────────< 0x100012c1      jmp   fcn.1000a3e0                         ; public: void __thiscall Terrain::layPath(class Tile *, int, int)
+  │││││││   ; XREFS(39)
+┌ fcn.100012c6();
+└ ────────< 0x100012c6      jmp   fcn.10011d60
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::initTerrain_void();
+└ ────────< 0x100012cb      jmp   fcn.1000a970                         ; public: void __thiscall Terrain::initTerrain(void)
+  │││││││   ; CALL XREF from fcn.10004c70 @ 0x10004ecf
+┌ fcn.100012d0();
+└ ────────< 0x100012d0      jmp   fcn.10005090
+  │││││││   ; CALL XREF from fcn.100031a0 @ 0x100031fa
+┌ fcn.100012d5();
+└ ────────< 0x100012d5      jmp   fcn.10002ae0
+  │││││││   ; CALL XREF from fcn.10001e80 @ 0x10001ea4
+┌ fcn.100012da();
+└ ────────< 0x100012da      jmp   fcn.10001ed0
+  │││││││   ; CALL XREF from fcn.1000bbd0 @ 0x1000bbf0
+┌ fcn.100012df();
+└ ────────< 0x100012df      jmp   fcn.100016a0
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::initSystem_int__int__struct_HDC______bool();
+└ ────────< 0x100012e4      jmp   fcn.10009c80                         ; public: void __thiscall Terrain::initSystem(int, int, struct HDC__ *, bool)
+  │││││││   ; CALL XREF from fcn.10014020 @ 0x100140e5
+┌ fcn.100012e9();
+└ ────────< 0x100012e9      jmp   fcn.10015230
+  │││││││   ; CALL XREF from fcn.10001af0 @ 0x10001b2b
+  │││││││   ; CALL XREF from fcn.10003090 @ 0x1000311b
+  │││││││   ; CALL XREF from fcn.100076e0 @ 0x10007772
+  │││││││   ; CALL XREF from fcn.10009ba0 @ 0x10009c3d
+┌ fcn.100012ee();
+└ ────────< 0x100012ee      jmp   fcn.100380a0
+  │││││││   ; CALL XREF from fcn.10009c80 @ 0x10009db2
+┌ fcn.100012f3();
+└ ────────< 0x100012f3      jmp   fcn.100033e0
+  │││││││   ; CALL XREF from fcn.10008fc0 @ 0x100090a1
+  │││││││   ; CALL XREF from fcn.10009c80 @ 0x10009dd2
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::resize_int__int();
+└ ────────< 0x100012f8      jmp   fcn.10009ed0                         ; public: void __thiscall Terrain::resize(int, int)
+  │││││││   ; CALL XREFS from fcn.10003980 @ 0x100039bd, 0x100039cc, 0x100039db, 0x100039ea, 0x100039f9
+┌ fcn.100012fd();
+└ ────────< 0x100012fd      jmp   fcn.10006dd0
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::_destructor_void();
+└ ────────< 0x10001302      jmp   fcn.10003090                         ; public: void __thiscall Terrain::~destructor(void)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::calcNormals_class_Tile();
+└ ────────< 0x10001307      jmp   fcn.1000a6f0                         ; public: void __thiscall Terrain::calcNormals(class Tile *)
+  │││││││   ; CALL XREF from fcn.10001af0 @ 0x10001b23
+  │││││││   ; CALL XREF from fcn.100037e0 @ 0x10003800
+┌ fcn.1000130c();
+└ ────────< 0x1000130c      jmp   fcn.10003980
+  │││││││   ; XREFS: CALL 0x1001377b  CALL 0x100137ae  CALL 0x100137f6  
+  │││││││   ; XREFS: CALL 0x1001383f  CALL 0x10013872  CALL 0x100138ba  
+  │││││││   ; XREFS: CALL 0x100138ff  CALL 0x1001392f  
+┌ fcn.10001311();
+└ ────────< 0x10001311      jmp   fcn.100155b0
+  │││││││   ; XREFS: CALL 0x10005c1b  CALL 0x10005cd5  CALL 0x10005d8f  
+  │││││││   ; XREFS: CALL 0x10005e3c  CALL 0x1000662a  CALL 0x1000767f  
+  │││││││   ; XREFS: CALL 0x100094a5  CALL 0x10009604  CALL 0x10009763  
+  │││││││   ; XREFS: CALL 0x100098c2  
+┌ fcn.10001316();
+└ ────────< 0x10001316      jmp   fcn.10006850
+  │││││││   ; CALL XREFS from fcn.10012cf0 @ 0x10012d28, 0x10012d34, 0x10012d40, 0x10012d4c
+┌ fcn.1000131b();
+└ ────────< 0x1000131b      jmp   fcn.10011ef0
+  │││││││   ; CALL XREF from fcn.1000b690 @ 0x1000b6b5
+┌ fcn.10001320();
+└ ────────< 0x10001320      jmp   fcn.1000ba40
+  │││││││   ; CALL XREFS from fcn.10005750 @ 0x100057b9, 0x100057e6
+┌ fcn.10001325();
+└ ────────< 0x10001325      jmp   fcn.10005840
+  │││││││   ; CALL XREF from fcn.1000a450 @ 0x1000a47f
+┌ fcn.1000132a();
+└ ────────< 0x1000132a      jmp   fcn.10013360
+  │││││││   ; XREFS: CALL 0x10007917  CALL 0x10007a0a  CALL 0x10007b35  
+  │││││││   ; XREFS: CALL 0x10007bcc  CALL 0x10007c4a  CALL 0x10007c92  
+  │││││││   ; XREFS: CALL 0x10007cda  CALL 0x10007d22  CALL 0x10007d7f  
+  │││││││   ; XREFS: CALL 0x10007dc7  CALL 0x10007e0f  CALL 0x10007e57  
+  │││││││   ; XREFS: CALL 0x10007ec5  CALL 0x10007f33  CALL 0x10007fa1  
+┌ fcn.1000132f();
+└ ────────< 0x1000132f      jmp   fcn.10012e70
+  │││││││   ; CALL XREF from fcn.1000b5b0 @ 0x1000b5d6
+┌ fcn.10001334();
+└ ────────< 0x10001334      jmp   fcn.1000b960
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::setSplineHeight_float();
+└ ────────< 0x10001339      jmp   fcn.1000a840                         ; public: void __thiscall Terrain::setSplineHeight(float)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::elevateCorner_class_Tile____int();
+└ ────────< 0x1000133e      jmp   fcn.1000a5c0                         ; public: void __thiscall Terrain::elevateCorner(class Tile *, int)
+┌ sym.Terrain.dll_public:_int___thiscall_Terrain::getElevation_class_Tile____int();
+└ ────────< 0x10001343      jmp   fcn.10001de0                         ; public: int __thiscall Terrain::getElevation(class Tile *, int)
+  │││││││   ; CALL XREF from fcn.1000c3d0 @ 0x1000c4bb
+  │││││││   ; CALL XREFS from data.1004117c @ +0x1a, +0x3a
+┌ fcn.10001348();
+└ ────────< 0x10001348      jmp   fcn.10001fe0
+  │││││││   ; CALL XREF from fcn.100108f0 @ 0x100113da
+┌ fcn.1000134d();
+└ ────────< 0x1000134d      jmp   fcn.100116d0
+  │││││││   0x10001352      int3
+  │││││││   0x10001353      int3
+  │││││││   0x10001354      int3
+  │││││││   0x10001355      int3
+  │││││││   0x10001356      int3
+  │││││││   0x10001357      int3
+  │││││││   0x10001358      int3
+  │││││││   0x10001359      int3
+  │││││││   0x1000135a      int3
+  │││││││   0x1000135b      int3
+  │││││││   0x1000135c      int3
+  │││││││   0x1000135d      int3
+  │││││││   0x1000135e      int3
+  │││││││   0x1000135f      int3
+  │││││││   0x10001360      int3
+  │││││││   0x10001361      int3
+  │││││││   0x10001362      int3
+  │││││││   0x10001363      int3
+  │││││││   0x10001364      int3
+  │││││││   0x10001365      int3
+  │││││││   0x10001366      int3
+  │││││││   0x10001367      int3
+  │││││││   0x10001368      int3
+  │││││││   0x10001369      int3
+  │││││││   0x1000136a      int3
+  │││││││   0x1000136b      int3
+  │││││││   0x1000136c      int3
+  │││││││   0x1000136d      int3
+  │││││││   0x1000136e      int3
+  │││││││   0x1000136f      int3
+  │││││││   0x10001370      int3
+  │││││││   0x10001371      int3
+  │││││││   0x10001372      int3
+  │││││││   0x10001373      int3
+  │││││││   0x10001374      int3
+  │││││││   0x10001375      int3
+  │││││││   0x10001376      int3
+  │││││││   0x10001377      int3
+  │││││││   0x10001378      int3
+  │││││││   0x10001379      int3
+  │││││││   0x1000137a      int3
+  │││││││   0x1000137b      int3
+  │││││││   0x1000137c      int3
+  │││││││   0x1000137d      int3
+  │││││││   0x1000137e      int3
+  │││││││   0x1000137f      int3
+  │││││││   0x10001380      int3
+  │││││││   0x10001381      int3
+  │││││││   0x10001382      int3
+  │││││││   0x10001383      int3
+  │││││││   0x10001384      int3
+  │││││││   0x10001385      int3
+  │││││││   0x10001386      int3
+  │││││││   0x10001387      int3
+  │││││││   0x10001388      int3
+  │││││││   0x10001389      int3
+  │││││││   0x1000138a      int3
+  │││││││   0x1000138b      int3
+  │││││││   0x1000138c      int3
+  │││││││   0x1000138d      int3
+  │││││││   0x1000138e      int3
+  │││││││   0x1000138f      int3
+  │││││││   0x10001390      int3
+
+
+======================================================================
+FUNCTION: pathUpdateRender @ 0x100011e0
+======================================================================
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::pathUpdateRender_class_Tile____float();
+└       ┌─< 0x100011e0      jmp   fcn.10006410                         ; public: void __thiscall Terrain::pathUpdateRender(class Tile *, float)
+        │   ; CALL XREF from fcn.10006410 @ 0x100066cf
+        │   ; CALL XREF from fcn.100089e0 @ 0x10008e57
+        │   ; CALL XREF from fcn.10009270 @ 0x10009967
+┌ fcn.100011e5();
+└      ┌──< 0x100011e5      jmp   fcn.1000b210
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::renderTile_int__int__int__int__int();
+└     ┌───< 0x100011ea      jmp   fcn.100080e0                         ; public: void __thiscall Terrain::renderTile(int, int, int, int, int)
+      │││   ; CALL XREF from fcn.1000aed0 @ 0x1000af12
+      │││   ; CALL XREF from fcn.1000b210 @ 0x1000b252
+┌ fcn.100011ef();
+└    ┌────< 0x100011ef      jmp   fcn.1000b470
+     ││││   ; CALL XREF from fcn.10003270 @ 0x1000328d
+┌ fcn.100011f4();
+└   ┌─────< 0x100011f4      jmp   fcn.10013ff0
+    │││││   ; CALL XREFS from fcn.100381a0 @ 0x10038219, 0x100383d6, 0x10038593, 0x10038743
+┌ fcn.100011f9();
+└  ┌──────< 0x100011f9      jmp   fcn.1000b090
+   ││││││   ; CALL XREF from fcn.1000b280 @ 0x1000b2a0
+┌ fcn.100011fe();
+└ ┌───────< 0x100011fe      jmp   fcn.1000b6e0
+  │││││││   ; CALL XREF from fcn.10014020 @ 0x100140b7
+┌ fcn.10001203();
+└ ────────< 0x10001203      jmp   fcn.1000d540
+  │││││││   ; CALL XREFS from fcn.10005750 @ 0x1000576f, 0x10005784, 0x10005797
+┌ fcn.10001208();
+└ ────────< 0x10001208      jmp   fcn.100058a0
+  │││││││   ; CALL XREF from fcn.10001de0 @ 0x10001e0a
+┌ fcn.1000120d();
+└ ────────< 0x1000120d      jmp   fcn.10001e40
+  │││││││   ; XREFS: CALL 0x1000665b  CALL 0x100076b8  CALL 0x10008baa  
+  │││││││   ; XREFS: CALL 0x10008c6d  CALL 0x10008d30  CALL 0x10008de6  
+  │││││││   ; XREFS: CALL 0x100094d6  CALL 0x10009635  CALL 0x10009794  
+  │││││││   ; XREFS: CALL 0x100098f3  
+┌ fcn.10001212();
+└ ────────< 0x10001212      jmp   fcn.10007380
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::closeSystem_void();
+└ ────────< 0x10001217      jmp   fcn.10009ba0                         ; public: void __thiscall Terrain::closeSystem(void)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::setType_class_Tile____int__int();
+└ ────────< 0x1000121c      jmp   fcn.100032f0                         ; public: void __thiscall Terrain::setType(class Tile *, int, int)
+  │││││││   ; CALL XREF from fcn.1000b320 @ 0x1000b348
+┌ fcn.10001221();
+└ ────────< 0x10001221      jmp   fcn.1000b7a0
+  │││││││   ; CALL XREF from fcn.1000b470 @ 0x1000b4ba
+┌ fcn.10001226();
+└ ────────< 0x10001226      jmp   fcn.1000b800
+  │││││││   ; CALL XREF from fcn.10001af0 @ 0x10001b33
+  │││││││   ; CALL XREF from fcn.10002ae0 @ 0x10002edc
+  │││││││   ; CALL XREF from fcn.10009c80 @ 0x10009dc2
+┌ fcn.1000122b();
+└ ────────< 0x1000122b      jmp   fcn.100076e0
+  │││││││   ; CALL XREF from fcn.10014020 @ 0x100140cf
+┌ fcn.10001230();
+└ ────────< 0x10001230      jmp   fcn.1000de60
+  │││││││   ; CALL XREF from fcn.100032f0 @ 0x10003358
+┌ fcn.10001235();
+└ ────────< 0x10001235      jmp   fcn.10014020
+  │││││││   ; CALL XREF from fcn.1000b800 @ 0x1000b897
+┌ fcn.1000123a();
+└ ────────< 0x1000123a      jmp   fcn.1000b9f0
+  │││││││   ; CALL XREFS from fcn.100381a0 @ 0x100381fe, 0x100383bb, 0x10038578, 0x10038728
+┌ fcn.1000123f();
+└ ────────< 0x1000123f      jmp   fcn.1000b040
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::drawCardinalSpline_int__int__int__int__int__int__int__int__int__int__int();
+└ ────────< 0x10001244      jmp   fcn.10004c70                         ; public: void __thiscall Terrain::drawCardinalSpline(int, int, int, int, int, int, int, int, int, int, int)
+  │││││││   ; CALL XREF from fcn.10009c80 @ 0x10009dba
+┌ fcn.10001249();
+└ ────────< 0x10001249      jmp   fcn.100037e0
+┌ sym.Terrain.dll_public:_int___thiscall_Terrain::getType_class_Tile();
+└ ────────< 0x1000124e      jmp   fcn.10001f10                         ; public: int __thiscall Terrain::getType(class Tile *)
+  │││││││   ; CALL XREF from fcn.10005990 @ 0x10005aa5
+  │││││││   ; CALL XREF from fcn.100089e0 @ 0x10008aec
+  │││││││   ; CALL XREF from fcn.10009270 @ 0x10009363
+  │││││││   ; CALL XREF from fcn.10038900 @ 0x10038a0d
+┌ fcn.10001253();
+└ ────────< 0x10001253      jmp   fcn.1000adc0
+  │││││││   ; CALL XREFS from fcn.10014020 @ 0x100140c5, 0x100140db, 0x100140fd
+┌ fcn.10001258();
+└ ────────< 0x10001258      jmp   fcn.1000d480
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::updatePath_int__int__int();
+└ ────────< 0x1000125d      jmp   fcn.1000a4b0                         ; public: void __thiscall Terrain::updatePath(int, int, int)
+  │││││││   ; XREFS: CALL 0x1001395f  CALL 0x100139bf  CALL 0x10013a1f  
+  │││││││   ; XREFS: CALL 0x10013a7d  CALL 0x10013add  CALL 0x10013b3d  
+  │││││││   ; XREFS: CALL 0x10013b9b  CALL 0x10013bfb  
+┌ fcn.10001262();
+└ ────────< 0x10001262      jmp   fcn.10013dd0
+  │││││││   ; CALL XREF from fcn.1000b910 @ 0x1000b933
+┌ fcn.10001267();
+└ ────────< 0x10001267      jmp   fcn.1000bae0
+  │││││││   ; XREFS(27)
+┌ fcn.1000126c();
+└ ────────< 0x1000126c      jmp   fcn.1000b2d0
+  │││││││   ; CALL XREF from fcn.1000b100 @ 0x1000b188
+  │││││││   ; CALL XREF from fcn.1000b2d0 @ 0x1000b2f3
+  │││││││   ; CALL XREF from fcn.1000b800 @ 0x1000b88b
+┌ fcn.10001271();
+└ ────────< 0x10001271      jmp   fcn.1000b660
+  │││││││   ; CALL XREF from fcn.1000b500 @ 0x1000b522
+┌ fcn.10001276();
+└ ────────< 0x10001276      jmp   fcn.1000b910
+  │││││││   ; CALL XREF from fcn.10010590 @ 0x100105b9
+  │││││││   ; CALL XREF from fcn.10033d70 @ 0x10033d7b
+  │││││││   ; CALL XREF from fcn.10035440 @ 0x10035453
+  │││││││   ; CALL XREF from fcn.10036790 @ 0x100367a3
+  │││││││   ; CALL XREF from fcn.100369a0 @ 0x100369b3
+┌ fcn.1000127b();
+└ ────────< 0x1000127b      jmp   fcn.100018b0
+  │││││││   ; CALL XREF from fcn.10003090 @ 0x1000312d
+  │││││││   ; CALL XREF from fcn.10038900 @ +0x87d7
+  │││││││   ; CALL XREF from data.100410dd @ +0x4a
+┌ fcn.10001280();
+└ ────────< 0x10001280      jmp   fcn.1000aed0
+  │││││││   ; CALL XREF from fcn.10013670 @ 0x10013746
+┌ fcn.10001285();
+└ ────────< 0x10001285      jmp   fcn.100154a0
+  │││││││   ; CALL XREFS from fcn.1000a3e0 @ 0x1000a40c, 0x1000a41c
+┌ fcn.1000128a();
+└ ────────< 0x1000128a      jmp   fcn.10013400
+  │││││││   ; CALL XREF from fcn.1000b3d0 @ 0x1000b3f4
+  │││││││   ; CALL XREFS from fcn.100381a0 @ 0x10038298, 0x10038455, 0x10038612, 0x100387cb
+┌ fcn.1000128f();
+└ ────────< 0x1000128f      jmp   fcn.1000b380
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::setZoomLevel_int();
+└ ────────< 0x10001294      jmp   fcn.10008fc0                         ; public: void __thiscall Terrain::setZoomLevel(int)
+  │││││││   ; XREFS: CALL 0x10009398  CALL 0x100093aa  CALL 0x100094f7  
+  │││││││   ; XREFS: CALL 0x10009509  CALL 0x10009656  CALL 0x10009668  
+  │││││││   ; XREFS: CALL 0x100097b5  CALL 0x100097c7  
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::stripRender_class_Tile____int__float();
+└ ────────< 0x10001299      jmp   fcn.10009270                         ; public: void __thiscall Terrain::stripRender(class Tile *, int, float)
+  │││││││   ; CALL XREF from fcn.1000ae60 @ 0x1000ae8e
+  │││││││   ; CALL XREF from fcn.1000b100 @ 0x1000b13e
+┌ fcn.1000129e();
+└ ────────< 0x1000129e      jmp   fcn.1000b500
+  │││││││   ; CALL XREF from fcn.10038900 @ 0x10038e62
+┌ fcn.100012a3();
+└ ────────< 0x100012a3      jmp   fcn.10003830
+  │││││││   ; XREFS: CALL 0x1000b0c7  CALL 0x100382cf  CALL 0x1003839b  
+  │││││││   ; XREFS: CALL 0x1003848c  CALL 0x10038558  CALL 0x10038649  
+  │││││││   ; XREFS: CALL 0x10038715  CALL 0x10038805  CALL 0x100388da  
+┌ fcn.100012a8();
+└ ────────< 0x100012a8      jmp   fcn.1000b100
+  │││││││   ; XREFS(81)
+┌ fcn.100012ad();
+└ ────────< 0x100012ad      jmp   fcn.10005960
+  │││││││   ; CALL XREF from fcn.1000e6c0 @ 0x1000e95f
+┌ fcn.100012b2();
+└ ────────< 0x100012b2      jmp   fcn.1000f7f0
+  │││││││   ; XREFS: CALL 0x10002158  CALL 0x10002180  CALL 0x100021a2  
+  │││││││   ; XREFS: CALL 0x100021d3  CALL 0x100021fe  CALL 0x1000222f  
+  │││││││   ; XREFS: CALL 0x100022f5  CALL 0x1000231d  CALL 0x10002348  
+  │││││││   ; XREFS: CALL 0x10002379  CALL 0x100023a4  CALL 0x100023cc  
+┌ fcn.100012b7();
+└ ────────< 0x100012b7      jmp   fcn.10002010
+  │││││││   ; XREFS: CALL 0x100073e5  CALL 0x1000742b  CALL 0x10007483  
+  │││││││   ; XREFS: CALL 0x100074c9  CALL 0x10007521  CALL 0x10007567  
+  │││││││   ; XREFS: CALL 0x100075b2  CALL 0x100075f8  
+┌ sym.Terrain.dll_public:_bool___thiscall_Terrain::getWall_class_Tile____int();
+└ ────────< 0x100012bc      jmp   fcn.10001e80                         ; public: bool __thiscall Terrain::getWall(class Tile *, int)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::layPath_class_Tile____int__int();
+└ ────────< 0x100012c1      jmp   fcn.1000a3e0                         ; public: void __thiscall Terrain::layPath(class Tile *, int, int)
+  │││││││   ; XREFS(39)
+┌ fcn.100012c6();
+└ ────────< 0x100012c6      jmp   fcn.10011d60
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::initTerrain_void();
+└ ────────< 0x100012cb      jmp   fcn.1000a970                         ; public: void __thiscall Terrain::initTerrain(void)
+  │││││││   ; CALL XREF from fcn.10004c70 @ 0x10004ecf
+┌ fcn.100012d0();
+└ ────────< 0x100012d0      jmp   fcn.10005090
+  │││││││   ; CALL XREF from fcn.100031a0 @ 0x100031fa
+┌ fcn.100012d5();
+└ ────────< 0x100012d5      jmp   fcn.10002ae0
+  │││││││   ; CALL XREF from fcn.10001e80 @ 0x10001ea4
+┌ fcn.100012da();
+└ ────────< 0x100012da      jmp   fcn.10001ed0
+  │││││││   ; CALL XREF from fcn.1000bbd0 @ 0x1000bbf0
+┌ fcn.100012df();
+└ │││││││   0x100012df      jmp   fcn.100016a0
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::initSystem_int__int__struct_HDC______bool();
+└ │││││││   0x100012e4      jmp   fcn.10009c80                         ; public: void __thiscall Terrain::initSystem(int, int, struct HDC__ *, bool)
+  │││││││   ; CALL XREF from fcn.10014020 @ 0x100140e5
+┌ fcn.100012e9();
+└ │││││││   0x100012e9      jmp   fcn.10015230
+  │││││││   ; CALL XREF from fcn.10001af0 @ 0x10001b2b
+  │││││││   ; CALL XREF from fcn.10003090 @ 0x1000311b
+  │││││││   ; CALL XREF from fcn.100076e0 @ 0x10007772
+  │││││││   ; CALL XREF from fcn.10009ba0 @ 0x10009c3d
+┌ fcn.100012ee();
+└ │││││││   0x100012ee      jmp   fcn.100380a0
+  │││││││   ; CALL XREF from fcn.10009c80 @ 0x10009db2
+┌ fcn.100012f3();
+└ │││││││   0x100012f3      jmp   fcn.100033e0
+  │││││││   ; CALL XREF from fcn.10008fc0 @ 0x100090a1
+  │││││││   ; CALL XREF from fcn.10009c80 @ 0x10009dd2
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::resize_int__int();
+└ │││││││   0x100012f8      jmp   fcn.10009ed0                         ; public: void __thiscall Terrain::resize(int, int)
+  │││││││   ; CALL XREFS from fcn.10003980 @ 0x100039bd, 0x100039cc, 0x100039db, 0x100039ea, 0x100039f9
+┌ fcn.100012fd();
+└ │││││││   0x100012fd      jmp   fcn.10006dd0
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::_destructor_void();
+└ │││││││   0x10001302      jmp   fcn.10003090                         ; public: void __thiscall Terrain::~destructor(void)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::calcNormals_class_Tile();
+└ │││││││   0x10001307      jmp   fcn.1000a6f0                         ; public: void __thiscall Terrain::calcNormals(class Tile *)
+  │││││││   ; CALL XREF from fcn.10001af0 @ 0x10001b23
+  │││││││   ; CALL XREF from fcn.100037e0 @ 0x10003800
+┌ fcn.1000130c();
+└ │││││││   0x1000130c      jmp   fcn.10003980
+  │││││││   ; XREFS: CALL 0x1001377b  CALL 0x100137ae  CALL 0x100137f6  
+  │││││││   ; XREFS: CALL 0x1001383f  CALL 0x10013872  CALL 0x100138ba  
+  │││││││   ; XREFS: CALL 0x100138ff  CALL 0x1001392f  
+┌ fcn.10001311();
+└ │││││││   0x10001311      jmp   fcn.100155b0
+  │││││││   ; XREFS: CALL 0x10005c1b  CALL 0x10005cd5  CALL 0x10005d8f  
+  │││││││   ; XREFS: CALL 0x10005e3c  CALL 0x1000662a  CALL 0x1000767f  
+  │││││││   ; XREFS: CALL 0x100094a5  CALL 0x10009604  CALL 0x10009763  
+  │││││││   ; XREFS: CALL 0x100098c2  
+┌ fcn.10001316();
+└ │││││││   0x10001316      jmp   fcn.10006850
+  │││││││   ; CALL XREFS from fcn.10012cf0 @ 0x10012d28, 0x10012d34, 0x10012d40, 0x10012d4c
+┌ fcn.1000131b();
+└ │││││││   0x1000131b      jmp   fcn.10011ef0
+  │││││││   ; CALL XREF from fcn.1000b690 @ 0x1000b6b5
+┌ fcn.10001320();
+└ │││││││   0x10001320      jmp   fcn.1000ba40
+  │││││││   ; CALL XREFS from fcn.10005750 @ 0x100057b9, 0x100057e6
+┌ fcn.10001325();
+└ │││││││   0x10001325      jmp   fcn.10005840
+  │││││││   ; CALL XREF from fcn.1000a450 @ 0x1000a47f
+┌ fcn.1000132a();
+└ │││││││   0x1000132a      jmp   fcn.10013360
+  │││││││   ; XREFS: CALL 0x10007917  CALL 0x10007a0a  CALL 0x10007b35  
+  │││││││   ; XREFS: CALL 0x10007bcc  CALL 0x10007c4a  CALL 0x10007c92  
+  │││││││   ; XREFS: CALL 0x10007cda  CALL 0x10007d22  CALL 0x10007d7f  
+  │││││││   ; XREFS: CALL 0x10007dc7  CALL 0x10007e0f  CALL 0x10007e57  
+  │││││││   ; XREFS: CALL 0x10007ec5  CALL 0x10007f33  CALL 0x10007fa1  
+┌ fcn.1000132f();
+└ │││││││   0x1000132f      jmp   fcn.10012e70
+  │││││││   ; CALL XREF from fcn.1000b5b0 @ 0x1000b5d6
+┌ fcn.10001334();
+└ │││││││   0x10001334      jmp   fcn.1000b960
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::setSplineHeight_float();
+└ │││││││   0x10001339      jmp   fcn.1000a840                         ; public: void __thiscall Terrain::setSplineHeight(float)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::elevateCorner_class_Tile____int();
+└ │││││││   0x1000133e      jmp   fcn.1000a5c0                         ; public: void __thiscall Terrain::elevateCorner(class Tile *, int)
+┌ sym.Terrain.dll_public:_int___thiscall_Terrain::getElevation_class_Tile____int();
+└ │││││││   0x10001343      jmp   fcn.10001de0                         ; public: int __thiscall Terrain::getElevation(class Tile *, int)
+  │││││││   ; CALL XREF from fcn.1000c3d0 @ 0x1000c4bb
+  │││││││   ; CALL XREFS from data.1004117c @ +0x1a, +0x3a
+┌ fcn.10001348();
+└ │││││││   0x10001348      jmp   fcn.10001fe0
+  │││││││   ; CALL XREF from fcn.100108f0 @ 0x100113da
+┌ fcn.1000134d();
+└ │││││││   0x1000134d      jmp   fcn.100116d0
+  │││││││   0x10001352      int3
+  │││││││   0x10001353      int3
+  │││││││   0x10001354      int3
+  │││││││   0x10001355      int3
+  │││││││   0x10001356      int3
+  │││││││   0x10001357      int3
+  │││││││   0x10001358      int3
+  │││││││   0x10001359      int3
+  │││││││   0x1000135a      int3
+  │││││││   0x1000135b      int3
+  │││││││   0x1000135c      int3
+  │││││││   0x1000135d      int3
+  │││││││   0x1000135e      int3
+  │││││││   0x1000135f      int3
+  │││││││   0x10001360      int3
+  │││││││   0x10001361      int3
+  │││││││   0x10001362      int3
+  │││││││   0x10001363      int3
+  │││││││   0x10001364      int3
+  │││││││   0x10001365      int3
+  │││││││   0x10001366      int3
+  │││││││   0x10001367      int3
+  │││││││   0x10001368      int3
+  │││││││   0x10001369      int3
+  │││││││   0x1000136a      int3
+  │││││││   0x1000136b      int3
+
+
+======================================================================
+FUNCTION: initSystem @ 0x100012e4
+======================================================================
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::initSystem_int__int__struct_HDC______bool();
+└       ┌─< 0x100012e4      jmp   fcn.10009c80                         ; public: void __thiscall Terrain::initSystem(int, int, struct HDC__ *, bool)
+        │   ; CALL XREF from fcn.10014020 @ 0x100140e5
+┌ fcn.100012e9();
+└      ┌──< 0x100012e9      jmp   fcn.10015230
+       ││   ; CALL XREF from fcn.10001af0 @ 0x10001b2b
+       ││   ; CALL XREF from fcn.10003090 @ 0x1000311b
+       ││   ; CALL XREF from fcn.100076e0 @ 0x10007772
+       ││   ; CALL XREF from fcn.10009ba0 @ 0x10009c3d
+┌ fcn.100012ee();
+└     ┌───< 0x100012ee      jmp   fcn.100380a0
+      │││   ; CALL XREF from fcn.10009c80 @ 0x10009db2
+┌ fcn.100012f3();
+└    ┌────< 0x100012f3      jmp   fcn.100033e0
+     ││││   ; CALL XREF from fcn.10008fc0 @ 0x100090a1
+     ││││   ; CALL XREF from fcn.10009c80 @ 0x10009dd2
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::resize_int__int();
+└   ┌─────< 0x100012f8      jmp   fcn.10009ed0                         ; public: void __thiscall Terrain::resize(int, int)
+    │││││   ; CALL XREFS from fcn.10003980 @ 0x100039bd, 0x100039cc, 0x100039db, 0x100039ea, 0x100039f9
+┌ fcn.100012fd();
+└  ┌──────< 0x100012fd      jmp   fcn.10006dd0
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::_destructor_void();
+└ ┌───────< 0x10001302      jmp   fcn.10003090                         ; public: void __thiscall Terrain::~destructor(void)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::calcNormals_class_Tile();
+└ ────────< 0x10001307      jmp   fcn.1000a6f0                         ; public: void __thiscall Terrain::calcNormals(class Tile *)
+  │││││││   ; CALL XREF from fcn.10001af0 @ 0x10001b23
+  │││││││   ; CALL XREF from fcn.100037e0 @ 0x10003800
+┌ fcn.1000130c();
+└ ────────< 0x1000130c      jmp   fcn.10003980
+  │││││││   ; XREFS: CALL 0x1001377b  CALL 0x100137ae  CALL 0x100137f6  
+  │││││││   ; XREFS: CALL 0x1001383f  CALL 0x10013872  CALL 0x100138ba  
+  │││││││   ; XREFS: CALL 0x100138ff  CALL 0x1001392f  
+┌ fcn.10001311();
+└ ────────< 0x10001311      jmp   fcn.100155b0
+  │││││││   ; XREFS: CALL 0x10005c1b  CALL 0x10005cd5  CALL 0x10005d8f  
+  │││││││   ; XREFS: CALL 0x10005e3c  CALL 0x1000662a  CALL 0x1000767f  
+  │││││││   ; XREFS: CALL 0x100094a5  CALL 0x10009604  CALL 0x10009763  
+  │││││││   ; XREFS: CALL 0x100098c2  
+┌ fcn.10001316();
+└ ────────< 0x10001316      jmp   fcn.10006850
+  │││││││   ; CALL XREFS from fcn.10012cf0 @ 0x10012d28, 0x10012d34, 0x10012d40, 0x10012d4c
+┌ fcn.1000131b();
+└ ────────< 0x1000131b      jmp   fcn.10011ef0
+  │││││││   ; CALL XREF from fcn.1000b690 @ 0x1000b6b5
+┌ fcn.10001320();
+└ ────────< 0x10001320      jmp   fcn.1000ba40
+  │││││││   ; CALL XREFS from fcn.10005750 @ 0x100057b9, 0x100057e6
+┌ fcn.10001325();
+└ ────────< 0x10001325      jmp   fcn.10005840
+  │││││││   ; CALL XREF from fcn.1000a450 @ 0x1000a47f
+┌ fcn.1000132a();
+└ ────────< 0x1000132a      jmp   fcn.10013360
+  │││││││   ; XREFS: CALL 0x10007917  CALL 0x10007a0a  CALL 0x10007b35  
+  │││││││   ; XREFS: CALL 0x10007bcc  CALL 0x10007c4a  CALL 0x10007c92  
+  │││││││   ; XREFS: CALL 0x10007cda  CALL 0x10007d22  CALL 0x10007d7f  
+  │││││││   ; XREFS: CALL 0x10007dc7  CALL 0x10007e0f  CALL 0x10007e57  
+  │││││││   ; XREFS: CALL 0x10007ec5  CALL 0x10007f33  CALL 0x10007fa1  
+┌ fcn.1000132f();
+└ ────────< 0x1000132f      jmp   fcn.10012e70
+  │││││││   ; CALL XREF from fcn.1000b5b0 @ 0x1000b5d6
+┌ fcn.10001334();
+└ ────────< 0x10001334      jmp   fcn.1000b960
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::setSplineHeight_float();
+└ ────────< 0x10001339      jmp   fcn.1000a840                         ; public: void __thiscall Terrain::setSplineHeight(float)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::elevateCorner_class_Tile____int();
+└ ────────< 0x1000133e      jmp   fcn.1000a5c0                         ; public: void __thiscall Terrain::elevateCorner(class Tile *, int)
+┌ sym.Terrain.dll_public:_int___thiscall_Terrain::getElevation_class_Tile____int();
+└ ────────< 0x10001343      jmp   fcn.10001de0                         ; public: int __thiscall Terrain::getElevation(class Tile *, int)
+  │││││││   ; CALL XREF from fcn.1000c3d0 @ 0x1000c4bb
+  │││││││   ; CALL XREFS from data.1004117c @ +0x1a, +0x3a
+┌ fcn.10001348();
+└ ────────< 0x10001348      jmp   fcn.10001fe0
+  │││││││   ; CALL XREF from fcn.100108f0 @ 0x100113da
+┌ fcn.1000134d();
+└ ────────< 0x1000134d      jmp   fcn.100116d0
+  │││││││   0x10001352      int3
+  │││││││   0x10001353      int3
+  │││││││   0x10001354      int3
+  │││││││   0x10001355      int3
+  │││││││   0x10001356      int3
+  │││││││   0x10001357      int3
+  │││││││   0x10001358      int3
+  │││││││   0x10001359      int3
+  │││││││   0x1000135a      int3
+  │││││││   0x1000135b      int3
+  │││││││   0x1000135c      int3
+  │││││││   0x1000135d      int3
+  │││││││   0x1000135e      int3
+  │││││││   0x1000135f      int3
+  │││││││   0x10001360      int3
+  │││││││   0x10001361      int3
+  │││││││   0x10001362      int3
+  │││││││   0x10001363      int3
+  │││││││   0x10001364      int3
+  │││││││   0x10001365      int3
+  │││││││   0x10001366      int3
+  │││││││   0x10001367      int3
+  │││││││   0x10001368      int3
+  │││││││   0x10001369      int3
+  │││││││   0x1000136a      int3
+  │││││││   0x1000136b      int3
+  │││││││   0x1000136c      int3
+  │││││││   0x1000136d      int3
+  │││││││   0x1000136e      int3
+  │││││││   0x1000136f      int3
+  │││││││   0x10001370      int3
+  │││││││   0x10001371      int3
+  │││││││   0x10001372      int3
+  │││││││   0x10001373      int3
+  │││││││   0x10001374      int3
+  │││││││   0x10001375      int3
+  │││││││   0x10001376      int3
+  │││││││   0x10001377      int3
+  │││││││   0x10001378      int3
+  │││││││   0x10001379      int3
+  │││││││   0x1000137a      int3
+  │││││││   0x1000137b      int3
+  │││││││   0x1000137c      int3
+  │││││││   0x1000137d      int3
+  │││││││   0x1000137e      int3
+  │││││││   0x1000137f      int3
+  │││││││   0x10001380      int3
+  │││││││   0x10001381      int3
+  │││││││   0x10001382      int3
+  │││││││   0x10001383      int3
+  │││││││   0x10001384      int3
+  │││││││   0x10001385      int3
+  │││││││   0x10001386      int3
+  │││││││   0x10001387      int3
+  │││││││   0x10001388      int3
+  │││││││   0x10001389      int3
+  │││││││   0x1000138a      int3
+  │││││││   0x1000138b      int3
+  │││││││   0x1000138c      int3
+  │││││││   0x1000138d      int3
+  │││││││   0x1000138e      int3
+  │││││││   0x1000138f      int3
+  │││││││   0x10001390      int3
+  │││││││   0x10001391      int3
+  │││││││   0x10001392      int3
+  │││││││   0x10001393      int3
+  │││││││   0x10001394      int3
+  │││││││   0x10001395      int3
+  │││││││   0x10001396      int3
+  │││││││   0x10001397      int3
+  │││││││   0x10001398      int3
+  │││││││   0x10001399      int3
+  │││││││   0x1000139a      int3
+  │││││││   0x1000139b      int3
+  │││││││   0x1000139c      int3
+  │││││││   0x1000139d      int3
+  │││││││   0x1000139e      int3
+  │││││││   0x1000139f      int3
+
+
+======================================================================
+FUNCTION: changeLighting @ 0x100011c2
+======================================================================
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::changeLighting_int();
+└       ┌─< 0x100011c2      jmp   fcn.10003540                         ; public: void __thiscall Terrain::changeLighting(int)
+        │   ; CALL XREF from fcn.1000c2c0 @ 0x1000c37b
+        │   ; CALL XREF from fcn.1000f750 @ 0x1000f770
+┌ fcn.100011c7();
+└      ┌──< 0x100011c7      jmp   fcn.1000f7a0
+       ││   ; CALL XREF from fcn.1000aed0 @ 0x1000af21
+       ││   ; CALL XREF from fcn.1000b800 @ 0x1000b8a3
+┌ fcn.100011cc();
+└     ┌───< 0x100011cc      jmp   fcn.1000b5b0
+      │││   ; CALL XREF from fcn.1000a560 @ 0x1000a58c
+┌ fcn.100011d1();
+└    ┌────< 0x100011d1      jmp   fcn.10015400
+     ││││   ; CALL XREF from fcn.1000a970 @ 0x1000a998
+     ││││   ; CALL XREF from fcn.1000aa10 @ 0x1000aaa2
+┌ fcn.100011d6();
+└   ┌─────< 0x100011d6      jmp   fcn.100032b0
+    │││││   ; CALL XREF from fcn.100381a0 @ 0x100381dc
+┌ fcn.100011db();
+└  ┌──────< 0x100011db      jmp   fcn.1000b280
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::pathUpdateRender_class_Tile____float();
+└ ┌───────< 0x100011e0      jmp   fcn.10006410                         ; public: void __thiscall Terrain::pathUpdateRender(class Tile *, float)
+  │││││││   ; CALL XREF from fcn.10006410 @ 0x100066cf
+  │││││││   ; CALL XREF from fcn.100089e0 @ 0x10008e57
+  │││││││   ; CALL XREF from fcn.10009270 @ 0x10009967
+┌ fcn.100011e5();
+└ ────────< 0x100011e5      jmp   fcn.1000b210
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::renderTile_int__int__int__int__int();
+└ ────────< 0x100011ea      jmp   fcn.100080e0                         ; public: void __thiscall Terrain::renderTile(int, int, int, int, int)
+  │││││││   ; CALL XREF from fcn.1000aed0 @ 0x1000af12
+  │││││││   ; CALL XREF from fcn.1000b210 @ 0x1000b252
+┌ fcn.100011ef();
+└ ────────< 0x100011ef      jmp   fcn.1000b470
+  │││││││   ; CALL XREF from fcn.10003270 @ 0x1000328d
+┌ fcn.100011f4();
+└ ────────< 0x100011f4      jmp   fcn.10013ff0
+  │││││││   ; CALL XREFS from fcn.100381a0 @ 0x10038219, 0x100383d6, 0x10038593, 0x10038743
+┌ fcn.100011f9();
+└ ────────< 0x100011f9      jmp   fcn.1000b090
+  │││││││   ; CALL XREF from fcn.1000b280 @ 0x1000b2a0
+┌ fcn.100011fe();
+└ ────────< 0x100011fe      jmp   fcn.1000b6e0
+  │││││││   ; CALL XREF from fcn.10014020 @ 0x100140b7
+┌ fcn.10001203();
+└ ────────< 0x10001203      jmp   fcn.1000d540
+  │││││││   ; CALL XREFS from fcn.10005750 @ 0x1000576f, 0x10005784, 0x10005797
+┌ fcn.10001208();
+└ ────────< 0x10001208      jmp   fcn.100058a0
+  │││││││   ; CALL XREF from fcn.10001de0 @ 0x10001e0a
+┌ fcn.1000120d();
+└ ────────< 0x1000120d      jmp   fcn.10001e40
+  │││││││   ; XREFS: CALL 0x1000665b  CALL 0x100076b8  CALL 0x10008baa  
+  │││││││   ; XREFS: CALL 0x10008c6d  CALL 0x10008d30  CALL 0x10008de6  
+  │││││││   ; XREFS: CALL 0x100094d6  CALL 0x10009635  CALL 0x10009794  
+  │││││││   ; XREFS: CALL 0x100098f3  
+┌ fcn.10001212();
+└ ────────< 0x10001212      jmp   fcn.10007380
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::closeSystem_void();
+└ ────────< 0x10001217      jmp   fcn.10009ba0                         ; public: void __thiscall Terrain::closeSystem(void)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::setType_class_Tile____int__int();
+└ ────────< 0x1000121c      jmp   fcn.100032f0                         ; public: void __thiscall Terrain::setType(class Tile *, int, int)
+  │││││││   ; CALL XREF from fcn.1000b320 @ 0x1000b348
+┌ fcn.10001221();
+└ ────────< 0x10001221      jmp   fcn.1000b7a0
+  │││││││   ; CALL XREF from fcn.1000b470 @ 0x1000b4ba
+┌ fcn.10001226();
+└ ────────< 0x10001226      jmp   fcn.1000b800
+  │││││││   ; CALL XREF from fcn.10001af0 @ 0x10001b33
+  │││││││   ; CALL XREF from fcn.10002ae0 @ 0x10002edc
+  │││││││   ; CALL XREF from fcn.10009c80 @ 0x10009dc2
+┌ fcn.1000122b();
+└ ────────< 0x1000122b      jmp   fcn.100076e0
+  │││││││   ; CALL XREF from fcn.10014020 @ 0x100140cf
+┌ fcn.10001230();
+└ ────────< 0x10001230      jmp   fcn.1000de60
+  │││││││   ; CALL XREF from fcn.100032f0 @ 0x10003358
+┌ fcn.10001235();
+└ ────────< 0x10001235      jmp   fcn.10014020
+  │││││││   ; CALL XREF from fcn.1000b800 @ 0x1000b897
+┌ fcn.1000123a();
+└ ────────< 0x1000123a      jmp   fcn.1000b9f0
+  │││││││   ; CALL XREFS from fcn.100381a0 @ 0x100381fe, 0x100383bb, 0x10038578, 0x10038728
+┌ fcn.1000123f();
+└ ────────< 0x1000123f      jmp   fcn.1000b040
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::drawCardinalSpline_int__int__int__int__int__int__int__int__int__int__int();
+└ ────────< 0x10001244      jmp   fcn.10004c70                         ; public: void __thiscall Terrain::drawCardinalSpline(int, int, int, int, int, int, int, int, int, int, int)
+  │││││││   ; CALL XREF from fcn.10009c80 @ 0x10009dba
+┌ fcn.10001249();
+└ ────────< 0x10001249      jmp   fcn.100037e0
+┌ sym.Terrain.dll_public:_int___thiscall_Terrain::getType_class_Tile();
+└ ────────< 0x1000124e      jmp   fcn.10001f10                         ; public: int __thiscall Terrain::getType(class Tile *)
+  │││││││   ; CALL XREF from fcn.10005990 @ 0x10005aa5
+  │││││││   ; CALL XREF from fcn.100089e0 @ 0x10008aec
+  │││││││   ; CALL XREF from fcn.10009270 @ 0x10009363
+  │││││││   ; CALL XREF from fcn.10038900 @ 0x10038a0d
+┌ fcn.10001253();
+└ ────────< 0x10001253      jmp   fcn.1000adc0
+  │││││││   ; CALL XREFS from fcn.10014020 @ 0x100140c5, 0x100140db, 0x100140fd
+┌ fcn.10001258();
+└ ────────< 0x10001258      jmp   fcn.1000d480
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::updatePath_int__int__int();
+└ ────────< 0x1000125d      jmp   fcn.1000a4b0                         ; public: void __thiscall Terrain::updatePath(int, int, int)
+  │││││││   ; XREFS: CALL 0x1001395f  CALL 0x100139bf  CALL 0x10013a1f  
+  │││││││   ; XREFS: CALL 0x10013a7d  CALL 0x10013add  CALL 0x10013b3d  
+  │││││││   ; XREFS: CALL 0x10013b9b  CALL 0x10013bfb  
+┌ fcn.10001262();
+└ ────────< 0x10001262      jmp   fcn.10013dd0
+  │││││││   ; CALL XREF from fcn.1000b910 @ 0x1000b933
+┌ fcn.10001267();
+└ ────────< 0x10001267      jmp   fcn.1000bae0
+  │││││││   ; XREFS(27)
+┌ fcn.1000126c();
+└ ────────< 0x1000126c      jmp   fcn.1000b2d0
+  │││││││   ; CALL XREF from fcn.1000b100 @ 0x1000b188
+  │││││││   ; CALL XREF from fcn.1000b2d0 @ 0x1000b2f3
+  │││││││   ; CALL XREF from fcn.1000b800 @ 0x1000b88b
+┌ fcn.10001271();
+└ ────────< 0x10001271      jmp   fcn.1000b660
+  │││││││   ; CALL XREF from fcn.1000b500 @ 0x1000b522
+┌ fcn.10001276();
+└ ────────< 0x10001276      jmp   fcn.1000b910
+  │││││││   ; CALL XREF from fcn.10010590 @ 0x100105b9
+  │││││││   ; CALL XREF from fcn.10033d70 @ 0x10033d7b
+  │││││││   ; CALL XREF from fcn.10035440 @ 0x10035453
+  │││││││   ; CALL XREF from fcn.10036790 @ 0x100367a3
+  │││││││   ; CALL XREF from fcn.100369a0 @ 0x100369b3
+┌ fcn.1000127b();
+└ ────────< 0x1000127b      jmp   fcn.100018b0
+  │││││││   ; CALL XREF from fcn.10003090 @ 0x1000312d
+  │││││││   ; CALL XREF from fcn.10038900 @ +0x87d7
+  │││││││   ; CALL XREF from data.100410dd @ +0x4a
+┌ fcn.10001280();
+└ ────────< 0x10001280      jmp   fcn.1000aed0
+  │││││││   ; CALL XREF from fcn.10013670 @ 0x10013746
+┌ fcn.10001285();
+└ ────────< 0x10001285      jmp   fcn.100154a0
+  │││││││   ; CALL XREFS from fcn.1000a3e0 @ 0x1000a40c, 0x1000a41c
+┌ fcn.1000128a();
+└ ────────< 0x1000128a      jmp   fcn.10013400
+  │││││││   ; CALL XREF from fcn.1000b3d0 @ 0x1000b3f4
+  │││││││   ; CALL XREFS from fcn.100381a0 @ 0x10038298, 0x10038455, 0x10038612, 0x100387cb
+┌ fcn.1000128f();
+└ ────────< 0x1000128f      jmp   fcn.1000b380
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::setZoomLevel_int();
+└ ────────< 0x10001294      jmp   fcn.10008fc0                         ; public: void __thiscall Terrain::setZoomLevel(int)
+  │││││││   ; XREFS: CALL 0x10009398  CALL 0x100093aa  CALL 0x100094f7  
+  │││││││   ; XREFS: CALL 0x10009509  CALL 0x10009656  CALL 0x10009668  
+  │││││││   ; XREFS: CALL 0x100097b5  CALL 0x100097c7  
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::stripRender_class_Tile____int__float();
+└ ────────< 0x10001299      jmp   fcn.10009270                         ; public: void __thiscall Terrain::stripRender(class Tile *, int, float)
+  │││││││   ; CALL XREF from fcn.1000ae60 @ 0x1000ae8e
+  │││││││   ; CALL XREF from fcn.1000b100 @ 0x1000b13e
+┌ fcn.1000129e();
+└ ────────< 0x1000129e      jmp   fcn.1000b500
+  │││││││   ; CALL XREF from fcn.10038900 @ 0x10038e62
+┌ fcn.100012a3();
+└ ────────< 0x100012a3      jmp   fcn.10003830
+  │││││││   ; XREFS: CALL 0x1000b0c7  CALL 0x100382cf  CALL 0x1003839b  
+  │││││││   ; XREFS: CALL 0x1003848c  CALL 0x10038558  CALL 0x10038649  
+  │││││││   ; XREFS: CALL 0x10038715  CALL 0x10038805  CALL 0x100388da  
+┌ fcn.100012a8();
+└ ────────< 0x100012a8      jmp   fcn.1000b100
+  │││││││   ; XREFS(81)
+┌ fcn.100012ad();
+└ ────────< 0x100012ad      jmp   fcn.10005960
+  │││││││   ; CALL XREF from fcn.1000e6c0 @ 0x1000e95f
+┌ fcn.100012b2();
+└ ────────< 0x100012b2      jmp   fcn.1000f7f0
+  │││││││   ; XREFS: CALL 0x10002158  CALL 0x10002180  CALL 0x100021a2  
+  │││││││   ; XREFS: CALL 0x100021d3  CALL 0x100021fe  CALL 0x1000222f  
+  │││││││   ; XREFS: CALL 0x100022f5  CALL 0x1000231d  CALL 0x10002348  
+  │││││││   ; XREFS: CALL 0x10002379  CALL 0x100023a4  CALL 0x100023cc  
+┌ fcn.100012b7();
+└ ────────< 0x100012b7      jmp   fcn.10002010
+  │││││││   ; XREFS: CALL 0x100073e5  CALL 0x1000742b  CALL 0x10007483  
+  │││││││   ; XREFS: CALL 0x100074c9  CALL 0x10007521  CALL 0x10007567  
+  │││││││   ; XREFS: CALL 0x100075b2  CALL 0x100075f8  
+┌ sym.Terrain.dll_public:_bool___thiscall_Terrain::getWall_class_Tile____int();
+└ ────────< 0x100012bc      jmp   fcn.10001e80                         ; public: bool __thiscall Terrain::getWall(class Tile *, int)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::layPath_class_Tile____int__int();
+└ │││││││   0x100012c1      jmp   fcn.1000a3e0                         ; public: void __thiscall Terrain::layPath(class Tile *, int, int)
+  │││││││   ; XREFS(39)
+┌ fcn.100012c6();
+└ │││││││   0x100012c6      jmp   fcn.10011d60
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::initTerrain_void();
+└ │││││││   0x100012cb      jmp   fcn.1000a970                         ; public: void __thiscall Terrain::initTerrain(void)
+  │││││││   ; CALL XREF from fcn.10004c70 @ 0x10004ecf
+┌ fcn.100012d0();
+└ │││││││   0x100012d0      jmp   fcn.10005090
+  │││││││   ; CALL XREF from fcn.100031a0 @ 0x100031fa
+┌ fcn.100012d5();
+└ │││││││   0x100012d5      jmp   fcn.10002ae0
+  │││││││   ; CALL XREF from fcn.10001e80 @ 0x10001ea4
+┌ fcn.100012da();
+└ │││││││   0x100012da      jmp   fcn.10001ed0
+  │││││││   ; CALL XREF from fcn.1000bbd0 @ 0x1000bbf0
+┌ fcn.100012df();
+└ │││││││   0x100012df      jmp   fcn.100016a0
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::initSystem_int__int__struct_HDC______bool();
+└ │││││││   0x100012e4      jmp   fcn.10009c80                         ; public: void __thiscall Terrain::initSystem(int, int, struct HDC__ *, bool)
+  │││││││   ; CALL XREF from fcn.10014020 @ 0x100140e5
+┌ fcn.100012e9();
+└ │││││││   0x100012e9      jmp   fcn.10015230
+  │││││││   ; CALL XREF from fcn.10001af0 @ 0x10001b2b
+  │││││││   ; CALL XREF from fcn.10003090 @ 0x1000311b
+  │││││││   ; CALL XREF from fcn.100076e0 @ 0x10007772
+  │││││││   ; CALL XREF from fcn.10009ba0 @ 0x10009c3d
+┌ fcn.100012ee();
+└ │││││││   0x100012ee      jmp   fcn.100380a0
+  │││││││   ; CALL XREF from fcn.10009c80 @ 0x10009db2
+┌ fcn.100012f3();
+└ │││││││   0x100012f3      jmp   fcn.100033e0
+  │││││││   ; CALL XREF from fcn.10008fc0 @ 0x100090a1
+  │││││││   ; CALL XREF from fcn.10009c80 @ 0x10009dd2
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::resize_int__int();
+└ │││││││   0x100012f8      jmp   fcn.10009ed0                         ; public: void __thiscall Terrain::resize(int, int)
+  │││││││   ; CALL XREFS from fcn.10003980 @ 0x100039bd, 0x100039cc, 0x100039db, 0x100039ea, 0x100039f9
+┌ fcn.100012fd();
+└ │││││││   0x100012fd      jmp   fcn.10006dd0
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::_destructor_void();
+└ │││││││   0x10001302      jmp   fcn.10003090                         ; public: void __thiscall Terrain::~destructor(void)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::calcNormals_class_Tile();
+└ │││││││   0x10001307      jmp   fcn.1000a6f0                         ; public: void __thiscall Terrain::calcNormals(class Tile *)
+  │││││││   ; CALL XREF from fcn.10001af0 @ 0x10001b23
+  │││││││   ; CALL XREF from fcn.100037e0 @ 0x10003800
+┌ fcn.1000130c();
+└ │││││││   0x1000130c      jmp   fcn.10003980
+  │││││││   ; XREFS: CALL 0x1001377b  CALL 0x100137ae  CALL 0x100137f6  
+  │││││││   ; XREFS: CALL 0x1001383f  CALL 0x10013872  CALL 0x100138ba  
+  │││││││   ; XREFS: CALL 0x100138ff  CALL 0x1001392f  
+┌ fcn.10001311();
+└ │││││││   0x10001311      jmp   fcn.100155b0
+  │││││││   ; XREFS: CALL 0x10005c1b  CALL 0x10005cd5  CALL 0x10005d8f  
+  │││││││   ; XREFS: CALL 0x10005e3c  CALL 0x1000662a  CALL 0x1000767f  
+  │││││││   ; XREFS: CALL 0x100094a5  CALL 0x10009604  CALL 0x10009763  
+  │││││││   ; XREFS: CALL 0x100098c2  
+┌ fcn.10001316();
+└ │││││││   0x10001316      jmp   fcn.10006850
+  │││││││   ; CALL XREFS from fcn.10012cf0 @ 0x10012d28, 0x10012d34, 0x10012d40, 0x10012d4c
+┌ fcn.1000131b();
+└ │││││││   0x1000131b      jmp   fcn.10011ef0
+  │││││││   ; CALL XREF from fcn.1000b690 @ 0x1000b6b5
+┌ fcn.10001320();
+└ │││││││   0x10001320      jmp   fcn.1000ba40
+  │││││││   ; CALL XREFS from fcn.10005750 @ 0x100057b9, 0x100057e6
+┌ fcn.10001325();
+└ │││││││   0x10001325      jmp   fcn.10005840
+  │││││││   ; CALL XREF from fcn.1000a450 @ 0x1000a47f
+┌ fcn.1000132a();
+└ │││││││   0x1000132a      jmp   fcn.10013360
+  │││││││   ; XREFS: CALL 0x10007917  CALL 0x10007a0a  CALL 0x10007b35  
+  │││││││   ; XREFS: CALL 0x10007bcc  CALL 0x10007c4a  CALL 0x10007c92  
+  │││││││   ; XREFS: CALL 0x10007cda  CALL 0x10007d22  CALL 0x10007d7f  
+  │││││││   ; XREFS: CALL 0x10007dc7  CALL 0x10007e0f  CALL 0x10007e57  
+  │││││││   ; XREFS: CALL 0x10007ec5  CALL 0x10007f33  CALL 0x10007fa1  
+┌ fcn.1000132f();
+└ │││││││   0x1000132f      jmp   fcn.10012e70
+  │││││││   ; CALL XREF from fcn.1000b5b0 @ 0x1000b5d6
+┌ fcn.10001334();
+└ │││││││   0x10001334      jmp   fcn.1000b960
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::setSplineHeight_float();
+└ │││││││   0x10001339      jmp   fcn.1000a840                         ; public: void __thiscall Terrain::setSplineHeight(float)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::elevateCorner_class_Tile____int();
+└ │││││││   0x1000133e      jmp   fcn.1000a5c0                         ; public: void __thiscall Terrain::elevateCorner(class Tile *, int)
+┌ sym.Terrain.dll_public:_int___thiscall_Terrain::getElevation_class_Tile____int();
+└ │││││││   0x10001343      jmp   fcn.10001de0                         ; public: int __thiscall Terrain::getElevation(class Tile *, int)
+  │││││││   ; CALL XREF from fcn.1000c3d0 @ 0x1000c4bb
+  │││││││   ; CALL XREFS from data.1004117c @ +0x1a, +0x3a
+┌ fcn.10001348();
+└ │││││││   0x10001348      jmp   fcn.10001fe0
+  │││││││   ; CALL XREF from fcn.100108f0 @ 0x100113da
+┌ fcn.1000134d();
+└ │││││││   0x1000134d      jmp   fcn.100116d0
+  │││││││   0x10001352      int3
+  │││││││   0x10001353      int3
+  │││││││   0x10001354      int3
+  │││││││   0x10001355      int3
+  │││││││   0x10001356      int3
+  │││││││   0x10001357      int3
+  │││││││   0x10001358      int3
+  │││││││   0x10001359      int3
+  │││││││   0x1000135a      int3
+  │││││││   0x1000135b      int3
+  │││││││   0x1000135c      int3
+  │││││││   0x1000135d      int3
+  │││││││   0x1000135e      int3
+  │││││││   0x1000135f      int3
+  │││││││   0x10001360      int3
+  │││││││   0x10001361      int3
+  │││││││   0x10001362      int3
+  │││││││   0x10001363      int3
+  │││││││   0x10001364      int3
+  │││││││   0x10001365      int3
+
+
+======================================================================
+FUNCTION: drawBezierSpline @ 0x100010a5
+======================================================================
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::drawBezierSpline_int__int__int__int__int__int__int__int__int();
+└       ┌─< 0x100010a5      jmp   fcn.10005230                         ; public: void __thiscall Terrain::drawBezierSpline(int, int, int, int, int, int, int, int, int)
+        │   ; XREFS(68)
+┌ fcn.100010aa();
+└      ┌──< 0x100010aa      jmp   fcn.100153c0
+       ││   ; XREFS: CALL 0x1000668c  CALL 0x10008e14  CALL 0x10009924  
+       ││   ; XREFS: CALL 0x1000b4ab  CALL 0x1000b826  CALL 0x1003827b  
+       ││   ; XREFS: CALL 0x1003832e  CALL 0x10038438  CALL 0x100384eb  
+       ││   ; XREFS: CALL 0x100385f5  CALL 0x100386a8  CALL 0x100387ab  
+       ││   ; XREFS: CALL 0x1003886a  
+┌ fcn.100010af();
+└     ┌───< 0x100010af      jmp   fcn.1000b320
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::passCollarInfo_int___const__int();
+└    ┌────< 0x100010b4      jmp   fcn.1000a880                         ; public: void __thiscall Terrain::passCollarInfo(int * const, int)
+     ││││   ; CALL XREFS from fcn.100032f0 @ 0x10003334, 0x10003340
+┌ fcn.100010b9();
+└   ┌─────< 0x100010b9      jmp   fcn.10002f80
+    │││││   ; CALL XREF from fcn.10002ae0 @ 0x10002b48
+┌ fcn.100010be();
+└  ┌──────< 0x100010be      jmp   fcn.1000ae60
+   ││││││   ; CALL XREF from fcn.1000a130 @ 0x1000a202
+┌ fcn.100010c3();
+└ ┌───────< 0x100010c3      jmp   fcn.10002060
+  │││││││   ; CALL XREF from fcn.100032b0 @ 0x100032cd
+┌ fcn.100010c8();
+└ ────────< 0x100010c8      jmp   fcn.10013fc0
+  ────────< 0x100010cd      jmp   fcn.10002750
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::calcAllNormals_class_Tile();
+└ ────────< 0x100010d2      jmp   fcn.1000a740                         ; public: void __thiscall Terrain::calcAllNormals(class Tile *)
+  │││││││   ; CALL XREF from fcn.1000a130 @ 0x1000a15b
+┌ fcn.100010d7();
+└ ────────< 0x100010d7      jmp   fcn.1000c560
+  │││││││   ; CALL XREF from fcn.1000a620 @ 0x1000a64a
+  │││││││   ; CALL XREF from fcn.1000a680 @ 0x1000a6be
+┌ fcn.100010dc();
+└ ────────< 0x100010dc      jmp   fcn.1000ccc0
+  │││││││   ; XREFS: CALL 0x1000af94  CALL 0x1000b173  CALL 0x1000b542  
+  │││││││   ; XREFS: CALL 0x1000b7c3  CALL 0x1000b839  CALL 0x1000b852  
+  │││││││   ; XREFS: CALL 0x1000b870  
+┌ fcn.100010e1();
+└ ────────< 0x100010e1      jmp   fcn.1000b600
+  │││││││   ; CALL XREF from fcn.10003390 @ 0x100033b0
+  │││││││   ; CALL XREFS from fcn.10015650 @ 0x100156a9, 0x100156ce
+┌ fcn.100010e6();
+└ ────────< 0x100010e6      jmp   fcn.10015340
+  │││││││   ; CALL XREF from fcn.10006410 @ 0x100065fc
+  │││││││   ; CALL XREF from fcn.1000a510 @ 0x1000a530
+┌ fcn.100010eb();
+└ ────────< 0x100010eb      jmp   fcn.10013320
+  │││││││   ; CALL XREFS from fcn.10003540 @ 0x1000362b, 0x10003645
+  │││││││   ; CALL XREFS from fcn.10006dd0 @ 0x10007192, 0x100071af
+┌ fcn.100010f0();
+└ ────────< 0x100010f0      jmp   fcn.10003a50
+  │││││││   ; CALL XREF from fcn.1000a6f0 @ 0x1000a716
+  │││││││   ; CALL XREF from fcn.1000a740 @ 0x1000a7ed
+┌ fcn.100010f5();
+└ ────────< 0x100010f5      jmp   fcn.10012cf0
+  │││││││   ; CALL XREF from fcn.1000a5c0 @ 0x1000a5ea
+┌ fcn.100010fa();
+└ ────────< 0x100010fa      jmp   fcn.1000c7b0
+  ────────< 0x100010ff      jmp   fcn.1000bba0
+  │││││││   ; CALL XREFS from fcn.10006850 @ 0x100069c0, 0x10006a72, 0x10006b27, 0x10006bc8
+┌ fcn.10001104();
+└ ────────< 0x10001104      jmp   fcn.10015500
+  │││││││   ; CALL XREF from fcn.1000bbd0 @ 0x1000bc10
+┌ fcn.10001109();
+└ ────────< 0x10001109      jmp   fcn.10001b60
+  │││││││   ; XREFS: CALL 0x100018d4  CALL 0x10034b0e  CALL 0x10034c09  
+  │││││││   ; XREFS: CALL 0x10034c8d  CALL 0x10034d14  CALL 0x10037954  
+┌ fcn.1000110e();
+└ ────────< 0x1000110e      jmp   fcn.10003f80
+  │││││││   ; XREFS: CALL 0x1000a285  CALL 0x1000a2bf  CALL 0x1000a2f9  
+  │││││││   ; XREFS: CALL 0x1000a333  CALL 0x1000c461  CALL 0x1000c479  
+  │││││││   ; XREFS: CALL 0x1000c491  CALL 0x1000c4a9  
+┌ fcn.10001113();
+└ ────────< 0x10001113      jmp   fcn.1000c520
+  │││││││   ; CALL XREF from fcn.1000a680 @ 0x1000a6b2
+┌ fcn.10001118();
+└ ────────< 0x10001118      jmp   fcn.10038900
+  │││││││   ; XREFS: CALL 0x100136e5  CALL 0x100136f7  CALL 0x10013709  
+  │││││││   ; XREFS: CALL 0x1001371b  CALL 0x100137cd  CALL 0x10013815  
+  │││││││   ; XREFS: CALL 0x10013891  CALL 0x100138d9  
+┌ fcn.1000111d();
+└ ────────< 0x1000111d      jmp   fcn.10015650
+  │││││││   ; CALL XREF from fcn.1000e6c0 @ 0x1000e957
+┌ fcn.10001122();
+└ ────────< 0x10001122      jmp   fcn.100108f0
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::lowerCorner_class_Tile____int();
+└ ────────< 0x10001127      jmp   fcn.1000a620                         ; public: void __thiscall Terrain::lowerCorner(class Tile *, int)
+  │││││││   ; CALL XREF from fcn.10006dd0 @ 0x10006e38
+┌ fcn.1000112c();
+└ ────────< 0x1000112c      jmp   fcn.10002510
+  │││││││   ; CALL XREF from fcn.1000a4b0 @ 0x1000a4e3
+┌ fcn.10001131();
+└ ────────< 0x10001131      jmp   fcn.100133a0
+┌ sym.Terrain.dll_public:_static_class_Terrain_____cdecl_Terrain::getInstance_void();
+└ ────────< 0x10001136      jmp   fcn.100031a0                         ; public: static class Terrain * __cdecl Terrain::getInstance(void)
+  │││││││   ; CALL XREF from fcn.1000c210 @ 0x1000c25d
+┌ fcn.1000113b();
+└ ────────< 0x1000113b      jmp   fcn.1000f690
+  │││││││   ; XREFS: CALL 0x100066a7  CALL 0x10008e2f  CALL 0x1000993f  
+  │││││││   ; XREFS: CALL 0x1000b494  CALL 0x10038250  CALL 0x100382ef  
+  │││││││   ; XREFS: CALL 0x1003834b  CALL 0x1003840d  CALL 0x100384ac  
+  │││││││   ; XREFS: CALL 0x10038508  CALL 0x100385ca  CALL 0x10038669  
+  │││││││   ; XREFS: CALL 0x100386c5  CALL 0x1003877d  CALL 0x10038828  
+  │││││││   ; XREFS: CALL 0x1003888a  
+┌ fcn.10001140();
+└ ────────< 0x10001140      jmp   fcn.1000b3d0
+  │││││││   ; XREFS(81)
+┌ fcn.10001145();
+└ ────────< 0x10001145      jmp   fcn.10006810
+  │││││││   ; DATA XREF from fcn.10002ae0 @ 0x10002b17
+  │││││││   ;-- data.1000114a:
+  ────────< 0x1000114a      jmp   fcn.1000c210
+  │││││││   ; CALL XREF from fcn.10014020 @ 0x10014073
+┌ fcn.1000114f();
+└ ────────< 0x1000114f      jmp   fcn.10014190
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::lowerEdgeCorner_class_Tile____int__class_Tile____float();
+└ ────────< 0x10001154      jmp   fcn.1000a680                         ; public: void __thiscall Terrain::lowerEdgeCorner(class Tile *, int, class Tile *, float)
+  │││││││   ; XREFS: CALL 0x1000b12c  CALL 0x1000b149  CALL 0x1000b157  
+  │││││││   ; XREFS: CALL 0x1000b168  CALL 0x1000b567  CALL 0x1000b847  
+  │││││││   ; XREFS: CALL 0x1000b862  CALL 0x1000b87b  
+┌ fcn.10001159();
+└ ────────< 0x10001159      jmp   fcn.1000b630
+  │││││││   ; CALL XREF from fcn.1000b100 @ 0x1000b120
+  │││││││   ; CALL XREF from fcn.1000b800 @ 0x1000b82d
+┌ fcn.1000115e();
+└ ────────< 0x1000115e      jmp   fcn.1000b710
+  │││││││   ; CALL XREF from fcn.1000a970 @ 0x1000a9b9
+  │││││││   ; CALL XREF from fcn.1000aa10 @ 0x1000aac3
+┌ fcn.10001163();
+└ ────────< 0x10001163      jmp   fcn.10003270
+  │││││││   ; CALL XREF from fcn.10014020 @ 0x10014062
+┌ fcn.10001168();
+└ ────────< 0x10001168      jmp   fcn.100149e0
+  │││││││   ; XREFS: CALL 0x10013988  CALL 0x100139e8  CALL 0x10013a47  
+  │││││││   ; XREFS: CALL 0x10013aa6  CALL 0x10013b06  CALL 0x10013b65  
+  │││││││   ; XREFS: CALL 0x10013bc4  CALL 0x10013c24  
+┌ fcn.1000116d();
+└ ────────< 0x1000116d      jmp   fcn.10012ec0
+  │││││││   ; XREFS: CALL 0x100105f5  CALL 0x10033d90  CALL 0x10034a27  
+  │││││││   ; XREFS: CALL 0x100354a9  CALL 0x10035588  CALL 0x100367ea  
+  │││││││   ; XREFS: CALL 0x1003694b  CALL 0x10036a38  
+┌ fcn.10001172();
+└ ────────< 0x10001172      jmp   fcn.10037930
+  │││││││   ; XREFS: CALL 0x100078dc  CALL 0x100079cf  CALL 0x10007af9  
+  │││││││   ; XREFS: CALL 0x10007b95  CALL 0x10007eb6  CALL 0x10007f24  
+  │││││││   ; XREFS: CALL 0x10007f92  
+┌ fcn.10001177();
+└ ────────< 0x10001177      jmp   fcn.1000bbd0
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::localRender_class_Tile____class_Tile____float();
+└ ────────< 0x1000117c      jmp   fcn.100089e0                         ; public: void __thiscall Terrain::localRender(class Tile *, class Tile *, float)
+  │││││││   ; CALL XREF from fcn.1000a970 @ 0x1000a990
+  │││││││   ; CALL XREF from fcn.1000aa10 @ 0x1000aa9a
+┌ fcn.10001181();
+└ ────────< 0x10001181      jmp   fcn.1000a130
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::drawCircle_class_Tile____float();
+└ ────────< 0x10001186      jmp   fcn.100042a0                         ; public: void __thiscall Terrain::drawCircle(class Tile *, float)
+  │││││││   ; CALL XREF from fcn.1000b9f0 @ 0x1000ba11
+┌ fcn.1000118b();
+└ ────────< 0x1000118b      jmp   fcn.1000bb40
+  │││││││   ; CALL XREF from fcn.10003a50 @ 0x10003a6c
+┌ fcn.10001190();
+└ ────────< 0x10001190      jmp   fcn.10001880
+  │││││││   ; XREFS: CALL 0x10007c3b  CALL 0x10007c83  CALL 0x10007ccb  
+  │││││││   ; XREFS: CALL 0x10007d13  CALL 0x10007d70  CALL 0x10007db8  
+  │││││││   ; XREFS: CALL 0x10007e00  CALL 0x10007e48  
+┌ fcn.10001195();
+└ ────────< 0x10001195      jmp   fcn.1000be30
+  │││││││   ; XREFS(77)
+┌ fcn.1000119a();
+└ ────────< 0x1000119a      jmp   fcn.10001f60
+  │││││││   ; CALL XREF from fcn.10002ae0 @ 0x10002c10
+  │││││││   ; CALL XREF from fcn.1000a130 @ 0x1000a1c8
+  │││││││   ; CALL XREF from fcn.1000aa10 @ 0x1000aa8e
+┌ fcn.1000119f();
+└ ────────< 0x1000119f      jmp   fcn.1000c2c0
+  │││││││   ; CALL XREF from fcn.1000c210 @ 0x1000c248
+┌ fcn.100011a4();
+└ │││││││   0x100011a4      jmp   fcn.10001fa0
+  │││││││   ; XREFS: CALL 0x10003651  CALL 0x100071be  CALL 0x10011e83  
+  │││││││   ; XREFS: CALL 0x100122a4  CALL 0x100122bc  CALL 0x100122d6  
+  │││││││   ; XREFS: CALL 0x1001254f  CALL 0x1001256a  CALL 0x100127fa  
+  │││││││   ; XREFS: CALL 0x10012815  CALL 0x10012a00  CALL 0x10012df6  
+┌ fcn.100011a9();
+└ │││││││   0x100011a9      jmp   fcn.10037c80
+  │││││││   ; CALL XREF from fcn.1000c210 @ 0x1000c26b
+┌ fcn.100011ae();
+└ │││││││   0x100011ae      jmp   fcn.1000f750
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::drawLine_int__int__int__int__int__int__int();
+└ │││││││   0x100011b3      jmp   fcn.100048a0                         ; public: void __thiscall Terrain::drawLine(int, int, int, int, int, int, int)
+  │││││││   ; XREFS: CALL 0x10006e6c  CALL 0x10006eab  CALL 0x10006ec6  
+  │││││││   ; XREFS: CALL 0x10006f6b  CALL 0x10006faa  CALL 0x10006fc5  
+  │││││││   ; XREFS: CALL 0x1000706a  CALL 0x100070a9  CALL 0x100070c4  
+┌ fcn.100011b8();
+└ │││││││   0x100011b8      jmp   fcn.10010590
+  │││││││   0x100011bd      jmp   fcn.10002900
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::changeLighting_int();
+└ │││││││   0x100011c2      jmp   fcn.10003540                         ; public: void __thiscall Terrain::changeLighting(int)
+  │││││││   ; CALL XREF from fcn.1000c2c0 @ 0x1000c37b
+  │││││││   ; CALL XREF from fcn.1000f750 @ 0x1000f770
+┌ fcn.100011c7();
+└ │││││││   0x100011c7      jmp   fcn.1000f7a0
+  │││││││   ; CALL XREF from fcn.1000aed0 @ 0x1000af21
+  │││││││   ; CALL XREF from fcn.1000b800 @ 0x1000b8a3
+┌ fcn.100011cc();
+└ │││││││   0x100011cc      jmp   fcn.1000b5b0
+  │││││││   ; CALL XREF from fcn.1000a560 @ 0x1000a58c
+┌ fcn.100011d1();
+└ │││││││   0x100011d1      jmp   fcn.10015400
+  │││││││   ; CALL XREF from fcn.1000a970 @ 0x1000a998
+  │││││││   ; CALL XREF from fcn.1000aa10 @ 0x1000aaa2
+┌ fcn.100011d6();
+└ │││││││   0x100011d6      jmp   fcn.100032b0
+  │││││││   ; CALL XREF from fcn.100381a0 @ 0x100381dc
+┌ fcn.100011db();
+└ │││││││   0x100011db      jmp   fcn.1000b280
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::pathUpdateRender_class_Tile____float();
+└ │││││││   0x100011e0      jmp   fcn.10006410                         ; public: void __thiscall Terrain::pathUpdateRender(class Tile *, float)
+  │││││││   ; CALL XREF from fcn.10006410 @ 0x100066cf
+  │││││││   ; CALL XREF from fcn.100089e0 @ 0x10008e57
+  │││││││   ; CALL XREF from fcn.10009270 @ 0x10009967
+┌ fcn.100011e5();
+└ │││││││   0x100011e5      jmp   fcn.1000b210
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::renderTile_int__int__int__int__int();
+└ │││││││   0x100011ea      jmp   fcn.100080e0                         ; public: void __thiscall Terrain::renderTile(int, int, int, int, int)
+  │││││││   ; CALL XREF from fcn.1000aed0 @ 0x1000af12
+  │││││││   ; CALL XREF from fcn.1000b210 @ 0x1000b252
+┌ fcn.100011ef();
+└ │││││││   0x100011ef      jmp   fcn.1000b470
+  │││││││   ; CALL XREF from fcn.10003270 @ 0x1000328d
+┌ fcn.100011f4();
+└ │││││││   0x100011f4      jmp   fcn.10013ff0
+  │││││││   ; CALL XREFS from fcn.100381a0 @ 0x10038219, 0x100383d6, 0x10038593, 0x10038743
+┌ fcn.100011f9();
+└ │││││││   0x100011f9      jmp   fcn.1000b090
+  │││││││   ; CALL XREF from fcn.1000b280 @ 0x1000b2a0
+┌ fcn.100011fe();
+└ │││││││   0x100011fe      jmp   fcn.1000b6e0
+  │││││││   ; CALL XREF from fcn.10014020 @ 0x100140b7
+┌ fcn.10001203();
+└ │││││││   0x10001203      jmp   fcn.1000d540
+  │││││││   ; CALL XREFS from fcn.10005750 @ 0x1000576f, 0x10005784, 0x10005797
+┌ fcn.10001208();
+└ │││││││   0x10001208      jmp   fcn.100058a0
+  │││││││   ; CALL XREF from fcn.10001de0 @ 0x10001e0a
+┌ fcn.1000120d();
+└ │││││││   0x1000120d      jmp   fcn.10001e40
+  │││││││   ; XREFS: CALL 0x1000665b  CALL 0x100076b8  CALL 0x10008baa  
+  │││││││   ; XREFS: CALL 0x10008c6d  CALL 0x10008d30  CALL 0x10008de6  
+  │││││││   ; XREFS: CALL 0x100094d6  CALL 0x10009635  CALL 0x10009794  
+  │││││││   ; XREFS: CALL 0x100098f3  
+┌ fcn.10001212();
+└ │││││││   0x10001212      jmp   fcn.10007380
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::closeSystem_void();
+└ │││││││   0x10001217      jmp   fcn.10009ba0                         ; public: void __thiscall Terrain::closeSystem(void)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::setType_class_Tile____int__int();
+└ │││││││   0x1000121c      jmp   fcn.100032f0                         ; public: void __thiscall Terrain::setType(class Tile *, int, int)
+  │││││││   ; CALL XREF from fcn.1000b320 @ 0x1000b348
+┌ fcn.10001221();
+└ │││││││   0x10001221      jmp   fcn.1000b7a0
+  │││││││   ; CALL XREF from fcn.1000b470 @ 0x1000b4ba
+┌ fcn.10001226();
+└ │││││││   0x10001226      jmp   fcn.1000b800
+  │││││││   ; CALL XREF from fcn.10001af0 @ 0x10001b33
+  │││││││   ; CALL XREF from fcn.10002ae0 @ 0x10002edc
+  │││││││   ; CALL XREF from fcn.10009c80 @ 0x10009dc2
+┌ fcn.1000122b();
+└ │││││││   0x1000122b      jmp   fcn.100076e0
+  │││││││   ; CALL XREF from fcn.10014020 @ 0x100140cf
+┌ fcn.10001230();
+└ │││││││   0x10001230      jmp   fcn.1000de60
+  │││││││   ; CALL XREF from fcn.100032f0 @ 0x10003358
+┌ fcn.10001235();
+└ │││││││   0x10001235      jmp   fcn.10014020
+  │││││││   ; CALL XREF from fcn.1000b800 @ 0x1000b897
+┌ fcn.1000123a();
+└ │││││││   0x1000123a      jmp   fcn.1000b9f0
+  │││││││   ; CALL XREFS from fcn.100381a0 @ 0x100381fe, 0x100383bb, 0x10038578, 0x10038728
+┌ fcn.1000123f();
+└ │││││││   0x1000123f      jmp   fcn.1000b040
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::drawCardinalSpline_int__int__int__int__int__int__int__int__int__int__int();
+└ │││││││   0x10001244      jmp   fcn.10004c70                         ; public: void __thiscall Terrain::drawCardinalSpline(int, int, int, int, int, int, int, int, int, int, int)
+  │││││││   ; CALL XREF from fcn.10009c80 @ 0x10009dba
+┌ fcn.10001249();
+└ │││││││   0x10001249      jmp   fcn.100037e0
+┌ sym.Terrain.dll_public:_int___thiscall_Terrain::getType_class_Tile();
+└ │││││││   0x1000124e      jmp   fcn.10001f10                         ; public: int __thiscall Terrain::getType(class Tile *)
+  │││││││   ; CALL XREF from fcn.10005990 @ 0x10005aa5
+  │││││││   ; CALL XREF from fcn.100089e0 @ 0x10008aec
+  │││││││   ; CALL XREF from fcn.10009270 @ 0x10009363
+  │││││││   ; CALL XREF from fcn.10038900 @ 0x10038a0d
+┌ fcn.10001253();
+└ │││││││   0x10001253      jmp   fcn.1000adc0
+  │││││││   ; CALL XREFS from fcn.10014020 @ 0x100140c5, 0x100140db, 0x100140fd
+┌ fcn.10001258();
+└ │││││││   0x10001258      jmp   fcn.1000d480
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::updatePath_int__int__int();
+└ │││││││   0x1000125d      jmp   fcn.1000a4b0                         ; public: void __thiscall Terrain::updatePath(int, int, int)
+  │││││││   ; XREFS: CALL 0x1001395f  CALL 0x100139bf  CALL 0x10013a1f  
+  │││││││   ; XREFS: CALL 0x10013a7d  CALL 0x10013add  CALL 0x10013b3d  
+  │││││││   ; XREFS: CALL 0x10013b9b  CALL 0x10013bfb  
+┌ fcn.10001262();
+└ │││││││   0x10001262      jmp   fcn.10013dd0
+  │││││││   ; CALL XREF from fcn.1000b910 @ 0x1000b933
+┌ fcn.10001267();
+└ │││││││   0x10001267      jmp   fcn.1000bae0
+  │││││││   ; XREFS(27)
+┌ fcn.1000126c();
+└ │││││││   0x1000126c      jmp   fcn.1000b2d0
+  │││││││   ; CALL XREF from fcn.1000b100 @ 0x1000b188
+  │││││││   ; CALL XREF from fcn.1000b2d0 @ 0x1000b2f3
+  │││││││   ; CALL XREF from fcn.1000b800 @ 0x1000b88b
+┌ fcn.10001271();
+└ │││││││   0x10001271      jmp   fcn.1000b660
+  │││││││   ; CALL XREF from fcn.1000b500 @ 0x1000b522
+┌ fcn.10001276();
+└ │││││││   0x10001276      jmp   fcn.1000b910
+  │││││││   ; CALL XREF from fcn.10010590 @ 0x100105b9
+  │││││││   ; CALL XREF from fcn.10033d70 @ 0x10033d7b
+  │││││││   ; CALL XREF from fcn.10035440 @ 0x10035453
+  │││││││   ; CALL XREF from fcn.10036790 @ 0x100367a3
+  │││││││   ; CALL XREF from fcn.100369a0 @ 0x100369b3
+┌ fcn.1000127b();
+└ │││││││   0x1000127b      jmp   fcn.100018b0
+  │││││││   ; CALL XREF from fcn.10003090 @ 0x1000312d
+  │││││││   ; CALL XREF from fcn.10038900 @ +0x87d7
+  │││││││   ; CALL XREF from data.100410dd @ +0x4a
+┌ fcn.10001280();
+└ │││││││   0x10001280      jmp   fcn.1000aed0
+  │││││││   ; CALL XREF from fcn.10013670 @ 0x10013746
+┌ fcn.10001285();
+└ │││││││   0x10001285      jmp   fcn.100154a0
+  │││││││   ; CALL XREFS from fcn.1000a3e0 @ 0x1000a40c, 0x1000a41c
+┌ fcn.1000128a();
+└ │││││││   0x1000128a      jmp   fcn.10013400
+  │││││││   ; CALL XREF from fcn.1000b3d0 @ 0x1000b3f4
+  │││││││   ; CALL XREFS from fcn.100381a0 @ 0x10038298, 0x10038455, 0x10038612, 0x100387cb
+┌ fcn.1000128f();
+└ │││││││   0x1000128f      jmp   fcn.1000b380
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::setZoomLevel_int();
+└ │││││││   0x10001294      jmp   fcn.10008fc0                         ; public: void __thiscall Terrain::setZoomLevel(int)
+
+
+======================================================================
+FUNCTION: drawCardinalSpline @ 0x10001244
+======================================================================
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::drawCardinalSpline_int__int__int__int__int__int__int__int__int__int__int();
+└       ┌─< 0x10001244      jmp   fcn.10004c70                         ; public: void __thiscall Terrain::drawCardinalSpline(int, int, int, int, int, int, int, int, int, int, int)
+        │   ; CALL XREF from fcn.10009c80 @ 0x10009dba
+┌ fcn.10001249();
+└      ┌──< 0x10001249      jmp   fcn.100037e0
+┌ sym.Terrain.dll_public:_int___thiscall_Terrain::getType_class_Tile();
+└     ┌───< 0x1000124e      jmp   fcn.10001f10                         ; public: int __thiscall Terrain::getType(class Tile *)
+      │││   ; CALL XREF from fcn.10005990 @ 0x10005aa5
+      │││   ; CALL XREF from fcn.100089e0 @ 0x10008aec
+      │││   ; CALL XREF from fcn.10009270 @ 0x10009363
+      │││   ; CALL XREF from fcn.10038900 @ 0x10038a0d
+┌ fcn.10001253();
+└    ┌────< 0x10001253      jmp   fcn.1000adc0
+     ││││   ; CALL XREFS from fcn.10014020 @ 0x100140c5, 0x100140db, 0x100140fd
+┌ fcn.10001258();
+└   ┌─────< 0x10001258      jmp   fcn.1000d480
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::updatePath_int__int__int();
+└  ┌──────< 0x1000125d      jmp   fcn.1000a4b0                         ; public: void __thiscall Terrain::updatePath(int, int, int)
+   ││││││   ; XREFS: CALL 0x1001395f  CALL 0x100139bf  CALL 0x10013a1f  
+   ││││││   ; XREFS: CALL 0x10013a7d  CALL 0x10013add  CALL 0x10013b3d  
+   ││││││   ; XREFS: CALL 0x10013b9b  CALL 0x10013bfb  
+┌ fcn.10001262();
+└ ┌───────< 0x10001262      jmp   fcn.10013dd0
+  │││││││   ; CALL XREF from fcn.1000b910 @ 0x1000b933
+┌ fcn.10001267();
+└ ────────< 0x10001267      jmp   fcn.1000bae0
+  │││││││   ; XREFS(27)
+┌ fcn.1000126c();
+└ ────────< 0x1000126c      jmp   fcn.1000b2d0
+  │││││││   ; CALL XREF from fcn.1000b100 @ 0x1000b188
+  │││││││   ; CALL XREF from fcn.1000b2d0 @ 0x1000b2f3
+  │││││││   ; CALL XREF from fcn.1000b800 @ 0x1000b88b
+┌ fcn.10001271();
+└ ────────< 0x10001271      jmp   fcn.1000b660
+  │││││││   ; CALL XREF from fcn.1000b500 @ 0x1000b522
+┌ fcn.10001276();
+└ ────────< 0x10001276      jmp   fcn.1000b910
+  │││││││   ; CALL XREF from fcn.10010590 @ 0x100105b9
+  │││││││   ; CALL XREF from fcn.10033d70 @ 0x10033d7b
+  │││││││   ; CALL XREF from fcn.10035440 @ 0x10035453
+  │││││││   ; CALL XREF from fcn.10036790 @ 0x100367a3
+  │││││││   ; CALL XREF from fcn.100369a0 @ 0x100369b3
+┌ fcn.1000127b();
+└ ────────< 0x1000127b      jmp   fcn.100018b0
+  │││││││   ; CALL XREF from fcn.10003090 @ 0x1000312d
+  │││││││   ; CALL XREF from fcn.10038900 @ +0x87d7
+  │││││││   ; CALL XREF from data.100410dd @ +0x4a
+┌ fcn.10001280();
+└ ────────< 0x10001280      jmp   fcn.1000aed0
+  │││││││   ; CALL XREF from fcn.10013670 @ 0x10013746
+┌ fcn.10001285();
+└ ────────< 0x10001285      jmp   fcn.100154a0
+  │││││││   ; CALL XREFS from fcn.1000a3e0 @ 0x1000a40c, 0x1000a41c
+┌ fcn.1000128a();
+└ ────────< 0x1000128a      jmp   fcn.10013400
+  │││││││   ; CALL XREF from fcn.1000b3d0 @ 0x1000b3f4
+  │││││││   ; CALL XREFS from fcn.100381a0 @ 0x10038298, 0x10038455, 0x10038612, 0x100387cb
+┌ fcn.1000128f();
+└ ────────< 0x1000128f      jmp   fcn.1000b380
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::setZoomLevel_int();
+└ ────────< 0x10001294      jmp   fcn.10008fc0                         ; public: void __thiscall Terrain::setZoomLevel(int)
+  │││││││   ; XREFS: CALL 0x10009398  CALL 0x100093aa  CALL 0x100094f7  
+  │││││││   ; XREFS: CALL 0x10009509  CALL 0x10009656  CALL 0x10009668  
+  │││││││   ; XREFS: CALL 0x100097b5  CALL 0x100097c7  
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::stripRender_class_Tile____int__float();
+└ ────────< 0x10001299      jmp   fcn.10009270                         ; public: void __thiscall Terrain::stripRender(class Tile *, int, float)
+  │││││││   ; CALL XREF from fcn.1000ae60 @ 0x1000ae8e
+  │││││││   ; CALL XREF from fcn.1000b100 @ 0x1000b13e
+┌ fcn.1000129e();
+└ ────────< 0x1000129e      jmp   fcn.1000b500
+  │││││││   ; CALL XREF from fcn.10038900 @ 0x10038e62
+┌ fcn.100012a3();
+└ ────────< 0x100012a3      jmp   fcn.10003830
+  │││││││   ; XREFS: CALL 0x1000b0c7  CALL 0x100382cf  CALL 0x1003839b  
+  │││││││   ; XREFS: CALL 0x1003848c  CALL 0x10038558  CALL 0x10038649  
+  │││││││   ; XREFS: CALL 0x10038715  CALL 0x10038805  CALL 0x100388da  
+┌ fcn.100012a8();
+└ ────────< 0x100012a8      jmp   fcn.1000b100
+  │││││││   ; XREFS(81)
+┌ fcn.100012ad();
+└ ────────< 0x100012ad      jmp   fcn.10005960
+  │││││││   ; CALL XREF from fcn.1000e6c0 @ 0x1000e95f
+┌ fcn.100012b2();
+└ ────────< 0x100012b2      jmp   fcn.1000f7f0
+  │││││││   ; XREFS: CALL 0x10002158  CALL 0x10002180  CALL 0x100021a2  
+  │││││││   ; XREFS: CALL 0x100021d3  CALL 0x100021fe  CALL 0x1000222f  
+  │││││││   ; XREFS: CALL 0x100022f5  CALL 0x1000231d  CALL 0x10002348  
+  │││││││   ; XREFS: CALL 0x10002379  CALL 0x100023a4  CALL 0x100023cc  
+┌ fcn.100012b7();
+└ ────────< 0x100012b7      jmp   fcn.10002010
+  │││││││   ; XREFS: CALL 0x100073e5  CALL 0x1000742b  CALL 0x10007483  
+  │││││││   ; XREFS: CALL 0x100074c9  CALL 0x10007521  CALL 0x10007567  
+  │││││││   ; XREFS: CALL 0x100075b2  CALL 0x100075f8  
+┌ sym.Terrain.dll_public:_bool___thiscall_Terrain::getWall_class_Tile____int();
+└ ────────< 0x100012bc      jmp   fcn.10001e80                         ; public: bool __thiscall Terrain::getWall(class Tile *, int)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::layPath_class_Tile____int__int();
+└ ────────< 0x100012c1      jmp   fcn.1000a3e0                         ; public: void __thiscall Terrain::layPath(class Tile *, int, int)
+  │││││││   ; XREFS(39)
+┌ fcn.100012c6();
+└ ────────< 0x100012c6      jmp   fcn.10011d60
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::initTerrain_void();
+└ ────────< 0x100012cb      jmp   fcn.1000a970                         ; public: void __thiscall Terrain::initTerrain(void)
+  │││││││   ; CALL XREF from fcn.10004c70 @ 0x10004ecf
+┌ fcn.100012d0();
+└ ────────< 0x100012d0      jmp   fcn.10005090
+  │││││││   ; CALL XREF from fcn.100031a0 @ 0x100031fa
+┌ fcn.100012d5();
+└ ────────< 0x100012d5      jmp   fcn.10002ae0
+  │││││││   ; CALL XREF from fcn.10001e80 @ 0x10001ea4
+┌ fcn.100012da();
+└ ────────< 0x100012da      jmp   fcn.10001ed0
+  │││││││   ; CALL XREF from fcn.1000bbd0 @ 0x1000bbf0
+┌ fcn.100012df();
+└ ────────< 0x100012df      jmp   fcn.100016a0
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::initSystem_int__int__struct_HDC______bool();
+└ ────────< 0x100012e4      jmp   fcn.10009c80                         ; public: void __thiscall Terrain::initSystem(int, int, struct HDC__ *, bool)
+  │││││││   ; CALL XREF from fcn.10014020 @ 0x100140e5
+┌ fcn.100012e9();
+└ ────────< 0x100012e9      jmp   fcn.10015230
+  │││││││   ; CALL XREF from fcn.10001af0 @ 0x10001b2b
+  │││││││   ; CALL XREF from fcn.10003090 @ 0x1000311b
+  │││││││   ; CALL XREF from fcn.100076e0 @ 0x10007772
+  │││││││   ; CALL XREF from fcn.10009ba0 @ 0x10009c3d
+┌ fcn.100012ee();
+└ ────────< 0x100012ee      jmp   fcn.100380a0
+  │││││││   ; CALL XREF from fcn.10009c80 @ 0x10009db2
+┌ fcn.100012f3();
+└ ────────< 0x100012f3      jmp   fcn.100033e0
+  │││││││   ; CALL XREF from fcn.10008fc0 @ 0x100090a1
+  │││││││   ; CALL XREF from fcn.10009c80 @ 0x10009dd2
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::resize_int__int();
+└ ────────< 0x100012f8      jmp   fcn.10009ed0                         ; public: void __thiscall Terrain::resize(int, int)
+  │││││││   ; CALL XREFS from fcn.10003980 @ 0x100039bd, 0x100039cc, 0x100039db, 0x100039ea, 0x100039f9
+┌ fcn.100012fd();
+└ ────────< 0x100012fd      jmp   fcn.10006dd0
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::_destructor_void();
+└ ────────< 0x10001302      jmp   fcn.10003090                         ; public: void __thiscall Terrain::~destructor(void)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::calcNormals_class_Tile();
+└ ────────< 0x10001307      jmp   fcn.1000a6f0                         ; public: void __thiscall Terrain::calcNormals(class Tile *)
+  │││││││   ; CALL XREF from fcn.10001af0 @ 0x10001b23
+  │││││││   ; CALL XREF from fcn.100037e0 @ 0x10003800
+┌ fcn.1000130c();
+└ ────────< 0x1000130c      jmp   fcn.10003980
+  │││││││   ; XREFS: CALL 0x1001377b  CALL 0x100137ae  CALL 0x100137f6  
+  │││││││   ; XREFS: CALL 0x1001383f  CALL 0x10013872  CALL 0x100138ba  
+  │││││││   ; XREFS: CALL 0x100138ff  CALL 0x1001392f  
+┌ fcn.10001311();
+└ ────────< 0x10001311      jmp   fcn.100155b0
+  │││││││   ; XREFS: CALL 0x10005c1b  CALL 0x10005cd5  CALL 0x10005d8f  
+  │││││││   ; XREFS: CALL 0x10005e3c  CALL 0x1000662a  CALL 0x1000767f  
+  │││││││   ; XREFS: CALL 0x100094a5  CALL 0x10009604  CALL 0x10009763  
+  │││││││   ; XREFS: CALL 0x100098c2  
+┌ fcn.10001316();
+└ ────────< 0x10001316      jmp   fcn.10006850
+  │││││││   ; CALL XREFS from fcn.10012cf0 @ 0x10012d28, 0x10012d34, 0x10012d40, 0x10012d4c
+┌ fcn.1000131b();
+└ ────────< 0x1000131b      jmp   fcn.10011ef0
+  │││││││   ; CALL XREF from fcn.1000b690 @ 0x1000b6b5
+┌ fcn.10001320();
+└ ────────< 0x10001320      jmp   fcn.1000ba40
+  │││││││   ; CALL XREFS from fcn.10005750 @ 0x100057b9, 0x100057e6
+┌ fcn.10001325();
+└ ────────< 0x10001325      jmp   fcn.10005840
+  │││││││   ; CALL XREF from fcn.1000a450 @ 0x1000a47f
+┌ fcn.1000132a();
+└ ────────< 0x1000132a      jmp   fcn.10013360
+  │││││││   ; XREFS: CALL 0x10007917  CALL 0x10007a0a  CALL 0x10007b35  
+  │││││││   ; XREFS: CALL 0x10007bcc  CALL 0x10007c4a  CALL 0x10007c92  
+  │││││││   ; XREFS: CALL 0x10007cda  CALL 0x10007d22  CALL 0x10007d7f  
+  │││││││   ; XREFS: CALL 0x10007dc7  CALL 0x10007e0f  CALL 0x10007e57  
+  │││││││   ; XREFS: CALL 0x10007ec5  CALL 0x10007f33  CALL 0x10007fa1  
+┌ fcn.1000132f();
+└ ────────< 0x1000132f      jmp   fcn.10012e70
+  │││││││   ; CALL XREF from fcn.1000b5b0 @ 0x1000b5d6
+┌ fcn.10001334();
+└ ────────< 0x10001334      jmp   fcn.1000b960
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::setSplineHeight_float();
+└ ────────< 0x10001339      jmp   fcn.1000a840                         ; public: void __thiscall Terrain::setSplineHeight(float)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::elevateCorner_class_Tile____int();
+└ ────────< 0x1000133e      jmp   fcn.1000a5c0                         ; public: void __thiscall Terrain::elevateCorner(class Tile *, int)
+┌ sym.Terrain.dll_public:_int___thiscall_Terrain::getElevation_class_Tile____int();
+└ │││││││   0x10001343      jmp   fcn.10001de0                         ; public: int __thiscall Terrain::getElevation(class Tile *, int)
+  │││││││   ; CALL XREF from fcn.1000c3d0 @ 0x1000c4bb
+  │││││││   ; CALL XREFS from data.1004117c @ +0x1a, +0x3a
+┌ fcn.10001348();
+└ │││││││   0x10001348      jmp   fcn.10001fe0
+  │││││││   ; CALL XREF from fcn.100108f0 @ 0x100113da
+┌ fcn.1000134d();
+└ │││││││   0x1000134d      jmp   fcn.100116d0
+  │││││││   0x10001352      int3
+  │││││││   0x10001353      int3
+  │││││││   0x10001354      int3
+  │││││││   0x10001355      int3
+  │││││││   0x10001356      int3
+  │││││││   0x10001357      int3
+  │││││││   0x10001358      int3
+  │││││││   0x10001359      int3
+  │││││││   0x1000135a      int3
+  │││││││   0x1000135b      int3
+  │││││││   0x1000135c      int3
+  │││││││   0x1000135d      int3
+  │││││││   0x1000135e      int3
+  │││││││   0x1000135f      int3
+  │││││││   0x10001360      int3
+  │││││││   0x10001361      int3
+  │││││││   0x10001362      int3
+  │││││││   0x10001363      int3
+  │││││││   0x10001364      int3
+  │││││││   0x10001365      int3
+  │││││││   0x10001366      int3
+  │││││││   0x10001367      int3
+  │││││││   0x10001368      int3
+  │││││││   0x10001369      int3
+  │││││││   0x1000136a      int3
+  │││││││   0x1000136b      int3
+  │││││││   0x1000136c      int3
+  │││││││   0x1000136d      int3
+  │││││││   0x1000136e      int3
+  │││││││   0x1000136f      int3
+  │││││││   0x10001370      int3
+  │││││││   0x10001371      int3
+  │││││││   0x10001372      int3
+  │││││││   0x10001373      int3
+  │││││││   0x10001374      int3
+  │││││││   0x10001375      int3
+  │││││││   0x10001376      int3
+  │││││││   0x10001377      int3
+  │││││││   0x10001378      int3
+  │││││││   0x10001379      int3
+  │││││││   0x1000137a      int3
+  │││││││   0x1000137b      int3
+  │││││││   0x1000137c      int3
+  │││││││   0x1000137d      int3
+  │││││││   0x1000137e      int3
+  │││││││   0x1000137f      int3
+
+
+======================================================================
+FUNCTION: drawCircle @ 0x10001186
+======================================================================
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::drawCircle_class_Tile____float();
+└       ┌─< 0x10001186      jmp   fcn.100042a0                         ; public: void __thiscall Terrain::drawCircle(class Tile *, float)
+        │   ; CALL XREF from fcn.1000b9f0 @ 0x1000ba11
+┌ fcn.1000118b();
+└      ┌──< 0x1000118b      jmp   fcn.1000bb40
+       ││   ; CALL XREF from fcn.10003a50 @ 0x10003a6c
+┌ fcn.10001190();
+└     ┌───< 0x10001190      jmp   fcn.10001880
+      │││   ; XREFS: CALL 0x10007c3b  CALL 0x10007c83  CALL 0x10007ccb  
+      │││   ; XREFS: CALL 0x10007d13  CALL 0x10007d70  CALL 0x10007db8  
+      │││   ; XREFS: CALL 0x10007e00  CALL 0x10007e48  
+┌ fcn.10001195();
+└    ┌────< 0x10001195      jmp   fcn.1000be30
+     ││││   ; XREFS(77)
+┌ fcn.1000119a();
+└   ┌─────< 0x1000119a      jmp   fcn.10001f60
+    │││││   ; CALL XREF from fcn.10002ae0 @ 0x10002c10
+    │││││   ; CALL XREF from fcn.1000a130 @ 0x1000a1c8
+    │││││   ; CALL XREF from fcn.1000aa10 @ 0x1000aa8e
+┌ fcn.1000119f();
+└  ┌──────< 0x1000119f      jmp   fcn.1000c2c0
+   ││││││   ; CALL XREF from fcn.1000c210 @ 0x1000c248
+┌ fcn.100011a4();
+└ ┌───────< 0x100011a4      jmp   fcn.10001fa0
+  │││││││   ; XREFS: CALL 0x10003651  CALL 0x100071be  CALL 0x10011e83  
+  │││││││   ; XREFS: CALL 0x100122a4  CALL 0x100122bc  CALL 0x100122d6  
+  │││││││   ; XREFS: CALL 0x1001254f  CALL 0x1001256a  CALL 0x100127fa  
+  │││││││   ; XREFS: CALL 0x10012815  CALL 0x10012a00  CALL 0x10012df6  
+┌ fcn.100011a9();
+└ ────────< 0x100011a9      jmp   fcn.10037c80
+  │││││││   ; CALL XREF from fcn.1000c210 @ 0x1000c26b
+┌ fcn.100011ae();
+└ ────────< 0x100011ae      jmp   fcn.1000f750
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::drawLine_int__int__int__int__int__int__int();
+└ ────────< 0x100011b3      jmp   fcn.100048a0                         ; public: void __thiscall Terrain::drawLine(int, int, int, int, int, int, int)
+  │││││││   ; XREFS: CALL 0x10006e6c  CALL 0x10006eab  CALL 0x10006ec6  
+  │││││││   ; XREFS: CALL 0x10006f6b  CALL 0x10006faa  CALL 0x10006fc5  
+  │││││││   ; XREFS: CALL 0x1000706a  CALL 0x100070a9  CALL 0x100070c4  
+┌ fcn.100011b8();
+└ ────────< 0x100011b8      jmp   fcn.10010590
+  ────────< 0x100011bd      jmp   fcn.10002900
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::changeLighting_int();
+└ ────────< 0x100011c2      jmp   fcn.10003540                         ; public: void __thiscall Terrain::changeLighting(int)
+  │││││││   ; CALL XREF from fcn.1000c2c0 @ 0x1000c37b
+  │││││││   ; CALL XREF from fcn.1000f750 @ 0x1000f770
+┌ fcn.100011c7();
+└ ────────< 0x100011c7      jmp   fcn.1000f7a0
+  │││││││   ; CALL XREF from fcn.1000aed0 @ 0x1000af21
+  │││││││   ; CALL XREF from fcn.1000b800 @ 0x1000b8a3
+┌ fcn.100011cc();
+└ ────────< 0x100011cc      jmp   fcn.1000b5b0
+  │││││││   ; CALL XREF from fcn.1000a560 @ 0x1000a58c
+┌ fcn.100011d1();
+└ ────────< 0x100011d1      jmp   fcn.10015400
+  │││││││   ; CALL XREF from fcn.1000a970 @ 0x1000a998
+  │││││││   ; CALL XREF from fcn.1000aa10 @ 0x1000aaa2
+┌ fcn.100011d6();
+└ ────────< 0x100011d6      jmp   fcn.100032b0
+  │││││││   ; CALL XREF from fcn.100381a0 @ 0x100381dc
+┌ fcn.100011db();
+└ ────────< 0x100011db      jmp   fcn.1000b280
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::pathUpdateRender_class_Tile____float();
+└ ────────< 0x100011e0      jmp   fcn.10006410                         ; public: void __thiscall Terrain::pathUpdateRender(class Tile *, float)
+  │││││││   ; CALL XREF from fcn.10006410 @ 0x100066cf
+  │││││││   ; CALL XREF from fcn.100089e0 @ 0x10008e57
+  │││││││   ; CALL XREF from fcn.10009270 @ 0x10009967
+┌ fcn.100011e5();
+└ ────────< 0x100011e5      jmp   fcn.1000b210
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::renderTile_int__int__int__int__int();
+└ ────────< 0x100011ea      jmp   fcn.100080e0                         ; public: void __thiscall Terrain::renderTile(int, int, int, int, int)
+  │││││││   ; CALL XREF from fcn.1000aed0 @ 0x1000af12
+  │││││││   ; CALL XREF from fcn.1000b210 @ 0x1000b252
+┌ fcn.100011ef();
+└ ────────< 0x100011ef      jmp   fcn.1000b470
+  │││││││   ; CALL XREF from fcn.10003270 @ 0x1000328d
+┌ fcn.100011f4();
+└ ────────< 0x100011f4      jmp   fcn.10013ff0
+  │││││││   ; CALL XREFS from fcn.100381a0 @ 0x10038219, 0x100383d6, 0x10038593, 0x10038743
+┌ fcn.100011f9();
+└ ────────< 0x100011f9      jmp   fcn.1000b090
+  │││││││   ; CALL XREF from fcn.1000b280 @ 0x1000b2a0
+┌ fcn.100011fe();
+└ ────────< 0x100011fe      jmp   fcn.1000b6e0
+  │││││││   ; CALL XREF from fcn.10014020 @ 0x100140b7
+┌ fcn.10001203();
+└ ────────< 0x10001203      jmp   fcn.1000d540
+  │││││││   ; CALL XREFS from fcn.10005750 @ 0x1000576f, 0x10005784, 0x10005797
+┌ fcn.10001208();
+└ ────────< 0x10001208      jmp   fcn.100058a0
+  │││││││   ; CALL XREF from fcn.10001de0 @ 0x10001e0a
+┌ fcn.1000120d();
+└ ────────< 0x1000120d      jmp   fcn.10001e40
+  │││││││   ; XREFS: CALL 0x1000665b  CALL 0x100076b8  CALL 0x10008baa  
+  │││││││   ; XREFS: CALL 0x10008c6d  CALL 0x10008d30  CALL 0x10008de6  
+  │││││││   ; XREFS: CALL 0x100094d6  CALL 0x10009635  CALL 0x10009794  
+  │││││││   ; XREFS: CALL 0x100098f3  
+┌ fcn.10001212();
+└ ────────< 0x10001212      jmp   fcn.10007380
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::closeSystem_void();
+└ ────────< 0x10001217      jmp   fcn.10009ba0                         ; public: void __thiscall Terrain::closeSystem(void)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::setType_class_Tile____int__int();
+└ ────────< 0x1000121c      jmp   fcn.100032f0                         ; public: void __thiscall Terrain::setType(class Tile *, int, int)
+  │││││││   ; CALL XREF from fcn.1000b320 @ 0x1000b348
+┌ fcn.10001221();
+└ ────────< 0x10001221      jmp   fcn.1000b7a0
+  │││││││   ; CALL XREF from fcn.1000b470 @ 0x1000b4ba
+┌ fcn.10001226();
+└ ────────< 0x10001226      jmp   fcn.1000b800
+  │││││││   ; CALL XREF from fcn.10001af0 @ 0x10001b33
+  │││││││   ; CALL XREF from fcn.10002ae0 @ 0x10002edc
+  │││││││   ; CALL XREF from fcn.10009c80 @ 0x10009dc2
+┌ fcn.1000122b();
+└ ────────< 0x1000122b      jmp   fcn.100076e0
+  │││││││   ; CALL XREF from fcn.10014020 @ 0x100140cf
+┌ fcn.10001230();
+└ ────────< 0x10001230      jmp   fcn.1000de60
+  │││││││   ; CALL XREF from fcn.100032f0 @ 0x10003358
+┌ fcn.10001235();
+└ ────────< 0x10001235      jmp   fcn.10014020
+  │││││││   ; CALL XREF from fcn.1000b800 @ 0x1000b897
+┌ fcn.1000123a();
+└ ────────< 0x1000123a      jmp   fcn.1000b9f0
+  │││││││   ; CALL XREFS from fcn.100381a0 @ 0x100381fe, 0x100383bb, 0x10038578, 0x10038728
+┌ fcn.1000123f();
+└ ────────< 0x1000123f      jmp   fcn.1000b040
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::drawCardinalSpline_int__int__int__int__int__int__int__int__int__int__int();
+└ ────────< 0x10001244      jmp   fcn.10004c70                         ; public: void __thiscall Terrain::drawCardinalSpline(int, int, int, int, int, int, int, int, int, int, int)
+  │││││││   ; CALL XREF from fcn.10009c80 @ 0x10009dba
+┌ fcn.10001249();
+└ ────────< 0x10001249      jmp   fcn.100037e0
+┌ sym.Terrain.dll_public:_int___thiscall_Terrain::getType_class_Tile();
+└ ────────< 0x1000124e      jmp   fcn.10001f10                         ; public: int __thiscall Terrain::getType(class Tile *)
+  │││││││   ; CALL XREF from fcn.10005990 @ 0x10005aa5
+  │││││││   ; CALL XREF from fcn.100089e0 @ 0x10008aec
+  │││││││   ; CALL XREF from fcn.10009270 @ 0x10009363
+  │││││││   ; CALL XREF from fcn.10038900 @ 0x10038a0d
+┌ fcn.10001253();
+└ ────────< 0x10001253      jmp   fcn.1000adc0
+  │││││││   ; CALL XREFS from fcn.10014020 @ 0x100140c5, 0x100140db, 0x100140fd
+┌ fcn.10001258();
+└ ────────< 0x10001258      jmp   fcn.1000d480
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::updatePath_int__int__int();
+└ ────────< 0x1000125d      jmp   fcn.1000a4b0                         ; public: void __thiscall Terrain::updatePath(int, int, int)
+  │││││││   ; XREFS: CALL 0x1001395f  CALL 0x100139bf  CALL 0x10013a1f  
+  │││││││   ; XREFS: CALL 0x10013a7d  CALL 0x10013add  CALL 0x10013b3d  
+  │││││││   ; XREFS: CALL 0x10013b9b  CALL 0x10013bfb  
+┌ fcn.10001262();
+└ ────────< 0x10001262      jmp   fcn.10013dd0
+  │││││││   ; CALL XREF from fcn.1000b910 @ 0x1000b933
+┌ fcn.10001267();
+└ ────────< 0x10001267      jmp   fcn.1000bae0
+  │││││││   ; XREFS(27)
+┌ fcn.1000126c();
+└ ────────< 0x1000126c      jmp   fcn.1000b2d0
+  │││││││   ; CALL XREF from fcn.1000b100 @ 0x1000b188
+  │││││││   ; CALL XREF from fcn.1000b2d0 @ 0x1000b2f3
+  │││││││   ; CALL XREF from fcn.1000b800 @ 0x1000b88b
+┌ fcn.10001271();
+└ ────────< 0x10001271      jmp   fcn.1000b660
+  │││││││   ; CALL XREF from fcn.1000b500 @ 0x1000b522
+┌ fcn.10001276();
+└ ────────< 0x10001276      jmp   fcn.1000b910
+  │││││││   ; CALL XREF from fcn.10010590 @ 0x100105b9
+  │││││││   ; CALL XREF from fcn.10033d70 @ 0x10033d7b
+  │││││││   ; CALL XREF from fcn.10035440 @ 0x10035453
+  │││││││   ; CALL XREF from fcn.10036790 @ 0x100367a3
+  │││││││   ; CALL XREF from fcn.100369a0 @ 0x100369b3
+┌ fcn.1000127b();
+└ ────────< 0x1000127b      jmp   fcn.100018b0
+  │││││││   ; CALL XREF from fcn.10003090 @ 0x1000312d
+  │││││││   ; CALL XREF from fcn.10038900 @ +0x87d7
+  │││││││   ; CALL XREF from data.100410dd @ +0x4a
+┌ fcn.10001280();
+└ ────────< 0x10001280      jmp   fcn.1000aed0
+  │││││││   ; CALL XREF from fcn.10013670 @ 0x10013746
+┌ fcn.10001285();
+└ │││││││   0x10001285      jmp   fcn.100154a0
+  │││││││   ; CALL XREFS from fcn.1000a3e0 @ 0x1000a40c, 0x1000a41c
+┌ fcn.1000128a();
+└ │││││││   0x1000128a      jmp   fcn.10013400
+  │││││││   ; CALL XREF from fcn.1000b3d0 @ 0x1000b3f4
+  │││││││   ; CALL XREFS from fcn.100381a0 @ 0x10038298, 0x10038455, 0x10038612, 0x100387cb
+┌ fcn.1000128f();
+└ │││││││   0x1000128f      jmp   fcn.1000b380
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::setZoomLevel_int();
+└ │││││││   0x10001294      jmp   fcn.10008fc0                         ; public: void __thiscall Terrain::setZoomLevel(int)
+  │││││││   ; XREFS: CALL 0x10009398  CALL 0x100093aa  CALL 0x100094f7  
+  │││││││   ; XREFS: CALL 0x10009509  CALL 0x10009656  CALL 0x10009668  
+  │││││││   ; XREFS: CALL 0x100097b5  CALL 0x100097c7  
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::stripRender_class_Tile____int__float();
+└ │││││││   0x10001299      jmp   fcn.10009270                         ; public: void __thiscall Terrain::stripRender(class Tile *, int, float)
+  │││││││   ; CALL XREF from fcn.1000ae60 @ 0x1000ae8e
+  │││││││   ; CALL XREF from fcn.1000b100 @ 0x1000b13e
+┌ fcn.1000129e();
+└ │││││││   0x1000129e      jmp   fcn.1000b500
+  │││││││   ; CALL XREF from fcn.10038900 @ 0x10038e62
+┌ fcn.100012a3();
+└ │││││││   0x100012a3      jmp   fcn.10003830
+  │││││││   ; XREFS: CALL 0x1000b0c7  CALL 0x100382cf  CALL 0x1003839b  
+  │││││││   ; XREFS: CALL 0x1003848c  CALL 0x10038558  CALL 0x10038649  
+  │││││││   ; XREFS: CALL 0x10038715  CALL 0x10038805  CALL 0x100388da  
+┌ fcn.100012a8();
+└ │││││││   0x100012a8      jmp   fcn.1000b100
+  │││││││   ; XREFS(81)
+┌ fcn.100012ad();
+└ │││││││   0x100012ad      jmp   fcn.10005960
+  │││││││   ; CALL XREF from fcn.1000e6c0 @ 0x1000e95f
+┌ fcn.100012b2();
+└ │││││││   0x100012b2      jmp   fcn.1000f7f0
+  │││││││   ; XREFS: CALL 0x10002158  CALL 0x10002180  CALL 0x100021a2  
+  │││││││   ; XREFS: CALL 0x100021d3  CALL 0x100021fe  CALL 0x1000222f  
+  │││││││   ; XREFS: CALL 0x100022f5  CALL 0x1000231d  CALL 0x10002348  
+  │││││││   ; XREFS: CALL 0x10002379  CALL 0x100023a4  CALL 0x100023cc  
+┌ fcn.100012b7();
+└ │││││││   0x100012b7      jmp   fcn.10002010
+  │││││││   ; XREFS: CALL 0x100073e5  CALL 0x1000742b  CALL 0x10007483  
+  │││││││   ; XREFS: CALL 0x100074c9  CALL 0x10007521  CALL 0x10007567  
+  │││││││   ; XREFS: CALL 0x100075b2  CALL 0x100075f8  
+┌ sym.Terrain.dll_public:_bool___thiscall_Terrain::getWall_class_Tile____int();
+└ │││││││   0x100012bc      jmp   fcn.10001e80                         ; public: bool __thiscall Terrain::getWall(class Tile *, int)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::layPath_class_Tile____int__int();
+└ │││││││   0x100012c1      jmp   fcn.1000a3e0                         ; public: void __thiscall Terrain::layPath(class Tile *, int, int)
+  │││││││   ; XREFS(39)
+┌ fcn.100012c6();
+└ │││││││   0x100012c6      jmp   fcn.10011d60
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::initTerrain_void();
+└ │││││││   0x100012cb      jmp   fcn.1000a970                         ; public: void __thiscall Terrain::initTerrain(void)
+  │││││││   ; CALL XREF from fcn.10004c70 @ 0x10004ecf
+┌ fcn.100012d0();
+└ │││││││   0x100012d0      jmp   fcn.10005090
+  │││││││   ; CALL XREF from fcn.100031a0 @ 0x100031fa
+┌ fcn.100012d5();
+└ │││││││   0x100012d5      jmp   fcn.10002ae0
+  │││││││   ; CALL XREF from fcn.10001e80 @ 0x10001ea4
+┌ fcn.100012da();
+└ │││││││   0x100012da      jmp   fcn.10001ed0
+  │││││││   ; CALL XREF from fcn.1000bbd0 @ 0x1000bbf0
+┌ fcn.100012df();
+└ │││││││   0x100012df      jmp   fcn.100016a0
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::initSystem_int__int__struct_HDC______bool();
+└ │││││││   0x100012e4      jmp   fcn.10009c80                         ; public: void __thiscall Terrain::initSystem(int, int, struct HDC__ *, bool)
+  │││││││   ; CALL XREF from fcn.10014020 @ 0x100140e5
+┌ fcn.100012e9();
+└ │││││││   0x100012e9      jmp   fcn.10015230
+  │││││││   ; CALL XREF from fcn.10001af0 @ 0x10001b2b
+  │││││││   ; CALL XREF from fcn.10003090 @ 0x1000311b
+  │││││││   ; CALL XREF from fcn.100076e0 @ 0x10007772
+  │││││││   ; CALL XREF from fcn.10009ba0 @ 0x10009c3d
+┌ fcn.100012ee();
+└ │││││││   0x100012ee      jmp   fcn.100380a0
+  │││││││   ; CALL XREF from fcn.10009c80 @ 0x10009db2
+┌ fcn.100012f3();
+└ │││││││   0x100012f3      jmp   fcn.100033e0
+  │││││││   ; CALL XREF from fcn.10008fc0 @ 0x100090a1
+  │││││││   ; CALL XREF from fcn.10009c80 @ 0x10009dd2
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::resize_int__int();
+└ │││││││   0x100012f8      jmp   fcn.10009ed0                         ; public: void __thiscall Terrain::resize(int, int)
+  │││││││   ; CALL XREFS from fcn.10003980 @ 0x100039bd, 0x100039cc, 0x100039db, 0x100039ea, 0x100039f9
+┌ fcn.100012fd();
+└ │││││││   0x100012fd      jmp   fcn.10006dd0
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::_destructor_void();
+└ │││││││   0x10001302      jmp   fcn.10003090                         ; public: void __thiscall Terrain::~destructor(void)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::calcNormals_class_Tile();
+└ │││││││   0x10001307      jmp   fcn.1000a6f0                         ; public: void __thiscall Terrain::calcNormals(class Tile *)
+  │││││││   ; CALL XREF from fcn.10001af0 @ 0x10001b23
+  │││││││   ; CALL XREF from fcn.100037e0 @ 0x10003800
+┌ fcn.1000130c();
+└ │││││││   0x1000130c      jmp   fcn.10003980
+  │││││││   ; XREFS: CALL 0x1001377b  CALL 0x100137ae  CALL 0x100137f6  
+  │││││││   ; XREFS: CALL 0x1001383f  CALL 0x10013872  CALL 0x100138ba  
+  │││││││   ; XREFS: CALL 0x100138ff  CALL 0x1001392f  
+┌ fcn.10001311();
+└ │││││││   0x10001311      jmp   fcn.100155b0
+  │││││││   ; XREFS: CALL 0x10005c1b  CALL 0x10005cd5  CALL 0x10005d8f  
+  │││││││   ; XREFS: CALL 0x10005e3c  CALL 0x1000662a  CALL 0x1000767f  
+  │││││││   ; XREFS: CALL 0x100094a5  CALL 0x10009604  CALL 0x10009763  
+  │││││││   ; XREFS: CALL 0x100098c2  
+┌ fcn.10001316();
+└ │││││││   0x10001316      jmp   fcn.10006850
+  │││││││   ; CALL XREFS from fcn.10012cf0 @ 0x10012d28, 0x10012d34, 0x10012d40, 0x10012d4c
+┌ fcn.1000131b();
+└ │││││││   0x1000131b      jmp   fcn.10011ef0
+  │││││││   ; CALL XREF from fcn.1000b690 @ 0x1000b6b5
+┌ fcn.10001320();
+└ │││││││   0x10001320      jmp   fcn.1000ba40
+  │││││││   ; CALL XREFS from fcn.10005750 @ 0x100057b9, 0x100057e6
+┌ fcn.10001325();
+└ │││││││   0x10001325      jmp   fcn.10005840
+  │││││││   ; CALL XREF from fcn.1000a450 @ 0x1000a47f
+┌ fcn.1000132a();
+└ │││││││   0x1000132a      jmp   fcn.10013360
+  │││││││   ; XREFS: CALL 0x10007917  CALL 0x10007a0a  CALL 0x10007b35  
+  │││││││   ; XREFS: CALL 0x10007bcc  CALL 0x10007c4a  CALL 0x10007c92  
+  │││││││   ; XREFS: CALL 0x10007cda  CALL 0x10007d22  CALL 0x10007d7f  
+  │││││││   ; XREFS: CALL 0x10007dc7  CALL 0x10007e0f  CALL 0x10007e57  
+  │││││││   ; XREFS: CALL 0x10007ec5  CALL 0x10007f33  CALL 0x10007fa1  
+┌ fcn.1000132f();
+└ │││││││   0x1000132f      jmp   fcn.10012e70
+  │││││││   ; CALL XREF from fcn.1000b5b0 @ 0x1000b5d6
+┌ fcn.10001334();
+└ │││││││   0x10001334      jmp   fcn.1000b960
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::setSplineHeight_float();
+└ │││││││   0x10001339      jmp   fcn.1000a840                         ; public: void __thiscall Terrain::setSplineHeight(float)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::elevateCorner_class_Tile____int();
+└ │││││││   0x1000133e      jmp   fcn.1000a5c0                         ; public: void __thiscall Terrain::elevateCorner(class Tile *, int)
+┌ sym.Terrain.dll_public:_int___thiscall_Terrain::getElevation_class_Tile____int();
+└ │││││││   0x10001343      jmp   fcn.10001de0                         ; public: int __thiscall Terrain::getElevation(class Tile *, int)
+  │││││││   ; CALL XREF from fcn.1000c3d0 @ 0x1000c4bb
+  │││││││   ; CALL XREFS from data.1004117c @ +0x1a, +0x3a
+┌ fcn.10001348();
+└ │││││││   0x10001348      jmp   fcn.10001fe0
+  │││││││   ; CALL XREF from fcn.100108f0 @ 0x100113da
+┌ fcn.1000134d();
+└ │││││││   0x1000134d      jmp   fcn.100116d0
+  │││││││   0x10001352      int3
+  │││││││   0x10001353      int3
+  │││││││   0x10001354      int3
+  │││││││   0x10001355      int3
+  │││││││   0x10001356      int3
+  │││││││   0x10001357      int3
+  │││││││   0x10001358      int3
+  │││││││   0x10001359      int3
+
+
+======================================================================
+FUNCTION: drawLine @ 0x100011b3
+======================================================================
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::drawLine_int__int__int__int__int__int__int();
+└       ┌─< 0x100011b3      jmp   fcn.100048a0                         ; public: void __thiscall Terrain::drawLine(int, int, int, int, int, int, int)
+        │   ; XREFS: CALL 0x10006e6c  CALL 0x10006eab  CALL 0x10006ec6  
+        │   ; XREFS: CALL 0x10006f6b  CALL 0x10006faa  CALL 0x10006fc5  
+        │   ; XREFS: CALL 0x1000706a  CALL 0x100070a9  CALL 0x100070c4  
+┌ fcn.100011b8();
+└      ┌──< 0x100011b8      jmp   fcn.10010590
+      ┌───< 0x100011bd      jmp   fcn.10002900
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::changeLighting_int();
+└    ┌────< 0x100011c2      jmp   fcn.10003540                         ; public: void __thiscall Terrain::changeLighting(int)
+     ││││   ; CALL XREF from fcn.1000c2c0 @ 0x1000c37b
+     ││││   ; CALL XREF from fcn.1000f750 @ 0x1000f770
+┌ fcn.100011c7();
+└   ┌─────< 0x100011c7      jmp   fcn.1000f7a0
+    │││││   ; CALL XREF from fcn.1000aed0 @ 0x1000af21
+    │││││   ; CALL XREF from fcn.1000b800 @ 0x1000b8a3
+┌ fcn.100011cc();
+└  ┌──────< 0x100011cc      jmp   fcn.1000b5b0
+   ││││││   ; CALL XREF from fcn.1000a560 @ 0x1000a58c
+┌ fcn.100011d1();
+└ ┌───────< 0x100011d1      jmp   fcn.10015400
+  │││││││   ; CALL XREF from fcn.1000a970 @ 0x1000a998
+  │││││││   ; CALL XREF from fcn.1000aa10 @ 0x1000aaa2
+┌ fcn.100011d6();
+└ ────────< 0x100011d6      jmp   fcn.100032b0
+  │││││││   ; CALL XREF from fcn.100381a0 @ 0x100381dc
+┌ fcn.100011db();
+└ ────────< 0x100011db      jmp   fcn.1000b280
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::pathUpdateRender_class_Tile____float();
+└ ────────< 0x100011e0      jmp   fcn.10006410                         ; public: void __thiscall Terrain::pathUpdateRender(class Tile *, float)
+  │││││││   ; CALL XREF from fcn.10006410 @ 0x100066cf
+  │││││││   ; CALL XREF from fcn.100089e0 @ 0x10008e57
+  │││││││   ; CALL XREF from fcn.10009270 @ 0x10009967
+┌ fcn.100011e5();
+└ ────────< 0x100011e5      jmp   fcn.1000b210
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::renderTile_int__int__int__int__int();
+└ ────────< 0x100011ea      jmp   fcn.100080e0                         ; public: void __thiscall Terrain::renderTile(int, int, int, int, int)
+  │││││││   ; CALL XREF from fcn.1000aed0 @ 0x1000af12
+  │││││││   ; CALL XREF from fcn.1000b210 @ 0x1000b252
+┌ fcn.100011ef();
+└ ────────< 0x100011ef      jmp   fcn.1000b470
+  │││││││   ; CALL XREF from fcn.10003270 @ 0x1000328d
+┌ fcn.100011f4();
+└ ────────< 0x100011f4      jmp   fcn.10013ff0
+  │││││││   ; CALL XREFS from fcn.100381a0 @ 0x10038219, 0x100383d6, 0x10038593, 0x10038743
+┌ fcn.100011f9();
+└ ────────< 0x100011f9      jmp   fcn.1000b090
+  │││││││   ; CALL XREF from fcn.1000b280 @ 0x1000b2a0
+┌ fcn.100011fe();
+└ ────────< 0x100011fe      jmp   fcn.1000b6e0
+  │││││││   ; CALL XREF from fcn.10014020 @ 0x100140b7
+┌ fcn.10001203();
+└ ────────< 0x10001203      jmp   fcn.1000d540
+  │││││││   ; CALL XREFS from fcn.10005750 @ 0x1000576f, 0x10005784, 0x10005797
+┌ fcn.10001208();
+└ ────────< 0x10001208      jmp   fcn.100058a0
+  │││││││   ; CALL XREF from fcn.10001de0 @ 0x10001e0a
+┌ fcn.1000120d();
+└ ────────< 0x1000120d      jmp   fcn.10001e40
+  │││││││   ; XREFS: CALL 0x1000665b  CALL 0x100076b8  CALL 0x10008baa  
+  │││││││   ; XREFS: CALL 0x10008c6d  CALL 0x10008d30  CALL 0x10008de6  
+  │││││││   ; XREFS: CALL 0x100094d6  CALL 0x10009635  CALL 0x10009794  
+  │││││││   ; XREFS: CALL 0x100098f3  
+┌ fcn.10001212();
+└ ────────< 0x10001212      jmp   fcn.10007380
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::closeSystem_void();
+└ ────────< 0x10001217      jmp   fcn.10009ba0                         ; public: void __thiscall Terrain::closeSystem(void)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::setType_class_Tile____int__int();
+└ ────────< 0x1000121c      jmp   fcn.100032f0                         ; public: void __thiscall Terrain::setType(class Tile *, int, int)
+  │││││││   ; CALL XREF from fcn.1000b320 @ 0x1000b348
+┌ fcn.10001221();
+└ ────────< 0x10001221      jmp   fcn.1000b7a0
+  │││││││   ; CALL XREF from fcn.1000b470 @ 0x1000b4ba
+┌ fcn.10001226();
+└ ────────< 0x10001226      jmp   fcn.1000b800
+  │││││││   ; CALL XREF from fcn.10001af0 @ 0x10001b33
+  │││││││   ; CALL XREF from fcn.10002ae0 @ 0x10002edc
+  │││││││   ; CALL XREF from fcn.10009c80 @ 0x10009dc2
+┌ fcn.1000122b();
+└ ────────< 0x1000122b      jmp   fcn.100076e0
+  │││││││   ; CALL XREF from fcn.10014020 @ 0x100140cf
+┌ fcn.10001230();
+└ ────────< 0x10001230      jmp   fcn.1000de60
+  │││││││   ; CALL XREF from fcn.100032f0 @ 0x10003358
+┌ fcn.10001235();
+└ ────────< 0x10001235      jmp   fcn.10014020
+  │││││││   ; CALL XREF from fcn.1000b800 @ 0x1000b897
+┌ fcn.1000123a();
+└ ────────< 0x1000123a      jmp   fcn.1000b9f0
+  │││││││   ; CALL XREFS from fcn.100381a0 @ 0x100381fe, 0x100383bb, 0x10038578, 0x10038728
+┌ fcn.1000123f();
+└ ────────< 0x1000123f      jmp   fcn.1000b040
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::drawCardinalSpline_int__int__int__int__int__int__int__int__int__int__int();
+└ ────────< 0x10001244      jmp   fcn.10004c70                         ; public: void __thiscall Terrain::drawCardinalSpline(int, int, int, int, int, int, int, int, int, int, int)
+  │││││││   ; CALL XREF from fcn.10009c80 @ 0x10009dba
+┌ fcn.10001249();
+└ ────────< 0x10001249      jmp   fcn.100037e0
+┌ sym.Terrain.dll_public:_int___thiscall_Terrain::getType_class_Tile();
+└ ────────< 0x1000124e      jmp   fcn.10001f10                         ; public: int __thiscall Terrain::getType(class Tile *)
+  │││││││   ; CALL XREF from fcn.10005990 @ 0x10005aa5
+  │││││││   ; CALL XREF from fcn.100089e0 @ 0x10008aec
+  │││││││   ; CALL XREF from fcn.10009270 @ 0x10009363
+  │││││││   ; CALL XREF from fcn.10038900 @ 0x10038a0d
+┌ fcn.10001253();
+└ ────────< 0x10001253      jmp   fcn.1000adc0
+  │││││││   ; CALL XREFS from fcn.10014020 @ 0x100140c5, 0x100140db, 0x100140fd
+┌ fcn.10001258();
+└ ────────< 0x10001258      jmp   fcn.1000d480
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::updatePath_int__int__int();
+└ ────────< 0x1000125d      jmp   fcn.1000a4b0                         ; public: void __thiscall Terrain::updatePath(int, int, int)
+  │││││││   ; XREFS: CALL 0x1001395f  CALL 0x100139bf  CALL 0x10013a1f  
+  │││││││   ; XREFS: CALL 0x10013a7d  CALL 0x10013add  CALL 0x10013b3d  
+  │││││││   ; XREFS: CALL 0x10013b9b  CALL 0x10013bfb  
+┌ fcn.10001262();
+└ ────────< 0x10001262      jmp   fcn.10013dd0
+  │││││││   ; CALL XREF from fcn.1000b910 @ 0x1000b933
+┌ fcn.10001267();
+└ ────────< 0x10001267      jmp   fcn.1000bae0
+  │││││││   ; XREFS(27)
+┌ fcn.1000126c();
+└ ────────< 0x1000126c      jmp   fcn.1000b2d0
+  │││││││   ; CALL XREF from fcn.1000b100 @ 0x1000b188
+  │││││││   ; CALL XREF from fcn.1000b2d0 @ 0x1000b2f3
+  │││││││   ; CALL XREF from fcn.1000b800 @ 0x1000b88b
+┌ fcn.10001271();
+└ ────────< 0x10001271      jmp   fcn.1000b660
+  │││││││   ; CALL XREF from fcn.1000b500 @ 0x1000b522
+┌ fcn.10001276();
+└ ────────< 0x10001276      jmp   fcn.1000b910
+  │││││││   ; CALL XREF from fcn.10010590 @ 0x100105b9
+  │││││││   ; CALL XREF from fcn.10033d70 @ 0x10033d7b
+  │││││││   ; CALL XREF from fcn.10035440 @ 0x10035453
+  │││││││   ; CALL XREF from fcn.10036790 @ 0x100367a3
+  │││││││   ; CALL XREF from fcn.100369a0 @ 0x100369b3
+┌ fcn.1000127b();
+└ ────────< 0x1000127b      jmp   fcn.100018b0
+  │││││││   ; CALL XREF from fcn.10003090 @ 0x1000312d
+  │││││││   ; CALL XREF from fcn.10038900 @ +0x87d7
+  │││││││   ; CALL XREF from data.100410dd @ +0x4a
+┌ fcn.10001280();
+└ ────────< 0x10001280      jmp   fcn.1000aed0
+  │││││││   ; CALL XREF from fcn.10013670 @ 0x10013746
+┌ fcn.10001285();
+└ ────────< 0x10001285      jmp   fcn.100154a0
+  │││││││   ; CALL XREFS from fcn.1000a3e0 @ 0x1000a40c, 0x1000a41c
+┌ fcn.1000128a();
+└ ────────< 0x1000128a      jmp   fcn.10013400
+  │││││││   ; CALL XREF from fcn.1000b3d0 @ 0x1000b3f4
+  │││││││   ; CALL XREFS from fcn.100381a0 @ 0x10038298, 0x10038455, 0x10038612, 0x100387cb
+┌ fcn.1000128f();
+└ ────────< 0x1000128f      jmp   fcn.1000b380
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::setZoomLevel_int();
+└ ────────< 0x10001294      jmp   fcn.10008fc0                         ; public: void __thiscall Terrain::setZoomLevel(int)
+  │││││││   ; XREFS: CALL 0x10009398  CALL 0x100093aa  CALL 0x100094f7  
+  │││││││   ; XREFS: CALL 0x10009509  CALL 0x10009656  CALL 0x10009668  
+  │││││││   ; XREFS: CALL 0x100097b5  CALL 0x100097c7  
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::stripRender_class_Tile____int__float();
+└ ────────< 0x10001299      jmp   fcn.10009270                         ; public: void __thiscall Terrain::stripRender(class Tile *, int, float)
+  │││││││   ; CALL XREF from fcn.1000ae60 @ 0x1000ae8e
+  │││││││   ; CALL XREF from fcn.1000b100 @ 0x1000b13e
+┌ fcn.1000129e();
+└ ────────< 0x1000129e      jmp   fcn.1000b500
+  │││││││   ; CALL XREF from fcn.10038900 @ 0x10038e62
+┌ fcn.100012a3();
+└ ────────< 0x100012a3      jmp   fcn.10003830
+  │││││││   ; XREFS: CALL 0x1000b0c7  CALL 0x100382cf  CALL 0x1003839b  
+  │││││││   ; XREFS: CALL 0x1003848c  CALL 0x10038558  CALL 0x10038649  
+  │││││││   ; XREFS: CALL 0x10038715  CALL 0x10038805  CALL 0x100388da  
+┌ fcn.100012a8();
+└ ────────< 0x100012a8      jmp   fcn.1000b100
+  │││││││   ; XREFS(81)
+┌ fcn.100012ad();
+└ ────────< 0x100012ad      jmp   fcn.10005960
+  │││││││   ; CALL XREF from fcn.1000e6c0 @ 0x1000e95f
+┌ fcn.100012b2();
+└ │││││││   0x100012b2      jmp   fcn.1000f7f0
+  │││││││   ; XREFS: CALL 0x10002158  CALL 0x10002180  CALL 0x100021a2  
+  │││││││   ; XREFS: CALL 0x100021d3  CALL 0x100021fe  CALL 0x1000222f  
+  │││││││   ; XREFS: CALL 0x100022f5  CALL 0x1000231d  CALL 0x10002348  
+  │││││││   ; XREFS: CALL 0x10002379  CALL 0x100023a4  CALL 0x100023cc  
+┌ fcn.100012b7();
+└ │││││││   0x100012b7      jmp   fcn.10002010
+  │││││││   ; XREFS: CALL 0x100073e5  CALL 0x1000742b  CALL 0x10007483  
+  │││││││   ; XREFS: CALL 0x100074c9  CALL 0x10007521  CALL 0x10007567  
+  │││││││   ; XREFS: CALL 0x100075b2  CALL 0x100075f8  
+┌ sym.Terrain.dll_public:_bool___thiscall_Terrain::getWall_class_Tile____int();
+└ │││││││   0x100012bc      jmp   fcn.10001e80                         ; public: bool __thiscall Terrain::getWall(class Tile *, int)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::layPath_class_Tile____int__int();
+└ │││││││   0x100012c1      jmp   fcn.1000a3e0                         ; public: void __thiscall Terrain::layPath(class Tile *, int, int)
+  │││││││   ; XREFS(39)
+┌ fcn.100012c6();
+└ │││││││   0x100012c6      jmp   fcn.10011d60
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::initTerrain_void();
+└ │││││││   0x100012cb      jmp   fcn.1000a970                         ; public: void __thiscall Terrain::initTerrain(void)
+  │││││││   ; CALL XREF from fcn.10004c70 @ 0x10004ecf
+┌ fcn.100012d0();
+└ │││││││   0x100012d0      jmp   fcn.10005090
+  │││││││   ; CALL XREF from fcn.100031a0 @ 0x100031fa
+┌ fcn.100012d5();
+└ │││││││   0x100012d5      jmp   fcn.10002ae0
+  │││││││   ; CALL XREF from fcn.10001e80 @ 0x10001ea4
+┌ fcn.100012da();
+└ │││││││   0x100012da      jmp   fcn.10001ed0
+  │││││││   ; CALL XREF from fcn.1000bbd0 @ 0x1000bbf0
+┌ fcn.100012df();
+└ │││││││   0x100012df      jmp   fcn.100016a0
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::initSystem_int__int__struct_HDC______bool();
+└ │││││││   0x100012e4      jmp   fcn.10009c80                         ; public: void __thiscall Terrain::initSystem(int, int, struct HDC__ *, bool)
+  │││││││   ; CALL XREF from fcn.10014020 @ 0x100140e5
+┌ fcn.100012e9();
+└ │││││││   0x100012e9      jmp   fcn.10015230
+  │││││││   ; CALL XREF from fcn.10001af0 @ 0x10001b2b
+  │││││││   ; CALL XREF from fcn.10003090 @ 0x1000311b
+  │││││││   ; CALL XREF from fcn.100076e0 @ 0x10007772
+  │││││││   ; CALL XREF from fcn.10009ba0 @ 0x10009c3d
+┌ fcn.100012ee();
+└ │││││││   0x100012ee      jmp   fcn.100380a0
+  │││││││   ; CALL XREF from fcn.10009c80 @ 0x10009db2
+┌ fcn.100012f3();
+└ │││││││   0x100012f3      jmp   fcn.100033e0
+  │││││││   ; CALL XREF from fcn.10008fc0 @ 0x100090a1
+  │││││││   ; CALL XREF from fcn.10009c80 @ 0x10009dd2
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::resize_int__int();
+└ │││││││   0x100012f8      jmp   fcn.10009ed0                         ; public: void __thiscall Terrain::resize(int, int)
+  │││││││   ; CALL XREFS from fcn.10003980 @ 0x100039bd, 0x100039cc, 0x100039db, 0x100039ea, 0x100039f9
+┌ fcn.100012fd();
+└ │││││││   0x100012fd      jmp   fcn.10006dd0
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::_destructor_void();
+└ │││││││   0x10001302      jmp   fcn.10003090                         ; public: void __thiscall Terrain::~destructor(void)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::calcNormals_class_Tile();
+└ │││││││   0x10001307      jmp   fcn.1000a6f0                         ; public: void __thiscall Terrain::calcNormals(class Tile *)
+  │││││││   ; CALL XREF from fcn.10001af0 @ 0x10001b23
+  │││││││   ; CALL XREF from fcn.100037e0 @ 0x10003800
+┌ fcn.1000130c();
+└ │││││││   0x1000130c      jmp   fcn.10003980
+  │││││││   ; XREFS: CALL 0x1001377b  CALL 0x100137ae  CALL 0x100137f6  
+  │││││││   ; XREFS: CALL 0x1001383f  CALL 0x10013872  CALL 0x100138ba  
+  │││││││   ; XREFS: CALL 0x100138ff  CALL 0x1001392f  
+┌ fcn.10001311();
+└ │││││││   0x10001311      jmp   fcn.100155b0
+  │││││││   ; XREFS: CALL 0x10005c1b  CALL 0x10005cd5  CALL 0x10005d8f  
+  │││││││   ; XREFS: CALL 0x10005e3c  CALL 0x1000662a  CALL 0x1000767f  
+  │││││││   ; XREFS: CALL 0x100094a5  CALL 0x10009604  CALL 0x10009763  
+  │││││││   ; XREFS: CALL 0x100098c2  
+┌ fcn.10001316();
+└ │││││││   0x10001316      jmp   fcn.10006850
+  │││││││   ; CALL XREFS from fcn.10012cf0 @ 0x10012d28, 0x10012d34, 0x10012d40, 0x10012d4c
+┌ fcn.1000131b();
+└ │││││││   0x1000131b      jmp   fcn.10011ef0
+  │││││││   ; CALL XREF from fcn.1000b690 @ 0x1000b6b5
+┌ fcn.10001320();
+└ │││││││   0x10001320      jmp   fcn.1000ba40
+  │││││││   ; CALL XREFS from fcn.10005750 @ 0x100057b9, 0x100057e6
+┌ fcn.10001325();
+└ │││││││   0x10001325      jmp   fcn.10005840
+  │││││││   ; CALL XREF from fcn.1000a450 @ 0x1000a47f
+┌ fcn.1000132a();
+└ │││││││   0x1000132a      jmp   fcn.10013360
+  │││││││   ; XREFS: CALL 0x10007917  CALL 0x10007a0a  CALL 0x10007b35  
+  │││││││   ; XREFS: CALL 0x10007bcc  CALL 0x10007c4a  CALL 0x10007c92  
+  │││││││   ; XREFS: CALL 0x10007cda  CALL 0x10007d22  CALL 0x10007d7f  
+  │││││││   ; XREFS: CALL 0x10007dc7  CALL 0x10007e0f  CALL 0x10007e57  
+  │││││││   ; XREFS: CALL 0x10007ec5  CALL 0x10007f33  CALL 0x10007fa1  
+┌ fcn.1000132f();
+└ │││││││   0x1000132f      jmp   fcn.10012e70
+  │││││││   ; CALL XREF from fcn.1000b5b0 @ 0x1000b5d6
+┌ fcn.10001334();
+└ │││││││   0x10001334      jmp   fcn.1000b960
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::setSplineHeight_float();
+└ │││││││   0x10001339      jmp   fcn.1000a840                         ; public: void __thiscall Terrain::setSplineHeight(float)
+┌ sym.Terrain.dll_public:_void___thiscall_Terrain::elevateCorner_class_Tile____int();
+└ │││││││   0x1000133e      jmp   fcn.1000a5c0                         ; public: void __thiscall Terrain::elevateCorner(class Tile *, int)
+┌ sym.Terrain.dll_public:_int___thiscall_Terrain::getElevation_class_Tile____int();
+└ │││││││   0x10001343      jmp   fcn.10001de0                         ; public: int __thiscall Terrain::getElevation(class Tile *, int)
+  │││││││   ; CALL XREF from fcn.1000c3d0 @ 0x1000c4bb
+  │││││││   ; CALL XREFS from data.1004117c @ +0x1a, +0x3a
+┌ fcn.10001348();
+└ │││││││   0x10001348      jmp   fcn.10001fe0
+  │││││││   ; CALL XREF from fcn.100108f0 @ 0x100113da
+┌ fcn.1000134d();
+└ │││││││   0x1000134d      jmp   fcn.100116d0
+  │││││││   0x10001352      int3
+  │││││││   0x10001353      int3
+  │││││││   0x10001354      int3
+  │││││││   0x10001355      int3
+  │││││││   0x10001356      int3
+  │││││││   0x10001357      int3
+  │││││││   0x10001358      int3
+  │││││││   0x10001359      int3
+  │││││││   0x1000135a      int3
+  │││││││   0x1000135b      int3
+  │││││││   0x1000135c      int3
+  │││││││   0x1000135d      int3
+  │││││││   0x1000135e      int3
+  │││││││   0x1000135f      int3
+  │││││││   0x10001360      int3
+  │││││││   0x10001361      int3
+  │││││││   0x10001362      int3
+
