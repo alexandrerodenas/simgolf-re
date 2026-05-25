@@ -1,0 +1,7 @@
+nth      paddr      vaddr len size section type  string   
+----------------------------------------------------------
+  0 0x00000000 0x00000000   4    4         ascii RIFF
+  1 0x00000008 0x00000008   8    9         ascii PAL data
+  2 0x00000418 0x00000418   5    6         ascii offl 
+  3 0x00000440 0x00000440   5    6         ascii tran 
+  4 0x00000468 0x00000468   5    6         ascii unde 

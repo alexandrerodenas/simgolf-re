@@ -6,11 +6,9 @@
 
 ```
 simgolf-re/
-├── data/               original game files (345 MB)
-│   ├── exe/            packed executables & DLLs
-│   ├── exe_patched/    patched golf.exe
+├── data/               original game files (338 MB)
 │   ├── exe_unpacked/   unpacked golf.exe (1 464 functions)
-│   └── raw/            all game assets: textures, audio, animations, fonts, …
+│   └── raw/            all game assets: DLLs, textures, audio, animations, fonts, …
 │
 ├── rizin_out/           rizin disassembly output (650+ MB, factual only)
 │   ├── exe/            PE binaries: full linear disassembly, sections, strings
@@ -24,15 +22,13 @@ simgolf-re/
 ## Disassembled Binaries
 
 | File | Source | Disasm Lines | Functions | Notes |
-|---|---|---|---|---|
-| `golf.exe` | `data/exe/golf.exe` | 755 368 | 54 | packed original |
-| `golf.exe` | `data/exe_patched/golf.exe` | 759 440 | 58 | patched (still packed) |
-| `golf.exe` | `data/exe_unpacked/golf.exe` | 759 098 | **1 464** | main target for analysis |
-| `Terrain.dll` | `data/exe/Terrain.dll` | 385 588 | **995** | terrain engine |
-| `sound.dll` | `data/exe/sound.dll` | 369 084 | **885** | audio system |
-| `jgld.dll` | `data/exe/jgld.dll` | 1 165 369 | **1 519** | OpenGL debug lib |
-| `jgl.dll` | `data/exe/jgl.dll` | 337 267 | 503 | OpenGL wrapper |
-| `binkw32.dll` | `data/exe/binkw32.dll` | 203 616 | 354 | Bink video playback |
+|---|---|---|---|---|---|
+| `golf.exe` | `data/exe_unpacked/golf.exe` | 759 098 | **1 464** | main game executable, unpacked |
+| `Terrain.dll` | `data/raw/Terrain.dll` | 385 588 | **995** | terrain engine |
+| `sound.dll` | `data/raw/sound.dll` | 369 084 | **885** | audio system |
+| `jgld.dll` | `data/raw/jgld.dll` | 1 165 369 | **1 519** | OpenGL debug lib |
+| `jgl.dll` | `data/raw/jgl.dll` | 337 267 | 503 | OpenGL wrapper |
+| `binkw32.dll` | `data/raw/binkw32.dll` | 203 616 | 354 | Bink video playback |
 
 Each binary output includes:
 - `headers.txt` — PE header dump
@@ -66,7 +62,6 @@ Each binary output includes:
 
 ## Notes
 
-- The original `golf.exe` is packed (UPX or equivalent). Only 54 functions are identifiable.
-- The unpacked version (`data/exe_unpacked/golf.exe`) reveals 1 464 functions and is the primary analysis target.
+- The unpacked `golf.exe` (`data/exe_unpacked/golf.exe`) reveals 1 464 functions and is the primary analysis target.
 - All DLLs (Terrain, sound, OpenGL, Bink) are unpacked and fully analyzable.
 - Game assets total 11 385 files across multiple formats; each has been processed through rizin for header/metadata extraction.

@@ -1,0 +1,1955 @@
+ nth      paddr      vaddr len size section type   string                                                                                                                                                         
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+   0 0x0000001a 0x0000001a   4    5         ibm037 2211
+   1 0x00000617 0x00000617   6    6         ascii  GCKS\v
+   2 0x0000061e 0x0000061e   4    4         ascii  v\Wv
+   3 0x000008dd 0x000008dd   7    8         ascii  \f\v\e:7:E
+   4 0x00000906 0x00000906   4    5         ascii  &-4E
+   5 0x00000920 0x00000920   4    4         ascii  \v3$1
+   6 0x00000929 0x00000929   6    6         ascii  &/@sIH
+   7 0x0000094f 0x0000094f   6    6         ascii  & <\%I
+   8 0x00000970 0x00000970  11   11         ascii  #,96&/519\e:
+   9 0x00000997 0x00000997   5    5         ascii  K65@Q
+  10 0x000009a3 0x000009a3   4    4         ascii  Q56`
+  11 0x000009d7 0x000009d7   6    7         ascii  \vJ:)\f\v
+  12 0x000009f4 0x000009f4   5    5         ascii  QF5Q5
+  13 0x00000a0c 0x00000a0c   5    5         ascii  n}$(V
+  14 0x00000a2d 0x00000a2d   5    5         ascii  5 &5i
+  15 0x00000a37 0x00000a37   5    5         ascii  FQ:Is
+  16 0x00000a59 0x00000a59   5    5         ascii  5Q5@5
+  17 0x00000a61 0x00000a61   4    4         utf8   /WF{
+  18 0x00000a88 0x00000a88   4    4         ascii  :)FQ
+  19 0x00000a8d 0x00000a8d   8    8         ascii  Q5@5&5F&
+  20 0x00000a96 0x00000a96   4    4         ascii  &Q5@
+  21 0x00000a9c 0x00000a9c   4    5         ascii  Q@5F
+  22 0x00000abf 0x00000abf   5    6         ascii  5F@Q5
+  23 0x00000aef 0x00000aef   4    4         ascii  I4)s
+  24 0x00000afd 0x00000afd   5    5         ascii  F/5&F
+  25 0x00000b2a 0x00000b2a   9    9         ascii  QF5QF/5/5
+  26 0x00000b54 0x00000b54   4    5         ascii  \v\t\v2
+  27 0x00000b5c 0x00000b5c  12   13         ascii  2)JI)%\f6QF5F
+  28 0x00000b8f 0x00000b8f   4    4         ascii  (:Iu
+  29 0x00000b95 0x00000b95   6    7         ascii  \f\vIF6@
+  30 0x00000b9c 0x00000b9c   5    6         ascii  %@%EQ
+  31 0x00000bcb 0x00000bcb   5    6         ascii  E)IQ@
+  32 0x00000c25 0x00000c25   6    7         ascii  \e#)G<q
+  33 0x00000c2f 0x00000c2f   5    5         ascii  I\)\f}
+  34 0x00000c4f 0x00000c4f   4    5         ascii  \v\e1(
+  35 0x00000c5b 0x00000c5b   9   10         ascii  (,!9<>(1\e
+  36 0x00000cb0 0x00000cb0   5    6         ascii  C<($#
+  37 0x00000cbc 0x00000cbc   5    5         ascii  29CS}
+  38 0x00000cc3 0x00000cc3   5    5         ascii  v\e\t\vv
+  39 0x00000ce1 0x00000ce1   8    8         ascii  ,129<G\g
+  40 0x00000d05 0x00000d05   7    7         ascii  (C9K<`g
+  41 0x00000d53 0x00000d53   8    8         ascii  61\e(,9<C
+  42 0x00000d73 0x00000d73   4    4         ascii  #'K,
+  43 0x00000d78 0x00000d78   6    6         ascii  ,219Gg
+  44 0x00000db2 0x00000db2 158  158         ibm037 88Y88Q08\88}Y8Q08HY8}YYQYYHYY{QYHY\µ\YÇ\Q½}QHH}½\HqH}^QHh\{q}{°{Hµ½}ì½{½H½°½{y½½µ{^h^^q½^øHµØ½yØµy^yy°{yø^yØ^µÌ°^ø°µ½µµ°yqÌqyçyqÇ^°-qqø°q°µ°ÇÌq^}Ìì°°øqhÇqhìq°
+  45 0x00000e6a 0x00000e6a   5    5         ascii  xPxxp
+  46 0x00000e70 0x00000e70   5    5         ascii  pHhxx
+  47 0x00000e79 0x00000e79   5    5         ascii  XHxp`
+  48 0x00000e7f 0x00000e7f   7    7         ascii  h@pxPPx
+  49 0x00000e87 0x00000e87   7    7         ascii  xpXxpHX
+  50 0x00000ea3 0x00000ea3  11   11         ascii  `HPxpxhHphX
+  51 0x00000eb2 0x00000eb2   8    8         ascii  `8hhX`h`
+  52 0x00000ec4 0x00000ec4   5    5         ascii  X@hhP
+  53 0x00000ecd 0x00000ecd   8    8         ascii  `(x`8h`X
+  54 0x00000ed6 0x00000ed6   8    8         ascii  P@`h h`P
+  55 0x00000ee2 0x00000ee2   8    8         ascii  P0PhH``P
+  56 0x00000eeb 0x00000eeb  22   23         ascii  X(X`XxX8pXPpX@hXXX`PXh
+  57 0x00000f03 0x00000f03   5    5         ascii  P8X`H
+  58 0x00000f09 0x00000f09  20   20         ascii    Hp(xP@`X8`XPxP8`X 
+  59 0x00000f21 0x00000f21  34   35         ascii  H8PXPpP0XXHxH8PX@xH0pH8PXH@X`XPHH`
+  60 0x00000f48 0x00000f48   5    5         ascii  @0`H8
+  61 0x00000f4e 0x00000f4e  26   26         ascii    hH0PPHPP@HPHhH @PXp@0p@8
+  62 0x00000f69 0x00000f69  16   17         ascii  0 8XHXH@h@0h@(@X
+  63 0x00000f7a 0x00000f7a  20   21         ascii  X@8@HH`@(p8(8HXh80@P
+  64 0x00000f95 0x00000f95  29   30         ascii  h8(8HP8HH@@8`8(@@P0HP8@X@@@X8
+  65 0x00000fb3 0x00000fb3  14   15         ascii  @@ h((X8(8@P0P
+  66 0x00000fc2 0x00000fc2  30   30         ascii  `008@H8@@`0(0@P`0 8@ P8 0@HX0(
+  67 0x00000fe6 0x00000fe6  14   15         ascii  X0 P0( @H88@0@
+  68 0x00000ff6 0x00000ff6  16   17         ascii  \b\bP0 `((08H880(@
+  69 0x00001007 0x00001007  13   14         ascii  08@@0 (8@008h
+  70 0x00001016 0x00001016   8    9         ascii  P( H(( @
+  71 0x00001023 0x00001023   7    8         ascii  \b\bH( H(
+  72 0x0000102b 0x0000102b  10   11         ascii  00((08 0@X
+  73 0x00001037 0x00001037   8    9         ascii  (00H \bH 
+  74 0x00001040 0x00001040   7    8         ascii   000((H
+  75 0x00001052 0x00001052   6    7         ascii  0  (((
+  76 0x00001059 0x00001059   4    5         ascii  (00 
+  77 0x0000105e 0x0000105e   6    7         ascii  0 \b ( 
+  78 0x0000106a 0x0000106a   4    5         ascii     @
+  79 0x0000109d 0x0000109d  19   20         ibm037 &8&y8y8888Ì88Ì88Ì88
+  80 0x0000123a 0x0000123a   6    7         ascii  SCCGSS
+  81 0x00001278 0x00001278   4    4         ascii  \b\a0L
+  82 0x0000139b 0x0000139b  12   12         ascii  \a\e!'/&&EW$Is
+  83 0x000013b8 0x000013b8   8    9         ascii  ,<-&&5gC
+  84 0x000013cd 0x000013cd   5    6         ascii  iW>KQ
+  85 0x000013d4 0x000013d4   7    7         ascii  /5@Q55W
+  86 0x000013e0 0x000013e0   4    5         ascii  )1\v$
+  87 0x000013eb 0x000013eb   8    9         ascii  `{FQQQ55
+  88 0x000013f4 0x000013f4   6    6         ascii  /55QQW
+  89 0x00001412 0x00001412   6    7         ascii  5F55Q&
+  90 0x00001431 0x00001431   4    4         ascii  QFQW
+  91 0x00001442 0x00001442   5    5         ascii  QQIII
+  92 0x00001453 0x00001453  11   11         ascii  F5@F-55@&&Q
+  93 0x00001478 0x00001478   8    9         ascii  J)QQ5F5/
+  94 0x00001482 0x00001482   9    9         ascii  5/@/&/5FQ
+  95 0x000014a2 0x000014a2   9    9         ibm037 lúFLccé  
+  96 0x000014ad 0x000014ad   9    9         ascii  \a@55 /5FF
+  97 0x000014b7 0x000014b7   5    6         ascii  QQ5F6
+  98 0x000014ce 0x000014ce   6    7         ascii  Q5F@//
+  99 0x000014d6 0x000014d6   4    5         ascii  //QQ
+ 100 0x000014f2 0x000014f2  11   11         ascii  QQ5////FQFF
+ 101 0x00001506 0x00001506   4    5         ascii  \e\e1)
+ 102 0x0000150c 0x0000150c   8    9         ascii  FFQFFQF\f
+ 103 0x00001540 0x00001540   4    5         ascii  \e$$$
+ 104 0x0000155b 0x0000155b   9   10         ascii  <#\e\e\e#3<9
+ 105 0x0000159c 0x0000159c   4    5         ascii  ((,1
+ 106 0x000015b0 0x000015b0   6    7         ascii  <gcgSG
+ 107 0x000015d8 0x000015d8  10   11         ascii  \e(##(199CG
+ 108 0x000015ed 0x000015ed   5    6         ascii  ##(((
+ 109 0x000015fa 0x000015fa   4    4         ascii  S>9S
+ 110 0x00001892 0x00001892   4    5         ascii  &&/&
+ 111 0x000018c6 0x000018c6   8    9         ascii  4:<H &&/
+ 112 0x000018d6 0x000018d6   4    5         ascii  &&&/
+ 113 0x000018fe 0x000018fe   4    5         ascii  /-HE
+ 114 0x00001914 0x00001914  10   11         ascii  1KQ&&/99#:
+ 115 0x00001929 0x00001929   8    9         ascii  iWK@QQ5F
+ 116 0x00001932 0x00001932   7    7         ascii  &/@F5@{
+ 117 0x0000194b 0x0000194b  15   15         ascii  viF@Q555&&5QQ@i
+ 118 0x0000196e 0x0000196e   4    5         ascii  QQ5Q
+ 119 0x0000199a 0x0000199a   5    5         ascii  Q@:Is
+ 120 0x000019a4 0x000019a4   4    4         ibm037 lPNc
+ 121 0x000019a8 0x000019a8   9    9         ascii  55-5@5Q/&
+ 122 0x000019c7 0x000019c7  12   12         ascii  \tQFQ@5@5 5&&
+ 123 0x000019d6 0x000019d6   4    5         ascii  FQQQ
+ 124 0x000019ef 0x000019ef   9   10         ascii  Q@55F5&5/
+ 125 0x000019fa 0x000019fa   6    7         ascii  QFQQFQ
+ 126 0x00001a0f 0x00001a0f   4    4         utf8   EI:)
+ 127 0x00001a16 0x00001a16  10   10         ascii  QQFF55F&5F
+ 128 0x00001a3c 0x00001a3c   6    7         ascii  @F55F/
+ 129 0x00001a44 0x00001a44  10   11         ascii  FF@F%16)f6
+ 130 0x00001a5e 0x00001a5e   4    5         ascii  4I))
+ 131 0x00001a64 0x00001a64   6    7         ascii  Q5FF5\f
+ 132 0x00001a76 0x00001a76   8    9         ascii  I6%)Q)6Q
+ 133 0x00001ab9 0x00001ab9   6    7         ascii  II:\fq\n
+ 134 0x00001ace 0x00001ace   8    9         ascii  ,('C<9$1
+ 135 0x00001b20 0x00001b20   4    4         ascii  CCV}
+ 136 0x00001b2a 0x00001b2a   6    7         ascii  ,12<Kv
+ 137 0x00001b34 0x00001b34   4    4         ascii  SC<K
+ 138 0x00001d0e 0x00001d0e   5    5         ascii  vcVWv
+ 139 0x00001dde 0x00001dde   4    4         ascii  &&/&
+ 140 0x00001e04 0x00001e04   4    5         ascii  &&/&
+ 141 0x00001e15 0x00001e15   5    6         ascii  \v &&/
+ 142 0x00001e20 0x00001e20   4    5         ascii  :3CH
+ 143 0x00001e2f 0x00001e2f   5    6         ascii  &&57:
+ 144 0x00001e5b 0x00001e5b   6    7         ascii  /&':E\b
+ 145 0x00001e68 0x00001e68   5    5         ibm037 ¿7ULV
+ 146 0x00001e6f 0x00001e6f   9   10         ascii  #-K6&&-69
+ 147 0x00001e88 0x00001e88   8    9         ascii  `96@F@F&
+ 148 0x00001e92 0x00001e92   4    4         ascii  QQ56
+ 149 0x00001eac 0x00001eac  12   12         ascii  QQF@Q &/WFQ{
+ 150 0x00001ec8 0x00001ec8   4    5         ascii  Q@5@
+ 151 0x00001ece 0x00001ece   4    4         utf8   &FW@
+ 152 0x00001ee8 0x00001ee8   8    8         ascii  5QQ@@ &F
+ 153 0x00001f07 0x00001f07   6    7         ascii  \aF& @Q
+ 154 0x00001f27 0x00001f27  12   12         ascii  \tQ5@5 5/&&i5
+ 155 0x00001f36 0x00001f36   5    6         ascii  QF@Q\a
+ 156 0x00001f4e 0x00001f4e   9    9         ascii  555QQ&&/5
+ 157 0x00001f71 0x00001f71   5    5         ascii  II4)s
+ 158 0x00001f78 0x00001f78   4    5         ascii  Q5F5
+ 159 0x00001f82 0x00001f82   7    8         ascii  QFFQFF)
+ 160 0x00001f99 0x00001f99   5    6         ascii  QFQF5
+ 161 0x00001fa0 0x00001fa0   6    7         ascii  F@FF%5
+ 162 0x00001fa8 0x00001fa8   4    5         ascii  f1{,
+ 163 0x00001fb6 0x00001fb6   4    5         ascii  \v\t\v,
+ 164 0x00001fc4 0x00001fc4   5    5         ascii  QF5/F
+ 165 0x00001fe0 0x00001fe0   4    5         ascii  QQ6@
+ 166 0x00001fe5 0x00001fe5   5    6         ascii  )@)@W
+ 167 0x00001ffb 0x00001ffb   5    6         ascii  \)JQ@
+ 168 0x0000200c 0x0000200c   4    5         ascii  \e$#$
+ 169 0x0000202c 0x0000202c   4    4         ascii  <<qq
+ 170 0x00002033 0x00002033   5    6         ascii  IE:\f}
+ 171 0x00002044 0x00002044   4    5         ascii  (,!(
+ 172 0x00002098 0x00002098   4    5         ascii  (,9<
+ 173 0x000020a0 0x000020a0   4    4         ascii  29Gg
+ 174 0x00002233 0x00002233   4    4         ascii  S\vn
+ 175 0x00002284 0x00002284   6    7         ascii  CSScgS
+ 176 0x0000234a 0x0000234a   4    5         ascii  //&/
+ 177 0x0000235e 0x0000235e   4    5         ascii  &&&/
+ 178 0x0000236e 0x0000236e   4    5         ascii  &/&&
+ 179 0x00002376 0x00002376   4    5         ascii  &&/&
+ 180 0x000023a2 0x000023a2   9   10         ascii  :7<: &&&\e
+ 181 0x000023b4 0x000023b4   6    7         ascii  -&&!4E
+ 182 0x000023e1 0x000023e1   7    7         ascii  &&&uK%)
+ 183 0x000023ec 0x000023ec   4    5         ascii  b)VC
+ 184 0x000023fb 0x000023fb  11   11         ascii  \e-<-&/5C9(E
+ 185 0x00002416 0x00002416   4    5         ascii  QQ5&
+ 186 0x00002422 0x00002422   4    5         ascii  )2\v(
+ 187 0x00002431 0x00002431   8    9         ascii  @{QQF@@5
+ 188 0x0000244c 0x0000244c   6    7         ascii  QQ5F5Q
+ 189 0x00002456 0x00002456   7    7         ibm037 éctLMcé
+ 190 0x00002466 0x00002466   4    4         ibm037 Pccc
+ 191 0x0000246a 0x0000246a   8    8         ascii  55@@5&&/
+ 192 0x00002487 0x00002487  13   13         ascii  Q5F&/@55&&FW5
+ 193 0x00002496 0x00002496   4    5         ascii  QQFQ
+ 194 0x000024ab 0x000024ab  13   13         ascii  F5Q5@555 &5@Q
+ 195 0x000024bc 0x000024bc   4    5         ascii  FQ\f\v
+ 196 0x000024d6 0x000024d6  10   11         ascii  /5QQ5/&F5@
+ 197 0x000024e2 0x000024e2   4    5         ascii  FFF@
+ 198 0x000024fc 0x000024fc   8    9         ascii  QQQF@5&/
+ 199 0x0000251b 0x0000251b   9    9         ascii  F@QFF///5
+ 200 0x00002525 0x00002525   5    6         ascii  F5F%%
+ 201 0x00002543 0x00002543   4    4         ascii  5/FF
+ 202 0x00002562 0x00002562   4    5         ascii  Q%6{
+ 203 0x00002575 0x00002575   5    6         ascii  E)IQQ
+ 204 0x000025a1 0x000025a1   5    6         ascii  9$\e\e\e
+ 205 0x0000262e 0x0000262e   4    5         ascii  (199
+ 206 0x0000263e 0x0000263e   6    6         ascii  ,21<Gv
+ 207 0x00002725 0x00002725   9   10         ibm037 [AAA[[[µ[
+ 208 0x000027c1 0x000027c1   4    4         ascii  cVgi
+ 209 0x00002816 0x00002816   5    5         ascii  cSSWv
+ 210 0x000028f6 0x000028f6   5    5         ascii  &&/&&
+ 211 0x00002920 0x00002920   4    5         ascii  /&&&
+ 212 0x00002929 0x00002929   5    6         ascii  \v &/&
+ 213 0x00002934 0x00002934   6    7         ascii  4:<H#&
+ 214 0x00002973 0x00002973   5    6         ascii  && :E
+ 215 0x0000297e 0x0000297e   4    5         ascii  x)V9
+ 216 0x0000298b 0x0000298b  11   11         ascii  #,<6&&-6>9E
+ 217 0x000029a5 0x000029a5   4    4         ascii  \b6QQ
+ 218 0x000029aa 0x000029aa   5    5         ascii  Q&&5Q
+ 219 0x000029c0 0x000029c0   4    5         ascii  Q@@Q
+ 220 0x000029c6 0x000029c6   5    5         ascii  /5QQQ
+ 221 0x000029d6 0x000029d6   4    5         ascii  QQQ5
+ 222 0x000029db 0x000029db  10   10         ascii  \a@Q5&//FiW
+ 223 0x000029f5 0x000029f5   7    8         ascii  Q@/@55F
+ 224 0x000029fe 0x000029fe   5    5         utf8    /{@Q
+ 225 0x00002a16 0x00002a16   4    5         ascii  Q@Q/
+ 226 0x00002a31 0x00002a31  12   12         ascii  \aQFF55QQ/Q&&
+ 227 0x00002a5b 0x00002a5b  17   18         ascii  \b/FQ/Q&&Q5FFFQ5FQ
+ 228 0x00002a80 0x00002a80   8    9         ascii  QFF5@&//
+ 229 0x00002aa6 0x00002aa6   8    9         ascii  5FQ55//F
+ 230 0x00002ab0 0x00002ab0   4    5         ascii  QF%@
+ 231 0x00002ac0 0x00002ac0   6    7         ascii  F5FFF\f
+ 232 0x00002adc 0x00002adc   4    5         ascii  QFE@
+ 233 0x00002ae2 0x00002ae2   4    5         ascii  @)6i
+ 234 0x00002b06 0x00002b06   4    5         ascii  \e$#$
+ 235 0x00002b92 0x00002b92   6    6         ascii  ,12<Kv
+ 236 0x00002c65 0x00002c65   6    7         ibm037 [AA}AA
+ 237 0x00002d02 0x00002d02   5    5         ascii  \Wn{a
+ 238 0x00002d59 0x00002d59   4    4         ascii  \b0rr
+ 239 0x00002e16 0x00002e16   5    5         ascii  /&&&&
+ 240 0x00002e3c 0x00002e3c   4    4         ascii   &&&
+ 241 0x00002e46 0x00002e46   4    4         ascii  &&&/
+ 242 0x00002e76 0x00002e76   4    5         ascii  :7<:
+ 243 0x00002eb5 0x00002eb5   8    8         ascii  &/-KK$Is
+ 244 0x00002ec9 0x00002ec9  13   13         ascii  C!(G<-&/5K9'>
+ 245 0x00002ee8 0x00002ee8   6    7         ascii  @iQQ5&
+ 246 0x00002eef 0x00002eef   5    5         ascii  \aQQF@
+ 247 0x00002ef7 0x00002ef7   7    8         ascii  :)7).\v$
+ 248 0x00002f09 0x00002f09  10   10         ascii  \a@55&&5F@5
+ 249 0x00002f23 0x00002f23  10   10         ascii  \bQ@5/&5Qi@
+ 250 0x00002f3f 0x00002f3f   7    8         ascii  \t5@@55 
+ 251 0x00002f47 0x00002f47   8    8         ibm037 ãt± txcé
+ 252 0x00002f5a 0x00002f5a   7    8         ascii  Q5F@@F5
+ 253 0x00002f79 0x00002f79   5    5         ascii  \t@F&@
+ 254 0x00002f98 0x00002f98   6    7         ibm037 lFFEãã
+ 255 0x00002fa0 0x00002fa0   8    9         ascii  55&55&/Q
+ 256 0x00002fbe 0x00002fbe   6    7         ascii  Q5FF5/
+ 257 0x00002fe6 0x00002fe6   4    5         ascii  FFFQ
+ 258 0x00002fec 0x00002fec   4    5         ascii  %-%)
+ 259 0x00002ffa 0x00002ffa   4    5         ascii  4s)%
+ 260 0x00003000 0x00003000   5    5         ascii  Q5F/5
+ 261 0x0000301c 0x0000301c  10   11         ascii  @F6@%)@%EW
+ 262 0x0000302d 0x0000302d   5    6         ascii  \)JQQ
+ 263 0x00003068 0x00003068   6    7         ascii  \e\e,(!,
+ 264 0x000030c8 0x000030c8   6    6         ascii  ,21<Gg
+ 265 0x000031b7 0x000031b7   7    8         ibm037 µ[[AAA[
+ 266 0x000031f7 0x000031f7   4    4         ascii  \rrrr
+ 267 0x0000324c 0x0000324c   5    5         ascii  }S\`g
+ 268 0x00003376 0x00003376   4    5         ascii  /&&&
+ 269 0x0000338e 0x0000338e   4    5         ascii  /&&&
+ 270 0x000033ac 0x000033ac   4    5         ascii  :3C:
+ 271 0x000033be 0x000033be   4    5         ascii   &&&
+ 272 0x000033cd 0x000033cd   4    5         ascii  \v\v3\b
+ 273 0x000033e9 0x000033e9   4    4         ascii  &&-G
+ 274 0x00003401 0x00003401  13   13         ascii  C,19<6&&-19\e:
+ 275 0x00003418 0x00003418   4    5         ascii  @QQF
+ 276 0x0000341e 0x0000341e   7    7         ascii  &/F@F6Q
+ 277 0x0000343e 0x0000343e   6    6         ascii  &/@Qii
+ 278 0x00003450 0x00003450  14   14         ascii  W@QF5Q@QF&/5QW
+ 279 0x0000346f 0x0000346f  11   11         ascii  FQ@/@55@ &Q
+ 280 0x00003480 0x00003480   5    5         ascii  QQ:II
+ 281 0x00003490 0x00003490  10   10         ascii  F5Q5F5F&&Q
+ 282 0x000034ad 0x000034ad   4    5         ascii  QFF5
+ 283 0x000034b2 0x000034b2   4    5         ascii  55&/
+ 284 0x000034bb 0x000034bb   7    8         ascii  FF@FF\f\v
+ 285 0x000034da 0x000034da   8    9         ascii  5F@55F//
+ 286 0x000034e8 0x000034e8   4    5         ascii  @FFQ
+ 287 0x00003500 0x00003500   4    5         ascii  55//
+ 288 0x00003518 0x00003518   4    5         ascii  QQ5F
+ 289 0x00003521 0x00003521   7    8         ascii  F%%5)q1
+ 290 0x00003530 0x00003530   6    7         ascii  \e#>)Jb
+ 291 0x00003538 0x00003538   7    8         ascii  FF5FFF\n
+ 292 0x00003550 0x00003550   4    5         ascii  IF66
+ 293 0x00003556 0x00003556   4    5         ascii  @)>Q
+ 294 0x0000356b 0x0000356b   5    6         ascii  E)IQ@
+ 295 0x0000358c 0x0000358c   6    7         ascii  #)G9qf
+ 296 0x000035a4 0x000035a4   4    5         ascii  ,,\e,
+ 297 0x000035f6 0x000035f6   4    5         ascii  (,9<
+ 298 0x00003602 0x00003602   6    7         ascii  ,129Kv
+ 299 0x0000363e 0x0000363e   7    8         ibm037 [AAA[[³
+ 300 0x0000376a 0x0000376a   8    9         ascii  cSvc\gv{
+ 301 0x000038b4 0x000038b4   4    5         ascii  &&/&
+ 302 0x000038c5 0x000038c5   5    6         ascii  \v&&/&
+ 303 0x000038d0 0x000038d0   6    7         ascii  4:<: &
+ 304 0x000038dc 0x000038dc   6    7         ascii  ' & 4E
+ 305 0x0000390a 0x0000390a   4    5         ascii  &&:K
+ 306 0x00003923 0x00003923   9   10         ascii  #,1>&/511
+ 307 0x0000393b 0x0000393b  13   13         ascii  \a6QQ5Q&&FQQ@5
+ 308 0x0000395a 0x0000395a   6    6         ascii  &FQQQi
+ 309 0x00003974 0x00003974   7    7         ascii  Q&&@QiW
+ 310 0x00003992 0x00003992   4    4         ascii  Q/&F
+ 311 0x00003998 0x00003998   4    5         ascii  iiFQ
+ 312 0x000039ad 0x000039ad   7    7         ascii  F55@ &F
+ 313 0x000039d4 0x000039d4   4    5         ascii  55FQ
+ 314 0x000039d9 0x000039d9   5    5         ascii  \a/&&W
+ 315 0x000039e2 0x000039e2   4    5         ascii  F5QQ
+ 316 0x000039fc 0x000039fc   5    5         ascii  5//&/
+ 317 0x00003a04 0x00003a04   4    5         ascii  QF@Q
+ 318 0x00003a1a 0x00003a1a  12   13         ascii  QF5Q/5//FQF5
+ 319 0x00003a3a 0x00003a3a   8    9         ascii  QFFQ//5F
+ 320 0x00003a44 0x00003a44   8    9         ascii  @F%5%:f2
+ 321 0x00003a50 0x00003a50  10   11         ascii  \e\e1)JI))\f%
+ 322 0x00003a74 0x00003a74  10   11         ascii  @F6@%%W)Ei
+ 323 0x00003a93 0x00003a93   5    6         ascii  E)JWQ
+ 324 0x00003ab8 0x00003ab8   4    5         ascii  #3<<
+ 325 0x00003af0 0x00003af0   8    9         ascii  ($$$,29C
+ 326 0x00003b12 0x00003b12   4    5         ascii  (199
+ 327 0x00003b22 0x00003b22   6    7         ascii  ,21<Gg
+ 328 0x00003d6b 0x00003d6b   4    4         ascii  \b0rr
+ 329 0x00003ded 0x00003ded   4    4         ascii  && &
+ 330 0x00003e1b 0x00003e1b   4    4         ascii  &&&/
+ 331 0x00003e4a 0x00003e4a   4    5         ascii  :7<E
+ 332 0x00003e5a 0x00003e5a   4    5         ascii  /5)E
+ 333 0x00003e88 0x00003e88   6    6         ascii  &69E$I
+ 334 0x00003e9a 0x00003e9a   8    9         ascii  ,9>/&619
+ 335 0x00003eb0 0x00003eb0   5    5         ibm037 22Tud
+ 336 0x00003ec8 0x00003ec8   4    5         ascii  )1\v$
+ 337 0x00003ed5 0x00003ed5  11   12         ascii  QQ@5@Q &5Q@
+ 338 0x00003ef5 0x00003ef5   6    7         ascii  \bQQ5@/
+ 339 0x00003f15 0x00003f15   8    9         ascii  Q-55/5@5
+ 340 0x00003f3b 0x00003f3b   4    4         ascii  \a5&&
+ 341 0x00003f3f 0x00003f3f  10   11         ibm037 cwrcããcééñ
+ 342 0x00003f62 0x00003f62   4    5         ascii  Q@5&
+ 343 0x00003f6c 0x00003f6c   4    5         ascii  iQFQ
+ 344 0x00003f89 0x00003f89  15   15         ascii  \nQQF5Q5Q&///@QQ
+ 345 0x00003fb4 0x00003fb4   8    9         ascii  ///5FFQ5
+ 346 0x00003fc7 0x00003fc7  10   10         ascii  $\n\t5FQ55/5
+ 347 0x00003fd3 0x00003fd3   9   10         ascii  FQF%6%1q1
+ 348 0x00003fea 0x00003fea  11   12         ascii  \f6QQFF5FQ\f\f
+ 349 0x00004000 0x00004000   4    5         ascii  IF65
+ 350 0x00004006 0x00004006   4    5         ascii  I%6Q
+ 351 0x00004043 0x00004043   9   10         ascii  9$\e\e\e#)G9
+ 352 0x00004051 0x00004051   5    6         ascii  IE:\f}
+ 353 0x0000405e 0x0000405e   6    7         ascii  \e\e(,!(
+ 354 0x00004084 0x00004084   8    9         ascii  ##$$$((1
+ 355 0x0000409a 0x0000409a   4    5         ascii  6(,1
+ 356 0x000040c8 0x000040c8   5    5         ascii  9<CKS
+ 357 0x000040d8 0x000040d8   4    4         ascii  19Gv
+ 358 0x000041d0 0x000041d0   6    7         ascii  \cgccK
+ 359 0x000042a0 0x000042a0   7    8         ascii  SGCS\v\n
+ 360 0x00004374 0x00004374   5    5         ascii  &&/&&
+ 361 0x0000437e 0x0000437e   4    4         ascii  &&/&
+ 362 0x000043b3 0x000043b3   5    6         ascii  &/%4E
+ 363 0x000043ce 0x000043ce   5    5         ascii  &5sIE
+ 364 0x000043e3 0x000043e3   8    8         ascii  &//:q,Is
+ 365 0x000043fc 0x000043fc   4    5         ascii  &/9C
+ 366 0x0000441c 0x0000441c   4    4         ascii  Q@5@
+ 367 0x00004435 0x00004435   9    9         ascii  \a5&&@Q5QW
+ 368 0x0000444d 0x0000444d  10   10         ascii  \b5QF@Q&&QQ
+ 369 0x00004457 0x00004457   6    6         ibm037 czzGæé
+ 370 0x00004469 0x00004469  11   11         ascii  F5F5@5QQ &F
+ 371 0x0000447d 0x0000447d   4    4         ascii  QIsI
+ 372 0x0000448d 0x0000448d   8    9         ascii  \n555/ 55
+ 373 0x000044c4 0x000044c4   4    5         ascii  FF5Q
+ 374 0x000044c9 0x000044c9   4    5         ascii  \b5Q/
+ 375 0x000044ce 0x000044ce   5    5         ascii  F/&5F
+ 376 0x000044d4 0x000044d4   6    7         ascii  Q@Q5F@
+ 377 0x000044e4 0x000044e4  11   11         ascii  5QQ@5//FFFQ
+ 378 0x000044fb 0x000044fb   7    7         ascii  \bQ@F//Q
+ 379 0x00004503 0x00004503   9   10         ascii  QFF%%5:f1
+ 380 0x0000451e 0x0000451e   4    5         ascii  FF5F
+ 381 0x0000453c 0x0000453c   6    7         ascii  %Q))@)
+ 382 0x00004566 0x00004566   6    6         ascii  <(\e$$#
+ 383 0x00004587 0x00004587   5    5         ascii  3<9qq
+ 384 0x00004604 0x00004604   5    5         ascii  99CCV
+ 385 0x00004728 0x00004728   6    7         ascii  ccvc\K
+ 386 0x00004802 0x00004802   4    5         ascii  gSWW
+ 387 0x000048e1 0x000048e1   4    4         ascii  &&//
+ 388 0x00004926 0x00004926   4    5         ascii  :3>H
+ 389 0x00004957 0x00004957   8    8         ascii  &&-:K$Is
+ 390 0x0000496b 0x0000496b  11   11         ascii  #9C6&&@91(:
+ 391 0x0000498b 0x0000498b   4    5         ascii  \aQQ@
+ 392 0x00004990 0x00004990   6    6         ascii  /5QQF6
+ 393 0x000049bf 0x000049bf   4    4         ascii  \fbmW
+ 394 0x000049c4 0x000049c4   6    6         ascii  Q5QQ@Q
+ 395 0x000049cb 0x000049cb   5    5         ascii  &&5QQ
+ 396 0x000049e3 0x000049e3  12   12         utf8   QQ@/55F5/&Q{
+ 397 0x000049f3 0x000049f3   5    6         ascii  QFQ:@
+ 398 0x00004a07 0x00004a07   5    5         ascii  55 &Q
+ 399 0x00004a10 0x00004a10   5    6         ascii  QFQQI
+ 400 0x00004a28 0x00004a28   8    8         ascii  5& 5F&&Q
+ 401 0x00004a43 0x00004a43   6    7         ascii  \bFQ5//
+ 402 0x00004a4a 0x00004a4a  10   11         ascii  //@QQQQF5@
+ 403 0x00004a5b 0x00004a5b   4    4         ascii  \vI4)
+ 404 0x00004a62 0x00004a62  10   10         ascii  QQ@5/5555F
+ 405 0x00004a7a 0x00004a7a   8    8         ascii  QFQQ55/F
+ 406 0x00004a86 0x00004a86   6    7         ascii  %6-)q2
+ 407 0x00004aa0 0x00004aa0  12   13         ascii  \v\f@Q6Q%%6)6W
+ 408 0x00004adf 0x00004adf   9    9         ascii  \b#3<<qfsf
+ 409 0x00004ae9 0x00004ae9   5    5         ascii  EI:\fq
+ 410 0x00004b64 0x00004b64   6    6         ascii  ,12<Gg
+ 411 0x00004c60 0x00004c60   6    7         ascii  SccccK
+ 412 0x00004d30 0x00004d30   8    9         ascii  SCGSccvc
+ 413 0x00004e64 0x00004e64   4    5         ascii  :7<H
+ 414 0x00004e99 0x00004e99   8    8         ascii  && :6,Is
+ 415 0x00004eb8 0x00004eb8   4    4         ascii  19$:
+ 416 0x00004ed5 0x00004ed5   5    5         ascii  FFQ5>
+ 417 0x00004eee 0x00004eee   8    9         ascii  F5@5@ /5
+ 418 0x00004f07 0x00004f07   8    9         ascii  QF5@QQ5F
+ 419 0x00004f23 0x00004f23   8    9         ascii  \a55& 5@5
+ 420 0x00004f34 0x00004f34   4    5         ascii  F@%I
+ 421 0x00004f3f 0x00004f3f  11   11         ascii  QF@& 5iF/&F
+ 422 0x00004f4f 0x00004f4f   4    5         ascii  FFFI
+ 423 0x00004f64 0x00004f64   6    7         ascii  5F@55&
+ 424 0x00004f6c 0x00004f6c   8    9         ascii  5QQFQ@FQ
+ 425 0x00004f81 0x00004f81   8    9         ascii  \tQ55@&55
+ 426 0x00004f8e 0x00004f8e   6    7         ascii  QFF@FQ
+ 427 0x00004fa9 0x00004fa9   9    9         ascii  \aQQFQ5/F5
+ 428 0x00004fc8 0x00004fc8  10   11         ascii  QQ55/F5FFF
+ 429 0x00004fd4 0x00004fd4   4    5         ascii  %:f2
+ 430 0x00004fea 0x00004fea  10   11         ascii  \f-F@QFFFQ\f
+ 431 0x00005004 0x00005004   6    7         ascii  \f\vIF6K
+ 432 0x0000500c 0x0000500c   4    5         ascii  >%EQ
+ 433 0x000050b0 0x000050b0   4    5         ascii  CGV}
+ 434 0x000050be 0x000050be   4    4         ascii  ,21<
+ 435 0x0000521b 0x0000521b   4    4         ascii  \rBrr
+ 436 0x00005290 0x00005290   7    7         ascii  Sc}g\Wv
+ 437 0x000053a2 0x000053a2   4    5         ascii  &&/&
+ 438 0x000053e8 0x000053e8   4    5         ascii  :E$I
+ 439 0x000053f6 0x000053f6  10   10         ascii  ,<-&&569\e:
+ 440 0x00005412 0x00005412   8    8         ascii  F&&5QQ@6
+ 441 0x00005420 0x00005420   4    5         ascii  ).\v$
+ 442 0x0000542d 0x0000542d  13   13         ascii  QF@55Q &5@@QQ
+ 443 0x00005446 0x00005446   6    7         ascii  i@FF5@
+ 444 0x00005459 0x00005459   4    4         ascii  1)))
+ 445 0x00005463 0x00005463   4    4         ascii  ($KW
+ 446 0x0000546b 0x0000546b  12   12         ascii  Q5/555QQ&&Fi
+ 447 0x00005478 0x00005478   6    6         ibm037 rrccéé
+ 448 0x0000548b 0x0000548b  10   10         ascii  Q555F5&@&&
+ 449 0x000054ac 0x000054ac   4    5         ascii  5/Q5
+ 450 0x000054b7 0x000054b7   5    6         ascii  FF@F5
+ 451 0x000054c4 0x000054c4   6    6         ibm037 lFF¥cc
+ 452 0x000054ca 0x000054ca  11   11         ascii  55Q@@&/&/QF
+ 453 0x000054d7 0x000054d7   5    6         ascii  QFFF@
+ 454 0x000054ea 0x000054ea   6    7         ascii  FQQ5/F
+ 455 0x000054f2 0x000054f2   6    6         ascii  5/QFQQ
+ 456 0x0000550a 0x0000550a  10   11         ascii  FF5@///FQ5
+ 457 0x00005516 0x00005516   4    5         ascii  %%6)
+ 458 0x00005524 0x00005524   6    7         ascii  )%\f%FQ
+ 459 0x00005546 0x00005546   4    5         ascii  %)f%
+ 460 0x0000558e 0x0000558e   6    7         ascii  <9qfsf
+ 461 0x0000570a 0x0000570a   4    5         ascii  c\cK
+ 462 0x000058b8 0x000058b8   4    4         ascii  &&& 
+ 463 0x000058cd 0x000058cd   4    4         ascii  &&&&
+ 464 0x000058f0 0x000058f0   4    5         ascii  &&&/
+ 465 0x00005910 0x00005910   4    5         ascii  4:<H
+ 466 0x0000592e 0x0000592e   6    7         ascii   &&5sI
+ 467 0x0000593b 0x0000593b   4    5         ascii  &&&\n
+ 468 0x0000594a 0x0000594a   4    5         ascii  &-9C
+ 469 0x00005964 0x00005964   4    5         ascii  /QQF
+ 470 0x0000597a 0x0000597a   4    5         ascii  iQQ@
+ 471 0x00005980 0x00005980   7    7         ascii  @&&Q@5@
+ 472 0x00005996 0x00005996   8    9         ascii  @QQF@F5Q
+ 473 0x0000599f 0x0000599f   4    4         ascii  \a&Q5
+ 474 0x000059b3 0x000059b3   4    4         ascii  (!@I
+ 475 0x000059c4 0x000059c4   8    8         ibm037 Ñtwrxéã 
+ 476 0x000059dd 0x000059dd   9    9         ascii  \b@F555&&@
+ 477 0x000059f5 0x000059f5  12   12         ascii  \nFQQQ/@&@//&
+ 478 0x00005a06 0x00005a06   5    6         ascii  QQQF\b
+ 479 0x00005a17 0x00005a17   9   10         ascii  QF@5@@F//
+ 480 0x00005a3a 0x00005a3a   6    7         ascii  F5/55F
+ 481 0x00005a42 0x00005a42   4    5         ascii  F5QQ
+ 482 0x00005a54 0x00005a54   6    7         ascii  Q5F55/
+ 483 0x00005a5c 0x00005a5c  10   11         ascii  F@QF%6%%q1
+ 484 0x00005ab2 0x00005ab2   6    6         ascii  9(\e$$$
+ 485 0x00005ad3 0x00005ad3  11   11         ascii  <#\e\e\e#)C2qq
+ 486 0x00005b98 0x00005b98   4    5         ibm037 [AAA
+ 487 0x00005c4a 0x00005c4a   6    7         ascii  SccccS
+ 488 0x00005d0e 0x00005d0e   8    9         ascii  SGCKS\vv
+ 489 0x00005dc4 0x00005dc4   4    5         ascii  &&& 
+ 490 0x00005de0 0x00005de0   4    5         ascii  &&/&
+ 491 0x00005e1e 0x00005e1e   4    5         ascii  :7:E
+ 492 0x00005e4d 0x00005e4d   7    7         ascii  && <\%I
+ 493 0x00005e66 0x00005e66   6    7         ascii  6&/519
+ 494 0x00005e7a 0x00005e7a   4    5         ascii  K65@
+ 495 0x00005e85 0x00005e85   4    4         ascii  Q56`
+ 496 0x00005e9d 0x00005e9d   5    6         ascii  Q55QQ
+ 497 0x00005ead 0x00005ead   5    6         ascii  \vJ:)\f
+ 498 0x00005ec0 0x00005ec0  12   12         ascii  QQF5Q55&&5QQ
+ 499 0x00005ee5 0x00005ee5  12   12         ascii  Q@QQQ@55 &5i
+ 500 0x00005ef6 0x00005ef6   4    5         ascii  FQ:I
+ 501 0x00005f07 0x00005f07   6    7         ascii  \tQ5@55
+ 502 0x00005f0e 0x00005f0e   4    4         utf8   /WF{
+ 503 0x00005f15 0x00005f15   4    5         ascii  QQFQ
+ 504 0x00005f25 0x00005f25  13   13         ascii  \tQ5@5&5F&&Q5@
+ 505 0x00005f34 0x00005f34   4    5         ascii  Q@5F
+ 506 0x00005f48 0x00005f48  16   17         ascii  5F@Q555&&55FQQ5F
+ 507 0x00005f5d 0x00005f5d   5    5         ascii  II4)s
+ 508 0x00005f66 0x00005f66   9    9         ascii  QQ5FF/5&F
+ 509 0x00005f7c 0x00005f7c   6    7         ascii  QF5QF/
+ 510 0x00005f84 0x00005f84   4    4         ascii  55FF
+ 511 0x00005f8a 0x00005f8a   6    7         ascii  %%%:f2
+ 512 0x00005f9e 0x00005f9e   6    7         ascii  \f6QF5F
+ 513 0x00005fbb 0x00005fbb   5    6         ascii  %@%EQ
+ 514 0x00005fd1 0x00005fd1   5    6         ascii  E)IQ@
+ 515 0x00006011 0x00006011   6    7         ascii  I\)\f}\n
+ 516 0x00006022 0x00006022   7    8         ascii  !9<>(1\b
+ 517 0x00006050 0x00006050   4    5         ascii  (,12
+ 518 0x0000607d 0x0000607d   9   10         ascii  61\e(,9<CC
+ 519 0x0000608a 0x0000608a   6    7         ascii  \e##'K,
+ 520 0x00006098 0x00006098   4    4         ascii  S<SS
+ 521 0x0000660f 0x0000660f   4    4         ascii  t6' 
+ 522 0x0000669f 0x0000669f   9   10         ibm037 Ù2YEÛEuzm
+ 523 0x000066b6 0x000066b6   7    7         ascii  )>&/57)
+ 524 0x000066df 0x000066df   5    6         ascii  *):b)
+ 525 0x000066e7 0x000066e7   9   10         ascii  )%&/5If\%
+ 526 0x00006724 0x00006724   4    5         ascii  &5<S
+ 527 0x00006758 0x00006758   4    5         ascii  &@-2
+ 528 0x0000677e 0x0000677e   4    4         ascii  )4Js
+ 529 0x00006785 0x00006785   7    7         ascii  >@FQ5F&
+ 530 0x000067c0 0x000067c0   4    4         ascii  @Q@&
+ 531 0x000067d3 0x000067d3   4    4         ascii  GV\vK
+ 532 0x000067f4 0x000067f4   4    4         ascii  F/@Q
+ 533 0x000067f9 0x000067f9   4    4         ascii  Q@5&
+ 534 0x00006833 0x00006833   7    7         ascii  5@5/5/&
+ 535 0x0000683b 0x0000683b   4    4         utf8   &QiW
+ 536 0x0000686e 0x0000686e   5    5         ascii  Q@FQ5
+ 537 0x00006874 0x00006874   4    4         ascii  5F/&
+ 538 0x00006880 0x00006880   4    5         ascii  QF@)
+ 539 0x000068b5 0x000068b5   6    6         ascii  /&/Q5F
+ 540 0x000068bc 0x000068bc   7    7         ascii  FQF5Ffs
+ 541 0x000068e4 0x000068e4  10   10         ascii  :)\fIQF-F5&
+ 542 0x00006927 0x00006927   6    6         ascii  F5F/&/
+ 543 0x00006933 0x00006933   4    4         ascii  QFQ5
+ 544 0x00006950 0x00006950   4    4         ascii  C$\eH
+ 545 0x0000695b 0x0000695b   5    5         ascii  @%Q15
+ 546 0x00006961 0x00006961   4    5         ascii  5F/F
+ 547 0x00006968 0x00006968   7    7         ascii  %5F%)J4
+ 548 0x0000698a 0x0000698a   8    8         ascii  ,\e(2(2:)
+ 549 0x0000699d 0x0000699d   7    8         ascii  5F%)%QI
+ 550 0x000069c6 0x000069c6   5    5         ascii  <#$\e#
+ 551 0x000069d2 0x000069d2   9   10         ascii  Q46)@%Q%\f
+ 552 0x000069dc 0x000069dc   6    6         ascii  QIJ7)s
+ 553 0x00006a17 0x00006a17   4    5         ascii  Q@5)
+ 554 0x00006ad8 0x00006ad8   4    4         ascii  (G$\e
+ 555 0x00006aea 0x00006aea   5    6         ascii  9f>$\v
+ 556 0x00006af6 0x00006af6   4    4         ascii  C\v\tc
+ 557 0x00006b1e 0x00006b1e   4    5         ascii  \e29$
+ 558 0x00006b31 0x00006b31   4    4         ascii  #9Cv
+ 559 0x00006b47 0x00006b47   4    4         ascii  9' -
+ 560 0x00006b6c 0x00006b6c   5    5         ascii  1<CVg
+ 561 0x00006ba8 0x00006ba8  13   13         ascii  #$,2<9C<C\e\t\v#
+ 562 0x00006bd8 0x00006bd8   4    4         ascii  9\S1
+ 563 0x00007001 0x00007001   5    6         ascii  &&///
+ 564 0x00007015 0x00007015   4    4         ascii  &/&/
+ 565 0x000070aa 0x000070aa   7    7         ascii  )6&&@7)
+ 566 0x000070cc 0x000070cc   4    5         ascii  )@&&
+ 567 0x000070e1 0x000070e1   4    4         ascii  L96@
+ 568 0x000070ee 0x000070ee   4    5         ascii  %!&/
+ 569 0x0000710b 0x0000710b   4    4         utf8   \v)fI
+ 570 0x00007115 0x00007115   6    7         ascii  @&/@16
+ 571 0x00007157 0x00007157  11   11         ascii  \nQ5Q//&F@5@
+ 572 0x0000717a 0x0000717a   6    7         ascii  QQ5FQ@
+ 573 0x00007182 0x00007182   4    4         ascii  Q5iW
+ 574 0x0000718e 0x0000718e   4    5         ibm037 AAAâ
+ 575 0x0000719c 0x0000719c   8    9         ascii  FF@55@@/
+ 576 0x000071c6 0x000071c6   7    8         ascii  Q5Q@5&5
+ 577 0x000071d6 0x000071d6   4    5         ascii  QQF:
+ 578 0x000071f3 0x000071f3   7    8         ascii  \b@Q5/5&
+ 579 0x000071fd 0x000071fd   4    4         ascii  5FFQ
+ 580 0x00007219 0x00007219  17   17         ascii  \n4)\f@QQ5F55///FF5
+ 581 0x0000724a 0x0000724a  12   13         ascii  F/55/5//5/FQ
+ 582 0x00007258 0x00007258   4    5         ascii  QFF5
+ 583 0x0000727a 0x0000727a   8    9         ascii  5%566///
+ 584 0x00007284 0x00007284   4    5         ascii  FQ6Q
+ 585 0x000072a3 0x000072a3   4    5         ascii  \aIQF
+ 586 0x000072a8 0x000072a8   7    8         ascii  5Q%%%@E
+ 587 0x000072c4 0x000072c4   6    7         ascii  I)6%Q6
+ 588 0x000072cc 0x000072cc   4    5         ascii  QEJ)
+ 589 0x000072e9 0x000072e9   5    6         ascii  QQQ))
+ 590 0x0000731a 0x0000731a   4    5         ibm037 AAAâ
+ 591 0x0000734c 0x0000734c   4    5         ascii  <\v\rS
+ 592 0x0000736e 0x0000736e   4    5         ascii  #2Kv
+ 593 0x000074fa 0x000074fa   4    5         ibm037 [AAA
+ 594 0x00007555 0x00007555   4    4         ascii  &&//
+ 595 0x00007577 0x00007577   5    6         ascii  &&&&/
+ 596 0x00007606 0x00007606   6    7         ascii  ss45&/
+ 597 0x0000762b 0x0000762b   5    6         ascii  \b))s)
+ 598 0x00007631 0x00007631  11   12         ascii  %%&&/6If\%u
+ 599 0x0000764e 0x0000764e   7    8         ascii  %&/&-<`
+ 600 0x00007672 0x00007672   4    4         ascii  {@Kn
+ 601 0x00007698 0x00007698   6    7         ascii  >Q@FQ&
+ 602 0x000076a0 0x000076a0   5    5         ascii  QF5FW
+ 603 0x000076be 0x000076be   6    7         ascii  @5&&Q@
+ 604 0x000076e3 0x000076e3   4    4         ascii  /5Qi
+ 605 0x00007704 0x00007704   9    9         ascii  /5/Q5&&/i
+ 606 0x00007731 0x00007731   5    6         ascii  Q@@55
+ 607 0x00007738 0x00007738   4    4         ascii  55&/
+ 608 0x0000775e 0x0000775e   5    6         ascii  QQQ5&
+ 609 0x00007764 0x00007764  10   11         ascii   / &Q/QFQQ
+ 610 0x00007788 0x00007788   4    5         ascii  QFF@
+ 611 0x000077a7 0x000077a7   5    6         ascii  @FQ5/
+ 612 0x000077ae 0x000077ae   5    5         ascii  5/&/F
+ 613 0x000077b6 0x000077b6   4    5         ascii  QQ@5
+ 614 0x000077c6 0x000077c6   8    9         ascii  6%F'5/&F
+ 615 0x000077f4 0x000077f4   5    6         ascii  %)%QI
+ 616 0x0000781a 0x0000781a   4    5         ascii  5)F5
+ 617 0x00007820 0x00007820   4    5         ascii  QIJ7
+ 618 0x00007892 0x00007892   4    5         ibm037 AAA<
+ 619 0x000078c6 0x000078c6   4    5         ascii  #1Sv
+ 620 0x00007918 0x00007918   4    5         ascii  <-->
+ 621 0x00007ae6 0x00007ae6   5    5         ascii   &&&/
+ 622 0x00007afb 0x00007afb   4    4         ascii  &&//
+ 623 0x00007b79 0x00007b79   5    6         ascii   &&&4
+ 624 0x00007b8c 0x00007b8c   4    5         ascii  )5&&
+ 625 0x00007ba4 0x00007ba4   4    5         ascii  )7b)
+ 626 0x00007ba9 0x00007ba9   7    8         ascii  \b) &&:I
+ 627 0x00007bcc 0x00007bcc   5    6         ascii  &/><S
+ 628 0x00007bf5 0x00007bf5   4    5         ascii  &59#
+ 629 0x00007c14 0x00007c14  11   11         ascii  F5Q///QQF5@
+ 630 0x00007c36 0x00007c36  10   11         ascii  @FQQ55&/@Q
+ 631 0x00007c45 0x00007c45   4    5         ascii  >\e:{
+ 632 0x00007c63 0x00007c63   4    4         ascii  /FQQ
+ 633 0x00007c6b 0x00007c6b   5    6         ascii  >')J)
+ 634 0x00007c74 0x00007c74   4    5         ibm037 AAAâ
+ 635 0x00007c7e 0x00007c7e   4    4         utf8   \f)If
+ 636 0x00007c82 0x00007c82   4    4         ibm037 Gxcc
+ 637 0x00007c86 0x00007c86   9    9         ascii  55@55Q&&Q
+ 638 0x00007c93 0x00007c93   5    5         ascii  QQQ66
+ 639 0x00007cb7 0x00007cb7   4    4         ascii  &@@Q
+ 640 0x00007cc0 0x00007cc0   4    5         ascii  QF@:
+ 641 0x00007cda 0x00007cda   9    9         ascii  QQ/5&&5FQ
+ 642 0x00007cfc 0x00007cfc   6    7         ascii  55F5/5
+ 643 0x00007d04 0x00007d04   5    5         ascii  /5FF@
+ 644 0x00007d0a 0x00007d0a   4    5         ascii  QQQ5
+ 645 0x00007d1d 0x00007d1d  11   12         ascii  FQQF5///FFQ
+ 646 0x00007d2a 0x00007d2a   6    7         ascii  FQ5QF@
+ 647 0x00007d44 0x00007d44   8    9         ascii  Q%5-6/5F
+ 648 0x00007d4e 0x00007d4e   4    5         ascii  QF%Q
+ 649 0x00007d68 0x00007d68   5    5         ascii  6F6)%
+ 650 0x00007d80 0x00007d80   4    5         ascii  QFf4
+ 651 0x00007d86 0x00007d86   4    5         ascii  6:F6
+ 652 0x00007da9 0x00007da9   5    6         ascii  :QiQQ
+ 653 0x00007e0a 0x00007e0a   4    5         ibm037 AAAâ
+ 654 0x00007e7b 0x00007e7b   4    4         ascii  a9''
+ 655 0x00007fbe 0x00007fbe   4    5         ibm037 AAA[
+ 656 0x00007feb 0x00007feb   6    7         ibm037 YzzmýD
+ 657 0x00008018 0x00008018   4    5         ibm037 AAAâ
+ 658 0x0000805f 0x0000805f   4    4         ascii  &&&&
+ 659 0x00008085 0x00008085   4    4         ascii  &///
+ 660 0x000080af 0x000080af   5    6         ascii  &&/-)
+ 661 0x000080bc 0x000080bc   4    5         ascii  ss)&
+ 662 0x000080dc 0x000080dc   8    9         ascii  \b\b)&//6I
+ 663 0x00008123 0x00008123   4    5         ascii  &@1#
+ 664 0x0000813f 0x0000813f   4    4         ascii  \v)Js
+ 665 0x00008146 0x00008146  13   13         ascii  >QF@QQ&/5QQ5F
+ 666 0x0000816a 0x0000816a  12   12         ascii  5@5Q@Q&&5@@Q
+ 667 0x00008194 0x00008194  12   12         ascii  F55QF5Q-&&5Q
+ 668 0x000081c3 0x000081c3   7    7         ascii  \tQ5&/Fi
+ 669 0x000081ce 0x000081ce   4    4         ascii  QF6>
+ 670 0x000081da 0x000081da   4    5         ibm037 AAAâ
+ 671 0x000081ef 0x000081ef   5    6         ascii  Q@FQ5
+ 672 0x00008215 0x00008215   7    8         ascii  F55@Q&5
+ 673 0x00008224 0x00008224   4    5         ascii  QFQQ
+ 674 0x00008236 0x00008236   8    9         ascii  :)\fIF55F
+ 675 0x0000823f 0x0000823f  15   16         ascii  \a5F//&FQFFQ@QQ@
+ 676 0x00008260 0x00008260   4    5         ascii  FQF5
+ 677 0x00008266 0x00008266  11   12         ascii  &&//FFF5QQ\b
+ 678 0x00008284 0x00008284   6    7         ascii  @%F65&
+ 679 0x000082ba 0x000082ba   5    6         ibm037 TLuz¶
+ 680 0x00008352 0x00008352   4    5         ibm037 AAAâ
+ 681 0x0000836a 0x0000836a   4    5         ibm037 AAAâ
+ 682 0x000084ea 0x000084ea   6    7         ibm037 [[[AAA
+ 683 0x0000850c 0x0000850c   6    7         ibm037 ýzmmDÚ
+ 684 0x0000854c 0x0000854c   4    5         ibm037 AAAâ
+ 685 0x00008597 0x00008597   4    4         ascii  &&&&
+ 686 0x000085c8 0x000085c8   4    5         ascii  &/ "
+ 687 0x000085e8 0x000085e8   4    5         ascii  )-/&
+ 688 0x000085fe 0x000085fe   4    5         ascii  )Q&/
+ 689 0x00008641 0x00008641   6    7         ascii  5&/51$
+ 690 0x0000865f 0x0000865f   4    4         ascii  \b65@
+ 691 0x00008665 0x00008665   8    8         ascii  5&&F@Q@@
+ 692 0x0000868a 0x0000868a   6    7         ascii  555@F/
+ 693 0x000086ae 0x000086ae   8    9         ascii  >Q55QQQ5
+ 694 0x000086de 0x000086de   6    6         ascii  F&@QF/
+ 695 0x000086ed 0x000086ed   5    5         ascii  QQ@W>
+ 696 0x00008710 0x00008710   4    5         ascii  @55&
+ 697 0x0000871c 0x0000871c   6    7         ascii  F5Q:\fJ
+ 698 0x00008735 0x00008735   7    8         ascii  \v5FF-5&
+ 699 0x0000875a 0x0000875a  16   16         ascii  4)\fQ55FQQ&&//5FF
+ 700 0x00008788 0x00008788  14   14         ascii  F5QF55///&QFQ5
+ 701 0x000087ac 0x000087ac   6    6         ascii  F%-/FF
+ 702 0x000087b3 0x000087b3   5    6         ascii  /F56Q
+ 703 0x000087ce 0x000087ce   5    6         ascii  6%%@E
+ 704 0x000087dc 0x000087dc   8    9         ascii  @46)Q)Q-
+ 705 0x00008813 0x00008813   4    4         ascii  a6@6
+ 706 0x00008850 0x00008850   4    5         ascii  f9(\v
+ 707 0x00008880 0x00008880   4    5         ibm037 AAA<
+ 708 0x00008a18 0x00008a18   4    5         ascii  &&&/
+ 709 0x00008a20 0x00008a20   4    5         ibm037 AAAâ
+ 710 0x00008a7d 0x00008a7d   4    5         ascii  &&&/
+ 711 0x00008ab7 0x00008ab7   7    8         ascii  \a)5&&9I
+ 712 0x00008ad9 0x00008ad9   5    6         ascii  :f%%&
+ 713 0x00008af6 0x00008af6   4    4         ascii  <-'-
+ 714 0x00008b01 0x00008b01   6    7         ascii  Q&&@-$
+ 715 0x00008b1c 0x00008b1c   6    7         ascii  F/&/Q@
+ 716 0x00008b3e 0x00008b3e  11   11         ascii  QF5QQ5&/Q5Q
+ 717 0x00008b6b 0x00008b6b   9    9         ascii  \bF@Q/&/WQ
+ 718 0x00008b95 0x00008b95   4    4         ascii  \b&&Q
+ 719 0x00008b9e 0x00008b9e   4    4         ascii  QQ>9
+ 720 0x00008bbe 0x00008bbe   4    5         ascii  FQ@5
+ 721 0x00008be8 0x00008be8   9    9         ascii  FF5-55&/i
+ 722 0x00008bf2 0x00008bf2   8    9         ascii  FQQFFQQf
+ 723 0x00008c06 0x00008c06  10   11         ascii  5F@Q555F//
+ 724 0x00008c14 0x00008c14   4    5         ascii  iQQQ
+ 725 0x00008c28 0x00008c28   4    5         ascii  QQFF
+ 726 0x00008c34 0x00008c34   4    5         ascii  FQFF
+ 727 0x00008c4c 0x00008c4c   4    5         ascii  ///Q
+ 728 0x00008c5e 0x00008c5e   4    5         ascii  %F5)
+ 729 0x00008c64 0x00008c64   5    6         ascii  %%%QI
+ 730 0x00008c84 0x00008c84   4    5         ascii  6%Q!
+ 731 0x00008c8a 0x00008c8a   4    5         ascii  QIJ7
+ 732 0x00008cf4 0x00008cf4   4    5         ascii  f>$\v
+ 733 0x00008ed9 0x00008ed9   4    4         ascii  P-6@
+ 734 0x00008ef2 0x00008ef2   4    5         ascii  &&/&
+ 735 0x00008f1c 0x00008f1c   5    5         ascii  &&//&
+ 736 0x00008f44 0x00008f44   4    5         ibm037 AAAâ
+ 737 0x00008fa2 0x00008fa2   4    5         ascii  &&-)
+ 738 0x00008fba 0x00008fba   4    4         ascii  )5&&
+ 739 0x00008ff0 0x00008ff0   8    9         ascii  :%%/&/KC
+ 740 0x00009014 0x00009014   4    4         ascii  {WKf
+ 741 0x0000902c 0x0000902c   4    4         ascii  C6'-
+ 742 0x0000903c 0x0000903c   5    5         ascii  @QQQ@
+ 743 0x00009061 0x00009061   5    6         ascii  \nQQF5
+ 744 0x0000908c 0x0000908c   6    7         ascii  Q55Q5/
+ 745 0x000090ba 0x000090ba   4    5         ascii  555@
+ 746 0x000090e6 0x000090e6   8    9         ascii  QQ@/&5@F
+ 747 0x000090f6 0x000090f6   4    5         ascii  F5F:
+ 748 0x0000911b 0x0000911b   5    6         ascii  QF55@
+ 749 0x00009122 0x00009122   6    7         ascii  i@FFQQ
+ 750 0x00009141 0x00009141  14   14         ascii  \n\fIQF5FF555&F5
+ 751 0x00009151 0x00009151   5    6         ascii  QQQF@
+ 752 0x00009170 0x00009170   4    5         ascii  Q/&5
+ 753 0x00009176 0x00009176   8    9         ascii  5FF55@Q@
+ 754 0x0000918e 0x0000918e  12   13         ascii  Q% 5&FFFFQ%@
+ 755 0x000091a8 0x000091a8   4    5         ascii  (2(9
+ 756 0x000091de 0x000091de   6    7         ascii  @45%Q6
+ 757 0x000091e6 0x000091e6   4    5         ascii  QWJ)
+ 758 0x0000926e 0x0000926e   4    5         ascii  #1Sv
+ 759 0x00009449 0x00009449   4    4         ascii  &&&/
+ 760 0x000094ef 0x000094ef   5    6         ascii  &&/,)
+ 761 0x0000950e 0x0000950e   4    5         ascii  &/v7
+ 762 0x00009529 0x00009529   7    8         ascii  %%@&&6I
+ 763 0x00009549 0x00009549   5    6         ascii  H)%%!
+ 764 0x0000954f 0x0000954f   4    5         ascii  />9V
+ 765 0x0000956a 0x0000956a   4    4         ascii  {vKn
+ 766 0x00009572 0x00009572   5    5         ascii  5-1\eG
+ 767 0x00009590 0x00009590   9    9         ascii  @5QQF5&&F
+ 768 0x000095aa 0x000095aa   4    4         ascii  P--6
+ 769 0x000095bc 0x000095bc   4    4         ascii  FFQQ
+ 770 0x000095e0 0x000095e0   4    5         ascii  Q@F5
+ 771 0x000095fc 0x000095fc   6    7         ascii  Q5F/@F
+ 772 0x00009603 0x00009603   4    4         ascii  \a&/Q
+ 773 0x0000960b 0x0000960b   5    5         ascii  FQ@5:
+ 774 0x00009638 0x00009638   8    9         ascii  @FFFQF51
+ 775 0x00009661 0x00009661   7    8         ascii  F5@@-F5
+ 776 0x0000968a 0x0000968a   6    7         ascii  :)\ffQ5
+ 777 0x00009696 0x00009696   4    4         ascii  &5F5
+ 778 0x000096b6 0x000096b6   6    6         ascii  F5/5FF
+ 779 0x000096bd 0x000096bd   5    6         ascii  QFQQF
+ 780 0x000096d4 0x000096d4   6    7         ascii  F%-//F
+ 781 0x000096dc 0x000096dc   6    7         ascii  /FFF6Q
+ 782 0x000096ea 0x000096ea   6    7         ascii  2\e(9(<
+ 783 0x00009718 0x00009718   6    7         ascii  6J%%F%
+ 784 0x00009720 0x00009720   4    5         ascii  QQJ7
+ 785 0x00009740 0x00009740   7    7         ascii  F@QQ))b
+ 786 0x0000976b 0x0000976b   4    4         ascii  t9' 
+ 787 0x000097bc 0x000097bc   4    5         ibm037 AAAâ
+ 788 0x000098fb 0x000098fb   5    6         ibm037 µ[AAA
+ 789 0x000099fd 0x000099fd   4    4         ascii  B\r\a\r
+ 790 0x00009a17 0x00009a17   5    6         ascii  &&/ "
+ 791 0x00009a3a 0x00009a3a   6    7         ascii  )&//@7
+ 792 0x00009a50 0x00009a50   4    5         ascii  )7s)
+ 793 0x00009a76 0x00009a76   4    4         ascii  &/@\
+ 794 0x00009abc 0x00009abc   4    5         ascii  K5Q@
+ 795 0x00009ae4 0x00009ae4   9    9         ascii  5FQF@5&&F
+ 796 0x00009b02 0x00009b02   4    4         ascii  <--6
+ 797 0x00009b13 0x00009b13   4    4         ascii  &FQQ
+ 798 0x00009b2e 0x00009b2e   6    7         ascii  QQ5@F5
+ 799 0x00009b3d 0x00009b3d   5    5         ascii  QFF@6
+ 800 0x00009b4c 0x00009b4c   6    6         ibm037 OOOCë 
+ 801 0x00009b61 0x00009b61   5    6         ascii  @555&
+ 802 0x00009b6f 0x00009b6f   5    6         ascii  QF5F1
+ 803 0x00009b8d 0x00009b8d  11   12         ascii  QQ5@55//&QF
+ 804 0x00009b9b 0x00009b9b   4    5         ascii  FFQQ
+ 805 0x00009bb4 0x00009bb4   4    5         ascii  \fIF5
+ 806 0x00009bba 0x00009bba   8    9         ascii  F5FQQ///
+ 807 0x00009bc4 0x00009bc4   6    7         ascii  QFF@FQ
+ 808 0x00009bea 0x00009bea   5    5         ascii  5FFQF
+ 809 0x00009c08 0x00009c08   6    7         ascii  @%F65/
+ 810 0x00009c14 0x00009c14   4    5         ascii  %QQ%
+ 811 0x00009c28 0x00009c28   4    5         ascii  ,\e(2
+ 812 0x00009c35 0x00009c35   6    7         ascii  \f@\f%F5
+ 813 0x00009c3c 0x00009c3c   7    8         ascii  %F%)%QE
+ 814 0x00009c62 0x00009c62   4    5         ascii  QWJ)
+ 815 0x00009c7f 0x00009c7f   6    7         ascii  :FQ@Q\f
+ 816 0x00009cd4 0x00009cd4   4    5         ascii  f9$\v
+ 817 0x00009cf8 0x00009cf8   4    5         ascii  #2K}
+ 818 0x00009d3c 0x00009d3c   4    5         ibm037 AAAâ
+ 819 0x00009edf 0x00009edf   4    4         ascii  a' '
+ 820 0x00009f31 0x00009f31   4    4         ascii  &&&/
+ 821 0x00009f77 0x00009f77   4    4         ascii  &&//
+ 822 0x00009f81 0x00009f81   4    5         ascii  &/& 
+ 823 0x00009faa 0x00009faa   6    7         ascii  )5&/W7
+ 824 0x00009fea 0x00009fea   7    8         ascii  6-\a&5}@
+ 825 0x0000a030 0x0000a030   6    7         ascii  >@@QQ/
+ 826 0x0000a038 0x0000a038   5    5         ascii  FF@Q6
+ 827 0x0000a058 0x0000a058   4    5         ascii  5Q5@
+ 828 0x0000a05e 0x0000a05e   6    6         ascii  &/QQ@W
+ 829 0x0000a06c 0x0000a06c   4    5         ascii  K`\vS
+ 830 0x0000a07b 0x0000a07b   4    4         ascii  \f\f)K
+ 831 0x0000a082 0x0000a082  10   10         ascii  5QQQF@&/QF
+ 832 0x0000a0a0 0x0000a0a0   4    4         ascii  <-'6
+ 833 0x0000a0ad 0x0000a0ad  10   10         ascii  FF@55/Q&&F
+ 834 0x0000a0bc 0x0000a0bc   4    4         ascii  F566
+ 835 0x0000a0dc 0x0000a0dc   4    5         ascii  55/Q
+ 836 0x0000a0e8 0x0000a0e8   6    7         ascii  @/Q1\fJ
+ 837 0x0000a103 0x0000a103  11   11         ascii  Q&@555&&/FF
+ 838 0x0000a12a 0x0000a12a   8    9         ascii  FQ5F555&
+ 839 0x0000a134 0x0000a134   5    5         ascii  5FFF5
+ 840 0x0000a152 0x0000a152   6    7         ascii  5FF5/&
+ 841 0x0000a1b4 0x0000a1b4   8    9         ascii  Q46)I%56
+ 842 0x0000a250 0x0000a250   4    5         ascii  #1Sv
+ 843 0x0000a3e5 0x0000a3e5   4    4         ascii  &&//
+ 844 0x0000a405 0x0000a405   4    4         ascii  t9--
+ 845 0x0000a4dc 0x0000a4dc   4    5         ascii  )7b)
+ 846 0x0000a4e2 0x0000a4e2   4    5         ascii  %/&&
+ 847 0x0000a4fd 0x0000a4fd  12   12         ascii  H:%: &/{G>\e)
+ 848 0x0000a516 0x0000a516   4    5         ibm037 AAAâ
+ 849 0x0000a527 0x0000a527   8    8         ascii  F&/Q,('\
+ 850 0x0000a54f 0x0000a54f   6    6         ascii  &FQ@5@
+ 851 0x0000a573 0x0000a573   9    9         ascii  \aQ5&&F5QQ
+ 852 0x0000a584 0x0000a584   4    5         ascii  KV\vK
+ 853 0x0000a59e 0x0000a59e   6    7         ascii  Q@55Q5
+ 854 0x0000a5c8 0x0000a5c8  10   10         ascii  55F-5@&/5F
+ 855 0x0000a5e6 0x0000a5e6   4    4         ascii  --'6
+ 856 0x0000a5f6 0x0000a5f6  10   10         ascii  F5@@@Q5F&&
+ 857 0x0000a618 0x0000a618   4    4         ascii  k6-@
+ 858 0x0000a627 0x0000a627   7    8         ascii  QQQ5-/5
+ 859 0x0000a62f 0x0000a62f   4    4         ascii  &@5Q
+ 860 0x0000a64f 0x0000a64f  13   13         ascii  \tQQFF&55F&//5
+ 861 0x0000a672 0x0000a672  11   11         ascii  QQF5FQ5/F55
+ 862 0x0000a69a 0x0000a69a   4    5         ascii  -%Q6
+ 863 0x0000a6a0 0x0000a6a0  10   11         ascii  //FFFQ65F%
+ 864 0x0000a6c4 0x0000a6c4   5    6         ascii  6))QE
+ 865 0x0000a6da 0x0000a6da   6    7         ascii  I)@:F6
+ 866 0x0000a722 0x0000a722   9   10         ibm037 VX¶ú4uVY\b
+ 867 0x0000a82c 0x0000a82c   5    6         ibm037 MT22\n
+ 868 0x0000a99b 0x0000a99b   4    4         ascii  a9' 
+ 869 0x0000aa0f 0x0000aa0f   4    5         ascii  &&/&
+ 870 0x0000aa25 0x0000aa25   5    6         ascii  &//-)
+ 871 0x0000aa2e 0x0000aa2e   5    6         ibm037 EEuu¯
+ 872 0x0000aa3c 0x0000aa3c   4    5         ascii  &/W:
+ 873 0x0000aa56 0x0000aa56   4    5         ascii  ):s)
+ 874 0x0000aa77 0x0000aa77   5    6         ascii  qs%%'
+ 875 0x0000aa7d 0x0000aa7d   6    6         utf8   \a6<S\e4
+ 876 0x0000aa99 0x0000aa99   6    7         ascii  Q&&5<,
+ 877 0x0000aab5 0x0000aab5   4    4         ascii  \aQQQ
+ 878 0x0000aaba 0x0000aaba   7    7         ascii  &/@FQF@
+ 879 0x0000aad8 0x0000aad8   8    9         ascii  555F@F&/
+ 880 0x0000ab00 0x0000ab00   4    5         ascii  5F/5
+ 881 0x0000ab06 0x0000ab06   5    5         ascii   &55Q
+ 882 0x0000ab20 0x0000ab20   4    4         utf8   \f%:s
+ 883 0x0000ab26 0x0000ab26  12   12         ascii  QFF@Q555&&FW
+ 884 0x0000ab36 0x0000ab36   4    4         ascii  QF6:
+ 885 0x0000ab4d 0x0000ab4d   4    4         ascii  \e\f)u
+ 886 0x0000ab55 0x0000ab55  19   20         ascii  F5@Q@Q5&/{WF@FFQ@5:
+ 887 0x0000ab76 0x0000ab76   4    4         ascii  <' 6
+ 888 0x0000ab87 0x0000ab87   8    8         ascii  \b5/&/@F5
+ 889 0x0000ab90 0x0000ab90   7    7         ascii  F@@FFfs
+ 890 0x0000abac 0x0000abac   8    9         ascii  55F5//FQ
+ 891 0x0000abb6 0x0000abb6   4    4         ascii  FQQF
+ 892 0x0000abd2 0x0000abd2   4    5         ascii  FF//
+ 893 0x0000abd8 0x0000abd8   4    4         ascii  ///Q
+ 894 0x0000abf6 0x0000abf6   6    7         ascii  5%F%5&
+ 895 0x0000ac10 0x0000ac10   7    8         ascii  @F:))@6
+ 896 0x0000af76 0x0000af76   6    7         ascii  %6&/6I
+ 897 0x0000afce 0x0000afce   8    9         ascii  Q5&&FF@F
+ 898 0x0000afee 0x0000afee   4    5         ascii  Q@F5
+ 899 0x0000aff3 0x0000aff3   5    5         ascii  \a@5@Q
+ 900 0x0000b015 0x0000b015   5    6         ascii  QFQ@5
+ 901 0x0000b01d 0x0000b01d   4    4         utf8   &F5i
+ 902 0x0000b03c 0x0000b03c   4    5         ascii  F5QQ
+ 903 0x0000b041 0x0000b041   5    6         ascii  \nQQF5
+ 904 0x0000b06c 0x0000b06c   4    5         ascii  Q55F
+ 905 0x0000b071 0x0000b071   8    8         ascii  \v5F5Q&&i
+ 906 0x0000b07a 0x0000b07a   8    9         ascii  QQFQQ5Q:
+ 907 0x0000b0a3 0x0000b0a3  10   10         ascii  \aQQ@5&&FFQ
+ 908 0x0000b0c6 0x0000b0c6   4    5         ascii  FF@Q
+ 909 0x0000b0cb 0x0000b0cb  13   14         ascii  \b-&/55FQFQ5Q{
+ 910 0x0000b0f0 0x0000b0f0   4    5         ascii  55/&
+ 911 0x0000b0f6 0x0000b0f6   4    5         ascii  5QQF
+ 912 0x0000b0fc 0x0000b0fc   4    5         ascii  QF5Q
+ 913 0x0000b118 0x0000b118   6    7         ascii  Q%F555
+ 914 0x0000b122 0x0000b122   4    5         ascii  QFE@
+ 915 0x0000b13c 0x0000b13c   7    8         ascii  QF1)%@I
+ 916 0x0000b184 0x0000b184   6    7         ascii  Q5F5))
+ 917 0x0000b20c 0x0000b20c   4    5         ascii  19GV
+ 918 0x0000b3d2 0x0000b3d2   4    5         ascii  &///
+ 919 0x0000b423 0x0000b423   4    4         ascii  &&//
+ 920 0x0000b46d 0x0000b46d   7    8         ascii  s)-&&W7
+ 921 0x0000b4ad 0x0000b4ad   5    6         ascii  H)%%!
+ 922 0x0000b4cd 0x0000b4cd   6    6         ascii  /61'\e:
+ 923 0x0000b4e0 0x0000b4e0   4    5         ascii  6@FQ
+ 924 0x0000b4e6 0x0000b4e6   5    5         ascii  F@Q@>
+ 925 0x0000b4fb 0x0000b4fb   5    6         ascii  \b@@5F
+ 926 0x0000b502 0x0000b502   4    4         ascii  FF5i
+ 927 0x0000b50e 0x0000b50e   4    5         ascii  KV\vS
+ 928 0x0000b525 0x0000b525  12   12         ascii  QFFQQQF&&5QW
+ 929 0x0000b535 0x0000b535   5    6         ascii  >#%b)
+ 930 0x0000b540 0x0000b540   4    5         ibm037 AAA<
+ 931 0x0000b551 0x0000b551   9    9         ascii  \tQ@Q5&/Fi
+ 932 0x0000b568 0x0000b568   4    5         ibm037 AAAi
+ 933 0x0000b57a 0x0000b57a   6    7         ascii  55F55 
+ 934 0x0000b5a1 0x0000b5a1   7    8         ascii  Q@QQ@5&
+ 935 0x0000b5ca 0x0000b5ca   4    5         ascii  F5Q5
+ 936 0x0000b5f2 0x0000b5f2   6    7         ascii  FQQF//
+ 937 0x0000b5fa 0x0000b5fa   6    7         ascii  //5/5F
+ 938 0x0000b602 0x0000b602   4    5         ascii  FF5@
+ 939 0x0000b61e 0x0000b61e   6    7         ascii  @%F'@&
+ 940 0x0000b65e 0x0000b65e   4    5         ascii  6%Q6
+ 941 0x0000b71c 0x0000b71c   4    5         ascii  1<CV
+ 942 0x0000b73e 0x0000b73e   4    4         ibm037 OOO^
+ 943 0x0000b8d4 0x0000b8d4   4    5         ascii  &///
+ 944 0x0000b8ff 0x0000b8ff   4    4         ascii  t6' 
+ 945 0x0000b93b 0x0000b93b   4    5         ascii   && 
+ 946 0x0000b951 0x0000b951   5    6         ascii  #&&&)
+ 947 0x0000b964 0x0000b964   6    7         ascii  )>&/57
+ 948 0x0000b98a 0x0000b98a   5    6         ascii  5If\%
+ 949 0x0000b9a9 0x0000b9a9   4    5         ascii  &5<S
+ 950 0x0000b9cb 0x0000b9cb   6    7         ascii  Q&&@-2
+ 951 0x0000b9ee 0x0000b9ee   5    5         ascii  5QQQ@
+ 952 0x0000ba02 0x0000ba02   4    5         ascii  QQQ@
+ 953 0x0000ba07 0x0000ba07   9    9         ascii  \nQ@&&F55Q
+ 954 0x0000ba18 0x0000ba18   4    5         ascii  GV\vK
+ 955 0x0000ba31 0x0000ba31   4    4         ascii  \a55F
+ 956 0x0000ba53 0x0000ba53   5    6         ascii  55@5/
+ 957 0x0000ba5a 0x0000ba5a   7    7         ascii  5/&&QiW
+ 958 0x0000ba64 0x0000ba64   4    4         ascii  QQ69
+ 959 0x0000ba7c 0x0000ba7c   8    9         ascii  Q@FQ55F/
+ 960 0x0000ba8c 0x0000ba8c   4    5         ascii  QF@)
+ 961 0x0000baa7 0x0000baa7   4    4         ascii  H6FF
+ 962 0x0000baac 0x0000baac  11   11         ascii  5Q555/&/Q5F
+ 963 0x0000bab8 0x0000bab8   4    5         ascii  FQF5
+ 964 0x0000bad9 0x0000bad9  13   13         ascii  \tQF-F5&&/555F
+ 965 0x0000bae7 0x0000bae7   5    6         ascii  QQQQ@
+ 966 0x0000bb06 0x0000bb06  11   11         ascii  QQFF5F/&//F
+ 967 0x0000bb12 0x0000bb12   6    7         ascii  QQFQ55
+ 968 0x0000bb32 0x0000bb32   8    9         ascii  Q155F/FF
+ 969 0x0000bb3c 0x0000bb3c   5    6         ascii  FF%5\f
+ 970 0x0000bb52 0x0000bb52   7    8         ascii  5F%)%QI
+ 971 0x0000bb6c 0x0000bb6c   6    7         ascii  6)@%Q%
+ 972 0x0000bb8b 0x0000bb8b   6    7         ascii  :QQ@5)
+ 973 0x0000bbec 0x0000bbec   4    5         ascii  C\v\tc
+ 974 0x0000bc00 0x0000bc00   4    5         ascii  #9Cv
+ 975 0x0000bc0c 0x0000bc0c   5    6         ascii  9' -|
+ 976 0x0000bc28 0x0000bc28   4    5         ibm037 [AAA
+ 977 0x0000bf02 0x0000bf02   5    5         ascii  &WgG}
+ 978 0x0000bf2a 0x0000bf2a   5    6         ascii  G,1( 
+ 979 0x0000bf58 0x0000bf58   4    4         ascii  \e,sb
+ 980 0x0000bf5d 0x0000bf5d   5    6         ascii  GK5@Q
+ 981 0x0000bf65 0x0000bf65   6    6         ascii  &FQF6(
+ 982 0x0000bf6f 0x0000bf6f   4    4         ascii  EH:\f
+ 983 0x0000bf91 0x0000bf91   5    5         ascii  \e#2)q
+ 984 0x0000bf9a 0x0000bf9a   4    5         ascii  @QFQ
+ 985 0x0000bfa1 0x0000bfa1   5    5         ascii  FQ5QW
+ 986 0x0000bfab 0x0000bfab   4    4         ascii  :I\f#
+ 987 0x0000bfc5 0x0000bfc5   6    6         ascii  \f$IEiQ
+ 988 0x0000bfce 0x0000bfce   5    6         ascii  QF@F/
+ 989 0x0000bfd5 0x0000bfd5   4    4         ascii  F@5i
+ 990 0x0000c002 0x0000c002   4    4         ascii  Q@Q5
+ 991 0x0000c010 0x0000c010   4    5         ascii  F@6I
+ 992 0x0000c02a 0x0000c02a   5    5         ascii  #$HG3
+ 993 0x0000c041 0x0000c041  10   11         ascii  QF5F\:\fE\\v
+ 994 0x0000c06b 0x0000c06b  14   14         ascii  @5&/5&/{QF5FQF
+ 995 0x0000c07a 0x0000c07a   5    5         ascii  F1KI)
+ 996 0x0000c095 0x0000c095   4    4         ascii  (EI%
+ 997 0x0000c0a2 0x0000c0a2   8    8         ascii  5@5/&F5Q
+ 998 0x0000c0ad 0x0000c0ad   7    7         ascii  @5FQ\f\v)
+ 999 0x0000c0de 0x0000c0de   5    5         ascii  /5FQ5
+1000 0x0000c100 0x0000c100   6    7         ascii  \t2$\e(E
+1001 0x0000c113 0x0000c113   7    8         ascii  F/5F5FQ
+1002 0x0000c137 0x0000c137   4    5         ascii  #)%I
+1003 0x0000c145 0x0000c145   5    5         ascii  F5-5Q
+1004 0x0000c14f 0x0000c14f   4    4         ascii  QF@)
+1005 0x0000c166 0x0000c166   4    5         ascii  \t\rG#
+1006 0x0000c16b 0x0000c16b   7    7         ascii  (9\I%\v\f
+1007 0x0000c17f 0x0000c17f   7    7         ascii  5F%)Q%H
+1008 0x0000c1a2 0x0000c1a2   5    6         ascii  \e$xb%
+1009 0x0000c1b4 0x0000c1b4   5    5         ascii  65Q-,
+1010 0x0000c1bc 0x0000c1bc   4    4         ascii  (\t\vS
+1011 0x0000c1ce 0x0000c1ce   4    5         ascii  \eS(#
+1012 0x0000c1de 0x0000c1de   9    9         ascii  {%@f{:,*(
+1013 0x0000c1f7 0x0000c1f7   4    5         ascii  ,G(#
+1014 0x0000c205 0x0000c205   7    8         ascii  J\f):)E%
+1015 0x0000c21d 0x0000c21d   6    7         ascii  $C2$#\e
+1016 0x0000c226 0x0000c226   4    5         ascii  \e\v*1
+1017 0x0000c22d 0x0000c22d   5    5         ascii  2)I%\
+1018 0x0000c241 0x0000c241   4    5         ascii  CK<$
+1019 0x0000c268 0x0000c268   8    8         ascii  \(#(,12<
+1020 0x0000c27b 0x0000c27b   6    6         ascii  #,2.<g
+1021 0x0000c2a1 0x0000c2a1   8    8         ascii  \e<S\KC1<
+1022 0x0000c2f1 0x0000c2f1   6    6         ascii  <9,(,$
+1023 0x0000c2fb 0x0000c2fb   6    6         ascii  (,2129
+1024 0x0000c310 0x0000c310   6    6         ascii  SG2<Sg
+1025 0x0000c477 0x0000c477   4    4         ascii  0\r!S
+1026 0x0000c480 0x0000c480   4    4         ascii  0\r\a\r
+1027 0x0000ca96 0x0000ca96   7    8         ascii  \e\e\e}J)4
+1028 0x0000cac9 0x0000cac9   5    6         ascii  G(2(&
+1029 0x0000cb0c 0x0000cb0c   9   10         ascii  @QQ5@ \a/F
+1030 0x0000cb28 0x0000cb28   4    4         ascii  QFFF
+1031 0x0000cb6b 0x0000cb6b   5    5         ascii  #(K`:
+1032 0x0000cb70 0x0000cb70   6    6         ibm037 ðScccé
+1033 0x0000cb76 0x0000cb76   5    6         ascii  555&\a
+1034 0x0000cb82 0x0000cb82   8    9         ascii  QF5KH\fI\
+1035 0x0000cb96 0x0000cb96   6    7         ascii  QF5///
+1036 0x0000cba1 0x0000cba1   9    9         ascii  QF55F%KsJ
+1037 0x0000cbc1 0x0000cbc1   4    5         ascii  Q/5&
+1038 0x0000cbc7 0x0000cbc7  10   11         ascii  5QQQ@55\f\v%
+1039 0x0000cbe7 0x0000cbe7   4    5         ascii  \v5Q5
+1040 0x0000cbec 0x0000cbec  12   13         ascii  \a/&/F5QQF5QW
+1041 0x0000cc10 0x0000cc10  11   11         ascii  \a/5FFFQ5)%5
+1042 0x0000cc33 0x0000cc33   6    7         ascii  555FQQ
+1043 0x0000cc54 0x0000cc54   6    7         ascii  \f@QFF\f
+1044 0x0000cc69 0x0000cc69  11   12         ascii  %)%QF@@6@F\b
+1045 0x0000cc87 0x0000cc87   4    4         ascii  i:Ei
+1046 0x0000ccd5 0x0000ccd5   4    5         ascii  V\SC
+1047 0x0000cce5 0x0000cce5   5    6         ascii  9(,(\b
+1048 0x0000d022 0x0000d022   4    4         ascii  &&!x
+1049 0x0000d065 0x0000d065   4    5         ascii  /@}K
+1050 0x0000d07b 0x0000d07b   5    6         ascii  G.2# 
+1051 0x0000d09c 0x0000d09c   5    6         ascii  996F@
+1052 0x0000d0a3 0x0000d0a3   6    6         ascii  /@QQ>-
+1053 0x0000d0be 0x0000d0be   7    8         ascii  @Q55Q&\a
+1054 0x0000d0c6 0x0000d0c6   4    4         ascii  FQF@
+1055 0x0000d0d9 0x0000d0d9   4    4         ascii  p\v\E
+1056 0x0000d0e0 0x0000d0e0   4    4         ascii  QQFQ
+1057 0x0000d0e9 0x0000d0e9   7    8         ibm037  ézESSî
+1058 0x0000d104 0x0000d104   8    8         ascii  5555\a/Fi
+1059 0x0000d110 0x0000d110   4    5         ascii  QQ-E
+1060 0x0000d120 0x0000d120   4    4         ascii  \nG_7
+1061 0x0000d124 0x0000d124   5    5         ibm037 eNcc 
+1062 0x0000d129 0x0000d129   7    7         utf8   55F55\a&
+1063 0x0000d144 0x0000d144   8    9         ascii  QQQFF555
+1064 0x0000d171 0x0000d171   7    8         ascii  FFFQQ5\n
+1065 0x0000d18a 0x0000d18a   5    6         ascii  \f\vF/5
+1066 0x0000d191 0x0000d191   9   10         ascii  55/5FQQ@@
+1067 0x0000d1ad 0x0000d1ad   7    7         ascii  F&5&FFQ
+1068 0x0000d1c6 0x0000d1c6   4    5         ascii  $%)I
+1069 0x0000d1d0 0x0000d1d0   9   10         ascii  FQFF55QFF
+1070 0x0000d1f0 0x0000d1f0   5    6         ascii  \b)\fQF
+1071 0x0000d1f6 0x0000d1f6  10   10         ascii  \fQQ@F:)@5J
+1072 0x0000d207 0x0000d207   4    5         ascii  r\tb%
+1073 0x0000d20f 0x0000d20f  12   13         ascii  ,%1QFQQ6QQ-9
+1074 0x0000d2a9 0x0000d2a9   4    5         ascii  (,,,
+1075 0x0000d5a2 0x0000d5a2   4    5         ascii  /&/$
+1076 0x0000d5df 0x0000d5df   4    5         ascii  &\a&&
+1077 0x0000d5fd 0x0000d5fd   4    4         ascii  /&/#
+1078 0x0000d627 0x0000d627   4    5         ascii  &@}\
+1079 0x0000d641 0x0000d641   4    5         ascii  S(2(
+1080 0x0000d65e 0x0000d65e   4    4         ascii  6155
+1081 0x0000d663 0x0000d663   8    8         ascii  /\a/F@F69
+1082 0x0000d67d 0x0000d67d   6    7         ascii  v\bFF@Q
+1083 0x0000d685 0x0000d685   5    5         ascii  &FQ5@
+1084 0x0000d695 0x0000d695   4    5         ibm037 [AAA
+1085 0x0000d6ab 0x0000d6ab   5    5         ascii  5&&@5
+1086 0x0000d6c8 0x0000d6c8  11   11         ascii  QQQQFF@F\a&Q
+1087 0x0000d6e5 0x0000d6e5   6    6         ascii  n\rHZ7u
+1088 0x0000d6ec 0x0000d6ec  10   10         ascii  QF5FF@55&&
+1089 0x0000d6f8 0x0000d6f8   6    6         ibm037  xccã 
+1090 0x0000d70c 0x0000d70c   6    7         ascii  \bQ@/5F
+1091 0x0000d716 0x0000d716   7    8         ascii  55QQ5Q6
+1092 0x0000d728 0x0000d728   8    9         ascii  \aF5@55/5
+1093 0x0000d731 0x0000d731   5    5         ascii  5QF @
+1094 0x0000d747 0x0000d747   6    7         ascii  /FF/QQ
+1095 0x0000d75a 0x0000d75a  19   19         ascii  Q-F5FQ55/5FF55QQ)%5
+1096 0x0000d771 0x0000d771   5    5         ascii  r\auf@
+1097 0x0000d778 0x0000d778   6    6         ascii  @5F5/F
+1098 0x0000d790 0x0000d790   4    5         ascii  \f@Q%
+1099 0x0000d7b1 0x0000d7b1   4    5         ascii  1)%5
+1100 0x0000d7b8 0x0000d7b8   5    6         ascii  %5Q6(
+1101 0x0000d7d1 0x0000d7d1   6    7         ascii  W1Ini:
+1102 0x0000d83d 0x0000d83d   6    7         ascii  (,#(((
+1103 0x0000db0d 0x0000db0d   4    5         ascii  &&/ 
+1104 0x0000db89 0x0000db89   4    5         ascii  &\a/'
+1105 0x0000db9f 0x0000db9f   4    5         ascii  \e\*(
+1106 0x0000dbcd 0x0000dbcd   4    5         ascii  &Wg\
+1107 0x0000dbe7 0x0000dbe7   5    6         ascii  G6<2 
+1108 0x0000dbed 0x0000dbed   4    5         ascii  &'(\e
+1109 0x0000dc07 0x0000dc07   4    4         ascii  v\n1Q
+1110 0x0000dc0f 0x0000dc0f   6    6         ascii  /Q@561
+1111 0x0000dc19 0x0000dc19   5    6         ascii  EHJ\fX
+1112 0x0000dc2e 0x0000dc2e  12   12         ascii  5F@5@//&Q@5Q
+1113 0x0000dc51 0x0000dc51  11   11         ascii  @F5QF&&QQQ{
+1114 0x0000dc71 0x0000dc71   9    9         ascii  QQ5F5\a/Fi
+1115 0x0000dc91 0x0000dc91   6    6         ascii  #$H_7x
+1116 0x0000dc99 0x0000dc99   7    8         ascii  F@Q55@5
+1117 0x0000dca5 0x0000dca5   8    9         ascii  FFQQQ@KJ
+1118 0x0000dcb8 0x0000dcb8   8    9         ascii  F5Q@5&Q5
+1119 0x0000dcc8 0x0000dcc8   5    6         ascii  FF%6s
+1120 0x0000dcda 0x0000dcda   9    9         ascii  \bQ@&//&&/
+1121 0x0000dd02 0x0000dd02   5    6         ascii  QQ5@5
+1122 0x0000dd09 0x0000dd09   6    7         ascii  //Q55Q
+1123 0x0000dd1b 0x0000dd1b  18   18         ascii  5QFF5F/&/FFF/F@):5
+1124 0x0000dd37 0x0000dd37   4    5         ascii  qfQQ
+1125 0x0000dd3d 0x0000dd3d   8    9         ascii  QQFF5-FQ
+1126 0x0000dd47 0x0000dd47   4    5         ascii  FQQW
+1127 0x0000dd60 0x0000dd60  14   14         ascii  \a5Q))5@QQ1)Q6H
+1128 0x0000dd8a 0x0000dd8a   5    6         ascii  IQF-,
+1129 0x0000dda5 0x0000dda5   5    6         ascii  @fi1)
+1130 0x0000ddbb 0x0000ddbb   4    5         ascii  )b)E
+1131 0x0000de15 0x0000de15   4    5         ascii  ,($$
+1132 0x0000df79 0x0000df79   4    5         ascii  \r\bK<
+1133 0x0000e0e5 0x0000e0e5   4    5         ascii  &/&&
+1134 0x0000e0fa 0x0000e0fa   4    5         ascii  &&&$
+1135 0x0000e108 0x0000e108   4    5         ascii  &&&"
+1136 0x0000e171 0x0000e171   4    5         ascii  &&/#
+1137 0x0000e19f 0x0000e19f   6    7         ascii  F&&@vK
+1138 0x0000e1b7 0x0000e1b7   5    6         ascii  S99,-
+1139 0x0000e1d3 0x0000e1d3   6    6         ascii  &QQ56G
+1140 0x0000e1dd 0x0000e1dd   5    6         ascii  \H4\fT
+1141 0x0000e1fb 0x0000e1fb   4    5         ascii  &5F@
+1142 0x0000e203 0x0000e203   5    6         ascii  >$sKZ
+1143 0x0000e217 0x0000e217   5    6         ascii  Q5FF 
+1144 0x0000e21d 0x0000e21d   4    4         ascii  &FF{
+1145 0x0000e238 0x0000e238   7    8         ascii  \bF5QQ5&
+1146 0x0000e25c 0x0000e25c   6    6         ascii  QQQ555
+1147 0x0000e269 0x0000e269   8    9         ascii  F/5FQFEJ
+1148 0x0000e27c 0x0000e27c   8    9         ascii  \bQF5//5F
+1149 0x0000e287 0x0000e287   6    7         ascii  @QQF@Q
+1150 0x0000e29f 0x0000e29f   4    5         ascii  5FFQ
+1151 0x0000e2bb 0x0000e2bb   4    5         ascii  /FF5
+1152 0x0000e2c1 0x0000e2c1   5    6         ascii  F5FQQ
+1153 0x0000e2e4 0x0000e2e4   5    6         ascii  Q/5F)
+1154 0x0000e2f8 0x0000e2f8   4    5         ascii  #:)I
+1155 0x0000e305 0x0000e305   8    9         ascii  5FFF5FQ6
+1156 0x0000e354 0x0000e354   4    5         ascii  65Q\b
+1157 0x0000e36d 0x0000e36d   7    8         ascii  W6Wfi:)
+1158 0x0000e426 0x0000e426   5    5         ascii  r\r\b9c
+1159 0x0000e4fc 0x0000e4fc   4    5         ascii  Ker\r
+1160 0x0000e694 0x0000e694   4    5         ascii  &&&&
+1161 0x0000e709 0x0000e709   4    5         ascii  &&/-
+1162 0x0000e753 0x0000e753   4    5         ascii  S(91
+1163 0x0000e776 0x0000e776   7    8         ascii  196FQ5&
+1164 0x0000e783 0x0000e783   8    9         ibm037 PPGI.ç¢\f
+1165 0x0000e792 0x0000e792   6    7         ascii  QQF5@5
+1166 0x0000e799 0x0000e799   5    5         ascii  &/@@Q
+1167 0x0000e7a4 0x0000e7a4   4    4         ascii  fE\f#
+1168 0x0000e7b6 0x0000e7b6   6    7         ascii  QF@QQF
+1169 0x0000e7da 0x0000e7da   5    6         ascii  QQF5F
+1170 0x0000e7f6 0x0000e7f6   5    5         ascii  \rHZ:n
+1171 0x0000e7fd 0x0000e7fd   7    8         ascii  Q55/FQ/
+1172 0x0000e80a 0x0000e80a   7    8         ascii  Q555@KJ
+1173 0x0000e820 0x0000e820   6    7         ascii  \f@/@@/
+1174 0x0000e827 0x0000e827  13   13         ascii  &{QF@FQ5Q6>s4
+1175 0x0000e840 0x0000e840  10   10         ascii  QFFQQ5/5&&
+1176 0x0000e84d 0x0000e84d   6    7         ascii  Q5QFF\f
+1177 0x0000e85c 0x0000e85c   9   10         ascii  \f\vQ5@55F/
+1178 0x0000e87d 0x0000e87d  10   11         ascii  FF5&/55F5Q
+1179 0x0000e8a0 0x0000e8a0   8    8         ascii  \bFQ5QF5)
+1180 0x0000e8b9 0x0000e8b9   9    9         ascii  (9\b\a@5%\fI
+1181 0x0000e8c3 0x0000e8c3   7    7         ascii  FQ6)Q-H
+1182 0x0000e8e1 0x0000e8e1  12   13         ascii  %%:@5FQ:QQ>,
+1183 0x0000e8fb 0x0000e8fb   4    4         ascii  W:Wn
+1184 0x0000e909 0x0000e909   4    5         ascii  J\f):
+1185 0x0000e97b 0x0000e97b   4    5         ascii  (,#(
+1186 0x0000ec3e 0x0000ec3e   4    5         ascii  \a&&$
+1187 0x0000ec92 0x0000ec92   4    4         ascii  &&5x
+1188 0x0000ecb5 0x0000ecb5   5    6         ascii  vJ)4/
+1189 0x0000eccd 0x0000eccd   4    5         ascii  Q\a/5
+1190 0x0000ece5 0x0000ece5  11   12         ascii  v\nS1W1 \a/-,
+1191 0x0000ed1c 0x0000ed1c   6    7         ascii  Q5@@Q&
+1192 0x0000ed23 0x0000ed23   5    5         ascii  &5Q@Q
+1193 0x0000ed2e 0x0000ed2e   4    4         ascii  KI\f#
+1194 0x0000ed66 0x0000ed66   4    5         ascii  \a@Q5
+1195 0x0000ed7c 0x0000ed7c   7    8         ascii  QFF/@5i
+1196 0x0000ed89 0x0000ed89   8    9         ascii  FFF555gJ
+1197 0x0000ed9d 0x0000ed9d   5    5         ascii  F@Q@5
+1198 0x0000edac 0x0000edac   5    6         ascii  5F56s
+1199 0x0000edc0 0x0000edc0   8    9         ascii  QQQF55Q/
+1200 0x0000edc9 0x0000edc9   9   10         ascii  /&FQQ/5F\n
+1201 0x0000eddc 0x0000eddc   7    8         ascii  F555F//
+1202 0x0000ede5 0x0000ede5   4    4         ascii  FQQF
+1203 0x0000edf4 0x0000edf4  11   12         ascii  Q6F5QFQ//5F
+1204 0x0000ee01 0x0000ee01   4    5         ascii  5FQ)
+1205 0x0000ee11 0x0000ee11   4    4         ascii  IiQF
+1206 0x0000ee19 0x0000ee19   8    9         ascii  5-F55F@Q
+1207 0x0000ee55 0x0000ee55   4    4         ascii  >5QF
+1208 0x0000ee5a 0x0000ee5a   5    6         ascii  :QF6-
+1209 0x0000ee72 0x0000ee72   5    6         ascii  ,Kni1
+1210 0x0000ee89 0x0000ee89   4    5         ascii  *2q:
+1211 0x0000eea1 0x0000eea1   4    5         ascii  S-$(
+1212 0x0000eebb 0x0000eebb   6    7         ascii  \e@g\KC
+1213 0x0000eedf 0x0000eedf   8    8         ascii  ,($$(,,,
+1214 0x0000f017 0x0000f017   4    4         ascii  (g<\r
+1215 0x0000f201 0x0000f201   4    5         ascii  &\a/ 
+1216 0x0000f207 0x0000f207   4    5         ascii  \eu(C
+1217 0x0000f213 0x0000f213   6    7         ascii  ))&&&5
+1218 0x0000f247 0x0000f247   7    8         ascii  v\tGK@< 
+1219 0x0000f268 0x0000f268   5    6         ascii  FQ@69
+1220 0x0000f271 0x0000f271   5    6         ascii  EHJ\fT
+1221 0x0000f288 0x0000f288   6    7         ascii  @F@@@5
+1222 0x0000f28f 0x0000f28f   5    5         ascii  &FQQQ
+1223 0x0000f2ad 0x0000f2ad   4    4         ascii  /5Qi
+1224 0x0000f2c6 0x0000f2c6   8    9         ascii  F//QF5Q5
+1225 0x0000f2d0 0x0000f2d0   8    8         ibm037 ã±GEcxcã
+1226 0x0000f2e7 0x0000f2e7   4    5         ascii  #$H_
+1227 0x0000f2ee 0x0000f2ee   6    6         ascii  5F5@@5
+1228 0x0000f2fb 0x0000f2fb   4    5         ascii  Q&QQ
+1229 0x0000f312 0x0000f312   8    9         ascii  FFQQQF5/
+1230 0x0000f31c 0x0000f31c   4    4         ascii  F55F
+1231 0x0000f322 0x0000f322   6    6         ascii  QF->b:
+1232 0x0000f337 0x0000f337   4    5         ascii  QF5F
+1233 0x0000f341 0x0000f341   4    4         ascii  /FQQ
+1234 0x0000f35d 0x0000f35d   6    7         ascii  F5555/
+1235 0x0000f366 0x0000f366   4    4         ascii  QFQQ
+1236 0x0000f379 0x0000f379   6    7         ascii  55F5QF
+1237 0x0000f385 0x0000f385   4    5         ascii  5)65
+1238 0x0000f393 0x0000f393   4    5         ascii  (,\e$
+1239 0x0000f399 0x0000f399   4    4         ascii  If5Q
+1240 0x0000f3a3 0x0000f3a3   9    9         ascii  5F5QQQFQ)
+1241 0x0000f3bd 0x0000f3bd   4    5         ascii  (9II
+1242 0x0000f3c7 0x0000f3c7   6    7         ascii  5F:)Q%
+1243 0x0000f3d3 0x0000f3d3   4    5         ascii  r\tb%
+1244 0x0000f3db 0x0000f3db  12   13         ascii  1)%FFQFIQ56,
+1245 0x0000f3f7 0x0000f3f7   6    7         ascii  Q3Qqi:
+1246 0x0000f42b 0x0000f42b   4    5         ascii  \(#(
+1247 0x0000f437 0x0000f437   4    4         ascii  .G>v
+1248 0x0000f449 0x0000f449   6    7         ascii  \eCS\SC
+1249 0x0000f748 0x0000f748   4    5         ascii  \a&/&
+1250 0x0000f75a 0x0000f75a   4    5         ascii  &//.
+1251 0x0000f7a7 0x0000f7a7   4    5         ascii  \e:(9
+1252 0x0000f7cf 0x0000f7cf   7    7         ascii  -\a&WgG}
+1253 0x0000f7e9 0x0000f7e9   5    6         ascii  G,6<6
+1254 0x0000f80b 0x0000f80b   9   10         ascii  t\an195@Q/
+1255 0x0000f815 0x0000f815   6    7         ascii  /QFQ>9
+1256 0x0000f834 0x0000f834   5    6         ascii  @Q@@Q
+1257 0x0000f83c 0x0000f83c   4    4         ascii  55QQ
+1258 0x0000f846 0x0000f846   4    5         ascii  IE\fX
+1259 0x0000f853 0x0000f853   6    6         ascii  p\vEImQ
+1260 0x0000f85c 0x0000f85c   4    5         ascii  QQF&
+1261 0x0000f87a 0x0000f87a  10   10         ascii  \aQQF\a&5{{{
+1262 0x0000f885 0x0000f885   4    5         ascii  F5Q-
+1263 0x0000f89b 0x0000f89b  11   11         ascii  FF/@Q5@F5\a/
+1264 0x0000f8ad 0x0000f8ad   4    5         ascii  F@EH
+1265 0x0000f8c8 0x0000f8c8   4    4         ascii  \a&F@
+1266 0x0000f8cf 0x0000f8cf   7    7         ascii  QQQ56s4
+1267 0x0000f8e4 0x0000f8e4   5    6         ascii  QFF5&
+1268 0x0000f910 0x0000f910   6    6         ascii  \a&F//F
+1269 0x0000f917 0x0000f917   5    6         ascii  Q@FQ6
+1270 0x0000f92b 0x0000f92b   4    5         ascii  5FFF
+1271 0x0000f930 0x0000f930  15   15         ascii  \tFF/F&F5QF5Q%)5
+1272 0x0000f955 0x0000f955   4    5         ascii  Q@QF
+1273 0x0000f95b 0x0000f95b   9    9         ascii  5QFF@FF@)
+1274 0x0000f977 0x0000f977   4    5         ascii  (6\I
+1275 0x0000f981 0x0000f981   9    9         ascii  @Q@F%)55J
+1276 0x0000f99d 0x0000f99d   4    5         ascii  3)%@
+1277 0x0000f9a3 0x0000f9a3   6    7         ascii  F:QF-,
+1278 0x0000f9cb 0x0000f9cb   6    7         ascii  :\f)H)\
+1279 0x0000fa1b 0x0000fa1b   4    5         ascii  (,#(
+1280 0x0000fd08 0x0000fd08   4    5         ascii  //&*
+1281 0x0000fd71 0x0000fd71   4    5         ascii  \e\e}J
+1282 0x0000fd8e 0x0000fd8e   4    4         ascii  @}G}
+1283 0x0000fda3 0x0000fda3   4    5         ascii  S,>2
+1284 0x0000fdc3 0x0000fdc3   4    4         ascii  r\fsJ
+1285 0x0000fdc8 0x0000fdc8  13   13         ascii  265F@/\a&5QQ>6
+1286 0x0000fdd9 0x0000fdd9   5    6         ascii  EH4\fP
+1287 0x0000fdf6 0x0000fdf6  12   12         ascii  @@QQQ5\a/F5@Q
+1288 0x0000fe05 0x0000fe05   6    7         ascii  <#sEI\f
+1289 0x0000fe0d 0x0000fe0d   5    5         ascii  p\rIKi
+1290 0x0000fe36 0x0000fe36  13   13         utf8   QQFF@555&&FQ{
+1291 0x0000fe46 0x0000fe46   4    5         ascii  FF1E
+1292 0x0000fe59 0x0000fe59   9    9         ascii  F@5FF5/\a&
+1293 0x0000fe67 0x0000fe67   8    9         ascii  QF55qH\fI
+1294 0x0000fe78 0x0000fe78   8    9         ascii  F5FQQ@F5
+1295 0x0000fe89 0x0000fe89   5    5         ascii  Q6>IJ
+1296 0x0000fe9c 0x0000fe9c   9    9         ascii  F55/\a&/ Q
+1297 0x0000fea6 0x0000fea6   4    5         ascii  QQ@\n
+1298 0x0000febb 0x0000febb   8    9         ascii  Q@5@5//5
+1299 0x0000fec5 0x0000fec5   5    6         ascii  QQQF@
+1300 0x0000fed7 0x0000fed7  12   13         ascii  5QQFFQ5F/5FQ
+1301 0x0000fee5 0x0000fee5   6    6         ascii  FQF)%5
+1302 0x0000fef2 0x0000fef2   4    5         ascii  $%)I
+1303 0x0000ff13 0x0000ff13   5    6         ascii  x\a@5%
+1304 0x0000ff19 0x0000ff19   9    9         ascii  6QFF:)5%H
+1305 0x0000ff31 0x0000ff31   4    5         ascii  1)%Q
+1306 0x0000ff4b 0x0000ff4b   4    4         ascii  W%Qn
+1307 0x0000ff59 0x0000ff59   4    5         ascii  J\f7:
+1308 0x0000ff79 0x0000ff79   5    5         utf8   .<g{{
+1309 0x0000ffa9 0x0000ffa9   6    7         ascii  ,($$((
+1310 0x00010130 0x00010130   5    5         ascii  \a\bgGv
+1311 0x000102a0 0x000102a0   4    4         ascii  //&&
+1312 0x000102ba 0x000102ba   6    7         ascii  &&&&/&
+1313 0x000102df 0x000102df   5    6         ascii  \a/&&"
+1314 0x00010316 0x00010316   4    4         ascii  && x
+1315 0x0001032f 0x0001032f   6    6         ascii  )4&\a&F
+1316 0x00010361 0x00010361   5    6         ascii  G,C#-
+1317 0x0001037c 0x0001037c  13   13         ascii  166FF5&/QQ56>
+1318 0x000103a3 0x000103a3   7    7         ascii   \a&QF5{
+1319 0x000103aa 0x000103aa   4    4         ibm037 MMGä
+1320 0x000103b3 0x000103b3   4    4         utf8   WKWQ
+1321 0x000103bf 0x000103bf   5    5         ascii  &F@Qi
+1322 0x000103c7 0x000103c7   4    5         ascii  6\rff
+1323 0x000103db 0x000103db   4    5         ascii  FFQF
+1324 0x000103e0 0x000103e0   5    5         ascii  \a5\a&Q
+1325 0x000103ea 0x000103ea   4    5         ascii  Q@6I
+1326 0x000103f1 0x000103f1   5    5         ascii  n\rHZ:
+1327 0x000103f8 0x000103f8   8    9         ascii  FQ@QQ55F
+1328 0x00010404 0x00010404   9   10         ascii  /5QQQ5F`H
+1329 0x00010416 0x00010416   7    8         ascii  FF5QFF@
+1330 0x0001041e 0x0001041e   5    5         ascii  \a/55@
+1331 0x00010427 0x00010427   5    5         ascii  F6>s4
+1332 0x0001043b 0x0001043b   5    6         ascii  F@@/&
+1333 0x00010441 0x00010441   8    8         ascii  55FQFFQQ
+1334 0x00010458 0x00010458   5    6         ascii  QQ5FF
+1335 0x0001045f 0x0001045f   4    4         ascii  555F
+1336 0x00010473 0x00010473  10   11         ascii  F5FF///FFF
+1337 0x00010489 0x00010489   6    6         ascii  (,\b\aQQ
+1338 0x00010490 0x00010490  11   12         ascii  F5F555FQ@@Q
+1339 0x000104af 0x000104af   8    9         ascii  5QQ56)Q%
+1340 0x000104c5 0x000104c5   9   10         ascii  %@5QQ%QQ\b
+1341 0x000104dd 0x000104dd   4    4         ascii  W)Qf
+1342 0x000104ed 0x000104ed   4    5         ascii  ):)E
+1343 0x0001051f 0x0001051f   4    5         ascii  \eGKV
+1344 0x0001053b 0x0001053b   4    4         ascii  (,#(
+1345 0x000108b5 0x000108b5   7    7         ascii  vJ))@&&
+1346 0x000108c9 0x000108c9   4    4         ibm037 zVVu
+1347 0x00010905 0x00010905   8    9         ascii  96F5F\a&F
+1348 0x00010922 0x00010922   4    5         ascii  \b@FF
+1349 0x00010928 0x00010928   4    4         ascii  F@5@
+1350 0x00010939 0x00010939   7    7         ascii  n\r\f#IIi
+1351 0x00010943 0x00010943   5    6         ascii  55Q5/
+1352 0x0001096f 0x0001096f   6    7         ascii  W/FQF-
+1353 0x00010981 0x00010981   5    6         ascii  #$>G4
+1354 0x0001098c 0x0001098c   4    5         ascii  \t@55
+1355 0x00010999 0x00010999   4    5         ascii  55\H
+1356 0x000109aa 0x000109aa   8    9         ascii  QF@FF5FF
+1357 0x000109b3 0x000109b3   5    5         ascii  &QF@F
+1358 0x000109bc 0x000109bc   4    4         ascii  5WJ:
+1359 0x000109ce 0x000109ce   8    9         ascii  QFQ@55/5
+1360 0x000109f6 0x000109f6  14   15         ascii  \a55//&5FQ@FQ5@
+1361 0x00010a0b 0x00010a0b   4    5         ascii  WQF/
+1362 0x00010a15 0x00010a15   4    5         ascii  QFF5
+1363 0x00010a2a 0x00010a2a   9   10         ascii  QQQ5%55Q5
+1364 0x00010a43 0x00010a43   4    5         ascii  (9II
+1365 0x00010a4d 0x00010a4d   9   10         ascii  %\f5FQQ1)\n
+1366 0x00010a69 0x00010a69  12   13         ascii  %)6@FQQE5Q-1
+1367 0x00010ab7 0x00010ab7   4    5         ascii  \e<W\
+1368 0x00010ad1 0x00010ad1   6    7         ascii  ,($$(,
+1369 0x00010c54 0x00010c54   4    4         ascii  \r991
+1370 0x00010e08 0x00010e08   4    5         ascii  &&&*
+1371 0x00010e55 0x00010e55   4    5         ascii  \eu(,
+1372 0x00010e78 0x00010e78   4    4         ascii  WgG}
+1373 0x00010e8f 0x00010e8f  11   12         ascii  v\tG(1# &&--
+1374 0x00010eac 0x00010eac   6    7         ascii  29@@F 
+1375 0x00010eb5 0x00010eb5   4    4         ascii  @5@<
+1376 0x00010ebf 0x00010ebf   4    5         ibm037 [AAA
+1377 0x00010ed2 0x00010ed2   8    8         ascii  5F@F5/&&
+1378 0x00010ee1 0x00010ee1   5    6         ascii  ,#sK^
+1379 0x00010ef2 0x00010ef2   6    7         ascii  QQQF@Q
+1380 0x00010ef9 0x00010ef9   4    4         ascii  &FQQ
+1381 0x00010f13 0x00010f13   6    6         ascii  \e\e,))6
+1382 0x00010f1d 0x00010f1d   5    6         ascii  QQ@FF
+1383 0x00010f36 0x00010f36   4    4         ascii  (C_7
+1384 0x00010f3c 0x00010f3c  13   13         ascii  QQQQ555F&&Q@W
+1385 0x00010f4c 0x00010f4c   7    8         ascii  QQinJ\fI
+1386 0x00010f64 0x00010f64   8    8         ascii  @F5/5/&&
+1387 0x00010f6d 0x00010f6d   5    5         ascii  5FQF@
+1388 0x00010f73 0x00010f73   5    5         ascii  Q-@s4
+1389 0x00010f89 0x00010f89   6    7         ascii  QQ555Q
+1390 0x00010fa9 0x00010fa9  12   13         ascii  QQ5F5///Q5FQ
+1391 0x00010fc1 0x00010fc1   8    9         ascii  KFF55Q//
+1392 0x00010fcb 0x00010fcb   8    8         ascii  QQQF@):5
+1393 0x00010fd9 0x00010fd9  12   13         ascii  QFWQFF5-FF@5
+1394 0x00010fe7 0x00010fe7   5    5         ascii  @5F5)
+1395 0x00010ffd 0x00010ffd   4    5         ascii  \I%\v
+1396 0x00011005 0x00011005   6    7         ascii  65QF:)
+1397 0x00011013 0x00011013   4    5         ascii  $xb%
+1398 0x0001101b 0x0001101b  12   12         ascii  ,)%5FFW6QF5(
+1399 0x0001103b 0x0001103b   4    4         ascii  Q:@q
+1400 0x00011055 0x00011055   4    4         ascii  *2uH
+1401 0x000110a3 0x000110a3   4    5         ascii  ,212
+1402 0x00011375 0x00011375   5    5         ascii  &&&//
+1403 0x000113a0 0x000113a0   4    5         ascii  &/&.
+1404 0x000113e5 0x000113e5   4    5         ascii  \e\*9
+1405 0x000113f1 0x000113f1   4    5         ascii  \e\e}J
+1406 0x00011411 0x00011411   4    5         ascii  &\a&i
+1407 0x0001143f 0x0001143f   6    7         ascii  x\a5Q5\a
+1408 0x00011448 0x00011448   4    4         ascii  F61v
+1409 0x00011465 0x00011465   5    5         ascii  &QF@Q
+1410 0x0001146d 0x0001146d   4    5         ascii  (#sE
+1411 0x00011486 0x00011486   8    8         ascii  \tFQQ&/F@
+1412 0x000114aa 0x000114aa   8    9         ascii  QQQF55F5
+1413 0x000114b3 0x000114b3   4    4         ascii  &@{W
+1414 0x000114b9 0x000114b9   4    5         ascii  QFFi
+1415 0x000114c9 0x000114c9   6    6         ascii  ##GZ7x
+1416 0x000114d3 0x000114d3   5    6         ascii  QF@5/
+1417 0x000114e1 0x000114e1   4    5         ascii  QQSH
+1418 0x000114f9 0x000114f9   5    5         ascii  5QF\a/
+1419 0x0001151b 0x0001151b   6    7         ascii  F5/&5-
+1420 0x0001153b 0x0001153b   8    9         ascii  F&FF5FF5
+1421 0x00011550 0x00011550   7    8         ascii  Q5QF@FF
+1422 0x0001155c 0x0001155c   5    6         ascii  QFQQ)
+1423 0x00011570 0x00011570  11   12         ascii  Q5F555FQFQQ
+1424 0x00011593 0x00011593   6    7         ascii  >5F51)
+1425 0x000115c7 0x000115c7   4    5         ascii  W)@K
+1426 0x000115d5 0x000115d5   4    5         ascii  :\f):
+1427 0x000115dd 0x000115dd   4    4         ascii  *1fH
+1428 0x00011637 0x00011637   8    9         ascii  (,#(((,,
+1429 0x000118e1 0x000118e1   5    5         ascii  & &&&
+1430 0x0001190a 0x0001190a   4    5         ascii  &\a&$
+1431 0x00011929 0x00011929   5    6         ascii  /&&&$
+1432 0x0001198b 0x0001198b   4    5         ascii  @&&i
+1433 0x000119bf 0x000119bf   5    6         ascii  G,1( 
+1434 0x000119d5 0x000119d5   4    4         ascii  r\nsb
+1435 0x000119da 0x000119da   5    6         ascii  GK5@Q
+1436 0x000119e1 0x000119e1   6    6         ascii  &FQF6(
+1437 0x000119fc 0x000119fc   5    6         ascii  @@QFQ
+1438 0x00011a04 0x00011a04   5    5         ascii  FQ5QW
+1439 0x00011a15 0x00011a15   4    4         ascii  r\riQ
+1440 0x00011a1a 0x00011a1a   6    7         ascii  QQF@F/
+1441 0x00011a22 0x00011a22   4    4         ascii  F@5i
+1442 0x00011a2c 0x00011a2c   5    6         ascii  I%%%K
+1443 0x00011a43 0x00011a43   6    7         ascii  Q@Q55&
+1444 0x00011a5f 0x00011a5f   5    5         ascii  #$HG3
+1445 0x00011a68 0x00011a68   6    7         ascii  \vQ@@F5
+1446 0x00011a75 0x00011a75  10   11         ascii  QF5F\:\fE\\v
+1447 0x00011a8b 0x00011a8b  21   21         ascii  F@@5&/5&/{QF5FQFF1KI)
+1448 0x00011ad4 0x00011ad4   6    7         ascii  Q@@55/
+1449 0x00011adb 0x00011adb   9   10         ascii  /5FQ55F@@
+1450 0x00011af5 0x00011af5  10   11         ascii  6FFF55F/5F
+1451 0x00011b01 0x00011b01   4    5         ascii  5FQQ
+1452 0x00011b1c 0x00011b1c   8    8         ascii  QFF5-5QQ
+1453 0x00011b45 0x00011b45   7    8         ascii  655F%)\n
+1454 0x00011b53 0x00011b53   4    5         ascii  $xb%
+1455 0x00011b59 0x00011b59   4    5         ascii  ,%%F
+1456 0x00011b6f 0x00011b6f   8    9         ascii  {%@f{:,*
+1457 0x00011bb1 0x00011bb1   6    7         ibm037 ÷SSYPý
+1458 0x00011c8e 0x00011c8e   4    5         ascii  0\r!\b
+1459 0x0001207a 0x0001207a   9   10         ibm037 ³ýNMTO}Ú}
+1460 0x00012177 0x00012177   4    4         ascii  1}v\a
+1461 0x000121e3 0x000121e3   4    4         ascii  >-69
+1462 0x0001225c 0x0001225c   8    9         ibm037 8ýNG\OA}
+1463 0x0001250e 0x0001250e   5    5         ascii  \r\t\v)J
+1464 0x0001251b 0x0001251b   5    5         ascii  u<)\2
+1465 0x0001255a 0x0001255a   7    7         ibm037 PVÛVEF 
+1466 0x00012563 0x00012563   4    4         ascii  &616
+1467 0x00012588 0x00012588   4    5         ascii  (1K-
+1468 0x000125da 0x000125da   4    4         ascii  )b{v
+1469 0x000125ea 0x000125ea   4    4         ascii  5FQi
+1470 0x000125f5 0x000125f5   4    4         ascii  4I<K
+1471 0x00012611 0x00012611   8    8         ascii  @Q5/\a&/@
+1472 0x0001263a 0x0001263a   5    5         ascii  QF5FQ
+1473 0x00012640 0x00012640   7    7         ascii  QF/&/5Q
+1474 0x00012651 0x00012651   4    5         ascii  3sE\v
+1475 0x00012666 0x00012666   4    4         ascii  3)\f)
+1476 0x00012670 0x00012670   9    9         ascii  @5 Q5\a&Fi
+1477 0x00012681 0x00012681   8    8         ascii  Q@\v\eH:\v\t
+1478 0x000126a3 0x000126a3   5    6         ascii  Q@&/@
+1479 0x000126b4 0x000126b4   4    5         ascii  5Q@\f
+1480 0x000126bb 0x000126bb   5    5         ascii  b2\v9K
+1481 0x000126d4 0x000126d4   5    6         ascii  QF@Q5
+1482 0x000126e1 0x000126e1   7    8         ascii  5/QFQ@F
+1483 0x00012708 0x00012708   4    4         ascii  QFQ5
+1484 0x0001270d 0x0001270d   5    5         ascii  5&/F5
+1485 0x00012718 0x00012718   5    6         ascii  Q)%F%
+1486 0x00012734 0x00012734   4    4         ascii  \e#(s
+1487 0x00012740 0x00012740   5    5         ascii  Q/F/5
+1488 0x0001274e 0x0001274e  10   10         ascii  65Q%\f4)4:#
+1489 0x0001276d 0x0001276d   4    5         ascii  f)\f9
+1490 0x00012774 0x00012774   4    5         ascii  %5F/
+1491 0x0001277e 0x0001277e   4    4         ascii  Q5FQ
+1492 0x0001279d 0x0001279d  14   14         ascii  K#\e$(2S:sH\f:Q%
+1493 0x000127b1 0x000127b1   4    4         ascii  5QFQ
+1494 0x000127d5 0x000127d5   4    4         ascii  #(29
+1495 0x000127e0 0x000127e0   9   10         ascii  Q1\f#6\f%>\f
+1496 0x00012808 0x00012808   4    4         ascii  #(1`
+1497 0x00012849 0x00012849   5    5         ascii  :I:JI
+1498 0x00012875 0x00012875   6    6         ascii  ,<R.)I
+1499 0x0001287e 0x0001287e   5    5         ascii  :\e\v\eC
+1500 0x00012896 0x00012896   4    5         ascii  9,(#
+1501 0x000128a5 0x000128a5   4    5         ascii  #$(#
+1502 0x000128d3 0x000128d3   5    5         ascii  (,<V}
+1503 0x000128fd 0x000128fd   6    6         ascii  29<Sg}
+1504 0x0001291e 0x0001291e  14   15         ascii  #(,K\21<212KvG
+1505 0x00012981 0x00012981   4    5         ascii  9($#
+1506 0x00012cc9 0x00012cc9   4    5         ibm037 NICô
+1507 0x00012cda 0x00012cda   4    4         ascii  i6(a
+1508 0x00012d99 0x00012d99   4    4         ascii  i@6S
+1509 0x00012db9 0x00012db9   6    7         ibm037 åz52ZZ
+1510 0x00012e45 0x00012e45   5    6         ibm037 Y2AAA
+1511 0x00012e6b 0x00012e6b   8    9         ibm037 EA[[A[[µ
+1512 0x00012ee1 0x00012ee1   6    7         ascii  #&&& q
+1513 0x00012ef8 0x00012ef8   8    8         ascii  <4\121b)
+1514 0x00012f3d 0x00012f3d  10   11         ascii   \t,21 \a&-,
+1515 0x00012f62 0x00012f62  11   11         ascii  \b55&/5F@66i
+1516 0x00012f80 0x00012f80   8    9         ascii  \nWQF@55\a
+1517 0x00012f89 0x00012f89   4    4         ascii  /55Q
+1518 0x00012fa2 0x00012fa2  10   10         ascii  \nFQ55&&5QQ
+1519 0x00012fc6 0x00012fc6   7    8         ascii  QFF QQ5
+1520 0x00012fce 0x00012fce   5    5         ascii  &F@@{
+1521 0x00012ff7 0x00012ff7   4    5         ascii  QQQW
+1522 0x0001300a 0x0001300a   7    8         ascii  Q@F5/-F
+1523 0x00013013 0x00013013   5    5         ascii  -@-QF
+1524 0x00013019 0x00013019   4    5         ascii  F5F@
+1525 0x00013036 0x00013036  10   11         ascii  /F5QQF55Q\b
+1526 0x00013055 0x00013055  12   13         ascii  QQFQ5///5F55
+1527 0x00013073 0x00013073  12   13         ascii  FFF5/5/F5FFQ
+1528 0x00013081 0x00013081   4    5         ascii  66Q)
+1529 0x00013095 0x00013095   4    5         ascii  FF/5
+1530 0x000130af 0x000130af   8    9         ascii  -QF55F5@
+1531 0x0001310d 0x0001310d   4    4         ascii  I)sI
+1532 0x00013121 0x00013121   4    4         ascii  X2)E
+1533 0x00013183 0x00013183   4    4         ascii  $$(\e
+1534 0x0001318f 0x0001318f   4    4         ascii  <(##
+1535 0x0001353a 0x0001353a   6    6         ascii  5&&/%:
+1536 0x00013551 0x00013551   5    5         ibm037 EVVlL
+1537 0x00013558 0x00013558   4    4         ascii  &&11
+1538 0x00013571 0x00013571   4    5         ascii  (!9'
+1539 0x0001358f 0x0001358f   8    8         ascii  &&FQ5>6>
+1540 0x000135a7 0x000135a7   6    7         ascii  W@QF@F
+1541 0x000135b4 0x000135b4   5    6         ibm037  cMMr
+1542 0x000135cb 0x000135cb   6    7         ascii  555QQF
+1543 0x000135d2 0x000135d2   5    5         ascii  &5F5Q
+1544 0x000135d7 0x000135d7   4    5         ibm037 zYSc
+1545 0x000135f0 0x000135f0   7    8         ascii  \tQFFQ5@
+1546 0x000135f8 0x000135f8   5    5         ascii  &/@{i
+1547 0x00013628 0x00013628   7    8         ascii  QQ@\v<_:
+1548 0x00013640 0x00013640   8    9         ascii  F5F5&55&
+1549 0x0001364e 0x0001364e   5    6         ascii  QQ555
+1550 0x00013655 0x00013655   6    7         ascii  Ib,\v9K
+1551 0x00013662 0x00013662   7    8         ascii  \nQ5QF&5
+1552 0x0001366c 0x0001366c   9   10         ascii  //FQ5FF5%
+1553 0x0001367f 0x0001367f   6    7         ascii  Q5Q@Q5
+1554 0x00013686 0x00013686  11   12         ascii  \a//F@QF):Q%
+1555 0x0001369f 0x0001369f   8    9         ascii  QFQ5FF&/
+1556 0x000136a9 0x000136a9   4    5         ascii  F5FQ
+1557 0x000136b3 0x000136b3   4    5         ascii  ):7$
+1558 0x000136c3 0x000136c3   8    9         ascii  QF/FFF5Q
+1559 0x000136cd 0x000136cd   4    5         ascii  FIss
+1560 0x000136e9 0x000136e9   4    5         ascii  Q-1F
+1561 0x000136ef 0x000136ef   4    5         ascii  %Q@Q
+1562 0x00013708 0x00013708   5    6         ascii  6\v%:\f
+1563 0x00013753 0x00013753   6    6         ascii  (<R.)I
+1564 0x0001378f 0x0001378f   5    6         ascii  ,219\f
+1565 0x00013957 0x00013957   4    4         ascii  --6C
+1566 0x00013963 0x00013963   4    4         ascii  -'-9
+1567 0x00013b47 0x00013b47   4    4         ascii  u<:E
+1568 0x00013b71 0x00013b71   4    5         utf8   /,1© blocks=Basic Latin,Latin-1 Supplement
+1569 0x00013b88 0x00013b88   5    6         ascii  \b((2'
+1570 0x00013ba5 0x00013ba5   4    5         ascii  \e'6@
+1571 0x00013bac 0x00013bac   7    7         ascii  &&Q@@>C
+1572 0x00013bc4 0x00013bc4   5    6         ascii  \bQQ@5
+1573 0x00013bca 0x00013bca   6    6         ascii  &/@55Q
+1574 0x00013be0 0x00013be0   9   10         ascii  mnQF5@Q5Q
+1575 0x00013c0a 0x00013c0a   7    8         ascii  \vFQQQQ5
+1576 0x00013c30 0x00013c30   7    8         ascii  Q@5555/
+1577 0x00013c41 0x00013c41   4    4         ascii  \v2b:
+1578 0x00013c58 0x00013c58   7    8         ascii  \t555 5/
+1579 0x00013c60 0x00013c60   6    6         ascii  &ii@&F
+1580 0x00013c6d 0x00013c6d   6    7         ascii  HI2\v<>
+1581 0x00013c7e 0x00013c7e   7    8         ascii  QQQFQQ5
+1582 0x00013c86 0x00013c86  11   12         ascii  /F5/Q5@F@F%
+1583 0x00013ca1 0x00013ca1  11   11         ascii  F@5FF//&5QF
+1584 0x00013caf 0x00013caf   4    4         ascii  %:F%
+1585 0x00013cc3 0x00013cc3   4    5         ascii  5///
+1586 0x00013cc8 0x00013cc8   7    7         ascii  \a5F5Q6I
+1587 0x00013cd0 0x00013cd0   7    8         ascii  )\f))4:#
+1588 0x00013ce6 0x00013ce6   8    8         ascii  \n%QQ5F/F
+1589 0x00013cef 0x00013cef   8    8         ascii  FFFQQIsf
+1590 0x00013d0f 0x00013d0f   6    7         ascii  \f1Q%6F
+1591 0x00013d17 0x00013d17   6    7         ascii  6QFQ@1
+1592 0x00013d3c 0x00013d3c   5    6         ascii  5\f*I\f
+1593 0x00013d51 0x00013d51   4    5         ascii  #$1g
+1594 0x00013d73 0x00013d73   4    4         ascii  f4II
+1595 0x00013ddd 0x00013ddd   5    6         ascii  \e##$\b
+1596 0x00013ded 0x00013ded   4    4         ascii  9($#
+1597 0x00013f87 0x00013f87   4    4         ascii  >-6C
+1598 0x00013f93 0x00013f93   4    5         ascii  -'-9
+1599 0x00014072 0x00014072   4    4         ascii  @-9z
+1600 0x000140ea 0x000140ea   4    4         ascii  &/&&
+1601 0x0001416d 0x0001416d   5    5         ascii  #5&&&
+1602 0x000141cd 0x000141cd   7    8         ascii   \t#(<9&
+1603 0x000141ef 0x000141ef  14   14         ascii  #'>@Q5&&5Q5K6S
+1604 0x0001420f 0x0001420f   6    7         ascii  WQF555
+1605 0x0001422c 0x0001422c   4    4         ascii  &/WF
+1606 0x0001424b 0x0001424b   6    7         ascii  555Q5/
+1607 0x00014252 0x00014252   4    4         utf8   \b5Q{
+1608 0x00014258 0x00014258   4    5         ascii  QQQ@
+1609 0x0001425e 0x0001425e   4    5         ascii  6IE\v
+1610 0x0001426d 0x0001426d  12   12         ascii  QQ5Q&5 &&&QW
+1611 0x00014281 0x00014281   4    5         ascii  EH#\t
+1612 0x0001428e 0x0001428e   7    8         ascii  F5Q5F&-
+1613 0x0001429d 0x0001429d   4    5         ascii  Q@Q5
+1614 0x000142a3 0x000142a3   4    5         ascii  _I<\v
+1615 0x000142bf 0x000142bf   5    6         ascii  Q6Q5Q
+1616 0x000142d6 0x000142d6   4    4         ibm037 rccã
+1617 0x000142e3 0x000142e3   8    9         ascii  /@Q@5F,%
+1618 0x00014305 0x00014305   5    5         ascii  F5/55
+1619 0x0001430b 0x0001430b   6    7         ascii  FF@F1@
+1620 0x00014313 0x00014313   6    7         ascii  \f4)J3#
+1621 0x00014325 0x00014325   8    9         ascii  %@QQ/FFF
+1622 0x00014343 0x00014343   4    5         ascii  K#\e$
+1623 0x0001434d 0x0001434d   6    7         ascii  \f:Q1%F
+1624 0x00014355 0x00014355   6    7         ascii  5Q@Q@%
+1625 0x0001437b 0x0001437b   6    7         ascii  %6\v)@\f
+1626 0x000143df 0x000143df   4    5         ascii  #$(#
+1627 0x00014427 0x00014427   4    4         ascii  <(##
+1628 0x000145cd 0x000145cd   4    4         ascii  6' <
+1629 0x000146d2 0x000146d2   4    4         ascii   '9a
+1630 0x000147b1 0x000147b1   5    6         ascii  Is%%&
+1631 0x000147d1 0x000147d1   5    5         ascii  &&5%)
+1632 0x00014803 0x00014803  10   11         ascii   \b22< && '
+1633 0x00014823 0x00014823   6    7         ascii  \e(W@@5
+1634 0x0001482a 0x0001482a   7    7         ascii  //FW61S
+1635 0x00014845 0x00014845   5    5         ascii  ))Iic
+1636 0x0001484e 0x0001484e   4    5         ascii  \a5Q&
+1637 0x00014853 0x00014853   5    5         utf8   F@QF@
+1638 0x00014873 0x00014873   4    4         ascii  F5iQ
+1639 0x0001487b 0x0001487b   4    4         ascii  $\v\fb
+1640 0x00014890 0x00014890   5    6         ascii  \a5//Q
+1641 0x000148b2 0x000148b2   8    9         ascii  FF@5&5Q&
+1642 0x000148bf 0x000148bf   4    5         ascii  FFFQ
+1643 0x000148c5 0x000148c5   4    5         ascii  \v\eE>
+1644 0x000148d4 0x000148d4   5    5         ascii  \r#)):
+1645 0x000148dc 0x000148dc  10   10         ascii  F@5F@-F&&i
+1646 0x000148e9 0x000148e9   4    4         ascii  QQ5Q
+1647 0x00014903 0x00014903   6    7         ascii  QQ5@55
+1648 0x0001490a 0x0001490a   5    5         ascii  && -Q
+1649 0x00014926 0x00014926   9    9         ascii  \aFQF5&5FQ
+1650 0x00014930 0x00014930   6    7         ascii  FQF)%\n
+1651 0x00014947 0x00014947   4    5         ascii  FQQ/
+1652 0x0001494d 0x0001494d  10   11         ascii  FQQFQ565F%
+1653 0x00014967 0x00014967   8    9         ascii  FF5FQFFQ
+1654 0x00014983 0x00014983   4    4         ascii  sE\f1
+1655 0x00014988 0x00014988   5    6         ascii  %6FF@
+1656 0x000149a7 0x000149a7   7    7         ascii  #5\f%E\f)
+1657 0x000149bd 0x000149bd   4    4         ascii  #(2g
+1658 0x000149ea 0x000149ea   5    6         ascii  \e,<R.
+1659 0x000149f2 0x000149f2   5    5         ascii  :\e\v\eC
+1660 0x00014af5 0x00014af5   5    6         ibm037 ZZTw±
+1661 0x00014da0 0x00014da0   5    5         ascii  &-u\eG
+1662 0x00014dab 0x00014dab   7    7         ascii  "\b%&&&5
+1663 0x00014db4 0x00014db4   8    8         ascii  <:I.:1JJ
+1664 0x00014dfe 0x00014dfe   7    8         ascii  \b>>((2,
+1665 0x00014e1f 0x00014e1f   6    7         ascii  \e,65@F
+1666 0x00014e2d 0x00014e2d   4    4         ibm037 GPSÅ
+1667 0x00014e3e 0x00014e3e   4    4         ascii  \f):I
+1668 0x00014e45 0x00014e45  12   12         ascii  W@Q5@5&&/5F@
+1669 0x00014e62 0x00014e62   7    8         ascii  \tQ55FFQ
+1670 0x00014e6a 0x00014e6a   4    4         ascii  &/5W
+1671 0x00014e82 0x00014e82   7    8         ascii  F5F5@QF
+1672 0x00014e96 0x00014e96   4    5         ascii  7s:\v
+1673 0x00014ea3 0x00014ea3   8    9         ascii  QQF5Q555
+1674 0x00014eae 0x00014eae   5    5         ascii  W@5QQ
+1675 0x00014ece 0x00014ece   8    9         ascii  \t555/Q/&
+1676 0x00014edd 0x00014edd   4    5         ascii  F5QQ
+1677 0x00014ef5 0x00014ef5   4    5         ascii  QQF/
+1678 0x00014efa 0x00014efa   4    4         ascii  /FFQ
+1679 0x00014f00 0x00014f00   4    5         ascii  QQ5F
+1680 0x00014f15 0x00014f15  12   13         ascii  QQ@@55//5FQF
+1681 0x00014f32 0x00014f32   7    8         ascii  FQFF55F
+1682 0x00014f3c 0x00014f3c   7    8         ascii  55Q56Q%
+1683 0x00014f45 0x00014f45   4    4         ascii  )4:#
+1684 0x00014f5b 0x00014f5b   4    5         ascii  FQQQ
+1685 0x00014f73 0x00014f73   8    9         ascii  K:s\\f:Q%
+1686 0x00014f7d 0x00014f7d   4    5         ascii  -Q5F
+1687 0x00014fb3 0x00014fb3   4    4         ascii  #$1\
+1688 0x00015003 0x00015003   5    5         ascii  <Kgv}
+1689 0x00015031 0x00015031   6    7         ascii  \e#$$(\e
+1690 0x00015389 0x00015389   5    5         ascii  &&/4)
+1691 0x000153b5 0x000153b5   6    7         ascii   \aJf%%
+1692 0x000153bf 0x000153bf   6    7         ascii  u<)\12
+1693 0x000153ee 0x000153ee   6    6         ascii  q&&/,1
+1694 0x00015404 0x00015404   7    8         ascii  \b<,$(29
+1695 0x0001540c 0x0001540c   4    5         ascii  & 1\e
+1696 0x00015426 0x00015426  11   11         ascii  \t@5\a&55QQ1g
+1697 0x00015447 0x00015447   4    5         ascii  WF@F
+1698 0x0001544e 0x0001544e   5    5         ascii  &F55@
+1699 0x00015486 0x00015486   7    8         ascii  Q555F5/
+1700 0x00015490 0x00015490   5    5         ascii  \a@WWQ
+1701 0x0001549a 0x0001549a   4    5         ascii  3sE\v
+1702 0x000154ad 0x000154ad   4    5         ascii  5Q-/
+1703 0x000154d4 0x000154d4   7    8         ascii  F@QQF5F
+1704 0x000154e2 0x000154e2  13   14         ascii  QQQQ5\f)IH2\rGK
+1705 0x00015525 0x00015525   4    5         ascii  Q55F
+1706 0x0001552b 0x0001552b   6    7         ascii  5/QQ5F
+1707 0x00015549 0x00015549   5    5         ascii  F///F
+1708 0x00015550 0x00015550   7    8         ascii  W@F66F)
+1709 0x00015569 0x00015569   8    9         ascii  QFFFQIsf
+1710 0x00015587 0x00015587   9   10         ascii  %FQ@6QQQ\f
+1711 0x000155a4 0x000155a4   4    5         ascii  6\v)\f
+1712 0x000155b1 0x000155b1   4    5         ascii  #(1g
+1713 0x000155d1 0x000155d1   4    4         ascii  s)sI
+1714 0x000155ec 0x000155ec   5    5         ascii  :\e\v\eC
+1715 0x0001564f 0x0001564f   4    5         ascii  #$$\e
+1716 0x00015725 0x00015725   5    6         ibm037 ZZTw±
+1717 0x0001583c 0x0001583c   4    4         ascii  i6(L
+1718 0x00015926 0x00015926   4    5         ascii  &&&&
+1719 0x0001594d 0x0001594d   4    5         ibm037 AAA[
+1720 0x000159c9 0x000159c9   4    4         ascii  :I.2
+1721 0x000159f0 0x000159f0   4    4         ascii  &@1>
+1722 0x000159f4 0x000159f4   8    8         ibm037 UZ77XV¹P
+1723 0x00015a04 0x00015a04   8    9         ascii  \n<(((2'&
+1724 0x00015a20 0x00015a20   7    8         ascii  \n\e#6@@&
+1725 0x00015a28 0x00015a28   7    7         ascii  &F@5>,#
+1726 0x00015a44 0x00015a44  13   13         ascii  \t@FF@55\a&Q5@@
+1727 0x00015a69 0x00015a69   6    7         ascii  F@Q5@F
+1728 0x00015a71 0x00015a71   4    4         ascii  5FQW
+1729 0x00015a8f 0x00015a8f   4    5         ascii  5F55
+1730 0x00015a94 0x00015a94   7    7         ascii  \v55\a&/Q
+1731 0x00015a9d 0x00015a9d   6    7         ascii  W5FQ@'
+1732 0x00015aa4 0x00015aa4   4    5         ascii  9s:\v
+1733 0x00015aaf 0x00015aaf   4    5         ascii  $-,*
+1734 0x00015ab7 0x00015ab7   7    7         ascii  FF55Q5-
+1735 0x00015adc 0x00015adc   7    8         ascii  QQQQ5@5
+1736 0x00015af1 0x00015af1   6    7         ascii  bb,\v9K
+1737 0x00015b03 0x00015b03   4    5         ascii  Q/@F
+1738 0x00015b09 0x00015b09   4    5         ascii  5FFF
+1739 0x00015b0f 0x00015b0f   4    5         ascii  FFQ@
+1740 0x00015b2a 0x00015b2a   5    6         ascii  @@Q//
+1741 0x00015b31 0x00015b31   6    7         ascii  F/5FF@
+1742 0x00015b4d 0x00015b4d  12   12         ascii  FQQF5//&/FQQ
+1743 0x00015b75 0x00015b75   8    9         ascii  QQQFFIss
+1744 0x00015b8b 0x00015b8b   4    5         ascii  K#\e(
+1745 0x00015bb9 0x00015bb9   6    7         ascii  %6\f%>\f
+1746 0x00015db9 0x00015db9   7    8         ibm037 [AAAA[3
+1747 0x00015e16 0x00015e16   4    4         ascii  @W>a
+1748 0x00015f95 0x00015f95   8    9         ibm037 µ[[[[AAA
+1749 0x0001600d 0x0001600d   7    7         ascii  )\121b)
+1750 0x00016024 0x00016024   4    4         ascii  &@%E
+1751 0x00016078 0x00016078   7    7         ascii  &5Q561<
+1752 0x00016092 0x00016092   5    6         ascii  \b55F5
+1753 0x00016098 0x00016098   6    6         ascii  &5F5@Q
+1754 0x000160ae 0x000160ae   9   10         ascii  miQQ@5/i5
+1755 0x000160f6 0x000160f6  12   12         ascii  \bQFQQ5QQQ&&Q
+1756 0x00016129 0x00016129   6    6         ascii  5FFQF@
+1757 0x00016138 0x00016138   4    4         ascii  \f#)s
+1758 0x00016140 0x00016140   7    8         ascii  QQFQ5&/
+1759 0x00016148 0x00016148   9   10         ascii  &5Q@Q55F5
+1760 0x00016163 0x00016163  14   15         ascii  QFF55/&5//5/5F
+1761 0x0001618b 0x0001618b   4    5         ascii  F5//
+1762 0x00016192 0x00016192   7    8         ascii  QFQ@6Q)
+1763 0x0001619b 0x0001619b   4    4         ascii  ):7$
+1764 0x000161c3 0x000161c3   4    5         ascii  S:sE
+1765 0x000161c9 0x000161c9   4    5         ascii  %FF5
+1766 0x000161cf 0x000161cf   4    5         ascii  5QQ%
+1767 0x000161e6 0x000161e6   5    6         ascii  Q:\f%@
+1768 0x000161fd 0x000161fd   4    5         ascii  #(1n
+1769 0x00016213 0x00016213   6    6         ascii  :EI4II
+1770 0x0001624b 0x0001624b   4    5         ascii  $2CV
+1771 0x00016259 0x00016259   4    4         ascii  <Kc}
+1772 0x000163f5 0x000163f5   4    5         ibm037 kAAA
+1773 0x000165a4 0x000165a4   4    4         ascii  &&&&
+1774 0x000165f2 0x000165f2   5    5         ascii  &&&/)
+1775 0x0001668f 0x0001668f   6    6         ascii  /Q@61K
+1776 0x000166aa 0x000166aa  10   10         ascii  \a@5&&&Q5FW
+1777 0x000166ca 0x000166ca   6    7         ascii  QQiQF&
+1778 0x000166eb 0x000166eb   5    5         ascii  FF55Q
+1779 0x00016700 0x00016700   4    5         ascii  :IE\v
+1780 0x00016711 0x00016711   8    9         ascii  QQW5/Q55
+1781 0x00016724 0x00016724   5    6         ascii  W\v2E9
+1782 0x0001673a 0x0001673a   5    6         ascii  QQQ/ 
+1783 0x00016749 0x00016749   4    5         ascii  @5QQ
+1784 0x0001674f 0x0001674f   4    5         ascii  -\v<>
+1785 0x00016760 0x00016760   5    6         ascii  \aFF//
+1786 0x00016766 0x00016766   4    4         ascii  /5 @
+1787 0x0001676b 0x0001676b   4    5         ascii  F5QF
+1788 0x00016784 0x00016784   9   10         ascii  QFF5Q55/F
+1789 0x000167a5 0x000167a5   4    5         ascii  QFFF
+1790 0x000167aa 0x000167aa  13   13         ascii  \aFF/55F5QQF%6
+1791 0x000167bb 0x000167bb   4    5         ascii  )4:#
+1792 0x000167ce 0x000167ce  15   16         ascii  \a%5Q5/FF5Q@FQQI
+1793 0x000167f3 0x000167f3   4    5         ascii  -Q@@
+1794 0x0001683c 0x0001683c   5    5         ascii  ?::f4
+1795 0x0001684b 0x0001684b   6    6         ascii  (<X.)I
+1796 0x00016877 0x00016877   4    5         ascii  <Sg}
+1797 0x00016a2c 0x00016a2c   4    4         ascii  -W98
+1798 0x00016a8f 0x00016a8f   4    5         ascii  > '9
+1799 0x00016b91 0x00016b91   5    6         ascii  &&&/h
+1800 0x00016bd4 0x00016bd4   4    4         ascii  &&&/
+1801 0x00016c64 0x00016c64   6    6         ascii  K&&&:1
+1802 0x00016c99 0x00016c99  14   14         ascii  \e#6>Q5&&F@Q619
+1803 0x00016cbb 0x00016cbb   4    5         ascii  @5F5
+1804 0x00016cc1 0x00016cc1   4    5         ascii  \a&Q5
+1805 0x00016cd7 0x00016cd7   6    7         ascii  FFWQF/
+1806 0x00016cde 0x00016cde   4    4         ascii  &F5F
+1807 0x00016cf4 0x00016cf4   7    7         ascii  \rIWQQ/Q
+1808 0x00016d1a 0x00016d1a   7    8         ascii  Q@5&@5F
+1809 0x00016d2e 0x00016d2e   5    6         ascii  \eb:\v\t
+1810 0x00016d3f 0x00016d3f   6    7         ascii  Q555 @
+1811 0x00016d4d 0x00016d4d   4    5         ascii  55Q5
+1812 0x00016d53 0x00016d53   6    7         ascii  Hb1\v>K
+1813 0x00016d69 0x00016d69   6    7         ascii  F5FQ/&
+1814 0x00016d70 0x00016d70   5    5         ascii  &F555
+1815 0x00016d88 0x00016d88  16   17         ascii  \aQ@5F55FFF/55%%\b
+1816 0x00016da1 0x00016da1  12   13         ascii  FF5QQ5///FF5
+1817 0x00016daf 0x00016daf   4    5         ascii  66Q)
+1818 0x00016dc3 0x00016dc3  13   14         ascii  %FF55FFFF5QF\n
+1819 0x00016dd7 0x00016dd7   4    5         ascii  S#\e$
+1820 0x00016de1 0x00016de1  13   14         ascii  F%%FF--@@QQ:\n
+1821 0x00016e19 0x00016e19   4    5         ascii  #$1g
+1822 0x00016e7b 0x00016e7b   4    5         ascii  ,,29
+1823 0x00016eab 0x00016eab   4    5         ascii  $$(\e
+1824 0x00016fcc 0x00016fcc   8    9         ibm037 [[AAAA[2
+1825 0x00017062 0x00017062   4    5         ibm037 ccw\
+1826 0x000170ad 0x000170ad   4    4         ascii  ---C
+1827 0x000170b9 0x000170b9   4    5         ascii  -'-<
+1828 0x000171be 0x000171be   4    5         ascii  &&&l
+1829 0x00017202 0x00017202   4    4         ascii  \a&&&
+1830 0x0001723b 0x0001723b   4    5         ascii  &/&W
+1831 0x0001724b 0x0001724b   7    7         ascii  sf%'&&5
+1832 0x00017257 0x00017257   5    5         ascii  11.J)
+1833 0x00017282 0x00017282   4    4         ascii  &@,1
+1834 0x0001729a 0x0001729a   5    6         ascii  \t(1< 
+1835 0x000172d7 0x000172d7   6    7         ascii  @F5@5/
+1836 0x000172df 0x000172df   5    5         ascii  Q@F5Q
+1837 0x000172e9 0x000172e9   4    5         ascii  4H9S
+1838 0x000172f3 0x000172f3   8    9         ascii  {QF@Q5F5
+1839 0x00017338 0x00017338   9    9         ascii  Q55/&55\a&
+1840 0x00017358 0x00017358   7    8         ascii  QFQ@5/&
+1841 0x00017362 0x00017362   5    6         ascii  @WFQF
+1842 0x0001737a 0x0001737a  11   11         ascii  \bQ5F55/&&Q@
+1843 0x00017386 0x00017386   6    7         ascii  QF5QF\b
+1844 0x00017397 0x00017397   4    5         ascii  QQQF
+1845 0x0001739d 0x0001739d   4    4         ascii  //5F
+1846 0x000173a2 0x000173a2   5    6         ascii  F@5%)
+1847 0x000173b6 0x000173b6   9   10         ascii  FFF555/5F
+1848 0x000173c5 0x000173c5   4    5         ascii  ):7#
+1849 0x000173d5 0x000173d5  12   13         ascii  %QF//FFQQF5Q
+1850 0x000173ef 0x000173ef   5    6         ascii  K#\e(\b
+1851 0x000173fa 0x000173fa   7    8         ascii  5-F@@@:
+1852 0x00017416 0x00017416   6    7         ascii  K\f%6\f\n
+1853 0x00017451 0x00017451   4    4         ascii  (:X.
+1854 0x0001747b 0x0001747b   6    7         ascii  ,219<K
+1855 0x00017697 0x00017697   4    4         ascii  6-6C
+1856 0x000176a7 0x000176a7   4    5         ascii  -'-<
+1857 0x000177ff 0x000177ff   4    4         ascii  &&/)
+1858 0x0001782f 0x0001782f   6    7         ascii  :E22,J
+1859 0x00017858 0x00017858  10   11         ibm037 H277XVP¹çÚ
+1860 0x00017873 0x00017873   4    5         ascii  \a&-G
+1861 0x00017891 0x00017891   4    5         ascii  6@Q/
+1862 0x000178ae 0x000178ae   6    7         ascii  \b55@ \a
+1863 0x000178b5 0x000178b5   4    4         ascii  FQ@F
+1864 0x000178c1 0x000178c1   4    5         ascii  4I<K
+1865 0x000178cc 0x000178cc  14   14         ascii  `@QFQ5FQ/\a&F@Q
+1866 0x000178ee 0x000178ee   7    8         ascii  Q5&@55F
+1867 0x00017910 0x00017910   7    8         ascii  5F@FF/5
+1868 0x0001791b 0x0001791b   4    5         ascii  iiFQ
+1869 0x00017925 0x00017925   4    5         ascii  _f'\t
+1870 0x00017938 0x00017938   7    8         ascii  QQ55Q F
+1871 0x00017944 0x00017944   7    8         ascii  QFQ/FQ@
+1872 0x0001795c 0x0001795c   7    8         ascii  FQQQ@Q/
+1873 0x00017969 0x00017969   5    6         ascii  Q5F5Q
+1874 0x00017980 0x00017980   7    7         ascii  \fF5&//Q
+1875 0x00017988 0x00017988   5    5         ascii  5Q5)1
+1876 0x000179a1 0x000179a1   4    5         ascii  FF5F
+1877 0x000179b3 0x000179b3   4    4         ascii  )4:#
+1878 0x000179c7 0x000179c7   6    7         ascii  %FFF5/
+1879 0x000179cf 0x000179cf   4    5         ascii  QQ5F
+1880 0x000179e7 0x000179e7   4    5         ascii  K:sE
+1881 0x000179ed 0x000179ed   8    9         ascii  F@5Q5@5%
+1882 0x00017a06 0x00017a06   5    6         ascii  )sW%\f
+1883 0x00017a20 0x00017a20   5    5         ascii  \a#(1n
+1884 0x00017a4f 0x00017a4f   4    4         ascii  6HR9
+1885 0x00017a7f 0x00017a7f   4    5         ascii  ,,29
+1886 0x00017c13 0x00017c13   6    7         ibm037 åz72ZO
+1887 0x00017c1d 0x00017c1d   4    5         ibm037 IMTZ
+1888 0x00017caf 0x00017caf   4    4         ascii  >-6C
+1889 0x00017cbb 0x00017cbb   4    5         ascii  6''9
+1890 0x00017e27 0x00017e27   6    7         ascii  \v)Jf%!
+1891 0x00017e33 0x00017e33   7    7         ascii  )\21.J)
+1892 0x00017e7c 0x00017e7c   5    6         ascii  \t((2 
+1893 0x00017ebb 0x00017ebb   5    6         ascii  @Q5F@
+1894 0x00017ec1 0x00017ec1   4    5         ascii  &&/Q
+1895 0x00017eda 0x00017eda   5    6         ascii  mWQ55
+1896 0x00017ee0 0x00017ee0  10   10         ascii  \a55Q&&&5@@
+1897 0x00017f01 0x00017f01   8    9         ascii  FFFQQ5Q&
+1898 0x00017f23 0x00017f23   4    5         ascii  FQQ5
+1899 0x00017f29 0x00017f29   4    5         ascii  Q55Q
+1900 0x00017f50 0x00017f50   4    5         ascii  Q55&
+1901 0x00017f59 0x00017f59   6    7         ascii  FFQ5F5
+1902 0x00017f61 0x00017f61   4    5         ascii  Ib9\v
+1903 0x00017f73 0x00017f73   4    5         ascii  @Q5&
+1904 0x00017f90 0x00017f90  17   18         ascii  QF5Q5//&/F5FF%%F%
+1905 0x00017fb3 0x00017fb3   4    5         ascii  55F5
+1906 0x00017fbb 0x00017fbb   8    8         ascii  QF5@66Q%
+1907 0x00017fd1 0x00017fd1   4    5         ascii  f)\f>
+1908 0x00017fd7 0x00017fd7   6    7         ascii  QF5FFF
+1909 0x00017fdf 0x00017fdf   6    6         ascii  QF5Iss
+1910 0x00017ff9 0x00017ff9   8    9         ascii  F56@5Q@%
+1911 0x0001802e 0x0001802e   5    5         ascii  \a#$1g
+1912 0x0001805c 0x0001805c   5    6         ascii  \e,<R.
+1913 0x0001808d 0x0001808d   5    6         ascii  ,219\b
+1914 0x000180bf 0x000180bf   4    5         ascii  #$$\e
+1915 0x0001820d 0x0001820d   4    5         ibm037 NMTO
+1916 0x00018271 0x00018271   5    6         ascii  1}v\a\a
+1917 0x000182ab 0x000182ab   4    4         ascii  >-69
+1918 0x000182e0 0x000182e0   7    8         ibm037 ýNG\OA}
+1919 0x000183e4 0x000183e4   4    4         ascii  &&&&
+1920 0x00018429 0x00018429   4    5         ascii  22,J
+1921 0x0001844b 0x0001844b   6    6         ibm037 PVVEF 
+1922 0x00018451 0x00018451   5    5         ascii  &&616
+1923 0x00018466 0x00018466   5    6         ascii  \t(1K-
+1924 0x00018487 0x00018487   6    7         ascii  \e'66@5
+1925 0x000184a3 0x000184a3   5    5         ascii  ))b{v
+1926 0x000184ac 0x000184ac   5    6         ascii  \tQQ5&
+1927 0x000184b3 0x000184b3   5    5         ascii  55FQi
+1928 0x000184ca 0x000184ca  13   13         ascii  viQQQ@Q5/\a&/@
+1929 0x000184ef 0x000184ef  12   12         ascii  QF5FQQF/&/5Q
+1930 0x000184fe 0x000184fe   5    6         ascii  FFF@'
+1931 0x00018504 0x00018504   4    5         ascii  3sE\v
+1932 0x00018512 0x00018512  14   14         ascii  \rQQ@@5 Q5\a&Fii
+1933 0x00018523 0x00018523  10   11         ascii  FQQ@\v\eH:\v\t
+1934 0x00018534 0x00018534   5    5         ascii  \r()):
+1935 0x0001853d 0x0001853d   6    7         ascii  QQ@&/@
+1936 0x0001854b 0x0001854b   4    5         ascii  55Q@
+1937 0x00018551 0x00018551   6    7         ascii  bb2\v9K
+1938 0x00018566 0x00018566   7    8         ascii  QF@Q555
+1939 0x0001856e 0x0001856e  10   11         ascii  &/55/QFQ@F
+1940 0x00018593 0x00018593   9    9         ascii  QFQ55&/F5
+1941 0x0001859d 0x0001859d   6    7         ascii  @@QQ)%
+1942 0x000185b2 0x000185b2   4    4         ascii  \e\b\ns
+1943 0x000185b9 0x000185b9  10   10         ascii  FQQ/F/55/F
+1944 0x000185c4 0x000185c4   6    7         ascii  QQQ65\b
+1945 0x000185dc 0x000185dc  15   16         ascii  \a%5F///FQQ5FQQI
+1946 0x000185fc 0x000185fc   7    8         ascii  55QFQQ%
+1947 0x00018616 0x00018616   5    6         ascii  Q1\f#6
+1948 0x0001862b 0x0001862b   4    4         ascii  #(1`
+1949 0x0001864b 0x0001864b   4    4         ascii  I:JI
+1950 0x0001866d 0x0001866d   4    5         ascii  #$(#
+1951 0x0001867f 0x0001867f   7    7         ascii  ##(,<V}
+1952 0x0001868f 0x0001868f   9    9         ascii  ,,29<Sg}}

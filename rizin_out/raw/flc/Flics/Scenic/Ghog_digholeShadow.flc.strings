@@ -1,0 +1,614 @@
+nth      paddr      vaddr len size section type   string                                     
+---------------------------------------------------------------------------------------------
+  0 0x0000001a 0x0000001a   4    5         ibm037 2211
+  1 0x000000f0 0x000000f0   6    9         utf8   ȘxȘpȐp blocks=Latin Extended-B,Basic Latin
+  2 0x000001d8 0x000001d8   5    5         ascii  X@x`P
+  3 0x00000223 0x00000223   5    5         ascii  P8xP@
+  4 0x00000229 0x00000229   5    5         ascii  P8xP@
+  5 0x00000235 0x00000235  11   11         ascii  P8xP8pP@xP@
+  6 0x0000024d 0x0000024d  14   14         ascii  H0xP8pP8pP8xH0
+  7 0x0000025c 0x0000025c   8    8         ascii  @ pH8xH0
+  8 0x0000026b 0x0000026b   8    8         ascii  @ pH8pH8
+  9 0x00000274 0x00000274   5    5         ascii  @(pH0
+ 10 0x0000027c 0x0000027c   6    6         ascii  hH8`H8
+ 11 0x00000283 0x00000283   5    5         ascii  @ p@0
+ 12 0x00000289 0x00000289  14   14         ascii  8 p@0hH0x@(hH8
+ 13 0x00000298 0x00000298  26   26         ascii  8 h@0x8 `@0`@0XH8p@(`@0`@0
+ 14 0x000002b5 0x000002b5  14   15         ascii  `@0p8 X@0h8(x0
+ 15 0x000002c5 0x000002c5   5    5         ascii  0\bh8 
+ 16 0x000002d0 0x000002d0   5    6         ascii  X80p0
+ 17 0x000002d6 0x000002d6  11   12         ascii  X8(X8(h0 h0
+ 18 0x000002e2 0x000002e2   8    9         ascii  X8 P80p(
+ 19 0x000002eb 0x000002eb   5    6         ascii  P8(p(
+ 20 0x000002f1 0x000002f1   5    6         ascii  X0 h0
+ 21 0x000002fa 0x000002fa   5    6         ascii  P0(X0
+ 22 0x00000300 0x00000300   5    6         ascii  H0(h(
+ 23 0x00000306 0x00000306   8    9         ascii  p \bH0 X(
+ 24 0x00000312 0x00000312   5    6         ascii  H0 P(
+ 25 0x00000318 0x00000318   7    8         ascii  @0(H( p
+ 26 0x00000327 0x00000327   5    6         ascii  @( P 
+ 27 0x00000330 0x00000330   8    9         ascii  8( @( H 
+ 28 0x00000342 0x00000342   4    5         ascii  8( X
+ 29 0x000003af 0x000003af   4    5         ascii  \b\b(\b
+ 30 0x00000414 0x00000414   6    9         utf8   ȘxȘpȐp blocks=Latin Extended-B,Basic Latin
+ 31 0x000004fc 0x000004fc   5    5         ascii  X@x`P
+ 32 0x00000547 0x00000547   5    5         ascii  P8xP@
+ 33 0x0000054d 0x0000054d   5    5         ascii  P8xP@
+ 34 0x00000559 0x00000559  11   11         ascii  P8xP8pP@xP@
+ 35 0x00000571 0x00000571  14   14         ascii  H0xP8pP8pP8xH0
+ 36 0x00000580 0x00000580   8    8         ascii  @ pH8xH0
+ 37 0x0000058f 0x0000058f   8    8         ascii  @ pH8pH8
+ 38 0x00000598 0x00000598   5    5         ascii  @(pH0
+ 39 0x000005a0 0x000005a0   6    6         ascii  hH8`H8
+ 40 0x000005a7 0x000005a7   5    5         ascii  @ p@0
+ 41 0x000005ad 0x000005ad  14   14         ascii  8 p@0hH0x@(hH8
+ 42 0x000005bc 0x000005bc  26   26         ascii  8 h@0x8 `@0`@0XH8p@(`@0`@0
+ 43 0x000005d9 0x000005d9  14   15         ascii  `@0p8 X@0h8(x0
+ 44 0x000005e9 0x000005e9   5    5         ascii  0\bh8 
+ 45 0x000005f4 0x000005f4   5    6         ascii  X80p0
+ 46 0x000005fa 0x000005fa  11   12         ascii  X8(X8(h0 h0
+ 47 0x00000606 0x00000606   8    9         ascii  X8 P80p(
+ 48 0x0000060f 0x0000060f   5    6         ascii  P8(p(
+ 49 0x00000615 0x00000615   5    6         ascii  X0 h0
+ 50 0x0000061e 0x0000061e   5    6         ascii  P0(X0
+ 51 0x00000624 0x00000624   5    6         ascii  H0(h(
+ 52 0x0000062a 0x0000062a   8    9         ascii  p \bH0 X(
+ 53 0x00000636 0x00000636   5    6         ascii  H0 P(
+ 54 0x0000063c 0x0000063c   7    8         ascii  @0(H( p
+ 55 0x0000064b 0x0000064b   5    6         ascii  @( P 
+ 56 0x00000654 0x00000654   8    9         ascii  8( @( H 
+ 57 0x00000666 0x00000666   4    5         ascii  8( X
+ 58 0x000006d3 0x000006d3   4    5         ascii  \b\b(\b
+ 59 0x0000075e 0x0000075e   6    9         utf8   ȘxȘpȐp blocks=Latin Extended-B,Basic Latin
+ 60 0x00000846 0x00000846   5    5         ascii  X@x`P
+ 61 0x00000891 0x00000891   5    5         ascii  P8xP@
+ 62 0x00000897 0x00000897   5    5         ascii  P8xP@
+ 63 0x000008a3 0x000008a3  11   11         ascii  P8xP8pP@xP@
+ 64 0x000008bb 0x000008bb  14   14         ascii  H0xP8pP8pP8xH0
+ 65 0x000008ca 0x000008ca   8    8         ascii  @ pH8xH0
+ 66 0x000008d9 0x000008d9   8    8         ascii  @ pH8pH8
+ 67 0x000008e2 0x000008e2   5    5         ascii  @(pH0
+ 68 0x000008ea 0x000008ea   6    6         ascii  hH8`H8
+ 69 0x000008f1 0x000008f1   5    5         ascii  @ p@0
+ 70 0x000008f7 0x000008f7  14   14         ascii  8 p@0hH0x@(hH8
+ 71 0x00000906 0x00000906  26   26         ascii  8 h@0x8 `@0`@0XH8p@(`@0`@0
+ 72 0x00000923 0x00000923  14   15         ascii  `@0p8 X@0h8(x0
+ 73 0x00000933 0x00000933   5    5         ascii  0\bh8 
+ 74 0x0000093e 0x0000093e   5    6         ascii  X80p0
+ 75 0x00000944 0x00000944  11   12         ascii  X8(X8(h0 h0
+ 76 0x00000950 0x00000950   8    9         ascii  X8 P80p(
+ 77 0x00000959 0x00000959   5    6         ascii  P8(p(
+ 78 0x0000095f 0x0000095f   5    6         ascii  X0 h0
+ 79 0x00000968 0x00000968   5    6         ascii  P0(X0
+ 80 0x0000096e 0x0000096e   5    6         ascii  H0(h(
+ 81 0x00000974 0x00000974   8    9         ascii  p \bH0 X(
+ 82 0x00000980 0x00000980   5    6         ascii  H0 P(
+ 83 0x00000986 0x00000986   7    8         ascii  @0(H( p
+ 84 0x00000995 0x00000995   5    6         ascii  @( P 
+ 85 0x0000099e 0x0000099e   8    9         ascii  8( @( H 
+ 86 0x000009b0 0x000009b0   4    5         ascii  8( X
+ 87 0x00000a1d 0x00000a1d   4    5         ascii  \b\b(\b
+ 88 0x00000a7f 0x00000a7f   4    5         ibm037 8888
+ 89 0x00000ae0 0x00000ae0   6    9         utf8   ȘxȘpȐp blocks=Latin Extended-B,Basic Latin
+ 90 0x00000bc8 0x00000bc8   5    5         ascii  X@x`P
+ 91 0x00000c13 0x00000c13   5    5         ascii  P8xP@
+ 92 0x00000c19 0x00000c19   5    5         ascii  P8xP@
+ 93 0x00000c25 0x00000c25  11   11         ascii  P8xP8pP@xP@
+ 94 0x00000c3d 0x00000c3d  14   14         ascii  H0xP8pP8pP8xH0
+ 95 0x00000c4c 0x00000c4c   8    8         ascii  @ pH8xH0
+ 96 0x00000c5b 0x00000c5b   8    8         ascii  @ pH8pH8
+ 97 0x00000c64 0x00000c64   5    5         ascii  @(pH0
+ 98 0x00000c6c 0x00000c6c   6    6         ascii  hH8`H8
+ 99 0x00000c73 0x00000c73   5    5         ascii  @ p@0
+100 0x00000c79 0x00000c79  14   14         ascii  8 p@0hH0x@(hH8
+101 0x00000c88 0x00000c88  26   26         ascii  8 h@0x8 `@0`@0XH8p@(`@0`@0
+102 0x00000ca5 0x00000ca5  14   15         ascii  `@0p8 X@0h8(x0
+103 0x00000cb5 0x00000cb5   5    5         ascii  0\bh8 
+104 0x00000cc0 0x00000cc0   5    6         ascii  X80p0
+105 0x00000cc6 0x00000cc6  11   12         ascii  X8(X8(h0 h0
+106 0x00000cd2 0x00000cd2   8    9         ascii  X8 P80p(
+107 0x00000cdb 0x00000cdb   5    6         ascii  P8(p(
+108 0x00000ce1 0x00000ce1   5    6         ascii  X0 h0
+109 0x00000cea 0x00000cea   5    6         ascii  P0(X0
+110 0x00000cf0 0x00000cf0   5    6         ascii  H0(h(
+111 0x00000cf6 0x00000cf6   8    9         ascii  p \bH0 X(
+112 0x00000d02 0x00000d02   5    6         ascii  H0 P(
+113 0x00000d08 0x00000d08   7    8         ascii  @0(H( p
+114 0x00000d17 0x00000d17   5    6         ascii  @( P 
+115 0x00000d20 0x00000d20   8    9         ascii  8( @( H 
+116 0x00000d32 0x00000d32   4    5         ascii  8( X
+117 0x00000d9f 0x00000d9f   4    5         ascii  \b\b(\b
+118 0x00000e7d 0x00000e7d   6    9         utf8   ȘxȘpȐp blocks=Latin Extended-B,Basic Latin
+119 0x00000f65 0x00000f65   5    5         ascii  X@x`P
+120 0x00000fb0 0x00000fb0   5    5         ascii  P8xP@
+121 0x00000fb6 0x00000fb6   5    5         ascii  P8xP@
+122 0x00000fc2 0x00000fc2  11   11         ascii  P8xP8pP@xP@
+123 0x00000fda 0x00000fda  14   14         ascii  H0xP8pP8pP8xH0
+124 0x00000fe9 0x00000fe9   8    8         ascii  @ pH8xH0
+125 0x00000ff8 0x00000ff8   8    8         ascii  @ pH8pH8
+126 0x00001001 0x00001001   5    5         ascii  @(pH0
+127 0x00001009 0x00001009   6    6         ascii  hH8`H8
+128 0x00001010 0x00001010   5    5         ascii  @ p@0
+129 0x00001016 0x00001016  14   14         ascii  8 p@0hH0x@(hH8
+130 0x00001025 0x00001025  26   26         ascii  8 h@0x8 `@0`@0XH8p@(`@0`@0
+131 0x00001042 0x00001042  14   15         ascii  `@0p8 X@0h8(x0
+132 0x00001052 0x00001052   5    5         ascii  0\bh8 
+133 0x0000105d 0x0000105d   5    6         ascii  X80p0
+134 0x00001063 0x00001063  11   12         ascii  X8(X8(h0 h0
+135 0x0000106f 0x0000106f   8    9         ascii  X8 P80p(
+136 0x00001078 0x00001078   5    6         ascii  P8(p(
+137 0x0000107e 0x0000107e   5    6         ascii  X0 h0
+138 0x00001087 0x00001087   5    6         ascii  P0(X0
+139 0x0000108d 0x0000108d   5    6         ascii  H0(h(
+140 0x00001093 0x00001093   8    9         ascii  p \bH0 X(
+141 0x0000109f 0x0000109f   5    6         ascii  H0 P(
+142 0x000010a5 0x000010a5   7    8         ascii  @0(H( p
+143 0x000010b4 0x000010b4   5    6         ascii  @( P 
+144 0x000010bd 0x000010bd   8    9         ascii  8( @( H 
+145 0x000010cf 0x000010cf   4    5         ascii  8( X
+146 0x0000113c 0x0000113c   4    5         ascii  \b\b(\b
+147 0x000011d5 0x000011d5   6    9         utf8   ȘxȘpȐp blocks=Latin Extended-B,Basic Latin
+148 0x000012bd 0x000012bd   5    5         ascii  X@x`P
+149 0x00001308 0x00001308   5    5         ascii  P8xP@
+150 0x0000130e 0x0000130e   5    5         ascii  P8xP@
+151 0x0000131a 0x0000131a  11   11         ascii  P8xP8pP@xP@
+152 0x00001332 0x00001332  14   14         ascii  H0xP8pP8pP8xH0
+153 0x00001341 0x00001341   8    8         ascii  @ pH8xH0
+154 0x00001350 0x00001350   8    8         ascii  @ pH8pH8
+155 0x00001359 0x00001359   5    5         ascii  @(pH0
+156 0x00001361 0x00001361   6    6         ascii  hH8`H8
+157 0x00001368 0x00001368   5    5         ascii  @ p@0
+158 0x0000136e 0x0000136e  14   14         ascii  8 p@0hH0x@(hH8
+159 0x0000137d 0x0000137d  26   26         ascii  8 h@0x8 `@0`@0XH8p@(`@0`@0
+160 0x0000139a 0x0000139a  14   15         ascii  `@0p8 X@0h8(x0
+161 0x000013aa 0x000013aa   5    5         ascii  0\bh8 
+162 0x000013b5 0x000013b5   5    6         ascii  X80p0
+163 0x000013bb 0x000013bb  11   12         ascii  X8(X8(h0 h0
+164 0x000013c7 0x000013c7   8    9         ascii  X8 P80p(
+165 0x000013d0 0x000013d0   5    6         ascii  P8(p(
+166 0x000013d6 0x000013d6   5    6         ascii  X0 h0
+167 0x000013df 0x000013df   5    6         ascii  P0(X0
+168 0x000013e5 0x000013e5   5    6         ascii  H0(h(
+169 0x000013eb 0x000013eb   8    9         ascii  p \bH0 X(
+170 0x000013f7 0x000013f7   5    6         ascii  H0 P(
+171 0x000013fd 0x000013fd   7    8         ascii  @0(H( p
+172 0x0000140c 0x0000140c   5    6         ascii  @( P 
+173 0x00001415 0x00001415   8    9         ascii  8( @( H 
+174 0x00001427 0x00001427   4    5         ascii  8( X
+175 0x00001494 0x00001494   4    5         ascii  \b\b(\b
+176 0x00001547 0x00001547   6    9         utf8   ȘxȘpȐp blocks=Latin Extended-B,Basic Latin
+177 0x0000162f 0x0000162f   5    5         ascii  X@x`P
+178 0x0000167a 0x0000167a   5    5         ascii  P8xP@
+179 0x00001680 0x00001680   5    5         ascii  P8xP@
+180 0x0000168c 0x0000168c  11   11         ascii  P8xP8pP@xP@
+181 0x000016a4 0x000016a4  14   14         ascii  H0xP8pP8pP8xH0
+182 0x000016b3 0x000016b3   8    8         ascii  @ pH8xH0
+183 0x000016c2 0x000016c2   8    8         ascii  @ pH8pH8
+184 0x000016cb 0x000016cb   5    5         ascii  @(pH0
+185 0x000016d3 0x000016d3   6    6         ascii  hH8`H8
+186 0x000016da 0x000016da   5    5         ascii  @ p@0
+187 0x000016e0 0x000016e0  14   14         ascii  8 p@0hH0x@(hH8
+188 0x000016ef 0x000016ef  26   26         ascii  8 h@0x8 `@0`@0XH8p@(`@0`@0
+189 0x0000170c 0x0000170c  14   15         ascii  `@0p8 X@0h8(x0
+190 0x0000171c 0x0000171c   5    5         ascii  0\bh8 
+191 0x00001727 0x00001727   5    6         ascii  X80p0
+192 0x0000172d 0x0000172d  11   12         ascii  X8(X8(h0 h0
+193 0x00001739 0x00001739   8    9         ascii  X8 P80p(
+194 0x00001742 0x00001742   5    6         ascii  P8(p(
+195 0x00001748 0x00001748   5    6         ascii  X0 h0
+196 0x00001751 0x00001751   5    6         ascii  P0(X0
+197 0x00001757 0x00001757   5    6         ascii  H0(h(
+198 0x0000175d 0x0000175d   8    9         ascii  p \bH0 X(
+199 0x00001769 0x00001769   5    6         ascii  H0 P(
+200 0x0000176f 0x0000176f   7    8         ascii  @0(H( p
+201 0x0000177e 0x0000177e   5    6         ascii  @( P 
+202 0x00001787 0x00001787   8    9         ascii  8( @( H 
+203 0x00001799 0x00001799   4    5         ascii  8( X
+204 0x00001806 0x00001806   4    5         ascii  \b\b(\b
+205 0x00001898 0x00001898   4    5         ibm037 8889
+206 0x000018ad 0x000018ad   6    9         utf8   ȘxȘpȐp blocks=Latin Extended-B,Basic Latin
+207 0x00001995 0x00001995   5    5         ascii  X@x`P
+208 0x000019e0 0x000019e0   5    5         ascii  P8xP@
+209 0x000019e6 0x000019e6   5    5         ascii  P8xP@
+210 0x000019f2 0x000019f2  11   11         ascii  P8xP8pP@xP@
+211 0x00001a0a 0x00001a0a  14   14         ascii  H0xP8pP8pP8xH0
+212 0x00001a19 0x00001a19   8    8         ascii  @ pH8xH0
+213 0x00001a28 0x00001a28   8    8         ascii  @ pH8pH8
+214 0x00001a31 0x00001a31   5    5         ascii  @(pH0
+215 0x00001a39 0x00001a39   6    6         ascii  hH8`H8
+216 0x00001a40 0x00001a40   5    5         ascii  @ p@0
+217 0x00001a46 0x00001a46  14   14         ascii  8 p@0hH0x@(hH8
+218 0x00001a55 0x00001a55  26   26         ascii  8 h@0x8 `@0`@0XH8p@(`@0`@0
+219 0x00001a72 0x00001a72  14   15         ascii  `@0p8 X@0h8(x0
+220 0x00001a82 0x00001a82   5    5         ascii  0\bh8 
+221 0x00001a8d 0x00001a8d   5    6         ascii  X80p0
+222 0x00001a93 0x00001a93  11   12         ascii  X8(X8(h0 h0
+223 0x00001a9f 0x00001a9f   8    9         ascii  X8 P80p(
+224 0x00001aa8 0x00001aa8   5    6         ascii  P8(p(
+225 0x00001aae 0x00001aae   5    6         ascii  X0 h0
+226 0x00001ab7 0x00001ab7   5    6         ascii  P0(X0
+227 0x00001abd 0x00001abd   5    6         ascii  H0(h(
+228 0x00001ac3 0x00001ac3   8    9         ascii  p \bH0 X(
+229 0x00001acf 0x00001acf   5    6         ascii  H0 P(
+230 0x00001ad5 0x00001ad5   7    8         ascii  @0(H( p
+231 0x00001ae4 0x00001ae4   5    6         ascii  @( P 
+232 0x00001aed 0x00001aed   8    9         ascii  8( @( H 
+233 0x00001aff 0x00001aff   4    5         ascii  8( X
+234 0x00001b6c 0x00001b6c   4    5         ascii  \b\b(\b
+235 0x00001c21 0x00001c21   6    9         utf8   ȘxȘpȐp blocks=Latin Extended-B,Basic Latin
+236 0x00001d09 0x00001d09   5    5         ascii  X@x`P
+237 0x00001d54 0x00001d54   5    5         ascii  P8xP@
+238 0x00001d5a 0x00001d5a   5    5         ascii  P8xP@
+239 0x00001d66 0x00001d66  11   11         ascii  P8xP8pP@xP@
+240 0x00001d7e 0x00001d7e  14   14         ascii  H0xP8pP8pP8xH0
+241 0x00001d8d 0x00001d8d   8    8         ascii  @ pH8xH0
+242 0x00001d9c 0x00001d9c   8    8         ascii  @ pH8pH8
+243 0x00001da5 0x00001da5   5    5         ascii  @(pH0
+244 0x00001dad 0x00001dad   6    6         ascii  hH8`H8
+245 0x00001db4 0x00001db4   5    5         ascii  @ p@0
+246 0x00001dba 0x00001dba  14   14         ascii  8 p@0hH0x@(hH8
+247 0x00001dc9 0x00001dc9  26   26         ascii  8 h@0x8 `@0`@0XH8p@(`@0`@0
+248 0x00001de6 0x00001de6  14   15         ascii  `@0p8 X@0h8(x0
+249 0x00001df6 0x00001df6   5    5         ascii  0\bh8 
+250 0x00001e01 0x00001e01   5    6         ascii  X80p0
+251 0x00001e07 0x00001e07  11   12         ascii  X8(X8(h0 h0
+252 0x00001e13 0x00001e13   8    9         ascii  X8 P80p(
+253 0x00001e1c 0x00001e1c   5    6         ascii  P8(p(
+254 0x00001e22 0x00001e22   5    6         ascii  X0 h0
+255 0x00001e2b 0x00001e2b   5    6         ascii  P0(X0
+256 0x00001e31 0x00001e31   5    6         ascii  H0(h(
+257 0x00001e37 0x00001e37   8    9         ascii  p \bH0 X(
+258 0x00001e43 0x00001e43   5    6         ascii  H0 P(
+259 0x00001e49 0x00001e49   7    8         ascii  @0(H( p
+260 0x00001e58 0x00001e58   5    6         ascii  @( P 
+261 0x00001e61 0x00001e61   8    9         ascii  8( @( H 
+262 0x00001e73 0x00001e73   4    5         ascii  8( X
+263 0x00001ee0 0x00001ee0   4    5         ascii  \b\b(\b
+264 0x00001f9f 0x00001f9f   6    9         utf8   ȘxȘpȐp blocks=Latin Extended-B,Basic Latin
+265 0x00002087 0x00002087   5    5         ascii  X@x`P
+266 0x000020d2 0x000020d2   5    5         ascii  P8xP@
+267 0x000020d8 0x000020d8   5    5         ascii  P8xP@
+268 0x000020e4 0x000020e4  11   11         ascii  P8xP8pP@xP@
+269 0x000020fc 0x000020fc  14   14         ascii  H0xP8pP8pP8xH0
+270 0x0000210b 0x0000210b   8    8         ascii  @ pH8xH0
+271 0x0000211a 0x0000211a   8    8         ascii  @ pH8pH8
+272 0x00002123 0x00002123   5    5         ascii  @(pH0
+273 0x0000212b 0x0000212b   6    6         ascii  hH8`H8
+274 0x00002132 0x00002132   5    5         ascii  @ p@0
+275 0x00002138 0x00002138  14   14         ascii  8 p@0hH0x@(hH8
+276 0x00002147 0x00002147  26   26         ascii  8 h@0x8 `@0`@0XH8p@(`@0`@0
+277 0x00002164 0x00002164  14   15         ascii  `@0p8 X@0h8(x0
+278 0x00002174 0x00002174   5    5         ascii  0\bh8 
+279 0x0000217f 0x0000217f   5    6         ascii  X80p0
+280 0x00002185 0x00002185  11   12         ascii  X8(X8(h0 h0
+281 0x00002191 0x00002191   8    9         ascii  X8 P80p(
+282 0x0000219a 0x0000219a   5    6         ascii  P8(p(
+283 0x000021a0 0x000021a0   5    6         ascii  X0 h0
+284 0x000021a9 0x000021a9   5    6         ascii  P0(X0
+285 0x000021af 0x000021af   5    6         ascii  H0(h(
+286 0x000021b5 0x000021b5   8    9         ascii  p \bH0 X(
+287 0x000021c1 0x000021c1   5    6         ascii  H0 P(
+288 0x000021c7 0x000021c7   7    8         ascii  @0(H( p
+289 0x000021d6 0x000021d6   5    6         ascii  @( P 
+290 0x000021df 0x000021df   8    9         ascii  8( @( H 
+291 0x000021f1 0x000021f1   4    5         ascii  8( X
+292 0x0000225e 0x0000225e   4    5         ascii  \b\b(\b
+293 0x00002313 0x00002313   6    9         utf8   ȘxȘpȐp blocks=Latin Extended-B,Basic Latin
+294 0x000023fb 0x000023fb   5    5         ascii  X@x`P
+295 0x00002446 0x00002446   5    5         ascii  P8xP@
+296 0x0000244c 0x0000244c   5    5         ascii  P8xP@
+297 0x00002458 0x00002458  11   11         ascii  P8xP8pP@xP@
+298 0x00002470 0x00002470  14   14         ascii  H0xP8pP8pP8xH0
+299 0x0000247f 0x0000247f   8    8         ascii  @ pH8xH0
+300 0x0000248e 0x0000248e   8    8         ascii  @ pH8pH8
+301 0x00002497 0x00002497   5    5         ascii  @(pH0
+302 0x0000249f 0x0000249f   6    6         ascii  hH8`H8
+303 0x000024a6 0x000024a6   5    5         ascii  @ p@0
+304 0x000024ac 0x000024ac  14   14         ascii  8 p@0hH0x@(hH8
+305 0x000024bb 0x000024bb  26   26         ascii  8 h@0x8 `@0`@0XH8p@(`@0`@0
+306 0x000024d8 0x000024d8  14   15         ascii  `@0p8 X@0h8(x0
+307 0x000024e8 0x000024e8   5    5         ascii  0\bh8 
+308 0x000024f3 0x000024f3   5    6         ascii  X80p0
+309 0x000024f9 0x000024f9  11   12         ascii  X8(X8(h0 h0
+310 0x00002505 0x00002505   8    9         ascii  X8 P80p(
+311 0x0000250e 0x0000250e   5    6         ascii  P8(p(
+312 0x00002514 0x00002514   5    6         ascii  X0 h0
+313 0x0000251d 0x0000251d   5    6         ascii  P0(X0
+314 0x00002523 0x00002523   5    6         ascii  H0(h(
+315 0x00002529 0x00002529   8    9         ascii  p \bH0 X(
+316 0x00002535 0x00002535   5    6         ascii  H0 P(
+317 0x0000253b 0x0000253b   7    8         ascii  @0(H( p
+318 0x0000254a 0x0000254a   5    6         ascii  @( P 
+319 0x00002553 0x00002553   8    9         ascii  8( @( H 
+320 0x00002565 0x00002565   4    5         ascii  8( X
+321 0x000025d2 0x000025d2   4    5         ascii  \b\b(\b
+322 0x00002677 0x00002677   6    9         utf8   ȘxȘpȐp blocks=Latin Extended-B,Basic Latin
+323 0x0000275f 0x0000275f   5    5         ascii  X@x`P
+324 0x000027aa 0x000027aa   5    5         ascii  P8xP@
+325 0x000027b0 0x000027b0   5    5         ascii  P8xP@
+326 0x000027bc 0x000027bc  11   11         ascii  P8xP8pP@xP@
+327 0x000027d4 0x000027d4  14   14         ascii  H0xP8pP8pP8xH0
+328 0x000027e3 0x000027e3   8    8         ascii  @ pH8xH0
+329 0x000027f2 0x000027f2   8    8         ascii  @ pH8pH8
+330 0x000027fb 0x000027fb   5    5         ascii  @(pH0
+331 0x00002803 0x00002803   6    6         ascii  hH8`H8
+332 0x0000280a 0x0000280a   5    5         ascii  @ p@0
+333 0x00002810 0x00002810  14   14         ascii  8 p@0hH0x@(hH8
+334 0x0000281f 0x0000281f  26   26         ascii  8 h@0x8 `@0`@0XH8p@(`@0`@0
+335 0x0000283c 0x0000283c  14   15         ascii  `@0p8 X@0h8(x0
+336 0x0000284c 0x0000284c   5    5         ascii  0\bh8 
+337 0x00002857 0x00002857   5    6         ascii  X80p0
+338 0x0000285d 0x0000285d  11   12         ascii  X8(X8(h0 h0
+339 0x00002869 0x00002869   8    9         ascii  X8 P80p(
+340 0x00002872 0x00002872   5    6         ascii  P8(p(
+341 0x00002878 0x00002878   5    6         ascii  X0 h0
+342 0x00002881 0x00002881   5    6         ascii  P0(X0
+343 0x00002887 0x00002887   5    6         ascii  H0(h(
+344 0x0000288d 0x0000288d   8    9         ascii  p \bH0 X(
+345 0x00002899 0x00002899   5    6         ascii  H0 P(
+346 0x0000289f 0x0000289f   7    8         ascii  @0(H( p
+347 0x000028ae 0x000028ae   5    6         ascii  @( P 
+348 0x000028b7 0x000028b7   8    9         ascii  8( @( H 
+349 0x000028c9 0x000028c9   4    5         ascii  8( X
+350 0x00002936 0x00002936   4    5         ascii  \b\b(\b
+351 0x000029d1 0x000029d1   6    9         utf8   ȘxȘpȐp blocks=Latin Extended-B,Basic Latin
+352 0x00002ab9 0x00002ab9   5    5         ascii  X@x`P
+353 0x00002b04 0x00002b04   5    5         ascii  P8xP@
+354 0x00002b0a 0x00002b0a   5    5         ascii  P8xP@
+355 0x00002b16 0x00002b16  11   11         ascii  P8xP8pP@xP@
+356 0x00002b2e 0x00002b2e  14   14         ascii  H0xP8pP8pP8xH0
+357 0x00002b3d 0x00002b3d   8    8         ascii  @ pH8xH0
+358 0x00002b4c 0x00002b4c   8    8         ascii  @ pH8pH8
+359 0x00002b55 0x00002b55   5    5         ascii  @(pH0
+360 0x00002b5d 0x00002b5d   6    6         ascii  hH8`H8
+361 0x00002b64 0x00002b64   5    5         ascii  @ p@0
+362 0x00002b6a 0x00002b6a  14   14         ascii  8 p@0hH0x@(hH8
+363 0x00002b79 0x00002b79  26   26         ascii  8 h@0x8 `@0`@0XH8p@(`@0`@0
+364 0x00002b96 0x00002b96  14   15         ascii  `@0p8 X@0h8(x0
+365 0x00002ba6 0x00002ba6   5    5         ascii  0\bh8 
+366 0x00002bb1 0x00002bb1   5    6         ascii  X80p0
+367 0x00002bb7 0x00002bb7  11   12         ascii  X8(X8(h0 h0
+368 0x00002bc3 0x00002bc3   8    9         ascii  X8 P80p(
+369 0x00002bcc 0x00002bcc   5    6         ascii  P8(p(
+370 0x00002bd2 0x00002bd2   5    6         ascii  X0 h0
+371 0x00002bdb 0x00002bdb   5    6         ascii  P0(X0
+372 0x00002be1 0x00002be1   5    6         ascii  H0(h(
+373 0x00002be7 0x00002be7   8    9         ascii  p \bH0 X(
+374 0x00002bf3 0x00002bf3   5    6         ascii  H0 P(
+375 0x00002bf9 0x00002bf9   7    8         ascii  @0(H( p
+376 0x00002c08 0x00002c08   5    6         ascii  @( P 
+377 0x00002c11 0x00002c11   8    9         ascii  8( @( H 
+378 0x00002c23 0x00002c23   4    5         ascii  8( X
+379 0x00002c90 0x00002c90   4    5         ascii  \b\b(\b
+380 0x00002d1b 0x00002d1b   6    9         utf8   ȘxȘpȐp blocks=Latin Extended-B,Basic Latin
+381 0x00002e03 0x00002e03   5    5         ascii  X@x`P
+382 0x00002e4e 0x00002e4e   5    5         ascii  P8xP@
+383 0x00002e54 0x00002e54   5    5         ascii  P8xP@
+384 0x00002e60 0x00002e60  11   11         ascii  P8xP8pP@xP@
+385 0x00002e78 0x00002e78  14   14         ascii  H0xP8pP8pP8xH0
+386 0x00002e87 0x00002e87   8    8         ascii  @ pH8xH0
+387 0x00002e96 0x00002e96   8    8         ascii  @ pH8pH8
+388 0x00002e9f 0x00002e9f   5    5         ascii  @(pH0
+389 0x00002ea7 0x00002ea7   6    6         ascii  hH8`H8
+390 0x00002eae 0x00002eae   5    5         ascii  @ p@0
+391 0x00002eb4 0x00002eb4  14   14         ascii  8 p@0hH0x@(hH8
+392 0x00002ec3 0x00002ec3  26   26         ascii  8 h@0x8 `@0`@0XH8p@(`@0`@0
+393 0x00002ee0 0x00002ee0  14   15         ascii  `@0p8 X@0h8(x0
+394 0x00002ef0 0x00002ef0   5    5         ascii  0\bh8 
+395 0x00002efb 0x00002efb   5    6         ascii  X80p0
+396 0x00002f01 0x00002f01  11   12         ascii  X8(X8(h0 h0
+397 0x00002f0d 0x00002f0d   8    9         ascii  X8 P80p(
+398 0x00002f16 0x00002f16   5    6         ascii  P8(p(
+399 0x00002f1c 0x00002f1c   5    6         ascii  X0 h0
+400 0x00002f25 0x00002f25   5    6         ascii  P0(X0
+401 0x00002f2b 0x00002f2b   5    6         ascii  H0(h(
+402 0x00002f31 0x00002f31   8    9         ascii  p \bH0 X(
+403 0x00002f3d 0x00002f3d   5    6         ascii  H0 P(
+404 0x00002f43 0x00002f43   7    8         ascii  @0(H( p
+405 0x00002f52 0x00002f52   5    6         ascii  @( P 
+406 0x00002f5b 0x00002f5b   8    9         ascii  8( @( H 
+407 0x00002f6d 0x00002f6d   4    5         ascii  8( X
+408 0x00002fda 0x00002fda   4    5         ascii  \b\b(\b
+409 0x00003069 0x00003069   6    9         utf8   ȘxȘpȐp blocks=Latin Extended-B,Basic Latin
+410 0x00003151 0x00003151   5    5         ascii  X@x`P
+411 0x0000319c 0x0000319c   5    5         ascii  P8xP@
+412 0x000031a2 0x000031a2   5    5         ascii  P8xP@
+413 0x000031ae 0x000031ae  11   11         ascii  P8xP8pP@xP@
+414 0x000031c6 0x000031c6  14   14         ascii  H0xP8pP8pP8xH0
+415 0x000031d5 0x000031d5   8    8         ascii  @ pH8xH0
+416 0x000031e4 0x000031e4   8    8         ascii  @ pH8pH8
+417 0x000031ed 0x000031ed   5    5         ascii  @(pH0
+418 0x000031f5 0x000031f5   6    6         ascii  hH8`H8
+419 0x000031fc 0x000031fc   5    5         ascii  @ p@0
+420 0x00003202 0x00003202  14   14         ascii  8 p@0hH0x@(hH8
+421 0x00003211 0x00003211  26   26         ascii  8 h@0x8 `@0`@0XH8p@(`@0`@0
+422 0x0000322e 0x0000322e  14   15         ascii  `@0p8 X@0h8(x0
+423 0x0000323e 0x0000323e   5    5         ascii  0\bh8 
+424 0x00003249 0x00003249   5    6         ascii  X80p0
+425 0x0000324f 0x0000324f  11   12         ascii  X8(X8(h0 h0
+426 0x0000325b 0x0000325b   8    9         ascii  X8 P80p(
+427 0x00003264 0x00003264   5    6         ascii  P8(p(
+428 0x0000326a 0x0000326a   5    6         ascii  X0 h0
+429 0x00003273 0x00003273   5    6         ascii  P0(X0
+430 0x00003279 0x00003279   5    6         ascii  H0(h(
+431 0x0000327f 0x0000327f   8    9         ascii  p \bH0 X(
+432 0x0000328b 0x0000328b   5    6         ascii  H0 P(
+433 0x00003291 0x00003291   7    8         ascii  @0(H( p
+434 0x000032a0 0x000032a0   5    6         ascii  @( P 
+435 0x000032a9 0x000032a9   8    9         ascii  8( @( H 
+436 0x000032bb 0x000032bb   4    5         ascii  8( X
+437 0x00003328 0x00003328   4    5         ascii  \b\b(\b
+438 0x00003395 0x00003395   6    9         utf8   ȘxȘpȐp blocks=Latin Extended-B,Basic Latin
+439 0x0000347d 0x0000347d   5    5         ascii  X@x`P
+440 0x000034c8 0x000034c8   5    5         ascii  P8xP@
+441 0x000034ce 0x000034ce   5    5         ascii  P8xP@
+442 0x000034da 0x000034da  11   11         ascii  P8xP8pP@xP@
+443 0x000034f2 0x000034f2  14   14         ascii  H0xP8pP8pP8xH0
+444 0x00003501 0x00003501   8    8         ascii  @ pH8xH0
+445 0x00003510 0x00003510   8    8         ascii  @ pH8pH8
+446 0x00003519 0x00003519   5    5         ascii  @(pH0
+447 0x00003521 0x00003521   6    6         ascii  hH8`H8
+448 0x00003528 0x00003528   5    5         ascii  @ p@0
+449 0x0000352e 0x0000352e  14   14         ascii  8 p@0hH0x@(hH8
+450 0x0000353d 0x0000353d  26   26         ascii  8 h@0x8 `@0`@0XH8p@(`@0`@0
+451 0x0000355a 0x0000355a  14   15         ascii  `@0p8 X@0h8(x0
+452 0x0000356a 0x0000356a   5    5         ascii  0\bh8 
+453 0x00003575 0x00003575   5    6         ascii  X80p0
+454 0x0000357b 0x0000357b  11   12         ascii  X8(X8(h0 h0
+455 0x00003587 0x00003587   8    9         ascii  X8 P80p(
+456 0x00003590 0x00003590   5    6         ascii  P8(p(
+457 0x00003596 0x00003596   5    6         ascii  X0 h0
+458 0x0000359f 0x0000359f   5    6         ascii  P0(X0
+459 0x000035a5 0x000035a5   5    6         ascii  H0(h(
+460 0x000035ab 0x000035ab   8    9         ascii  p \bH0 X(
+461 0x000035b7 0x000035b7   5    6         ascii  H0 P(
+462 0x000035bd 0x000035bd   7    8         ascii  @0(H( p
+463 0x000035cc 0x000035cc   5    6         ascii  @( P 
+464 0x000035d5 0x000035d5   8    9         ascii  8( @( H 
+465 0x000035e7 0x000035e7   4    5         ascii  8( X
+466 0x00003654 0x00003654   4    5         ascii  \b\b(\b
+467 0x000036cf 0x000036cf   6    9         utf8   ȘxȘpȐp blocks=Latin Extended-B,Basic Latin
+468 0x000037b7 0x000037b7   5    5         ascii  X@x`P
+469 0x00003802 0x00003802   5    5         ascii  P8xP@
+470 0x00003808 0x00003808   5    5         ascii  P8xP@
+471 0x00003814 0x00003814  11   11         ascii  P8xP8pP@xP@
+472 0x0000382c 0x0000382c  14   14         ascii  H0xP8pP8pP8xH0
+473 0x0000383b 0x0000383b   8    8         ascii  @ pH8xH0
+474 0x0000384a 0x0000384a   8    8         ascii  @ pH8pH8
+475 0x00003853 0x00003853   5    5         ascii  @(pH0
+476 0x0000385b 0x0000385b   6    6         ascii  hH8`H8
+477 0x00003862 0x00003862   5    5         ascii  @ p@0
+478 0x00003868 0x00003868  14   14         ascii  8 p@0hH0x@(hH8
+479 0x00003877 0x00003877  26   26         ascii  8 h@0x8 `@0`@0XH8p@(`@0`@0
+480 0x00003894 0x00003894  14   15         ascii  `@0p8 X@0h8(x0
+481 0x000038a4 0x000038a4   5    5         ascii  0\bh8 
+482 0x000038af 0x000038af   5    6         ascii  X80p0
+483 0x000038b5 0x000038b5  11   12         ascii  X8(X8(h0 h0
+484 0x000038c1 0x000038c1   8    9         ascii  X8 P80p(
+485 0x000038ca 0x000038ca   5    6         ascii  P8(p(
+486 0x000038d0 0x000038d0   5    6         ascii  X0 h0
+487 0x000038d9 0x000038d9   5    6         ascii  P0(X0
+488 0x000038df 0x000038df   5    6         ascii  H0(h(
+489 0x000038e5 0x000038e5   8    9         ascii  p \bH0 X(
+490 0x000038f1 0x000038f1   5    6         ascii  H0 P(
+491 0x000038f7 0x000038f7   7    8         ascii  @0(H( p
+492 0x00003906 0x00003906   5    6         ascii  @( P 
+493 0x0000390f 0x0000390f   8    9         ascii  8( @( H 
+494 0x00003921 0x00003921   4    5         ascii  8( X
+495 0x0000398e 0x0000398e   4    5         ascii  \b\b(\b
+496 0x00003a0d 0x00003a0d   6    9         utf8   ȘxȘpȐp blocks=Latin Extended-B,Basic Latin
+497 0x00003af5 0x00003af5   5    5         ascii  X@x`P
+498 0x00003b40 0x00003b40   5    5         ascii  P8xP@
+499 0x00003b46 0x00003b46   5    5         ascii  P8xP@
+500 0x00003b52 0x00003b52  11   11         ascii  P8xP8pP@xP@
+501 0x00003b6a 0x00003b6a  14   14         ascii  H0xP8pP8pP8xH0
+502 0x00003b79 0x00003b79   8    8         ascii  @ pH8xH0
+503 0x00003b88 0x00003b88   8    8         ascii  @ pH8pH8
+504 0x00003b91 0x00003b91   5    5         ascii  @(pH0
+505 0x00003b99 0x00003b99   6    6         ascii  hH8`H8
+506 0x00003ba0 0x00003ba0   5    5         ascii  @ p@0
+507 0x00003ba6 0x00003ba6  14   14         ascii  8 p@0hH0x@(hH8
+508 0x00003bb5 0x00003bb5  26   26         ascii  8 h@0x8 `@0`@0XH8p@(`@0`@0
+509 0x00003bd2 0x00003bd2  14   15         ascii  `@0p8 X@0h8(x0
+510 0x00003be2 0x00003be2   5    5         ascii  0\bh8 
+511 0x00003bed 0x00003bed   5    6         ascii  X80p0
+512 0x00003bf3 0x00003bf3  11   12         ascii  X8(X8(h0 h0
+513 0x00003bff 0x00003bff   8    9         ascii  X8 P80p(
+514 0x00003c08 0x00003c08   5    6         ascii  P8(p(
+515 0x00003c0e 0x00003c0e   5    6         ascii  X0 h0
+516 0x00003c17 0x00003c17   5    6         ascii  P0(X0
+517 0x00003c1d 0x00003c1d   5    6         ascii  H0(h(
+518 0x00003c23 0x00003c23   8    9         ascii  p \bH0 X(
+519 0x00003c2f 0x00003c2f   5    6         ascii  H0 P(
+520 0x00003c35 0x00003c35   7    8         ascii  @0(H( p
+521 0x00003c44 0x00003c44   5    6         ascii  @( P 
+522 0x00003c4d 0x00003c4d   8    9         ascii  8( @( H 
+523 0x00003c5f 0x00003c5f   4    5         ascii  8( X
+524 0x00003ccc 0x00003ccc   4    5         ascii  \b\b(\b
+525 0x00003d31 0x00003d31   6    9         utf8   ȘxȘpȐp blocks=Latin Extended-B,Basic Latin
+526 0x00003e19 0x00003e19   5    5         ascii  X@x`P
+527 0x00003e64 0x00003e64   5    5         ascii  P8xP@
+528 0x00003e6a 0x00003e6a   5    5         ascii  P8xP@
+529 0x00003e76 0x00003e76  11   11         ascii  P8xP8pP@xP@
+530 0x00003e8e 0x00003e8e  14   14         ascii  H0xP8pP8pP8xH0
+531 0x00003e9d 0x00003e9d   8    8         ascii  @ pH8xH0
+532 0x00003eac 0x00003eac   8    8         ascii  @ pH8pH8
+533 0x00003eb5 0x00003eb5   5    5         ascii  @(pH0
+534 0x00003ebd 0x00003ebd   6    6         ascii  hH8`H8
+535 0x00003ec4 0x00003ec4   5    5         ascii  @ p@0
+536 0x00003eca 0x00003eca  14   14         ascii  8 p@0hH0x@(hH8
+537 0x00003ed9 0x00003ed9  26   26         ascii  8 h@0x8 `@0`@0XH8p@(`@0`@0
+538 0x00003ef6 0x00003ef6  14   15         ascii  `@0p8 X@0h8(x0
+539 0x00003f06 0x00003f06   5    5         ascii  0\bh8 
+540 0x00003f11 0x00003f11   5    6         ascii  X80p0
+541 0x00003f17 0x00003f17  11   12         ascii  X8(X8(h0 h0
+542 0x00003f23 0x00003f23   8    9         ascii  X8 P80p(
+543 0x00003f2c 0x00003f2c   5    6         ascii  P8(p(
+544 0x00003f32 0x00003f32   5    6         ascii  X0 h0
+545 0x00003f3b 0x00003f3b   5    6         ascii  P0(X0
+546 0x00003f41 0x00003f41   5    6         ascii  H0(h(
+547 0x00003f47 0x00003f47   8    9         ascii  p \bH0 X(
+548 0x00003f53 0x00003f53   5    6         ascii  H0 P(
+549 0x00003f59 0x00003f59   7    8         ascii  @0(H( p
+550 0x00003f68 0x00003f68   5    6         ascii  @( P 
+551 0x00003f71 0x00003f71   8    9         ascii  8( @( H 
+552 0x00003f83 0x00003f83   4    5         ascii  8( X
+553 0x00003ff0 0x00003ff0   4    5         ascii  \b\b(\b
+554 0x00004071 0x00004071   6    9         utf8   ȘxȘpȐp blocks=Latin Extended-B,Basic Latin
+555 0x00004159 0x00004159   5    5         ascii  X@x`P
+556 0x000041a4 0x000041a4   5    5         ascii  P8xP@
+557 0x000041aa 0x000041aa   5    5         ascii  P8xP@
+558 0x000041b6 0x000041b6  11   11         ascii  P8xP8pP@xP@
+559 0x000041ce 0x000041ce  14   14         ascii  H0xP8pP8pP8xH0
+560 0x000041dd 0x000041dd   8    8         ascii  @ pH8xH0
+561 0x000041ec 0x000041ec   8    8         ascii  @ pH8pH8
+562 0x000041f5 0x000041f5   5    5         ascii  @(pH0
+563 0x000041fd 0x000041fd   6    6         ascii  hH8`H8
+564 0x00004204 0x00004204   5    5         ascii  @ p@0
+565 0x0000420a 0x0000420a  14   14         ascii  8 p@0hH0x@(hH8
+566 0x00004219 0x00004219  26   26         ascii  8 h@0x8 `@0`@0XH8p@(`@0`@0
+567 0x00004236 0x00004236  14   15         ascii  `@0p8 X@0h8(x0
+568 0x00004246 0x00004246   5    5         ascii  0\bh8 
+569 0x00004251 0x00004251   5    6         ascii  X80p0
+570 0x00004257 0x00004257  11   12         ascii  X8(X8(h0 h0
+571 0x00004263 0x00004263   8    9         ascii  X8 P80p(
+572 0x0000426c 0x0000426c   5    6         ascii  P8(p(
+573 0x00004272 0x00004272   5    6         ascii  X0 h0
+574 0x0000427b 0x0000427b   5    6         ascii  P0(X0
+575 0x00004281 0x00004281   5    6         ascii  H0(h(
+576 0x00004287 0x00004287   8    9         ascii  p \bH0 X(
+577 0x00004293 0x00004293   5    6         ascii  H0 P(
+578 0x00004299 0x00004299   7    8         ascii  @0(H( p
+579 0x000042a8 0x000042a8   5    6         ascii  @( P 
+580 0x000042b1 0x000042b1   8    9         ascii  8( @( H 
+581 0x000042c3 0x000042c3   4    5         ascii  8( X
+582 0x00004330 0x00004330   4    5         ascii  \b\b(\b
+583 0x000043a3 0x000043a3   6    9         utf8   ȘxȘpȐp blocks=Latin Extended-B,Basic Latin
+584 0x0000448b 0x0000448b   5    5         ascii  X@x`P
+585 0x000044d6 0x000044d6   5    5         ascii  P8xP@
+586 0x000044dc 0x000044dc   5    5         ascii  P8xP@
+587 0x000044e8 0x000044e8  11   11         ascii  P8xP8pP@xP@
+588 0x00004500 0x00004500  14   14         ascii  H0xP8pP8pP8xH0
+589 0x0000450f 0x0000450f   8    8         ascii  @ pH8xH0
+590 0x0000451e 0x0000451e   8    8         ascii  @ pH8pH8
+591 0x00004527 0x00004527   5    5         ascii  @(pH0
+592 0x0000452f 0x0000452f   6    6         ascii  hH8`H8
+593 0x00004536 0x00004536   5    5         ascii  @ p@0
+594 0x0000453c 0x0000453c  14   14         ascii  8 p@0hH0x@(hH8
+595 0x0000454b 0x0000454b  26   26         ascii  8 h@0x8 `@0`@0XH8p@(`@0`@0
+596 0x00004568 0x00004568  14   15         ascii  `@0p8 X@0h8(x0
+597 0x00004578 0x00004578   5    5         ascii  0\bh8 
+598 0x00004583 0x00004583   5    6         ascii  X80p0
+599 0x00004589 0x00004589  11   12         ascii  X8(X8(h0 h0
+600 0x00004595 0x00004595   8    9         ascii  X8 P80p(
+601 0x0000459e 0x0000459e   5    6         ascii  P8(p(
+602 0x000045a4 0x000045a4   5    6         ascii  X0 h0
+603 0x000045ad 0x000045ad   5    6         ascii  P0(X0
+604 0x000045b3 0x000045b3   5    6         ascii  H0(h(
+605 0x000045b9 0x000045b9   8    9         ascii  p \bH0 X(
+606 0x000045c5 0x000045c5   5    6         ascii  H0 P(
+607 0x000045cb 0x000045cb   7    8         ascii  @0(H( p
+608 0x000045da 0x000045da   5    6         ascii  @( P 
+609 0x000045e3 0x000045e3   8    9         ascii  8( @( H 
+610 0x000045f5 0x000045f5   4    5         ascii  8( X
+611 0x00004662 0x00004662   4    5         ascii  \b\b(\b

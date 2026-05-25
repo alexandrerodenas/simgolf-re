@@ -1,0 +1,978 @@
+nth      paddr      vaddr len size section type    string                                                                                                                                                                                                                                                                                                                                                  
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 0x00000006 0x00000006   4   10         utf16le 03$\b
+  1 0x0000001a 0x0000001a   4    5         ibm037  2211
+  2 0x00000062 0x00000062   6   14         utf16le \f×ìǠǠϨ blocks=Basic Latin,Latin-1 Supplement,Latin Extended-B,Greek and Coptic
+  3 0x00000104 0x00000104   7    7         ascii   bOGbGOG
+  4 0x0000010c 0x0000010c   5    6         ascii   GOGEG
+  5 0x00000129 0x00000129   4    5         ascii   EGOG
+  6 0x00000130 0x00000130   5    5         ascii   OEGEO
+  7 0x00000136 0x00000136   6    6         ascii   OGOGOG
+  8 0x00000146 0x00000146   6    6         ascii   GOGOGO
+  9 0x00000151 0x00000151  12   12         ascii   OGOGOGOGOGOG
+ 10 0x0000015e 0x0000015e   6    7         ascii   GEGOGO
+ 11 0x0000017b 0x0000017b  10   10         ascii   bGEGOGOGOG
+ 12 0x00000186 0x00000186   7    7         ascii   GOGEG?G
+ 13 0x000001a8 0x000001a8   5    5         ascii   GEOEO
+ 14 0x000001ae 0x000001ae   5    5         ascii   OGOGE
+ 15 0x000001b4 0x000001b4   5    6         ascii   EGEGE
+ 16 0x000001c9 0x000001c9   4    5         ascii   GOGO
+ 17 0x000001d5 0x000001d5   5    6         ascii   OGEGO
+ 18 0x000001df 0x000001df   7    7         ascii   OGEGE?O
+ 19 0x00000229 0x00000229   5    5         ascii   OGOGO
+ 20 0x0000026e 0x0000026e  12   13         ascii   GOEGOE?O?GEO
+ 21 0x00000283 0x00000283   4    4         ascii   OGOG
+ 22 0x000002d1 0x000002d1   4    4         ascii   GO\bO
+ 23 0x000002d6 0x000002d6   4    4         ascii   GObO
+ 24 0x000002f2 0x000002f2   5    5         ascii   OGOGO
+ 25 0x00000366 0x00000366   4    4         ascii   GOGO
+ 26 0x000003ef 0x000003ef 200  200         ibm037  000\\\Q\QQQQ}}}H}}{HH8{ø{H}{HH½{{½{{8yÇ^{{^½{^½½y½½8µì^^^8qìy^½y^^µ^^Yqìµyyµy^qyyqµy}°Ì^qhYh&qµµ°µµ°µqhqq}Øçhqqhq°°°hØ°°Ø°h}Ì Ø°°h°hÌ°hØhhÌhhÌhh½ÌçÌhhøhhøhØøØØÌØÌ^Ç ÌØÌÇØØÇØØÇÌÌÇÌÌ-ÌÌ-ÌÌÌøÇÇøøìÌÌ-Ìøyì
+ 27 0x000004b7 0x000004b7 343  343         ascii   8`ppxhXhhhph``hhXppXphXppXpp`hhXppPpx`h``hh`hh`hh`h``h``hh`h``h``hh`h``h``h``hh`hh`hh`h``h``h`hh``h``hh`hh`hh`h``h``h`hh`Xhh`hh`h``h``hh`h``h``hh`h``h``h``h``h``h`Xhh`hh`h`Xhh`h``h``hh`h``h`Xhh`hh`h``h``h``hh`h``hh`h``h`Xhh`h``h``h``h``h``h``h``h``h``hh`h`Xhh`h``h`Xhh`h``h``h`h```h``h``h``h``h`Xhh`h`````h``h`Xhh`h``h``h``h````Xh``h`Xhh`h``h`
+ 28 0x0000060f 0x0000060f 182  182         ascii   P8`h``h`````h````XhhXh``h`h`X```XhhXh``````XXh````Xh`Phh````````````X`````X``X``X``Xh````X`````X``h`XX````XX`````X`````X``X``X``X``X``X``X````XX````XX``X``X``HhhP``X````X`XPP``XXX`XP
+ 29 0x000006c6 0x000006c6  16   17         ascii   H XXPp@(h8(X80P(
+ 30 0x000006da 0x000006da  19   20         ibm037  &8&y8y8888Ì88Ì88Ì88
+ 31 0x0000073b 0x0000073b   4    5         ascii   GGOG
+ 32 0x00000753 0x00000753   4    5         ascii   OGGG
+ 33 0x00000777 0x00000777   4    5         ascii   OOGG
+ 34 0x0000079b 0x0000079b   4    5         ascii   EGEE
+ 35 0x000007c3 0x000007c3   7    7         utf8    bGOOOGO
+ 36 0x000007d1 0x000007d1   4    5         ascii   OOOG
+ 37 0x000007df 0x000007df   5    5         ascii   OOGOO
+ 38 0x000007eb 0x000007eb   4    4         utf8    OOGk
+ 39 0x0000080f 0x0000080f   4    5         ascii   OOOG
+ 40 0x00000814 0x00000814  10   10         ascii   \bOGEEOGGOO
+ 41 0x0000082c 0x0000082c   4    5         ascii   OOk\b
+ 42 0x00000859 0x00000859   5    6         ascii   kGGG\b
+ 43 0x000008dd 0x000008dd   4    5         ascii   GGGO
+ 44 0x00000929 0x00000929   4    5         ascii   OGOO
+ 45 0x00000943 0x00000943   4    5         ascii   EOOE
+ 46 0x00000949 0x00000949   4    5         ascii   GOGG
+ 47 0x00000963 0x00000963   8    9         ascii   GGGOEGbG
+ 48 0x00000979 0x00000979   8    9         ascii   EGOGGEOE
+ 49 0x00000997 0x00000997   4    5         ascii   GOEG
+ 50 0x000009af 0x000009af   4    5         ascii   OEGO
+ 51 0x000009cb 0x000009cb   6    7         ascii   EG?OGO
+ 52 0x000009d5 0x000009d5   8    8         ascii   EOOGOOOG
+ 53 0x000009ff 0x000009ff   4    5         ascii   GOOG
+ 54 0x00000a2c 0x00000a2c   7    8         ascii   OOOGOGE
+ 55 0x00000a53 0x00000a53   4    4         ascii   GGOG
+ 56 0x00000a5b 0x00000a5b   4    4         ascii   OGEO
+ 57 0x00000a6b 0x00000a6b   4    5         ascii   GGOG
+ 58 0x00000a77 0x00000a77   4    5         ascii   OGOO
+ 59 0x00000a95 0x00000a95   4    5         ascii   OOGO
+ 60 0x00000adb 0x00000adb   6    7         ascii   GOGkGG
+ 61 0x00000b6d 0x00000b6d   4    5         ascii   bGOO
+ 62 0x00000b73 0x00000b73   4    5         ascii   GGOE
+ 63 0x00000ba3 0x00000ba3   4    5         ascii   bOGO
+ 64 0x00000ba9 0x00000ba9   8    9         ascii   GOOGGEGG
+ 65 0x00000bc0 0x00000bc0  12   13         ascii   OGGEGOGGOEG\n
+ 66 0x00000be1 0x00000be1   4    5         ascii   OOOG
+ 67 0x00000c0f 0x00000c0f   5    6         ascii   GGOO\f
+ 68 0x00000c4b 0x00000c4b   4    5         ascii   OOOG
+ 69 0x00000c7a 0x00000c7a   4    5         ascii   GOG\n
+ 70 0x00000ceb 0x00000ceb   6    6         ascii   GOOGGG
+ 71 0x00000d27 0x00000d27   4    5         ascii   GOOG
+ 72 0x00000d2d 0x00000d2d   4    5         ascii   GbOG
+ 73 0x00000d33 0x00000d33   6    7         ascii   OGGOGG
+ 74 0x00000d4d 0x00000d4d  12   13         ascii   OGGOGGOGbGOG
+ 75 0x00000d67 0x00000d67   9    9         ascii   GOGGEGEOO
+ 76 0x00000d7d 0x00000d7d   8    9         ascii   OOGGOOGO
+ 77 0x00000d87 0x00000d87   6    7         ascii   EGEEGE
+ 78 0x00000d95 0x00000d95   4    5         ascii   GOOO
+ 79 0x00000d9c 0x00000d9c  13   14         ascii   GEGEOGGOGGGGE
+ 80 0x00000dab 0x00000dab   4    5         ascii   EGbG
+ 81 0x00000dbb 0x00000dbb   4    5         ascii   GGGE
+ 82 0x00000dc5 0x00000dc5   6    7         ascii   OE?EOO
+ 83 0x00000dd3 0x00000dd3   4    5         ascii   GbGO
+ 84 0x00000de5 0x00000de5   5    5         ascii   OOGOO
+ 85 0x00000df3 0x00000df3   4    5         ascii   OOGG
+ 86 0x00000dfd 0x00000dfd   4    5         ascii   GOOO
+ 87 0x00000e1f 0x00000e1f   4    5         ascii   ?GGO
+ 88 0x00000e5b 0x00000e5b   4    5         ascii   OOGG
+ 89 0x00000e8e 0x00000e8e   4    5         ascii   GOk\b
+ 90 0x00000ec0 0x00000ec0   4    4         ascii   ObOO
+ 91 0x00000f05 0x00000f05   5    5         ascii   GOOOG
+ 92 0x00000f11 0x00000f11   4    5         ascii   GOGG
+ 93 0x00000f23 0x00000f23   4    5         ascii   GOOE
+ 94 0x00000f43 0x00000f43   8    9         ascii   GOGGEGbG
+ 95 0x00000f59 0x00000f59   4    5         ascii   OGGE
+ 96 0x00000f5f 0x00000f5f   4    5         ascii   GEGG
+ 97 0x00000f85 0x00000f85   4    5         ascii   GEOE
+ 98 0x00000f93 0x00000f93   6    7         ascii   OOOGOE
+ 99 0x00000fa9 0x00000fa9   4    5         ascii   GGOO
+100 0x00000ff3 0x00000ff3   6    7         ascii   GEGOOG
+101 0x000010fb 0x000010fb   4    5         ascii   GOGG
+102 0x00001112 0x00001112  14   15         ascii   GGGOGOOOEGGOE\b
+103 0x00001129 0x00001129   4    5         ascii   OGOk
+104 0x00001135 0x00001135   6    7         ascii   GOGEGG
+105 0x00001141 0x00001141   5    5         ascii   OGOOO
+106 0x00001149 0x00001149   8    9         ascii   bGEGOGOO
+107 0x0000116d 0x0000116d   6    6         ascii   OGEGEO
+108 0x0000117c 0x0000117c   8    8         ascii   GOGOOGOG
+109 0x0000118d 0x0000118d   4    4         ascii   GOOO
+110 0x000011af 0x000011af   4    5         ascii   bGOG
+111 0x000011bd 0x000011bd   4    5         ascii   GOOO
+112 0x000011c3 0x000011c3   4    5         ascii   kGGG
+113 0x000011d9 0x000011d9   5    5         ascii   OOGOG
+114 0x000011df 0x000011df   4    5         ascii   GbGE
+115 0x00001207 0x00001207   6    7         ascii   OOGGOG
+116 0x00001311 0x00001311   6    7         ascii   GGGEGO
+117 0x00001331 0x00001331   4    5         ascii   OGEE
+118 0x00001347 0x00001347   4    5         ascii   GEGG
+119 0x00001371 0x00001371   4    4         ascii   GEOG
+120 0x0000137e 0x0000137e   5    5         ascii   OOGOO
+121 0x00001384 0x00001384   7    8         ascii   OOGEOGG
+122 0x000013a1 0x000013a1   4    5         ascii   OGGO
+123 0x000013ab 0x000013ab   4    5         ascii   GGGO
+124 0x000013c1 0x000013c1   4    5         ascii   OGOO
+125 0x000013c7 0x000013c7   5    6         ascii   EE?E\f
+126 0x000013e3 0x000013e3   4    5         ascii   OGEG
+127 0x000013f5 0x000013f5   4    5         ascii   GGOG
+128 0x0000141f 0x0000141f   4    5         ascii   OGOO
+129 0x00001425 0x00001425   5    5         ascii   kkkOk
+130 0x0000145f 0x0000145f   5    6         ascii   OOGO\n
+131 0x000014be 0x000014be   5    5         ascii   GGGkG
+132 0x000014e7 0x000014e7   4    5         ascii   GGOG
+133 0x00001501 0x00001501   4    5         ascii   EEEO
+134 0x0000151f 0x0000151f   4    5         ascii   EOGO
+135 0x00001535 0x00001535   8    9         ascii   GGGOGECE
+136 0x0000154d 0x0000154d   4    5         ascii   GOGE
+137 0x00001553 0x00001553   6    7         ascii   EGbGE?
+138 0x00001565 0x00001565   4    5         ascii   bEEG
+139 0x0000156f 0x0000156f   4    4         ascii   G?OO
+140 0x0000158b 0x0000158b   4    5         ascii   GGOO
+141 0x00001599 0x00001599   6    7         ascii   OOGOOO
+142 0x000015a1 0x000015a1   4    5         ascii   OOEG
+143 0x000015a7 0x000015a7   5    5         utf8    EGGGO
+144 0x000015b1 0x000015b1   4    5         ascii   GOOG
+145 0x000015c3 0x000015c3   5    5         ascii   GGOOk
+146 0x000015cd 0x000015cd   4    5         ascii   EGOO
+147 0x000015d3 0x000015d3   4    5         ascii   GEGG
+148 0x000015ed 0x000015ed   4    4         ascii   OOGG
+149 0x000015f2 0x000015f2   4    5         ascii   OOO\b
+150 0x000015fb 0x000015fb   8    9         ascii   ECE?bGGG
+151 0x00001626 0x00001626   7    8         ascii   OOOOEbC
+152 0x00001649 0x00001649   4    4         ascii   OGOO
+153 0x00001667 0x00001667   4    5         ascii   OOGO
+154 0x0000166d 0x0000166d   4    4         ascii   OkOG
+155 0x0000167c 0x0000167c   8    9         ibm037  ,|||xx^,
+156 0x00001714 0x00001714   4    5         ascii   GOG\n
+157 0x00001719 0x00001719   4    5         ascii   OGOO
+158 0x00001731 0x00001731   4    5         ascii   GEGb
+159 0x00001755 0x00001755   4    5         ascii   EOGO
+160 0x00001773 0x00001773   4    5         ascii   GGOG
+161 0x00001779 0x00001779   6    7         ascii   OGOEGG
+162 0x0000178b 0x0000178b   9   10         ascii   EOGOOOGO\b
+163 0x000017a3 0x000017a3   4    4         ascii   OGOO
+164 0x000017c3 0x000017c3   4    5         ascii   OGOO
+165 0x000017cd 0x000017cd   4    5         ascii   GEOG
+166 0x000017e5 0x000017e5   4    5         ascii   GGEb
+167 0x000017eb 0x000017eb   4    5         ascii   OGGE
+168 0x00001807 0x00001807   4    5         ascii   OOG?
+169 0x00001839 0x00001839   4    5         ascii   OGOO
+170 0x00001851 0x00001851   4    5         ascii   GGOO
+171 0x00001857 0x00001857   5    6         ascii   OOGk\b
+172 0x00001889 0x00001889   4    4         ascii   GOOO
+173 0x000018d7 0x000018d7   4    5         ascii   OOOb
+174 0x0000190b 0x0000190b   7    7         ascii   EGOGGGO
+175 0x00001925 0x00001925   4    5         ascii   GbGO
+176 0x00001939 0x00001939   4    5         ascii   EGOG
+177 0x0000193f 0x0000193f   7    7         ascii   OGbEGOG
+178 0x00001955 0x00001955   4    5         ascii   EOEG
+179 0x0000196d 0x0000196d   6    7         ascii   EGOGOO
+180 0x00001975 0x00001975   8    9         ascii   EEGE?bGO
+181 0x00001985 0x00001985   4    5         ascii   GEGO
+182 0x00001991 0x00001991   6    7         ascii   OGOEOG
+183 0x000019a0 0x000019a0   7    8         ascii   bGOOOGO
+184 0x000019d3 0x000019d3   5    6         ascii   GGOO\n
+185 0x000019e3 0x000019e3  14   14         ascii   kO\b\abE?CGEGGOG
+186 0x000019f7 0x000019f7   4    5         ascii   OOOG
+187 0x00001a0d 0x00001a0d   8    8         ascii   GOOOGOOO
+188 0x00001a26 0x00001a26   4    4         ascii   GOGG
+189 0x00001a41 0x00001a41   4    5         ascii   kOOG
+190 0x00001aa1 0x00001aa1   4    5         ascii   GOOk
+191 0x00001ae9 0x00001ae9   4    5         ascii   OOOG
+192 0x00001b15 0x00001b15   6    7         ascii   bOGEGG
+193 0x00001b21 0x00001b21   5    5         ascii   GGOGG
+194 0x00001b35 0x00001b35   4    5         ascii   EGOO
+195 0x00001b3b 0x00001b3b  10   11         ascii   GbGGOEOGGO
+196 0x00001b51 0x00001b51   4    5         ascii   OGOO
+197 0x00001b57 0x00001b57   7    7         ascii   GGEEOGO
+198 0x00001b69 0x00001b69  10   11         ascii   bOEOGGOEOG
+199 0x00001b75 0x00001b75   7    7         ascii   GECbGGG
+200 0x00001b83 0x00001b83   4    5         ascii   OOGO
+201 0x00001b8f 0x00001b8f   6    7         ascii   GOGEEG
+202 0x00001ba3 0x00001ba3   5    5         ascii   kOOOO
+203 0x00001bb2 0x00001bb2   7    7         ascii   \aGOGEEO
+204 0x00001bce 0x00001bce   8    8         ascii   \vOGGOGGO
+205 0x00001bf3 0x00001bf3   8    9         ascii   kkOOGOGG
+206 0x00001c15 0x00001c15   6    6         ascii   GOOGOO
+207 0x00001c23 0x00001c23   4    5         ascii   EGbG
+208 0x00001c29 0x00001c29   4    5         ascii   EGOO
+209 0x00001c69 0x00001c69   5    6         ascii   OGOO\b
+210 0x00001c6f 0x00001c6f   4    5         ascii   ObOk
+211 0x00001d23 0x00001d23   4    5         ascii   OOGO
+212 0x00001d37 0x00001d37   4    5         ascii   GGOO
+213 0x00001d44 0x00001d44   4    5         ascii   GOO\b
+214 0x00001d49 0x00001d49   5    6         ascii   GbGO\b
+215 0x00001d5f 0x00001d5f  12   13         ascii   OGGGOEGEOOGO
+216 0x00001d8f 0x00001d8f   4    5         ascii   OOGO
+217 0x00001d99 0x00001d99   6    7         ascii   bGEGOG
+218 0x00001db7 0x00001db7   5    6         ascii   GEOE\n
+219 0x00001dbd 0x00001dbd   4    5         ascii   EEEG
+220 0x00001dd1 0x00001dd1   9    9         ascii   kOOGEGOOO
+221 0x00001df3 0x00001df3   4    5         ascii   OOkO
+222 0x00001e25 0x00001e25   5    5         ascii   GOGGO
+223 0x00001e4d 0x00001e4d  10   11         ascii   OEGOE?O?GE
+224 0x00001e6f 0x00001e6f   4    5         ascii   OGOO
+225 0x00001e75 0x00001e75   4    5         ascii   OOGO
+226 0x00001e93 0x00001e93   5    6         ascii   OOGG\b
+227 0x00001f46 0x00001f46   9    9         ascii   OGbGOGOGk
+228 0x00001f56 0x00001f56   4    4         ascii   GOGO
+229 0x00001f5b 0x00001f5b   8    8         ascii   OGEGOGEO
+230 0x00001f6f 0x00001f6f   9    9         ascii   GOEGOEOGE
+231 0x00001f87 0x00001f87  13   13         ascii   GEGOGOE?OGOGO
+232 0x00001fa3 0x00001fa3  11   12         ascii   OGOGOEGEGOG
+233 0x00001fbd 0x00001fbd   5    6         ascii   OEOGO
+234 0x00001fc5 0x00001fc5   4    4         ascii   GOEG
+235 0x00001fef 0x00001fef   7    7         ascii   GbEGEOG
+236 0x00002004 0x00002004   6    7         ascii   GOEGbG
+237 0x0000200d 0x0000200d   7    8         ascii   bGOGOGE
+238 0x00002017 0x00002017   5    5         utf8    ?OGOG
+239 0x0000202c 0x0000202c  12   13         ascii   GbEGEGbOGOGO
+240 0x0000203b 0x0000203b   4    5         ascii   GbGO
+241 0x0000205d 0x0000205d   4    4         ascii   OGOG
+242 0x0000207f 0x0000207f   9    9         ascii   EbGEGEGOG
+243 0x000020ab 0x000020ab  10   10         ascii   GOGOEGOGOG
+244 0x000020d8 0x000020d8   7    7         ascii   GEOGOGO
+245 0x00002100 0x00002100   4    4         ascii   OGOG
+246 0x00002110 0x00002110   4    4         ascii   GOGO
+247 0x0000211a 0x0000211a   6    6         ascii   GE?OGO
+248 0x00002139 0x00002139   4    4         ascii   GOGO
+249 0x0000215a 0x0000215a   4    4         ascii   GOEO
+250 0x0000215f 0x0000215f   6    6         ascii   OGOGOG
+251 0x00002172 0x00002172   5    6         ascii   GOGkO
+252 0x000021b0 0x000021b0   6    6         ascii   OGOGOG
+253 0x00002202 0x00002202   6    6         ascii   GOGOGO
+254 0x0000222c 0x0000222c   4    4         ascii   OGOG
+255 0x000022ba 0x000022ba   6    7         ascii   GOEGOG
+256 0x000022ec 0x000022ec   8    9         ascii   OEOGbGOE
+257 0x000022fe 0x000022fe   4    5         ascii   OOGG
+258 0x00002306 0x00002306   6    7         ascii   bGEGOG
+259 0x0000230e 0x0000230e   8    9         ascii   EOOOEOGO
+260 0x0000231e 0x0000231e   4    5         ascii   GOOO
+261 0x00002326 0x00002326   4    5         ascii   GEOO
+262 0x00002330 0x00002330   4    5         ascii   OOGO
+263 0x00002348 0x00002348   6    7         ascii   bEOEEE
+264 0x00002354 0x00002354   6    6         ascii   GGOGbG
+265 0x00002368 0x00002368   4    5         ascii   GOGE
+266 0x000023ac 0x000023ac   4    5         ascii   EEGO
+267 0x000023d5 0x000023d5  10   10         ascii   ObEOGOOGGO
+268 0x0000241a 0x0000241a   4    5         ascii   GOGG
+269 0x00002422 0x00002422   4    5         ascii   GOkG
+270 0x0000247e 0x0000247e   5    5         ascii   OOGOO
+271 0x00002496 0x00002496  12   13         ascii   GOOGOEGbGGEE
+272 0x000024aa 0x000024aa  12   13         ascii   GOEG?GOGGObk
+273 0x000024ba 0x000024ba   6    7         ascii   GEGOOG
+274 0x000024c6 0x000024c6   6    7         ascii   G?OOGE
+275 0x000024d4 0x000024d4  10   11         ascii   OOGOEEEOGO
+276 0x000024e3 0x000024e3   4    4         ascii   bObG
+277 0x000024ee 0x000024ee   4    5         ascii   GGOG
+278 0x000024f4 0x000024f4   6    6         ascii   EGOEGG
+279 0x00002506 0x00002506   4    5         ascii   OEGE
+280 0x0000250c 0x0000250c   5    5         ascii   G?OGO
+281 0x00002524 0x00002524   8    9         ascii   EEGOGGGO
+282 0x0000252e 0x0000252e   8    9         ascii   OEOGOOGO
+283 0x0000254e 0x0000254e   4    5         ascii   GOOG
+284 0x00002560 0x00002560   4    5         ascii   GEOO
+285 0x0000257b 0x0000257b   7    8         ascii   GOEEOOG
+286 0x00002583 0x00002583   8    8         ascii   \aOGGOGGO
+287 0x0000259a 0x0000259a   5    5         ascii   OEEOG
+288 0x000025c0 0x000025c0   7    7         ascii   OOGEOOO
+289 0x000025da 0x000025da   5    5         ascii   EOOGO
+290 0x0000266c 0x0000266c   6    7         ascii   GGOOOG
+291 0x00002684 0x00002684   5    5         ascii   OOGGO
+292 0x00002690 0x00002690   5    5         ascii   kOGOO
+293 0x000026de 0x000026de   4    5         ascii   OOOG
+294 0x000026ee 0x000026ee   4    5         ascii   OGEb
+295 0x000026f6 0x000026f6  10   11         ascii   GbGE?OGOGG
+296 0x0000270a 0x0000270a   8    9         ascii   E?OEOGGG
+297 0x0000272b 0x0000272b   4    4         ascii   GbEO
+298 0x00002730 0x00002730   5    6         ascii   GEOG\n
+299 0x00002736 0x00002736   4    5         ascii   bGGO
+300 0x0000273e 0x0000273e   4    5         ascii   GGGO
+301 0x00002744 0x00002744   4    5         ascii   bGOG
+302 0x0000274a 0x0000274a   4    5         ascii   EEGG
+303 0x00002756 0x00002756   4    5         ascii   OGbE
+304 0x00002760 0x00002760   9    9         ascii   OGbGOGOOO
+305 0x0000278a 0x0000278a   5    6         ascii   OGEO\b
+306 0x00002790 0x00002790   4    5         ascii   OGEG
+307 0x000027ac 0x000027ac   6    7         ascii   EGOOGO
+308 0x000027c2 0x000027c2   4    5         ascii   GOGE
+309 0x000027d6 0x000027d6   5    5         ascii   \f\aOOG
+310 0x000027dd 0x000027dd   9   10         ascii   OOG?OGOOO
+311 0x000027ee 0x000027ee   4    5         ascii   OGOO
+312 0x000027f4 0x000027f4   4    5         ascii   OGOE
+313 0x0000280c 0x0000280c   4    5         ascii   GOOO
+314 0x00002832 0x00002832   4    4         ascii   GGOO
+315 0x0000287b 0x0000287b   4    4         ascii   GGOO
+316 0x00002891 0x00002891   5    6         ascii   bOGGG
+317 0x00002898 0x00002898   4    5         ascii   GGOO
+318 0x000028fa 0x000028fa   4    5         ascii   OGOO
+319 0x0000291a 0x0000291a   8    9         ascii   GOEGOGEO
+320 0x00002932 0x00002932   7    7         ascii   EOGGOGO
+321 0x00002942 0x00002942   4    5         ascii   OOGO
+322 0x00002957 0x00002957   7    8         ascii   bOGGOOG
+323 0x00002960 0x00002960   4    5         ascii   OGEO
+324 0x00002978 0x00002978   4    5         ascii   OGGO
+325 0x0000297e 0x0000297e   8    9         ascii   GOGEOGEO
+326 0x00002996 0x00002996   4    5         ascii   GEEG
+327 0x0000299f 0x0000299f   7    8         ascii   OEOOEOG
+328 0x000029ac 0x000029ac   6    7         ascii   GOEOGO
+329 0x000029c0 0x000029c0   4    5         ascii   GOOE
+330 0x000029c9 0x000029c9   5    6         ascii   OEOGO
+331 0x000029dc 0x000029dc   4    5         ascii   EbGO
+332 0x000029e6 0x000029e6  10   11         ascii   GEGGOGGOGG
+333 0x00002a36 0x00002a36   6    7         ascii   ECOOOG
+334 0x00002acc 0x00002acc   4    5         ascii   OOGO
+335 0x00002af0 0x00002af0   4    5         ascii   GOOk
+336 0x00002b3a 0x00002b3a  10   11         ascii   OOGOEGOGEG
+337 0x00002b48 0x00002b48   8    9         ascii   GbOGOEGE
+338 0x00002b52 0x00002b52   4    5         ascii   GbEG
+339 0x00002b5a 0x00002b5a   4    5         ascii   GGOG
+340 0x00002b60 0x00002b60   4    5         ascii   GOEG
+341 0x00002b6c 0x00002b6c   4    5         ascii   GEG?
+342 0x00002baa 0x00002baa   6    7         ascii   GGEEEG
+343 0x00002bba 0x00002bba   5    6         ascii   GOOk\a
+344 0x00002bdc 0x00002bdc   4    5         ascii   OGOO
+345 0x00002be8 0x00002be8   9   10         ascii   EOOOEGOO\b
+346 0x00002c2e 0x00002c2e   4    5         ascii   OGbG
+347 0x00002c34 0x00002c34   4    5         ascii   EEOG
+348 0x00002c44 0x00002c44   6    7         ascii   OOG?OG
+349 0x00002c4c 0x00002c4c   5    5         ascii   OGOOO
+350 0x00002c5b 0x00002c5b   7    7         ascii   \aOOOGEO
+351 0x00002c89 0x00002c89   8    9         ascii   GObGGOO\n
+352 0x00002caf 0x00002caf   4    4         ascii   OGOk
+353 0x00002d32 0x00002d32   6    6         ascii   OEOOOG
+354 0x00002d46 0x00002d46   5    5         ascii   GGEOG
+355 0x00002d54 0x00002d54   8    8         ascii   GOGGOEbG
+356 0x00002d62 0x00002d62  10   11         ascii   OEGOEG?EOG
+357 0x00002d7a 0x00002d7a  10   11         ascii   GGOEECGOGG
+358 0x00002d8c 0x00002d8c   4    5         ascii   OOGO
+359 0x00002d92 0x00002d92   4    5         ascii   OGOO
+360 0x00002da2 0x00002da2   4    4         ascii   GbEG
+361 0x00002db4 0x00002db4   5    5         ascii   GbGOO
+362 0x00002dc5 0x00002dc5   7    8         ascii   GbGOOGO
+363 0x00002dce 0x00002dce   4    5         ascii   EGEE
+364 0x00002de4 0x00002de4   4    5         ascii   GbGE
+365 0x00002dee 0x00002dee   4    5         ascii   OGEO
+366 0x00002dfb 0x00002dfb   5    6         ascii   OOOOG
+367 0x00002e05 0x00002e05   5    6         ascii   OOGEE
+368 0x00002e0c 0x00002e0c   4    5         ascii   GOGE
+369 0x00002e16 0x00002e16   4    5         ascii   GGOG
+370 0x00002e26 0x00002e26  10   11         ascii   GbEGEOOOOG
+371 0x00002e36 0x00002e36   5    5         ascii   OGGOG
+372 0x00002e42 0x00002e42   7    7         ascii   \n\bOOGGk
+373 0x00002e4a 0x00002e4a  10   11         ascii   OOGEOOGOGG
+374 0x00002e56 0x00002e56   5    5         ascii   GGEOO
+375 0x00002e6e 0x00002e6e   6    7         ascii   EGOOGO
+376 0x00002e7e 0x00002e7e   4    5         ascii   GbOO
+377 0x00002e84 0x00002e84   4    5         ascii   GEGO
+378 0x00002e8a 0x00002e8a   7    7         ascii   GOGEGOO
+379 0x00002ea4 0x00002ea4   4    4         utf8    EGOO
+380 0x00002ebc 0x00002ebc   4    5         ascii   OGOO
+381 0x00002ecc 0x00002ecc   5    5         ascii   OEOGO
+382 0x00002f09 0x00002f09   4    4         ascii   GbGG
+383 0x00002f44 0x00002f44   5    6         ascii   OOOG\b
+384 0x00002f9c 0x00002f9c   6    7         ascii   OOGObG
+385 0x00002fb4 0x00002fb4   8    9         ascii   OEOGGEEG
+386 0x00002fc6 0x00002fc6   8    8         ascii   ?OGGOGOO
+387 0x00002fd4 0x00002fd4   4    5         ascii   GOOG
+388 0x00002fde 0x00002fde   4    5         ascii   E?OG
+389 0x00002fe8 0x00002fe8   6    7         ascii   bGOOGO
+390 0x00002ffe 0x00002ffe   6    7         ascii   OOGGOG
+391 0x00003014 0x00003014  12   13         ascii   GGOGEOEEE?GG
+392 0x0000303a 0x0000303a   8    9         ascii   bGOOOGOO
+393 0x00003084 0x00003084   5    5         ascii   bOOGG
+394 0x0000309e 0x0000309e   5    5         utf8    OGOOO
+395 0x00003108 0x00003108   8    9         ascii   GOEkOOOG
+396 0x00003130 0x00003130   4    5         ascii   GOGG
+397 0x000031b2 0x000031b2   6    7         ascii   GOOEOG
+398 0x000031c0 0x000031c0   8    9         ascii   GOEGOGbO
+399 0x000031dc 0x000031dc  12   13         ascii   GOGEGGbGEEOG
+400 0x000031fe 0x000031fe  11   11         ascii   OOOGEGbGOGO
+401 0x0000321e 0x0000321e   5    5         ascii   GOEOG
+402 0x00003236 0x00003236   9    9         ascii   OGGEEEOGO
+403 0x00003254 0x00003254   8    9         ascii   OOGbEOGO
+404 0x00003278 0x00003278   4    5         ascii   OOOG
+405 0x0000328c 0x0000328c   7    7         ascii   OEEE?OG
+406 0x00003296 0x00003296   4    5         ascii   GGGO
+407 0x000032d0 0x000032d0   8    9         ascii   OOEGEOOO
+408 0x000032e6 0x000032e6   4    5         ascii   OEGG
+409 0x0000332c 0x0000332c   4    4         ascii   GOOO
+410 0x00003370 0x00003370   7    7         ascii   GOOGOOk
+411 0x000033ac 0x000033ac   5    5         ascii   OOGOG
+412 0x000033c4 0x000033c4   4    5         ascii   OOOk
+413 0x000033f6 0x000033f6   4    5         ascii   GOEO
+414 0x0000340c 0x0000340c   6    7         ascii   OGEGOG
+415 0x0000341e 0x0000341e   4    5         ascii   OEG?
+416 0x00003424 0x00003424   4    5         ascii   OOGO
+417 0x00003430 0x00003430   7    7         ascii   EGEOGGO
+418 0x0000343e 0x0000343e   4    5         ascii   OGGO
+419 0x00003444 0x00003444   6    7         ascii   EEGGOO
+420 0x0000344f 0x0000344f   4    4         ascii   GbEb
+421 0x00003461 0x00003461   6    6         ascii   bGGGbk
+422 0x00003476 0x00003476   4    5         ascii   EGOG
+423 0x00003480 0x00003480   4    4         ascii   GGOO
+424 0x000034aa 0x000034aa   6    6         ascii   GEEGOO
+425 0x000034b1 0x000034b1   6    7         ascii   GOGGO\b
+426 0x000034c2 0x000034c2   4    4         ascii   EGGO
+427 0x000034c7 0x000034c7   5    6         ascii   OGOOG
+428 0x000034ed 0x000034ed   7    8         ascii   OGGOOOG
+429 0x00003534 0x00003534   4    5         ascii   GOOG
+430 0x0000353a 0x0000353a   4    5         ascii   OGOO
+431 0x00003578 0x00003578   5    6         ascii   GGOO\n
+432 0x0000358d 0x0000358d   4    5         ascii   GOO\n
+433 0x0000359c 0x0000359c   4    5         ascii   GOOO
+434 0x000035af 0x000035af   4    4         ascii   OGOG
+435 0x00003602 0x00003602   4    5         ascii   OOEO
+436 0x00003616 0x00003616   4    5         ascii   GGGO
+437 0x00003622 0x00003622   6    7         ascii   GbGEOO
+438 0x0000362c 0x0000362c   4    5         ascii   OOGE
+439 0x00003632 0x00003632   4    5         ascii   bGE?
+440 0x0000364c 0x0000364c   4    5         ascii   OGGO
+441 0x00003662 0x00003662   6    7         ascii   EGbGGO
+442 0x0000367e 0x0000367e   5    5         ascii   GOEGO
+443 0x000036a6 0x000036a6   6    7         ascii   bGEGEE
+444 0x000036c8 0x000036c8   4    5         ascii   EEGO
+445 0x000036d4 0x000036d4   4    5         ascii   OOkG
+446 0x000036e0 0x000036e0   7    8         ascii   ?GGOOG\f
+447 0x000036f4 0x000036f4   4    4         ascii   bGOO
+448 0x0000370a 0x0000370a   4    5         ascii   OOGG
+449 0x00003710 0x00003710   6    7         ascii   GEGOGG
+450 0x0000371e 0x0000371e   4    5         ascii   OOEG
+451 0x00003734 0x00003734   4    5         ascii   GbGO
+452 0x00003778 0x00003778   4    5         ascii   OGOO
+453 0x000037b7 0x000037b7   4    4         ascii   OGGO
+454 0x00003804 0x00003804   4    5         ascii   bGOO
+455 0x0000383c 0x0000383c   6    7         ascii   EGOOGO
+456 0x00003844 0x00003844   4    5         ascii   COGG
+457 0x00003855 0x00003855   6    7         ascii   bGOGG\b
+458 0x00003869 0x00003869   4    5         ascii   OGG\n
+459 0x0000386e 0x0000386e   4    4         ascii   GEOO
+460 0x00003878 0x00003878   4    5         ascii   GOEG
+461 0x00003891 0x00003891   5    6         ascii   GbEGE
+462 0x000038b8 0x000038b8   5    5         ascii   OOGGG
+463 0x000038d8 0x000038d8   8    9         ascii   GOGGOGOO
+464 0x00003916 0x00003916   5    5         ascii   EOGOO
+465 0x0000392c 0x0000392c   4    5         ascii   OGEE
+466 0x0000393c 0x0000393c   9    9         ascii   GOOGOOOGO
+467 0x0000394e 0x0000394e   6    7         ascii   OEOOGO
+468 0x00003a28 0x00003a28  11   11         ascii   OGOOGEGOGEO
+469 0x00003a3c 0x00003a3c  11   11         ascii   GOEGOEOGEEG
+470 0x00003a4c 0x00003a4c   4    5         ascii   OGEG
+471 0x00003a52 0x00003a52   4    5         ascii   OE?O
+472 0x00003a66 0x00003a66   4    5         ascii   GOEG
+473 0x00003a6c 0x00003a6c   6    7         ascii   EGOGGG
+474 0x00003a7b 0x00003a7b   7    8         ascii   OEOGOOO
+475 0x00003a84 0x00003a84   4    5         ascii   OEGG
+476 0x00003a90 0x00003a90   5    5         ascii   GbbEG
+477 0x00003a9e 0x00003a9e   4    5         ascii   GGbE
+478 0x00003aae 0x00003aae   6    7         ascii   bGGGGb
+479 0x00003ab6 0x00003ab6   4    5         ascii   GOGE
+480 0x00003ad2 0x00003ad2   8    9         ascii   OGbGOOOG
+481 0x00003b08 0x00003b08   6    7         ascii   GEGGGO
+482 0x00003b24 0x00003b24   4    5         ascii   GOGG
+483 0x00003b5e 0x00003b5e   4    5         ascii   OOGO
+484 0x00003b68 0x00003b68   4    5         ascii   E?OG
+485 0x00003c30 0x00003c30   7    7         ascii   bGOEOGO
+486 0x00003c46 0x00003c46   8    8         ascii   GOGOEOGO
+487 0x00003c6e 0x00003c6e   4    4         ascii   EOGE
+488 0x00003c77 0x00003c77   6    6         ascii   EbGOEO
+489 0x00003c89 0x00003c89  11   11         ascii   GOGOGOGOEOG
+490 0x00003cad 0x00003cad   4    5         ascii   GOGO
+491 0x00003cb4 0x00003cb4   4    4         ascii   GOGO
+492 0x00003cd0 0x00003cd0   4    4         ascii   GOGO
+493 0x00003cdc 0x00003cdc   4    5         ascii   GOGO
+494 0x00003d05 0x00003d05   5    6         ascii   OGOGO
+495 0x00003d27 0x00003d27   5    6         ascii   OGOEO
+496 0x00003d2f 0x00003d2f   4    4         ascii   bGOG
+497 0x00003d34 0x00003d34   4    5         ascii   GOGO
+498 0x00003d65 0x00003d65   6    6         ascii   OGOGEO
+499 0x00003d86 0x00003d86  12   12         ascii   OGEGEGEOGbOG
+500 0x00003dab 0x00003dab   4    5         ascii   GOGO
+501 0x00003db2 0x00003db2   7    7         ascii   GOGOGOG
+502 0x00003dba 0x00003dba   4    4         ascii   GOGO
+503 0x00003ddc 0x00003ddc   4    4         ascii   GOGO
+504 0x00003de6 0x00003de6   5    6         ascii   OGEGO
+505 0x00003dfb 0x00003dfb   6    6         ascii   GOGOGO
+506 0x00003e19 0x00003e19   9    9         ascii   OGOEGEOGO
+507 0x00003e2b 0x00003e2b   4    4         ascii   GbGO
+508 0x00003e52 0x00003e52   6    7         ascii   kOGEGO
+509 0x00003e85 0x00003e85   5    5         ascii   GOGOG
+510 0x00003e97 0x00003e97   8    8         ascii   GOGOGO\aO
+511 0x00003ea7 0x00003ea7   4    4         ascii   GOGO
+512 0x00003eb8 0x00003eb8   5    6         ascii   GOGOG
+513 0x00003ec0 0x00003ec0   5    5         ascii   OGOGO
+514 0x00003ef8 0x00003ef8   4    4         ascii   bOEG
+515 0x00003f0e 0x00003f0e   4    4         ascii   OGEO
+516 0x00003f26 0x00003f26   7    7         ascii   OGEGEbk
+517 0x00003f90 0x00003f90   7    8         ascii   GGGOGbO
+518 0x00003fa9 0x00003fa9   4    5         ascii   bGEG
+519 0x00003fb5 0x00003fb5   4    5         ascii   GGGE
+520 0x00003fcd 0x00003fcd   4    5         ascii   OObG
+521 0x00004001 0x00004001   4    5         ascii   OOOG
+522 0x0000401b 0x0000401b   6    7         ascii   OGbOOG
+523 0x00004039 0x00004039   5    5         ascii   OOGGO
+524 0x00004073 0x00004073   4    5         ascii   OOOG
+525 0x00004089 0x00004089   8    9         ascii   OOGGOOOG
+526 0x00004093 0x00004093   4    5         ascii   GEOO
+527 0x000040b3 0x000040b3   5    6         ascii   EGGO\f
+528 0x000040b9 0x000040b9   5    6         ascii   OOGO\a
+529 0x000040c9 0x000040c9   4    5         ascii   E?OE
+530 0x000040cf 0x000040cf   5    5         ascii   OEGOO
+531 0x00004121 0x00004121   4    5         ascii   kOOO
+532 0x000041df 0x000041df   4    5         ascii   OEOG
+533 0x000041eb 0x000041eb   4    5         ascii   OOGO
+534 0x000041f7 0x000041f7   4    5         ascii   EEOE
+535 0x000041ff 0x000041ff   4    5         ascii   GbGE
+536 0x00004205 0x00004205   5    5         ascii   GGEGO
+537 0x0000421b 0x0000421b   5    5         ascii   GEOOO
+538 0x0000422d 0x0000422d   4    4         ascii   GOOE
+539 0x0000423d 0x0000423d   6    7         ascii   OGOEOG
+540 0x00004283 0x00004283   5    6         ascii   OGOO\b
+541 0x0000429d 0x0000429d   4    5         ascii   GGEO
+542 0x0000430d 0x0000430d   6    7         ascii   OOOGOO
+543 0x00004315 0x00004315   5    6         ascii   EbEG\n
+544 0x0000436b 0x0000436b   6    7         ascii   GbGGOk
+545 0x0000437f 0x0000437f   4    5         ascii   GGOG
+546 0x00004391 0x00004391   4    5         ascii   CGGb
+547 0x00004397 0x00004397  10   11         ascii   OGOOOGOObO
+548 0x000043a9 0x000043a9   4    5         ascii   bbOG
+549 0x000043d5 0x000043d5   4    5         ascii   EOGO
+550 0x00004431 0x00004431   4    5         ascii   GEOE
+551 0x00004439 0x00004439   4    5         ascii   GOGG
+552 0x0000444d 0x0000444d   4    5         ascii   GGOG
+553 0x0000445d 0x0000445d   4    5         ascii   OEOO
+554 0x00004469 0x00004469   5    6         ascii   OOGG\n
+555 0x00004470 0x00004470   4    4         ascii   GOGO
+556 0x00004497 0x00004497   5    6         ascii   OGOO\n
+557 0x000044ab 0x000044ab   4    5         ascii   GOEG
+558 0x000044c9 0x000044c9   4    5         ascii   OOOG
+559 0x000044ff 0x000044ff   5    6         ascii   GGGE\n
+560 0x00004532 0x00004532   6    6         ascii   OGOOOO
+561 0x00004581 0x00004581   4    5         ascii   OOGO
+562 0x00004595 0x00004595  10   11         ascii   GEGOEGGGGO
+563 0x000045ac 0x000045ac   7    8         ascii   GbObGEO
+564 0x000045bb 0x000045bb   9    9         ascii   GbGGGOGbO
+565 0x000045df 0x000045df   4    4         ascii   GbOO
+566 0x00004623 0x00004623   4    5         ascii   EOGO
+567 0x0000462b 0x0000462b   6    7         ascii   GOGGOG
+568 0x00004633 0x00004633   4    5         ascii   OGOO
+569 0x0000463f 0x0000463f   6    6         ascii   GGEOGG
+570 0x00004653 0x00004653   5    5         ascii   OEOOk
+571 0x0000465e 0x0000465e   7    8         ascii   OGOOOGG
+572 0x00004693 0x00004693   6    7         ascii   OGOOGO
+573 0x0000469a 0x0000469a   7    7         ascii   \aGOOOOG
+574 0x000046a2 0x000046a2   5    5         ascii   OGGOO
+575 0x000046ad 0x000046ad  12   13         ascii   OGOEOGGGEOOG
+576 0x000046bb 0x000046bb   4    5         ascii   OGOO
+577 0x000046cb 0x000046cb   4    5         ascii   GOGG
+578 0x000046d5 0x000046d5   4    5         ascii   OOOG
+579 0x000046ef 0x000046ef   4    5         ascii   GGOG
+580 0x00004711 0x00004711   6    7         ascii   OGE?OG
+581 0x00004723 0x00004723   4    5         ascii   OOGO
+582 0x00004737 0x00004737   4    5         ascii   OOGO
+583 0x0000473d 0x0000473d   4    5         ascii   GGEG
+584 0x00004759 0x00004759   4    5         ascii   EGOE
+585 0x00004763 0x00004763   4    4         utf8    OGOO
+586 0x00004783 0x00004783   8    9         ascii   OOGOEOGG
+587 0x0000479d 0x0000479d   4    5         ascii   kGOO
+588 0x000047c7 0x000047c7   4    5         ascii   OGGO
+589 0x000047e5 0x000047e5   4    5         ascii   GOOE
+590 0x0000480f 0x0000480f   7    7         ascii   bGOGOEG
+591 0x00004824 0x00004824   6    7         ascii   bGOEO\b
+592 0x0000483b 0x0000483b   4    5         ascii   GEOO
+593 0x00004849 0x00004849   4    5         ascii   EObO
+594 0x00004885 0x00004885   4    5         ascii   GbGO
+595 0x00004892 0x00004892   5    6         ascii   GOGEG
+596 0x00004899 0x00004899   4    5         ascii   EGGE
+597 0x000048bd 0x000048bd   8    9         ascii   O?b?bGGE
+598 0x000048cd 0x000048cd   4    5         ascii   OOGO
+599 0x000048d3 0x000048d3   4    5         ascii   EOGO
+600 0x000048f5 0x000048f5   4    5         ascii   GGOG
+601 0x00004922 0x00004922   6    6         ascii   GOGGOO
+602 0x00004945 0x00004945   4    5         ascii   GGOG
+603 0x00004967 0x00004967   4    5         ascii   EEGO
+604 0x00004981 0x00004981   6    7         ascii   OOGGGO
+605 0x000049a3 0x000049a3   4    5         ascii   GGOO
+606 0x000049a9 0x000049a9   6    7         ascii   EEGEG?
+607 0x000049c9 0x000049c9   5    6         ascii   GOOO\b
+608 0x00004a3f 0x00004a3f   5    6         ascii   OOGG\b
+609 0x00004a4b 0x00004a4b   4    5         ascii   EOGb
+610 0x00004a5a 0x00004a5a   9   10         ascii   EOOGOOGbG
+611 0x00004a6f 0x00004a6f   4    5         ascii   EbEG
+612 0x00004ab3 0x00004ab3   4    5         ascii   OEOG
+613 0x00004ac9 0x00004ac9   9   10         ascii   GGOEEGEO\b
+614 0x00004adf 0x00004adf   4    5         ascii   GEEG
+615 0x00004afb 0x00004afb   4    5         ascii   GGOO
+616 0x00004b01 0x00004b01   5    5         ascii   GGOGG
+617 0x00004b39 0x00004b39   4    5         ascii   OOOG
+618 0x00004b40 0x00004b40   4    4         ascii   OGOO
+619 0x00004b5f 0x00004b5f   4    5         ascii   OOGO
+620 0x00004b89 0x00004b89   4    5         ascii   GGOG
+621 0x00004b97 0x00004b97   4    5         ascii   GOOG
+622 0x00004bc4 0x00004bc4   9    9         ascii   G\b\nEGEbGO
+623 0x00004bd4 0x00004bd4   6    6         ascii   GGOGGO
+624 0x00004c07 0x00004c07   4    4         ascii   kGOG
+625 0x00004c0e 0x00004c0e   4    5         ascii   OOO\b
+626 0x00004c1a 0x00004c1a   5    6         ascii   OGOGG
+627 0x00004c3f 0x00004c3f   4    5         ascii   GOOG
+628 0x00004c63 0x00004c63   4    5         ascii   GOOk
+629 0x00004c87 0x00004c87   4    5         ascii   OGkG
+630 0x00004cb5 0x00004cb5   4    4         ascii   GbEG
+631 0x00004cc9 0x00004cc9   4    5         ascii   EGbG
+632 0x00004d15 0x00004d15  10   11         ascii   OGbGGGbGOG
+633 0x00004d3b 0x00004d3b   4    5         ascii   GEOE
+634 0x00004d4f 0x00004d4f   4    4         ascii   EOGO
+635 0x00004d59 0x00004d59   4    5         ascii   GGOG
+636 0x00004d6f 0x00004d6f   4    5         ascii   OOGO
+637 0x00004d8d 0x00004d8d   6    7         ascii   GGGOGG
+638 0x00004da4 0x00004da4   4    5         ascii   OEO\b
+639 0x00004daa 0x00004daa   4    4         utf8    OOOO
+640 0x00004dd9 0x00004dd9   6    7         ascii   OOOGOO
+641 0x00004e17 0x00004e17   4    5         ascii   GGGE
+642 0x00004e1d 0x00004e1d   6    6         ascii   GGEOOO
+643 0x00004e64 0x00004e64   8    8         ascii   \aGOEGOGO
+644 0x00004e98 0x00004e98   5    6         ascii   OOOOG
+645 0x00004ead 0x00004ead   4    5         ascii   GOOO
+646 0x00004eb3 0x00004eb3   5    6         ascii   OGGO\b
+647 0x00004ee9 0x00004ee9   6    7         ascii   OGOOEO
+648 0x00004efd 0x00004efd   6    7         ascii   OOOGEE
+649 0x00004f09 0x00004f09   5    5         ascii   bGOEO
+650 0x00004f43 0x00004f43   5    5         ascii   GEbGG
+651 0x00004f4d 0x00004f4d   6    7         ascii   OGGOOE
+652 0x00004f57 0x00004f57   4    5         ascii   GGOG
+653 0x00004f67 0x00004f67   4    5         ascii   GEEE
+654 0x00004f79 0x00004f79   4    5         ascii   OOGb
+655 0x00004f83 0x00004f83   4    5         ascii   EGOO
+656 0x00004f9d 0x00004f9d   4    5         ascii   GGOG
+657 0x00004fa3 0x00004fa3   4    5         ascii   OGOO
+658 0x00004fc5 0x00004fc5   4    5         ascii   OOGO
+659 0x00004fe5 0x00004fe5   4    5         ascii   EGOG
+660 0x00004feb 0x00004feb   4    5         ascii   bOOG
+661 0x00004ff5 0x00004ff5   6    7         ascii   OGOOOk
+662 0x00005011 0x00005011   4    5         ascii   GOOO
+663 0x00005017 0x00005017   4    5         ascii   GOOO
+664 0x0000505b 0x0000505b   4    5         ascii   OOOG
+665 0x00005075 0x00005075   4    5         ascii   EGGO
+666 0x00005098 0x00005098   4    4         ascii   OOOO
+667 0x000050d0 0x000050d0   4    4         ascii   OOGk
+668 0x000050e6 0x000050e6   4    4         ascii   GOGO
+669 0x00005137 0x00005137   4    5         ascii   CEOG
+670 0x00005147 0x00005147   8    9         ascii   bOEOGEOG
+671 0x0000515b 0x0000515b   4    5         ascii   OGbG
+672 0x00005163 0x00005163   6    7         ascii   OEEObO
+673 0x0000516d 0x0000516d   5    6         ascii   GbOO\b
+674 0x000051c1 0x000051c1   5    5         ascii   EGOEO
+675 0x000051d7 0x000051d7   4    5         ascii   GGGE
+676 0x000051f1 0x000051f1   4    5         ascii   OOOG
+677 0x0000521b 0x0000521b   7    8         ascii   EOGOOG\b
+678 0x0000523f 0x0000523f   4    4         ascii   GGOG
+679 0x00005287 0x00005287   5    6         ascii   GEGG\b
+680 0x00005306 0x00005306   6    7         ascii   GGEGO\f
+681 0x0000530d 0x0000530d   7    7         ascii   kGbGOOk
+682 0x00005342 0x00005342   7    8         ascii   GbbOEGG
+683 0x00005357 0x00005357   4    5         ascii   OOEE
+684 0x00005397 0x00005397   4    5         ascii   GbEO
+685 0x000053a7 0x000053a7   6    7         ascii   OGEOEG
+686 0x000053b7 0x000053b7   6    7         ascii   OOGEGb
+687 0x000053c5 0x000053c5   4    5         ascii   EOGE
+688 0x000053cb 0x000053cb   4    5         ascii   ?EbG
+689 0x000053db 0x000053db  10   11         ascii   OGbGOGGOGG
+690 0x000053ed 0x000053ed   6    7         ascii   GGOOGO
+691 0x000053f5 0x000053f5   4    5         ascii   GOGG
+692 0x00005407 0x00005407   4    5         ascii   OOGO
+693 0x0000541b 0x0000541b   8    9         ascii   GGEGOOGO
+694 0x00005425 0x00005425   4    5         ascii   OOOG
+695 0x00005437 0x00005437  10   11         ascii   OOGOOOGOOG
+696 0x00005471 0x00005471   6    7         ascii   OOGOGG
+697 0x00005479 0x00005479   6    7         ascii   EGGOGb
+698 0x0000549d 0x0000549d   4    5         ascii   GGOG
+699 0x000054b4 0x000054b4   8    8         ascii   GOGOOGOO
+700 0x000054c1 0x000054c1   4    5         ascii   OOGO
+701 0x0000550d 0x0000550d   4    5         ascii   OOEE
+702 0x0000553b 0x0000553b   6    6         ascii   OGGGOG
+703 0x00005542 0x00005542   5    6         ascii   OGGOO
+704 0x00005555 0x00005555   8    9         ascii   OGOOGGOG
+705 0x00005562 0x00005562   6    7         ascii   OGOGb\b
+706 0x00005589 0x00005589   5    6         ascii   bOOO\b
+707 0x0000559b 0x0000559b   4    5         ascii   EbEG
+708 0x000055e5 0x000055e5   8    9         ascii   EEGbEGOO
+709 0x000055f5 0x000055f5   6    7         ascii   OEGGOO
+710 0x00005603 0x00005603   6    7         ascii   GOECOE
+711 0x0000560d 0x0000560d   4    5         ascii   ?bEO
+712 0x0000561f 0x0000561f   4    5         ascii   OGGO
+713 0x00005635 0x00005635   4    5         ascii   GOGG
+714 0x00005645 0x00005645   4    5         ascii   OGOO
+715 0x00005659 0x00005659   4    5         ascii   GOOG
+716 0x0000566f 0x0000566f   4    5         ascii   OOOG
+717 0x00005681 0x00005681   4    5         ascii   OOEG
+718 0x00005687 0x00005687   4    5         ascii   GGGO
+719 0x000056a3 0x000056a3   6    7         ascii   GGOEOG
+720 0x000056bd 0x000056bd   4    5         ascii   OOOG
+721 0x000056c7 0x000056c7   7    7         ascii   OOGOGGO
+722 0x000056e9 0x000056e9   5    5         ascii   GGOGO
+723 0x000056f9 0x000056f9   5    6         ascii   OOOG\a
+724 0x0000570f 0x0000570f   4    5         ascii   GOOO
+725 0x0000571d 0x0000571d   4    5         ascii   bGOO
+726 0x0000576d 0x0000576d   8    9         ascii   GOGGGOOG
+727 0x00005789 0x00005789   4    5         ascii   GGOG
+728 0x0000578f 0x0000578f   4    5         ascii   OGGG
+729 0x00005795 0x00005795   4    5         ascii   GGOG
+730 0x000057c5 0x000057c5   5    5         ascii   OGbGO
+731 0x000057d5 0x000057d5   4    5         ascii   GbbG
+732 0x0000581c 0x0000581c  11   12         ascii   GGbGOEOGOOG
+733 0x00005835 0x00005835   8    8         ascii   GbGGGbGE
+734 0x00005847 0x00005847   6    7         ascii   EGEEbG
+735 0x00005861 0x00005861   4    5         ascii   GOGG
+736 0x00005875 0x00005875   8    8         ascii   OGGOOOGO
+737 0x0000589d 0x0000589d   4    5         ascii   OOGG
+738 0x000058a3 0x000058a3   4    5         ascii   bGOO
+739 0x000058af 0x000058af   4    5         ascii   OGOE
+740 0x000058b5 0x000058b5   7    8         ascii   ObGOGG\f
+741 0x000058e5 0x000058e5   6    7         ascii   GGOGEG
+742 0x000058ed 0x000058ed   4    5         ascii   EOGb
+743 0x00005901 0x00005901   4    5         ascii   OGGO
+744 0x00005907 0x00005907   4    5         ascii   GOOG
+745 0x00005920 0x00005920   5    6         ascii   GOOGE
+746 0x00005941 0x00005941   6    7         ascii   OEGEOG
+747 0x00005969 0x00005969   4    5         ascii   kOGE
+748 0x000059e3 0x000059e3   6    7         ascii   GEOOEO
+749 0x000059f7 0x000059f7   4    5         ascii   GEbk
+750 0x00005a98 0x00005a98   4    4         ascii   OGOG
+751 0x00005a9d 0x00005a9d   4    5         ascii   GOGO
+752 0x00005abd 0x00005abd   4    4         ascii   OGOG
+753 0x00005ad7 0x00005ad7   4    5         ascii   OEOG
+754 0x00005af2 0x00005af2   5    5         ascii   GOGOG
+755 0x00005b02 0x00005b02   8    9         ascii   OGEOGOGO
+756 0x00005b24 0x00005b24   4    4         ascii   OGOG
+757 0x00005b37 0x00005b37   6    6         ascii   GEGEOG
+758 0x00005b3e 0x00005b3e   4    5         ascii   GOGO
+759 0x00005b53 0x00005b53   4    4         ascii   OGEG
+760 0x00005b5c 0x00005b5c   5    6         ascii   GOGOG
+761 0x00005b7c 0x00005b7c   4    5         ascii   GOGO
+762 0x00005bc5 0x00005bc5   7    8         ascii   OGOGOGO
+763 0x00005c0b 0x00005c0b   8    8         ascii   GOEGOGEO
+764 0x00005c28 0x00005c28   4    4         ascii   GOGO
+765 0x00005c2d 0x00005c2d  11   11         ascii   OGOEOEG?EGO
+766 0x00005c57 0x00005c57   7    7         ascii   OGOGOGO
+767 0x00005c78 0x00005c78   4    5         ascii   GOGO
+768 0x00005c84 0x00005c84   6    6         ascii   EGOGOG
+769 0x00005c91 0x00005c91   6    6         ascii   GOGObG
+770 0x00005caa 0x00005caa   5    5         ascii   E?E?O
+771 0x00005cba 0x00005cba   4    4         ascii   OGOG
+772 0x00005d2a 0x00005d2a   5    5         ascii   GOGOG
+773 0x00005dec 0x00005dec   4    5         ascii   OOGG
+774 0x00005e02 0x00005e02   4    5         ascii   OGOO
+775 0x00005e10 0x00005e10   4    5         ascii   GGOG
+776 0x00005e1b 0x00005e1b   6    6         ascii   \aGOGGO
+777 0x00005e22 0x00005e22   6    6         ascii   GOOOGO
+778 0x00005e32 0x00005e32   7    7         ascii   OOGOOGk
+779 0x00005e3e 0x00005e3e   4    5         ascii   GOEG
+780 0x00005e54 0x00005e54   4    5         ascii   kOGE
+781 0x00005e5a 0x00005e5a   5    6         ascii   GEGO\b
+782 0x00005e6a 0x00005e6a   4    5         ascii   EGEO
+783 0x00005e74 0x00005e74   4    5         ascii   OOGG
+784 0x00005e7c 0x00005e7c   4    5         ascii   GOOO
+785 0x00005e82 0x00005e82   4    5         ascii   GGEG
+786 0x00005ef6 0x00005ef6   4    5         ascii   OOGb
+787 0x00005efc 0x00005efc   5    6         ascii   GbE?\b
+788 0x00005f28 0x00005f28   4    5         ascii   EGEO
+789 0x00005fdb 0x00005fdb   4    4         ascii   GOOG
+790 0x0000601e 0x0000601e   4    5         ascii   OGOO
+791 0x00006027 0x00006027   4    4         ascii   GOOG
+792 0x0000602c 0x0000602c   4    5         ascii   EGGG
+793 0x00006032 0x00006032   5    5         ascii   OGOOG
+794 0x00006046 0x00006046   4    5         ascii   GGOE
+795 0x00006054 0x00006054   4    5         ascii   OOGO
+796 0x00006064 0x00006064   8    9         ascii   OGOOGGEG
+797 0x0000606e 0x0000606e   4    5         ascii   GGOG
+798 0x00006080 0x00006080   6    7         ascii   GGEEGE
+799 0x00006088 0x00006088   5    5         ascii   GOOOG
+800 0x0000609a 0x0000609a   4    5         ascii   EGOG
+801 0x000060b2 0x000060b2   4    5         ascii   GOOO
+802 0x000060d0 0x000060d0   5    6         ascii   OGOO\b
+803 0x0000611e 0x0000611e   6    7         ascii   OOGGOO
+804 0x00006130 0x00006130   6    7         ascii   EOGOOG
+805 0x00006138 0x00006138   4    5         ascii   OGOO
+806 0x0000614e 0x0000614e   6    7         ascii   GGbEEE
+807 0x0000616e 0x0000616e   6    7         ascii   EbGObO
+808 0x0000617e 0x0000617e   6    7         ascii   GGEGOO
+809 0x00006188 0x00006188   4    5         ascii   OGOO
+810 0x000061a0 0x000061a0   5    5         ascii   bOGOG
+811 0x000061c4 0x000061c4   4    4         ascii   OOOb
+812 0x000061e4 0x000061e4   4    5         ascii   GGOk
+813 0x00006294 0x00006294   4    5         ascii   OOGG
+814 0x000062ac 0x000062ac   6    7         ascii   OOGOGG
+815 0x000062c4 0x000062c4   5    5         ascii   OOGOG
+816 0x000062d2 0x000062d2   6    7         ascii   GGOOGO
+817 0x000062e0 0x000062e0   8    9         ascii   GOGGEEEG
+818 0x00006332 0x00006332   4    5         ascii   GOGG
+819 0x00006342 0x00006342   6    7         ascii   GEOE?E
+820 0x0000634f 0x0000634f   5    6         ascii   EGbEG
+821 0x0000636c 0x0000636c   4    5         ascii   bGOO
+822 0x0000637d 0x0000637d   7    8         ascii   OGE?OGO
+823 0x00006398 0x00006398   6    7         ascii   EGEOOO
+824 0x000063aa 0x000063aa   6    7         ascii   GGOObG
+825 0x00006446 0x00006446   4    5         ascii   GGOO
+826 0x0000644e 0x0000644e   5    5         ascii   OOOGO
+827 0x0000647a 0x0000647a   6    7         ascii   GOOOGO
+828 0x000064b6 0x000064b6   4    5         ascii   bGEO
+829 0x000064ca 0x000064ca   4    5         ascii   OGOE
+830 0x000064d4 0x000064d4   4    5         ascii   GOOO
+831 0x000064f0 0x000064f0   4    5         ascii   EEGG
+832 0x00006500 0x00006500   8    9         ascii   OGGOGEGO
+833 0x00006515 0x00006515   7    7         ascii   OGOOGOO
+834 0x00006540 0x00006540   4    5         ascii   OGOO
+835 0x00006558 0x00006558   6    7         ascii   GEGGGO
+836 0x0000656e 0x0000656e   4    5         ascii   EOOG
+837 0x00006592 0x00006592   4    4         ascii   EEGO
+838 0x0000659a 0x0000659a   6    7         ascii   GEObOG
+839 0x000065a4 0x000065a4   4    5         ascii   GOOG
+840 0x000065c4 0x000065c4   6    7         ascii   G?EOOO
+841 0x000065d6 0x000065d6   4    5         ascii   EEGO
+842 0x00006611 0x00006611   5    6         ascii   OOGkO
+843 0x00006618 0x00006618   5    6         ascii   OGOO\b
+844 0x0000662a 0x0000662a   4    5         ascii   GOGG
+845 0x000066d6 0x000066d6   4    5         ascii   OGEO
+846 0x000066f2 0x000066f2   8    9         ascii   OEOGGGOG
+847 0x00006709 0x00006709   4    5         ascii   GGE\f
+848 0x0000672a 0x0000672a   4    5         ascii   OOGE
+849 0x00006730 0x00006730   4    5         ascii   GEGO
+850 0x00006736 0x00006736   4    4         ascii   OGOO
+851 0x00006744 0x00006744   6    7         ascii   EGOEGE
+852 0x00006784 0x00006784   5    6         ascii   OOGG\f
+853 0x00006796 0x00006796   7    8         ascii   GGGEGO\f
+854 0x000067a6 0x000067a6   7    8         ascii   OGOEO?\n
+855 0x000067da 0x000067da   4    5         ascii   GGOO
+856 0x000067ee 0x000067ee   5    5         ascii   GGGOO
+857 0x00006896 0x00006896   4    5         ascii   OOOG
+858 0x000068b4 0x000068b4   4    4         ascii   OOOG
+859 0x000068c2 0x000068c2   8    9         ascii   GGOOGOOk
+860 0x000068ce 0x000068ce   4    5         ascii   GGEG
+861 0x000068d4 0x000068d4   4    5         ascii   OOOG
+862 0x000068e2 0x000068e2   4    5         ascii   GGOG
+863 0x000068fa 0x000068fa   6    7         ascii   GEOGGG
+864 0x00006912 0x00006912   8    9         ascii   ECEOOGOO
+865 0x00006924 0x00006924   4    5         ascii   EbGO
+866 0x0000692a 0x0000692a   4    5         ascii   GOGG
+867 0x0000693c 0x0000693c   4    4         ascii   GGOG
+868 0x0000694c 0x0000694c   4    5         ascii   GGGE
+869 0x0000698a 0x0000698a   4    4         ascii   GOOG
+870 0x000069ac 0x000069ac   8    9         ascii   GOEEGEGO
+871 0x000069b6 0x000069b6   5    5         ascii   GOGGG
+872 0x000069cc 0x000069cc   6    7         ascii   OOEOE?
+873 0x000069dc 0x000069dc   5    5         ascii   EOEbO
+874 0x000069fc 0x000069fc   4    5         ascii   GOOO
+875 0x00006a3f 0x00006a3f   8    8         ascii   OOOGGOGb
+876 0x00006a4c 0x00006a4c   4    5         ascii   GOOO
+877 0x00006b12 0x00006b12   4    5         ascii   OOGO
+878 0x00006b22 0x00006b22   4    5         ascii   GGbO
+879 0x00006b28 0x00006b28   4    5         ascii   GGOO
+880 0x00006b6e 0x00006b6e   4    5         ascii   GGGO
+881 0x00006b7c 0x00006b7c   4    5         ascii   GOOG
+882 0x00006b82 0x00006b82   5    6         ascii   OGEG\b
+883 0x00006b90 0x00006b90   4    5         ascii   GGGO
+884 0x00006ba6 0x00006ba6   4    5         ascii   OGEG
+885 0x00006bb8 0x00006bb8   4    4         ascii   GOOO
+886 0x00006bc0 0x00006bc0   4    4         ascii   bGOO
+887 0x00006bd2 0x00006bd2   6    7         ascii   GOGGEG
+888 0x00006bec 0x00006bec   8    9         ascii   E?OEGEOG
+889 0x00006c2a 0x00006c2a   6    7         ascii   GE?EGO
+890 0x00006c43 0x00006c43   5    6         ascii   EOEOG
+891 0x00006c56 0x00006c56   7    7         ascii   OGGOOOO
+892 0x00006d16 0x00006d16   4    5         ascii   OOGO
+893 0x00006d2e 0x00006d2e   4    5         ascii   OOOG
+894 0x00006d38 0x00006d38   4    4         ascii   OkOG
+895 0x00006d43 0x00006d43   6    6         ascii   GOGOOG
+896 0x00006d60 0x00006d60   4    5         ascii   GOOO
+897 0x00006d66 0x00006d66   4    5         ascii   OOGO
+898 0x00006d7a 0x00006d7a   6    7         ascii   GOGGOG
+899 0x00006d8c 0x00006d8c   4    5         ascii   GOOG
+900 0x00006d9d 0x00006d9d   5    6         ascii   OGOGE
+901 0x00006da4 0x00006da4   4    5         ascii   GEGO
+902 0x00006db4 0x00006db4   8    9         ascii   OOOGbOGO
+903 0x00006dd4 0x00006dd4   4    5         ascii   GGOG
+904 0x00006e0a 0x00006e0a   6    7         ascii   OOGOGE
+905 0x00006e26 0x00006e26   8    9         ascii   bOOGOEEO
+906 0x00006e30 0x00006e30   4    5         ascii   EOGO
+907 0x00006e48 0x00006e48  10   11         ascii   GOGEO??EGO
+908 0x00006e55 0x00006e55   5    6         ascii   GGEOb
+909 0x00006e62 0x00006e62   4    5         ascii   GGOG
+910 0x00006e69 0x00006e69   5    6         ascii   bEGGO
+911 0x00006e7f 0x00006e7f   4    5         ascii   GOO\b
+912 0x00006ed8 0x00006ed8   5    5         ascii   GOOGO
+913 0x00006f8e 0x00006f8e   4    5         ascii   OOOG
+914 0x00006fa6 0x00006fa6   4    5         ascii   GkOG
+915 0x00006fce 0x00006fce   4    5         ascii   OOOG
+916 0x00006fd4 0x00006fd4   5    6         ascii   OGOE\n
+917 0x00006ff4 0x00006ff4   4    5         ascii   GGOG
+918 0x0000700c 0x0000700c   6    6         ascii   OOOGOO
+919 0x0000705c 0x0000705c   4    5         ascii   OGOO
+920 0x00007078 0x00007078   4    5         ascii   E?EG
+921 0x000070f0 0x000070f0   4    5         ascii   EGkG
+922 0x0000710e 0x0000710e   4    5         ascii   GOGG
+923 0x000071aa 0x000071aa   4    5         ascii   GGOG
+924 0x000071d0 0x000071d0   4    4         ascii   OGOO
+925 0x000071e8 0x000071e8   4    5         ascii   EOGG
+926 0x000071ee 0x000071ee   4    5         ascii   OGOk
+927 0x000071fa 0x000071fa   4    5         ascii   OOGE
+928 0x00007200 0x00007200   4    5         ascii   OOGO
+929 0x00007214 0x00007214   4    5         ascii   OGOO
+930 0x0000721a 0x0000721a   4    5         ascii   GOOO
+931 0x00007222 0x00007222   4    5         ascii   OGGb
+932 0x00007228 0x00007228   6    7         ascii   OOGOGG
+933 0x0000723a 0x0000723a   4    5         ascii   GGOG
+934 0x00007240 0x00007240   4    5         ascii   EEOO
+935 0x00007246 0x00007246   4    4         ascii   OOGO
+936 0x00007250 0x00007250   4    5         ascii   EOOO
+937 0x0000726c 0x0000726c   4    7         utf8    G̰̰O blocks=Basic Latin,Combining Diacritical Marks
+938 0x00007288 0x00007288   4    5         ascii   GOGk
+939 0x0000728e 0x0000728e   4    5         ascii   OGOE
+940 0x000072a2 0x000072a2   4    5         ascii   EOGE
+941 0x000072b0 0x000072b0  10   11         ascii   OOOGGEbG?E
+942 0x000072c0 0x000072c0   6    7         ascii   GGbEbG
+943 0x000072dd 0x000072dd   5    6         ascii   OEEGO
+944 0x000072f3 0x000072f3   5    6         ascii   EG?bG
+945 0x0000732c 0x0000732c   5    6         ascii   OGbG\b
+946 0x00007370 0x00007370   4    5         ascii   OGOk
+947 0x00007416 0x00007416   4    5         ascii   GOGG
+948 0x00007430 0x00007430   4    5         ascii   GOOO
+949 0x00007464 0x00007464   5    5         ascii   OOGOO
+950 0x0000746e 0x0000746e   4    5         ascii   OGOO
+951 0x00007482 0x00007482   6    7         ascii   kOOOEG
+952 0x000074c8 0x000074c8   4    5         ascii   GGOG
+953 0x00007536 0x00007536   4    5         ascii   GOOO
+954 0x000075e2 0x000075e2   4    5         ascii   GGOG
+955 0x000075ee 0x000075ee   6    7         ascii   GOOOOk
+956 0x000075f8 0x000075f8   6    7         ascii   GGGOOO
+957 0x0000760a 0x0000760a   8    9         ascii   OEOGGGOG
+958 0x00007614 0x00007614   4    5         ascii   GOOO
+959 0x0000761c 0x0000761c   4    5         ascii   GOGG
+960 0x00007622 0x00007622   5    6         ascii   GGEO\b
+961 0x00007628 0x00007628   4    5         ascii   OOGO
+962 0x00007634 0x00007634  12   13         ascii   OOGGEEGGOGGO
+963 0x00007648 0x00007648   4    5         ascii   OOOG
+964 0x00007652 0x00007652   4    4         ascii   OOGO
+965 0x0000766a 0x0000766a   4    5         ascii   GOOG
+966 0x00007676 0x00007676   4    5         ascii   GGOG
+967 0x0000769d 0x0000769d   4    4         ascii   OGOO
+968 0x000076b6 0x000076b6   4    5         ascii   EEGG
+969 0x000076bc 0x000076bc   5    5         ascii   OGOOO
+970 0x000076cc 0x000076cc   8    9         ascii   GOEGOGEO
+971 0x000076ea 0x000076ea   4    5         ascii   GbGG
+972 0x00007701 0x00007701   7    8         ascii   OGEEOOO
+973 0x0000771d 0x0000771d   5    6         ascii   OEEGO
+974 0x0000775f 0x0000775f   4    5         ascii   OGO\f
+975 0x0000776a 0x0000776a   5    6         ascii   GGOG\n

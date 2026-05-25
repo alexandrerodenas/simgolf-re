@@ -1,0 +1,462 @@
+nth      paddr      vaddr len size section type    string        
+-----------------------------------------------------------------
+  0 0x00000006 0x00000006   4   10         utf16le P%\e\b
+  1 0x0000001a 0x0000001a   4    5         ibm037  2211
+  2 0x000000db 0x000000db   9   10         ibm037  7R´VSD·Nú
+  3 0x0000010d 0x0000010d   9   10         ibm037  7Éý56Rpz6
+  4 0x0000022f 0x0000022f   5    5         ascii   R)s~K
+  5 0x000002bc 0x000002bc   5    5         ascii   B)z^.
+  6 0x0000031c 0x0000031c   5    5         ascii   9!fR+
+  7 0x00000343 0x00000343   5    5         ascii   1!{A 
+  8 0x00000355 0x00000355   5    5         ascii   1!IS4
+  9 0x000003b1 0x000003b1   5    6         ascii   M= c1
+ 10 0x000003c0 0x000003c0   5    6         ascii   c1\b{!
+ 11 0x000003cc 0x000003cc   5    6         ascii   k*\bc+
+ 12 0x000003d2 0x000003d2   5    6         ascii   Z1\bs!
+ 13 0x000003db 0x000003db   5    6         ascii   c)\bk!
+ 14 0x000003ea 0x000003ea   8    9         ascii   k!\bZ)\bc!
+ 15 0x000003f9 0x000003f9   8    9         ascii   c!\bR)\nZ!
+ 16 0x00000405 0x00000405   4    5         ascii   Z!\bk
+ 17 0x00000414 0x00000414   4    5         ascii   R!\bc
+ 18 0x0000041d 0x0000041d   4    5         ascii   J!\bZ
+ 19 0x00000426 0x00000426   4    5         ascii   B!\bR
+ 20 0x0000042f 0x0000042f   4    5         ascii   9!\bZ
+ 21 0x00000462 0x00000462   4    5         ascii   9\b\b)
+ 22 0x0000046b 0x0000046b   4    5         ascii   1\b\b!
+ 23 0x0000047c 0x0000047c   6    7         ascii   \t)\b\b)\b
+ 24 0x00000486 0x00000486   5    6         ascii   !\b\b!\b
+ 25 0x000004f9 0x000004f9   8    9         ibm037  üôXSDANü
+ 26 0x00000601 0x00000601   5    5         ascii   R)s~K
+ 27 0x0000068e 0x0000068e   5    5         ascii   B)z^.
+ 28 0x000006ee 0x000006ee   5    5         ascii   9!fR+
+ 29 0x00000715 0x00000715   5    5         ascii   1!{A 
+ 30 0x00000727 0x00000727   5    5         ascii   1!IS4
+ 31 0x00000783 0x00000783   5    6         ascii   M= c1
+ 32 0x00000792 0x00000792   5    6         ascii   c1\b{!
+ 33 0x0000079e 0x0000079e   5    6         ascii   k*\bc+
+ 34 0x000007a4 0x000007a4   5    6         ascii   Z1\bs!
+ 35 0x000007ad 0x000007ad   5    6         ascii   c)\bk!
+ 36 0x000007bc 0x000007bc   8    9         ascii   k!\bZ)\bc!
+ 37 0x000007cb 0x000007cb   8    9         ascii   c!\bR)\nZ!
+ 38 0x000007d7 0x000007d7   4    5         ascii   Z!\bk
+ 39 0x000007e6 0x000007e6   4    5         ascii   R!\bc
+ 40 0x000007ef 0x000007ef   4    5         ascii   J!\bZ
+ 41 0x000007f8 0x000007f8   4    5         ascii   B!\bR
+ 42 0x00000801 0x00000801   4    5         ascii   9!\bZ
+ 43 0x00000834 0x00000834   4    5         ascii   9\b\b)
+ 44 0x0000083d 0x0000083d   4    5         ascii   1\b\b!
+ 45 0x0000084e 0x0000084e   6    7         ascii   \t)\b\b)\b
+ 46 0x00000858 0x00000858   5    6         ascii   !\b\b!\b
+ 47 0x000009af 0x000009af   5    5         ascii   R)s~K
+ 48 0x00000a3c 0x00000a3c   5    5         ascii   B)z^.
+ 49 0x00000a9c 0x00000a9c   5    5         ascii   9!fR+
+ 50 0x00000ac3 0x00000ac3   5    5         ascii   1!{A 
+ 51 0x00000ad5 0x00000ad5   5    5         ascii   1!IS4
+ 52 0x00000b31 0x00000b31   5    6         ascii   M= c1
+ 53 0x00000b40 0x00000b40   5    6         ascii   c1\b{!
+ 54 0x00000b4c 0x00000b4c   5    6         ascii   k*\bc+
+ 55 0x00000b52 0x00000b52   5    6         ascii   Z1\bs!
+ 56 0x00000b5b 0x00000b5b   5    6         ascii   c)\bk!
+ 57 0x00000b6a 0x00000b6a   8    9         ascii   k!\bZ)\bc!
+ 58 0x00000b79 0x00000b79   8    9         ascii   c!\bR)\nZ!
+ 59 0x00000b85 0x00000b85   4    5         ascii   Z!\bk
+ 60 0x00000b94 0x00000b94   4    5         ascii   R!\bc
+ 61 0x00000b9d 0x00000b9d   4    5         ascii   J!\bZ
+ 62 0x00000ba6 0x00000ba6   4    5         ascii   B!\bR
+ 63 0x00000baf 0x00000baf   4    5         ascii   9!\bZ
+ 64 0x00000be2 0x00000be2   4    5         ascii   9\b\b)
+ 65 0x00000beb 0x00000beb   4    5         ascii   1\b\b!
+ 66 0x00000bfc 0x00000bfc   6    7         ascii   \t)\b\b)\b
+ 67 0x00000c06 0x00000c06   5    6         ascii   !\b\b!\b
+ 68 0x00000d71 0x00000d71   5    5         ascii   R)s~K
+ 69 0x00000dfe 0x00000dfe   5    5         ascii   B)z^.
+ 70 0x00000e5e 0x00000e5e   5    5         ascii   9!fR+
+ 71 0x00000e85 0x00000e85   5    5         ascii   1!{A 
+ 72 0x00000e97 0x00000e97   5    5         ascii   1!IS4
+ 73 0x00000ef3 0x00000ef3   5    6         ascii   M= c1
+ 74 0x00000f02 0x00000f02   5    6         ascii   c1\b{!
+ 75 0x00000f0e 0x00000f0e   5    6         ascii   k*\bc+
+ 76 0x00000f14 0x00000f14   5    6         ascii   Z1\bs!
+ 77 0x00000f1d 0x00000f1d   5    6         ascii   c)\bk!
+ 78 0x00000f2c 0x00000f2c   8    9         ascii   k!\bZ)\bc!
+ 79 0x00000f3b 0x00000f3b   8    9         ascii   c!\bR)\nZ!
+ 80 0x00000f47 0x00000f47   4    5         ascii   Z!\bk
+ 81 0x00000f56 0x00000f56   4    5         ascii   R!\bc
+ 82 0x00000f5f 0x00000f5f   4    5         ascii   J!\bZ
+ 83 0x00000f68 0x00000f68   4    5         ascii   B!\bR
+ 84 0x00000f71 0x00000f71   4    5         ascii   9!\bZ
+ 85 0x00000fa4 0x00000fa4   4    5         ascii   9\b\b)
+ 86 0x00000fad 0x00000fad   4    5         ascii   1\b\b!
+ 87 0x00000fbe 0x00000fbe   6    7         ascii   \t)\b\b)\b
+ 88 0x00000fc8 0x00000fc8   5    6         ascii   !\b\b!\b
+ 89 0x00001037 0x00001037   9   10         ibm037  RBVTD¨PP7
+ 90 0x00001099 0x00001099   5    6         ibm037  g764I
+ 91 0x00001141 0x00001141   5    5         ascii   R)s~K
+ 92 0x000011ce 0x000011ce   5    5         ascii   B)z^.
+ 93 0x0000122e 0x0000122e   5    5         ascii   9!fR+
+ 94 0x00001255 0x00001255   5    5         ascii   1!{A 
+ 95 0x00001267 0x00001267   5    5         ascii   1!IS4
+ 96 0x000012c3 0x000012c3   5    6         ascii   M= c1
+ 97 0x000012d2 0x000012d2   5    6         ascii   c1\b{!
+ 98 0x000012de 0x000012de   5    6         ascii   k*\bc+
+ 99 0x000012e4 0x000012e4   5    6         ascii   Z1\bs!
+100 0x000012ed 0x000012ed   5    6         ascii   c)\bk!
+101 0x000012fc 0x000012fc   8    9         ascii   k!\bZ)\bc!
+102 0x0000130b 0x0000130b   8    9         ascii   c!\bR)\nZ!
+103 0x00001317 0x00001317   4    5         ascii   Z!\bk
+104 0x00001326 0x00001326   4    5         ascii   R!\bc
+105 0x0000132f 0x0000132f   4    5         ascii   J!\bZ
+106 0x00001338 0x00001338   4    5         ascii   B!\bR
+107 0x00001341 0x00001341   4    5         ascii   9!\bZ
+108 0x00001374 0x00001374   4    5         ascii   9\b\b)
+109 0x0000137d 0x0000137d   4    5         ascii   1\b\b!
+110 0x0000138e 0x0000138e   6    7         ascii   \t)\b\b)\b
+111 0x00001398 0x00001398   5    6         ascii   !\b\b!\b
+112 0x00001505 0x00001505   5    5         ascii   R)s~K
+113 0x00001592 0x00001592   5    5         ascii   B)z^.
+114 0x000015f2 0x000015f2   5    5         ascii   9!fR+
+115 0x00001619 0x00001619   5    5         ascii   1!{A 
+116 0x0000162b 0x0000162b   5    5         ascii   1!IS4
+117 0x00001687 0x00001687   5    6         ascii   M= c1
+118 0x00001696 0x00001696   5    6         ascii   c1\b{!
+119 0x000016a2 0x000016a2   5    6         ascii   k*\bc+
+120 0x000016a8 0x000016a8   5    6         ascii   Z1\bs!
+121 0x000016b1 0x000016b1   5    6         ascii   c)\bk!
+122 0x000016c0 0x000016c0   8    9         ascii   k!\bZ)\bc!
+123 0x000016cf 0x000016cf   8    9         ascii   c!\bR)\nZ!
+124 0x000016db 0x000016db   4    5         ascii   Z!\bk
+125 0x000016ea 0x000016ea   4    5         ascii   R!\bc
+126 0x000016f3 0x000016f3   4    5         ascii   J!\bZ
+127 0x000016fc 0x000016fc   4    5         ascii   B!\bR
+128 0x00001705 0x00001705   4    5         ascii   9!\bZ
+129 0x00001738 0x00001738   4    5         ascii   9\b\b)
+130 0x00001741 0x00001741   4    5         ascii   1\b\b!
+131 0x00001752 0x00001752   6    7         ascii   \t)\b\b)\b
+132 0x0000175c 0x0000175c   5    6         ascii   !\b\b!\b
+133 0x0000180d 0x0000180d   8    9         ibm037  ¬{!#666U
+134 0x000018d9 0x000018d9   5    5         ascii   R)s~K
+135 0x00001966 0x00001966   5    5         ascii   B)z^.
+136 0x000019c6 0x000019c6   5    5         ascii   9!fR+
+137 0x000019ed 0x000019ed   5    5         ascii   1!{A 
+138 0x000019ff 0x000019ff   5    5         ascii   1!IS4
+139 0x00001a5b 0x00001a5b   5    6         ascii   M= c1
+140 0x00001a6a 0x00001a6a   5    6         ascii   c1\b{!
+141 0x00001a76 0x00001a76   5    6         ascii   k*\bc+
+142 0x00001a7c 0x00001a7c   5    6         ascii   Z1\bs!
+143 0x00001a85 0x00001a85   5    6         ascii   c)\bk!
+144 0x00001a94 0x00001a94   8    9         ascii   k!\bZ)\bc!
+145 0x00001aa3 0x00001aa3   8    9         ascii   c!\bR)\nZ!
+146 0x00001aaf 0x00001aaf   4    5         ascii   Z!\bk
+147 0x00001abe 0x00001abe   4    5         ascii   R!\bc
+148 0x00001ac7 0x00001ac7   4    5         ascii   J!\bZ
+149 0x00001ad0 0x00001ad0   4    5         ascii   B!\bR
+150 0x00001ad9 0x00001ad9   4    5         ascii   9!\bZ
+151 0x00001b0c 0x00001b0c   4    5         ascii   9\b\b)
+152 0x00001b15 0x00001b15   4    5         ascii   1\b\b!
+153 0x00001b26 0x00001b26   6    7         ascii   \t)\b\b)\b
+154 0x00001b30 0x00001b30   5    6         ascii   !\b\b!\b
+155 0x00001c87 0x00001c87   5    5         ascii   R)s~K
+156 0x00001d14 0x00001d14   5    5         ascii   B)z^.
+157 0x00001d74 0x00001d74   5    5         ascii   9!fR+
+158 0x00001d9b 0x00001d9b   5    5         ascii   1!{A 
+159 0x00001dad 0x00001dad   5    5         ascii   1!IS4
+160 0x00001e09 0x00001e09   5    6         ascii   M= c1
+161 0x00001e18 0x00001e18   5    6         ascii   c1\b{!
+162 0x00001e24 0x00001e24   5    6         ascii   k*\bc+
+163 0x00001e2a 0x00001e2a   5    6         ascii   Z1\bs!
+164 0x00001e33 0x00001e33   5    6         ascii   c)\bk!
+165 0x00001e42 0x00001e42   8    9         ascii   k!\bZ)\bc!
+166 0x00001e51 0x00001e51   8    9         ascii   c!\bR)\nZ!
+167 0x00001e5d 0x00001e5d   4    5         ascii   Z!\bk
+168 0x00001e6c 0x00001e6c   4    5         ascii   R!\bc
+169 0x00001e75 0x00001e75   4    5         ascii   J!\bZ
+170 0x00001e7e 0x00001e7e   4    5         ascii   B!\bR
+171 0x00001e87 0x00001e87   4    5         ascii   9!\bZ
+172 0x00001eba 0x00001eba   4    5         ascii   9\b\b)
+173 0x00001ec3 0x00001ec3   4    5         ascii   1\b\b!
+174 0x00001ed4 0x00001ed4   6    7         ascii   \t)\b\b)\b
+175 0x00001ede 0x00001ede   5    6         ascii   !\b\b!\b
+176 0x0000203d 0x0000203d   5    5         ascii   R)s~K
+177 0x000020ca 0x000020ca   5    5         ascii   B)z^.
+178 0x0000212a 0x0000212a   5    5         ascii   9!fR+
+179 0x00002151 0x00002151   5    5         ascii   1!{A 
+180 0x00002163 0x00002163   5    5         ascii   1!IS4
+181 0x000021bf 0x000021bf   5    6         ascii   M= c1
+182 0x000021ce 0x000021ce   5    6         ascii   c1\b{!
+183 0x000021da 0x000021da   5    6         ascii   k*\bc+
+184 0x000021e0 0x000021e0   5    6         ascii   Z1\bs!
+185 0x000021e9 0x000021e9   5    6         ascii   c)\bk!
+186 0x000021f8 0x000021f8   8    9         ascii   k!\bZ)\bc!
+187 0x00002207 0x00002207   8    9         ascii   c!\bR)\nZ!
+188 0x00002213 0x00002213   4    5         ascii   Z!\bk
+189 0x00002222 0x00002222   4    5         ascii   R!\bc
+190 0x0000222b 0x0000222b   4    5         ascii   J!\bZ
+191 0x00002234 0x00002234   4    5         ascii   B!\bR
+192 0x0000223d 0x0000223d   4    5         ascii   9!\bZ
+193 0x00002270 0x00002270   4    5         ascii   9\b\b)
+194 0x00002279 0x00002279   4    5         ascii   1\b\b!
+195 0x0000228a 0x0000228a   6    7         ascii   \t)\b\b)\b
+196 0x00002294 0x00002294   5    6         ascii   !\b\b!\b
+197 0x000023d1 0x000023d1   5    5         ascii   R)s~K
+198 0x0000245e 0x0000245e   5    5         ascii   B)z^.
+199 0x000024be 0x000024be   5    5         ascii   9!fR+
+200 0x000024e5 0x000024e5   5    5         ascii   1!{A 
+201 0x000024f7 0x000024f7   5    5         ascii   1!IS4
+202 0x00002553 0x00002553   5    6         ascii   M= c1
+203 0x00002562 0x00002562   5    6         ascii   c1\b{!
+204 0x0000256e 0x0000256e   5    6         ascii   k*\bc+
+205 0x00002574 0x00002574   5    6         ascii   Z1\bs!
+206 0x0000257d 0x0000257d   5    6         ascii   c)\bk!
+207 0x0000258c 0x0000258c   8    9         ascii   k!\bZ)\bc!
+208 0x0000259b 0x0000259b   8    9         ascii   c!\bR)\nZ!
+209 0x000025a7 0x000025a7   4    5         ascii   Z!\bk
+210 0x000025b6 0x000025b6   4    5         ascii   R!\bc
+211 0x000025bf 0x000025bf   4    5         ascii   J!\bZ
+212 0x000025c8 0x000025c8   4    5         ascii   B!\bR
+213 0x000025d1 0x000025d1   4    5         ascii   9!\bZ
+214 0x00002604 0x00002604   4    5         ascii   9\b\b)
+215 0x0000260d 0x0000260d   4    5         ascii   1\b\b!
+216 0x0000261e 0x0000261e   6    7         ascii   \t)\b\b)\b
+217 0x00002628 0x00002628   5    6         ascii   !\b\b!\b
+218 0x00002769 0x00002769   5    5         ascii   R)s~K
+219 0x000027f6 0x000027f6   5    5         ascii   B)z^.
+220 0x00002856 0x00002856   5    5         ascii   9!fR+
+221 0x0000287d 0x0000287d   5    5         ascii   1!{A 
+222 0x0000288f 0x0000288f   5    5         ascii   1!IS4
+223 0x000028eb 0x000028eb   5    6         ascii   M= c1
+224 0x000028fa 0x000028fa   5    6         ascii   c1\b{!
+225 0x00002906 0x00002906   5    6         ascii   k*\bc+
+226 0x0000290c 0x0000290c   5    6         ascii   Z1\bs!
+227 0x00002915 0x00002915   5    6         ascii   c)\bk!
+228 0x00002924 0x00002924   8    9         ascii   k!\bZ)\bc!
+229 0x00002933 0x00002933   8    9         ascii   c!\bR)\nZ!
+230 0x0000293f 0x0000293f   4    5         ascii   Z!\bk
+231 0x0000294e 0x0000294e   4    5         ascii   R!\bc
+232 0x00002957 0x00002957   4    5         ascii   J!\bZ
+233 0x00002960 0x00002960   4    5         ascii   B!\bR
+234 0x00002969 0x00002969   4    5         ascii   9!\bZ
+235 0x0000299c 0x0000299c   4    5         ascii   9\b\b)
+236 0x000029a5 0x000029a5   4    5         ascii   1\b\b!
+237 0x000029b6 0x000029b6   6    7         ascii   \t)\b\b)\b
+238 0x000029c0 0x000029c0   5    6         ascii   !\b\b!\b
+239 0x00002a17 0x00002a17   7    8         ibm037  ÝPKpR67
+240 0x00002b0b 0x00002b0b   5    5         ascii   R)s~K
+241 0x00002b98 0x00002b98   5    5         ascii   B)z^.
+242 0x00002bf8 0x00002bf8   5    5         ascii   9!fR+
+243 0x00002c1f 0x00002c1f   5    5         ascii   1!{A 
+244 0x00002c31 0x00002c31   5    5         ascii   1!IS4
+245 0x00002c8d 0x00002c8d   5    6         ascii   M= c1
+246 0x00002c9c 0x00002c9c   5    6         ascii   c1\b{!
+247 0x00002ca8 0x00002ca8   5    6         ascii   k*\bc+
+248 0x00002cae 0x00002cae   5    6         ascii   Z1\bs!
+249 0x00002cb7 0x00002cb7   5    6         ascii   c)\bk!
+250 0x00002cc6 0x00002cc6   8    9         ascii   k!\bZ)\bc!
+251 0x00002cd5 0x00002cd5   8    9         ascii   c!\bR)\nZ!
+252 0x00002ce1 0x00002ce1   4    5         ascii   Z!\bk
+253 0x00002cf0 0x00002cf0   4    5         ascii   R!\bc
+254 0x00002cf9 0x00002cf9   4    5         ascii   J!\bZ
+255 0x00002d02 0x00002d02   4    5         ascii   B!\bR
+256 0x00002d0b 0x00002d0b   4    5         ascii   9!\bZ
+257 0x00002d3e 0x00002d3e   4    5         ascii   9\b\b)
+258 0x00002d47 0x00002d47   4    5         ascii   1\b\b!
+259 0x00002d58 0x00002d58   6    7         ascii   \t)\b\b)\b
+260 0x00002d62 0x00002d62   5    6         ascii   !\b\b!\b
+261 0x00002ea3 0x00002ea3   5    5         ascii   R)s~K
+262 0x00002f30 0x00002f30   5    5         ascii   B)z^.
+263 0x00002f90 0x00002f90   5    5         ascii   9!fR+
+264 0x00002fb7 0x00002fb7   5    5         ascii   1!{A 
+265 0x00002fc9 0x00002fc9   5    5         ascii   1!IS4
+266 0x00003025 0x00003025   5    6         ascii   M= c1
+267 0x00003034 0x00003034   5    6         ascii   c1\b{!
+268 0x00003040 0x00003040   5    6         ascii   k*\bc+
+269 0x00003046 0x00003046   5    6         ascii   Z1\bs!
+270 0x0000304f 0x0000304f   5    6         ascii   c)\bk!
+271 0x0000305e 0x0000305e   8    9         ascii   k!\bZ)\bc!
+272 0x0000306d 0x0000306d   8    9         ascii   c!\bR)\nZ!
+273 0x00003079 0x00003079   4    5         ascii   Z!\bk
+274 0x00003088 0x00003088   4    5         ascii   R!\bc
+275 0x00003091 0x00003091   4    5         ascii   J!\bZ
+276 0x0000309a 0x0000309a   4    5         ascii   B!\bR
+277 0x000030a3 0x000030a3   4    5         ascii   9!\bZ
+278 0x000030d6 0x000030d6   4    5         ascii   9\b\b)
+279 0x000030df 0x000030df   4    5         ascii   1\b\b!
+280 0x000030f0 0x000030f0   6    7         ascii   \t)\b\b)\b
+281 0x000030fa 0x000030fa   5    6         ascii   !\b\b!\b
+282 0x00003161 0x00003161   4    5         ibm037  HpRR
+283 0x00003249 0x00003249   5    5         ascii   R)s~K
+284 0x000032d6 0x000032d6   5    5         ascii   B)z^.
+285 0x00003336 0x00003336   5    5         ascii   9!fR+
+286 0x0000335d 0x0000335d   5    5         ascii   1!{A 
+287 0x0000336f 0x0000336f   5    5         ascii   1!IS4
+288 0x000033cb 0x000033cb   5    6         ascii   M= c1
+289 0x000033da 0x000033da   5    6         ascii   c1\b{!
+290 0x000033e6 0x000033e6   5    6         ascii   k*\bc+
+291 0x000033ec 0x000033ec   5    6         ascii   Z1\bs!
+292 0x000033f5 0x000033f5   5    6         ascii   c)\bk!
+293 0x00003404 0x00003404   8    9         ascii   k!\bZ)\bc!
+294 0x00003413 0x00003413   8    9         ascii   c!\bR)\nZ!
+295 0x0000341f 0x0000341f   4    5         ascii   Z!\bk
+296 0x0000342e 0x0000342e   4    5         ascii   R!\bc
+297 0x00003437 0x00003437   4    5         ascii   J!\bZ
+298 0x00003440 0x00003440   4    5         ascii   B!\bR
+299 0x00003449 0x00003449   4    5         ascii   9!\bZ
+300 0x0000347c 0x0000347c   4    5         ascii   9\b\b)
+301 0x00003485 0x00003485   4    5         ascii   1\b\b!
+302 0x00003496 0x00003496   6    7         ascii   \t)\b\b)\b
+303 0x000034a0 0x000034a0   5    6         ascii   !\b\b!\b
+304 0x000035cf 0x000035cf   5    5         ascii   R)s~K
+305 0x0000365c 0x0000365c   5    5         ascii   B)z^.
+306 0x000036bc 0x000036bc   5    5         ascii   9!fR+
+307 0x000036e3 0x000036e3   5    5         ascii   1!{A 
+308 0x000036f5 0x000036f5   5    5         ascii   1!IS4
+309 0x00003751 0x00003751   5    6         ascii   M= c1
+310 0x00003760 0x00003760   5    6         ascii   c1\b{!
+311 0x0000376c 0x0000376c   5    6         ascii   k*\bc+
+312 0x00003772 0x00003772   5    6         ascii   Z1\bs!
+313 0x0000377b 0x0000377b   5    6         ascii   c)\bk!
+314 0x0000378a 0x0000378a   8    9         ascii   k!\bZ)\bc!
+315 0x00003799 0x00003799   8    9         ascii   c!\bR)\nZ!
+316 0x000037a5 0x000037a5   4    5         ascii   Z!\bk
+317 0x000037b4 0x000037b4   4    5         ascii   R!\bc
+318 0x000037bd 0x000037bd   4    5         ascii   J!\bZ
+319 0x000037c6 0x000037c6   4    5         ascii   B!\bR
+320 0x000037cf 0x000037cf   4    5         ascii   9!\bZ
+321 0x00003802 0x00003802   4    5         ascii   9\b\b)
+322 0x0000380b 0x0000380b   4    5         ascii   1\b\b!
+323 0x0000381c 0x0000381c   6    7         ascii   \t)\b\b)\b
+324 0x00003826 0x00003826   5    6         ascii   !\b\b!\b
+325 0x00003981 0x00003981   5    5         ascii   R)s~K
+326 0x00003a0e 0x00003a0e   5    5         ascii   B)z^.
+327 0x00003a6e 0x00003a6e   5    5         ascii   9!fR+
+328 0x00003a95 0x00003a95   5    5         ascii   1!{A 
+329 0x00003aa7 0x00003aa7   5    5         ascii   1!IS4
+330 0x00003b03 0x00003b03   5    6         ascii   M= c1
+331 0x00003b12 0x00003b12   5    6         ascii   c1\b{!
+332 0x00003b1e 0x00003b1e   5    6         ascii   k*\bc+
+333 0x00003b24 0x00003b24   5    6         ascii   Z1\bs!
+334 0x00003b2d 0x00003b2d   5    6         ascii   c)\bk!
+335 0x00003b3c 0x00003b3c   8    9         ascii   k!\bZ)\bc!
+336 0x00003b4b 0x00003b4b   8    9         ascii   c!\bR)\nZ!
+337 0x00003b57 0x00003b57   4    5         ascii   Z!\bk
+338 0x00003b66 0x00003b66   4    5         ascii   R!\bc
+339 0x00003b6f 0x00003b6f   4    5         ascii   J!\bZ
+340 0x00003b78 0x00003b78   4    5         ascii   B!\bR
+341 0x00003b81 0x00003b81   4    5         ascii   9!\bZ
+342 0x00003bb4 0x00003bb4   4    5         ascii   9\b\b)
+343 0x00003bbd 0x00003bbd   4    5         ascii   1\b\b!
+344 0x00003bce 0x00003bce   6    7         ascii   \t)\b\b)\b
+345 0x00003bd8 0x00003bd8   5    6         ascii   !\b\b!\b
+346 0x00003d47 0x00003d47   5    5         ascii   R)s~K
+347 0x00003dd4 0x00003dd4   5    5         ascii   B)z^.
+348 0x00003e34 0x00003e34   5    5         ascii   9!fR+
+349 0x00003e5b 0x00003e5b   5    5         ascii   1!{A 
+350 0x00003e6d 0x00003e6d   5    5         ascii   1!IS4
+351 0x00003ec9 0x00003ec9   5    6         ascii   M= c1
+352 0x00003ed8 0x00003ed8   5    6         ascii   c1\b{!
+353 0x00003ee4 0x00003ee4   5    6         ascii   k*\bc+
+354 0x00003eea 0x00003eea   5    6         ascii   Z1\bs!
+355 0x00003ef3 0x00003ef3   5    6         ascii   c)\bk!
+356 0x00003f02 0x00003f02   8    9         ascii   k!\bZ)\bc!
+357 0x00003f11 0x00003f11   8    9         ascii   c!\bR)\nZ!
+358 0x00003f1d 0x00003f1d   4    5         ascii   Z!\bk
+359 0x00003f2c 0x00003f2c   4    5         ascii   R!\bc
+360 0x00003f35 0x00003f35   4    5         ascii   J!\bZ
+361 0x00003f3e 0x00003f3e   4    5         ascii   B!\bR
+362 0x00003f47 0x00003f47   4    5         ascii   9!\bZ
+363 0x00003f7a 0x00003f7a   4    5         ascii   9\b\b)
+364 0x00003f83 0x00003f83   4    5         ascii   1\b\b!
+365 0x00003f94 0x00003f94   6    7         ascii   \t)\b\b)\b
+366 0x00003f9e 0x00003f9e   5    6         ascii   !\b\b!\b
+367 0x00004101 0x00004101   5    5         ascii   R)s~K
+368 0x0000418e 0x0000418e   5    5         ascii   B)z^.
+369 0x000041ee 0x000041ee   5    5         ascii   9!fR+
+370 0x00004215 0x00004215   5    5         ascii   1!{A 
+371 0x00004227 0x00004227   5    5         ascii   1!IS4
+372 0x00004283 0x00004283   5    6         ascii   M= c1
+373 0x00004292 0x00004292   5    6         ascii   c1\b{!
+374 0x0000429e 0x0000429e   5    6         ascii   k*\bc+
+375 0x000042a4 0x000042a4   5    6         ascii   Z1\bs!
+376 0x000042ad 0x000042ad   5    6         ascii   c)\bk!
+377 0x000042bc 0x000042bc   8    9         ascii   k!\bZ)\bc!
+378 0x000042cb 0x000042cb   8    9         ascii   c!\bR)\nZ!
+379 0x000042d7 0x000042d7   4    5         ascii   Z!\bk
+380 0x000042e6 0x000042e6   4    5         ascii   R!\bc
+381 0x000042ef 0x000042ef   4    5         ascii   J!\bZ
+382 0x000042f8 0x000042f8   4    5         ascii   B!\bR
+383 0x00004301 0x00004301   4    5         ascii   9!\bZ
+384 0x00004334 0x00004334   4    5         ascii   9\b\b)
+385 0x0000433d 0x0000433d   4    5         ascii   1\b\b!
+386 0x0000434e 0x0000434e   6    7         ascii   \t)\b\b)\b
+387 0x00004358 0x00004358   5    6         ascii   !\b\b!\b
+388 0x000044bd 0x000044bd   5    5         ascii   R)s~K
+389 0x0000454a 0x0000454a   5    5         ascii   B)z^.
+390 0x000045aa 0x000045aa   5    5         ascii   9!fR+
+391 0x000045d1 0x000045d1   5    5         ascii   1!{A 
+392 0x000045e3 0x000045e3   5    5         ascii   1!IS4
+393 0x0000463f 0x0000463f   5    6         ascii   M= c1
+394 0x0000464e 0x0000464e   5    6         ascii   c1\b{!
+395 0x0000465a 0x0000465a   5    6         ascii   k*\bc+
+396 0x00004660 0x00004660   5    6         ascii   Z1\bs!
+397 0x00004669 0x00004669   5    6         ascii   c)\bk!
+398 0x00004678 0x00004678   8    9         ascii   k!\bZ)\bc!
+399 0x00004687 0x00004687   8    9         ascii   c!\bR)\nZ!
+400 0x00004693 0x00004693   4    5         ascii   Z!\bk
+401 0x000046a2 0x000046a2   4    5         ascii   R!\bc
+402 0x000046ab 0x000046ab   4    5         ascii   J!\bZ
+403 0x000046b4 0x000046b4   4    5         ascii   B!\bR
+404 0x000046bd 0x000046bd   4    5         ascii   9!\bZ
+405 0x000046f0 0x000046f0   4    5         ascii   9\b\b)
+406 0x000046f9 0x000046f9   4    5         ascii   1\b\b!
+407 0x0000470a 0x0000470a   6    7         ascii   \t)\b\b)\b
+408 0x00004714 0x00004714   5    6         ascii   !\b\b!\b
+409 0x0000488f 0x0000488f   5    5         ascii   R)s~K
+410 0x0000491c 0x0000491c   5    5         ascii   B)z^.
+411 0x0000497c 0x0000497c   5    5         ascii   9!fR+
+412 0x000049a3 0x000049a3   5    5         ascii   1!{A 
+413 0x000049b5 0x000049b5   5    5         ascii   1!IS4
+414 0x00004a11 0x00004a11   5    6         ascii   M= c1
+415 0x00004a20 0x00004a20   5    6         ascii   c1\b{!
+416 0x00004a2c 0x00004a2c   5    6         ascii   k*\bc+
+417 0x00004a32 0x00004a32   5    6         ascii   Z1\bs!
+418 0x00004a3b 0x00004a3b   5    6         ascii   c)\bk!
+419 0x00004a4a 0x00004a4a   8    9         ascii   k!\bZ)\bc!
+420 0x00004a59 0x00004a59   8    9         ascii   c!\bR)\nZ!
+421 0x00004a65 0x00004a65   4    5         ascii   Z!\bk
+422 0x00004a74 0x00004a74   4    5         ascii   R!\bc
+423 0x00004a7d 0x00004a7d   4    5         ascii   J!\bZ
+424 0x00004a86 0x00004a86   4    5         ascii   B!\bR
+425 0x00004a8f 0x00004a8f   4    5         ascii   9!\bZ
+426 0x00004ac2 0x00004ac2   4    5         ascii   9\b\b)
+427 0x00004acb 0x00004acb   4    5         ascii   1\b\b!
+428 0x00004adc 0x00004adc   6    7         ascii   \t)\b\b)\b
+429 0x00004ae6 0x00004ae6   5    6         ascii   !\b\b!\b
+430 0x00004c2a 0x00004c2a  11   12         ibm037  ô6Ý<·760SKó
+431 0x00004c8c 0x00004c8c  13   14         ibm037  ³A367R7³7·{0O
+432 0x00004ca8 0x00004ca8  10   11         ibm037  75067¼ú7úà
+433 0x00004d38 0x00004d38   4    5         ibm037  3SOK
+434 0x00004f8e 0x00004f8e   8    9         ibm037  7I06¼KVý
+435 0x000055f4 0x000055f4   4    5         ibm037  7367
+436 0x000057e8 0x000057e8   6    7         ibm037  36C{XG
+437 0x000057fc 0x000057fc   4    5         ibm037  7360
+438 0x00005895 0x00005895  10   11         ibm037  A367R77·{X
+439 0x000058be 0x000058be   4    5         ibm037  UIRú
+440 0x00005a71 0x00005a71   4    4         ascii   6+/3
+441 0x00005a8a 0x00005a8a   4    5         ibm037  GS36
+442 0x00005a97 0x00005a97   4    5         ibm037  IV36
+443 0x00005acf 0x00005acf  10   11         ibm037  673q)A067R
+444 0x00005b21 0x00005b21  13   14         ibm037  3ÓõDü767Sjcó6
+445 0x00005b34 0x00005b34  11   12         ibm037  570Ó7Ó760ôü
+446 0x00005c1e 0x00005c1e   8    9         ibm037  0fìA767K
+447 0x00005f52 0x00005f52  10   11         ibm037  Ó75¡)z360P
+448 0x0000658b 0x0000658b   7    8         ibm037  ²ySSkIÒ
+449 0x000065c8 0x000065c8   4    5         ibm037  UjiR
+450 0x000067e4 0x000067e4   6    7         ibm037  066WAü
+451 0x000067f8 0x000067f8  10   11         ibm037  073æ)·067R
+452 0x00006a16 0x00006a16   4    5         ibm037  IV36
+453 0x00006b25 0x00006b25  10   11         ibm037  6(a067}v^ú
+454 0x00006b35 0x00006b35  12   13         ibm037  4üS767Ò360fÀ
+455 0x0000753d 0x0000753d   6    7         ibm037  60²760
+456 0x00007791 0x00007791   6    7         ibm037  S764V7
+457 0x00007988 0x00007988   4    5         ibm037  ASS3
+458 0x00007b57 0x00007b57   8    9         ibm037  a067}v^ú
+459 0x00007bc3 0x00007bc3   4    5         ibm037  7667

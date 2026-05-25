@@ -1,0 +1,962 @@
+nth      paddr      vaddr len size section type   string                                         
+-------------------------------------------------------------------------------------------------
+  0 0x0000001a 0x0000001a   4    5         ibm037 2211
+  1 0x000002a6 0x000002a6  33   34         ibm037 Uúò0NEXOóÕN§XOF1LzùOI6MiXóFXõ¨QO¨
+  2 0x000003de 0x000003de  14   15         ibm037 ·#êqd>nd#ðddQ%
+  3 0x0000040f 0x0000040f   5    5         ascii  b!{ss
+  4 0x0000041d 0x0000041d   6    7         ascii  |ksiwk
+  5 0x0000042c 0x0000042c   9    9         ascii  zmajquskk
+  6 0x00000438 0x00000438   6    6         ascii  _u`uc_
+  7 0x00000441 0x00000441   6    6         ascii  dhkvcO
+  8 0x00000448 0x00000448  11   11         ascii  W/kc`8ww]c`
+  9 0x0000045a 0x0000045a  11   11         ascii  O!k_>ZeOfY[
+ 10 0x00000468 0x00000468  21   21         ascii  tY*WW\gQN\bw}kP<xJ$ZQO
+ 11 0x00000480 0x00000480  12   12         ascii  GTWUM>RLMGRG
+ 12 0x0000048f 0x0000048f  14   15         ascii  ]J1,WZf?(+UGn:
+ 13 0x0000049e 0x0000049e  44   45         ascii  RA6HBJRB)JE/F?B\nV]4F3J93n-\nR6%J9)J9!B9/9959<
+ 14 0x000004cb 0x000004cb  29   30         ascii  !>ED1#;15V'\f!9451%.145(%/(27)
+ 15 0x000004ed 0x000004ed   5    6         ascii  /;)%%
+ 16 0x000004f6 0x000004f6   4    5         ascii  *1&!
+ 17 0x000004fb 0x000004fb   4    5         ascii  !"!4
+ 18 0x000005d2 0x000005d2   6    7         ibm037 ³98999
+ 19 0x000006f4 0x000006f4  33   34         ibm037 Uúò0NEXOóÕN§XOF1LzùOI6MiXóFXõ¨QO¨
+ 20 0x0000082c 0x0000082c  14   15         ibm037 ·#êqd>nd#ðddQ%
+ 21 0x0000085d 0x0000085d   5    5         ascii  b!{ss
+ 22 0x0000086b 0x0000086b   6    7         ascii  |ksiwk
+ 23 0x0000087a 0x0000087a   9    9         ascii  zmajquskk
+ 24 0x00000886 0x00000886   6    6         ascii  _u`uc_
+ 25 0x0000088f 0x0000088f   6    6         ascii  dhkvcO
+ 26 0x00000896 0x00000896  11   11         ascii  W/kc`8ww]c`
+ 27 0x000008a8 0x000008a8  11   11         ascii  O!k_>ZeOfY[
+ 28 0x000008b6 0x000008b6  21   21         ascii  tY*WW\gQN\bw}kP<xJ$ZQO
+ 29 0x000008ce 0x000008ce  12   12         ascii  GTWUM>RLMGRG
+ 30 0x000008dd 0x000008dd  14   15         ascii  ]J1,WZf?(+UGn:
+ 31 0x000008ec 0x000008ec  44   45         ascii  RA6HBJRB)JE/F?B\nV]4F3J93n-\nR6%J9)J9!B9/9959<
+ 32 0x00000919 0x00000919  29   30         ascii  !>ED1#;15V'\f!9451%.145(%/(27)
+ 33 0x0000093b 0x0000093b   5    6         ascii  /;)%%
+ 34 0x00000944 0x00000944   4    5         ascii  *1&!
+ 35 0x00000949 0x00000949   4    5         ascii  !"!4
+ 36 0x00000a13 0x00000a13   9   10         ibm037 Û³9889888
+ 37 0x00000b1c 0x00000b1c  33   34         ibm037 Uúò0NEXOóÕN§XOF1LzùOI6MiXóFXõ¨QO¨
+ 38 0x00000c54 0x00000c54  14   15         ibm037 ·#êqd>nd#ðddQ%
+ 39 0x00000c85 0x00000c85   5    5         ascii  b!{ss
+ 40 0x00000c93 0x00000c93   6    7         ascii  |ksiwk
+ 41 0x00000ca2 0x00000ca2   9    9         ascii  zmajquskk
+ 42 0x00000cae 0x00000cae   6    6         ascii  _u`uc_
+ 43 0x00000cb7 0x00000cb7   6    6         ascii  dhkvcO
+ 44 0x00000cbe 0x00000cbe  11   11         ascii  W/kc`8ww]c`
+ 45 0x00000cd0 0x00000cd0  11   11         ascii  O!k_>ZeOfY[
+ 46 0x00000cde 0x00000cde  21   21         ascii  tY*WW\gQN\bw}kP<xJ$ZQO
+ 47 0x00000cf6 0x00000cf6  12   12         ascii  GTWUM>RLMGRG
+ 48 0x00000d05 0x00000d05  14   15         ascii  ]J1,WZf?(+UGn:
+ 49 0x00000d14 0x00000d14  44   45         ascii  RA6HBJRB)JE/F?B\nV]4F3J93n-\nR6%J9)J9!B9/9959<
+ 50 0x00000d41 0x00000d41  29   30         ascii  !>ED1#;15V'\f!9451%.145(%/(27)
+ 51 0x00000d63 0x00000d63   5    6         ascii  /;)%%
+ 52 0x00000d6c 0x00000d6c   4    5         ascii  *1&!
+ 53 0x00000d71 0x00000d71   4    5         ascii  !"!4
+ 54 0x00000e4e 0x00000e4e   8    9         ibm037 Û³989998
+ 55 0x00000ead 0x00000ead   7    8         ibm037 Û³98899
+ 56 0x00000f68 0x00000f68  33   34         ibm037 Uúò0NEXOóÕN§XOF1LzùOI6MiXóFXõ¨QO¨
+ 57 0x000010a0 0x000010a0  14   15         ibm037 ·#êqd>nd#ðddQ%
+ 58 0x000010d1 0x000010d1   5    5         ascii  b!{ss
+ 59 0x000010df 0x000010df   6    7         ascii  |ksiwk
+ 60 0x000010ee 0x000010ee   9    9         ascii  zmajquskk
+ 61 0x000010fa 0x000010fa   6    6         ascii  _u`uc_
+ 62 0x00001103 0x00001103   6    6         ascii  dhkvcO
+ 63 0x0000110a 0x0000110a  11   11         ascii  W/kc`8ww]c`
+ 64 0x0000111c 0x0000111c  11   11         ascii  O!k_>ZeOfY[
+ 65 0x0000112a 0x0000112a  21   21         ascii  tY*WW\gQN\bw}kP<xJ$ZQO
+ 66 0x00001142 0x00001142  12   12         ascii  GTWUM>RLMGRG
+ 67 0x00001151 0x00001151  14   15         ascii  ]J1,WZf?(+UGn:
+ 68 0x00001160 0x00001160  44   45         ascii  RA6HBJRB)JE/F?B\nV]4F3J93n-\nR6%J9)J9!B9/9959<
+ 69 0x0000118d 0x0000118d  29   30         ascii  !>ED1#;15V'\f!9451%.145(%/(27)
+ 70 0x000011af 0x000011af   5    6         ascii  /;)%%
+ 71 0x000011b8 0x000011b8   4    5         ascii  *1&!
+ 72 0x000011bd 0x000011bd   4    5         ascii  !"!4
+ 73 0x00001286 0x00001286   4    5         ibm037 8899
+ 74 0x000013a2 0x000013a2  33   34         ibm037 Uúò0NEXOóÕN§XOF1LzùOI6MiXóFXõ¨QO¨
+ 75 0x000014da 0x000014da  14   15         ibm037 ·#êqd>nd#ðddQ%
+ 76 0x0000150b 0x0000150b   5    5         ascii  b!{ss
+ 77 0x00001519 0x00001519   6    7         ascii  |ksiwk
+ 78 0x00001528 0x00001528   9    9         ascii  zmajquskk
+ 79 0x00001534 0x00001534   6    6         ascii  _u`uc_
+ 80 0x0000153d 0x0000153d   6    6         ascii  dhkvcO
+ 81 0x00001544 0x00001544  11   11         ascii  W/kc`8ww]c`
+ 82 0x00001556 0x00001556  11   11         ascii  O!k_>ZeOfY[
+ 83 0x00001564 0x00001564  21   21         ascii  tY*WW\gQN\bw}kP<xJ$ZQO
+ 84 0x0000157c 0x0000157c  12   12         ascii  GTWUM>RLMGRG
+ 85 0x0000158b 0x0000158b  14   15         ascii  ]J1,WZf?(+UGn:
+ 86 0x0000159a 0x0000159a  44   45         ascii  RA6HBJRB)JE/F?B\nV]4F3J93n-\nR6%J9)J9!B9/9959<
+ 87 0x000015c7 0x000015c7  29   30         ascii  !>ED1#;15V'\f!9451%.145(%/(27)
+ 88 0x000015e9 0x000015e9   5    6         ascii  /;)%%
+ 89 0x000015f2 0x000015f2   4    5         ascii  *1&!
+ 90 0x000015f7 0x000015f7   4    5         ascii  !"!4
+ 91 0x000016c6 0x000016c6  13   14         ibm037 99³³999³999³Û
+ 92 0x000016db 0x000016db  11   12         ibm037 Û³999³99899
+ 93 0x00001717 0x00001717   7    8         ibm037 Û³98999
+ 94 0x0000172a 0x0000172a   8    9         ibm037 Û³988999
+ 95 0x0000173e 0x0000173e   8    9         ibm037 Û³988999
+ 96 0x00001758 0x00001758   4    5         ibm037 8899
+ 97 0x0000177a 0x0000177a  10   11         ibm037 Û³998889³Û
+ 98 0x00001824 0x00001824  33   34         ibm037 Uúò0NEXOóÕN§XOF1LzùOI6MiXóFXõ¨QO¨
+ 99 0x0000195c 0x0000195c  14   15         ibm037 ·#êqd>nd#ðddQ%
+100 0x0000198d 0x0000198d   5    5         ascii  b!{ss
+101 0x0000199b 0x0000199b   6    7         ascii  |ksiwk
+102 0x000019aa 0x000019aa   9    9         ascii  zmajquskk
+103 0x000019b6 0x000019b6   6    6         ascii  _u`uc_
+104 0x000019bf 0x000019bf   6    6         ascii  dhkvcO
+105 0x000019c6 0x000019c6  11   11         ascii  W/kc`8ww]c`
+106 0x000019d8 0x000019d8  11   11         ascii  O!k_>ZeOfY[
+107 0x000019e6 0x000019e6  21   21         ascii  tY*WW\gQN\bw}kP<xJ$ZQO
+108 0x000019fe 0x000019fe  12   12         ascii  GTWUM>RLMGRG
+109 0x00001a0d 0x00001a0d  14   15         ascii  ]J1,WZf?(+UGn:
+110 0x00001a1c 0x00001a1c  44   45         ascii  RA6HBJRB)JE/F?B\nV]4F3J93n-\nR6%J9)J9!B9/9959<
+111 0x00001a49 0x00001a49  29   30         ascii  !>ED1#;15V'\f!9451%.145(%/(27)
+112 0x00001a6b 0x00001a6b   5    6         ascii  /;)%%
+113 0x00001a74 0x00001a74   4    5         ascii  *1&!
+114 0x00001a79 0x00001a79   4    5         ascii  !"!4
+115 0x00001b5d 0x00001b5d   8    9         ibm037 Û³99888\n
+116 0x00001b6e 0x00001b6e  10   11         ibm037 Û³99899998
+117 0x00001b8a 0x00001b8a   4    5         ibm037 9998
+118 0x00001b9e 0x00001b9e   4    5         ibm037 9889
+119 0x00001c72 0x00001c72  33   34         ibm037 Uúò0NEXOóÕN§XOF1LzùOI6MiXóFXõ¨QO¨
+120 0x00001daa 0x00001daa  14   15         ibm037 ·#êqd>nd#ðddQ%
+121 0x00001ddb 0x00001ddb   5    5         ascii  b!{ss
+122 0x00001de9 0x00001de9   6    7         ascii  |ksiwk
+123 0x00001df8 0x00001df8   9    9         ascii  zmajquskk
+124 0x00001e04 0x00001e04   6    6         ascii  _u`uc_
+125 0x00001e0d 0x00001e0d   6    6         ascii  dhkvcO
+126 0x00001e14 0x00001e14  11   11         ascii  W/kc`8ww]c`
+127 0x00001e26 0x00001e26  11   11         ascii  O!k_>ZeOfY[
+128 0x00001e34 0x00001e34  21   21         ascii  tY*WW\gQN\bw}kP<xJ$ZQO
+129 0x00001e4c 0x00001e4c  12   12         ascii  GTWUM>RLMGRG
+130 0x00001e5b 0x00001e5b  14   15         ascii  ]J1,WZf?(+UGn:
+131 0x00001e6a 0x00001e6a  44   45         ascii  RA6HBJRB)JE/F?B\nV]4F3J93n-\nR6%J9)J9!B9/9959<
+132 0x00001e97 0x00001e97  29   30         ascii  !>ED1#;15V'\f!9451%.145(%/(27)
+133 0x00001eb9 0x00001eb9   5    6         ascii  /;)%%
+134 0x00001ec2 0x00001ec2   4    5         ascii  *1&!
+135 0x00001ec7 0x00001ec7   4    5         ascii  !"!4
+136 0x00001f66 0x00001f66   4    5         ibm037 9998
+137 0x00001f7c 0x00001f7c   8    9         ibm037 99888999
+138 0x00001fa8 0x00001fa8   4    5         ibm037 9888
+139 0x00001fbc 0x00001fbc   4    5         ibm037 9998
+140 0x00001fc6 0x00001fc6   4    5         ibm037 9998
+141 0x00001fd4 0x00001fd4   8    9         ibm037 99³³9888
+142 0x00002010 0x00002010   4    5         ibm037 9889
+143 0x00002094 0x00002094  33   34         ibm037 Uúò0NEXOóÕN§XOF1LzùOI6MiXóFXõ¨QO¨
+144 0x000021cc 0x000021cc  14   15         ibm037 ·#êqd>nd#ðddQ%
+145 0x000021fd 0x000021fd   5    5         ascii  b!{ss
+146 0x0000220b 0x0000220b   6    7         ascii  |ksiwk
+147 0x0000221a 0x0000221a   9    9         ascii  zmajquskk
+148 0x00002226 0x00002226   6    6         ascii  _u`uc_
+149 0x0000222f 0x0000222f   6    6         ascii  dhkvcO
+150 0x00002236 0x00002236  11   11         ascii  W/kc`8ww]c`
+151 0x00002248 0x00002248  11   11         ascii  O!k_>ZeOfY[
+152 0x00002256 0x00002256  21   21         ascii  tY*WW\gQN\bw}kP<xJ$ZQO
+153 0x0000226e 0x0000226e  12   12         ascii  GTWUM>RLMGRG
+154 0x0000227d 0x0000227d  14   15         ascii  ]J1,WZf?(+UGn:
+155 0x0000228c 0x0000228c  44   45         ascii  RA6HBJRB)JE/F?B\nV]4F3J93n-\nR6%J9)J9!B9/9959<
+156 0x000022b9 0x000022b9  29   30         ascii  !>ED1#;15V'\f!9451%.145(%/(27)
+157 0x000022db 0x000022db   5    6         ascii  /;)%%
+158 0x000022e4 0x000022e4   4    5         ascii  *1&!
+159 0x000022e9 0x000022e9   4    5         ascii  !"!4
+160 0x000023a6 0x000023a6   4    5         ibm037 9988
+161 0x0000246e 0x0000246e  33   34         ibm037 Uúò0NEXOóÕN§XOF1LzùOI6MiXóFXõ¨QO¨
+162 0x000025a6 0x000025a6  14   15         ibm037 ·#êqd>nd#ðddQ%
+163 0x000025d7 0x000025d7   5    5         ascii  b!{ss
+164 0x000025e5 0x000025e5   6    7         ascii  |ksiwk
+165 0x000025f4 0x000025f4   9    9         ascii  zmajquskk
+166 0x00002600 0x00002600   6    6         ascii  _u`uc_
+167 0x00002609 0x00002609   6    6         ascii  dhkvcO
+168 0x00002610 0x00002610  11   11         ascii  W/kc`8ww]c`
+169 0x00002622 0x00002622  11   11         ascii  O!k_>ZeOfY[
+170 0x00002630 0x00002630  21   21         ascii  tY*WW\gQN\bw}kP<xJ$ZQO
+171 0x00002648 0x00002648  12   12         ascii  GTWUM>RLMGRG
+172 0x00002657 0x00002657  14   15         ascii  ]J1,WZf?(+UGn:
+173 0x00002666 0x00002666  44   45         ascii  RA6HBJRB)JE/F?B\nV]4F3J93n-\nR6%J9)J9!B9/9959<
+174 0x00002693 0x00002693  29   30         ascii  !>ED1#;15V'\f!9451%.145(%/(27)
+175 0x000026b5 0x000026b5   5    6         ascii  /;)%%
+176 0x000026be 0x000026be   4    5         ascii  *1&!
+177 0x000026c3 0x000026c3   4    5         ascii  !"!4
+178 0x00002854 0x00002854  33   34         ibm037 Uúò0NEXOóÕN§XOF1LzùOI6MiXóFXõ¨QO¨
+179 0x0000298c 0x0000298c  14   15         ibm037 ·#êqd>nd#ðddQ%
+180 0x000029bd 0x000029bd   5    5         ascii  b!{ss
+181 0x000029cb 0x000029cb   6    7         ascii  |ksiwk
+182 0x000029da 0x000029da   9    9         ascii  zmajquskk
+183 0x000029e6 0x000029e6   6    6         ascii  _u`uc_
+184 0x000029ef 0x000029ef   6    6         ascii  dhkvcO
+185 0x000029f6 0x000029f6  11   11         ascii  W/kc`8ww]c`
+186 0x00002a08 0x00002a08  11   11         ascii  O!k_>ZeOfY[
+187 0x00002a16 0x00002a16  21   21         ascii  tY*WW\gQN\bw}kP<xJ$ZQO
+188 0x00002a2e 0x00002a2e  12   12         ascii  GTWUM>RLMGRG
+189 0x00002a3d 0x00002a3d  14   15         ascii  ]J1,WZf?(+UGn:
+190 0x00002a4c 0x00002a4c  44   45         ascii  RA6HBJRB)JE/F?B\nV]4F3J93n-\nR6%J9)J9!B9/9959<
+191 0x00002a79 0x00002a79  29   30         ascii  !>ED1#;15V'\f!9451%.145(%/(27)
+192 0x00002a9b 0x00002a9b   5    6         ascii  /;)%%
+193 0x00002aa4 0x00002aa4   4    5         ascii  *1&!
+194 0x00002aa9 0x00002aa9   4    5         ascii  !"!4
+195 0x00002b7c 0x00002b7c   4    5         ibm037 8999
+196 0x00002bc4 0x00002bc4   4    5         ibm037 8998
+197 0x00002ca0 0x00002ca0  33   34         ibm037 Uúò0NEXOóÕN§XOF1LzùOI6MiXóFXõ¨QO¨
+198 0x00002dd8 0x00002dd8  14   15         ibm037 ·#êqd>nd#ðddQ%
+199 0x00002e09 0x00002e09   5    5         ascii  b!{ss
+200 0x00002e17 0x00002e17   6    7         ascii  |ksiwk
+201 0x00002e26 0x00002e26   9    9         ascii  zmajquskk
+202 0x00002e32 0x00002e32   6    6         ascii  _u`uc_
+203 0x00002e3b 0x00002e3b   6    6         ascii  dhkvcO
+204 0x00002e42 0x00002e42  11   11         ascii  W/kc`8ww]c`
+205 0x00002e54 0x00002e54  11   11         ascii  O!k_>ZeOfY[
+206 0x00002e62 0x00002e62  21   21         ascii  tY*WW\gQN\bw}kP<xJ$ZQO
+207 0x00002e7a 0x00002e7a  12   12         ascii  GTWUM>RLMGRG
+208 0x00002e89 0x00002e89  14   15         ascii  ]J1,WZf?(+UGn:
+209 0x00002e98 0x00002e98  44   45         ascii  RA6HBJRB)JE/F?B\nV]4F3J93n-\nR6%J9)J9!B9/9959<
+210 0x00002ec5 0x00002ec5  29   30         ascii  !>ED1#;15V'\f!9451%.145(%/(27)
+211 0x00002ee7 0x00002ee7   5    6         ascii  /;)%%
+212 0x00002ef0 0x00002ef0   4    5         ascii  *1&!
+213 0x00002ef5 0x00002ef5   4    5         ascii  !"!4
+214 0x0000300a 0x0000300a   4    5         ibm037 8889
+215 0x00003024 0x00003024   4    5         ibm037 8999
+216 0x000030e2 0x000030e2  33   34         ibm037 Uúò0NEXOóÕN§XOF1LzùOI6MiXóFXõ¨QO¨
+217 0x0000321a 0x0000321a  14   15         ibm037 ·#êqd>nd#ðddQ%
+218 0x0000324b 0x0000324b   5    5         ascii  b!{ss
+219 0x00003259 0x00003259   6    7         ascii  |ksiwk
+220 0x00003268 0x00003268   9    9         ascii  zmajquskk
+221 0x00003274 0x00003274   6    6         ascii  _u`uc_
+222 0x0000327d 0x0000327d   6    6         ascii  dhkvcO
+223 0x00003284 0x00003284  11   11         ascii  W/kc`8ww]c`
+224 0x00003296 0x00003296  11   11         ascii  O!k_>ZeOfY[
+225 0x000032a4 0x000032a4  21   21         ascii  tY*WW\gQN\bw}kP<xJ$ZQO
+226 0x000032bc 0x000032bc  12   12         ascii  GTWUM>RLMGRG
+227 0x000032cb 0x000032cb  14   15         ascii  ]J1,WZf?(+UGn:
+228 0x000032da 0x000032da  44   45         ascii  RA6HBJRB)JE/F?B\nV]4F3J93n-\nR6%J9)J9!B9/9959<
+229 0x00003307 0x00003307  29   30         ascii  !>ED1#;15V'\f!9451%.145(%/(27)
+230 0x00003329 0x00003329   5    6         ascii  /;)%%
+231 0x00003332 0x00003332   4    5         ascii  *1&!
+232 0x00003337 0x00003337   4    5         ascii  !"!4
+233 0x000033ee 0x000033ee   8    9         ibm037 ³9988999
+234 0x000033fe 0x000033fe   4    5         ibm037 9989
+235 0x0000342a 0x0000342a   4    5         ibm037 8999
+236 0x0000343a 0x0000343a   8    9         ibm037 999³9988
+237 0x00003464 0x00003464   4    5         ibm037 9889
+238 0x00003502 0x00003502  33   34         ibm037 Uúò0NEXOóÕN§XOF1LzùOI6MiXóFXõ¨QO¨
+239 0x0000363a 0x0000363a  14   15         ibm037 ·#êqd>nd#ðddQ%
+240 0x0000366b 0x0000366b   5    5         ascii  b!{ss
+241 0x00003679 0x00003679   6    7         ascii  |ksiwk
+242 0x00003688 0x00003688   9    9         ascii  zmajquskk
+243 0x00003694 0x00003694   6    6         ascii  _u`uc_
+244 0x0000369d 0x0000369d   6    6         ascii  dhkvcO
+245 0x000036a4 0x000036a4  11   11         ascii  W/kc`8ww]c`
+246 0x000036b6 0x000036b6  11   11         ascii  O!k_>ZeOfY[
+247 0x000036c4 0x000036c4  21   21         ascii  tY*WW\gQN\bw}kP<xJ$ZQO
+248 0x000036dc 0x000036dc  12   12         ascii  GTWUM>RLMGRG
+249 0x000036eb 0x000036eb  14   15         ascii  ]J1,WZf?(+UGn:
+250 0x000036fa 0x000036fa  44   45         ascii  RA6HBJRB)JE/F?B\nV]4F3J93n-\nR6%J9)J9!B9/9959<
+251 0x00003727 0x00003727  29   30         ascii  !>ED1#;15V'\f!9451%.145(%/(27)
+252 0x00003749 0x00003749   5    6         ascii  /;)%%
+253 0x00003752 0x00003752   4    5         ascii  *1&!
+254 0x00003757 0x00003757   4    5         ascii  !"!4
+255 0x0000391e 0x0000391e  33   34         ibm037 Uúò0NEXOóÕN§XOF1LzùOI6MiXóFXõ¨QO¨
+256 0x00003a56 0x00003a56  14   15         ibm037 ·#êqd>nd#ðddQ%
+257 0x00003a87 0x00003a87   5    5         ascii  b!{ss
+258 0x00003a95 0x00003a95   6    7         ascii  |ksiwk
+259 0x00003aa4 0x00003aa4   9    9         ascii  zmajquskk
+260 0x00003ab0 0x00003ab0   6    6         ascii  _u`uc_
+261 0x00003ab9 0x00003ab9   6    6         ascii  dhkvcO
+262 0x00003ac0 0x00003ac0  11   11         ascii  W/kc`8ww]c`
+263 0x00003ad2 0x00003ad2  11   11         ascii  O!k_>ZeOfY[
+264 0x00003ae0 0x00003ae0  21   21         ascii  tY*WW\gQN\bw}kP<xJ$ZQO
+265 0x00003af8 0x00003af8  12   12         ascii  GTWUM>RLMGRG
+266 0x00003b07 0x00003b07  14   15         ascii  ]J1,WZf?(+UGn:
+267 0x00003b16 0x00003b16  44   45         ascii  RA6HBJRB)JE/F?B\nV]4F3J93n-\nR6%J9)J9!B9/9959<
+268 0x00003b43 0x00003b43  29   30         ascii  !>ED1#;15V'\f!9451%.145(%/(27)
+269 0x00003b65 0x00003b65   5    6         ascii  /;)%%
+270 0x00003b6e 0x00003b6e   4    5         ascii  *1&!
+271 0x00003b73 0x00003b73   4    5         ascii  !"!4
+272 0x00003c2e 0x00003c2e   4    5         ibm037 9998
+273 0x00003c66 0x00003c66   4    5         ibm037 8998
+274 0x00003d2e 0x00003d2e  33   34         ibm037 Uúò0NEXOóÕN§XOF1LzùOI6MiXóFXõ¨QO¨
+275 0x00003e66 0x00003e66  14   15         ibm037 ·#êqd>nd#ðddQ%
+276 0x00003e97 0x00003e97   5    5         ascii  b!{ss
+277 0x00003ea5 0x00003ea5   6    7         ascii  |ksiwk
+278 0x00003eb4 0x00003eb4   9    9         ascii  zmajquskk
+279 0x00003ec0 0x00003ec0   6    6         ascii  _u`uc_
+280 0x00003ec9 0x00003ec9   6    6         ascii  dhkvcO
+281 0x00003ed0 0x00003ed0  11   11         ascii  W/kc`8ww]c`
+282 0x00003ee2 0x00003ee2  11   11         ascii  O!k_>ZeOfY[
+283 0x00003ef0 0x00003ef0  21   21         ascii  tY*WW\gQN\bw}kP<xJ$ZQO
+284 0x00003f08 0x00003f08  12   12         ascii  GTWUM>RLMGRG
+285 0x00003f17 0x00003f17  14   15         ascii  ]J1,WZf?(+UGn:
+286 0x00003f26 0x00003f26  44   45         ascii  RA6HBJRB)JE/F?B\nV]4F3J93n-\nR6%J9)J9!B9/9959<
+287 0x00003f53 0x00003f53  29   30         ascii  !>ED1#;15V'\f!9451%.145(%/(27)
+288 0x00003f75 0x00003f75   5    6         ascii  /;)%%
+289 0x00003f7e 0x00003f7e   4    5         ascii  *1&!
+290 0x00003f83 0x00003f83   4    5         ascii  !"!4
+291 0x0000403e 0x0000403e   6    7         ibm037 988889
+292 0x0000412c 0x0000412c  33   34         ibm037 Uúò0NEXOóÕN§XOF1LzùOI6MiXóFXõ¨QO¨
+293 0x00004264 0x00004264  14   15         ibm037 ·#êqd>nd#ðddQ%
+294 0x00004295 0x00004295   5    5         ascii  b!{ss
+295 0x000042a3 0x000042a3   6    7         ascii  |ksiwk
+296 0x000042b2 0x000042b2   9    9         ascii  zmajquskk
+297 0x000042be 0x000042be   6    6         ascii  _u`uc_
+298 0x000042c7 0x000042c7   6    6         ascii  dhkvcO
+299 0x000042ce 0x000042ce  11   11         ascii  W/kc`8ww]c`
+300 0x000042e0 0x000042e0  11   11         ascii  O!k_>ZeOfY[
+301 0x000042ee 0x000042ee  21   21         ascii  tY*WW\gQN\bw}kP<xJ$ZQO
+302 0x00004306 0x00004306  12   12         ascii  GTWUM>RLMGRG
+303 0x00004315 0x00004315  14   15         ascii  ]J1,WZf?(+UGn:
+304 0x00004324 0x00004324  44   45         ascii  RA6HBJRB)JE/F?B\nV]4F3J93n-\nR6%J9)J9!B9/9959<
+305 0x00004351 0x00004351  29   30         ascii  !>ED1#;15V'\f!9451%.145(%/(27)
+306 0x00004373 0x00004373   5    6         ascii  /;)%%
+307 0x0000437c 0x0000437c   4    5         ascii  *1&!
+308 0x00004381 0x00004381   4    5         ascii  !"!4
+309 0x0000441a 0x0000441a   4    5         ibm037 8999
+310 0x000044fc 0x000044fc  33   34         ibm037 Uúò0NEXOóÕN§XOF1LzùOI6MiXóFXõ¨QO¨
+311 0x00004634 0x00004634  14   15         ibm037 ·#êqd>nd#ðddQ%
+312 0x00004665 0x00004665   5    5         ascii  b!{ss
+313 0x00004673 0x00004673   6    7         ascii  |ksiwk
+314 0x00004682 0x00004682   9    9         ascii  zmajquskk
+315 0x0000468e 0x0000468e   6    6         ascii  _u`uc_
+316 0x00004697 0x00004697   6    6         ascii  dhkvcO
+317 0x0000469e 0x0000469e  11   11         ascii  W/kc`8ww]c`
+318 0x000046b0 0x000046b0  11   11         ascii  O!k_>ZeOfY[
+319 0x000046be 0x000046be  21   21         ascii  tY*WW\gQN\bw}kP<xJ$ZQO
+320 0x000046d6 0x000046d6  12   12         ascii  GTWUM>RLMGRG
+321 0x000046e5 0x000046e5  14   15         ascii  ]J1,WZf?(+UGn:
+322 0x000046f4 0x000046f4  44   45         ascii  RA6HBJRB)JE/F?B\nV]4F3J93n-\nR6%J9)J9!B9/9959<
+323 0x00004721 0x00004721  29   30         ascii  !>ED1#;15V'\f!9451%.145(%/(27)
+324 0x00004743 0x00004743   5    6         ascii  /;)%%
+325 0x0000474c 0x0000474c   4    5         ascii  *1&!
+326 0x00004751 0x00004751   4    5         ascii  !"!4
+327 0x000047fa 0x000047fa   5    6         ibm037 8999Ú
+328 0x00004816 0x00004816   4    5         ibm037 8999
+329 0x000048ae 0x000048ae  33   34         ibm037 Uúò0NEXOóÕN§XOF1LzùOI6MiXóFXõ¨QO¨
+330 0x000049e6 0x000049e6  14   15         ibm037 ·#êqd>nd#ðddQ%
+331 0x00004a17 0x00004a17   5    5         ascii  b!{ss
+332 0x00004a25 0x00004a25   6    7         ascii  |ksiwk
+333 0x00004a34 0x00004a34   9    9         ascii  zmajquskk
+334 0x00004a40 0x00004a40   6    6         ascii  _u`uc_
+335 0x00004a49 0x00004a49   6    6         ascii  dhkvcO
+336 0x00004a50 0x00004a50  11   11         ascii  W/kc`8ww]c`
+337 0x00004a62 0x00004a62  11   11         ascii  O!k_>ZeOfY[
+338 0x00004a70 0x00004a70  21   21         ascii  tY*WW\gQN\bw}kP<xJ$ZQO
+339 0x00004a88 0x00004a88  12   12         ascii  GTWUM>RLMGRG
+340 0x00004a97 0x00004a97  14   15         ascii  ]J1,WZf?(+UGn:
+341 0x00004aa6 0x00004aa6  44   45         ascii  RA6HBJRB)JE/F?B\nV]4F3J93n-\nR6%J9)J9!B9/9959<
+342 0x00004ad3 0x00004ad3  29   30         ascii  !>ED1#;15V'\f!9451%.145(%/(27)
+343 0x00004af5 0x00004af5   5    6         ascii  /;)%%
+344 0x00004afe 0x00004afe   4    5         ascii  *1&!
+345 0x00004b03 0x00004b03   4    5         ascii  !"!4
+346 0x00004bc2 0x00004bc2   4    5         ibm037 8889
+347 0x00004cac 0x00004cac  33   34         ibm037 Uúò0NEXOóÕN§XOF1LzùOI6MiXóFXõ¨QO¨
+348 0x00004de4 0x00004de4  14   15         ibm037 ·#êqd>nd#ðddQ%
+349 0x00004e15 0x00004e15   5    5         ascii  b!{ss
+350 0x00004e23 0x00004e23   6    7         ascii  |ksiwk
+351 0x00004e32 0x00004e32   9    9         ascii  zmajquskk
+352 0x00004e3e 0x00004e3e   6    6         ascii  _u`uc_
+353 0x00004e47 0x00004e47   6    6         ascii  dhkvcO
+354 0x00004e4e 0x00004e4e  11   11         ascii  W/kc`8ww]c`
+355 0x00004e60 0x00004e60  11   11         ascii  O!k_>ZeOfY[
+356 0x00004e6e 0x00004e6e  21   21         ascii  tY*WW\gQN\bw}kP<xJ$ZQO
+357 0x00004e86 0x00004e86  12   12         ascii  GTWUM>RLMGRG
+358 0x00004e95 0x00004e95  14   15         ascii  ]J1,WZf?(+UGn:
+359 0x00004ea4 0x00004ea4  44   45         ascii  RA6HBJRB)JE/F?B\nV]4F3J93n-\nR6%J9)J9!B9/9959<
+360 0x00004ed1 0x00004ed1  29   30         ascii  !>ED1#;15V'\f!9451%.145(%/(27)
+361 0x00004ef3 0x00004ef3   5    6         ascii  /;)%%
+362 0x00004efc 0x00004efc   4    5         ascii  *1&!
+363 0x00004f01 0x00004f01   4    5         ascii  !"!4
+364 0x00004f9c 0x00004f9c  10   11         ibm037 999889999³
+365 0x00004fc4 0x00004fc4   9   10         ibm037 8998889³Û
+366 0x00004fd6 0x00004fd6   4    5         ibm037 9998
+367 0x0000507e 0x0000507e  33   34         ibm037 Uúò0NEXOóÕN§XOF1LzùOI6MiXóFXõ¨QO¨
+368 0x000051b6 0x000051b6  14   15         ibm037 ·#êqd>nd#ðddQ%
+369 0x000051e7 0x000051e7   5    5         ascii  b!{ss
+370 0x000051f5 0x000051f5   6    7         ascii  |ksiwk
+371 0x00005204 0x00005204   9    9         ascii  zmajquskk
+372 0x00005210 0x00005210   6    6         ascii  _u`uc_
+373 0x00005219 0x00005219   6    6         ascii  dhkvcO
+374 0x00005220 0x00005220  11   11         ascii  W/kc`8ww]c`
+375 0x00005232 0x00005232  11   11         ascii  O!k_>ZeOfY[
+376 0x00005240 0x00005240  21   21         ascii  tY*WW\gQN\bw}kP<xJ$ZQO
+377 0x00005258 0x00005258  12   12         ascii  GTWUM>RLMGRG
+378 0x00005267 0x00005267  14   15         ascii  ]J1,WZf?(+UGn:
+379 0x00005276 0x00005276  44   45         ascii  RA6HBJRB)JE/F?B\nV]4F3J93n-\nR6%J9)J9!B9/9959<
+380 0x000052a3 0x000052a3  29   30         ascii  !>ED1#;15V'\f!9451%.145(%/(27)
+381 0x000052c5 0x000052c5   5    6         ascii  /;)%%
+382 0x000052ce 0x000052ce   4    5         ascii  *1&!
+383 0x000052d3 0x000052d3   4    5         ascii  !"!4
+384 0x00005375 0x00005375  13   14         ibm037 ÛÛ³³9988899³³
+385 0x00005490 0x00005490  33   34         ibm037 Uúò0NEXOóÕN§XOF1LzùOI6MiXóFXõ¨QO¨
+386 0x000055c8 0x000055c8  14   15         ibm037 ·#êqd>nd#ðddQ%
+387 0x000055f9 0x000055f9   5    5         ascii  b!{ss
+388 0x00005607 0x00005607   6    7         ascii  |ksiwk
+389 0x00005616 0x00005616   9    9         ascii  zmajquskk
+390 0x00005622 0x00005622   6    6         ascii  _u`uc_
+391 0x0000562b 0x0000562b   6    6         ascii  dhkvcO
+392 0x00005632 0x00005632  11   11         ascii  W/kc`8ww]c`
+393 0x00005644 0x00005644  11   11         ascii  O!k_>ZeOfY[
+394 0x00005652 0x00005652  21   21         ascii  tY*WW\gQN\bw}kP<xJ$ZQO
+395 0x0000566a 0x0000566a  12   12         ascii  GTWUM>RLMGRG
+396 0x00005679 0x00005679  14   15         ascii  ]J1,WZf?(+UGn:
+397 0x00005688 0x00005688  44   45         ascii  RA6HBJRB)JE/F?B\nV]4F3J93n-\nR6%J9)J9!B9/9959<
+398 0x000056b5 0x000056b5  29   30         ascii  !>ED1#;15V'\f!9451%.145(%/(27)
+399 0x000056d7 0x000056d7   5    6         ascii  /;)%%
+400 0x000056e0 0x000056e0   4    5         ascii  *1&!
+401 0x000056e5 0x000056e5   4    5         ascii  !"!4
+402 0x00005790 0x00005790   4    5         ibm037 8999
+403 0x0000579e 0x0000579e   4    5         ibm037 8999
+404 0x000057b2 0x000057b2   4    5         ibm037 8998
+405 0x0000585e 0x0000585e  33   34         ibm037 Uúò0NEXOóÕN§XOF1LzùOI6MiXóFXõ¨QO¨
+406 0x00005996 0x00005996  14   15         ibm037 ·#êqd>nd#ðddQ%
+407 0x000059c7 0x000059c7   5    5         ascii  b!{ss
+408 0x000059d5 0x000059d5   6    7         ascii  |ksiwk
+409 0x000059e4 0x000059e4   9    9         ascii  zmajquskk
+410 0x000059f0 0x000059f0   6    6         ascii  _u`uc_
+411 0x000059f9 0x000059f9   6    6         ascii  dhkvcO
+412 0x00005a00 0x00005a00  11   11         ascii  W/kc`8ww]c`
+413 0x00005a12 0x00005a12  11   11         ascii  O!k_>ZeOfY[
+414 0x00005a20 0x00005a20  21   21         ascii  tY*WW\gQN\bw}kP<xJ$ZQO
+415 0x00005a38 0x00005a38  12   12         ascii  GTWUM>RLMGRG
+416 0x00005a47 0x00005a47  14   15         ascii  ]J1,WZf?(+UGn:
+417 0x00005a56 0x00005a56  44   45         ascii  RA6HBJRB)JE/F?B\nV]4F3J93n-\nR6%J9)J9!B9/9959<
+418 0x00005a83 0x00005a83  29   30         ascii  !>ED1#;15V'\f!9451%.145(%/(27)
+419 0x00005aa5 0x00005aa5   5    6         ascii  /;)%%
+420 0x00005aae 0x00005aae   4    5         ascii  *1&!
+421 0x00005ab3 0x00005ab3   4    5         ascii  !"!4
+422 0x00005b4a 0x00005b4a   4    5         ibm037 8899
+423 0x00005c12 0x00005c12  33   34         ibm037 Uúò0NEXOóÕN§XOF1LzùOI6MiXóFXõ¨QO¨
+424 0x00005d4a 0x00005d4a  14   15         ibm037 ·#êqd>nd#ðddQ%
+425 0x00005d7b 0x00005d7b   5    5         ascii  b!{ss
+426 0x00005d89 0x00005d89   6    7         ascii  |ksiwk
+427 0x00005d98 0x00005d98   9    9         ascii  zmajquskk
+428 0x00005da4 0x00005da4   6    6         ascii  _u`uc_
+429 0x00005dad 0x00005dad   6    6         ascii  dhkvcO
+430 0x00005db4 0x00005db4  11   11         ascii  W/kc`8ww]c`
+431 0x00005dc6 0x00005dc6  11   11         ascii  O!k_>ZeOfY[
+432 0x00005dd4 0x00005dd4  21   21         ascii  tY*WW\gQN\bw}kP<xJ$ZQO
+433 0x00005dec 0x00005dec  12   12         ascii  GTWUM>RLMGRG
+434 0x00005dfb 0x00005dfb  14   15         ascii  ]J1,WZf?(+UGn:
+435 0x00005e0a 0x00005e0a  44   45         ascii  RA6HBJRB)JE/F?B\nV]4F3J93n-\nR6%J9)J9!B9/9959<
+436 0x00005e37 0x00005e37  29   30         ascii  !>ED1#;15V'\f!9451%.145(%/(27)
+437 0x00005e59 0x00005e59   5    6         ascii  /;)%%
+438 0x00005e62 0x00005e62   4    5         ascii  *1&!
+439 0x00005e67 0x00005e67   4    5         ascii  !"!4
+440 0x00005fc8 0x00005fc8  33   34         ibm037 Uúò0NEXOóÕN§XOF1LzùOI6MiXóFXõ¨QO¨
+441 0x00006100 0x00006100  14   15         ibm037 ·#êqd>nd#ðddQ%
+442 0x00006131 0x00006131   5    5         ascii  b!{ss
+443 0x0000613f 0x0000613f   6    7         ascii  |ksiwk
+444 0x0000614e 0x0000614e   9    9         ascii  zmajquskk
+445 0x0000615a 0x0000615a   6    6         ascii  _u`uc_
+446 0x00006163 0x00006163   6    6         ascii  dhkvcO
+447 0x0000616a 0x0000616a  11   11         ascii  W/kc`8ww]c`
+448 0x0000617c 0x0000617c  11   11         ascii  O!k_>ZeOfY[
+449 0x0000618a 0x0000618a  21   21         ascii  tY*WW\gQN\bw}kP<xJ$ZQO
+450 0x000061a2 0x000061a2  12   12         ascii  GTWUM>RLMGRG
+451 0x000061b1 0x000061b1  14   15         ascii  ]J1,WZf?(+UGn:
+452 0x000061c0 0x000061c0  44   45         ascii  RA6HBJRB)JE/F?B\nV]4F3J93n-\nR6%J9)J9!B9/9959<
+453 0x000061ed 0x000061ed  29   30         ascii  !>ED1#;15V'\f!9451%.145(%/(27)
+454 0x0000620f 0x0000620f   5    6         ascii  /;)%%
+455 0x00006218 0x00006218   4    5         ascii  *1&!
+456 0x0000621d 0x0000621d   4    5         ascii  !"!4
+457 0x000062b4 0x000062b4   8    9         ibm037 889889³Û
+458 0x00006394 0x00006394  33   34         ibm037 Uúò0NEXOóÕN§XOF1LzùOI6MiXóFXõ¨QO¨
+459 0x000064cc 0x000064cc  14   15         ibm037 ·#êqd>nd#ðddQ%
+460 0x000064fd 0x000064fd   5    5         ascii  b!{ss
+461 0x0000650b 0x0000650b   6    7         ascii  |ksiwk
+462 0x0000651a 0x0000651a   9    9         ascii  zmajquskk
+463 0x00006526 0x00006526   6    6         ascii  _u`uc_
+464 0x0000652f 0x0000652f   6    6         ascii  dhkvcO
+465 0x00006536 0x00006536  11   11         ascii  W/kc`8ww]c`
+466 0x00006548 0x00006548  11   11         ascii  O!k_>ZeOfY[
+467 0x00006556 0x00006556  21   21         ascii  tY*WW\gQN\bw}kP<xJ$ZQO
+468 0x0000656e 0x0000656e  12   12         ascii  GTWUM>RLMGRG
+469 0x0000657d 0x0000657d  14   15         ascii  ]J1,WZf?(+UGn:
+470 0x0000658c 0x0000658c  44   45         ascii  RA6HBJRB)JE/F?B\nV]4F3J93n-\nR6%J9)J9!B9/9959<
+471 0x000065b9 0x000065b9  29   30         ascii  !>ED1#;15V'\f!9451%.145(%/(27)
+472 0x000065db 0x000065db   5    6         ascii  /;)%%
+473 0x000065e4 0x000065e4   4    5         ascii  *1&!
+474 0x000065e9 0x000065e9   4    5         ascii  !"!4
+475 0x000066ec 0x000066ec   4    5         ibm037 9889
+476 0x00006776 0x00006776  33   34         ibm037 Uúò0NEXOóÕN§XOF1LzùOI6MiXóFXõ¨QO¨
+477 0x000068ae 0x000068ae  14   15         ibm037 ·#êqd>nd#ðddQ%
+478 0x000068df 0x000068df   5    5         ascii  b!{ss
+479 0x000068ed 0x000068ed   6    7         ascii  |ksiwk
+480 0x000068fc 0x000068fc   9    9         ascii  zmajquskk
+481 0x00006908 0x00006908   6    6         ascii  _u`uc_
+482 0x00006911 0x00006911   6    6         ascii  dhkvcO
+483 0x00006918 0x00006918  11   11         ascii  W/kc`8ww]c`
+484 0x0000692a 0x0000692a  11   11         ascii  O!k_>ZeOfY[
+485 0x00006938 0x00006938  21   21         ascii  tY*WW\gQN\bw}kP<xJ$ZQO
+486 0x00006950 0x00006950  12   12         ascii  GTWUM>RLMGRG
+487 0x0000695f 0x0000695f  14   15         ascii  ]J1,WZf?(+UGn:
+488 0x0000696e 0x0000696e  44   45         ascii  RA6HBJRB)JE/F?B\nV]4F3J93n-\nR6%J9)J9!B9/9959<
+489 0x0000699b 0x0000699b  29   30         ascii  !>ED1#;15V'\f!9451%.145(%/(27)
+490 0x000069bd 0x000069bd   5    6         ascii  /;)%%
+491 0x000069c6 0x000069c6   4    5         ascii  *1&!
+492 0x000069cb 0x000069cb   4    5         ascii  !"!4
+493 0x00006a96 0x00006a96   4    5         ibm037 8999
+494 0x00006ad2 0x00006ad2   9   10         ibm037 8999889³Û
+495 0x00006c1c 0x00006c1c  33   34         ibm037 Uúò0NEXOóÕN§XOF1LzùOI6MiXóFXõ¨QO¨
+496 0x00006d54 0x00006d54  14   15         ibm037 ·#êqd>nd#ðddQ%
+497 0x00006d85 0x00006d85   5    5         ascii  b!{ss
+498 0x00006d93 0x00006d93   6    7         ascii  |ksiwk
+499 0x00006da2 0x00006da2   9    9         ascii  zmajquskk
+500 0x00006dae 0x00006dae   6    6         ascii  _u`uc_
+501 0x00006db7 0x00006db7   6    6         ascii  dhkvcO
+502 0x00006dbe 0x00006dbe  11   11         ascii  W/kc`8ww]c`
+503 0x00006dd0 0x00006dd0  11   11         ascii  O!k_>ZeOfY[
+504 0x00006dde 0x00006dde  21   21         ascii  tY*WW\gQN\bw}kP<xJ$ZQO
+505 0x00006df6 0x00006df6  12   12         ascii  GTWUM>RLMGRG
+506 0x00006e05 0x00006e05  14   15         ascii  ]J1,WZf?(+UGn:
+507 0x00006e14 0x00006e14  44   45         ascii  RA6HBJRB)JE/F?B\nV]4F3J93n-\nR6%J9)J9!B9/9959<
+508 0x00006e41 0x00006e41  29   30         ascii  !>ED1#;15V'\f!9451%.145(%/(27)
+509 0x00006e63 0x00006e63   5    6         ascii  /;)%%
+510 0x00006e6c 0x00006e6c   4    5         ascii  *1&!
+511 0x00006e71 0x00006e71   4    5         ascii  !"!4
+512 0x00006f1a 0x00006f1a  10   11         ibm037 ³999³9999³
+513 0x0000703e 0x0000703e   4    5         ibm037 9889
+514 0x000070d2 0x000070d2  33   34         ibm037 Uúò0NEXOóÕN§XOF1LzùOI6MiXóFXõ¨QO¨
+515 0x0000720a 0x0000720a  14   15         ibm037 ·#êqd>nd#ðddQ%
+516 0x0000723b 0x0000723b   5    5         ascii  b!{ss
+517 0x00007249 0x00007249   6    7         ascii  |ksiwk
+518 0x00007258 0x00007258   9    9         ascii  zmajquskk
+519 0x00007264 0x00007264   6    6         ascii  _u`uc_
+520 0x0000726d 0x0000726d   6    6         ascii  dhkvcO
+521 0x00007274 0x00007274  11   11         ascii  W/kc`8ww]c`
+522 0x00007286 0x00007286  11   11         ascii  O!k_>ZeOfY[
+523 0x00007294 0x00007294  21   21         ascii  tY*WW\gQN\bw}kP<xJ$ZQO
+524 0x000072ac 0x000072ac  12   12         ascii  GTWUM>RLMGRG
+525 0x000072bb 0x000072bb  14   15         ascii  ]J1,WZf?(+UGn:
+526 0x000072ca 0x000072ca  44   45         ascii  RA6HBJRB)JE/F?B\nV]4F3J93n-\nR6%J9)J9!B9/9959<
+527 0x000072f7 0x000072f7  29   30         ascii  !>ED1#;15V'\f!9451%.145(%/(27)
+528 0x00007319 0x00007319   5    6         ascii  /;)%%
+529 0x00007322 0x00007322   4    5         ascii  *1&!
+530 0x00007327 0x00007327   4    5         ascii  !"!4
+531 0x00007430 0x00007430   8    9         ibm037 ³³999899
+532 0x00007572 0x00007572  33   34         ibm037 Uúò0NEXOóÕN§XOF1LzùOI6MiXóFXõ¨QO¨
+533 0x000076aa 0x000076aa  14   15         ibm037 ·#êqd>nd#ðddQ%
+534 0x000076db 0x000076db   5    5         ascii  b!{ss
+535 0x000076e9 0x000076e9   6    7         ascii  |ksiwk
+536 0x000076f8 0x000076f8   9    9         ascii  zmajquskk
+537 0x00007704 0x00007704   6    6         ascii  _u`uc_
+538 0x0000770d 0x0000770d   6    6         ascii  dhkvcO
+539 0x00007714 0x00007714  11   11         ascii  W/kc`8ww]c`
+540 0x00007726 0x00007726  11   11         ascii  O!k_>ZeOfY[
+541 0x00007734 0x00007734  21   21         ascii  tY*WW\gQN\bw}kP<xJ$ZQO
+542 0x0000774c 0x0000774c  12   12         ascii  GTWUM>RLMGRG
+543 0x0000775b 0x0000775b  14   15         ascii  ]J1,WZf?(+UGn:
+544 0x0000776a 0x0000776a  44   45         ascii  RA6HBJRB)JE/F?B\nV]4F3J93n-\nR6%J9)J9!B9/9959<
+545 0x00007797 0x00007797  29   30         ascii  !>ED1#;15V'\f!9451%.145(%/(27)
+546 0x000077b9 0x000077b9   5    6         ascii  /;)%%
+547 0x000077c2 0x000077c2   4    5         ascii  *1&!
+548 0x000077c7 0x000077c7   4    5         ascii  !"!4
+549 0x000078ac 0x000078ac  12   13         ibm037 Û³³99³998998
+550 0x000078fe 0x000078fe  10   11         ibm037 Û³98888998
+551 0x0000790a 0x0000790a   4    5         ibm037 8889
+552 0x00007919 0x00007919   7    8         ibm037 Û³98889
+553 0x00007938 0x00007938  14   15         ibm037 999³³998889³³Û
+554 0x00007956 0x00007956   9   10         ibm037 998899³ÛÛ
+555 0x00007a30 0x00007a30  33   34         ibm037 Uúò0NEXOóÕN§XOF1LzùOI6MiXóFXõ¨QO¨
+556 0x00007b68 0x00007b68  14   15         ibm037 ·#êqd>nd#ðddQ%
+557 0x00007b99 0x00007b99   5    5         ascii  b!{ss
+558 0x00007ba7 0x00007ba7   6    7         ascii  |ksiwk
+559 0x00007bb6 0x00007bb6   9    9         ascii  zmajquskk
+560 0x00007bc2 0x00007bc2   6    6         ascii  _u`uc_
+561 0x00007bcb 0x00007bcb   6    6         ascii  dhkvcO
+562 0x00007bd2 0x00007bd2  11   11         ascii  W/kc`8ww]c`
+563 0x00007be4 0x00007be4  11   11         ascii  O!k_>ZeOfY[
+564 0x00007bf2 0x00007bf2  21   21         ascii  tY*WW\gQN\bw}kP<xJ$ZQO
+565 0x00007c0a 0x00007c0a  12   12         ascii  GTWUM>RLMGRG
+566 0x00007c19 0x00007c19  14   15         ascii  ]J1,WZf?(+UGn:
+567 0x00007c28 0x00007c28  44   45         ascii  RA6HBJRB)JE/F?B\nV]4F3J93n-\nR6%J9)J9!B9/9959<
+568 0x00007c55 0x00007c55  29   30         ascii  !>ED1#;15V'\f!9451%.145(%/(27)
+569 0x00007c77 0x00007c77   5    6         ascii  /;)%%
+570 0x00007c80 0x00007c80   4    5         ascii  *1&!
+571 0x00007c85 0x00007c85   4    5         ascii  !"!4
+572 0x00007d91 0x00007d91   7    8         ibm037 Û³99988
+573 0x00007db4 0x00007db4   4    5         ibm037 8889
+574 0x00007e1f 0x00007e1f   9   10         ibm037 Û³98899³Û
+575 0x00007e30 0x00007e30   9   10         ibm037 Û³98899³Û
+576 0x000080fd 0x000080fd   6    7         ibm037 ³98898
+577 0x0000820b 0x0000820b   8    9         ibm037 Û³³98889
+578 0x0000823b 0x0000823b   6    7         ibm037 ³99988
+579 0x0000825b 0x0000825b   8    9         ibm037 Û³988988
+580 0x000084c3 0x000084c3   8    9         ibm037 Û³989998
+581 0x00008605 0x00008605  10   11         ibm037 ³³³99889³³
+582 0x00008619 0x00008619   4    5         ibm037 9998
+583 0x00008665 0x00008665   4    5         ibm037 9888
+584 0x00008675 0x00008675  13   14         ibm037 Û³98888999³³Û
+585 0x00008763 0x00008763   4    5         ibm037 9998
+586 0x00008773 0x00008773   5    6         ibm037 9888\b
+587 0x00008781 0x00008781   4    5         ibm037 9888
+588 0x00008985 0x00008985   4    5         ibm037 9998
+589 0x00008991 0x00008991   5    6         ibm037 9998\b
+590 0x000089c1 0x000089c1   4    5         ibm037 9998
+591 0x00008a3d 0x00008a3d   4    5         ibm037 9998
+592 0x00008a6f 0x00008a6f   6    7         ibm037 988889
+593 0x00008b70 0x00008b70   7    8         ibm037 Û³99899
+594 0x00008bf9 0x00008bf9   4    5         ibm037 8999
+595 0x00008c2b 0x00008c2b   4    5         ibm037 9998
+596 0x00008c57 0x00008c57   6    7         ibm037 9889³³
+597 0x00008cf3 0x00008cf3   8    9         ibm037 999889³Û
+598 0x00008d53 0x00008d53   4    5         ibm037 8899
+599 0x00008f9d 0x00008f9d   4    5         ibm037 9889
+600 0x00009123 0x00009123   6    7         ibm037 988899
+601 0x00009355 0x00009355   8    9         ibm037 989³³99³
+602 0x00009367 0x00009367   4    5         ibm037 8998
+603 0x000093a5 0x000093a5   4    5         ibm037 9988
+604 0x0000949b 0x0000949b   6    7         ibm037 ³9999³
+605 0x000094f3 0x000094f3   4    5         ibm037 8999
+606 0x000097d9 0x000097d9   4    5         ibm037 9988
+607 0x000097fd 0x000097fd   4    5         ibm037 9998
+608 0x0000983b 0x0000983b  12   13         ibm037 ÛÛ9988899998
+609 0x0000985b 0x0000985b   8    9         ibm037 999³³998
+610 0x0000986f 0x0000986f  17   18         ibm037 Û³99³³³Û³99889³³Û
+611 0x0000996f 0x0000996f   4    5         ibm037 9888
+612 0x000099cc 0x000099cc  15   16         ibm037 Û³998899³Û³³998
+613 0x000099e7 0x000099e7  14   15         ibm037 Û³998899³³³999
+614 0x000099f7 0x000099f7   4    5         ibm037 9998
+615 0x00009b55 0x00009b55  14   15         ibm037 ³ÛÛ³9888899³ÛÛ
+616 0x00009b84 0x00009b84   9   10         ibm037 Û³999³999
+617 0x00009bf5 0x00009bf5   7    8         ibm037 899³99\b
+618 0x00009db8 0x00009db8   9   10         ibm037 Û³9888999
+619 0x00009dd2 0x00009dd2  15   16         ibm037 Û³98889³98889³Û
+620 0x00009dea 0x00009dea  14   15         ibm037 Û³9888999889³Û
+621 0x00009e02 0x00009e02  13   14         ibm037 Û³98889³999³Û
+622 0x0000a218 0x0000a218  13   14         ibm037 Û³³99988889³Û
+623 0x0000a267 0x0000a267   4    5         ibm037 9888
+624 0x0000a2c5 0x0000a2c5   7    8         ibm037 998899\b
+625 0x0000a363 0x0000a363   6    7         ibm037 8889³³
+626 0x0000a37d 0x0000a37d   6    7         ibm037 ³98889
+627 0x0000a48d 0x0000a48d   4    5         ibm037 9888
+628 0x0000a4e1 0x0000a4e1   6    7         ibm037 8889³³
+629 0x0000a50b 0x0000a50b   4    5         ibm037 8889
+630 0x0000a511 0x0000a511   6    7         ibm037 998899
+631 0x0000a5d1 0x0000a5d1   8    9         ibm037 ³³³98898
+632 0x0000a661 0x0000a661   4    5         ibm037 8999
+633 0x0000a6f9 0x0000a6f9   7    8         ibm037 99899³Û
+634 0x0000a7c9 0x0000a7c9   8    9         ibm037 99899³ÛÛ
+635 0x0000a871 0x0000a871   4    5         ibm037 9998
+636 0x0000a8b7 0x0000a8b7   9   10         ibm037 889899³³Û
+637 0x0000a8c9 0x0000a8c9   4    5         ibm037 8889
+638 0x0000a8dd 0x0000a8dd   7    8         ibm037 98889³Û
+639 0x0000a9bd 0x0000a9bd   4    5         ibm037 9989
+640 0x0000aa97 0x0000aa97   6    7         ibm037 8889³³
+641 0x0000ab29 0x0000ab29   5    6         ibm037 9998\b
+642 0x0000ab3f 0x0000ab3f   7    8         ibm037 ³99988\b
+643 0x0000abef 0x0000abef   4    5         ibm037 9888
+644 0x0000ac0f 0x0000ac0f   4    5         ibm037 9888
+645 0x0000ac4d 0x0000ac4d   4    5         ibm037 8999
+646 0x0000ae55 0x0000ae55   4    5         ibm037 8899
+647 0x0000ae61 0x0000ae61   7    8         ibm037 88999³Û
+648 0x0000af5d 0x0000af5d   4    5         ibm037 9888
+649 0x0000af6d 0x0000af6d   4    5         ibm037 9998
+650 0x0000b01f 0x0000b01f  10   11         ibm037 ÛÛÛ³998889
+651 0x0000b385 0x0000b385   4    5         ibm037 9998
+652 0x0000b455 0x0000b455   4    5         ibm037 8889
+653 0x0000b501 0x0000b501   4    5         ibm037 9998
+654 0x0000b5df 0x0000b5df   4    5         ibm037 9998
+655 0x0000b7db 0x0000b7db   4    5         ibm037 9888
+656 0x0000b941 0x0000b941  11   12         ibm037 ³98889999³Û
+657 0x0000b957 0x0000b957   4    5         ibm037 9888
+658 0x0000b9a9 0x0000b9a9   4    5         ibm037 9988
+659 0x0000b9b9 0x0000b9b9   8    9         ibm037 98888999
+660 0x0000b9cd 0x0000b9cd   6    7         ibm037 888999
+661 0x0000b9df 0x0000b9df   9   10         ibm037 9889999³Û
+662 0x0000bacb 0x0000bacb   6    7         ibm037 988898
+663 0x0000bae3 0x0000bae3   4    5         ibm037 9888
+664 0x0000bb3f 0x0000bb3f   4    5         ibm037 9998
+665 0x0000bb4e 0x0000bb4e  17   18         ibm037 Û³³988899³³³989³Û
+666 0x0000bb78 0x0000bb78   9   10         ibm037 Û³98899³Û
+667 0x0000bd0b 0x0000bd0b   9   10         ibm037 Û³98889ÛÛ
+668 0x0000bd21 0x0000bd21   8    9         ibm037 Û³98899Û
+669 0x0000be05 0x0000be05  12   13         ibm037 ÛÛÛ³³³998998
+670 0x0000be65 0x0000be65   4    5         ibm037 8998
+671 0x0000be79 0x0000be79   4    5         ibm037 8889
+672 0x0000be91 0x0000be91   8    9         ibm037 8889989³
+673 0x0000bea7 0x0000bea7   4    5         ibm037 9988
+674 0x0000bec1 0x0000bec1  10   11         ibm037 ³³998889³Û
+675 0x0000bf8d 0x0000bf8d   8    9         ibm037 98999³³Û
+676 0x0000c04b 0x0000c04b  16   17         ibm037 999³³99888899³ÛÛ
+677 0x0000c2bf 0x0000c2bf   4    5         ibm037 9998
+678 0x0000c34b 0x0000c34b   4    5         ibm037 9998
+679 0x0000c351 0x0000c351   4    5         ibm037 8999
+680 0x0000c379 0x0000c379   4    5         ibm037 8889
+681 0x0000c391 0x0000c391   6    7         ibm037 ³99888
+682 0x0000c3ba 0x0000c3ba  14   15         ibm037 Û³³³9988999³ÛÛ
+683 0x0000c435 0x0000c435   4    5         ibm037 8999
+684 0x0000c487 0x0000c487   8    9         ibm037 88999³ÛÛ
+685 0x0000c51e 0x0000c51e   7    8         ibm037 Û³99889
+686 0x0000c56d 0x0000c56d   4    5         ibm037 8999
+687 0x0000c585 0x0000c585  11   12         ibm037 89998889³³Û
+688 0x0000c5b3 0x0000c5b3   8    9         ibm037 89999³³Û
+689 0x0000c651 0x0000c651  16   17         ibm037 Û³³998889³³9999³
+690 0x0000c671 0x0000c671  12   13         ibm037 8889988899³Û
+691 0x0000c68b 0x0000c68b   4    5         ibm037 8898
+692 0x0000c69f 0x0000c69f   8    9         ibm037 88899989
+693 0x0000c6bb 0x0000c6bb   6    7         ibm037 888999
+694 0x0000c7b5 0x0000c7b5   4    5         ibm037 8899
+695 0x0000c82d 0x0000c82d  12   13         ibm037 Û³9³³³988999
+696 0x0000c8d9 0x0000c8d9   4    5         ibm037 8999
+697 0x0000c901 0x0000c901   8    9         ibm037 99899³³Û
+698 0x0000c933 0x0000c933   8    9         ibm037 ³9988899
+699 0x0000c9d1 0x0000c9d1   5    6         ibm037 9998\b
+700 0x0000c9ed 0x0000c9ed   4    5         ibm037 8899
+701 0x0000ca19 0x0000ca19   6    7         ibm037 ³99889
+702 0x0000cab5 0x0000cab5   4    5         ibm037 8999
+703 0x0000cb5b 0x0000cb5b  12   13         ibm037 ÛÛÛ³999889³Û
+704 0x0000cbc9 0x0000cbc9   9   10         ibm037 9988999³Û
+705 0x0000cbe3 0x0000cbe3   8    9         ibm037 99889³³Û
+706 0x0000cbf9 0x0000cbf9   4    5         ibm037 8889
+707 0x0000cc97 0x0000cc97   4    5         ibm037 8899
+708 0x0000ccad 0x0000ccad   4    5         ibm037 9988
+709 0x0000cce3 0x0000cce3   4    5         ibm037 9998
+710 0x0000cce9 0x0000cce9   4    5         ibm037 8889
+711 0x0000cd05 0x0000cd05   4    5         ibm037 8889
+712 0x0000cdf3 0x0000cdf3   8    9         ibm037 89999³ÛÛ
+713 0x0000ceb0 0x0000ceb0  13   14         ibm037 ÛÛ³³999899³ÛÛ
+714 0x0000cf1d 0x0000cf1d   8    9         ibm037 888999³Û
+715 0x0000cf33 0x0000cf33   7    8         ibm037 88899³Û
+716 0x0000cf4f 0x0000cf4f   6    7         ibm037 98899³
+717 0x0000d267 0x0000d267   6    7         ibm037 ³99998
+718 0x0000d303 0x0000d303   7    8         ibm037 ³99988\b
+719 0x0000d471 0x0000d471   7    8         ibm037 ³99998\b
+720 0x0000d49f 0x0000d49f   5    6         ibm037 9998\n
+721 0x0000d5c3 0x0000d5c3   8    9         ibm037 988899³Û
+722 0x0000d65d 0x0000d65d   5    6         ibm037 9988\n
+723 0x0000d6c9 0x0000d6c9   5    6         ibm037 9888\b
+724 0x0000d7ab 0x0000d7ab   4    5         ibm037 8899
+725 0x0000d917 0x0000d917  10   11         ibm037 999899³³ÛÛ
+726 0x0000d953 0x0000d953   6    7         ibm037 ³99888
+727 0x0000d96f 0x0000d96f   4    5         ibm037 9988
+728 0x0000d975 0x0000d975   7    8         ibm037 89999³Û
+729 0x0000d9c5 0x0000d9c5   8    9         ibm037 88999³³Û
+730 0x0000d9db 0x0000d9db   9   10         ibm037 999899³³Û
+731 0x0000d9ef 0x0000d9ef  10   11         ibm037 ³999889³³Û
+732 0x0000daca 0x0000daca   8    9         ibm037 Û³99888\b
+733 0x0000dae0 0x0000dae0   8    9         ibm037 Û³99888\n
+734 0x0000db6f 0x0000db6f   6    7         ibm037 999³99
+735 0x0000db8f 0x0000db8f   8    9         ibm037 998899³Û
+736 0x0000dc83 0x0000dc83   6    7         ibm037 888999
+737 0x0000dcf7 0x0000dcf7   6    7         ibm037 ³9899³
+738 0x0000ddd5 0x0000ddd5  10   11         ibm037 89988899³Û
+739 0x0000de19 0x0000de19  12   13         ibm037 988899³³99³³
+740 0x0000df35 0x0000df35   7    8         ibm037 88999³Û
+741 0x0000df5b 0x0000df5b   4    5         ibm037 8899
+742 0x0000df87 0x0000df87   4    5         ibm037 9988
+743 0x0000e262 0x0000e262  11   12         ibm037 ³³988889³³Û
+744 0x0000e2e0 0x0000e2e0   6    7         ibm037 889998
+745 0x0000e3e8 0x0000e3e8   4    5         ibm037 9988
+746 0x0000e458 0x0000e458   7    8         ibm037 88899³Û
+747 0x0000e4fc 0x0000e4fc  14   15         ibm037 ÛÛ³99³³98889³Û
+748 0x0000e516 0x0000e516  10   11         ibm037 89988889³Û
+749 0x0000e534 0x0000e534   4    5         ibm037 9988
+750 0x0000e570 0x0000e570   8    9         ibm037 899889³Û
+751 0x0000e652 0x0000e652   7    8         ibm037 98889³Û
+752 0x0000e75a 0x0000e75a   9   10         ibm037 ³998899³Û
+753 0x0000e782 0x0000e782   4    5         ibm037 8999
+754 0x0000e796 0x0000e796   4    5         ibm037 8999
+755 0x0000e7ac 0x0000e7ac   4    5         ibm037 8999
+756 0x0000e7ca 0x0000e7ca   4    5         ibm037 8999
+757 0x0000e852 0x0000e852   4    5         ibm037 9998
+758 0x0000e882 0x0000e882   8    9         ibm037 98899³³Û
+759 0x0000e8fe 0x0000e8fe   4    5         ibm037 8889
+760 0x0000e906 0x0000e906   6    7         ibm037 888998
+761 0x0000e910 0x0000e910   4    5         ibm037 8899
+762 0x0000e998 0x0000e998   9   10         ibm037 8998889³Û
+763 0x0000ea78 0x0000ea78   4    5         ibm037 8889
+764 0x0000eabc 0x0000eabc   4    5         ibm037 9889
+765 0x0000ed20 0x0000ed20   4    5         ibm037 8889
+766 0x0000edfa 0x0000edfa   4    5         ibm037 8999
+767 0x0000eea4 0x0000eea4   6    7         ibm037 899998
+768 0x0000ef10 0x0000ef10   6    7         ibm037 ³99989
+769 0x0000f09c 0x0000f09c  10   11         ibm037 ³³99899³³³
+770 0x0000f0ae 0x0000f0ae   4    5         ibm037 8999
+771 0x0000f442 0x0000f442   4    5         ibm037 9889
+772 0x0000f5d6 0x0000f5d6   8    9         ibm037 99899³ÛÛ
+773 0x0000f5e8 0x0000f5e8   4    5         ibm037 8999
+774 0x0000f632 0x0000f632  10   11         ibm037 8889³³³999
+775 0x0000f668 0x0000f668   4    5         ibm037 8999
+776 0x0000f732 0x0000f732   4    5         ibm037 9998
+777 0x0000f74e 0x0000f74e   8    9         ibm037 89999³³Û
+778 0x0000f7ec 0x0000f7ec   4    5         ibm037 9988
+779 0x0000f7f2 0x0000f7f2   4    5         ibm037 8899
+780 0x0000f894 0x0000f894   8    9         ibm037 ³99889³Û
+781 0x0000f8fa 0x0000f8fa   5    6         ibm037 9888\n
+782 0x0000f90c 0x0000f90c   4    5         ibm037 9988
+783 0x0000f9de 0x0000f9de   6    7         ibm037 999889
+784 0x0000f9ee 0x0000f9ee   4    5         ibm037 9888
+785 0x0000fb0f 0x0000fb0f   9   10         ibm037 ÛÛ³988999
+786 0x0000fb2a 0x0000fb2a   8    9         ibm037 888999³Û
+787 0x0000fb38 0x0000fb38   4    5         ibm037 9888
+788 0x0000fe52 0x0000fe52   7    8         ibm037 99889³Û
+789 0x0000feb0 0x0000feb0   4    5         ibm037 8899
+790 0x0000ff72 0x0000ff72   4    5         ibm037 9888
+791 0x0000ffa0 0x0000ffa0   6    7         ibm037 989998
+792 0x0000fff2 0x0000fff2   6    7         ibm037 988999
+793 0x00010095 0x00010095   9   10         ibm037 ÛÛ³988899
+794 0x000100ba 0x000100ba   6    7         ibm037 ³99988
+795 0x000100ca 0x000100ca   4    5         ibm037 9988
+796 0x000100e4 0x000100e4   5    6         ibm037 9998\b
+797 0x000101ce 0x000101ce  12   13         ibm037 Û³³998999889
+798 0x00010276 0x00010276   8    9         ibm037 ³³998999
+799 0x0001032e 0x0001032e   6    7         ibm037 99889³
+800 0x0001033b 0x0001033b  13   14         ibm037 Û³³³9988889³Û
+801 0x00010350 0x00010350   6    7         ibm037 999888
+802 0x0001039c 0x0001039c   4    5         ibm037 8999
+803 0x000103b2 0x000103b2   4    5         ibm037 8999
+804 0x000103c8 0x000103c8   4    5         ibm037 9998
+805 0x000104e2 0x000104e2   4    5         ibm037 8999
+806 0x000104f0 0x000104f0   4    5         ibm037 9888
+807 0x000105cc 0x000105cc   4    5         ibm037 8998
+808 0x000105dc 0x000105dc   4    5         ibm037 8998
+809 0x000105ea 0x000105ea   4    5         ibm037 8998
+810 0x00010696 0x00010696   9   10         ibm037 888999³³Û
+811 0x00010850 0x00010850   6    7         ibm037 999888
+812 0x00010858 0x00010858  10   11         ibm037 8889999³³Û
+813 0x0001094c 0x0001094c   4    5         ibm037 8889
+814 0x000109da 0x000109da   4    5         ibm037 9998
+815 0x000109e3 0x000109e3  11   12         ibm037 ÛÛ³99888998
+816 0x00010a14 0x00010a14   4    5         ibm037 9988
+817 0x00010ab4 0x00010ab4   4    5         ibm037 9988
+818 0x00010ac2 0x00010ac2   4    5         ibm037 9888
+819 0x00011004 0x00011004   5    6         ibm037 98889
+820 0x0001113c 0x0001113c   4    5         ibm037 9899
+821 0x0001123c 0x0001123c   4    5         ibm037 8999
+822 0x000112c4 0x000112c4   8    9         ibm037 ³³³99888
+823 0x000112f6 0x000112f6   4    5         ibm037 8999
+824 0x00011306 0x00011306   4    5         ibm037 9998
+825 0x0001133e 0x0001133e   8    9         ibm037 88999³ÛÛ
+826 0x00011358 0x00011358   4    5         ibm037 9888
+827 0x00011430 0x00011430   4    5         ibm037 9988
+828 0x0001148e 0x0001148e  14   15         ibm037 899³³³³9999³³Û
+829 0x000114a6 0x000114a6   4    5         ibm037 9998
+830 0x000114ac 0x000114ac   4    5         ibm037 8898
+831 0x0001164c 0x0001164c   4    5         ibm037 9888
+832 0x00011744 0x00011744   6    7         ibm037 ³99988
+833 0x000117c4 0x000117c4   7    8         ibm037 99899³Û
+834 0x000118f8 0x000118f8   4    5         ibm037 9888
+835 0x00011b74 0x00011b74   8    9         ibm037 98889³ÛÛ
+836 0x00011bae 0x00011bae   4    5         ibm037 9889
+837 0x00011bb4 0x00011bb4   6    7         ibm037 8889³³
+838 0x00011bce 0x00011bce  10   11         ibm037 ³³³9999888
+839 0x00011c3c 0x00011c3c   9   10         ibm037 98999³³ÛÛ
+840 0x00011d0c 0x00011d0c   6    7         ibm037 999888
+841 0x00011d2e 0x00011d2e   4    5         ibm037 9998
+842 0x00011d34 0x00011d34   9   10         ibm037 89999³³³Û
+843 0x00011d4a 0x00011d4a   5    6         ibm037 9998\b
+844 0x00011d64 0x00011d64   6    7         ibm037 88999³
+845 0x00011d96 0x00011d96  11   12         ibm037 998899³³ÛÛÛ
+846 0x00011e1e 0x00011e1e   9   10         ibm037 ³99899³³Û
+847 0x00011e4c 0x00011e4c   8    9         ibm037 99888998
+848 0x00011e6c 0x00011e6c   8    9         ibm037 98888998
+849 0x00011e90 0x00011e90   4    5         ibm037 9888
+850 0x00011e9a 0x00011e9a   8    9         ibm037 988999³Û
+851 0x00011eb2 0x00011eb2   4    5         ibm037 9888
+852 0x00011ebc 0x00011ebc   4    5         ibm037 8999
+853 0x00011f76 0x00011f76   6    7         ibm037 ³9999³
+854 0x00011f94 0x00011f94   6    7         ibm037 988889
+855 0x00011faa 0x00011faa   4    5         ibm037 9888
+856 0x00011fc0 0x00011fc0   7    8         ibm037 999889\b
+857 0x00012006 0x00012006   9   10         ibm037 Û³999888\n
+858 0x00012042 0x00012042   4    5         ibm037 8899
+859 0x0001211c 0x0001211c   6    7         ibm037 888999
+860 0x00012150 0x00012150   4    5         ibm037 9988
+861 0x0001226a 0x0001226a   4    5         ibm037 9988
+862 0x0001229c 0x0001229c   8    9         ibm037 889889³Û
+863 0x000122b2 0x000122b2   4    5         ibm037 9888
+864 0x000122f2 0x000122f2   5    6         ibm037 9998\n
+865 0x000123d0 0x000123d0   4    5         ibm037 9998
+866 0x00012580 0x00012580   5    6         ibm037 8899\b
+867 0x00012594 0x00012594   4    5         ibm037 8889
+868 0x00012660 0x00012660   8    9         ibm037 Û³998898
+869 0x000126a6 0x000126a6   4    5         ibm037 8999
+870 0x000126bc 0x000126bc   4    5         ibm037 8899
+871 0x000127a4 0x000127a4   4    5         ibm037 8999
+872 0x000127b4 0x000127b4   8    9         ibm037 Û³998998
+873 0x000127e4 0x000127e4   6    7         ibm037 88899³
+874 0x000128ae 0x000128ae   8    9         ibm037 Û³³99888
+875 0x000128b8 0x000128b8   6    7         ibm037 89999³
+876 0x00012904 0x00012904   7    8         ibm037 ³99998\b
+877 0x00012a1c 0x00012a1c   9   10         ibm037 Û³999888\b
+878 0x00012a3a 0x00012a3a   7    8         ibm037 89999³Û
+879 0x00012af4 0x00012af4   4    5         ibm037 8999
+880 0x00012bdc 0x00012bdc   4    5         ibm037 9998
+881 0x00012d8c 0x00012d8c   6    7         ibm037 89999³
+882 0x00012e26 0x00012e26   4    5         ibm037 8999
+883 0x00012fcc 0x00012fcc   4    5         ibm037 8889
+884 0x000130c8 0x000130c8   4    5         ibm037 8999
+885 0x00013388 0x00013388   4    5         ibm037 9888
+886 0x00013445 0x00013445  12   13         ibm037 ÛÛ³998899³ÛÛ
+887 0x0001345a 0x0001345a  14   15         ibm037 ÛÛ³³9888899³³Û
+888 0x0001363c 0x0001363c   9   10         ibm037 889³999ÛÛ
+889 0x00013664 0x00013664   4    5         ibm037 8889
+890 0x00013678 0x00013678   8    9         ibm037 88899³ÛÛ
+891 0x0001368e 0x0001368e   8    9         ibm037 88999³ÛÛ
+892 0x000136a6 0x000136a6   6    7         ibm037 8889³³
+893 0x000137aa 0x000137aa   9   10         ibm037 Û³99889³Û
+894 0x000137be 0x000137be   8    9         ibm037 988889³Û
+895 0x000137d0 0x000137d0   9   10         ibm037 988889³³Û
+896 0x00013868 0x00013868   4    5         ibm037 8899
+897 0x00013b22 0x00013b22  16   17         ibm037 ³³99³³³998888998
+898 0x00013b6a 0x00013b6a   7    8         ibm037 ³99888\n
+899 0x00013e27 0x00013e27   4    5         ibm037 9988
+900 0x00013f13 0x00013f13   4    5         ibm037 8889
+901 0x00013f1b 0x00013f1b   8    9         ibm037 Û³³99888
+902 0x00013f27 0x00013f27   7    8         ibm037 ³99888\b
+903 0x00013f37 0x00013f37   5    6         ibm037 9888\n
+904 0x00013f4d 0x00013f4d   7    8         ibm037 98889³Û
+905 0x00014051 0x00014051   4    5         ibm037 8999
+906 0x00014171 0x00014171   8    9         ibm037 Û³³99888
+907 0x00014188 0x00014188   8    9         ibm037 Û³99888\b
+908 0x000141c9 0x000141c9   9   10         ibm037 898889³³Û
+909 0x000142eb 0x000142eb   6    7         ibm037 888999
+910 0x0001431b 0x0001431b  10   11         ibm037 ÛÛÛ³999899
+911 0x00014341 0x00014341   7    8         ibm037 999³99\b
+912 0x0001435d 0x0001435d   6    7         ibm037 ³99998
+913 0x00014459 0x00014459   6    7         ibm037 999889
+914 0x000145c7 0x000145c7   4    5         ibm037 8988
+915 0x0001462e 0x0001462e   7    8         ibm037 Û³99988
+916 0x00014655 0x00014655   4    5         ibm037 9998
+917 0x0001479f 0x0001479f   7    8         ibm037 ³99998\b
+918 0x000147cd 0x000147cd   6    7         ibm037 ³99998
+919 0x000148b1 0x000148b1   4    5         ibm037 8889
+920 0x000148cd 0x000148cd   6    7         ibm037 88899³
+921 0x000148fd 0x000148fd   8    9         ibm037 98899³ÛÛ
+922 0x00014939 0x00014939   4    5         ibm037 9899
+923 0x000149eb 0x000149eb   4    5         ibm037 9998
+924 0x00014b73 0x00014b73   4    5         ibm037 9888
+925 0x00014ba5 0x00014ba5   4    5         ibm037 8999
+926 0x00014bed 0x00014bed   8    9         ibm037 888999³Û
+927 0x00014c95 0x00014c95  10   11         ibm037 ³³³9999888
+928 0x00014cb9 0x00014cb9   4    5         ibm037 9998
+929 0x00014cd7 0x00014cd7   5    6         ibm037 9888\b
+930 0x00014dcd 0x00014dcd   4    5         ibm037 8889
+931 0x00014de1 0x00014de1   4    5         ibm037 9998
+932 0x00014de7 0x00014de7   4    5         ibm037 8889
+933 0x00014ebd 0x00014ebd   4    5         ibm037 8999
+934 0x00014f03 0x00014f03   4    5         ibm037 8999
+935 0x00014fd7 0x00014fd7   6    7         ibm037 99899³
+936 0x000150b5 0x000150b5   5    6         ibm037 9998\n
+937 0x00015159 0x00015159   4    5         ibm037 8899
+938 0x0001517d 0x0001517d   6    7         ibm037 998898
+939 0x000151bb 0x000151bb   4    5         ibm037 8899
+940 0x000151c7 0x000151c7   6    7         ibm037 88999³
+941 0x0001522b 0x0001522b   4    5         ibm037 8999
+942 0x0001531b 0x0001531b   6    7         ibm037 8899³³
+943 0x000153ed 0x000153ed   4    5         ibm037 8999
+944 0x00015443 0x00015443   5    6         ibm037 9998\b
+945 0x00015567 0x00015567   4    5         ibm037 9998
+946 0x000155b9 0x000155b9   4    5         ibm037 9998
+947 0x00015657 0x00015657   4    5         ibm037 8999
+948 0x0001567d 0x0001567d  11   12         ibm037 Û³³³998988\n
+949 0x00015755 0x00015755   9   10         ibm037 ³³³99988\n
+950 0x00015a4c 0x00015a4c   8    9         ibm037 99889³ÛÛ
+951 0x00015a7e 0x00015a7e   9   10         ibm037 89999³³³Û
+952 0x00015acc 0x00015acc   8    9         ibm037 98889³³Û
+953 0x00015ae0 0x00015ae0   9   10         ibm037 999899³³Û
+954 0x00015bef 0x00015bef  13   14         ibm037 ÛÛÛ³³³9999899
+955 0x00015c30 0x00015c30   8    9         ibm037 ³99899³Û
+956 0x00015cb0 0x00015cb0   8    9         ibm037 889³9989
+957 0x00015e2e 0x00015e2e   4    5         ibm037 8899
+958 0x00015e5f 0x00015e5f   7    8         ibm037 Û³99888
+959 0x00015fbc 0x00015fbc   4    5         ibm037 8889
