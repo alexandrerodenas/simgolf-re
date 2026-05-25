@@ -1,0 +1,14 @@
+nth      paddr      vaddr bind   type size lib       name                                                                                                                                                      
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  1 0x0000137a 0x1000137a GLOBAL FUNC    0 Sound.dll create_sound
+  2 0x00001a87 0x10001a87 GLOBAL FUNC    0 Sound.dll delete_sound
+  3 0x00001c67 0x10001c67 GLOBAL FUNC    0 Sound.dll init_sound_timer
+  4 0x0000265d 0x1000265d GLOBAL FUNC    0 Sound.dll release_sound
+  5 0x00001fcd 0x10001fcd GLOBAL FUNC    0 Sound.dll protected: static enum SNDERR __cdecl Dll_Wave_Device::create_device(class Wave_Device * *, unsigned long int)
+  6 0x000011c2 0x100011c2 GLOBAL FUNC    0 Sound.dll protected: static enum SNDERR __cdecl Dll_Wave_Device::delete_device(void)
+  7 0x000021cb 0x100021cb GLOBAL FUNC    0 Sound.dll protected: static enum SNDERR __cdecl Dll_Midi_Device::create_device(class Midi_Device * *, unsigned long int)
+  8 0x00001a5f 0x10001a5f GLOBAL FUNC    0 Sound.dll protected: static enum SNDERR __cdecl Dll_Midi_Device::delete_device(void)
+  9 0x000020e5 0x100020e5 GLOBAL FUNC    0 Sound.dll protected: static enum SNDERR __cdecl Dll_Wave_In_Device::create_device(class Wave_In_Device * *, unsigned long int)
+ 10 0x000021fd 0x100021fd GLOBAL FUNC    0 Sound.dll protected: static enum SNDERR __cdecl Dll_Wave_In_Device::delete_device(void)
+ 11 0x00002770 0x10002770 GLOBAL FUNC    0 Sound.dll get_sound_version
+ 12 0x0000179e 0x1000179e GLOBAL FUNC    0 Sound.dll public: static void __stdcall WaveInDeviceMgr::call_back(struct HWAVEIN__ *, unsigned short int, unsigned long int, unsigned long int, unsigned long int)

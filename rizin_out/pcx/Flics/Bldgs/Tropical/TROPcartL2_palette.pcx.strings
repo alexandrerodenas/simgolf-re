@@ -1,0 +1,505 @@
+nth      paddr      vaddr len size section type   string                                                                                                         
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 0x00000010 0x00000010  48   49         ibm037 88088\88Q88H88½00Q80^0Y{8\^8YµYY^8Q^Y\q0Qq\Q{YQy
+  1 0x00000ad3 0x00000ad3   4    4         ascii  gh_H
+  2 0x00000adb 0x00000adb   4    4         ascii  TNkg
+  3 0x00000b24 0x00000b24   5    6         utf8   y]_TÎ blocks=Basic Latin,Latin-1 Supplement
+  4 0x00000b2b 0x00000b2b   5    5         ascii  hTN_T
+  5 0x00000b40 0x00000b40  12   13         ibm037 ¬+BvBÎA2ABßJ
+  6 0x00000b51 0x00000b51   4    4         ascii  yPY_
+  7 0x00000b5c 0x00000b5c   7    7         ascii  o}]qTkh
+  8 0x00000b8f 0x00000b8f  13   14         ibm037 mkdpßpd«)Bè,'
+  9 0x00000bac 0x00000bac  17   18         ibm037 Å¬AZþgè+AòAZARÅ¤ö
+ 10 0x00000bf5 0x00000bf5  19   20         ibm037 Å&AóAZpAR,ÎA2AZAÕ¼o
+ 11 0x00000c12 0x00000c12  34   35         ibm037 bA\m©æpm~qg~q¡ÅØèBkBg?kÇ~æB¶^eBÇ)d
+ 12 0x00000c44 0x00000c44  20   21         ibm037 )gAóAEÉ¼BÅAXAEA\¼Î¤H
+ 13 0x00000c7b 0x00000c7b   4    5         utf8   áhTN blocks=Latin-1 Supplement,Basic Latin
+ 14 0x00000c94 0x00000c94  22   23         ibm037 É'¼vAò©ARß&AZAXA2þ¼d©E
+ 15 0x00000ccb 0x00000ccb  17   18         ibm037 Îßpg¶q~smÅ&¬pAEÞ=
+ 16 0x00000d1a 0x00000d1a   4    4         ascii  ~]ok
+ 17 0x00000d2a 0x00000d2a  17   18         ibm037 gp~´þB¬gAEAW=B´Aô
+ 18 0x00000d67 0x00000d67   5    5         ascii  N]h_g
+ 19 0x00000d8a 0x00000d8a  18   19         ibm037 EqBßdvAW^Aô^AJAN°^
+ 20 0x00000dac 0x00000dac  81   82         ibm037 ¬ÇAZARm¼,A\þBÎA2AZ¼A\¼A7¼,gÇÁ=ÉgÇÅ)=e`þ?ÇËþCd,ÅçB¬þ`m~q¶m¶~AJ¶¬èÎaAJ¶AN^AGAN=~AG¶
+ 21 0x00000e0d 0x00000e0d  81   82         ibm037 =+AòA3vAB¼¬Aòog,B2þAZ©BZ¼?©?'Ç¬)B`mp`«=~m¡')ÉB=èþ'`Ç=~m¶B~m'ß¬ØABvANmAJAW=~Þ¶A\Þ'
+ 22 0x00000e6e 0x00000e6e  89   90         ibm037 )pARAò¬¤¼AB¼þË&AXA2AòA2þAòAóAòþ¶,B¬dÅ'Bm¶B¡~u`=`qþ='èÎBÅ,g¶mB~xdß)AEAòAXmuAJ~¶m~AX~dAJxAE
+ 23 0x00000ed7 0x00000ed7  91   92         ibm037 )`A\gAóvAódAB£ABgÅA2A6¤AóC\¼AXk¼vÅÎÉÁ=gu«m=g`qpþ«ËgÇþÎ,'=ÞAEAG«èßo¼AXmAGAù¨AB~xAXxq¨«AEAGÁ,
+ 24 0x00000f52 0x00000f52  78   79         ibm037 ¼)èA\AZARB\þA\´AX¼ABopÅØÅ`Ç`Ç«dþBp'ÁmÉvm~«eº~AGx)ç)þAX´AEBGAùAGqARAEÞAE'BEèþsþ
+ 25 0x00000fb0 0x00000fb0   5    5         ascii  qehN_
+ 26 0x00000fc4 0x00000fc4  73   74         ibm037 BZA\pA\¡AX^m¼Åçm=É)?Îd`þÎß¬èd`g¬Çè)BmAGÞ'ßÎÅABmAEB´AùmÁAX¶þ¡ÉABAE`~Á?AXmþ
+ 27 0x0000102d 0x0000102d  81   82         ibm037 þA\è¬A2AZA\vAX=~Aù´ARAóo~e«ÅÎd,)BÎgþ'þßÅèÅd«Þm~Á)¬¼¶AGmÞAXÞË~kAJAG+g©d¡Ç`AJB`Þ'Aó
+ 28 0x0000109c 0x0000109c  81   82         ibm037 Bþ¼BÇAXA\AXB~AJmAR´)AóAG¶AX£ßÅ¬èÅþ~Bm=«É~pdqB^?èÇÞABAùx=ANB¨AJm¤¡Çv~m¶)¬AJ¶þk+¼¡¬
+ 29 0x000010fb 0x000010fb 105  106         ibm037 +oAR^¼ßèAE¡~^eANAGm´mAR¶B=A5AX~AGmAXÞè©?AòAGÁABAR´Aó,è`mgè,?~mæ¡m¶mèç,~AùAJqAR¶q¶`AùAJÇþgqAXeÁ~d¼¨è¡uÉg+d
+ 30 0x00001184 0x00001184  85   86         ibm037 ôeANÞB)A2AXeAùAGxAEÁv¼&¼'gAô°^'Ç=poÅØèBþm´~`ç¬gAòAGmBGAE©)¶AEmAG~mAR?þ´e¡þß¼¶´AEÉ,¼¬Ø
+ 31 0x000011f9 0x000011f9  88   89         ibm037 A{ANAGmÅßARAXAô^AG«AE´ÁpÎoAB&`~AG´kmBþè,`¡´~q+Î`©ANm´^ANAGÁBv^´°~AùBmgÅARÞ+pvÞAN^ÞAJg¤Îç
+ 32 0x00001261 0x00001261 102  103         ibm037 ms=g¼)e~qAùe°AN¶AùgoAÓAòAôÁ~ARq¶ÇgAB¬gËÎA2A6A2©me°mAE¶´ÞCßjAùBômAùAõe^Þu¶emAG´AG~=´þ¬vËþAEemAù´AE«+µ?o
+ 33 0x000012e7 0x000012e7  88   89         ibm037 RB&AJËp~Ç¼)ÅAE)oÉ)×AAB2A5A2A5AXAJ´ANAG?,èdABAJAW°BNm¶^¡AR=Ë¶qAB´ËAJ´em+þAEÁ=B~AX¶Ç¡Bþpçd
+ 34 0x00001370 0x00001370  72   73         ibm037 ×BAAZA5A2A5A2C6AEdçÇ©AòANmAùAG~´m¶A\'Î¡mAJ~`ABAGAJAE=m¡ÇþmÁAJ¶ÉAEx¡©+ßþÅ
+ 35 0x000013ca 0x000013ca 101  102         ibm037 àATABAEÇgkÉ¤ß¤AJu=ÁBRÎd¼É©)¬¡¾ATBAACA2B5B2AXAJ©+ßþAEAXmBGBEÁ~AXq¡þÅAòÞÁv~AEAJ«¤ABqvB`ABv,©`¨Aù='kÎ£¬+
+ 36 0x00001453 0x00001453  91   92         ibm037 qAB'Aòe=~æAOB¹AAAFASA5A2A4A0AÔ¨Bç'¤AXmANAGANAù=~AJ~BEmAò¡Ç~mÞAJÇgABu¼k+B©¼¤Å¤AJþAEx«ARBÎo)p
+ 37 0x000014be 0x000014be   4    5         ascii  *<V$
+ 38 0x000014c4 0x000014c4 110  111         ibm037 ]¾A{^e~AEÁ¶BÎAX`AR`Ç^eAQA¹ASAQA¹AQAKAFA2A5A0AJÎ+,ÅAR´AN´ANAX´AEAù¶AE¶?ABAGg~ÇqAJË`~?AB`çvg«©«¼Aòx¼qþAR¶kþ¬¤dç'
+ 39 0x00001549 0x00001549 102  103         ibm037 ÈAQAB^BôAGAEB&A\´B¶ÇAóB¹CQA¹AIACA}A2AùeÇBÅ¼AEAùs¶AXm¶AùAGAXu+¼¶Þ¶)gAE«¡qÉAE`¬þ)~þ+kAJ¶AJÞ=ARB~¶Ëp¼Ç?+ß
+ 40 0x000015c8 0x000015c8 101  102         ibm037 ¸AQAG^AG¶pþA\´=AEAQB¹CQA¹AQAAAUA5u)Á=ÞABAXe´AXm~smAXAGmAGp¨AJÁ~¶~¡'ÅAòm=mÇouÇ`m¡A\¡`AJAGAJAN=uAGm~Á&»
+ 41 0x00001647 0x00001647  96   97         ibm037 -AKAùs=&ç¶AE¾A¹AQF¹AYAZÞm&çÇ¶AX=~ANAJAùÞ=AJuËAG^AôAùËx¶ÞAJ`+¼BÎþÇu¼ßþ=`AJmqAòæAJAN=¶AG«AEe=¼AAAF
+ 42 0x000016b7 0x000016b7   4    5         ascii  G@D3
+ 43 0x000016cc 0x000016cc   9   10         ibm037 A¹BQAKAQA
+ 44 0x000016d6 0x000016d6  82   83         ibm037 ×AIA¹AZ^É=qgAóAJ¨ANÞAN¶~Aù¶q¶Ë¶AXºA{´AEAX~ÁAEgpþçd¶ÎoÅÎAB)ÅÞ«ABAJÁ©u«AE)¬AE¯APAQAI
+ 45 0x00001741 0x00001741   5    5         ascii  !$!$0
+ 46 0x00001746 0x00001746  97   98         ibm037 bAÿAûBAC¹AIACAA®ACA¹ASAQ¾AJxm´AGAEAX´ÁAJB´ANm~AùÞAGºeAù´¡AJÞAN¶ç,pÅpÅß£¬,Åç¡AB`~emAòÇè,jAÿASA¹AF¿
+ 47 0x000017c0 0x000017c0   4    5         ascii  )-!3
+ 48 0x000017c6 0x000017c6  99  100         ibm037 .ACAAACA¹AKA¹ACAAnA}AFA¹AQzîBÈmºAXAG=AJB^AG=ÞAùÞAG~qAùm`AGAEBNºÞBþ¼¬çABÅd`çBþÅ¼`ËAJ=BgÎAIAYASAHBCAS
+ 49 0x00001843 0x00001843   4    5         ascii  !$3@
+ 50 0x00001849 0x00001849  14   15         ibm037 nÝAHAúAKAF®ACA
+ 51 0x00001858 0x00001858   9    9         ibm037 AÒAFA¹AQ¯
+ 52 0x00001863 0x00001863  61   62         ibm037 åæ^°Aôm´ANemAô´Aù~eANAE¶ÞÁAGAXe¶´~ARÅß¤Îµdçd',pßÎAB)¡kè£BTA¹A
+ 53 0x000018a1 0x000018a1   8    9         ibm037 AAALAYAF
+ 54 0x000018c3 0x000018c3   6    6         ascii  `!$3-)
+ 55 0x000018ca 0x000018ca  22   22         ibm037 ASAQAúAK×®AVALAÖ×A¹AQ#
+ 56 0x000018e0 0x000018e0   4    4         ascii  $3GV
+ 57 0x000018e4 0x000018e4  57   58         ibm037 se´AN=~sþAùs=AGB^´)¶AEe´eþAXg¬pÅ¼o+adþvBè¼Å¤`èµAIATASAM®A
+ 58 0x0000191e 0x0000191e   7    8         ibm037 AYAÿACn
+ 59 0x00001935 0x00001935   4    5         ascii  \tG@$
+ 60 0x0000193b 0x0000193b   7    8         ascii  WDur`!3
+ 61 0x00001948 0x00001948   6    7         ibm037 nASAKA
+ 62 0x0000194f 0x0000194f  11   11         ibm037 ALCP×A¹AQ-B
+ 63 0x0000195a 0x0000195a   4    4         ascii  !;GV
+ 64 0x0000195e 0x0000195e  60   61         ibm037 ©p¨`mAù«þAExAXAGeÞ~g¶B=AJBþ©ßABþ+ØÎþ¼è+p`¤`çØ¥AOASAQ×AAAMBYA
+ 65 0x000019b3 0x000019b3   5    6         ascii  uOiKV
+ 66 0x000019c4 0x000019c4  12   12         ibm037 ALBPAÒ×AúAQ-
+ 67 0x000019d0 0x000019d0   5    5         ascii  !3!?;
+ 68 0x000019d5 0x000019d5  56   57         ibm037 ±ØqAR~mÞ`ABAùqAEB´AEÇ¬¶`u~èAB¨ÉpèÅAB)¬'è¼'+ØdAQATAúAFAAA
+ 69 0x00001a36 0x00001a36  20   20         ibm037 nÊnB¹×APAZALAÒ·ASAI|
+ 70 0x00001a4f 0x00001a4f  57   58         ibm037 æ~gqè©AE)©¡¨AXm`¼þ¼dçB¡þ¼)ÉABÎa'+¼dÅdß¥BTAQBCALCSBYAFAS]Ý
+ 71 0x00001aa3 0x00001aa3   5    6         ascii  [V!$?
+ 72 0x00001abe 0x00001abe   7    7         ascii  !3?<GyH
+ 73 0x00001ac5 0x00001ac5  43   44         ibm037 d¶evÇ'ARmg¶?©p&¤od¼ÅdAEgpÎ+¼þègßjAQATA¹AF®A
+ 74 0x00001af1 0x00001af1  18   19         ibm037 ASBYBSAYA¹AS½Ñ®ACD
+ 75 0x00001b1d 0x00001b1d   4    5         ascii  `=$*
+ 76 0x00001b28 0x00001b28   4    4         ascii  $@G@
+ 77 0x00001b2c 0x00001b2c  13   14         ibm037 AQAK»Ð¸ÍAÒAFb
+ 78 0x00001b41 0x00001b41   6    6         ascii  !;G;<?
+ 79 0x00001b47 0x00001b47  60   61         ibm037 Øg¨B=AJ`þqèAJdçþdo¼èß¼þ©gçBþ?'ç,AIATASAQBCAQCSA¹ASAYASAörÊ$A
+ 80 0x00001b84 0x00001b84   8    8         ibm037 AC¿ACAPÑ
+ 81 0x00001b9f 0x00001b9f   5    5         ascii  hTNH_
+ 82 0x00001bb1 0x00001bb1   4    4         ascii  $\a\n`
+ 83 0x00001bc9 0x00001bc9   5    5         ascii  3?;<!
+ 84 0x00001bce 0x00001bce  43   44         ibm037 dèßABeB~èAEÞekçdAB¬,þ,ARm+þ'`~èç¤AOASA¹×AAA
+ 85 0x00001bfa 0x00001bfa  19   20         ibm037 ASAYBSA¹BSA¹AD]»ÑÍA
+ 86 0x00001c12 0x00001c12   4    4         ibm037 AAAC
+ 87 0x00001c29 0x00001c29   5    5         ascii  he~N]
+ 88 0x00001c38 0x00001c38   4    5         ascii  $<O\a
+ 89 0x00001c3d 0x00001c3d   4    5         ascii  {3$\a
+ 90 0x00001c4a 0x00001c4a  11   12         ibm037 .AIASA¹AKAH
+ 91 0x00001c59 0x00001c59   4    5         ascii  3;3;
+ 92 0x00001c7f 0x00001c7f  23   24         ibm037 AHBCAQDSA¹AQAIBö[¸»·ADA
+ 93 0x00001c9c 0x00001c9c   6    7         ibm037 !ÑAMAY
+ 94 0x00001cd2 0x00001cd2  13   14         ibm037 »ASA¹AKB¹Aùª\n
+ 95 0x00001ce0 0x00001ce0   6    7         ascii  %G<3V!
+ 96 0x00001cf7 0x00001cf7  55   56         ibm037 Bþ?v`~AE+Øk¤AOASA¹×AAAMAYASAúASAQA¹AIAöAD]ADÐ¸]AD#BCALB
+ 97 0x00001d44 0x00001d44  21   21         ibm037 èç+ÎþAEARAGu~ÁB´~`B=æ
+ 98 0x00001d81 0x00001d81  35   36         ibm037 *ßþAE`dAB'©?ç¡dÅ'+Î¨)`¬ÎAQAOASAHAAA
+ 99 0x00001da5 0x00001da5  24   25         ibm037 CYB¹AQAúAöAD#!ª[Ð¸zhÊA}n
+100 0x00001dbe 0x00001dbe  11   12         ibm037 éB4z±AIAQA4
+101 0x00001dd7 0x00001dd7  26   27         ibm037 ÇAJAXAôAGkÇþp~´mAôAG=eÉ¬æC
+102 0x00001e24 0x00001e24  49   50         ibm037 þÇç¯BSAQ×AAAMASCYASAQA¹AúÐ[$Ñ.ªBÐ»BÊnê.A3A4A¹±ÈB÷
+103 0x00001e63 0x00001e63  24   24         ibm037 AG=s¶)þÅ?ANÞ^AGxAE¶)`Ø+î
+104 0x00001eae 0x00001eae  12   13         ibm037 ¼AIAYAúAFAAA
+105 0x00001ebb 0x00001ebb  12   13         ibm037 DYAÓAYA¹AK]|
+106 0x00001ede 0x00001ede   9   10         ibm037 ÈAQAHAûAö
+107 0x00001f0f 0x00001f0f  17   17         ibm037 bÊ»AöBÐÅod&¤vmum©
+108 0x00001f20 0x00001f20   5    6         ascii  %*GV%
+109 0x00001f29 0x00001f29   4    4         ascii  $fvY
+110 0x00001f3d 0x00001f3d  15   15         ibm037 SAQBCAMASFYADAK
+111 0x00001f4e 0x00001f4e  24   24         ibm037 .BÊ®AABS¸·AI]AVAÕ\aAÒA3AO
+112 0x00001f67 0x00001f67   8    9         ibm037 ±AOAûA0y
+113 0x00001f82 0x00001f82   4    4         ascii  ]ygq
+114 0x00001f97 0x00001f97  22   23         ibm037 nAFA¹Aöj¤Ø&oþg¡eÞAùAôo
+115 0x00001fc7 0x00001fc7  19   20         ibm037 ATAúAF®APDSBYASBö¸|
+116 0x00001fec 0x00001fec  10   11         ibm037 ®»®-ÈADAYA
+117 0x00002008 0x00002008  22   22         ibm037 lÇ`Ámvç`BdANBºAG¶mþèØæ
+118 0x00002020 0x00002020  24   25         ibm037 #ABAS¾Aó?èþ,p¼ÁgAJÞBGAôj
+119 0x00002050 0x00002050  22   23         ibm037 SAQBCAÿAYASAúCSAKA¹Ð!Ñ
+120 0x00002068 0x00002068  33   34         ibm037 ®APAÒAC¿nñ\bÑACÊÑA}AÖêB}AM-±]AIAQy
+121 0x000020ce 0x000020ce   4    5         ascii  VGO\a
+122 0x000020d3 0x000020d3   4    4         ascii  )mTH
+123 0x000020d9 0x000020d9  11   12         ibm037 ÎdçµASAYA¹A
+124 0x000020e5 0x000020e5  22   22         ibm037 AAAPAYAÓASB¹BYAHAD[_.b
+125 0x000020fc 0x000020fc  16   17         ibm037 ACAÒAVAPBÝnâÝAYA
+126 0x0000210d 0x0000210d   5    6         ibm037 ®bAVA
+127 0x00002113 0x00002113  16   17         ibm037 ACAL¯ADå±BIAQyAZ
+128 0x00002131 0x00002131   6    7         ibm037 ·ALASA
+129 0x00002148 0x00002148  35   36         ibm037 {AN¶mAE¼þÅAXAEÇ~Aò=q¶´Aò´Ç©¡Î¡°AôÐ|
+130 0x0000216d 0x0000216d   4    5         ascii  *GV=
+131 0x00002173 0x00002173  44   45         ibm037 þ),þ+j¯AYASAHBCAQASBYASAúAYA¹ª»AD¸àÊbAPAÒAVB
+132 0x000021a0 0x000021a0  23   24         ibm037 nBbhASA¹ACAFAYAPA}AI]·A
+133 0x00002208 0x00002208   4    5         ascii  `Gt2
+134 0x0000220e 0x0000220e   4    5         ascii  VG@\a
+135 0x00002213 0x00002213  11   12         ibm037 è+ØtAQATA¹A
+136 0x0000221f 0x0000221f  24   25         ibm037 AAALBYAQAHÝb»hÊ·BS¸.nACA
+137 0x00002238 0x00002238  26   27         ibm037 ×APAZAFÑbACîADÐA¹AYAÕAV]¯A
+138 0x00002257 0x00002257  10   11         ibm037 È¯AIAÔB3A2
+139 0x00002288 0x00002288  36   36         ibm037 AG«ÞAG^AJdØARAEAJ^ºAùÞd¼dpAò)è¼AQBTî
+140 0x000022ac 0x000022ac   5    6         ascii  ;<tO\a
+141 0x000022b7 0x000022b7  11   12         ibm037 Î®APA¹AMAAA
+142 0x000022c3 0x000022c3  30   31         ibm037 CYAFnA}APBUB}AYADÐzÊAC®·×AZALA
+143 0x000022e2 0x000022e2   5    5         ibm037 bALAY
+144 0x000022e8 0x000022e8  33   34         ibm037 [ÐAZAÕAÿAQAFB®b»-ÈAIAQAÒA3AÒA3AZ½
+145 0x0000232f 0x0000232f  42   42         ibm037 BÇ)©«)~ÎABANÁ^ANè&A\´sAùAôm¶þvAòB=p¥AYATBS
+146 0x00002359 0x00002359   7    8         ascii  $3!$VtD
+147 0x00002365 0x00002365  45   45         ibm037 ®AOAú×ACALBYAS·AAAÖA²DVAUASBÐ¸ÑnÊ×AFAÒ·$\eAYAÓ
+148 0x00002393 0x00002393  27   28         ibm037 AöÐALASAHAC®nb»w±¸BOC2AZµÏa
+149 0x000023d5 0x000023d5  46   46         ibm037 FATAùÎÇËÁ©þ&ABB~Þm`ÇAòANCGBmAóÇÅ~¡ASA0A4AQALAQ
+150 0x00002405 0x00002405   6    7         ascii  !3GV{\a
+151 0x0000240e 0x0000240e   6    7         ibm037 [AHAAA
+152 0x00002415 0x00002415  38   38         ibm037 CYASªAAAÕAÖAVAUAVCUA¹±ÐzÑbÊAP×»\e\aÑAYAK
+153 0x00002474 0x00002474   4    4         ascii  D/"|
+154 0x00002479 0x00002479  54   54         ibm037 PAÕAP®A}AOAS¼)ekÇ¼'ÇAGAE¶=ÁAXAôANÁ~AR=meÇAQATB4AÿACAAb
+155 0x000024bb 0x000024bb  35   36         ibm037 »nAQAYASBY·®AÖA²CVAUAVBUÐ±ADªêBÊACê
+156 0x000024e0 0x000024e0   7    7         ibm037 AFAYA2¯
+157 0x000024e8 0x000024e8  27   28         ibm037 AD]AC®CCA}¿»§-ÈAIAHA4AZ£aB;
+158 0x0000251b 0x0000251b   5    5         ascii  BWB2Z
+159 0x00002528 0x00002528  44   45         ibm037 ASAL·v)=©g¶m=AGgÇAùº^¶`©eÇ¼AÿAYAÿA3AYAIA}ACÍ
+160 0x00002555 0x00002555   6    6         ascii  *?3$GV
+161 0x0000255c 0x0000255c   4    4         ascii  GO{:
+162 0x00002563 0x00002563  24   24         ibm037 ú½BSAY½®AÖBVAUAVAÖCVAUh#
+163 0x00002582 0x00002582  34   35         ibm037 ÍBYAZAUAQîAD[DC®ÝBbÝýAIAûAÔÝrBa_rA
+164 0x000025a9 0x000025a9   6    7         ibm037 AÕAMAV
+165 0x000025c5 0x000025c5   9    9         ascii  /|IWZWB7/
+166 0x000025d1 0x000025d1  50   50         ibm037 êASALAAA}£´=m¡Ç~AJdÅAZAù´ARmèvAMAüAIASAIA3A0AYACA}
+167 0x00002607 0x00002607   6    7         ascii  *3;VGV
+168 0x0000260f 0x0000260f  29   29         ibm037 #AK»ÑAQAYAQÊAVAÖAVAUDVA²AVAUh
+169 0x00002631 0x00002631  19   19         ibm037 ALAHêAHAYAÿAUAZA¹AD
+170 0x00002645 0x00002645  26   27         ibm037 ADÐÝ®CC¿nÊALA÷AöA÷AO·×BalA
+171 0x00002688 0x00002688  14   14         ascii  pDLZiWLB @V@G{
+172 0x000026ae 0x000026ae  21   22         ibm037 £AÖAüAPBQAKB4ASAC¿êà\n
+173 0x000026c5 0x000026c5   5    6         ascii  @<G3<
+174 0x000026cd 0x000026cd  31   31         ibm037 CÊBD!ACAÖIVAÖî-rAÿCSBYBVAQAIAC]
+175 0x000026ed 0x000026ed  21   22         ibm037 ]ÐECn»t§AHB¯>AHAM_ÏµA
+176 0x00002703 0x00002703   9   10         ibm037 A{A1A5B\A
+177 0x00002723 0x00002723  19   19         ibm037 ¸]AQî-tA}AI×»B<BïB<
+178 0x0000273c 0x0000273c  44   44         ibm037 ÑA}AAAüAAAóÉg?AB¤dA\k~þBPAûAPACAÿAQAKAQB4AAb
+179 0x0000276f 0x0000276f   4    4         ascii  O<3=
+180 0x00002775 0x00002775  43   43         ibm037 Êb½Ð"nAÖAVAUGVAÖAUîåîA¹ADAYAúAZAUALA¹AF®AA¸
+181 0x000027a1 0x000027a1  28   29         ibm037 AIzAC®APA6A2AÕh|B§·AûAOAMBaB
+182 0x000027be 0x000027be  14   15         ibm037 eA{AGb.ÝA5A2A6
+183 0x000027ee 0x000027ee   6    7         ascii  IBLWL+
+184 0x000027f6 0x000027f6   4    4         ascii  2$*8
+185 0x000027fd 0x000027fd  40   41         ibm037 üAABQ¨Ç¶èçARkABAQAüBPAVAPAÒATAÿA4A0A4A}b
+186 0x0000282d 0x0000282d   5    5         ascii  @<Vt\n
+187 0x00002833 0x00002833  22   22         ibm037 AK¸ÑACAÖAVAUAVAUGVA}ÀÈ
+188 0x0000284a 0x0000284a  17   18         ibm037 ADÐAYAÖAVA¹¯ACB®A
+189 0x0000286e 0x0000286e  10   11         ibm037 AH§AFBHAûC
+190 0x000028ab 0x000028ab   5    6         ascii  BWLI)
+191 0x000028b1 0x000028b1   5    5         ascii  2$*\a\n
+192 0x000028b9 0x000028b9  44   45         ibm037 bAQA¹ATAùAJgÎARAúATAIA}APBZAPAÿAYAöA3A4AÒA}$
+193 0x000028eb 0x000028eb   7    7         ascii  %\e\nG\tOG
+194 0x000028f2 0x000028f2  49   49         ibm037 Ð¸ÊAUAÖAVAUBVAUAVAUAVA²BVAÖAM ï-½#AÕAÿAI×ÝAABwAA#
+195 0x00002934 0x00002934   5    6         ibm037 2½AMF
+196 0x0000293a 0x0000293a  12   13         ibm037 BWnÑbÑAMA5AZ
+197 0x00002970 0x00002970   7    8         ascii  LV@=#*0
+198 0x0000297b 0x0000297b  46   46         ibm037 AIAKA¹AIASAXAÓASAHA¹AIAPALAÒALAFAHA0AQAÒA0A4AC
+199 0x000029b7 0x000029b7  22   22         ibm037 rÊbAÖAVAUAVAUCVAUBVCÖª
+200 0x000029d2 0x000029d2  34   35         ibm037 ªAYAC®ý>ý>Aü§>AûAOA0§Æ×A²A6AÕ×A6×G
+201 0x000029f5 0x000029f5  11   12         ibm037 BWA5bÊÑAMA6
+202 0x00002a24 0x00002a24   8    8         ascii   ,/BWB5L
+203 0x00002a3d 0x00002a3d  39   39         ibm037 A¹AQ×AAAKAIAPALAZACBAAÿA¹A0B4A0·.ÍrªÍï\n
+204 0x00002a64 0x00002a64   4    5         ascii  0Kt\t
+205 0x00002a6a 0x00002a6a  19   19         ibm037 bÊbA²AVAPCVAUCVBÖÝÑ
+206 0x00002a7d 0x00002a7d   6    7         ascii  +=;?8\v
+207 0x00002a84 0x00002a84  29   30         ibm037 bA}BA>ì>B§>AûD§AÕA2AûALðAÕA2G
+208 0x00002aa2 0x00002aa2  11   12         ibm037 AWA1A6bÊ$AM
+209 0x00002ad6 0x00002ad6   4    4         ascii  5/7B
+210 0x00002add 0x00002add   4    5         ascii  /KZV
+211 0x00002aeb 0x00002aeb  43   44         ibm037 êAAA}ACAAACAKAIAPAFACAAACALAYBÒB4AYAKBàÍ×B»
+212 0x00002b1d 0x00002b1d  17   18         ibm037 ÊtALAÖAVAUFVAÖAV»
+213 0x00002b30 0x00002b30   6    6         ascii  /BLt`B
+214 0x00002b80 0x00002b80   7    7         ibm037 »AMAÕAC
+215 0x00002b8b 0x00002b8b   9   11         utf8   ," ,7IiW0
+216 0x00002b9b 0x00002b9b   4    4         ascii  $\f\a[
+217 0x00002ba3 0x00002ba3  24   25         ibm037 A¹AIBA®AFAKA¹AMAÖB4A2AY±
+218 0x00002bc6 0x00002bc6  18   19         ibm037  ¯Aö½AUAVBUCVBÖAU!
+219 0x00002bdb 0x00002bdb   7    7         ascii  7LRW`VB
+220 0x00002bf6 0x00002bf6  11   12         ibm037 A1A\A5BbÑAP
+221 0x00002c0e 0x00002c0e  15   16         ibm037 êb¼v¼A\°^mhjeA\
+222 0x00002c33 0x00002c33   8    8         ascii   5BDID\a0
+223 0x00002c3d 0x00002c3d   5    6         ascii  t!#3@
+224 0x00002c44 0x00002c44  30   30         ibm037 AQB¹AMAAACAQA¹AQAÖAUAÖB3AûA÷§±
+225 0x00002c6a 0x00002c6a   4    4         ascii  t\a%G
+226 0x00002c6f 0x00002c6f  17   18         ibm037 ªÊAVAUAPAUBVAÖAV»
+227 0x00002c82 0x00002c82  11   12         ascii   " 7IWBi`;A
+228 0x00002cb1 0x00002cb1  21   21         ibm037 n.nA}AM©½hAMA3AóeBZAX
+229 0x00002ccd 0x00002ccd   9   10         ibm037 ¸ASAIBÕ»B
+230 0x00002cdc 0x00002cdc   4    4         ascii  2LB/
+231 0x00002ce4 0x00002ce4   4    5         ascii  \e`$3
+232 0x00002ceb 0x00002ceb  35   36         ibm037 AS½ACB¹AHAöA¹AVAUAÖBVA²A3AÔAOAûAOÈ#
+233 0x00002d10 0x00002d10   5    6         ascii  \a\e\n0t
+234 0x00002d18 0x00002d18  15   16         ibm037 CbACAÕAÖBVAÖAV@
+235 0x00002d2c 0x00002d2c  10   11         ascii   7BD:8R`;A
+236 0x00002d6d 0x00002d6d   9    9         ibm037 A5AMBÃ]Ð¯
+237 0x00002d78 0x00002d78  10   10         ibm037 ±[ADA3AÕtB
+238 0x00002d8d 0x00002d8d   5    6         ascii  BWi8t
+239 0x00002d97 0x00002d97  22   23         ibm037 »Ê®A¹BKALBÕDÖAU»ªAûA4A
+240 0x00002dd3 0x00002dd3   6    6         ascii  72R`<L
+241 0x00002dec 0x00002dec  11   12         ibm037 A1A5Ê$ACA6ø
+242 0x00002e04 0x00002e04   6    7         ibm037 l¤^AGA
+243 0x00002e2f 0x00002e2f   8    8         ascii   "7BDIWr
+244 0x00002e3d 0x00002e3d  22   22         ibm037 bÊnAKAQBÕAÖAÕA3AÖAPA}@
+245 0x00002e61 0x00002e61   5    6         ascii  <d`V@
+246 0x00002e72 0x00002e72   4    5         ascii  7/,"
+247 0x00002e7a 0x00002e7a  10   11         ascii  "/7:BKR`GL
+248 0x00002e98 0x00002e98  14   14         ibm037 AóA5A1nA2A7Aó\t
+249 0x00002eb6 0x00002eb6  21   21         ibm037 ¦AòmAReÇAFAPABAG©AVÆ>
+250 0x00002ed6 0x00002ed6   5    5         ascii  \a|L27
+251 0x00002ee3 0x00002ee3   5    5         ascii   /:IL
+252 0x00002ef0 0x00002ef0  13   13         ibm037 b·A¹AMAÕA3CÕÝ
+253 0x00002eff 0x00002eff   4    5         ascii  "/2/
+254 0x00002f0d 0x00002f0d   6    6         ascii  G;$\fOG
+255 0x00002f16 0x00002f16   7    8         ibm037 âAFA2»B
+256 0x00002f28 0x00002f28   9   10         ascii  /7BDIi{<L
+257 0x00002f42 0x00002f42   9    9         ibm037 vAWA1A7A5
+258 0x00002f4d 0x00002f4d   5    6         ibm037 »AHAO
+259 0x00002f5e 0x00002f5e  29   30         ibm037 àÊ£AX~oA\AÕAGAóAB½#wAüýBÃ]ýÃ\b
+260 0x00002f83 0x00002f83   5    6         ascii  W/7/"
+261 0x00002f92 0x00002f92   8    8         ascii  727WrpVO
+262 0x00002f9a 0x00002f9a  13   14         ibm037 ASAYðàñÝAÕA3Ñ
+263 0x00002fcd 0x00002fcd   6    6         ascii  /2/7DB
+264 0x00002fd4 0x00002fd4   5    6         ascii  WR{Gb
+265 0x00002fe8 0x00002fe8   9   10         ibm037 tA1AWð\tâA
+266 0x00003004 0x00003004  29   30         ibm037 ÑAAAüAFAÖAÒARAJAEµvÞAÒÆjABºÆ§
+267 0x00003025 0x00003025   6    6         ibm037 tATA¹@
+268 0x00003034 0x00003034   8    9         ascii  ,75/,5I/
+269 0x00003070 0x00003070   4    4         ascii  /:/7
+270 0x00003079 0x00003079   6    7         ascii  DBK{VO
+271 0x0000308d 0x0000308d   5    6         ascii  |\tLi)
+272 0x000030a6 0x000030a6   6    7         ibm037 ×APAFA
+273 0x000030ad 0x000030ad  21   22         ibm037 AAwAJAGA{aþ¥_ÆAüAE°>é
+274 0x000030e2 0x000030e2  13   13         ascii  \v\bB/",/2B7\a[Z
+275 0x00003109 0x00003109   6    7         ibm037 ]ADAP\e
+276 0x00003110 0x00003110   6    7         ascii  K/,"/ 
+277 0x00003121 0x00003121   7    8         ascii  BDBK{VO
+278 0x0000315a 0x0000315a  12   13         ibm037 =°APAXA1ÆABµ
+279 0x00003176 0x00003176   6    6         ascii   BZ8\v 
+280 0x0000319f 0x0000319f   4    4         ascii  \v\b\v\b
+281 0x000031c0 0x000031c0   4    4         ascii  / /:
+282 0x000031cc 0x000031cc   4    4         ascii  \a)G3
+283 0x000031fa 0x000031fa  10   10         ibm037 {AGAÕA{dAû
+284 0x00003215 0x00003215   5    5         ascii  /8@`Z
+285 0x0000321f 0x0000321f  14   16         utf8   i2W5+*`Z¿\aB/ , blocks=Basic Latin,Latin-1 Supplement
+286 0x0000325f 0x0000325f   5    6         ascii  /7/" 
+287 0x00003267 0x00003267   5    5         ascii  72:BR
+288 0x00003287 0x00003287  13   14         ibm037 B$é·Ba£AB^B3A
+289 0x000032b1 0x000032b1  13   13         ibm037 ASA¹AZAÕàê»Ñ|
+290 0x000032e3 0x000032e3   4    4         ascii  \v+{V
+291 0x00003303 0x00003303   4    4         ascii  /:BR
+292 0x00003308 0x00003308   5    5         ascii  `mB?3
+293 0x00003324 0x00003324  19   20         ibm037 nð_eAôA7A}p^BRAPa\aB
+294 0x00003342 0x00003342   4    4         ascii  | \bB
+295 0x0000334c 0x0000334c  13   13         ibm037 [¸AZA7\a\eA3A}#
+296 0x00003369 0x00003369   6    6         ibm037 ±ADAIb
+297 0x00003387 0x00003387   6    7         ibm037 ïAPAC$
+298 0x0000339b 0x0000339b   7    7         ascii   /7BL7R
+299 0x000033a3 0x000033a3   4    4         ascii  VOiV
+300 0x000033bc 0x000033bc  26   26         ibm037 »$éÊAEANB°AGARA3Bô\vB\bâ¯BÈÑ
+301 0x000033f0 0x000033f0   4    4         ascii  B@3!
+302 0x000033f6 0x000033f6  13   13         ibm037 [|ñÑAMALn»A}¸
+303 0x0000340b 0x0000340b   5    6         ibm037 APA²\e
+304 0x0000342d 0x0000342d   4    4         ascii  \b"/ 
+305 0x00003452 0x00003452  15   15         ibm037 à$£^AM©ARAóAVA3
+306 0x0000347a 0x0000347a   6    6         ibm037 AD[AMï
+307 0x00003482 0x00003482   5    5         ascii  7(=;$
+308 0x0000348d 0x0000348d  17   18         ibm037 AIAYAHAAAUânåÐr\b\v
+309 0x000034b1 0x000034b1   7    7         ascii   /2 7/M
+310 0x000034c4 0x000034c4  12   13         ascii   \v\r/72,"52"8
+311 0x000034e4 0x000034e4  17   18         ibm037 nêbAMAZAPrAPAFA{ã
+312 0x00003503 0x00003503   4    4         ascii  |7"W
+313 0x00003510 0x00003510   4    4         ascii  KR8K
+314 0x0000351c 0x0000351c  12   12         ibm037 ±AD¯A}AÕA}AM
+315 0x00003555 0x00003555   5    5         ascii  "7"7/
+316 0x0000355b 0x0000355b   5    5         ascii  "/8pG
+317 0x000035aa 0x000035aa  12   12         ibm037 ±ÐAIAÕAÒAQAö
+318 0x000035b9 0x000035b9   4    4         ascii  !=R8
+319 0x000035c0 0x000035c0   4    4         ascii  8VOR
+320 0x000035c6 0x000035c6   6    6         ascii  |0iLB7
+321 0x000035da 0x000035da   6    6         ascii  \aK[iDi
+322 0x000035e7 0x000035e7   6    7         ascii  \v\r,/7"
+323 0x000035f0 0x000035f0   7    8         ascii  /BLV`B\b
+324 0x00003628 0x00003628  11   11         ibm037 AD[Bª ýAI î
+325 0x00003636 0x00003636   4    4         ascii  {=G$
+326 0x0000363b 0x0000363b  14   14         ibm037 [AIAZAQ×APî±AI
+327 0x00003649 0x00003649   7    7         ascii  =!@WBW0
+328 0x000036b0 0x000036b0   4    4         ibm037 AQAK
+329 0x000036c7 0x000036c7  13   13         ibm037 ¸BDAHAC®ACå±¸
+330 0x000036d4 0x000036d4   6    6         ascii  8r@$O|
+331 0x000036e5 0x000036e5   5    6         ascii  %W7/ 
+332 0x00003706 0x00003706   6    6         ascii   /,/7/
+333 0x0000370d 0x0000370d   6    7         ascii  BL3GL\v
+334 0x0000372b 0x0000372b   8    8         ibm037 ïADB¸A}!
+335 0x00003743 0x00003743   4    4         ibm037 AYAö
+336 0x00003754 0x00003754   5    5         ibm037 ADAO¸
+337 0x0000375b 0x0000375b  10   10         ibm037 ¸AD¯AA®AA½
+338 0x00003770 0x00003770   4    4         ascii  r?$?
+339 0x00003781 0x00003781   4    4         ascii   /" 
+340 0x0000378b 0x0000378b   5    6         ascii  K:,At
+341 0x00003798 0x00003798   5    6         ascii  B"5" 
+342 0x000037a4 0x000037a4   7    8         ascii  /8L;3L\v
+343 0x000037db 0x000037db   5    5         ibm037 hAYAö
+344 0x000037f4 0x000037f4  10   11         ibm037 Ð[¯AAACAAÝ
+345 0x00003804 0x00003804   7    7         ascii  K*3m?3G
+346 0x00003817 0x00003817   6    7         ascii  7I:2+ 
+347 0x00003829 0x00003829   9   10         ibm037 ±]AIAUBÕA
+348 0x0000383e 0x0000383e   5    6         ascii  " BIW
+349 0x0000384b 0x0000384b   8    9         ibm037 AÒA6AZAÕ
+350 0x0000386b 0x0000386b   4    4         ascii  i\t\b|
+351 0x00003878 0x00003878   6    6         ibm037 AIAúAI
+352 0x0000388f 0x0000388f  10   11         ibm037 ¸[¯®ACAAAM
+353 0x000038a2 0x000038a2   6    6         ascii  Ku@G<V
+354 0x000038b5 0x000038b5   5    6         ascii  7/7B\a
+355 0x000038c5 0x000038c5  12   12         ibm037 ¸ADAICÖAÕAVñ
+356 0x000038dc 0x000038dc   7    8         ascii  ,LBIV<Z
+357 0x000038e8 0x000038e8   6    7         ibm037 ×tAVA2
+358 0x00003923 0x00003923  12   12         ibm037 ýAûA4A0AQAHÈ
+359 0x00003930 0x00003930   9   10         ibm037 ±Ð¯AAAC®w
+360 0x00003977 0x00003977  13   14         ascii  7B/"/D78WV<O(
+361 0x000039af 0x000039af   6    7         ibm037 àAYAQý
+362 0x000039db 0x000039db   5    5         ascii  \e8?3V
+363 0x000039e9 0x000039e9   4    5         ascii  pD[W
+364 0x000039fe 0x000039fe  11   12         ibm037 ¸[AQAÖAÕAVÑ
+365 0x00003a1a 0x00003a1a   5    6         ascii  BI@<m
+366 0x00003a4c 0x00003a4c   4    4         ascii  XnXn
+367 0x00003a7d 0x00003a7d   4    4         ascii  !@IB
+368 0x00003ab0 0x00003ab0   7    8         ascii  7BWV-m0
+369 0x00003adf 0x00003adf   4    5         utf8   `Onµ blocks=Basic Latin,Latin-1 Supplement
+370 0x00003b00 0x00003b00   4    4         ascii  XnXn
+371 0x00003b12 0x00003b12   6    7         ascii  @3=iB7
+372 0x00003b1f 0x00003b1f  15   15         ibm037 AYAMBn»âÝAHz½AH
+373 0x00003b43 0x00003b43  12   13         ascii  7/7LWRO${8 \v
+374 0x00003b5f 0x00003b5f   4    6         utf8   i,\v/
+375 0x00003b7e 0x00003b7e  15   15         ibm037 BûÆA÷AOASAYA2A¹
+376 0x00003ba6 0x00003ba6   4    4         ascii  =;@Z
+377 0x00003bb0 0x00003bb0  10   11         ibm037 ADAöAÿBUÝA
+378 0x00003bc6 0x00003bc6   6    7         ascii  /B/,/"
+379 0x00003bcd 0x00003bcd   6    6         ascii  \t\b"LWB
+380 0x00003bd9 0x00003bd9  13   13         ascii  /DWiWi@3{|L\v+
+381 0x00003bf5 0x00003bf5   5    5         ascii  |Z2 I
+382 0x00003bfb 0x00003bfb   4    4         ascii  |IZR
+383 0x00003c02 0x00003c02  32   33         ibm037 AYA¹ATAóº°AMAFÆAÔAûB§AHA4B2A3A2[
+384 0x00003c23 0x00003c23  23   24         ibm037 ±ÐAIAFBtB§B>ýwAûAFALAC\e
+385 0x00003c40 0x00003c40   7    7         ascii  W\eK[*$O
+386 0x00003c4c 0x00003c4c  17   18         ibm037 BÐAMAÕAÖAÿAD½B®b#
+387 0x00003c63 0x00003c63   5    6         ascii  /7"2 
+388 0x00003c6b 0x00003c6b  12   12         ascii  \v7LW7/"/B/"B
+389 0x00003c78 0x00003c78   8    8         ascii  LIRO$G?p
+390 0x00003ca0 0x00003ca0   8    9         ibm037 ASAQAÒ`A
+391 0x00003ca9 0x00003ca9  22   23         ibm037 AX°AGAZB4BûAÔA2A3B6A2-
+392 0x00003ce0 0x00003ce0   5    6         utf8   |O<!¬ blocks=Basic Latin,Latin-1 Supplement
+393 0x00003ce8 0x00003ce8  13   14         ibm037 AÖAQAIAC®nbÊÍ
+394 0x00003d06 0x00003d06   5    5         ascii  LB:B7
+395 0x00003d0e 0x00003d0e   6    7         ascii  BLIW{<
+396 0x00003d33 0x00003d33  33   34         ibm037 !AYA2Aò=ËAPA\A3AÒB4A2AÓB2AZA{°AX¸
+397 0x00003d55 0x00003d55  24   25         ibm037 ±ADýì>A{]AOBìAAA3AûBÆB>.
+398 0x00003d7b 0x00003d7b   4    5         utf8   @G$º blocks=Basic Latin,Latin-1 Supplement
+399 0x00003d82 0x00003d82  12   13         ibm037 AQAF®AAnbê.h
+400 0x00003d91 0x00003d91   4    5         ascii  f?=\v
+401 0x00003da3 0x00003da3   9    9         ascii  LI:/"/7IW
+402 0x00003dd8 0x00003dd8  45   45         ibm037 4ºAùA4AXA5A2AZB3AXº]·ìÆAEA{AHÆìB>A÷AÒ>ýA6AZA\
+403 0x00003e0f 0x00003e0f   7    7         ascii  \e0KR?G3
+404 0x00003e16 0x00003e16  13   14         ibm037 ]AD¯AC®CCbBÊh
+405 0x00003e2a 0x00003e2a   6    6         ascii  t=\v\b/B
+406 0x00003e35 0x00003e35   4    4         ascii   /7W
+407 0x00003e3a 0x00003e3a  12   12         ascii  BDLWL/2B:Wpi
+408 0x00003e6e 0x00003e6e  47   47         ibm037 üAPA3A4AÖAJA\B{©A\¤r#>ÆAôAWAû§AFAûÆA3AÔAHwA6BÒÈ
+409 0x00003ead 0x00003ead  14   14         ibm037 ][½AABC®ACÝÑ.h
+410 0x00003ebc 0x00003ebc  10   10         ibm037 ±yA1A7A1Aù
+411 0x00003ec6 0x00003ec6   7    8         ascii  =\v\b/B7"
+412 0x00003ed0 0x00003ed0  12   12         ascii   /BL/"/W|WiW
+413 0x00003ee3 0x00003ee3   5    6         ibm037 [AIAO
+414 0x00003f00 0x00003f00  57   57         ibm037 A\AF¤mA\AFAB×·þ¤A3AÕA\AG¼ge=m>ýAòAûÆBwA4Æ>Ãý§>AVAZBÃA¹tnê
+415 0x00003f3c 0x00003f3c   4    4         ascii  \n8K@
+416 0x00003f42 0x00003f42  12   13         ibm037 ][½AACCÝnÊÑ¯
+417 0x00003f4f 0x00003f4f  11   12         ibm037 qA{AWAXnÝ¾<
+418 0x00003f5b 0x00003f5b   6    7         ascii  \b"I7/"
+419 0x00003f69 0x00003f69  11   11         ascii  :|uZiWZLWBR
+420 0x00003f8c 0x00003f8c  49   50         ibm037 AAwAóAGmÞC°APµAR^¼AM~©eA{B~¼½AZ¶j>Æ-Ã¸w½£AMqÃAóµ"
+421 0x00003fc7 0x00003fc7  11   12         ibm037 [Ð½AACCnBêB
+422 0x00003fe3 0x00003fe3   5    5         ascii  IB"/ 
+423 0x00003ff2 0x00003ff2   6    6         ascii  DLW7BL
+424 0x00004022 0x00004022  40   41         ibm037 A3AVe°AóAP^A\A3ALAZv^geª>BÃAöC>ýÃ¥ðjµ£×.
+425 0x0000404d 0x0000404d   5    6         utf8   [O$!¬ blocks=Basic Latin,Latin-1 Supplement
+426 0x00004055 0x00004055   6    7         ibm037 ACCBbC
+427 0x0000405c 0x0000405c  12   13         ibm037 A1A{¼.bÑAUAX
+428 0x0000406f 0x0000406f   4    4         ascii  LB/ 
+429 0x00004079 0x00004079   5    6         ascii  7iW/"
+430 0x0000408f 0x0000408f  16   17         ibm037 ¯-#Ñ.n×~ARAF¼AüA
+431 0x000040a0 0x000040a0  48   49         ibm037 AEAM½Aü·o`=£AüAôAGAPk°A2AMAüAMAòÇ^¥µ^¾AIÆ>BwÃ¯hA
+432 0x000040d7 0x000040d7   4    5         ascii  i0\r#
+433 0x000040e7 0x000040e7  13   14         ibm037 AWA1A}BbÑAU¾B
+434 0x00004101 0x00004101   6    7         ascii  7B/ BW
+435 0x0000411c 0x0000411c  57   58         ibm037 ÊBn·AXAZ·eªAFeAR½m¶°º=A\¡nA\Aóe´Aô¼µþAü×Aû>jBûhA²AûAÕýAüA
+436 0x00004156 0x00004156  11   12         ibm037 ¼AMþ~aAOAÿä
+437 0x00004165 0x00004165  10   11         ibm037 îB¸¯AA®ACF
+438 0x00004170 0x00004170  11   12         ibm037 BWA5nÊÑAU±B
+439 0x0000417c 0x0000417c   5    6         ascii  ;-m0\b
+440 0x000041af 0x000041af  70   71         ibm037 ^þjBR°mA\AZAVAMAAAüA3A2þeAPA3AFAü´mªÆªh½AóÉmÉeAóµoB§AÔ^µA7h§A÷±¸ªA}AUG
+441 0x00004205 0x00004205   4    5         ascii  t#OK
+442 0x00004225 0x00004225  83   83         ibm037 Ñé$eAVAü´AE~°AEAGAPoA\A3·^´APwA3AZ~^A\B~þ+j=èaº°odvA\AóA3Aûª¥B÷A0A÷AÔA÷A4±AIAOAHA2r
+443 0x0000427d 0x0000427d  10   11         ibm037 A1ARA6nÊÑA
+444 0x0000428a 0x0000428a   4    5         ibm037 AYAQ
+445 0x0000428f 0x0000428f   4    5         ascii  ${d+
+446 0x000042c7 0x000042c7  35   36         ibm037 ~¨AòAX½=AóA3½AFa°&A3A7AZAòkoA3d=AòA
+447 0x000042eb 0x000042eb  24   24         ibm037 A3ý§AOB§CÔA4AÔÆA÷A¹AZA\é
+448 0x00004309 0x00004309  10   11         ibm037 A1AXA5bÊÑA
+449 0x0000431c 0x0000431c   9   10         ibm037 |tAÿAYAÕ»
+450 0x00004337 0x00004337  53   54         ibm037 nB$éBÊAA½£AZAÒ·µAZALAüAóÞA2ARèr×µ°mACAEaAPAüÆ×çaA6°£A
+451 0x0000436d 0x0000436d  25   26         ibm037 çhAOGÔAûAÔ±AKASAÿAM×wnÍ×D
+452 0x00004387 0x00004387   8    9         ibm037 B5nÊÑACF
+453 0x00004394 0x00004394  10   11         ibm037 ÈAZALAÖAV@
+454 0x000043c7 0x000043c7  51   52         ibm037 AGAó×AMB3Aü×=çAüAÒ£AMALrAMAóA÷AûB§B4AÔAûA÷AOC4AûÍ×G
+455 0x00004431 0x00004431  14   15         ibm037 tB£APA3p½BÞ°eA
+456 0x00004440 0x00004440  35   36         ibm037 Bw½AXANAZAF¼ALBü©Ç¯A÷BÔB4CÔA4BÔA0A}
+457 0x00004490 0x00004490  39   40         ibm037 j@éb£BµAMapAPAÕAZA\ABÎhvARA\´AÖAüAMBwaA
+458 0x000044b8 0x000044b8  22   23         ibm037 ARAÔB§A4AÔA÷B7A4AûÆ§Aü
+459 0x000044d4 0x000044d4  11   11         ibm037 ¤AWA5AMA7A5
+460 0x000044e1 0x000044e1   4    5         ibm037 @AOF
+461 0x0000450e 0x0000450e  53   54         ibm037 AüAM°AEAüAZAüAVAüAûw£·=µAÔA7B4A7A4A7A4AÔA4AÔA÷B4»àAUD
+462 0x00004545 0x00004545   8    9         ibm037 ¼AWA1A6"
+463 0x0000454f 0x0000454f   6    7         ibm037 AHAO§G
+464 0x0000457e 0x0000457e  41   42         ibm037 AÒAüA2AZAMAV×AÒBÔA÷AÔA4C7A4AÔA÷Aû§AÔAZAPA
+465 0x000045b4 0x000045b4  10   11         ibm037 tAÕAOAHAOG
+466 0x000045e2 0x000045e2  34   35         ibm037 3AÒAÕA2½AL½BjlµBMªh§A4D7B3A6A3C2Aó
+467 0x0000460e 0x0000460e   9   10         ibm037 ïAPAÕAUAO
+468 0x00004627 0x00004627  49   50         ibm037 bÊ$nAPBjojBaj£µjµClBjl_jA\A2A6AÒlAMA2A\BMA\AZAÕµ"
+469 0x00004678 0x00004678  37   37         ibm037 B®t<BÑlCajrajDµBjar£AM½Ï&lAóljlaj£AóÍ
+470 0x000046c7 0x000046c7  17   18         ibm037 nrjBlµCaDµa_a!»µà
+471 0x000046f8 0x000046f8  24   25         ibm037 lB$ÊAA£µjBajljaÏBaÏ_àÝ×A
+472 0x00004723 0x00004723   7    8         ibm037 APAÖACC
+473 0x0000472b 0x0000472b  29   30         ibm037 n.bÊAVt$ÊbA}Ý@ðtµlBjla_aj@àBn
+474 0x00004786 0x00004786  16   17         ibm037 .Ñn®APµ!énBC£léà
+475 0x000047a8 0x000047a8   8    9         ibm037 ACAPÝACB
+476 0x000053f4 0x000053f4  53   54         ibm037 88088\88Q88H88½00Q80^0Y{8\^8YµYY^8Q^Y\q0Qq\Q{YQy0}q8Y
+477 0x00005430 0x00005430  20   20         ibm037 8HqY}qY}°8Hµ0HqYHµ8Q
+478 0x00005445 0x00005445  20   21         ibm037 Q}^YHqYH°\Hµ8{q\Hq8Q
+479 0x00005463 0x00005463  44   45         ibm037 }}qY{q0{°\{y\Hh\}Ç\{q\{°0Q\b0½°Q{°}{µ\½°}{°8H
+480 0x000055e4 0x000055e4   5    5         ascii  X0hx@
+481 0x000055f3 0x000055f3   5    5         ascii  X(phX
+482 0x000055ff 0x000055ff   5    5         ascii  P ph`
+483 0x0000560b 0x0000560b   5    5         ascii  ` xh@
+484 0x00005611 0x00005611   4    5         ascii  P(Xx
+485 0x0000561a 0x0000561a   5    5         ascii  P0x`0
+486 0x00005626 0x00005626   5    5         ascii  h\bxh 
+487 0x0000563b 0x0000563b   7    8         ascii  P h`Px`
+488 0x00005644 0x00005644   5    5         ascii  H ``0
+489 0x0000564c 0x0000564c   5    6         ascii  `` h`
+490 0x0000565c 0x0000565c   5    5         ascii  @ xH(
+491 0x00005662 0x00005662   5    5         ascii  @\bXPH
+492 0x0000566d 0x0000566d   6    6         ascii  XP(`H(
+493 0x00005676 0x00005676   9    9         ascii  PX\bPP8`P\b
+494 0x00005680 0x00005680   4    5         ascii  8 `P
+495 0x00005685 0x00005685   8    9         ascii  @X @P8x8
+496 0x00005691 0x00005691  11   12         ascii  PH\bh8 @P\bXH
+497 0x000056a0 0x000056a0   6    6         ascii  H@8H@0
+498 0x000056a7 0x000056a7   4    5         ascii   \bp0
+499 0x000056af 0x000056af  17   18         ascii  P8 H80(H\b@80@8 H0
+500 0x000056c1 0x000056c1   7    8         ascii  80(80\bp
+501 0x000056cd 0x000056cd   7    8         ascii  (0  0\b@
+502 0x000056df 0x000056df  19   20         ibm037 &8&y8y8888Ì88Ì88Ì88

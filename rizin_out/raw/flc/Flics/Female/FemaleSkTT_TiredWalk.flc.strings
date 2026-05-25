@@ -1,0 +1,1578 @@
+ nth      paddr      vaddr len size section type   string                                     
+----------------------------------------------------------------------------------------------
+   0 0x0000001a 0x0000001a   4    5         ibm037 2211
+   1 0x000000ce 0x000000ce   5    5         ascii  QVRD\f
+   2 0x000000dd 0x000000dd   4    5         ascii  QTok
+   3 0x000000f1 0x000000f1   4    4         ascii  /)6s
+   4 0x000000fc 0x000000fc   6    7         ascii  ?=?@3r
+   5 0x0000010f 0x0000010f   4    4         ascii  ?=-q
+   6 0x00000117 0x00000117   4    4         ascii  6-!'
+   7 0x00000128 0x00000128   5    5         ascii  s6+!'
+   8 0x0000015c 0x0000015c   4    4         ascii  Z036
+   9 0x0000016c 0x0000016c   4    4         ascii  _0+,
+  10 0x0000018e 0x0000018e   4    4         ascii  -,60
+  11 0x000001a0 0x000001a0   4    4         ascii  *,3-
+  12 0x000001b0 0x000001b0   5    5         ascii  +,3jr
+  13 0x000001bc 0x000001bc   4    4         ascii  ,*mn
+  14 0x000001e3 0x000001e3   4    4         ascii  ebhr
+  15 0x00000266 0x00000266   6    7         ascii   `\b X\b
+  16 0x00000281 0x00000281  27   27         ibm037 Ø88ø00ÇYY-\\ìQQ&}}çHH {{ ½½
+  17 0x000002f0 0x000002f0   7    8         ascii  p\b\bp\b\bh
+  18 0x0000032c 0x0000032c  42   42         ibm037 888YYYQQQ}}}{{{^^^yyyqqq°°°ØØØøøøÇÇÇìììççç
+  19 0x00000356 0x00000356   9   10         ascii  888888(((
+  20 0x00000531 0x00000531   5    5         ascii  SQRQQ
+  21 0x0000053b 0x0000053b   8    9         ascii  SPQSSRPS
+  22 0x00000547 0x00000547   7    7         ascii  RPQSSQU
+  23 0x00000554 0x00000554   7    8         ascii  ?PQQVWD
+  24 0x00000562 0x00000562   6    7         ascii  ?=TAn6
+  25 0x00000570 0x00000570   4    5         ascii  =??m
+  26 0x00000580 0x00000580   5    6         ascii  >?h9s
+  27 0x00000587 0x00000587   4    5         ascii  9+''
+  28 0x000005d0 0x000005d0   5    6         ascii  Z`,*3
+  29 0x000005de 0x000005de   5    6         ascii  i..06
+  30 0x000005fe 0x000005fe   6    6         ascii  ),ifjr
+  31 0x00000610 0x00000610   5    6         ascii  )-hjo
+  32 0x0000063b 0x0000063b   4    5         ascii  gbes
+  33 0x000006ae 0x000006ae   6    7         ascii   `\b X\b
+  34 0x000006c9 0x000006c9  27   27         ibm037 Ø88ø00ÇYY-\\ìQQ&}}çHH {{ ½½
+  35 0x00000738 0x00000738   7    8         ascii  p\b\bp\b\bh
+  36 0x00000774 0x00000774  42   42         ibm037 888YYYQQQ}}}{{{^^^yyyqqq°°°ØØØøøøÇÇÇìììççç
+  37 0x0000079e 0x0000079e   9   10         ascii  888888(((
+  38 0x0000098a 0x0000098a   7    8         ascii  PPRSRQQ
+  39 0x00000997 0x00000997   8    9         ascii  RPQRSQQR
+  40 0x000009a5 0x000009a5   7    8         ascii  QQQSWSU
+  41 0x000009b4 0x000009b4   5    6         ascii  ?>?Ao
+  42 0x000009c2 0x000009c2   5    5         ascii  =>?lq
+  43 0x000009c9 0x000009c9   4    5         ascii  3+o'
+  44 0x000009d2 0x000009d2   5    6         ascii  ??i6s
+  45 0x00000a03 0x00000a03   4    5         ascii  ,.!%
+  46 0x00000a10 0x00000a10   5    6         ascii  -e0/3
+  47 0x00000a20 0x00000a20   5    6         ascii  f^02/
+  48 0x00000a3f 0x00000a3f   7    7         ascii  /+-jfho
+  49 0x00000a53 0x00000a53   5    5         ascii  -)2gi
+  50 0x00000af8 0x00000af8   6    7         ascii   `\b X\b
+  51 0x00000b13 0x00000b13  27   27         ibm037 Ø88ø00ÇYY-\\ìQQ&}}çHH {{ ½½
+  52 0x00000b82 0x00000b82   7    8         ascii  p\b\bp\b\bh
+  53 0x00000bbe 0x00000bbe  42   42         ibm037 888YYYQQQ}}}{{{^^^yyyqqq°°°ØØØøøøÇÇÇìììççç
+  54 0x00000be8 0x00000be8   9   10         ascii  888888(((
+  55 0x00000dc9 0x00000dc9   4    5         ascii  SQRS
+  56 0x00000dd2 0x00000dd2   7    8         ascii  QPQQRQQ
+  57 0x00000de1 0x00000de1   4    5         ascii  SRQQ
+  58 0x00000deb 0x00000deb   8    9         ascii  QQQRSQQT
+  59 0x00000df8 0x00000df8  11   12         ascii  ?=TAYrYl*;s
+  60 0x00000e08 0x00000e08   5    5         ascii  >>?lo
+  61 0x00000e18 0x00000e18   5    6         ascii  >>>.s
+  62 0x00000e1f 0x00000e1f   4    5         ascii  '-9'
+  63 0x00000e2d 0x00000e2d   4    5         ascii  %,6'
+  64 0x00000e3a 0x00000e3a   4    4         ascii  -6+n
+  65 0x00000e4a 0x00000e4a   5    6         ascii  2,,99
+  66 0x00000e5a 0x00000e5a   7    8         ascii  -Z`4/hm
+  67 0x00000e7d 0x00000e7d   6    6         ascii  0-1njj
+  68 0x00000e8f 0x00000e8f   5    5         ascii  /*2mf
+  69 0x00000f3a 0x00000f3a   6    7         ascii   `\b X\b
+  70 0x00000f55 0x00000f55  27   27         ibm037 Ø88ø00ÇYY-\\ìQQ&}}çHH {{ ½½
+  71 0x00000fc4 0x00000fc4   7    8         ascii  p\b\bp\b\bh
+  72 0x00001000 0x00001000  42   42         ibm037 888YYYQQQ}}}{{{^^^yyyqqq°°°ØØØøøøÇÇÇìììççç
+  73 0x0000102a 0x0000102a   9   10         ascii  888888(((
+  74 0x00001203 0x00001203   4    4         ascii  *-\am
+  75 0x00001211 0x00001211   4    5         ascii  SQP@
+  76 0x0000121d 0x0000121d   4    5         ascii  SRQU
+  77 0x00001227 0x00001227  10   11         ascii  QRQSRQQh9s
+  78 0x00001236 0x00001236  11   12         ascii  ?=VGnYTV-9s
+  79 0x00001246 0x00001246  11   12         ascii  ?>?i9t''.6'
+  80 0x00001259 0x00001259   8    9         ascii  ,q.3'01'
+  81 0x00001267 0x00001267   8    9         ascii  (k**n26 
+  82 0x00001278 0x00001278   7    8         ascii  ,2-61el
+  83 0x00001288 0x00001288   6    6         ascii  //Zmjm
+  84 0x00001297 0x00001297   4    4         ascii  ,[nn
+  85 0x000012a7 0x000012a7   5    5         ascii  0,.kn
+  86 0x00001364 0x00001364   6    7         ascii   `\b X\b
+  87 0x0000137f 0x0000137f  27   27         ibm037 Ø88ø00ÇYY-\\ìQQ&}}çHH {{ ½½
+  88 0x000013ee 0x000013ee   7    8         ascii  p\b\bp\b\bh
+  89 0x0000142a 0x0000142a  42   42         ibm037 888YYYQQQ}}}{{{^^^yyyqqq°°°ØØØøøøÇÇÇìììççç
+  90 0x00001454 0x00001454   9   10         ascii  888888(((
+  91 0x0000162f 0x0000162f   4    5         ascii  Rkjk
+  92 0x0000163d 0x0000163d   4    5         ascii  RQQ3
+  93 0x00001646 0x00001646   5    6         ascii  ?PRRS
+  94 0x0000164d 0x0000164d   4    5         ascii  R*6s
+  95 0x00001655 0x00001655   8    9         ascii  LkQQY,9'
+  96 0x00001661 0x00001661  10   11         ascii  >>j-s%'/3'
+  97 0x00001670 0x00001670   7    8         ascii  390%6.%
+  98 0x0000167c 0x0000167c   7    8         ascii  j.*96/'
+  99 0x00001688 0x00001688   6    6         ascii  k+-0.3
+ 100 0x00001698 0x00001698   6    6         ascii  -2\Uir
+ 101 0x000016a8 0x000016a8   5    6         ascii  0/g`m
+ 102 0x000016f3 0x000016f3   4    5         ascii  lefm
+ 103 0x00001768 0x00001768   6    7         ascii   `\b X\b
+ 104 0x00001783 0x00001783  27   27         ibm037 Ø88ø00ÇYY-\\ìQQ&}}çHH {{ ½½
+ 105 0x000017f2 0x000017f2   7    8         ascii  p\b\bp\b\bh
+ 106 0x0000182e 0x0000182e  42   42         ibm037 888YYYQQQ}}}{{{^^^yyyqqq°°°ØØØøøøÇÇÇìììççç
+ 107 0x00001858 0x00001858   9   10         ascii  888888(((
+ 108 0x00001a3d 0x00001a3d   9    9         ascii  PQQRR>,9s
+ 109 0x00001a4c 0x00001a4c   5    6         ascii  ?PRRS
+ 110 0x00001a5b 0x00001a5b  10   11         ascii  =Ao`Q>m+;s
+ 111 0x00001a6e 0x00001a6e   7    8         ascii  +q''-6'
+ 112 0x00001a7f 0x00001a7f   4    5         ascii  '20%
+ 113 0x00001a8c 0x00001a8c   5    6         ascii  1k,!;
+ 114 0x00001a96 0x00001a96   7    8         ascii  k,,03/!
+ 115 0x00001aa2 0x00001aa2   6    6         ascii  l+./g`
+ 116 0x00001aae 0x00001aae   6    6         ascii  i,-2f]
+ 117 0x00001abe 0x00001abe   4    4         ascii  1./k
+ 118 0x00001ad6 0x00001ad6   4    4         ascii  g,-9
+ 119 0x00001adf 0x00001adf   5    5         ascii  gch-2
+ 120 0x00001b07 0x00001b07   4    5         ascii  gffi
+ 121 0x00001b7a 0x00001b7a   6    7         ascii   `\b X\b
+ 122 0x00001b95 0x00001b95  27   27         ibm037 Ø88ø00ÇYY-\\ìQQ&}}çHH {{ ½½
+ 123 0x00001c04 0x00001c04   7    8         ascii  p\b\bp\b\bh
+ 124 0x00001c40 0x00001c40  42   42         ibm037 888YYYQQQ}}}{{{^^^yyyqqq°°°ØØØøøøÇÇÇìììççç
+ 125 0x00001c6a 0x00001c6a   9   10         ascii  888888(((
+ 126 0x00001e43 0x00001e43   4    5         ascii  QPRj
+ 127 0x00001e4f 0x00001e4f   4    5         ascii  PRQS
+ 128 0x00001e5e 0x00001e5e   9   10         ascii  ?PRTSRQh*
+ 129 0x00001e6d 0x00001e6d  10   11         ascii  >AohT@1+;s
+ 130 0x00001e90 0x00001e90   7    8         ascii  ,s%'/3'
+ 131 0x00001ea3 0x00001ea3   4    5         ascii  '6/%
+ 132 0x00001eac 0x00001eac   7    8         ascii  j--9;1!
+ 133 0x00001eb8 0x00001eb8   7    8         ascii  l,/2g`6
+ 134 0x00001ec4 0x00001ec4   6    6         ascii  h+12e\
+ 135 0x00001ed0 0x00001ed0   6    6         ascii  d,32,i
+ 136 0x00001edb 0x00001edb   5    5         ascii  /31-2
+ 137 0x00001ee8 0x00001ee8   4    4         ascii  23,/
+ 138 0x00001ef4 0x00001ef4   4    4         ascii  )j.,
+ 139 0x00001efd 0x00001efd   5    5         ascii  fbm6*
+ 140 0x00001f08 0x00001f08   5    5         ascii  gedeh
+ 141 0x00001f96 0x00001f96   6    7         ascii   `\b X\b
+ 142 0x00001fb1 0x00001fb1  27   27         ibm037 Ø88ø00ÇYY-\\ìQQ&}}çHH {{ ½½
+ 143 0x00002020 0x00002020   7    8         ascii  p\b\bp\b\bh
+ 144 0x0000205c 0x0000205c  42   42         ibm037 888YYYQQQ}}}{{{^^^yyyqqq°°°ØØØøøøÇÇÇìììççç
+ 145 0x00002086 0x00002086   9   10         ascii  888888(((
+ 146 0x00002261 0x00002261   7    7         ascii  PQQRQQm
+ 147 0x0000226e 0x0000226e   9   10         ascii  >PQRSRR`2
+ 148 0x0000227b 0x0000227b   8    9         ascii  >?YXQSf*
+ 149 0x00002291 0x00002291   4    5         ascii  9-n'
+ 150 0x000022c4 0x000022c4   7    8         ascii  k-,623;
+ 151 0x000022e7 0x000022e7   4    4         ascii  c)-6
+ 152 0x000022f3 0x000022f3   4    4         ascii  d,,6
+ 153 0x00002327 0x00002327   4    5         ascii  gbdr
+ 154 0x000023b4 0x000023b4   6    7         ascii   `\b X\b
+ 155 0x000023cf 0x000023cf  27   27         ibm037 Ø88ø00ÇYY-\\ìQQ&}}çHH {{ ½½
+ 156 0x0000243e 0x0000243e   7    8         ascii  p\b\bp\b\bh
+ 157 0x0000247a 0x0000247a  42   42         ibm037 888YYYQQQ}}}{{{^^^yyyqqq°°°ØØØøøøÇÇÇìììççç
+ 158 0x000024a4 0x000024a4   9   10         ascii  888888(((
+ 159 0x0000267b 0x0000267b   7    7         ascii  PPQRQPS
+ 160 0x00002687 0x00002687   7    7         ascii  PRQSSRQ
+ 161 0x00002694 0x00002694   9   10         ascii  ?QRSWQQR1
+ 162 0x000026ae 0x000026ae   5    6         ascii  ==?+6
+ 163 0x000026b4 0x000026b4   4    4         ascii  \f6-o
+ 164 0x000026c5 0x000026c5   4    5         ascii  q,;'
+ 165 0x000026d8 0x000026d8   7    8         ascii  l;!'.0%
+ 166 0x000026e4 0x000026e4   6    7         ascii  0--9.6
+ 167 0x00002700 0x00002700   4    4         ascii  Z\/6
+ 168 0x00002769 0x00002769   5    5         ascii  gbbfr
+ 169 0x000027e6 0x000027e6   6    7         ascii   `\b X\b
+ 170 0x00002801 0x00002801  27   27         ibm037 Ø88ø00ÇYY-\\ìQQ&}}çHH {{ ½½
+ 171 0x00002870 0x00002870   7    8         ascii  p\b\bp\b\bh
+ 172 0x000028ac 0x000028ac  42   42         ibm037 888YYYQQQ}}}{{{^^^yyyqqq°°°ØØØøøøÇÇÇìììççç
+ 173 0x000028d6 0x000028d6   9   10         ascii  888888(((
+ 174 0x00002aa8 0x00002aa8   4    4         ascii  SQQS
+ 175 0x00002ab1 0x00002ab1   7    7         ascii  SSSQRRQ
+ 176 0x00002abd 0x00002abd   7    7         ascii  PQQSSQP
+ 177 0x00002acd 0x00002acd   5    5         ascii  QTRSY
+ 178 0x00002ae6 0x00002ae6   4    5         ascii  >>An
+ 179 0x00002aeb 0x00002aeb   5    5         ascii  \a2)-r
+ 180 0x00002af5 0x00002af5   5    6         ascii  ?=>>,
+ 181 0x00002b16 0x00002b16   5    6         ascii  %!)9'
+ 182 0x00002b22 0x00002b22   5    6         ascii  !'*6%
+ 183 0x00002b2b 0x00002b2b   4    4         ascii  l0+/
+ 184 0x00002b39 0x00002b39   4    5         ascii  l-.-
+ 185 0x00002bb2 0x00002bb2   4    4         ascii  gbgq
+ 186 0x00002bbb 0x00002bbb   4    4         ascii  gdbi
+ 187 0x00002bc9 0x00002bc9   4    5         ascii  fghr
+ 188 0x00002c3a 0x00002c3a   6    7         ascii   `\b X\b
+ 189 0x00002c55 0x00002c55  27   27         ibm037 Ø88ø00ÇYY-\\ìQQ&}}çHH {{ ½½
+ 190 0x00002cc4 0x00002cc4   7    8         ascii  p\b\bp\b\bh
+ 191 0x00002d00 0x00002d00  42   42         ibm037 888YYYQQQ}}}{{{^^^yyyqqq°°°ØØØøøøÇÇÇìììççç
+ 192 0x00002d2a 0x00002d2a   9   10         ascii  888888(((
+ 193 0x00002efb 0x00002efb   4    4         ascii  SQPS
+ 194 0x00002f06 0x00002f06   5    5         ascii  SQRRP
+ 195 0x00002f15 0x00002f15   4    4         ascii  SSQQ
+ 196 0x00002f20 0x00002f20   7    7         ascii  RQQRSSo
+ 197 0x00002f2e 0x00002f2e   5    6         ascii  PQQUY
+ 198 0x00002f4b 0x00002f4b   5    6         ascii  ?>>m/
+ 199 0x00002f5f 0x00002f5f   8    9         ascii  )qr\r//%%
+ 200 0x00002f6e 0x00002f6e   5    6         ascii  '6+!%
+ 201 0x00002f86 0x00002f86   8    9         ascii  il.-99*!
+ 202 0x00002f98 0x00002f98   5    6         ascii  -..ff
+ 203 0x00002fa9 0x00002fa9   7    7         ascii  -6ZZ-,3
+ 204 0x00002fbc 0x00002fbc   5    6         ascii  `3-16
+ 205 0x00003092 0x00003092   6    7         ascii   `\b X\b
+ 206 0x000030ad 0x000030ad  27   27         ibm037 Ø88ø00ÇYY-\\ìQQ&}}çHH {{ ½½
+ 207 0x0000311c 0x0000311c   7    8         ascii  p\b\bp\b\bh
+ 208 0x00003158 0x00003158  42   42         ibm037 888YYYQQQ}}}{{{^^^yyyqqq°°°ØØØøøøÇÇÇìììççç
+ 209 0x00003182 0x00003182   9   10         ascii  888888(((
+ 210 0x00003365 0x00003365   5    5         ascii  SQQQQ
+ 211 0x00003370 0x00003370   6    6         ascii  QQRSQR
+ 212 0x0000337b 0x0000337b   7    8         ascii  RPQRTSm
+ 213 0x00003389 0x00003389   5    6         ascii  SQQSn
+ 214 0x00003397 0x00003397   5    6         ascii  >S?Y2
+ 215 0x000033a7 0x000033a7   6    7         ascii  ?>A3,r
+ 216 0x000033cc 0x000033cc   4    5         ascii  %+/%
+ 217 0x000033e5 0x000033e5   8    9         ascii  hj2/,/,6
+ 218 0x000033f9 0x000033f9   7    7         ascii  .-Z`,+/
+ 219 0x0000340d 0x0000340d   5    5         ascii  Z`,-6
+ 220 0x00003421 0x00003421   4    5         ascii  /,0/
+ 221 0x00003433 0x00003433   4    5         ascii  33,h
+ 222 0x00003476 0x00003476   5    6         ascii  gefhs
+ 223 0x000034ee 0x000034ee   6    7         ascii   `\b X\b
+ 224 0x00003509 0x00003509  27   27         ibm037 Ø88ø00ÇYY-\\ìQQ&}}çHH {{ ½½
+ 225 0x00003578 0x00003578   7    8         ascii  p\b\bp\b\bh
+ 226 0x000035b4 0x000035b4  42   42         ibm037 888YYYQQQ}}}{{{^^^yyyqqq°°°ØØØøøøÇÇÇìììççç
+ 227 0x000035de 0x000035de   9   10         ascii  888888(((
+ 228 0x000037c1 0x000037c1   5    5         ascii  QQRPD
+ 229 0x000037cb 0x000037cb   6    7         ascii  SPRSRT
+ 230 0x000037df 0x000037df   4    5         ascii  ,*\a\f
+ 231 0x000037e7 0x000037e7   5    6         ascii  QQQX2
+ 232 0x000037ed 0x000037ed   5    5         ascii  .)/\f\r
+ 233 0x000037f7 0x000037f7   5    5         ascii  <TIn-
+ 234 0x00003807 0x00003807   6    6         ascii  >?A+;s
+ 235 0x0000380f 0x0000380f   4    5         ascii  +n\e%
+ 236 0x00003817 0x00003817   5    5         ascii  =?h-s
+ 237 0x0000382b 0x0000382b   5    6         ascii  9;*n\e
+ 238 0x00003838 0x00003838   5    6         ascii  /,.,;
+ 239 0x0000384a 0x0000384a   8    8         ascii  -/eZ./++
+ 240 0x0000385c 0x0000385c   8    8         ascii  ,.ZZ0*,3
+ 241 0x00003875 0x00003875   7    7         ascii  )/0+*dh
+ 242 0x0000388b 0x0000388b   7    7         ascii  0+06hdh
+ 243 0x000038c2 0x000038c2   4    4         ascii  hflr
+ 244 0x0000393e 0x0000393e   6    7         ascii   `\b X\b
+ 245 0x00003959 0x00003959  27   27         ibm037 Ø88ø00ÇYY-\\ìQQ&}}çHH {{ ½½
+ 246 0x000039c8 0x000039c8   7    8         ascii  p\b\bp\b\bh
+ 247 0x00003a04 0x00003a04  42   42         ibm037 888YYYQQQ}}}{{{^^^yyyqqq°°°ØØØøøøÇÇÇìììççç
+ 248 0x00003a2e 0x00003a2e   9   10         ascii  888888(((
+ 249 0x00003bff 0x00003bff   4    5         ascii  SPPS
+ 250 0x00003c08 0x00003c08   5    6         ascii  SQSRQ
+ 251 0x00003c29 0x00003c29   5    6         ascii  RQRX2
+ 252 0x00003c37 0x00003c37   5    5         ascii  =SIm/
+ 253 0x00003c47 0x00003c47   4    4         ascii  >,ot
+ 254 0x00003c88 0x00003c88   7    7         ascii  0.Z`--)
+ 255 0x00003c9c 0x00003c9c   7    7         ascii  -/g^,+,
+ 256 0x00003cb2 0x00003cb2   4    4         ascii  -+11
+ 257 0x00003ccd 0x00003ccd   6    6         ascii  *-,+gh
+ 258 0x00003ce6 0x00003ce6   5    6         ascii  36iee
+ 259 0x00003d00 0x00003d00   4    4         ascii  gfkq
+ 260 0x00003d7e 0x00003d7e   6    7         ascii   `\b X\b
+ 261 0x00003d99 0x00003d99  27   27         ibm037 Ø88ø00ÇYY-\\ìQQ&}}çHH {{ ½½
+ 262 0x00003e08 0x00003e08   7    8         ascii  p\b\bp\b\bh
+ 263 0x00003e44 0x00003e44  42   42         ibm037 888YYYQQQ}}}{{{^^^yyyqqq°°°ØØØøøøÇÇÇìììççç
+ 264 0x00003e6e 0x00003e6e   9   10         ascii  888888(((
+ 265 0x0000404b 0x0000404b   4    5         ascii  QD\b\f
+ 266 0x00004054 0x00004054   5    6         ascii  PQRTU
+ 267 0x00004062 0x00004062   5    6         ascii  PQSo0
+ 268 0x00004071 0x00004071   5    6         ascii  ?QVL9
+ 269 0x00004081 0x00004081   6    6         ascii  ?>?jot
+ 270 0x00004089 0x00004089   4    5         ascii  ,6'%
+ 271 0x00004091 0x00004091   5    5         ascii  ?>>ls
+ 272 0x00004098 0x00004098   5    6         ascii  '+9%%
+ 273 0x000040a8 0x000040a8   4    5         ascii  %+3#
+ 274 0x000040cb 0x000040cb   6    6         ascii  -f-396
+ 275 0x000040de 0x000040de   7    8         ascii  .,Z^,+,
+ 276 0x000040ee 0x000040ee   7    8         ascii  /-0k+,3
+ 277 0x00004100 0x00004100   7    7         ascii  .+23,-9
+ 278 0x00004115 0x00004115   6    6         ascii  006-*3
+ 279 0x000041ca 0x000041ca   6    7         ascii   `\b X\b
+ 280 0x000041e5 0x000041e5  27   27         ibm037 Ø88ø00ÇYY-\\ìQQ&}}çHH {{ ½½
+ 281 0x00004254 0x00004254   7    8         ascii  p\b\bp\b\bh
+ 282 0x00004290 0x00004290  42   42         ibm037 888YYYQQQ}}}{{{^^^yyyqqq°°°ØØØøøøÇÇÇìììççç
+ 283 0x000042ba 0x000042ba   9   10         ascii  888888(((
+ 284 0x0000448c 0x0000448c   6    6         ascii  SPQRl\t
+ 285 0x00004498 0x00004498   5    6         ascii  SPQSj
+ 286 0x000044a6 0x000044a6   6    7         ascii  SQQAU-
+ 287 0x000044b4 0x000044b4  10   10         ascii  =RUL;\a/)3r
+ 288 0x000044c4 0x000044c4   5    6         ascii  >?Anr
+ 289 0x000044d4 0x000044d4   4    4         ascii  =>@r
+ 290 0x000044db 0x000044db   4    5         ascii  9-!'
+ 291 0x000044eb 0x000044eb   4    5         ascii  6-%'
+ 292 0x000044f7 0x000044f7   4    5         ascii  ;!.-
+ 293 0x00004507 0x00004507   4    5         ascii  --+;
+ 294 0x00004517 0x00004517   6    7         ascii  -Z`3.6
+ 295 0x00004527 0x00004527   5    5         ascii  -f`-*
+ 296 0x00004539 0x00004539   5    5         ascii  -./,0
+ 297 0x0000454a 0x0000454a   4    4         ascii  ,.,6
+ 298 0x0000455a 0x0000455a   4    4         ascii  ..+3
+ 299 0x00004568 0x00004568   4    4         ascii  -1-/
+ 300 0x00004574 0x00004574   5    5         ascii  clm*.
+ 301 0x00004612 0x00004612   6    7         ascii   `\b X\b
+ 302 0x0000462d 0x0000462d  27   27         ibm037 Ø88ø00ÇYY-\\ìQQ&}}çHH {{ ½½
+ 303 0x0000469c 0x0000469c   7    8         ascii  p\b\bp\b\bh
+ 304 0x000046d8 0x000046d8  42   42         ibm037 888YYYQQQ}}}{{{^^^yyyqqq°°°ØØØøøøÇÇÇìììççç
+ 305 0x00004702 0x00004702   9   10         ascii  888888(((
+ 306 0x000048d3 0x000048d3   5    5         ascii  SQPQS
+ 307 0x000048df 0x000048df   5    6         ascii  PRSRQ
+ 308 0x000048ed 0x000048ed   4    5         ascii  RWW\a
+ 309 0x000048f8 0x000048f8   6    7         ascii  >PQTo0
+ 310 0x00004906 0x00004906   4    5         ascii  ?>Ao
+ 311 0x00004916 0x00004916   5    6         ascii  =??ms
+ 312 0x0000493b 0x0000493b   4    5         ascii  9*!'
+ 313 0x0000495c 0x0000495c   4    4         ascii  Z`0-
+ 314 0x0000496a 0x0000496a   4    4         ascii  ^j+-
+ 315 0x000049a2 0x000049a2   4    4         ascii  f)+q
+ 316 0x000049ad 0x000049ad   4    4         ascii  cg-)
+ 317 0x00004a3a 0x00004a3a   6    7         ascii   `\b X\b
+ 318 0x00004a55 0x00004a55  27   27         ibm037 Ø88ø00ÇYY-\\ìQQ&}}çHH {{ ½½
+ 319 0x00004ac4 0x00004ac4   7    8         ascii  p\b\bp\b\bh
+ 320 0x00004b00 0x00004b00  42   42         ibm037 888YYYQQQ}}}{{{^^^yyyqqq°°°ØØØøøøÇÇÇìììççç
+ 321 0x00004b2a 0x00004b2a   9   10         ascii  888888(((
+ 322 0x00004d04 0x00004d04   5    6         ascii  SQQQS
+ 323 0x00004d0d 0x00004d0d   6    7         ascii  PQSSRP
+ 324 0x00004d17 0x00004d17   5    5         ascii  QVRD\f
+ 325 0x00004d32 0x00004d32   4    4         ascii  /)6s
+ 326 0x00004d3b 0x00004d3b   6    7         ascii  ?=?@3r
+ 327 0x00004d4f 0x00004d4f   4    5         ascii  6-!'
+ 328 0x00004d6a 0x00004d6a   5    6         ascii  !--!'
+ 329 0x00004d94 0x00004d94   4    4         ascii  _0+,
+ 330 0x00004da4 0x00004da4   4    4         ascii  0,00
+ 331 0x00004db2 0x00004db2   4    4         ascii  -,60
+ 332 0x00004dc2 0x00004dc2   4    4         ascii  *,3-
+ 333 0x00004dd0 0x00004dd0   5    6         ascii  +,3jr
+ 334 0x00004dda 0x00004dda   4    4         ascii  ,*mn
+ 335 0x00004dff 0x00004dff   4    4         ascii  ebhr
+ 336 0x00004e38 0x00004e38   6    6         ascii  SPQRQV
+ 337 0x00004e47 0x00004e47   4    4         ascii  SRQW
+ 338 0x00004e62 0x00004e62   8    8         ascii  *lRQRo*3
+ 339 0x00004e73 0x00004e73   6    6         ascii  ?S>O-3
+ 340 0x00004e80 0x00004e80   9    9         ascii  -+%?>?r.3
+ 341 0x00004e90 0x00004e90   5    5         ascii  ,/%A>
+ 342 0x00004e96 0x00004e96   4    4         ascii  >r.1
+ 343 0x00004ea5 0x00004ea5   4    4         ascii  DM%/
+ 344 0x00004eb2 0x00004eb2   6    6         ascii  .02.6i
+ 345 0x00004ec1 0x00004ec1   6    6         ascii  /-6*(`
+ 346 0x00004f9b 0x00004f9b   6    6         ascii  QQSSRS
+ 347 0x00004fb4 0x00004fb4   8    9         ascii  +*RQQR3,
+ 348 0x00004fc0 0x00004fc0   8    9         ascii  ,-UQQV./
+ 349 0x00004fcc 0x00004fcc   8    9         ascii  *;G==I.3
+ 350 0x00004fda 0x00004fda   8    9         ascii  )!L>>E21
+ 351 0x00004fea 0x00004fea   6    7         ascii   =>I2/
+ 352 0x00004ff9 0x00004ff9   5    6         ascii  LI'6/
+ 353 0x00005005 0x00005005   6    6         ascii  /05560
+ 354 0x000050c9 0x000050c9   5    6         ascii  QPQQQ
+ 355 0x000050d5 0x000050d5   6    6         ascii  QSSSQY
+ 356 0x000050e1 0x000050e1   7    8         ascii  ,0QQQTU
+ 357 0x000050ef 0x000050ef   5    6         ascii  RQQV0
+ 358 0x000050fb 0x000050fb   5    6         ascii  QQTk-
+ 359 0x00005107 0x00005107   5    6         ascii  >>Aj/
+ 360 0x00005112 0x00005112   8    9         ascii  *9%>>?l/
+ 361 0x00005123 0x00005123   5    6         ascii  A>An.
+ 362 0x0000512e 0x0000512e   5    6         ascii  +96;m
+ 363 0x000051e4 0x000051e4   5    5         ascii  SQQPS
+ 364 0x000051f0 0x000051f0   8    9         ascii  2\aQSSRPW
+ 365 0x000051fd 0x000051fd   8    8         ascii  )*hQRSTS
+ 366 0x0000520b 0x0000520b   7    8         ascii  *2>QQSX
+ 367 0x00005217 0x00005217   7    8         ascii  *\r>QRW2
+ 368 0x00005222 0x00005222   8    9         ascii  /)'A=?D.
+ 369 0x0000522e 0x0000522e   8    9         ascii  6+\eA>?Y-
+ 370 0x0000523d 0x0000523d   5    6         ascii  D>>r-
+ 371 0x0000524a 0x0000524a   4    5         ascii  hh70
+ 372 0x00005256 0x00005256   4    5         ascii  *)0`
+ 373 0x000052e3 0x000052e3   6    6         ascii  \t\tTQPR
+ 374 0x000052f3 0x000052f3   5    6         ascii  QSRQS
+ 375 0x00005302 0x00005302   4    5         ascii  RTQV
+ 376 0x0000530d 0x0000530d   6    6         ascii  GQQRWW
+ 377 0x00005319 0x00005319   7    8         ascii  );YQRV3
+ 378 0x00005327 0x00005327   5    6         ascii  I>>D,
+ 379 0x00005331 0x00005331   7    8         ascii  *;E>?M/
+ 380 0x00005354 0x00005354   4    5         ascii  ,++b
+ 381 0x00005360 0x00005360   6    7         ascii  g*9b(*
+ 382 0x000053c2 0x000053c2   4    4         ascii  0\b\t\t
+ 383 0x000053d5 0x000053d5   4    4         ascii  jPQQ
+ 384 0x000053f4 0x000053f4   4    5         ascii  '+7Y
+ 385 0x00005400 0x00005400   4    5         ascii  s.2I
+ 386 0x00005409 0x00005409   5    6         ascii  ./I>>
+ 387 0x00005413 0x00005413   5    5         ascii  *.k?>
+ 388 0x00005420 0x00005420   6    6         ascii  ,*-a(+
+ 389 0x000054aa 0x000054aa   5    5         ascii  PQQPS
+ 390 0x000054c5 0x000054c5   5    5         ascii  SQSXl
+ 391 0x000054d0 0x000054d0   8    9         ascii  r+2A=?n,
+ 392 0x000054dd 0x000054dd   7    8         ascii  3/A??r.
+ 393 0x000054e9 0x000054e9   5    5         ascii  -/D?>
+ 394 0x000054f5 0x000054f5   5    6         ascii  ),be+
+ 395 0x00005526 0x00005526   4    5         ascii  ,,ed
+ 396 0x0000558d 0x0000558d   5    6         ascii  RPPQQ
+ 397 0x00005596 0x00005596   8    8         ascii  ,,lQQRVQ
+ 398 0x000055a7 0x000055a7   5    5         ascii  QQVjn
+ 399 0x000055b3 0x000055b3   7    8         ascii  *n>>A6-
+ 400 0x000055bf 0x000055bf   7    8         ascii  +k??A'-
+ 401 0x000055cb 0x000055cb   7    8         ascii  26A>I'.
+ 402 0x000055d7 0x000055d7   6    6         ascii  ,,d0-5
+ 403 0x000055e5 0x000055e5   5    6         ascii  *,cc)
+ 404 0x00005679 0x00005679   5    6         ascii  SQQQS
+ 405 0x00005682 0x00005682   8    9         ascii  **=PQSTQ
+ 406 0x0000568e 0x0000568e   8    9         ascii  -2@QQVkL
+ 407 0x0000569b 0x0000569b   6    6         ascii  2D=SJ-
+ 408 0x000056a6 0x000056a6   8    9         ascii  m*D>?I7,
+ 409 0x000056b3 0x000056b3   7    8         ascii  *m?>M'.
+ 410 0x000056bf 0x000056bf   7    8         ascii  -;MY!'g
+ 411 0x000056cb 0x000056cb   5    5         ascii  **c-,
+ 412 0x00005779 0x00005779   4    4         ascii  QQQQ
+ 413 0x00005783 0x00005783   7    8         ascii  -=QRSRU
+ 414 0x0000578e 0x0000578e   8    9         ascii  )+RQQTVL
+ 415 0x0000579a 0x0000579a   7    7         ascii  -4=QRo+
+ 416 0x000057a8 0x000057a8   5    5         ascii  A=?M,
+ 417 0x000057b2 0x000057b2   8    9         ascii  0,E>>M2-
+ 418 0x000057be 0x000057be   6    7         ascii  m*n>>r
+ 419 0x000057cb 0x000057cb   7    8         ascii  +!#o%oh
+ 420 0x000057d6 0x000057d6   4    4         ascii  g9--
+ 421 0x000057e0 0x000057e0   4    5         ascii  (b/,
+ 422 0x000057e8 0x000057e8   4    5         ascii  +de/
+ 423 0x00005871 0x00005871   6    6         ascii  SPQRQS
+ 424 0x0000587d 0x0000587d   6    6         ascii  TQSSRT
+ 425 0x00005889 0x00005889   6    6         ascii  TQQRTl
+ 426 0x00005894 0x00005894   7    7         ascii  )fQQQl+
+ 427 0x000058a0 0x000058a0   6    7         ascii  *jRQTn
+ 428 0x000058ac 0x000058ac   5    5         ascii  ?=Aq-
+ 429 0x000058b6 0x000058b6   7    7         ascii  +2?>>O-
+ 430 0x000058c2 0x000058c2   8    9         ascii  0/E>>s5-
+ 431 0x000058d1 0x000058d1   5    6         ascii  Yq%;i
+ 432 0x000058db 0x000058db   7    8         ascii  .n;/03`
+ 433 0x000058e6 0x000058e6   4    5         ascii  b,.,
+ 434 0x00005900 0x00005900   4    5         ascii  *,d.
+ 435 0x00005971 0x00005971   5    5         ascii  RPPQT
+ 436 0x0000597c 0x0000597c   6    6         ascii  QQSSQU
+ 437 0x00005988 0x00005988   6    6         ascii  SRSSRW
+ 438 0x000059a1 0x000059a1   8    8         ascii  +)RQQU.-
+ 439 0x000059ae 0x000059ae   5    6         ascii  -UQQL
+ 440 0x000059ba 0x000059ba   5    6         ascii  +n>>E
+ 441 0x000059c6 0x000059c6   7    7         ascii  )n>>?'+
+ 442 0x000059d4 0x000059d4   5    5         ascii  A>E'2
+ 443 0x000059e1 0x000059e1   5    6         ascii  o691`
+ 444 0x000059ea 0x000059ea   8    9         ascii  ,h)+-,1R
+ 445 0x00005a90 0x00005a90   5    5         ascii  SPQPV
+ 446 0x00005a9b 0x00005a9b   6    6         ascii  SQSSRW
+ 447 0x00005aa9 0x00005aa9   8    8         ascii  QRRQRj).
+ 448 0x00005ac3 0x00005ac3   8    8         ascii  ,0RQRr;3
+ 449 0x00005ad0 0x00005ad0   7    7         ascii  ,?S>M;-
+ 450 0x00005add 0x00005add   6    7         ascii  .,A>?I
+ 451 0x00005aeb 0x00005aeb   6    7         ascii  ./q>>G
+ 452 0x00005af8 0x00005af8   4    4         ascii  14h@
+ 453 0x00005b04 0x00005b04   4    5         ascii  ,-*+
+ 454 0x00005b90 0x00005b90   4    4         ascii  QPPU
+ 455 0x00005b9a 0x00005b9a   4    5         ascii  QSSS
+ 456 0x00005ba7 0x00005ba7   5    6         ascii  PSRQS
+ 457 0x00005bb5 0x00005bb5   8    8         ascii  URQQQr2;
+ 458 0x00005bc3 0x00005bc3   8    8         ascii  -jRQSr21
+ 459 0x00005bd1 0x00005bd1   8    8         ascii  ,-AQ>r6.
+ 460 0x00005bdf 0x00005bdf   7    8         ascii  -2??>M;
+ 461 0x00005bed 0x00005bed   6    6         ascii  =>>l-h
+ 462 0x00005bf9 0x00005bf9   5    5         ascii  ,q+hk
+ 463 0x00005c06 0x00005c06   4    4         ascii  e,),
+ 464 0x00005c83 0x00005c83   6    6         ascii  SPQQU\b
+ 465 0x00005c9d 0x00005c9d   5    6         ascii  QRRQR
+ 466 0x00005cab 0x00005cab   8    8         ascii  kSQQPr69
+ 467 0x00005cb9 0x00005cb9   5    6         ascii  ,0RQR
+ 468 0x00005cc9 0x00005cc9   5    6         ascii  AS>M9
+ 469 0x00005cd5 0x00005cd5   5    6         ascii  A>?L9
+ 470 0x00005d6a 0x00005d6a   7    7         ascii  QQQj\a-,
+ 471 0x00005d77 0x00005d77   8    8         ascii  SQSQQ@,*
+ 472 0x00005d85 0x00005d85   6    7         ascii  SQRQQT
+ 473 0x00005d93 0x00005d93   6    7         ascii  0jWQQW
+ 474 0x00005da1 0x00005da1   8    8         ascii  +,'>SAm+
+ 475 0x00005db1 0x00005db1   6    6         ascii  '>?A!,
+ 476 0x00005dbd 0x00005dbd   6    6         ascii  4>>?60
+ 477 0x00005e62 0x00005e62   5    6         ascii  PQQPQ
+ 478 0x00005e70 0x00005e70   6    7         ascii  PRQRQV
+ 479 0x00005e7c 0x00005e7c   7    7         ascii  gq>QRM-
+ 480 0x00005e89 0x00005e89   8    8         ascii  ++%D>?G+
+ 481 0x00005e98 0x00005e98   5    5         ascii  B>>M,
+ 482 0x00005ea6 0x00005ea6   5    5         ascii   ?>r.
+ 483 0x00005eb3 0x00005eb3   6    6         ascii  .5613j
+ 484 0x00005ec1 0x00005ec1   5    6         ascii  ,)-.+
+ 485 0x00005f5a 0x00005f5a   7    7         ascii  QQRQQl,
+ 486 0x00005f66 0x00005f66   8    9         ascii  PRQQQS)0
+ 487 0x00005f72 0x00005f72   8    9         ascii  hmSQQY+4
+ 488 0x00005f80 0x00005f80   5    5         ascii  DSSM,
+ 489 0x00005f8b 0x00005f8b   9   10         ascii  ,,!E>?I-2
+ 490 0x00005f98 0x00005f98   7    7         ascii  3! >>O.
+ 491 0x00005fa7 0x00005fa7   4    4         ascii  LL'/
+ 492 0x00006017 0x00006017   4    4         ascii  dgci
+ 493 0x00006025 0x00006025   4    4         ascii  cedh
+ 494 0x0000605d 0x0000605d   4    4         ascii  SSSS
+ 495 0x00006066 0x00006066   6    7         ascii  SPQRQV
+ 496 0x00006070 0x00006070   4    4         ascii  SRQW
+ 497 0x0000607e 0x0000607e   4    5         ascii  QU).
+ 498 0x00006086 0x00006086   8    9         ascii  *lRQRo*3
+ 499 0x00006092 0x00006092   6    7         ascii  ?S>O-3
+ 500 0x0000609d 0x0000609d   9   10         ascii  -+%?>?r.3
+ 501 0x000060ab 0x000060ab   9   10         ascii  ,/%A>>r.1
+ 502 0x000060c6 0x000060c6   5    5         ascii  02.6i
+ 503 0x000060d3 0x000060d3   5    6         ascii  /-6*(
+ 504 0x00006175 0x00006175   4    4         ascii  PQRQ
+ 505 0x00006184 0x00006184   7    7         ascii  SPRSRQR
+ 506 0x000061a6 0x000061a6  10   10         ascii  \a*inon>?>I
+ 507 0x000061b7 0x000061b7   4    5         ascii  %3)5
+ 508 0x000061bc 0x000061bc   6    6         ascii  s70?>?
+ 509 0x000061fd 0x000061fd   4    4         ascii  6r3-
+ 510 0x00006202 0x00006202   5    5         ascii  -+,j^
+ 511 0x0000620e 0x0000620e   5    5         ascii  *01-,
+ 512 0x00006232 0x00006232   4    4         ascii  b*/1
+ 513 0x00006294 0x00006294   7    7         ascii  hiehmdc
+ 514 0x000062da 0x000062da   4    4         ascii  SQQT
+ 515 0x000062e4 0x000062e4   6    6         ascii  PQRQSS
+ 516 0x000062ef 0x000062ef   4    5         ascii  QSSQ
+ 517 0x00006303 0x00006303   6    7         ascii  \a.XTRR
+ 518 0x00006313 0x00006313   5    5         ascii  3T=>A
+ 519 0x0000633a 0x0000633a   4    4         ascii  9) %
+ 520 0x00006350 0x00006350   9   10         ascii  3ro+1,,1Z
+ 521 0x0000635e 0x0000635e   7    8         ascii  ).o,.,/
+ 522 0x0000636a 0x0000636a   8    8         ascii  ),.*f//.
+ 523 0x00006377 0x00006377   9    9         ascii  +*10-bc.+
+ 524 0x000063d6 0x000063d6   8    8         ascii  ieeijbbd
+ 525 0x00006401 0x00006401   5    5         ascii  SPPSq
+ 526 0x0000640d 0x0000640d   5    5         ascii  QQRQU
+ 527 0x00006419 0x00006419   6    7         ascii  PQSSQQ
+ 528 0x00006425 0x00006425   7    7         ascii  WQSRQQT
+ 529 0x00006434 0x00006434   6    6         ascii  XSRQRS
+ 530 0x00006445 0x00006445   5    5         ascii  0QSS>
+ 531 0x0000644f 0x0000644f   5    6         ascii  '\a1*6
+ 532 0x00006455 0x00006455   6    7         ascii  ;-@>?J
+ 533 0x00006489 0x00006489   6    6         ascii  'r,3/-
+ 534 0x00006495 0x00006495   8    9         ascii  1r1-,.0`
+ 535 0x000064a1 0x000064a1   8    9         ascii  -)*6,,,2
+ 536 0x000064b1 0x000064b1   5    5         ascii  ,,bd-
+ 537 0x00006513 0x00006513   5    5         ascii  hggei
+ 538 0x00006549 0x00006549   4    5         ascii  PPQW
+ 539 0x00006552 0x00006552   5    6         ascii  QQRSS
+ 540 0x0000655c 0x0000655c   6    6         ascii  UQSRQS
+ 541 0x0000657f 0x0000657f   4    5         ascii  RRQ?
+ 542 0x00006588 0x00006588  11   12         ascii  \a\b+,\f2,=>SE
+ 543 0x0000659c 0x0000659c   7    8         ascii  s1-j?>E
+ 544 0x000065ba 0x000065ba   4    4         ascii  !1,!
+ 545 0x000065c8 0x000065c8   5    6         ascii  r6,60
+ 546 0x000065d8 0x000065d8   7    8         ascii  ro+-+/`
+ 547 0x000065e8 0x000065e8   4    4         ascii  *-.2
+ 548 0x000065f5 0x000065f5   5    5         ascii  --eb(
+ 549 0x00006600 0x00006600   4    4         ascii  +))1
+ 550 0x00006610 0x00006610   4    5         ascii  fb.\b
+ 551 0x00006615 0x00006615   4    5         ascii  /-bb
+ 552 0x0000664c 0x0000664c   4    4         ascii  hbck
+ 553 0x00006698 0x00006698   4    4         ascii  QPPW
+ 554 0x000066a3 0x000066a3   4    5         ascii  TQSR
+ 555 0x000066ac 0x000066ac   9   10         ascii  \t\a\blRRQQW
+ 556 0x000066bd 0x000066bd   6    7         ascii  kSRQQW
+ 557 0x000066cb 0x000066cb   6    7         ascii  3hSRRB
+ 558 0x000066d7 0x000066d7  10   11         ascii  \f+1r2.j>?E
+ 559 0x00006708 0x00006708   5    5         ascii  qo)64
+ 560 0x00006719 0x00006719   4    4         ascii  r,.+
+ 561 0x00006724 0x00006724   8    8         ascii  +,39+-c,
+ 562 0x00006738 0x00006738   5    6         ascii  0/(bb
+ 563 0x00006742 0x00006742   7    8         ascii  cb**++3
+ 564 0x0000674c 0x0000674c   5    6         ascii  ,.0bb
+ 565 0x00006756 0x00006756   7    8         ascii  gc60)+6
+ 566 0x0000679a 0x0000679a   4    4         ascii  jcdi
+ 567 0x000067dc 0x000067dc   7    8         ascii  \f\fSQQQM
+ 568 0x000067f7 0x000067f7   6    7         ascii  -RSQRW
+ 569 0x00006801 0x00006801  12   13         ascii  q\a\t-+\r3-=QSD
+ 570 0x00006813 0x00006813   6    7         ascii  \r*;s..
+ 571 0x00006841 0x00006841   4    4         ascii  q+/2
+ 572 0x00006850 0x00006850   5    5         ascii  !q./d
+ 573 0x0000685c 0x0000685c   9   10         ascii  *).3-,)cb
+ 574 0x00006882 0x00006882   4    4         ascii  -*-9
+ 575 0x00006897 0x00006897   6    7         ascii  f()))-
+ 576 0x000068b2 0x000068b2   6    6         ascii  gcc32.
+ 577 0x00006927 0x00006927   5    5         ascii  ,RQQQ
+ 578 0x00006932 0x00006932   4    5         ascii  \t\a++
+ 579 0x00006937 0x00006937   6    7         ascii  0R=QRB
+ 580 0x00006947 0x00006947   6    7         ascii  9-ST>J
+ 581 0x0000697e 0x0000697e   5    5         ascii  'r,.e
+ 582 0x0000698d 0x0000698d   7    7         ascii  9-.cdcb
+ 583 0x0000699b 0x0000699b   6    6         ascii  )*60+.
+ 584 0x000069c3 0x000069c3   6    6         ascii  ,*3/*1
+ 585 0x000069db 0x000069db   7    7         ascii  *)6/+6\b
+ 586 0x00006a0d 0x00006a0d   4    5         ascii  hmji
+ 587 0x00006a44 0x00006a44   6    6         ascii  \tUPPQV
+ 588 0x00006a5e 0x00006a5e   8    8         ascii  *,-iRQRV
+ 589 0x00006a6c 0x00006a6c  10   10         ascii  \f/*1\r9`=S?
+ 590 0x00006a7e 0x00006a7e   7    8         ascii  s2/A>>s
+ 591 0x00006a9a 0x00006a9a   4    4         ascii  !+/%
+ 592 0x00006ab8 0x00006ab8   6    6         ascii  ! ++bb
+ 593 0x00006ac3 0x00006ac3   6    6         ascii  3060.3
+ 594 0x00006ad1 0x00006ad1   6    7         ascii  ,)13-9
+ 595 0x00006ae4 0x00006ae4   5    6         ascii  )-3+6
+ 596 0x00006af6 0x00006af6   4    4         ascii  +,30
+ 597 0x00006b04 0x00006b04   4    4         ascii  )-13
+ 598 0x00006b0f 0x00006b0f   4    4         ascii  ,)1.
+ 599 0x00006b1d 0x00006b1d   5    5         ascii  ,+gek
+ 600 0x00006b75 0x00006b75   4    5         ascii  \rSQQ
+ 601 0x00006b96 0x00006b96   6    6         ascii  0`RRR?
+ 602 0x00006ba8 0x00006ba8   4    4         ascii  j>?A
+ 603 0x00006bb9 0x00006bb9   4    5         ascii  ?>=O
+ 604 0x00006bef 0x00006bef   5    5         ascii  9-126
+ 605 0x00006c05 0x00006c05   4    5         ascii  cbbc
+ 606 0x00006c43 0x00006c43   4    5         ascii  *0hm
+ 607 0x00006c8d 0x00006c8d   5    5         ascii  SPQQT
+ 608 0x00006c97 0x00006c97   6    7         ascii  PRSQQT
+ 609 0x00006cae 0x00006cae   6    6         ascii  jQQRQA
+ 610 0x00006cf5 0x00006cf5   4    5         ascii   q,.
+ 611 0x00006cfe 0x00006cfe   4    4         ascii  'n,h
+ 612 0x00006d0a 0x00006d0a   8    8         ascii  32..bcbb
+ 613 0x00006d2b 0x00006d2b   4    5         ascii  cbbd
+ 614 0x00006d40 0x00006d40   4    4         ascii  ++,3
+ 615 0x00006d4a 0x00006d4a   4    4         ascii  b*+3
+ 616 0x00006d54 0x00006d54   4    4         ascii  f+*3
+ 617 0x00006d79 0x00006d79   4    5         ascii  gdch
+ 618 0x00006da4 0x00006da4   5    6         ascii  SPQQY
+ 619 0x00006dae 0x00006dae   6    6         ascii  PQSRSS
+ 620 0x00006db9 0x00006db9   7    7         ascii  RPRSRQP
+ 621 0x00006dc6 0x00006dc6   7    8         ascii  DQRQQQS
+ 622 0x00006dd2 0x00006dd2   5    6         ascii  .nUQR
+ 623 0x00006de0 0x00006de0   5    6         ascii  4jS?>
+ 624 0x00006dec 0x00006dec   6    6         ascii  s5l>>>
+ 625 0x00006e1d 0x00006e1d   5    5         ascii  #r1,m
+ 626 0x00006e29 0x00006e29   4    4         ascii  3+eb
+ 627 0x00006e5c 0x00006e5c   4    4         ascii  ,-+-
+ 628 0x00006e6b 0x00006e6b   5    5         ascii  ee-+-
+ 629 0x00006e75 0x00006e75   5    5         ascii  ece,+
+ 630 0x00006ed7 0x00006ed7   5    5         ascii  SPQQS
+ 631 0x00006eef 0x00006eef   4    5         ascii  PQRS
+ 632 0x00006efb 0x00006efb   4    5         ascii  TQRR
+ 633 0x00006f08 0x00006f08   9    9         ascii  \t.j@RQQR=
+ 634 0x00006f19 0x00006f19   9    9         ascii  )-\b;k>?>I
+ 635 0x00006f2d 0x00006f2d   5    5         ascii  ,l>>>
+ 636 0x00006f37 0x00006f37   4    5         ascii  !0-r
+ 637 0x00006f53 0x00006f53   5    5         ascii  !m*33
+ 638 0x00006f5d 0x00006f5d   4    4         ascii  'r./
+ 639 0x00006f67 0x00006f67   6    6         ascii  /-,,da
+ 640 0x00006f77 0x00006f77   5    5         ascii  *,,./
+ 641 0x00006f8a 0x00006f8a   6    6         ascii  e(92*+
+ 642 0x00006fa2 0x00006fa2   7    8         ascii  cbf0++6
+ 643 0x00006fb3 0x00006fb3   6    7         ascii  fee+*6
+ 644 0x00006fe3 0x00006fe3   4    5         ascii  gebh
+ 645 0x00007022 0x00007022   4    4         ascii  RPRj
+ 646 0x0000703b 0x0000703b   4    5         ascii  QQRS
+ 647 0x0000704d 0x0000704d   6    6         ascii  QQQRRT
+ 648 0x00007059 0x00007059   8    8         ascii  +VGYRST=
+ 649 0x0000706d 0x0000706d   5    5         ascii  -D?>I
+ 650 0x0000707d 0x0000707d   5    5         ascii  0i>=A
+ 651 0x00007088 0x00007088   4    4         ascii  ,-!6
+ 652 0x00007093 0x00007093   5    5         ascii  '6+63
+ 653 0x0000709d 0x0000709d   5    5         ascii  nq-.0
+ 654 0x000070a8 0x000070a8   6    6         ascii  e)-*.c
+ 655 0x000070b5 0x000070b5  10   10         ascii  gb1l5-*ebb
+ 656 0x000070ca 0x000070ca   7    7         ascii  fegm+,;
+ 657 0x000070e0 0x000070e0   5    6         ascii  gi++6
+ 658 0x0000714a 0x0000714a   4    4         ascii  SQS,
+ 659 0x00007155 0x00007155   4    5         ascii  UPRR
+ 660 0x00007165 0x00007165   6    7         ascii  QSRQPT
+ 661 0x0000716f 0x0000716f   8    9         ascii  `QQRQQRV
+ 662 0x0000717b 0x0000717b  10   10         ascii  %,f>TUUTU?
+ 663 0x00007191 0x00007191   5    5         ascii  /m?>O
+ 664 0x000071aa 0x000071aa   5    5         ascii  -.;-3
+ 665 0x000071b5 0x000071b5   7    7         ascii  gbom*..
+ 666 0x000071c1 0x000071c1   7    7         ascii  gcjq+10
+ 667 0x000071cf 0x000071cf   5    5         ascii  eo.+b
+ 668 0x000071de 0x000071de   6    6         ascii  in,+eb
+ 669 0x0000725a 0x0000725a   5    6         ascii  QPRfi
+ 670 0x00007270 0x00007270   9   10         ascii  \a`QQRQQQT
+ 671 0x0000727d 0x0000727d  10   11         ascii  %/gQPQRQRT
+ 672 0x0000728b 0x0000728b   5    5         ascii  !,,YY
+ 673 0x00007291 0x00007291   5    5         ascii  lV@AM
+ 674 0x000072a7 0x000072a7   4    4         ascii  -/``
+ 675 0x000072b3 0x000072b3   6    7         ascii  #,.9+4
+ 676 0x000072bf 0x000072bf   6    7         ascii  r6,0.3
+ 677 0x000072ca 0x000072ca   5    6         ascii  eem-3
+ 678 0x000072d4 0x000072d4   6    6         ascii  gcf,*c
+ 679 0x000072e0 0x000072e0   6    6         ascii  g,.-cc
+ 680 0x00007347 0x00007347   4    5         ascii  \b\t/.
+ 681 0x0000734f 0x0000734f   8    9         ascii  \tkQSSPPS
+ 682 0x0000735c 0x0000735c   7    8         ascii  \f.QQRRQ
+ 683 0x0000736d 0x0000736d   9    9         ascii  *QPQRSSSA
+ 684 0x0000737b 0x0000737b  11   11         ascii  %0*lRTjYB?M
+ 685 0x0000738c 0x0000738c   4    4         ascii  ..r'
+ 686 0x0000739c 0x0000739c   4    4         ascii  ,1%\e
+ 687 0x000073ac 0x000073ac   5    5         ascii  ,1;),
+ 688 0x000073bd 0x000073bd   6    6         ascii  r3-3,0
+ 689 0x000073ca 0x000073ca   5    6         ascii  3-9-0
+ 690 0x000073d6 0x000073d6   5    6         ascii  -+f(9
+ 691 0x000073e2 0x000073e2   5    6         ascii  -,-dc
+ 692 0x000073f6 0x000073f6   4    4         ascii  ,+0n
+ 693 0x00007400 0x00007400   4    4         ascii  +.ii
+ 694 0x0000745e 0x0000745e   5    6         ascii  jTPPQ
+ 695 0x00007468 0x00007468   8    8         ascii  gRQQRRQB
+ 696 0x00007475 0x00007475   9    9         ascii  +gQPRTUSA
+ 697 0x00007485 0x00007485   8    9         ascii  )2nSjlA>
+ 698 0x000074a2 0x000074a2   4    4         ascii  0,%%
+ 699 0x000074c5 0x000074c5   4    5         ascii  '6-.
+ 700 0x000074d1 0x000074d1   6    7         ascii  6n-/+-
+ 701 0x000074db 0x000074db   4    5         ascii  ++,.
+ 702 0x000074e8 0x000074e8   5    6         ascii  +/dc0
+ 703 0x000074f2 0x000074f2   5    6         ascii  )35(c
+ 704 0x000074fb 0x000074fb   5    5         ascii  ,)302
+ 705 0x00007507 0x00007507   5    5         ascii  ,+1g3
+ 706 0x00007513 0x00007513   6    7         ascii  ,+ihjn
+ 707 0x00007569 0x00007569   6    7         ascii  STTPPS
+ 708 0x00007574 0x00007574   7    8         ascii  QQRQQRQ
+ 709 0x0000757f 0x0000757f   9    9         ascii  1QPQQSRR?
+ 710 0x0000758e 0x0000758e  10   10         ascii  \b*gRVnm?>E
+ 711 0x0000759d 0x0000759d   4    5         ascii  %3)5
+ 712 0x000075a2 0x000075a2   6    6         ascii  s2-?=>
+ 713 0x000075d2 0x000075d2   9   10         ascii  6qm,+*-j`
+ 714 0x000075e0 0x000075e0   7    8         ascii  *,3-.,.
+ 715 0x000075ec 0x000075ec   8    8         ascii  -)++e./6
+ 716 0x00007642 0x00007642   5    5         ascii  gcdlq
+ 717 0x00007696 0x00007696   5    6         ascii  PQRQQ
+ 718 0x0000769f 0x0000769f   8    9         ascii  SPRSRQRR
+ 719 0x000076af 0x000076af   4    5         ascii  QQRQ
+ 720 0x000076b8 0x000076b8   7    8         ascii  \a*inon>
+ 721 0x000076c8 0x000076c8   6    6         ascii  s70?>?
+ 722 0x000076f1 0x000076f1   8    9         ascii  r3--+,j^
+ 723 0x000076fd 0x000076fd   4    5         ascii  01-,
+ 724 0x0000770a 0x0000770a   4    4         ascii  ,**,
+ 725 0x0000771c 0x0000771c   4    4         ascii  b*/1
+ 726 0x00007779 0x00007779   6    7         ascii  hiehmd
+ 727 0x000077d9 0x000077d9   5    5         ascii  RUVA?
+ 728 0x000077e7 0x000077e7   5    5         ascii  QPQT0
+ 729 0x000077fa 0x000077fa   4    4         ascii  -,UD
+ 730 0x00007807 0x00007807   4    4         ascii  \b/*5
+ 731 0x00007830 0x00007830   5    5         ascii  !s/+\
+ 732 0x0000783e 0x0000783e   5    5         ascii  '%.+`
+ 733 0x0000784c 0x0000784c   4    4         ascii  '6,*
+ 734 0x00007857 0x00007857   4    4         ascii  !%'r
+ 735 0x000078cc 0x000078cc   5    5         ascii  ghjgj
+ 736 0x0000793f 0x0000793f   4    4         ascii  SRPR
+ 737 0x00007949 0x00007949   5    6         ascii  SPQQQ
+ 738 0x0000795e 0x0000795e   4    5         ascii  QRRV
+ 739 0x0000796a 0x0000796a   6    7         ascii  SR?A=I
+ 740 0x00007975 0x00007975   6    6         ascii  jVm0,9
+ 741 0x000079b0 0x000079b0   5    5         ascii  's0*^
+ 742 0x000079ce 0x000079ce   7    7         ascii  %%sqr3,
+ 743 0x000079df 0x000079df   8    8         ascii  0/-+fddc
+ 744 0x000079f9 0x000079f9   5    6         ascii  ddccc
+ 745 0x00007a35 0x00007a35   4    4         ascii  ecef
+ 746 0x00007a58 0x00007a58   5    5         ascii  jbdkm
+ 747 0x00007aa8 0x00007aa8   4    5         ascii  RRRT
+ 748 0x00007ab0 0x00007ab0  10   11         ascii  mRRRRQSB?M
+ 749 0x00007ac1 0x00007ac1   4    4         ascii  Y0(m
+ 750 0x00007b0a 0x00007b0a   5    5         ascii  %%6*j
+ 751 0x00007b2b 0x00007b2b   7    8         ascii  3!!'300
+ 752 0x00007b50 0x00007b50   4    4         ascii  ddce
+ 753 0x00007b86 0x00007b86   4    4         ascii  fjgf
+ 754 0x00007b97 0x00007b97   4    4         ascii  ljlg
+ 755 0x00007bab 0x00007bab   4    4         ascii  eben
+ 756 0x00007bec 0x00007bec   4    5         ascii  RPPT
+ 757 0x00007bf5 0x00007bf5   8    8         ascii  PQRQQQRE
+ 758 0x00007c03 0x00007c03   8    8         ascii  jQQRRRTB
+ 759 0x00007c15 0x00007c15   7    8         ascii  YRgR?>I
+ 760 0x00007c23 0x00007c23   6    6         ascii  ,,3-+6
+ 761 0x00007c39 0x00007c39   4    4         ascii  \a\a+-
+ 762 0x00007c5e 0x00007c5e   4    5         ascii  %'9)
+ 763 0x00007c73 0x00007c73   4    5         ascii  !'r\f
+ 764 0x00007c82 0x00007c82   8    8         ascii  %%'930,g
+ 765 0x00007c8b 0x00007c8b   9    9         ascii  eeefeeffg
+ 766 0x00007cd0 0x00007cd0   4    5         ascii  ,)*.
+ 767 0x00007cd7 0x00007cd7   4    4         ascii  g1on
+ 768 0x00007ce1 0x00007ce1   4    4         ascii  e*03
+ 769 0x00007ce8 0x00007ce8   5    5         ascii  jilnj
+ 770 0x00007cfa 0x00007cfa   5    5         ascii  dcdor
+ 771 0x00007d36 0x00007d36   6    7         ascii  PQTSQS
+ 772 0x00007d50 0x00007d50   8    9         ascii  RQQRRQAA
+ 773 0x00007d5c 0x00007d5c   7    7         ascii  \aSQRS>B
+ 774 0x00007d69 0x00007d69   6    6         ascii  --3-)j
+ 775 0x00007da0 0x00007da0   4    4         ascii  ''3)
+ 776 0x00007dbc 0x00007dbc  10   11         ascii  r6+fhhhgfg
+ 777 0x00007dd4 0x00007dd4   5    5         ascii  ';0-3
+ 778 0x00007e02 0x00007e02   6    7         ascii  ,*,-*3
+ 779 0x00007e0e 0x00007e0e   7    7         ascii  ,**,../
+ 780 0x00007e1e 0x00007e1e   7    7         ascii  )*+0e+n
+ 781 0x00007e2b 0x00007e2b   7    7         ascii  \aeb(233
+ 782 0x00007e33 0x00007e33   6    6         ascii  jeekkn
+ 783 0x00007e79 0x00007e79   5    6         ascii  PQURR
+ 784 0x00007e82 0x00007e82   7    7         ascii  RPRQQPY
+ 785 0x00007e90 0x00007e90   4    5         ascii  lQRR
+ 786 0x00007e9f 0x00007e9f   5    6         ascii  ,h`<>
+ 787 0x00007ebf 0x00007ebf   4    4         ascii  \a\f*-
+ 788 0x00007ee2 0x00007ee2   4    5         ascii  %'i*
+ 789 0x00007ee8 0x00007ee8   4    5         ascii  ejmn
+ 790 0x00007ef0 0x00007ef0  10   11         ascii  ''o.0imnng
+ 791 0x00007f21 0x00007f21   5    6         ascii  91-*1
+ 792 0x00007f2b 0x00007f2b   5    6         ascii  )+,*1
+ 793 0x00007f35 0x00007f35   4    4         ascii  ,,,/
+ 794 0x00007f3f 0x00007f3f   5    5         ascii  ,+*--
+ 795 0x00007f4e 0x00007f4e   6    6         ascii  ,)*.03
+ 796 0x00007f5c 0x00007f5c   6    7         ascii  f)*33g
+ 797 0x00007f78 0x00007f78   4    5         ascii  dcmt
+ 798 0x00007fa3 0x00007fa3   5    6         ascii  QQRPQ
+ 799 0x00007fad 0x00007fad   5    6         ascii  2TQRR
+ 800 0x00007fcd 0x00007fcd   7    8         ascii  ,+eT?>r
+ 801 0x00008002 0x00008002   4    4         ascii  \br--
+ 802 0x0000801b 0x0000801b   4    4         ascii  immn
+ 803 0x0000802a 0x0000802a   7    7         ascii  30fmnnl
+ 804 0x0000803e 0x0000803e   5    5         ascii  'rq+0
+ 805 0x0000805b 0x0000805b   4    4         ascii  !!31
+ 806 0x00008065 0x00008065   4    4         ascii  3**.
+ 807 0x0000808e 0x0000808e   4    5         ascii  ,+/j
+ 808 0x000080bc 0x000080bc   5    5         ascii  ggdgq
+ 809 0x000080e3 0x000080e3   5    6         ascii  SVSPT
+ 810 0x000080ec 0x000080ec   6    7         ascii  RQQQPS
+ 811 0x00008104 0x00008104   9    9         ascii  \a\b.hQ`=?A
+ 812 0x00008135 0x00008135   4    4         ascii  \b/*6
+ 813 0x0000814c 0x0000814c   4    5         ascii  \bq(3
+ 814 0x0000815c 0x0000815c   4    5         ascii  !s)6
+ 815 0x00008162 0x00008162   4    4         ascii  mmik
+ 816 0x00008172 0x00008172   4    5         ascii  'sm,
+ 817 0x00008180 0x00008180   4    4         ascii  qr3.
+ 818 0x000081a9 0x000081a9   4    4         ascii  ,+*,
+ 819 0x000081b3 0x000081b3   4    4         ascii  ,+*/
+ 820 0x000081bd 0x000081bd   4    4         ascii  ,+*3
+ 821 0x000081d0 0x000081d0   5    5         ascii  g(-fh
+ 822 0x000081e6 0x000081e6   4    5         ascii  kcdk
+ 823 0x000081f0 0x000081f0   5    5         ascii  geeee
+ 824 0x00008216 0x00008216   6    7         ascii  STTQPV
+ 825 0x00008232 0x00008232   4    5         ascii  SRQW
+ 826 0x0000823e 0x0000823e   8    9         ascii  =Q`g>A>r
+ 827 0x00008274 0x00008274   5    6         ascii  \aq)9\b
+ 828 0x00008286 0x00008286   4    5         ascii  mlfg
+ 829 0x00008296 0x00008296   4    5         ascii  qs3/
+ 830 0x000082a8 0x000082a8   5    5         ascii  +9;*+
+ 831 0x000082b2 0x000082b2   5    5         ascii  )+,*+
+ 832 0x000082e5 0x000082e5   6    6         ascii  gbce*/
+ 833 0x000082fd 0x000082fd   4    4         ascii  ccgf
+ 834 0x00008308 0x00008308   5    5         ascii  gffgg
+ 835 0x0000833a 0x0000833a   4    5         ascii  SPQQ
+ 836 0x0000834a 0x0000834a   4    5         ascii  RQRX
+ 837 0x0000835a 0x0000835a   6    7         ascii  RQ??=O
+ 838 0x0000838e 0x0000838e   4    5         ascii  \ar);
+ 839 0x000083a7 0x000083a7   4    4         ascii  deil
+ 840 0x000083b2 0x000083b2   6    7         ascii  00fjml
+ 841 0x000083be 0x000083be   5    5         ascii  qrq+0
+ 842 0x0000841a 0x0000841a   5    5         ascii  fbcde
+ 843 0x00008438 0x00008438   5    5         ascii  fbbdd
+ 844 0x00008466 0x00008466   4    5         ascii  QQSS
+ 845 0x00008482 0x00008482   4    5         ascii  RRRV
+ 846 0x0000848a 0x0000848a   4    5         ascii  =QQS
+ 847 0x00008490 0x00008490   4    5         ascii  SB>O
+ 848 0x0000849c 0x0000849c   8    9         ascii  nn3hY?>E
+ 849 0x000084bf 0x000084bf   4    4         ascii  \f.*6
+ 850 0x000084ca 0x000084ca   5    6         ascii  \as,1\n
+ 851 0x000084f4 0x000084f4   5    5         ascii  ddede
+ 852 0x00008500 0x00008500   7    7         ascii  #rr+0gk
+ 853 0x00008510 0x00008510   5    5         ascii  'rn-3
+ 854 0x00008533 0x00008533   4    4         ascii  1*)3
+ 855 0x00008569 0x00008569   5    5         ascii  ccddi
+ 856 0x00008587 0x00008587   5    6         ascii  fbbce
+ 857 0x000085ba 0x000085ba   7    7         ascii  RQSSSPS
+ 858 0x000085c6 0x000085c6   4    5         ascii  PRQQ
+ 859 0x000085cc 0x000085cc   4    5         ascii  QQQT
+ 860 0x000085d4 0x000085d4   9    9         ascii  PQQQQRRVA
+ 861 0x000085e4 0x000085e4  10   11         ascii  =PQQSSTA>M
+ 862 0x000085f5 0x000085f5   6    6         ascii  iVm30n
+ 863 0x0000865e 0x0000865e   8    9         ascii  !rs.,fff
+ 864 0x0000866a 0x0000866a   7    7         ascii  *;%n3.2
+ 865 0x000086b6 0x000086b6   5    5         ascii  bdefi
+ 866 0x000086d2 0x000086d2   5    5         ascii  fbcde
+ 867 0x00008713 0x00008713   7    7         ascii  QSSQPPQ
+ 868 0x00008720 0x00008720   9    9         ascii  UPRQQQQSA
+ 869 0x0000872f 0x0000872f  11   12         ascii  \bjPQQQRSD?O
+ 870 0x00008741 0x00008741   9   10         ascii  RQQQkYA>E
+ 871 0x0000874f 0x0000874f   5    6         ascii  \a.*`A
+ 872 0x00008780 0x00008780   4    5         ascii  !'+-
+ 873 0x000087a8 0x000087a8  10   11         ascii  );!rr3,fee
+ 874 0x000087bc 0x000087bc   7    7         ascii  )3!3600
+ 875 0x000087cf 0x000087cf   4    4         ascii  +++0
+ 876 0x000087f4 0x000087f4   5    5         ascii  gbchr
+ 877 0x00008805 0x00008805   5    5         ascii  fggii
+ 878 0x0000881d 0x0000881d   5    5         ascii  ebeii
+ 879 0x0000885f 0x0000885f   8    8         ascii  jRSRPPPW
+ 880 0x00008870 0x00008870   6    7         ascii  QQQTG?
+ 881 0x0000887e 0x0000887e   6    7         ascii  QQRYAI
+ 882 0x0000888b 0x0000888b   6    6         ascii  +QQQTn
+ 883 0x0000889a 0x0000889a   7    7         ascii  \a\t4+jSW
+ 884 0x000088cd 0x000088cd   4    4         ascii  %0*\b
+ 885 0x000088e9 0x000088e9   4    4         ascii  bbbe
+ 886 0x000088f7 0x000088f7   7    8         ascii  qrn*+ee
+ 887 0x00008908 0x00008908   4    4         ascii  )***
+ 888 0x0000890d 0x0000890d   4    4         ascii  1,,/
+ 889 0x00008916 0x00008916   7    7         ascii  gcb--33
+ 890 0x00008928 0x00008928   4    5         ascii  gcdr
+ 891 0x00008958 0x00008958   4    4         ascii  ebfm
+ 892 0x00008962 0x00008962   5    5         ascii  gggfi
+ 893 0x00008990 0x00008990   9    9         ascii  \tRQQPPQPG
+ 894 0x000089a6 0x000089a6   4    5         ascii  QUL?
+ 895 0x000089b6 0x000089b6   4    5         ascii  VG?O
+ 896 0x000089bf 0x000089bf   7    7         ascii  \a.*RPQX
+ 897 0x000089f2 0x000089f2   4    5         ascii  !')+
+ 898 0x000089fc 0x000089fc   4    5         ascii  !%/)
+ 899 0x00008a06 0x00008a06   5    5         ascii  %n3--
+ 900 0x00008a18 0x00008a18  10   11         ascii  +-1oro))cd
+ 901 0x00008a24 0x00008a24   4    5         ascii  cddd
+ 902 0x00008a2a 0x00008a2a   5    5         ascii  ddeeh
+ 903 0x00008a36 0x00008a36   9    9         ascii  ,)*+.-++.
+ 904 0x00008a46 0x00008a46   5    5         ascii  fe)-1
+ 905 0x00008a57 0x00008a57   4    4         ascii  gbcn
+ 906 0x00008a68 0x00008a68   4    5         ascii  ffhj
+ 907 0x00008a85 0x00008a85   4    4         ascii  jben
+ 908 0x00008ac4 0x00008ac4   5    5         ascii  SPPRJ
+ 909 0x00008ad2 0x00008ad2   8    9         ascii  RQQQQWEA
+ 910 0x00008ae6 0x00008ae6   4    5         ascii  YD=r
+ 911 0x00008af3 0x00008af3   5    5         ascii  *jQPR
+ 912 0x00008b4f 0x00008b4f  10   10         ascii  qso*fbcccb
+ 913 0x00008b65 0x00008b65   4    4         ascii  -*-3
+ 914 0x00008b7e 0x00008b7e   5    5         ascii  ,*-*,
+ 915 0x00008b8d 0x00008b8d   6    6         ascii  ,)/1+*
+ 916 0x00008baa 0x00008baa   6    6         ascii  bcen++
+ 917 0x00008bd5 0x00008bd5   5    5         ascii  deddi
+ 918 0x00008c0c 0x00008c0c   5    5         ascii  RPPUA
+ 919 0x00008c16 0x00008c16   9    9         ascii  \a\ajQQQSYA
+ 920 0x00008c2a 0x00008c2a   4    5         ascii  Y?=O
+ 921 0x00008c35 0x00008c35   5    5         ascii  *jRPT
+ 922 0x00008c8f 0x00008c8f   6    6         ascii  !%rrm,
+ 923 0x00008c9c 0x00008c9c   8    9         ascii  0.o6)+cc
+ 924 0x00008cb7 0x00008cb7   4    4         ascii  cbde
+ 925 0x00008ce8 0x00008ce8   5    5         ascii  f(.hl
+ 926 0x00008cf4 0x00008cf4   4    5         ascii  g*6g
+ 927 0x00008d0c 0x00008d0c   5    5         ascii  gddde
+ 928 0x00008d3b 0x00008d3b   6    6         ascii  SQPQUA
+ 929 0x00008d47 0x00008d47   7    8         ascii  jSQQQTY
+ 930 0x00008d55 0x00008d55   9   10         ascii  QQQQTLA>r
+ 931 0x00008d63 0x00008d63   5    5         ascii  iPPQm
+ 932 0x00008d70 0x00008d70   5    5         ascii  -*jSV
+ 933 0x00008d9c 0x00008d9c   4    5         ascii  '!.)
+ 934 0x00008da6 0x00008da6   4    4         ascii  'm3+
+ 935 0x00008db0 0x00008db0   6    7         ascii  %%'rsl
+ 936 0x00008dba 0x00008dba   8    9         ascii  31--/+,f
+ 937 0x00008dce 0x00008dce   6    6         ascii  ,*,-+/
+ 938 0x00008dd9 0x00008dd9   6    6         ascii  cbcbbb
+ 939 0x00008de4 0x00008de4   5    5         ascii  ,*-.0
+ 940 0x00008e02 0x00008e02   7    7         ascii  )9dckmm
+ 941 0x00008e10 0x00008e10   4    5         ascii  iejl
+ 942 0x00008e2b 0x00008e2b   5    5         ascii  gedde
+ 943 0x00008e5b 0x00008e5b   5    6         ascii  SSSPQ
+ 944 0x00008e68 0x00008e68   4    5         ascii  RQQQ
+ 945 0x00008e7a 0x00008e7a   5    5         ascii  RUVA?
+ 946 0x00008e87 0x00008e87   5    5         ascii  QPQT0
+ 947 0x00008e94 0x00008e94   6    6         ascii  \a\a-,UD
+ 948 0x00008eba 0x00008eba   5    5         ascii  !s/+\
+ 949 0x00008ec4 0x00008ec4   5    5         ascii  '%.+`
+ 950 0x00008ece 0x00008ece   6    7         ascii  !!'6,*
+ 951 0x00008ee4 0x00008ee4  10   10         ascii  //000++edc
+ 952 0x00008f02 0x00008f02   4    4         ascii  dccc
+ 953 0x00008f44 0x00008f44   5    5         ascii  ghjgj
+ 954 0x00008f56 0x00008f56   4    5         ascii  iigj
+ 955 0x00008f6b 0x00008f6b   5    6         ascii  mccjm
+ 956 0x00008f75 0x00008f75   6    6         ascii  ggggfi
+ 957 0x00008faf 0x00008faf   5    5         ascii  QPQTA
+ 958 0x00008fc9 0x00008fc9   6    6         ascii  `PQRQR
+ 959 0x00009063 0x00009063   4    4         ascii  *fgh
+ 960 0x00009074 0x00009074   4    4         ascii  rs*1
+ 961 0x000090a8 0x000090a8   4    4         ascii  ,*03
+ 962 0x000090b3 0x000090b3   4    4         ascii  ,+63
+ 963 0x000090be 0x000090be   5    5         ascii  *,6hj
+ 964 0x000090ca 0x000090ca   4    4         ascii  ).fh
+ 965 0x000090d5 0x000090d5   5    5         ascii  ,)0eq
+ 966 0x000090f3 0x000090f3   5    5         ascii  ecgmq
+ 967 0x00009145 0x00009145   5    5         ascii  PPQ=?
+ 968 0x00009150 0x00009150   5    6         ascii  RPQQV
+ 969 0x00009159 0x00009159   9    9         ascii  SSRQQQVOM
+ 970 0x000091de 0x000091de   5    6         ascii  ++hhi
+ 971 0x00009215 0x00009215   4    5         ascii  +23k
+ 972 0x0000921d 0x0000921d   4    5         ascii  ,0fm
+ 973 0x00009225 0x00009225   5    5         ascii  ,*2ej
+ 974 0x0000922f 0x0000922f   5    5         ascii  ++3fr
+ 975 0x00009254 0x00009254   5    6         ascii  fcdem
+ 976 0x0000925e 0x0000925e   4    4         ascii  gcfg
+ 977 0x000092a5 0x000092a5   9    9         ascii  PPQQQRTLI
+ 978 0x000092b3 0x000092b3   7    7         ascii  QPQRQUn
+ 979 0x000092bf 0x000092bf   7    7         ascii  +kSTWm2
+ 980 0x0000931b 0x0000931b   4    5         ascii  \f\a%9
+ 981 0x00009336 0x00009336   4    4         ascii  ,0oq
+ 982 0x00009364 0x00009364   4    4         ascii  ,;'1
+ 983 0x00009380 0x00009380   5    6         ascii  +,6jo
+ 984 0x00009389 0x00009389   5    5         ascii  ,).fk
+ 985 0x00009393 0x00009393   4    4         ascii  *+0i
+ 986 0x000093b4 0x000093b4   4    4         ascii  ceko
+ 987 0x000093bd 0x000093bd   5    5         ascii  hcdel
+ 988 0x00009409 0x00009409   7    7         ascii  QQQSTLO
+ 989 0x00009421 0x00009421   6    7         ascii  +\a\a\a66
+ 990 0x000094a4 0x000094a4   5    5         ascii  !sqq/
+ 991 0x000094c8 0x000094c8   4    4         ascii  -).1
+ 992 0x000094d2 0x000094d2   4    4         ascii  ,*,6
+ 993 0x000094e3 0x000094e3   4    5         ascii  ,)+m
+ 994 0x00009505 0x00009505   4    4         ascii  ccel
+ 995 0x00009538 0x00009538   5    6         ascii  SPPQU
+ 996 0x00009541 0x00009541   4    5         ascii  QQRP
+ 997 0x0000954f 0x0000954f   8    9         ascii  RPPQRRRA
+ 998 0x00009610 0x00009610   4    4         ascii  **+6
+ 999 0x0000967d 0x0000967d   4    5         ascii  RQQA
+1000 0x00009687 0x00009687   5    5         ascii  >jih1
+1001 0x000096fb 0x000096fb   4    5         ascii  ;%',
+1002 0x00009703 0x00009703   4    5         ascii  )16,
+1003 0x0000970b 0x0000970b   4    5         ascii  )+,1
+1004 0x0000971e 0x0000971e   4    4         ascii  ,++*
+1005 0x00009728 0x00009728   4    4         ascii  (++3
+1006 0x00009731 0x00009731   4    5         ascii  f)+6
+1007 0x0000974a 0x0000974a   4    4         ascii  ebdq
+1008 0x00009781 0x00009781   7    7         ascii  TSPQQQ?
+1009 0x000097ac 0x000097ac   4    4         ascii  /,15
+1010 0x00009836 0x00009836   5    6         ascii  ,*+.,
+1011 0x00009840 0x00009840   5    6         ascii  ,,-+1
+1012 0x0000984a 0x0000984a   5    6         ascii  +.,+3
+1013 0x00009854 0x00009854   4    4         ascii  +-+,
+1014 0x0000985e 0x0000985e   4    4         ascii  d.+6
+1015 0x00009867 0x00009867   4    5         ascii  de+-
+1016 0x0000986f 0x0000986f   4    5         ascii  fj*/
+1017 0x00009878 0x00009878   4    4         ascii  ebis
+1018 0x00009884 0x00009884   4    4         ascii  cddk
+1019 0x000098b9 0x000098b9   5    5         ascii  RPPRA
+1020 0x000098c4 0x000098c4   8    8         ascii  SRRQQRSA
+1021 0x000098da 0x000098da   6    6         ascii  kPQ`i1
+1022 0x00009959 0x00009959   6    7         ascii  *);%'+
+1023 0x00009964 0x00009964   5    6         ascii  )-19+
+1024 0x0000996e 0x0000996e   5    6         ascii  )--+0
+1025 0x00009977 0x00009977   6    7         ascii  ,)1/*,
+1026 0x00009981 0x00009981   6    7         ascii  ,)9,*3
+1027 0x00009995 0x00009995   5    5         ascii  **n--
+1028 0x0000999f 0x0000999f   5    5         ascii  cdm,.
+1029 0x000099ae 0x000099ae   4    4         ascii  cehi
+1030 0x000099b9 0x000099b9   4    5         ascii  gcdg
+1031 0x000099f3 0x000099f3   5    5         ascii  QPPQ?
+1032 0x00009a12 0x00009a12   6    6         ascii  TPPQQ3
+1033 0x00009a99 0x00009a99   4    5         ascii  )+9'
+1034 0x00009aa8 0x00009aa8   4    4         ascii  -0-3
+1035 0x00009af2 0x00009af2   4    4         ascii  ebio
+1036 0x00009af7 0x00009af7   5    5         ascii  ecfei
+1037 0x00009b5a 0x00009b5a   6    6         ascii  QQQQSk
+1038 0x00009b67 0x00009b67   4    5         ascii  SQUo
+1039 0x00009b96 0x00009b96   4    4         ascii  \r+.q
+1040 0x00009bd2 0x00009bd2   4    5         ascii  -6n\e
+1041 0x00009c32 0x00009c32   5    6         ascii  ecedh
+1042 0x00009c8f 0x00009c8f   7    7         ascii  SRPQQT?
+1043 0x00009c9b 0x00009c9b   7    7         ascii  QRQQSYO
+1044 0x00009ca7 0x00009ca7   6    7         ascii  PRQRmq
+1045 0x00009cb1 0x00009cb1   7    7         ascii  *0=RSY6
+1046 0x00009cf9 0x00009cf9   5    5         ascii  \a\r*0n
+1047 0x00009d28 0x00009d28   4    4         ascii  !'ro
+1048 0x00009d40 0x00009d40   8    8         ascii  +)-;%'2,
+1049 0x00009d89 0x00009d89   4    5         ascii  *.mg
+1050 0x00009d99 0x00009d99   4    5         ascii  bddf
+1051 0x00009dfd 0x00009dfd   5    5         ascii  SPQQ=
+1052 0x00009e09 0x00009e09   8    9         ascii  SSPQQRAL
+1053 0x00009e16 0x00009e16   8    8         ascii  SPQRQQWr
+1054 0x00009e29 0x00009e29   4    5         ascii  RQRn
+1055 0x00009e31 0x00009e31   7    7         ascii  ,,\aiRRW
+1056 0x00009e5e 0x00009e5e   4    4         ascii  \a.*6
+1057 0x00009eb0 0x00009eb0   4    4         ascii  !%ro
+1058 0x00009ecb 0x00009ecb   4    5         ascii  '/.6
+1059 0x00009f08 0x00009f08   4    4         ascii  eegd
+1060 0x00009f33 0x00009f33   4    5         ascii  gbho
+1061 0x00009f72 0x00009f72   5    6         ascii  SPPQB
+1062 0x00009f7f 0x00009f7f   6    7         ascii  SPQQRD
+1063 0x00009f91 0x00009f91   4    5         ascii  QQYr
+1064 0x00009f9c 0x00009f9c   5    6         ascii  QQRRR
+1065 0x00009fa9 0x00009fa9   4    5         ascii  SQQS
+1066 0x00009fd6 0x00009fd6   4    4         ascii  \b6*3
+1067 0x0000a007 0x0000a007   4    5         ascii  +*ln
+1068 0x0000a02e 0x0000a02e   9   10         ascii  ,1;!!%mq6
+1069 0x0000a03f 0x0000a03f   4    5         ascii  '-.3
+1070 0x0000a0a2 0x0000a0a2   4    4         ascii  gbeq
+1071 0x0000a0e3 0x0000a0e3   4    5         ascii  PQPS
+1072 0x0000a0ee 0x0000a0ee   5    6         ascii  QPQRB
+1073 0x0000a0f8 0x0000a0f8   9   10         ascii  +.kPRRQUr
+1074 0x0000a11a 0x0000a11a   4    4         ascii  jQPT
+1075 0x0000a13a 0x0000a13a   4    4         ascii  \a4*.
+1076 0x0000a19e 0x0000a19e   6    6         ascii  %'.qq0
+1077 0x0000a1aa 0x0000a1aa   9   10         ascii  +)/;'',n9
+1078 0x0000a1f9 0x0000a1f9   4    4         ascii  bekm
+1079 0x0000a20c 0x0000a20c   5    6         ascii  gddfj
+1080 0x0000a253 0x0000a253   6    7         ascii  RQQQRL
+1081 0x0000a25f 0x0000a25f   5    5         ascii  PQSQV
+1082 0x0000a26e 0x0000a26e   4    4         ascii  SQQV
+1083 0x0000a2da 0x0000a2da   4    4         ascii  +,mo
+1084 0x0000a2f9 0x0000a2f9   5    5         ascii  ',qr.
+1085 0x0000a305 0x0000a305   7    7         ascii  ).9'!*6
+1086 0x0000a366 0x0000a366   4    4         ascii  ccef
+1087 0x0000a39c 0x0000a39c   5    6         ascii  SPQQA
+1088 0x0000a3c1 0x0000a3c1   4    5         ascii  RPPP
+1089 0x0000a3ea 0x0000a3ea   4    4         ascii  \a0*6
+1090 0x0000a453 0x0000a453   4    5         ascii  rr00
+1091 0x0000a45d 0x0000a45d   4    5         ascii  ,0!%
+1092 0x0000a46b 0x0000a46b   6    6         ascii  ,+19n+
+1093 0x0000a477 0x0000a477   6    6         ascii  ,*1*+/
+1094 0x0000a504 0x0000a504   4    4         ascii  SPQ?
+1095 0x0000a50e 0x0000a50e   4    4         ascii  PQQ>
+1096 0x0000a517 0x0000a517   5    5         ascii  SPQRO
+1097 0x0000a521 0x0000a521   4    4         ascii  QQQR
+1098 0x0000a52f 0x0000a52f   5    5         ascii  RPPPT
+1099 0x0000a5c3 0x0000a5c3   4    5         ascii  qs0/
+1100 0x0000a5d8 0x0000a5d8   5    6         ascii  *;%'+
+1101 0x0000a5e6 0x0000a5e6   5    6         ascii  *+030
+1102 0x0000a5f0 0x0000a5f0   5    6         ascii  ),+,6
+1103 0x0000a5fa 0x0000a5fa   5    6         ascii  )0,+6
+1104 0x0000a605 0x0000a605   5    5         ascii  ,*3++
+1105 0x0000a611 0x0000a611   5    5         ascii  ,-1*0
+1106 0x0000a61d 0x0000a61d   5    5         ascii  chk)6
+1107 0x0000a67b 0x0000a67b   5    5         ascii  RPQSI
+1108 0x0000a685 0x0000a685   5    5         ascii  PQQXs
+1109 0x0000a692 0x0000a692   5    6         ascii  QQRQT
+1110 0x0000a69e 0x0000a69e   5    5         ascii  QQPPS
+1111 0x0000a740 0x0000a740   4    4         ascii  ,*,6
+1112 0x0000a74a 0x0000a74a   4    4         ascii  -*+6
+1113 0x0000a75e 0x0000a75e   4    4         ascii  ,*0n
+1114 0x0000a78c 0x0000a78c   5    6         ascii  fccel
+1115 0x0000a7bf 0x0000a7bf   5    5         ascii  QPQTA
+1116 0x0000a7d6 0x0000a7d6   6    6         ascii  `PQRQR
+1117 0x0000a7e3 0x0000a7e3   5    5         ascii  =QQQR
+1118 0x0000a84f 0x0000a84f   4    5         ascii  *fgh
+1119 0x0000a85d 0x0000a85d   4    5         ascii  rs*1
+1120 0x0000a890 0x0000a890   4    4         ascii  ,+63
+1121 0x0000a89a 0x0000a89a   5    6         ascii  *,6hj
+1122 0x0000a8a4 0x0000a8a4   4    4         ascii  ).fh
+1123 0x0000a8ad 0x0000a8ad   5    5         ascii  ,)0eq
+1124 0x0000a8c7 0x0000a8c7   5    5         ascii  ecgmq
+1125 0x0000a8d1 0x0000a8d1   4    4         ascii  eddh
+1126 0x0000a941 0x0000a941   4    4         ascii  ik10
+1127 0x0000aaa3 0x0000aaa3   5    6         ascii  SPQQW
+1128 0x0000aaac 0x0000aaac   4    5         ascii  PQQT
+1129 0x0000aab5 0x0000aab5   5    5         ascii  SQRRS
+1130 0x0000abd7 0x0000abd7   4    4         ascii  SQPS
+1131 0x0000abe1 0x0000abe1   4    4         ascii  QQQS
+1132 0x0000abeb 0x0000abeb   4    4         ascii  PQQT
+1133 0x0000abf5 0x0000abf5   4    4         ascii  QRQS
+1134 0x0000abff 0x0000abff   6    6         ascii  SPPQQQ
+1135 0x0000ac0d 0x0000ac0d   5    5         ascii  Wl@l/
+1136 0x0000ac95 0x0000ac95   5    6         ascii  !%'%\e
+1137 0x0000ad31 0x0000ad31   4    4         ascii  PPPU
+1138 0x0000ad44 0x0000ad44   5    5         ascii  SQQRr
+1139 0x0000ad4f 0x0000ad4f   5    5         ascii  RPRRQ
+1140 0x0000ad5b 0x0000ad5b   5    6         ascii  SSRRV
+1141 0x0000adb0 0x0000adb0   6    7         ascii  o36'rq
+1142 0x0000ae68 0x0000ae68   4    4         ascii  SPPQ
+1143 0x0000ae84 0x0000ae84   6    7         ascii  SRQRQU
+1144 0x0000ae8e 0x0000ae8e   6    6         ascii  SRQQTq
+1145 0x0000af00 0x0000af00   4    5         ascii  %%'%
+1146 0x0000afae 0x0000afae   6    7         ascii  SPPQRQ
+1147 0x0000afb9 0x0000afb9   5    6         ascii  RQRj0
+1148 0x0000b01e 0x0000b01e   5    5         ascii  o39'r
+1149 0x0000b0bf 0x0000b0bf   4    4         ascii  SQST
+1150 0x0000b0c9 0x0000b0c9   4    4         ascii  PPQG
+1151 0x0000b0e5 0x0000b0e5   6    6         ascii  RPPQ,T
+1152 0x0000b124 0x0000b124   5    6         ascii  dd+2\a
+1153 0x0000b175 0x0000b175   5    6         ascii  !!'!!
+1154 0x0000b221 0x0000b221   4    4         ascii  QQQS
+1155 0x0000b236 0x0000b236   5    5         ascii  RPQi3
+1156 0x0000b382 0x0000b382   6    7         ascii  RQQQ@\r
+1157 0x0000b3e8 0x0000b3e8   5    5         ascii  !39q'
+1158 0x0000b40b 0x0000b40b   4    4         ascii  %''%
+1159 0x0000b4b1 0x0000b4b1   5    6         ascii  SPQQY
+1160 0x0000b4ba 0x0000b4ba   5    5         ascii  SQQRQ
+1161 0x0000b4c4 0x0000b4c4   6    7         ascii  QQPQQD
+1162 0x0000b55b 0x0000b55b   5    6         ascii  +)0,-
+1163 0x0000b5dc 0x0000b5dc   4    5         ascii  SPPQ
+1164 0x0000b5e4 0x0000b5e4   4    5         ascii  RPQQ
+1165 0x0000b5ee 0x0000b5ee   4    5         ascii  QQRR
+1166 0x0000b695 0x0000b695   6    6         ascii  ,)/,,/
+1167 0x0000b707 0x0000b707   4    4         ascii  SPPS
+1168 0x0000b71b 0x0000b71b   4    4         ascii  PQQT
+1169 0x0000b726 0x0000b726   5    5         ascii  SQSSS
+1170 0x0000b79e 0x0000b79e   4    5         ascii  n'qr
+1171 0x0000b7bf 0x0000b7bf   4    4         ascii  '!''
+1172 0x0000b855 0x0000b855   4    4         ascii  SPPQ
+1173 0x0000b85f 0x0000b85f   4    4         ascii  SPQQ
+1174 0x0000b869 0x0000b869   5    6         ascii  SPRQU
+1175 0x0000b873 0x0000b873   5    6         ascii  SQRRT
+1176 0x0000b87d 0x0000b87d   6    6         ascii  TPQQPW
+1177 0x0000b9b7 0x0000b9b7   5    6         ascii  TPQQT
+1178 0x0000b9d7 0x0000b9d7   4    4         ascii  k@TG
+1179 0x0000bae7 0x0000bae7   4    4         ascii  SPPR
+1180 0x0000baf9 0x0000baf9   5    6         ascii  SQQQU
+1181 0x0000bb43 0x0000bb43   4    4         ascii  \a\r).
+1182 0x0000bc15 0x0000bc15   4    4         ascii  PPQT
+1183 0x0000bc1f 0x0000bc1f   4    4         ascii  PQQR
+1184 0x0000bc2b 0x0000bc2b   6    6         ascii  RPQQPY
+1185 0x0000bcb9 0x0000bcb9   4    4         ascii  !%'%
+1186 0x0000bd5a 0x0000bd5a   4    5         ascii  SPPQ
+1187 0x0000bd62 0x0000bd62   4    4         ascii  SQQQ
+1188 0x0000bd81 0x0000bd81   4    4         ascii  .`QS
+1189 0x0000bea4 0x0000bea4   4    5         ascii  SRRS
+1190 0x0000beac 0x0000beac   4    5         ascii  QPQS
+1191 0x0000bec7 0x0000bec7   5    6         ascii  RPQTU
+1192 0x0000bf24 0x0000bf24   4    4         ascii  '69'
+1193 0x0000bfe8 0x0000bfe8   4    5         ascii  SPPQ
+1194 0x0000bffc 0x0000bffc   5    5         ascii  SQRRR
+1195 0x0000c006 0x0000c006   6    7         ascii  SPQQQV
+1196 0x0000c011 0x0000c011   5    6         ascii  iik10
+1197 0x0000c11d 0x0000c11d   4    4         ascii  =QRQ
+1198 0x0000c149 0x0000c149   4    5         ascii  jRQ@
+1199 0x0000c179 0x0000c179   4    5         ascii  cd)+
+1200 0x0000c196 0x0000c196   4    5         ascii  ,*\r\a
+1201 0x0000c251 0x0000c251   4    4         ascii  cge-
+1202 0x0000c2c4 0x0000c2c4   4    5         ascii  SPPT
+1203 0x0000c2d6 0x0000c2d6   4    5         ascii  ?>QQ
+1204 0x0000c2e4 0x0000c2e4   4    5         ascii  TQQR
+1205 0x0000c373 0x0000c373   5    6         ascii  )0''9
+1206 0x0000c380 0x0000c380   4    5         ascii  ,)-n
+1207 0x0000c3a2 0x0000c3a2   4    5         ascii  ,)*6
+1208 0x0000c3c8 0x0000c3c8   5    5         ascii  gce(o
+1209 0x0000c3d9 0x0000c3d9   4    4         ascii  gcdq
+1210 0x0000c42e 0x0000c42e   5    5         ascii  ?<PPR
+1211 0x0000c448 0x0000c448   8    8         ascii  ?TQQRQSS
+1212 0x0000c456 0x0000c456   7    7         ascii  TQRQQU+
+1213 0x0000c49b 0x0000c49b   8    9         ascii  ccccd)/\b
+1214 0x0000c4e9 0x0000c4e9   8    8         ascii  *0%'!+,*
+1215 0x0000c539 0x0000c539   4    4         ascii  dh*.
+1216 0x0000c566 0x0000c566   4    5         ascii  gccg
+1217 0x0000c5a2 0x0000c5a2   4    4         ascii  >PPP
+1218 0x0000c5b8 0x0000c5b8   6    6         ascii  ARPRQR
+1219 0x0000c5c7 0x0000c5c7   6    7         ascii  SQQQRk
+1220 0x0000c5d5 0x0000c5d5   4    5         ascii  SPQk
+1221 0x0000c651 0x0000c651   4    4         ascii  !''%
+1222 0x0000c65a 0x0000c65a   9    9         ascii  `+.%%'331
+1223 0x0000c668 0x0000c668   4    5         ascii  -*,%
+1224 0x0000c6cd 0x0000c6cd   4    4         ascii  fcch
+1225 0x0000c702 0x0000c702   4    5         ascii  TRPT
+1226 0x0000c70a 0x0000c70a   4    4         ascii  QPQS
+1227 0x0000c720 0x0000c720   6    7         ascii  EQRRQm
+1228 0x0000c780 0x0000c780   7    7         ascii  dbcccdd
+1229 0x0000c7be 0x0000c7be   6    7         ascii  Z++!'1
+1230 0x0000c7ea 0x0000c7ea   4    5         ascii  .)),
+1231 0x0000c7f9 0x0000c7f9   4    4         ascii  3*)-
+1232 0x0000c810 0x0000c810   4    5         ascii  giec
+1233 0x0000c81e 0x0000c81e   5    5         ascii  gdcco
+1234 0x0000c870 0x0000c870   4    5         ascii  PPQV
+1235 0x0000c88e 0x0000c88e   5    6         ascii  RPPSk
+1236 0x0000c8df 0x0000c8df   7    7         ascii  bccdd**
+1237 0x0000c8e7 0x0000c8e7   5    6         ascii  q;m\e%
+1238 0x0000c908 0x0000c908   6    6         ascii  +%'%31
+1239 0x0000c918 0x0000c918   4    4         ascii  '-).
+1240 0x0000c976 0x0000c976   5    5         ascii  gcdbf
+1241 0x0000c97e 0x0000c97e   4    4         ascii  hecd
+1242 0x0000c9c4 0x0000c9c4   4    5         ascii  =PQT
+1243 0x0000c9cc 0x0000c9cc   5    5         ascii  ?PQQT
+1244 0x0000c9d6 0x0000c9d6   9    9         ascii  ARQS`.\b-,
+1245 0x0000c9e4 0x0000c9e4   5    6         ascii  RPPPS
+1246 0x0000ca33 0x0000ca33   7    7         ascii  \bbbbcdd
+1247 0x0000ca5a 0x0000ca5a   4    4         ascii  !%'!
+1248 0x0000ca72 0x0000ca72   6    7         ascii  )9n++9
+1249 0x0000ca7e 0x0000ca7e   6    7         ascii  )03,-6
+1250 0x0000cacd 0x0000cacd   4    4         ascii  efcc
+1251 0x0000cb12 0x0000cb12   5    5         ascii  ?PPQT
+1252 0x0000cb1c 0x0000cb1c   5    5         ascii  ?SQQQ
+1253 0x0000cb27 0x0000cb27   5    5         ascii  APQQU
+1254 0x0000cb35 0x0000cb35   5    6         ascii  RPQRR
+1255 0x0000cb88 0x0000cb88   8    9         ascii  cbbbbcbb
+1256 0x0000cb92 0x0000cb92   6    7         ascii  1r9m\e'
+1257 0x0000cbce 0x0000cbce   5    5         ascii  +-;.3
+1258 0x0000cbd8 0x0000cbd8   5    5         ascii  ,+6.3
+1259 0x0000cbe2 0x0000cbe2   5    5         ascii  ,+6-,
+1260 0x0000cbec 0x0000cbec   5    5         ascii  ,)//,
+1261 0x0000cbf9 0x0000cbf9   4    4         ascii  *-6+
+1262 0x0000cc05 0x0000cc05   5    5         ascii  ,+mdf
+1263 0x0000cc57 0x0000cc57   4    4         ascii  =PPS
+1264 0x0000cc6a 0x0000cc6a   6    7         ascii  ?ARQQS
+1265 0x0000cc7a 0x0000cc7a   6    7         ascii  RQU\a-3
+1266 0x0000cc86 0x0000cc86   5    6         ascii  PPQR=
+1267 0x0000ccc8 0x0000ccc8   4    5         ascii  cbbb
+1268 0x0000cd6c 0x0000cd6c   4    5         ascii  ecce
+1269 0x0000cda6 0x0000cda6   4    5         ascii  QQRR
+1270 0x0000cdaf 0x0000cdaf   6    6         ascii  ATQQQS
+1271 0x0000cdbb 0x0000cdbb   7    8         ascii  PQRQT.1
+1272 0x0000cdc7 0x0000cdc7   5    6         ascii  PPQSD
+1273 0x0000ce1a 0x0000ce1a   4    5         ascii  9n\e'
+1274 0x0000ce58 0x0000ce58   4    5         ascii  f-++
+1275 0x0000ce60 0x0000ce60   5    5         ascii  f*,*3
+1276 0x0000ce6b 0x0000ce6b   4    4         ascii  d,*3
+1277 0x0000ce75 0x0000ce75   4    4         ascii  g-*1
+1278 0x0000ce90 0x0000ce90   5    5         ascii  gefcg
+1279 0x0000cece 0x0000cece   4    5         ascii  QPQQ
+1280 0x0000cee2 0x0000cee2   7    7         ascii  ?QQRQQS
+1281 0x0000ceef 0x0000ceef   7    8         ascii  iPQQRS1
+1282 0x0000cf30 0x0000cf30   5    5         ascii  bccbb
+1283 0x0000cf4e 0x0000cf4e   4    5         ascii  66!'
+1284 0x0000cf74 0x0000cf74   5    5         ascii  +);33
+1285 0x0000cf95 0x0000cf95   6    6         ascii  gd+,+/
+1286 0x0000cfa0 0x0000cfa0   5    5         ascii  fe1*,
+1287 0x0000cfce 0x0000cfce   4    5         ascii  cccj
+1288 0x0000d002 0x0000d002   5    5         ascii  >QPQT
+1289 0x0000d017 0x0000d017   9   10         ascii  >>QQQRQRV
+1290 0x0000d025 0x0000d025   7    8         ascii  h`QQQSY
+1291 0x0000d059 0x0000d059   4    5         ascii  dbb\b
+1292 0x0000d066 0x0000d066   8    9         ascii  cdcbb+6\b
+1293 0x0000d0ac 0x0000d0ac   4    4         ascii  ,-';
+1294 0x0000d0d7 0x0000d0d7   4    4         ascii  d,++
+1295 0x0000d0e1 0x0000d0e1   5    6         ascii  fe+*6
+1296 0x0000d104 0x0000d104   5    5         ascii  giebi
+1297 0x0000d153 0x0000d153   7    7         ascii  ?QQQRQT
+1298 0x0000d161 0x0000d161   5    6         ascii  ??QRQ
+1299 0x0000d168 0x0000d168   4    5         ascii  RQPV
+1300 0x0000d171 0x0000d171   7    8         ascii  -eQPQT0
+1301 0x0000d1bc 0x0000d1bc   4    5         ascii  dcc*
+1302 0x0000d1f8 0x0000d1f8   4    5         ascii  .%!%
+1303 0x0000d200 0x0000d200   4    5         ascii  ,;''
+1304 0x0000d227 0x0000d227   4    4         ascii  e+*.
+1305 0x0000d23a 0x0000d23a   4    5         ascii  h+).
+1306 0x0000d258 0x0000d258   4    5         ascii  dces
+1307 0x0000d28c 0x0000d28c   4    4         ascii  SPPS
+1308 0x0000d296 0x0000d296   5    5         ascii  PQQQS
+1309 0x0000d2a0 0x0000d2a0   4    5         ascii  <QQQ
+1310 0x0000d2a6 0x0000d2a6   4    5         ascii  QQRV
+1311 0x0000d33e 0x0000d33e   4    5         ascii  +1n6
+1312 0x0000d346 0x0000d346   4    5         ascii  ,*23
+1313 0x0000d34e 0x0000d34e   4    5         ascii  ,*.0
+1314 0x0000d361 0x0000d361   4    4         ascii  -*)0
+1315 0x0000d382 0x0000d382   4    5         ascii  kcdr
+1316 0x0000d3d5 0x0000d3d5   6    6         ascii  gfSR>k
+1317 0x0000d3e7 0x0000d3e7   4    4         ascii  \b\b-/
+1318 0x0000d40e 0x0000d40e   4    5         ascii  dd+*
+1319 0x0000d45c 0x0000d45c   4    5         ascii  -!'o
+1320 0x0000d464 0x0000d464   4    5         ascii  )393
+1321 0x0000d46c 0x0000d46c   4    5         ascii  )-6/
+1322 0x0000d474 0x0000d474   4    5         ascii  *,0,
+1323 0x0000d48a 0x0000d48a   4    5         ascii  -)0q
+1324 0x0000d4a2 0x0000d4a2   5    5         ascii  igcdr
+1325 0x0000d4db 0x0000d4db   5    6         ascii  ?PQQR
+1326 0x0000d4f3 0x0000d4f3   5    6         ascii  AS`QQ
+1327 0x0000d507 0x0000d507   5    6         ascii  ,eikl
+1328 0x0000d532 0x0000d532   4    5         ascii  df**
+1329 0x0000d59c 0x0000d59c   4    5         ascii  ).3.
+1330 0x0000d5a4 0x0000d5a4   5    5         ascii  )01,6
+1331 0x0000d5ae 0x0000d5ae   5    5         ascii  ),0-1
+1332 0x0000d5b8 0x0000d5b8   5    5         ascii  -)-.2
+1333 0x0000d5ca 0x0000d5ca   4    5         ascii  *.fi
+1334 0x0000d5d2 0x0000d5d2   4    5         ascii  ,+ik
+1335 0x0000d5db 0x0000d5db   4    4         ascii  jebi
+1336 0x0000d5e5 0x0000d5e5   4    4         ascii  gdcn
+1337 0x0000d61d 0x0000d61d   5    6         ascii  ?RPQS
+1338 0x0000d627 0x0000d627   7    8         ascii  <QRRRQR
+1339 0x0000d636 0x0000d636   4    4         ascii  RRQQ
+1340 0x0000d642 0x0000d642   7    7         ascii  jeQ`R@-
+1341 0x0000d6cc 0x0000d6cc   6    7         ascii  n!%%;9
+1342 0x0000d6d6 0x0000d6d6   5    5         ascii  )%s3*
+1343 0x0000d6e0 0x0000d6e0   5    5         ascii  )69+.
+1344 0x0000d6eb 0x0000d6eb   6    6         ascii  ,)11+.
+1345 0x0000d6fa 0x0000d6fa   4    5         ascii  3,,6
+1346 0x0000d702 0x0000d702   6    7         ascii  *+6-+6
+1347 0x0000d715 0x0000d715   5    6         ascii  )1m(f
+1348 0x0000d71f 0x0000d71f   5    6         ascii  ,.mcd
+1349 0x0000d729 0x0000d729   4    4         ascii  ehce
+1350 0x0000d734 0x0000d734   4    4         ascii  fcdt
+1351 0x0000d776 0x0000d776   5    5         ascii  RQSST
+1352 0x0000d780 0x0000d780   4    5         ascii  ??RQ
+1353 0x0000d78d 0x0000d78d   7    8         ascii  )QPQRj.
+1354 0x0000d7e2 0x0000d7e2   4    5         ascii  9n\e'
+1355 0x0000d7fb 0x0000d7fb   4    4         ascii  !'%'
+1356 0x0000d804 0x0000d804   6    7         ascii  6%'!61
+1357 0x0000d80f 0x0000d80f   7    8         ascii  +*%'.))
+1358 0x0000d81b 0x0000d81b   7    8         ascii  ,*16**+
+1359 0x0000d861 0x0000d861   5    5         ascii  gcfci
+1360 0x0000d867 0x0000d867   4    4         ascii  idcf
+1361 0x0000d8d3 0x0000d8d3   7    8         ascii  gPQQQR1
+1362 0x0000d8e2 0x0000d8e2   4    5         ascii  jRQ@
+1363 0x0000d904 0x0000d904   4    5         ascii  cd)+
+1364 0x0000d91a 0x0000d91a   4    5         ascii  ,*\r\a
+1365 0x0000d956 0x0000d956   4    5         ascii  9%%#
+1366 0x0000d9b1 0x0000d9b1   4    4         ascii  cge-
+1367 0x0000d9d4 0x0000d9d4   4    5         ascii  gccf
+1368 0x0000da0a 0x0000da0a   4    4         ascii  SPQS
+1369 0x0000da3c 0x0000da3c   8    8         ascii  ?=?RTRQS
+1370 0x0000da6e 0x0000da6e   6    6         ascii  +*2\b\a\f
+1371 0x0000da7b 0x0000da7b   6    6         ascii  l3)0\t\a
+1372 0x0000dbaf 0x0000dbaf   8    9         ascii  SPQQSQQP
+1373 0x0000dbc7 0x0000dbc7   8    9         ascii  SQRRQQPU
+1374 0x0000dbd3 0x0000dbd3  11   11         ascii  >>?X0jS@k\a\r
+1375 0x0000dbec 0x0000dbec   5    5         ascii  ,*0\b\f
+1376 0x0000dbff 0x0000dbff  10   11         ascii  kjmq*0\t\a\a%
+1377 0x0000dc26 0x0000dc26   4    5         ascii  bbc\b
+1378 0x0000dca2 0x0000dca2   5    6         ascii  kjecq
+1379 0x0000dcb7 0x0000dcb7   5    5         ascii  gbccd
+1380 0x0000dcfe 0x0000dcfe   9   10         ascii  ?QPQQSSQQ
+1381 0x0000dd11 0x0000dd11   4    5         ascii  RQQQ
+1382 0x0000dd19 0x0000dd19  10   10         ascii  ?=SQRQQQPD
+1383 0x0000dd2c 0x0000dd2c   8    8         ascii  m0TQQk\b\r
+1384 0x0000dd62 0x0000dd62   5    5         ascii  jmr--
+1385 0x0000dd94 0x0000dd94   4    4         ascii  bcbb
+1386 0x0000ddaa 0x0000ddaa   4    5         ascii  Z.+6
+1387 0x0000ddf0 0x0000ddf0   4    4         ascii  o*bj
+1388 0x0000ddff 0x0000ddff   5    5         ascii  lidcn
+1389 0x0000de12 0x0000de12   5    6         ascii  gddbc
+1390 0x0000de56 0x0000de56   8    8         ascii  TPPQSThT
+1391 0x0000de63 0x0000de63   4    5         ascii  ?QRR
+1392 0x0000de6f 0x0000de6f   6    7         ascii  ?>RQQQ
+1393 0x0000de7f 0x0000de7f   8    9         ascii  =>Am`QPQ
+1394 0x0000de90 0x0000de90   4    5         ascii  DT0+
+1395 0x0000deb4 0x0000deb4   5    5         ascii  jkr/+
+1396 0x0000df00 0x0000df00   4    4         ascii  cccc
+1397 0x0000df08 0x0000df08   4    5         ascii  ZZ*)
+1398 0x0000df0d 0x0000df0d   4    5         ascii  .,.3
+1399 0x0000df16 0x0000df16   4    4         ascii  `h-.
+1400 0x0000df1c 0x0000df1c   4    4         ascii  ---0
+1401 0x0000df2b 0x0000df2b   4    5         ascii  1-*-
+1402 0x0000df41 0x0000df41   4    5         ascii  mdci
+1403 0x0000df4e 0x0000df4e   5    6         ascii  mjffm
+1404 0x0000df61 0x0000df61   5    5         ascii  ggfcc
+1405 0x0000df6b 0x0000df6b   5    5         ascii  ggfgf
+1406 0x0000dfa6 0x0000dfa6   6    7         ascii  SPQQS1
+1407 0x0000dfc3 0x0000dfc3   8    9         ascii  ?>TQQQQS
+1408 0x0000dfd6 0x0000dfd6   6    7         ascii  lQPRj+
+1409 0x0000dfe6 0x0000dfe6   5    6         ascii  ,*2\r\b
+1410 0x0000e045 0x0000e045   8    9         ascii  e-*;..//
+1411 0x0000e05a 0x0000e05a   4    4         ascii  fZ--
+1412 0x0000e05f 0x0000e05f   5    5         ascii  ,--,/
+1413 0x0000e076 0x0000e076   7    8         ascii  330-(ch
+1414 0x0000e085 0x0000e085   4    5         ascii  ndcf
+1415 0x0000e0b3 0x0000e0b3   4    5         ascii  gfcd
+1416 0x0000e0bc 0x0000e0bc   5    5         ascii  gefgg
+1417 0x0000e0ea 0x0000e0ea   4    4         ascii  RQQS
+1418 0x0000e114 0x0000e114   7    8         ascii  SPPA2*2
+1419 0x0000e12a 0x0000e12a   5    6         ascii  .+-r\a
+1420 0x0000e136 0x0000e136   4    5         ascii  oo*!
+1421 0x0000e143 0x0000e143   4    5         ascii  ho2)
+1422 0x0000e173 0x0000e173   6    6         ascii  Zd+110
+1423 0x0000e189 0x0000e189   4    5         ascii  Z\/.
+1424 0x0000e1a3 0x0000e1a3   6    6         ascii  31.,0j
+1425 0x0000e1bc 0x0000e1bc   4    4         ascii  kfcj
+1426 0x0000e1cb 0x0000e1cb   4    5         ascii  mmjg
+1427 0x0000e1e2 0x0000e1e2   4    4         ascii  heck
+1428 0x0000e1ed 0x0000e1ed   5    5         ascii  ddefi
+1429 0x0000e21e 0x0000e21e   4    4         ascii  TPQS
+1430 0x0000e22b 0x0000e22b   7    8         ascii  ?QRQQRh
+1431 0x0000e239 0x0000e239   7    8         ascii  ?>?QQRQ
+1432 0x0000e24c 0x0000e24c   6    7         ascii  RPPA1*
+1433 0x0000e260 0x0000e260   6    6         ascii  +)/\t\b\a
+1434 0x0000e27b 0x0000e27b   4    5         ascii  ;+'n
+1435 0x0000e286 0x0000e286   5    6         ascii  mo)n\e
+1436 0x0000e2c1 0x0000e2c1   5    5         ascii  ZZ**3
+1437 0x0000e2d2 0x0000e2d2   5    5         ascii  \//+1
+1438 0x0000e2e4 0x0000e2e4   5    5         ascii  */3-,
+1439 0x0000e30b 0x0000e30b   6    6         ascii  )-kjjl
+1440 0x0000e360 0x0000e360   5    5         ascii  TQQQS
+1441 0x0000e36e 0x0000e36e   6    7         ascii  <SQRQR
+1442 0x0000e37b 0x0000e37b   8    9         ascii  ?=ATQQRS
+1443 0x0000e38f 0x0000e38f   5    6         ascii  PPSk*
+1444 0x0000e3c4 0x0000e3c4   4    5         ascii  jq+;
+1445 0x0000e3fb 0x0000e3fb   4    5         ascii  ZZ+.
+1446 0x0000e445 0x0000e445   6    6         ascii  jhe+(n
+1447 0x0000e452 0x0000e452   5    5         ascii  gf++r
+1448 0x0000e466 0x0000e466   5    6         ascii  ggccm
+1449 0x0000e470 0x0000e470   5    5         ascii  ceefj
+1450 0x0000e49d 0x0000e49d   4    5         ascii  QQQS
+1451 0x0000e4aa 0x0000e4aa   7    8         ascii  =QRRQSk
+1452 0x0000e4b8 0x0000e4b8   9   10         ascii  =>RQSRQm\b
+1453 0x0000e4c9 0x0000e4c9   5    6         ascii  RPQRj
+1454 0x0000e4da 0x0000e4da   7    8         ascii  SSj*.\b\r
+1455 0x0000e4f1 0x0000e4f1   4    5         ascii  /+\f\b
+1456 0x0000e504 0x0000e504   4    5         ascii  ho*6
+1457 0x0000e545 0x0000e545   4    5         ascii  0+,6
+1458 0x0000e553 0x0000e553   6    7         ascii  ,f6+*3
+1459 0x0000e562 0x0000e562   5    6         ascii  )3+*3
+1460 0x0000e57f 0x0000e57f   5    5         ascii  iefce
+1461 0x0000e5a8 0x0000e5a8   6    6         ascii  gdefek
+1462 0x0000e5cf 0x0000e5cf   4    5         ascii  SPPS
+1463 0x0000e5e9 0x0000e5e9   6    7         ascii  RRQQPW
+1464 0x0000e5f3 0x0000e5f3  10   11         ascii  ?=?VRQQRQl
+1465 0x0000e605 0x0000e605   5    6         ascii  0RPQT
+1466 0x0000e61f 0x0000e61f   4    5         ascii  .+\r\b
+1467 0x0000e633 0x0000e633   5    6         ascii  chm*9
+1468 0x0000e651 0x0000e651   4    5         ascii  .*9%
+1469 0x0000e665 0x0000e665   4    5         ascii  dd9%
+1470 0x0000e66d 0x0000e66d   4    4         ascii  cbdd
+1471 0x0000e675 0x0000e675   6    7         ascii  cZ1..1
+1472 0x0000e6b0 0x0000e6b0   4    4         ascii  edcc
+1473 0x0000e6d7 0x0000e6d7   4    5         ascii  gccm
+1474 0x0000e6e2 0x0000e6e2   5    5         ascii  cdefi
+1475 0x0000e717 0x0000e717   6    7         ascii  RRQQQP
+1476 0x0000e72b 0x0000e72b   7    8         ascii  ?Tj`QQR
+1477 0x0000e748 0x0000e748   4    5         ascii  /*/\r
+1478 0x0000e759 0x0000e759   5    5         ascii  ,,\r\a\a
+1479 0x0000e76f 0x0000e76f   4    5         ascii  dm6*
+1480 0x0000e78f 0x0000e78f   4    5         ascii  -+;%
+1481 0x0000e7a1 0x0000e7a1   4    5         ascii  cd3%
+1482 0x0000e7f1 0x0000e7f1   4    4         ascii  dccc
+1483 0x0000e818 0x0000e818   4    4         ascii  geck
+1484 0x0000e823 0x0000e823   5    5         ascii  ddefh
+1485 0x0000e84f 0x0000e84f   4    5         ascii  PSSS
+1486 0x0000e872 0x0000e872   8    9         ascii  >=RUTQTl
+1487 0x0000e8a4 0x0000e8a4   6    6         ascii  .*.\t\a\b
+1488 0x0000e8ba 0x0000e8ba   7    8         ascii  cenl*'n
+1489 0x0000e8cd 0x0000e8cd   4    5         ascii  ++!\e
+1490 0x0000e8ec 0x0000e8ec   4    4         ascii  ccdd
+1491 0x0000e8f4 0x0000e8f4   5    6         ascii  fd*/%
+1492 0x0000e93c 0x0000e93c   5    6         ascii  cddck
+1493 0x0000e949 0x0000e949   4    5         ascii  gfbl
+1494 0x0000e961 0x0000e961   4    5         ascii  hecf
+1495 0x0000e96a 0x0000e96a   5    5         ascii  fdegg
+1496 0x0000e995 0x0000e995   7    7         ascii  QPQSSTS
+1497 0x0000e9a2 0x0000e9a2   5    6         ascii  TPQRQ
+1498 0x0000e9af 0x0000e9af   9   10         ascii  ?QQQSQQQT
+1499 0x0000e9bd 0x0000e9bd  10   10         ascii  ?=>Tijjk\a\b
+1500 0x0000e9e6 0x0000e9e6   6    6         ascii  ,*4\b\a\f
+1501 0x0000e9f2 0x0000e9f2   5    6         ascii  /*6\r\a
+1502 0x0000e9ff 0x0000e9ff   5    6         ascii  iq10r
+1503 0x0000ea0e 0x0000ea0e   4    5         ascii  0*0'
+1504 0x0000ea31 0x0000ea31   4    5         ascii  )+3%
+1505 0x0000ea3c 0x0000ea3c   5    6         ascii  ZZ+9%
+1506 0x0000ea73 0x0000ea73   4    5         ascii  ,)*-
+1507 0x0000ea7d 0x0000ea7d   5    5         ascii  ggeck
+1508 0x0000ea84 0x0000ea84   4    4         ascii  -*)-
+1509 0x0000ea8d 0x0000ea8d   5    5         ascii  ggeck
+1510 0x0000eaa6 0x0000eaa6   4    4         ascii  hfcd
+1511 0x0000eae4 0x0000eae4   8    8         ascii  SPPQSQPS
+1512 0x0000eaf2 0x0000eaf2   5    6         ascii  QQRRQ
+1513 0x0000eaff 0x0000eaff   7    8         ascii  ?QQRTSS
+1514 0x0000eb0d 0x0000eb0d   6    7         ascii  ?>?j,/
+1515 0x0000eb41 0x0000eb41   4    5         ascii  mo+n
+1516 0x0000eb51 0x0000eb51   6    6         ascii  bcdilj
+1517 0x0000eb7b 0x0000eb7b   4    5         ascii  ++9!
+1518 0x0000ebb0 0x0000ebb0   6    6         ascii  +0+,,,
+1519 0x0000ebbe 0x0000ebbe   9   10         ascii  *f0**))-e
+1520 0x0000ebcc 0x0000ebcc   5    6         ascii  edcco
+1521 0x0000ebd3 0x0000ebd3   6    7         ascii  3-,bdr
+1522 0x0000ebdd 0x0000ebdd   4    5         ascii  fcch
+1523 0x0000ec1f 0x0000ec1f   4    5         ascii  PQQQ
+1524 0x0000ec45 0x0000ec45   9   10         ascii  ?=Ak,./*,
+1525 0x0000ec5f 0x0000ec5f   4    5         ascii  +\a\a\a
+1526 0x0000ec68 0x0000ec68   5    6         ascii  0*q\r\a
+1527 0x0000ec77 0x0000ec77   9   10         ascii  gkjjqq*;r
+1528 0x0000ec87 0x0000ec87   7    7         ascii  cbddcdd
+1529 0x0000eca5 0x0000eca5   4    5         ascii  *-!!
+1530 0x0000ecc5 0x0000ecc5   5    5         ascii  (.--6
+1531 0x0000ecd1 0x0000ecd1   5    5         ascii  +1-*,
+1532 0x0000ecdb 0x0000ecdb   5    5         ascii  ,,-+6
+1533 0x0000ece6 0x0000ece6   5    5         ascii  .,+--
+1534 0x0000ecf2 0x0000ecf2   6    6         ascii  g+++)*
+1535 0x0000ed01 0x0000ed01  10   10         ascii  ccdhm2*)em
+1536 0x0000ed1b 0x0000ed1b   4    5         ascii  hdde
+1537 0x0000ed47 0x0000ed47   6    6         ascii  PPSSPS
+1538 0x0000ed53 0x0000ed53   7    7         ascii  PRSSQQ1
+1539 0x0000ed5f 0x0000ed5f   7    8         ascii  ?PQSSQS
+1540 0x0000ed6d 0x0000ed6d   7    8         ascii  ?=>T+jf
+1541 0x0000ed9c 0x0000ed9c   6    6         ascii  ,*6\b\a\a
+1542 0x0000edac 0x0000edac   8    9         ascii  kkhoq*6\f
+1543 0x0000edbc 0x0000edbc   6    6         ascii  cbccdf
+1544 0x0000edc6 0x0000edc6   5    6         ascii  3*/s;
+1545 0x0000ee00 0x0000ee00   4    4         ascii  **)0
+1546 0x0000ee29 0x0000ee29   4    4         ascii  ,+*.
+1547 0x0000ee33 0x0000ee33   6    6         ascii  gcce*)
+1548 0x0000ee58 0x0000ee58   5    5         ascii  gcegg
+1549 0x0000ee9c 0x0000ee9c   9   10         ascii  >RQSSh.\b\t
+1550 0x0000eea9 0x0000eea9   5    6         ascii  ?m-2-
+1551 0x0000eebc 0x0000eebc   5    6         ascii  /*/\b\f
+1552 0x0000eec6 0x0000eec6   6    6         ascii  ,*/\b\a\r
+1553 0x0000eed1 0x0000eed1   8    9         ascii  nn+/\t\a\a'
+1554 0x0000eedc 0x0000eedc   6    6         ascii  \abbbhj
+1555 0x0000eee4 0x0000eee4   5    6         ascii  o--\r\a
+1556 0x0000eef0 0x0000eef0   4    4         ascii  bbbb
+1557 0x0000ef3c 0x0000ef3c   4    4         ascii  ,+/6
+1558 0x0000ef46 0x0000ef46   4    4         ascii  ,+/3
+1559 0x0000ef50 0x0000ef50   4    4         ascii  ,)-1
+1560 0x0000ef62 0x0000ef62   5    6         ascii  de+*r
+1561 0x0000ef75 0x0000ef75   4    4         ascii  gcck
+1562 0x0000ef80 0x0000ef80   5    5         ascii  cdffi
+1563 0x0000efcd 0x0000efcd  10   11         ascii  ?>>RTjQD\a\b
+1564 0x0000f005 0x0000f005   4    5         ascii  *.\t\b
+1565 0x0000f056 0x0000f056   5    6         ascii  *)661
+1566 0x0000f060 0x0000f060   5    6         ascii  *+,-/
+1567 0x0000f092 0x0000f092   6    6         ascii  ,*ghir
+1568 0x0000f0a8 0x0000f0a8   5    5         ascii  feccj
+1569 0x0000f0b4 0x0000f0b4   5    5         ascii  gfggi
+1570 0x0000f0e3 0x0000f0e3   6    7         ascii  RQQQPS
+1571 0x0000f0f7 0x0000f0f7  10   11         ascii  ?=?RTRQSS\r
+1572 0x0000f127 0x0000f127   7    7         ascii  l3)0\t\a\a
+1573 0x0000f139 0x0000f139   4    5         ascii  bgkk
+1574 0x0000f1ca 0x0000f1ca   5    6         ascii  mjjge
+1575 0x0000f1e0 0x0000f1e0   5    5         ascii  fbbcg

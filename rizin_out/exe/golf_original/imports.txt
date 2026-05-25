@@ -1,0 +1,11 @@
+nth      vaddr bind type lib          name                                                                         
+-------------------------------------------------------------------------------------------------------------------
+  1 0x0084683c NONE FUNC KERNEL32.dll GetModuleHandleA
+  2 0x00846840 NONE FUNC KERNEL32.dll GetProcAddress
+  3 0x00846844 NONE FUNC KERNEL32.dll GlobalAlloc
+  4 0x00846848 NONE FUNC KERNEL32.dll GlobalFree
+  5 0x0084684c NONE FUNC KERNEL32.dll ExitProcess
+  1 0x00846854 NONE FUNC USER32.dll   MessageBoxA
+  1 0x0084685c NONE FUNC binkw32.dll  _BinkBufferClose@4
+  1 0x00846864 NONE FUNC Terrain.dll  public: void __thiscall Terrain::drawLine(int, int, int, int, int, int, int)
+  1 0x0084686c NONE FUNC WINMM.dll    mmioDescend

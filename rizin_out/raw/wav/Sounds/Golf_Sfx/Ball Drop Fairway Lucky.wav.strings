@@ -1,0 +1,764 @@
+nth      paddr      vaddr len size section type    string                                                                                                                                                              
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 0x00000000 0x00000000   6    7         ascii   RIFF"2
+  1 0x00000008 0x00000008   8    9         ascii   WAVEfmt 
+  2 0x00000024 0x00000024   4    4         ascii   data
+  3 0x000003be 0x000003be  10   22         utf16le \n\a\n\n\n\t\a\t\n\a
+  4 0x0000060a 0x0000060a   4   10         utf16le ) \r� blocks=Basic Latin,Specials
+  5 0x0000063a 0x0000063a   9   20         utf16le -'$&!.MH$
+  6 0x0000065e 0x0000065e  10   22         utf16le #FJ6--'1C1
+  7 0x00000678 0x00000678  12   26         utf16le -43=HC0*0))-
+  8 0x000006ae 0x000006ae   4   10         utf16le \n $$
+  9 0x000006dc 0x000006dc   6   12         utf16le -& -&\a
+ 10 0x000008ca 0x000008ca   4   10         utf16le Khc4
+ 11 0x000008e0 0x000008e0  10   22         utf16le \a$;Qd]-)Jr
+ 12 0x000008f6 0x000008f6   6   14         utf16le qSNA`{
+ 13 0x0000090a 0x0000090a   7   16         utf16le hJVS^Vn
+ 14 0x0000092c 0x0000092c   4   10         utf16le dW#$
+ 15 0x00000936 0x00000936   5   10         utf16le 7.A)9
+ 16 0x0000096e 0x0000096e   4    7         utf8    =͢Үɥ blocks=Basic Latin,Combining Diacritical Marks,Cyrillic,IPA Extensions
+ 17 0x00000983 0x00000983   5    5         ascii   Z\bpZy
+ 18 0x0000098f 0x0000098f   5    5         ascii   {tt.n
+ 19 0x00000999 0x00000999   5    5         ascii   \\tT%P
+ 20 0x0000099f 0x0000099f   5    5         ascii   L,J`H
+ 21 0x000009a7 0x000009a7   5    5         ascii   ;\r43,
+ 22 0x000009e4 0x000009e4   4    7         utf8    ?˻ϑԍ blocks=Basic Latin,Spacing Modifier Letters,Greek and Coptic,Cyrillic Supplement
+ 23 0x000009ff 0x000009ff   9    9         ibm037  4]4y5-6E7
+ 24 0x00000a31 0x00000a31   4    5         ascii   \v%\rO
+ 25 0x00000b28 0x00000b28  10   10         ascii   \b\b=\tE\n#\v^\f
+ 26 0x00000b96 0x00000b96   6    6         ascii   #\eJ\eC\e
+ 27 0x00000c15 0x00000c15  19   20         ibm037  9t8V7ï7L6ß6U5&5õ4Á4
+ 28 0x00000ca9 0x00000ca9   9   10         ibm037  4o4v434m5
+ 29 0x00000e6b 0x00000e6b  10   22         utf16be ¿ÿÙrQC\f\thË
+ 30 0x00000fd2 0x00000fd2   4    8         utf16le P$JD
+ 31 0x00006ed7 0x00006ed7   4   10         utf16be áuq½
+ 32 0x000072dc 0x000072dc   4   10         utf16le 7î06 blocks=Basic Latin,Latin-1 Supplement
+ 33 0x00008206 0x00008206  14   28         utf16le WÁzqǤƮƬċǁǗ\rƇĢﻝ blocks=Basic Latin,Latin-1 Supplement,Latin Extended-B,Latin Extended-A,Arabic Presentation Forms-B
+ 34 0x00008371 0x00008371   4   10         utf16be äá¼@
+ 35 0x00008c08 0x00008c08   4   10         utf16le rÒìª blocks=Basic Latin,Latin-1 Supplement
+ 36 0x00009438 0x00009438  17   36         utf16le :\rwｋﻋÅＨ¹ｏZǤￂöﾅ︙ē! blocks=Basic Latin,Halfwidth and Fullwidth Forms,Arabic Presentation Forms-B,Latin-1 Supplement,Latin Extended-B,Vertical Forms,Latin Extended-A
+ 37 0x000094da 0x000094da   8   18         utf16le \næüʯHƔkﺦ blocks=Basic Latin,Latin-1 Supplement,IPA Extensions,Latin Extended-B,Arabic Presentation Forms-B
+ 38 0x0000977d 0x0000977d   6   14         utf16be Å»=äｨQ
+ 39 0x00009da1 0x00009da1  14   30         utf16be H´cÿｃĐúﾱï[Ç￮²Ａ
+ 40 0x0000a020 0x0000a020   5   12         utf16le ^ÛG)ơ blocks=Basic Latin,Latin-1 Supplement,Latin Extended-B
+ 41 0x0000a1ca 0x0000a1ca  15   32         utf16le V¡`ĉßￕËďaó·K+ﾲ& blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A,Halfwidth and Fullwidth Forms
+ 42 0x0000a1f7 0x0000a1f7   6   14         utf16be ¾^g®~Þ
+ 43 0x0000a206 0x0000a206   7   16         utf16le 7ÜòƮǎ￪· blocks=Basic Latin,Latin-1 Supplement,Latin Extended-B,Halfwidth and Fullwidth Forms
+ 44 0x0000a327 0x0000a327   4   10         utf16be áá.Þ
+ 45 0x0000a332 0x0000a332   8   18         utf16le P[;ￒkŅ\a7 blocks=Basic Latin,Halfwidth and Fullwidth Forms,Latin Extended-A
+ 46 0x0000a45a 0x0000a45a  11   22         utf16le TÇþųVŭÔ￢￭ţ｟ blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A,Halfwidth and Fullwidth Forms
+ 47 0x0000a476 0x0000a476   4   10         utf16le *cF¤ blocks=Basic Latin,Latin-1 Supplement
+ 48 0x0000a52b 0x0000a52b   5   12         utf16be ¨Ë¹ÑǦ
+ 49 0x0000a656 0x0000a656  11   24         utf16le }dgǋŕﾼĲþｂɜä blocks=Basic Latin,Latin Extended-B,Latin Extended-A,Halfwidth and Fullwidth Forms,Latin-1 Supplement,IPA Extensions
+ 50 0x0000a6c4 0x0000a6c4   4   10         utf16le \tËKP blocks=Basic Latin,Latin-1 Supplement
+ 51 0x0000a8cf 0x0000a8cf  11   24         utf16be Þ¤Å¤·ǺƮ¡ǋ³ﾧ
+ 52 0x0000a8ea 0x0000a8ea  20   42         utf16le \nßÔ)û¼ÅōǻPÛʢĲ\fȗ\rªǛēc blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A,Latin Extended-B,IPA Extensions
+ 53 0x0000a926 0x0000a926  10   22         utf16le \fÔdPþǭ¨āȁå blocks=Basic Latin,Latin-1 Supplement,Latin Extended-B,Latin Extended-A
+ 54 0x0000a968 0x0000a968   8   18         utf16le )«á¼Zĥ¯# blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A
+ 55 0x0000aa24 0x0000aa24  10   20         utf16le 3Ïò1ǐƁcCļĥ blocks=Basic Latin,Latin-1 Supplement,Latin Extended-B,Latin Extended-A
+ 56 0x0000ab0c 0x0000ab0c  15   30         utf16le F+¾ŒŽGċƭáĿÂT￬￣ﻔ blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A,Latin Extended-B,Halfwidth and Fullwidth Forms,Arabic Presentation Forms-B
+ 57 0x0000ab74 0x0000ab74  31   62         utf16le Dx¸¥¯ĲƧhŃŲŧƜĥìŶƃk+Ńå¢ƀ ÌĲăpǽŶŪĕ blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A,Latin Extended-B
+ 58 0x0000ac46 0x0000ac46  10   22         utf16le uñùñ3nĶp:q blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A
+ 59 0x0000ac89 0x0000ac89   6   14         utf16be öµ¬tĖǢ
+ 60 0x0000aca9 0x0000aca9   4   10         utf16be Ô²¼^
+ 61 0x0000acb6 0x0000acb6  10   22         utf16le WtïxMŏÉ¯ŉª blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A
+ 62 0x0000ad6d 0x0000ad6d   5   12         utf16be ær¥©ǲ
+ 63 0x0000adc8 0x0000adc8   6   14         utf16le 3²«mÄT blocks=Basic Latin,Latin-1 Supplement
+ 64 0x0000ae72 0x0000ae72   4   10         utf16le gûåþ blocks=Basic Latin,Latin-1 Supplement
+ 65 0x0000aec1 0x0000aec1   5   12         utf16be ÒH¨»§
+ 66 0x0000aed4 0x0000aed4   9   20         utf16le &aÛﾼ¥òﾺ￢Ù blocks=Basic Latin,Latin-1 Supplement,Halfwidth and Fullwidth Forms
+ 67 0x0000aef4 0x0000aef4   7   16         utf16le AF®￩#ï  blocks=Basic Latin,Latin-1 Supplement,Halfwidth and Fullwidth Forms
+ 68 0x0000b130 0x0000b130   5   10         utf16le  P]«´ blocks=Basic Latin,Latin-1 Supplement
+ 69 0x0000b16e 0x0000b16e   4    8         utf16le H`^[
+ 70 0x0000b17c 0x0000b17c   7   16         utf16le nµQùz.ø blocks=Basic Latin,Latin-1 Supplement
+ 71 0x0000b1d0 0x0000b1d0  10   22         utf16le >ÒõĐċè§=Ék blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A
+ 72 0x0000b2c0 0x0000b2c0   5   12         utf16le =gDJ9
+ 73 0x0000b2ef 0x0000b2ef   4   10         utf16be öp¯ó
+ 74 0x0000b5c8 0x0000b5c8   7   16         utf16le F-JÑjr) blocks=Basic Latin,Latin-1 Supplement
+ 75 0x0000b5dc 0x0000b5dc  19   40         utf16le FªäW§ÛￅÌĿ9ĭƞ¾ŤƬĆƪǗ  blocks=Basic Latin,Latin-1 Supplement,Halfwidth and Fullwidth Forms,Latin Extended-A,Latin Extended-B
+ 76 0x0000b659 0x0000b659   7   16         utf16be ù¢M¿}Wé
+ 77 0x0000b6b4 0x0000b6b4   4   10         utf16le  -ux
+ 78 0x0000b708 0x0000b708  13   28         utf16le wñd±ĜŽŀĨŊå»7@ blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A
+ 79 0x0000b760 0x0000b760  25   52         utf16le cÕ¿ƏƇĖÑáĬŖŅßůÏŲĢõŝƦpįźZƌǃ blocks=Basic Latin,Latin-1 Supplement,Latin Extended-B,Latin Extended-A
+ 80 0x0000b7a2 0x0000b7a2   4   10         utf16le ~TM\r
+ 81 0x0000b7be 0x0000b7be   5   12         utf16le A>reF
+ 82 0x0000b7d9 0x0000b7d9   4   10         utf16be â3ku
+ 83 0x0000b81e 0x0000b81e   4   10         utf16le #Kmå blocks=Basic Latin,Latin-1 Supplement
+ 84 0x0000b878 0x0000b878  11   24         utf16le h¼åáŜǚƠĖƁŊě blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A,Latin Extended-B
+ 85 0x0000b8ac 0x0000b8ac   4   10         utf16le [TÜr blocks=Basic Latin,Latin-1 Supplement
+ 86 0x0000b8d4 0x0000b8d4  21   44         utf16le zÜÔŀǖĂňƃīŪŜªøƏŃüƐżéŰĽ blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A,Latin Extended-B
+ 87 0x0000b931 0x0000b931   6   14         utf16be óTk)\nm
+ 88 0x0000b964 0x0000b964  20   42         utf16le r*N`¹´ÿ¬a®Ddg7]xￃQÉ] blocks=Basic Latin,Latin-1 Supplement,Halfwidth and Fullwidth Forms
+ 89 0x0000b9ac 0x0000b9ac  14   28         utf16le HÅNkÛÄÅùì¼ůåòÒ blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A
+ 90 0x0000ba06 0x0000ba06  11   24         utf16le ~\a¤`'pd)ĺ¡w blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A
+ 91 0x0000ba38 0x0000ba38   5   12         utf16le a:ÑAﾯ blocks=Basic Latin,Latin-1 Supplement,Halfwidth and Fullwidth Forms
+ 92 0x0000ba4a 0x0000ba4a   5   10         utf16le TJ\fe!
+ 93 0x0000ba71 0x0000ba71   9   20         utf16be ÿ¤+Áß>qtÙ
+ 94 0x0000ba8f 0x0000ba8f  10   22         utf16be ¿Ò¢ìｲ6¹６¼P
+ 95 0x0000bad9 0x0000bad9   4   10         utf16be ¾ÜÏx
+ 96 0x0000bbb8 0x0000bbb8   7   16         utf16le qjªİæĝÑ blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A
+ 97 0x0000bc0a 0x0000bc0a   9   20         utf16le w¤.\nd¥ĳŹĳ blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A
+ 98 0x0000bc53 0x0000bc53   5   12         utf16be »Ñ±Q-
+ 99 0x0000bc8e 0x0000bc8e  18   38         utf16le hé^ÎÜAÏŉĕĖŀĳŽſĭûÙm blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A
+100 0x0000bccf 0x0000bccf  18   36         utf16be 6!k÷ﾤ?Ļ¢jŤQ¢Xe¼ﾣｿ�
+101 0x0000bd52 0x0000bd52   4    8         utf16le ;7Gp
+102 0x0000bd72 0x0000bd72   4   10         utf16le +îV¸ blocks=Basic Latin,Latin-1 Supplement
+103 0x0000bd92 0x0000bd92   4   10         utf16le jG¾Q blocks=Basic Latin,Latin-1 Supplement
+104 0x0000bd9d 0x0000bd9d   6   14         utf16be ¡hA¤.*
+105 0x0000bf7c 0x0000bf7c   4   10         utf16le k~k&
+106 0x0000bffe 0x0000bffe   4   10         utf16le W~¤J blocks=Basic Latin,Latin-1 Supplement
+107 0x0000c062 0x0000c062   4   10         utf16le {Fp.
+108 0x0000c07a 0x0000c07a  31   64         utf16le dæüÕÜĺņĵĨƔǁǺƙĳ¾ĶÎûÖĦƊąÛĹÂäƧŖ¹ām blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A,Latin Extended-B
+109 0x0000c0ba 0x0000c0ba   4   10         utf16le FÉd¿ blocks=Basic Latin,Latin-1 Supplement
+110 0x0000c0d7 0x0000c0d7   4   10         utf16be Ì]tÅ
+111 0x0000c109 0x0000c109   4   10         utf16be ¸ÁWD
+112 0x0000c128 0x0000c128   4   10         utf16le H±ZQ blocks=Basic Latin,Latin-1 Supplement
+113 0x0000c14c 0x0000c14c   4   10         utf16le 3ë!￼ blocks=Basic Latin,Latin-1 Supplement,Specials
+114 0x0000c158 0x0000c158   5   10         utf16le \f·¼Mﾸ blocks=Basic Latin,Latin-1 Supplement,Halfwidth and Fullwidth Forms
+115 0x0000c16a 0x0000c16a  12   26         utf16le ;Q¸áM\t￪ￒ;￭7X blocks=Basic Latin,Latin-1 Supplement,Halfwidth and Fullwidth Forms
+116 0x0000c23f 0x0000c23f   7   16         utf16be ·t\tnN¸Ò
+117 0x0000c253 0x0000c253   5   12         utf16be ÞËò ƨ
+118 0x0000c27d 0x0000c27d   6   14         utf16be ¬²î"ĝƴ
+119 0x0000c2af 0x0000c2af   6   14         utf16be ßõ^Ö#Ǿ
+120 0x0000c2c1 0x0000c2c1   4   10         utf16be ïåéò
+121 0x0000c2e4 0x0000c2e4  18   38         utf16le *q^xùÂarhe}x±F»É¸Ė blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A
+122 0x0000c310 0x0000c310   4   10         utf16le :k#K
+123 0x0000c32a 0x0000c32a   5   10         utf16le JmjùV blocks=Basic Latin,Latin-1 Supplement
+124 0x0000c340 0x0000c340   4   10         utf16le k:4:
+125 0x0000c353 0x0000c353   7   16         utf16be »WaXâì¹
+126 0x0000c36b 0x0000c36b  10   22         utf16be Ö¼·äßjkÉ.V
+127 0x0000c384 0x0000c384   5   12         utf16le +¤r.Ì blocks=Basic Latin,Latin-1 Supplement
+128 0x0000c44b 0x0000c44b   7   16         utf16be Òë¼¼k¡ø
+129 0x0000c46b 0x0000c46b   5   12         utf16be ¾ÕáûÖ
+130 0x0000c4ae 0x0000c4ae   5   12         utf16le nA¢¹6 blocks=Basic Latin,Latin-1 Supplement
+131 0x0000c4c1 0x0000c4c1   5   12         utf16be Ûä=ûj
+132 0x0000c4d0 0x0000c4d0   7   14         utf16le  'ÿèz´e blocks=Basic Latin,Latin-1 Supplement
+133 0x0000c4e2 0x0000c4e2   6   14         utf16le N¿±rËÂ blocks=Basic Latin,Latin-1 Supplement
+134 0x0000c506 0x0000c506   4   10         utf16le $¼uË blocks=Basic Latin,Latin-1 Supplement
+135 0x0000c52c 0x0000c52c   8   18         utf16le ZXñ`]¬Sâ blocks=Basic Latin,Latin-1 Supplement
+136 0x0000c562 0x0000c562  10   22         utf16le Xt)t§￦>¨￣Î blocks=Basic Latin,Latin-1 Supplement,Halfwidth and Fullwidth Forms
+137 0x0000c58a 0x0000c58a   4   10         utf16le *rc[
+138 0x0000c598 0x0000c598   9   20         utf16le pjNWar¹·D blocks=Basic Latin,Latin-1 Supplement
+139 0x0000c5b1 0x0000c5b1   7   16         utf16be âädýﾅÌｎ
+140 0x0000c5f2 0x0000c5f2  13   28         utf16le ph:¡ÉëļŤÉŐĜÞļ blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A
+141 0x0000c62a 0x0000c62a   4   10         utf16le røó@ blocks=Basic Latin,Latin-1 Supplement
+142 0x0000c653 0x0000c653   9   20         utf16be ÌÁ*xþn¯Èg
+143 0x0000c68e 0x0000c68e   6   14         utf16le ;D@²Öw blocks=Basic Latin,Latin-1 Supplement
+144 0x0000c773 0x0000c773   4   10         utf16be ¥¹3j
+145 0x0000c782 0x0000c782   9   20         utf16le ]aj{.p14² blocks=Basic Latin,Latin-1 Supplement
+146 0x0000c797 0x0000c797   8   18         utf16be Ç}·ÞSÇõ»
+147 0x0000c7e0 0x0000c7e0  21   44         utf16le d¯TￒÞĂòöĎ¤ŴĦÏĐ«ìĉĕöĐį blocks=Basic Latin,Latin-1 Supplement,Halfwidth and Fullwidth Forms,Latin Extended-A
+148 0x0000c817 0x0000c817   4   10         utf16be ÑÈ«;
+149 0x0000c821 0x0000c821   5   12         utf16be á¬Î´È
+150 0x0000c839 0x0000c839   4   10         utf16be îC¹¼
+151 0x0000c85a 0x0000c85a   7   16         utf16le @Hµªóİ¤ blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A
+152 0x0000c87e 0x0000c87e   5   12         utf16le F¹F$G blocks=Basic Latin,Latin-1 Supplement
+153 0x0000c8b6 0x0000c8b6  11   24         utf16le A\n¢cåd$ ￓﾉﾏ blocks=Basic Latin,Latin-1 Supplement,Halfwidth and Fullwidth Forms
+154 0x0000c8ce 0x0000c8ce   4   10         utf16le `3&$
+155 0x0000c8d8 0x0000c8d8   7   16         utf16le }3}Ø¹c+ blocks=Basic Latin,Latin-1 Supplement
+156 0x0000c95a 0x0000c95a  14   30         utf16le :eä²µĬŉĶÛÞ¾ûz¯ blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A
+157 0x0000c979 0x0000c979   6   14         utf16be ÕÉ¸¹¯¬
+158 0x0000c990 0x0000c990  15   32         utf16le  gÇÁĦƦÙªå¯´Øe*\r blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A,Latin Extended-B
+159 0x0000c9b4 0x0000c9b4   8   18         utf16le K¨·Ĭæäª[ blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A
+160 0x0000c9d2 0x0000c9d2   5   12         utf16le H±e$  blocks=Basic Latin,Latin-1 Supplement
+161 0x0000ca00 0x0000ca00  14   30         utf16le S¥ÒÌtĶóòĒĜ¤¤eD blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A
+162 0x0000ca4b 0x0000ca4b   4   10         utf16be ÒÅ¾M
+163 0x0000ca9d 0x0000ca9d  10   22         utf16be Õ·æ¡F7A'T4
+164 0x0000cab6 0x0000cab6   4   10         utf16le J¢ah blocks=Basic Latin,Latin-1 Supplement
+165 0x0000cac0 0x0000cac0   6   14         utf16le ~0Xnqg
+166 0x0000cace 0x0000cace   6   12         utf16le Sé§X¬¡ blocks=Basic Latin,Latin-1 Supplement
+167 0x0000cb0a 0x0000cb0a   8   18         utf16le SjnC4p¯{ blocks=Basic Latin,Latin-1 Supplement
+168 0x0000cb27 0x0000cb27   6   14         utf16be Òt¸Îú｣
+169 0x0000cb36 0x0000cb36   6   14         utf16le FpJ9jp
+170 0x0000cb55 0x0000cb55   5   12         utf16be ¹# 9;
+171 0x0000cb9a 0x0000cb9a   4   10         utf16le `kqn
+172 0x0000cba6 0x0000cba6   8   18         utf16le qÙªēĒþåk blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A
+173 0x0000cbc3 0x0000cbc3   8   18         utf16be :D¬ï！æwW
+174 0x0000cc08 0x0000cc08   8   18         utf16le ^>J=cZ&ﾶ blocks=Basic Latin,Halfwidth and Fullwidth Forms
+175 0x0000cc30 0x0000cc30   8   18         utf16le C=\fr»Z¨û blocks=Basic Latin,Latin-1 Supplement
+176 0x0000cc5c 0x0000cc5c  14   30         utf16le =¿>âÒm[V4»´®Ŷŉ blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A
+177 0x0000ccb7 0x0000ccb7  12   26         utf16be ÿá²á"ĘċĉĖşŕǫ
+178 0x0000ccd1 0x0000ccd1  11   24         utf16be åÞñáÅþæ'xØß
+179 0x0000cd0d 0x0000cd0d  10   22         utf16be «ëþ»n²Øø§ä
+180 0x0000cd42 0x0000cd42  54  110         utf16le P0ÔĈĸƶƃżƙƁğÕĢöōĶĕēĳŰŰƑǨțǤƝĠĉèřųųŤŜģĳĥĽƇǑģÔĒè¿ËûĎĺİ¹È~Q blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A,Latin Extended-B
+181 0x0000cdc0 0x0000cdc0   4    8         utf16le  19k
+182 0x0000ce30 0x0000ce30  10   22         utf16le $6+!--]~-D
+183 0x0000ce52 0x0000ce52   7   16         utf16le kp9ￜkq] blocks=Basic Latin,Halfwidth and Fullwidth Forms
+184 0x0000ce7c 0x0000ce7c   6   14         utf16le z+wÎöÛ blocks=Basic Latin,Latin-1 Supplement
+185 0x0000ce91 0x0000ce91   8   18         utf16be \nc-òＷ}^ü
+186 0x0000ceac 0x0000ceac   4   10         utf16le z\aHq
+187 0x0000ceb9 0x0000ceb9   5   12         utf16be ÞûÛ¿´
+188 0x0000cec9 0x0000cec9   6   14         utf16be ÉßÏÛ#ǥ
+189 0x0000cef9 0x0000cef9   5   12         utf16be þÎÅöé
+190 0x0000cf05 0x0000cf05  10   22         utf16be ¿¸[«¢uµÙØÜ
+191 0x0000cf1e 0x0000cf1e   4   10         utf16le W¡¨Ü blocks=Basic Latin,Latin-1 Supplement
+192 0x0000cf46 0x0000cf46   4   10         utf16le -µ~² blocks=Basic Latin,Latin-1 Supplement
+193 0x0000cf50 0x0000cf50   5   12         utf16le rî:\r- blocks=Basic Latin,Latin-1 Supplement
+194 0x0000cf5c 0x0000cf5c   6   12         utf16le 7m>9P)
+195 0x0000cf6a 0x0000cf6a  13   28         utf16le \t*j{WQ0G9\ng}9
+196 0x0000cf8a 0x0000cf8a   5   12         utf16le \rW4'¨ blocks=Basic Latin,Latin-1 Supplement
+197 0x0000cfa2 0x0000cfa2  62  126         utf16le ~ÌùŌĽÖÎŅŊŉŠěüÎÈ¥ōŗĈōóČũƦďĘƓĢĉäÅìŷĶĜł¤è¹ĂĠłÛ§¼xïïěÉ¸ďĉęÞÈĦĈ»¥Øt blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A,Latin Extended-B
+198 0x0000d02d 0x0000d02d   4   10         utf16be ÔæÒT
+199 0x0000d038 0x0000d038   4   10         utf16le WQG§ blocks=Basic Latin,Latin-1 Supplement
+200 0x0000d04e 0x0000d04e   4    8         utf16le ]z6\f
+201 0x0000d060 0x0000d060   4   10         utf16le }qwF
+202 0x0000d072 0x0000d072   6   14         utf16le HX-W￣* blocks=Basic Latin,Halfwidth and Fullwidth Forms
+203 0x0000d08a 0x0000d08a   8   18         utf16le t.¸cÕÉ]d blocks=Basic Latin,Latin-1 Supplement
+204 0x0000d09c 0x0000d09c   8   18         utf16le c¥Á·²zc¿ blocks=Basic Latin,Latin-1 Supplement
+205 0x0000d0b3 0x0000d0b3   5   12         utf16be ®mZÅÔ
+206 0x0000d0c5 0x0000d0c5   5   12         utf16be ¯æk±Ç
+207 0x0000d0d1 0x0000d0d1   6   14         utf16be ¥ï¤¾aÉ
+208 0x0000d0e7 0x0000d0e7   7   16         utf16be «¤3¡k'M
+209 0x0000d0f7 0x0000d0f7   5   12         utf16be ¢´´Ûü
+210 0x0000d10c 0x0000d10c   4    8         utf16le c1ND
+211 0x0000d116 0x0000d116   4    8         utf16le =6xq
+212 0x0000d120 0x0000d120   6   12         utf16le M;Pￖ￩\n blocks=Basic Latin,Halfwidth and Fullwidth Forms
+213 0x0000d13c 0x0000d13c   6   14         utf16le SCw$T0
+214 0x0000d14e 0x0000d14e   6   14         utf16le ^¾;§Î} blocks=Basic Latin,Latin-1 Supplement
+215 0x0000d15e 0x0000d15e   6   14         utf16le KPGj@}
+216 0x0000d175 0x0000d175  10   22         utf16be ñkáæåÌ{gTe
+217 0x0000d195 0x0000d195  15   32         utf16be ¢{¥P´a@4dZ`ìÔ¾¢
+218 0x0000d1b6 0x0000d1b6   5   12         utf16le =@:#H
+219 0x0000d1d7 0x0000d1d7   5   12         utf16be ´ÉÑèÙ
+220 0x0000d225 0x0000d225  12   26         utf16be §Ñë"Ư±å\vǮ\vǁâ
+221 0x0000d23f 0x0000d23f   8   18         utf16be Õ¡¾É¥¸^}
+222 0x0000d259 0x0000d259   4   10         utf16be Òéx3
+223 0x0000d26c 0x0000d26c   5   12         utf16le 0P*Xj
+224 0x0000d28e 0x0000d28e   5   12         utf16le P}e¯> blocks=Basic Latin,Latin-1 Supplement
+225 0x0000d29c 0x0000d29c   5   12         utf16le FC}`d
+226 0x0000d2ab 0x0000d2ab   6   14         utf16be Û¨ßÛHM
+227 0x0000d2ba 0x0000d2ba   4   10         utf16le wc{µ blocks=Basic Latin,Latin-1 Supplement
+228 0x0000d2d3 0x0000d2d3   4   10         utf16be ¥Ô²Ò
+229 0x0000d2eb 0x0000d2eb   4   10         utf16be ±Ùþß
+230 0x0000d2f6 0x0000d2f6   8   16         utf16le kGDA¸VHq blocks=Basic Latin,Latin-1 Supplement
+231 0x0000d34e 0x0000d34e   5   12         utf16le mS]X!
+232 0x0000d381 0x0000d381   7   16         utf16be ÕÖ¢ÒöÎü
+233 0x0000d3c5 0x0000d3c5   4   10         utf16be ¾¿ªT
+234 0x0000d3e8 0x0000d3e8   5   12         utf16le >j7N± blocks=Basic Latin,Latin-1 Supplement
+235 0x0000d404 0x0000d404  12   26         utf16le xËÎ4Fk3p¿ÜĸĆ blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A
+236 0x0000d41f 0x0000d41f   7   16         utf16be ß}ûteÛ¡
+237 0x0000d441 0x0000d441   6   14         utf16be û»ûÄ«´
+238 0x0000d461 0x0000d461  13   28         utf16be ´¿KrènÂÕ¥áëÅÂ
+239 0x0000d486 0x0000d486   4   10         utf16le Sudc
+240 0x0000d49e 0x0000d49e   5   12         utf16le ':kC*
+241 0x0000d4ab 0x0000d4ab   9   20         utf16be ª¼\r=}*ZeQ
+242 0x0000d4bf 0x0000d4bf   4   10         utf16be åµa¿
+243 0x0000d4d0 0x0000d4d0   4   10         utf16le {z}Q
+244 0x0000d514 0x0000d514   9   20         utf16le uèÈ²ÏĆÉò¡ blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A
+245 0x0000d532 0x0000d532   4   10         utf16le ^:]¥ blocks=Basic Latin,Latin-1 Supplement
+246 0x0000d546 0x0000d546   5   12         utf16le jÇr¨} blocks=Basic Latin,Latin-1 Supplement
+247 0x0000d559 0x0000d559   6   14         utf16be ¢ÉÜ&ǂ¬
+248 0x0000d56a 0x0000d56a   8   18         utf16le wÕûÇ®0KW blocks=Basic Latin,Latin-1 Supplement
+249 0x0000d5a4 0x0000d5a4   5   10         utf16le Vg{W:
+250 0x0000d5c1 0x0000d5c1   4   10         utf16be ¥u{t
+251 0x0000d5e5 0x0000d5e5   8   18         utf16be «^g>ZÄVM
+252 0x0000d618 0x0000d618   7   16         utf16le DmuÖ±SV blocks=Basic Latin,Latin-1 Supplement
+253 0x0000d630 0x0000d630   5   12         utf16le m\a[9K
+254 0x0000d63d 0x0000d63d   8   18         utf16be >F4úｎ'ö９
+255 0x0000d650 0x0000d650  15   32         utf16le -=G ￠4h)4TXW6{[ blocks=Basic Latin,Halfwidth and Fullwidth Forms
+256 0x0000d678 0x0000d678   7   16         utf16le j¬cTjP` blocks=Basic Latin,Latin-1 Supplement
+257 0x0000d688 0x0000d688   4   10         utf16le Qne)
+258 0x0000d692 0x0000d692   4   10         utf16le `$SQ
+259 0x0000d6a4 0x0000d6a4   9   18         utf16le .G#!!&Tm;
+260 0x0000d6dc 0x0000d6dc   5   12         utf16le Z;uÜË blocks=Basic Latin,Latin-1 Supplement
+261 0x0000d6e9 0x0000d6e9   5   12         utf16be ßª§[=
+262 0x0000d6f8 0x0000d6f8  15   32         utf16le 4dÁČŀōøßûõ«²ÔX' blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A
+263 0x0000d72e 0x0000d72e   6   14         utf16le n}Ø¨nt blocks=Basic Latin,Latin-1 Supplement
+264 0x0000d73f 0x0000d73f   6   14         utf16be ¼¼Øèq¡
+265 0x0000d782 0x0000d782   4   10         utf16le xe!J
+266 0x0000d7a7 0x0000d7a7   6   14         utf16be ÌÈÌõ\fƤ
+267 0x0000d804 0x0000d804  20   42         utf16le P.KSk')!7W]=VÒ»XTJ6j blocks=Basic Latin,Latin-1 Supplement
+268 0x0000d836 0x0000d836   7   16         utf16le :tGXx&r
+269 0x0000d854 0x0000d854  16   34         utf16le }wT}·Ûám§±ßØóĒČ´ blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A
+270 0x0000d87b 0x0000d87b  20   42         utf16be òÈÅÇª¾\fǒ¹\bǮ±ÔóÞß·Á»Ñ
+271 0x0000d8b3 0x0000d8b3   4   10         utf16be §ªq¨
+272 0x0000d8ce 0x0000d8ce   5   12         utf16le q)Sg@
+273 0x0000d8e6 0x0000d8e6   5   12         utf16le AGGq7
+274 0x0000d8f5 0x0000d8f5   4   10         utf16be ¤´¸±
+275 0x0000d90a 0x0000d90a   4   10         utf16le pGVw
+276 0x0000d915 0x0000d915   9   20         utf16be ª¯Î»S&4h1
+277 0x0000d929 0x0000d929   7   16         utf16be â¤ÛæÌwÒ
+278 0x0000d947 0x0000d947   7   16         utf16be ªéÒ¤ÄÜ¬
+279 0x0000d965 0x0000d965   6   14         utf16be Õ·¯ïÈÞ
+280 0x0000d9b4 0x0000d9b4   7   16         utf16le \tck4W¤² blocks=Basic Latin,Latin-1 Supplement
+281 0x0000d9c4 0x0000d9c4   4   10         utf16le qmgP
+282 0x0000d9d0 0x0000d9d0   5   12         utf16le W&\t¤n blocks=Basic Latin,Latin-1 Supplement
+283 0x0000d9dd 0x0000d9dd   8   18         utf16be ¥zhr]D#*
+284 0x0000d9fa 0x0000d9fa  10   22         utf16le mjTdK[rcQq
+285 0x0000da10 0x0000da10   4   10         utf16le hg±¹ blocks=Basic Latin,Latin-1 Supplement
+286 0x0000da1e 0x0000da1e  11   24         utf16le 9M9X¹npzµ^~ blocks=Basic Latin,Latin-1 Supplement
+287 0x0000da3a 0x0000da3a   5   12         utf16le ewXHp
+288 0x0000da5a 0x0000da5a  10   22         utf16le Ne}q>:]>XH
+289 0x0000da70 0x0000da70   8   18         utf16le PhqjTA`9
+290 0x0000da92 0x0000da92   4   10         utf16le @e:]
+291 0x0000daa2 0x0000daa2   7   16         utf16le J7TC>14
+292 0x0000dabe 0x0000dabe   5   12         utf16le tpÂ{T blocks=Basic Latin,Latin-1 Supplement
+293 0x0000dae3 0x0000dae3   8   18         utf16be ´Ëõ\eǄ·Ôò
+294 0x0000dafb 0x0000dafb   4   10         utf16be ¿±uQ
+295 0x0000db0f 0x0000db0f   5   12         utf16be ¾¼wd¨
+296 0x0000db1c 0x0000db1c   5   12         utf16le T^@0w
+297 0x0000db30 0x0000db30  18   38         utf16le mA[F&&6wÄĂĘįòÇæĜ¹¨ blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A
+298 0x0000db56 0x0000db56   8   18         utf16le a-0{´ÕØû blocks=Basic Latin,Latin-1 Supplement
+299 0x0000db72 0x0000db72  28   58         utf16le tÄ¤uāĵğĦĎé±äÌ¾ªßæÖÙøĒé¹¿ÄÒ¥r blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A
+300 0x0000dbc2 0x0000dbc2   9   20         utf16le ]VcT]^$Nh
+301 0x0000dbee 0x0000dbee   5   10         utf16le `t3K$
+302 0x0000dc22 0x0000dc22   5   12         utf16le @.K]*
+303 0x0000dc2e 0x0000dc2e   5   12         utf16le ;Zx¨« blocks=Basic Latin,Latin-1 Supplement
+304 0x0000dc3d 0x0000dc3d   4   10         utf16be ¾ÕÏä
+305 0x0000dc61 0x0000dc61   4   10         utf16be »·ÙÄ
+306 0x0000dc72 0x0000dc72  10   22         utf16le htÂóØì§}hh blocks=Basic Latin,Latin-1 Supplement
+307 0x0000dc8b 0x0000dc8b  13   26         utf16be ¬ax.-Z]+Z-Qjÿ
+308 0x0000dca8 0x0000dca8   8   18         utf16le 0=cx;;$$
+309 0x0000dd02 0x0000dd02   9   20         utf16le F^z@z¬rt` blocks=Basic Latin,Latin-1 Supplement
+310 0x0000dd1c 0x0000dd1c   6   14         utf16le tTw¤c] blocks=Basic Latin,Latin-1 Supplement
+311 0x0000dd3b 0x0000dd3b   4   10         utf16be ÿÑ¤Ò
+312 0x0000dd4f 0x0000dd4f   5   12         utf16be ÞåöÌÎ
+313 0x0000dd75 0x0000dd75   4   10         utf16be ¿Ñ·Ü
+314 0x0000dd7f 0x0000dd7f   6   14         utf16be ¼ÅjnS>
+315 0x0000dd8d 0x0000dd8d   7   16         utf16be «x¤õÔß·
+316 0x0000dd9d 0x0000dd9d   4   10         utf16be ò²´·
+317 0x0000dda7 0x0000dda7   7   16         utf16be ²Ç±tg±ª
+318 0x0000ddc0 0x0000ddc0  17   36         utf16le }±§åÄÎÏÞĠĝą¯ßÕÏĠÎ blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A
+319 0x0000de1b 0x0000de1b  17   36         utf16be ÎòÁÌ¸¸æ»¡Û±µæøØÜ±
+320 0x0000de3f 0x0000de3f   7   16         utf16be Î±Áþ¹å·
+321 0x0000de5d 0x0000de5d   9   20         utf16be µµ«âÇ\vǤÛÉ
+322 0x0000de85 0x0000de85  10   22         utf16be Ùáâè¬ÅkXJ9
+323 0x0000deaa 0x0000deaa  20   42         utf16le nh`16==0.eÛ±hga&h9tï blocks=Basic Latin,Latin-1 Supplement
+324 0x0000dee3 0x0000dee3   4   10         utf16be ·@9\a
+325 0x0000def0 0x0000def0  16   34         utf16le 6M>ZV$KwpXzqWT>6
+326 0x0000df1a 0x0000df1a  11   24         utf16le C\a\r0K0NA\az¬ blocks=Basic Latin,Latin-1 Supplement
+327 0x0000df32 0x0000df32   7   14         utf16le 0^m$6'\r
+328 0x0000df4c 0x0000df4c  12   26         utf16le 0GD6epWjNqMA
+329 0x0000df68 0x0000df68   5   12         utf16le nrÌ}q blocks=Basic Latin,Latin-1 Supplement
+330 0x0000df74 0x0000df74   4   10         utf16le k]w+
+331 0x0000df90 0x0000df90  10   22         utf16le S-!FPxdj!G
+332 0x0000dfa6 0x0000dfa6   5   12         utf16le }]ZZQ
+333 0x0000dfc2 0x0000dfc2   8   16         utf16le X>HGhqQA
+334 0x0000dfda 0x0000dfda   5   12         utf16le Sk 06
+335 0x0000dfe8 0x0000dfe8   7   16         utf16le mgaT>;'
+336 0x0000e004 0x0000e004   4   10         utf16le +]@u
+337 0x0000e034 0x0000e034   5   12         utf16le H4P@K
+338 0x0000e054 0x0000e054   4   10         utf16le 7FSe
+339 0x0000e05e 0x0000e05e   7   16         utf16le ze¥µk§§ blocks=Basic Latin,Latin-1 Supplement
+340 0x0000e06e 0x0000e06e   5   12         utf16le \fkpx» blocks=Basic Latin,Latin-1 Supplement
+341 0x0000e080 0x0000e080   5   12         utf16le `«tm¢ blocks=Basic Latin,Latin-1 Supplement
+342 0x0000e093 0x0000e093   6   14         utf16be ÖëÜÄ¢¢
+343 0x0000e0a3 0x0000e0a3   8   18         utf16be áÞª¥«¼¬Ô
+344 0x0000e0bd 0x0000e0bd   4   10         utf16be ÁïÈÖ
+345 0x0000e0cb 0x0000e0cb   4   10         utf16be Õ¼zË
+346 0x0000e0e9 0x0000e0e9  17   36         utf16be ßìÑÕåÞöëÔÅ}C6Vp®Û
+347 0x0000e10f 0x0000e10f   5   12         utf16be ÇÉg¨¯
+348 0x0000e123 0x0000e123   5   12         utf16be Ë´»é¨
+349 0x0000e132 0x0000e132  10   22         utf16le ]q²[`qT[]7 blocks=Basic Latin,Latin-1 Supplement
+350 0x0000e150 0x0000e150   5   12         utf16le +=*M^
+351 0x0000e176 0x0000e176   7   16         utf16le [NuC[²® blocks=Basic Latin,Latin-1 Supplement
+352 0x0000e191 0x0000e191  10   22         utf16be Ñq}p[^zÌèÄ
+353 0x0000e1a8 0x0000e1a8   7   16         utf16le Vg6$*).
+354 0x0000e1b8 0x0000e1b8   4   10         utf16le VXF§ blocks=Basic Latin,Latin-1 Supplement
+355 0x0000e1de 0x0000e1de  14   30         utf16le {{gW~DHpu`Zm39
+356 0x0000e1fe 0x0000e1fe   4   10         utf16le ]1XA
+357 0x0000e212 0x0000e212   5   12         utf16le F)c4g
+358 0x0000e21e 0x0000e21e   4   10         utf16le Zqg\r
+359 0x0000e234 0x0000e234  11   24         utf16le M4:@9VJm`3:
+360 0x0000e24c 0x0000e24c   4   10         utf16le Ce}¥ blocks=Basic Latin,Latin-1 Supplement
+361 0x0000e256 0x0000e256   6   14         utf16le PZSTtÌ blocks=Basic Latin,Latin-1 Supplement
+362 0x0000e276 0x0000e276  10   22         utf16le XªzS;￼!jÁÏ blocks=Basic Latin,Latin-1 Supplement,Specials
+363 0x0000e28c 0x0000e28c   5   12         utf16le KS7Nd
+364 0x0000e2ac 0x0000e2ac  22   46         utf16le Aw¬FGzH\n44.Q1Gh`Zc;ￗￖ￼ blocks=Basic Latin,Latin-1 Supplement,Halfwidth and Fullwidth Forms,Specials
+365 0x0000e2dc 0x0000e2dc   8   18         utf16le \t;9.)6[`
+366 0x0000e2ee 0x0000e2ee  11   24         utf16le 3T=xk&NFd«w blocks=Basic Latin,Latin-1 Supplement
+367 0x0000e308 0x0000e308   5   12         utf16le kZ¬¿¤ blocks=Basic Latin,Latin-1 Supplement
+368 0x0000e31d 0x0000e31d  19   40         utf16be ¾§}¨Ë¼¢»ÙÛÒìá´»±èÇ~
+369 0x0000e348 0x0000e348  10   22         utf16le 6Nrhhguk]3
+370 0x0000e366 0x0000e366   5   12         utf16le ^>.Zr
+371 0x0000e38f 0x0000e38f   7   16         utf16be ¡¨²§}rµ
+372 0x0000e3a8 0x0000e3a8   7   16         utf16le z>^±¥¡« blocks=Basic Latin,Latin-1 Supplement
+373 0x0000e3cd 0x0000e3cd   5   12         utf16be ¸®áïÒ
+374 0x0000e3df 0x0000e3df   7   16         utf16be ùï®Â¢·â
+375 0x0000e3ef 0x0000e3ef   4   10         utf16be »ßÔÖ
+376 0x0000e403 0x0000e403   6   14         utf16be ïÞâøÜæ
+377 0x0000e44d 0x0000e44d   4   10         utf16be ÑâÄÏ
+378 0x0000e46b 0x0000e46b   5   12         utf16be «p~W@
+379 0x0000e478 0x0000e478  16   34         utf16le M=^Kmu^}rmKxHW\t￦ blocks=Basic Latin,Halfwidth and Fullwidth Forms
+380 0x0000e49a 0x0000e49a   4   10         utf16le 77cc
+381 0x0000e4a6 0x0000e4a6  12   26         utf16le ::P@CQD aPmp
+382 0x0000e4c0 0x0000e4c0   5   12         utf16le ZMNN6
+383 0x0000e4d8 0x0000e4d8   6   14         utf16le NDWMPT
+384 0x0000e4e6 0x0000e4e6   5   12         utf16le a}~~j
+385 0x0000e50e 0x0000e50e   4   10         utf16le hMV0
+386 0x0000e522 0x0000e522   7   16         utf16le  hHk\tￜￒ blocks=Basic Latin,Halfwidth and Fullwidth Forms
+387 0x0000e532 0x0000e532   6   14         utf16le KNt6+4
+388 0x0000e556 0x0000e556   4    8         utf16le \nGD1
+389 0x0000e5d0 0x0000e5d0   6   14         utf16le Q)>NkC
+390 0x0000e5de 0x0000e5de   6   14         utf16le '\nhjzj
+391 0x0000e5f5 0x0000e5f5  11   24         utf16be »ÕØ§Â¹Â±ÅÖò
+392 0x0000e649 0x0000e649   4   10         utf16be ÑÄþä
+393 0x0000e653 0x0000e653   7   16         utf16be ¢u¢¼Â¿Ø
+394 0x0000e68a 0x0000e68a   4   10         utf16le N[gp
+395 0x0000e6a6 0x0000e6a6   5   12         utf16le ]CF>X
+396 0x0000e6b4 0x0000e6b4   5   12         utf16le WA40g
+397 0x0000e6c0 0x0000e6c0   7   16         utf16le +1aMH¢~ blocks=Basic Latin,Latin-1 Supplement
+398 0x0000e6de 0x0000e6de   9   20         utf16le G§ÔÉ¯¿¯»Ô blocks=Basic Latin,Latin-1 Supplement
+399 0x0000e6ff 0x0000e6ff  10   22         utf16be ùÔ¿ªË¾ÅËÂè
+400 0x0000e71f 0x0000e71f   8   18         utf16be ¢¸ÖïÄµ¼{
+401 0x0000e73c 0x0000e73c   7   16         utf16le [T Qack
+402 0x0000e74c 0x0000e74c   6   14         utf16le S'STMp
+403 0x0000e75a 0x0000e75a   7   16         utf16le jK[qXCH
+404 0x0000e76c 0x0000e76c   6   14         utf16le mHN73d
+405 0x0000e77c 0x0000e77c   6   14         utf16le V4&;-T
+406 0x0000e78a 0x0000e78a   8   18         utf16le kZAVCNN`
+407 0x0000e79c 0x0000e79c   7   16         utf16le {hKZ:p~
+408 0x0000e7b5 0x0000e7b5   4   10         utf16be ²È®¬
+409 0x0000e7e0 0x0000e7e0  14   30         utf16le nGSKDV>&DXKFd:
+410 0x0000e848 0x0000e848  16   34         utf16le #;@aT711\n)HNhMg{
+411 0x0000e880 0x0000e880   5   12         utf16le kÄö¾« blocks=Basic Latin,Latin-1 Supplement
+412 0x0000e88d 0x0000e88d   5   12         utf16be ªÂ¿Ñ¸
+413 0x0000e89c 0x0000e89c  13   28         utf16le dz»®áËzgSjt«´ blocks=Basic Latin,Latin-1 Supplement
+414 0x0000e8b8 0x0000e8b8   9   18         utf16le ^4HZ@Ve\t\a
+415 0x0000e8fa 0x0000e8fa   6   14         utf16le >K>� \r blocks=Basic Latin,Specials
+416 0x0000e90c 0x0000e90c  10   22         utf16le 1\r!>cagT;x
+417 0x0000e926 0x0000e926   7   16         utf16le MN¤ÌÇÜÈ blocks=Basic Latin,Latin-1 Supplement
+418 0x0000e940 0x0000e940   5   12         utf16le t®¡¸î blocks=Basic Latin,Latin-1 Supplement
+419 0x0000e94c 0x0000e94c  19   40         utf16le ueªæĂąÕÕ»āĉăá¥n®´¯² blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A
+420 0x0000e975 0x0000e975  16   34         utf16be »ÞÑüâÉ\bǘæÜ¯¡ª¥Å¾
+421 0x0000e9bd 0x0000e9bd   4   10         utf16be ²ÇË¤
+422 0x0000e9c8 0x0000e9c8   4   10         utf16le u[qn
+423 0x0000e9d7 0x0000e9d7   9   20         utf16be ¥¼ÉïÒ¡}er
+424 0x0000e9ec 0x0000e9ec  14   30         utf16le }¡«ËâÕÄª®«¼¢¸² blocks=Basic Latin,Latin-1 Supplement
+425 0x0000ea0b 0x0000ea0b  11   24         utf16be ´®äæ¹¤xGXK]
+426 0x0000ea36 0x0000ea36   6   14         utf16le d@P@P^
+427 0x0000ea55 0x0000ea55  14   30         utf16be ±`edkaxC9H^^Zd
+428 0x0000ea76 0x0000ea76  13   28         utf16le C-:H=6Dj~~z¯u blocks=Basic Latin,Latin-1 Supplement
+429 0x0000ea92 0x0000ea92  24   50         utf16le wM.MJH)>eXQ`:WdKG=P^TVe{
+430 0x0000eac4 0x0000eac4   4   10         utf16le TP@e
+431 0x0000eafa 0x0000eafa   4   10         utf16le kntµ blocks=Basic Latin,Latin-1 Supplement
+432 0x0000eb1c 0x0000eb1c  10   20         utf16le 7Gjnrj=-33
+433 0x0000eb7e 0x0000eb7e   7   16         utf16le 7C\r3&4Z
+434 0x0000eb9a 0x0000eb9a  16   34         utf16le eNWNZZ^XD:.QH;]p
+435 0x0000ebbc 0x0000ebbc   4   10         utf16le w~¢¢ blocks=Basic Latin,Latin-1 Supplement
+436 0x0000ebc6 0x0000ebc6   5   12         utf16le V;Xw¥ blocks=Basic Latin,Latin-1 Supplement
+437 0x0000ebd6 0x0000ebd6  10   22         utf16le S dtJNHPWx
+438 0x0000ebf3 0x0000ebf3   7   16         utf16be ¨´^WAS{
+439 0x0000ec1c 0x0000ec1c   4   10         utf16le ^ajx
+440 0x0000ec27 0x0000ec27   6   14         utf16be ¨µÞ¡¾¿
+441 0x0000ec3c 0x0000ec3c   9   20         utf16le jq»¤·¿«Å» blocks=Basic Latin,Latin-1 Supplement
+442 0x0000ec6c 0x0000ec6c   8   18         utf16le F3V:Dw:T
+443 0x0000ec7e 0x0000ec7e   7   14         utf16le F4H47 \r
+444 0x0000ec98 0x0000ec98   7   16         utf16le rcSWQ^7
+445 0x0000ecac 0x0000ecac   4   10         utf16le +'J^
+446 0x0000ecc2 0x0000ecc2   4   10         utf16le :4Q 
+447 0x0000ecdc 0x0000ecdc  14   30         utf16le uxuuqazr«ÇåÙÎ¯ blocks=Basic Latin,Latin-1 Supplement
+448 0x0000ed06 0x0000ed06  10   22         utf16le q¢øĨĠłęÛßÈ blocks=Basic Latin,Latin-1 Supplement,Latin Extended-A
+449 0x0000ed29 0x0000ed29   5   12         utf16be ÄÉ¼É¨
+450 0x0000ed36 0x0000ed36   6   14         utf16le G9T]x¢ blocks=Basic Latin,Latin-1 Supplement
+451 0x0000ed44 0x0000ed44   8   18         utf16le qgdZDDZV
+452 0x0000ed60 0x0000ed60  11   24         utf16le x}MpT6Hg4!\t
+453 0x0000ed7c 0x0000ed7c   9   20         utf16le \t0KD7AD*#
+454 0x0000eda0 0x0000eda0   4   10         utf16le 7C9W
+455 0x0000edaa 0x0000edaa   4   10         utf16le ![gw
+456 0x0000edc0 0x0000edc0  10   22         utf16le jK9N4NPtd¢ blocks=Basic Latin,Latin-1 Supplement
+457 0x0000edd8 0x0000edd8   8   18         utf16le nZ>Kq`HX
+458 0x0000edea 0x0000edea   4   10         utf16le &N}¢ blocks=Basic Latin,Latin-1 Supplement
+459 0x0000edfc 0x0000edfc  16   32         utf16le HP@VT3gGKA$-VT:ￜ blocks=Basic Latin,Halfwidth and Fullwidth Forms
+460 0x0000ee20 0x0000ee20   8   18         utf16le $Te:6JCc
+461 0x0000ee32 0x0000ee32   8   18         utf16le `VT6FaH$
+462 0x0000ee4a 0x0000ee4a  14   30         utf16le qh¥GhS`w~Xhzdr blocks=Basic Latin,Latin-1 Supplement
+463 0x0000ee70 0x0000ee70   9   20         utf16le ;.cVx¤¯Âï blocks=Basic Latin,Latin-1 Supplement
+464 0x0000eeae 0x0000eeae  38   78         utf16le uWW=Z>=#;*an9:SDHWG#A-7@NPa46g@:90:~dg
+465 0x0000ef2d 0x0000ef2d   4   10         utf16be ²®Áª
+466 0x0000ef39 0x0000ef39   4   10         utf16be µ¨¬}
+467 0x0000ef49 0x0000ef49   4   10         utf16be ¢¯Ä¯
+468 0x0000ef6f 0x0000ef6f   5   12         utf16be »ËßÄÁ
+469 0x0000ef86 0x0000ef86   4   10         utf16le z}^n
+470 0x0000efb5 0x0000efb5   4   10         utf16be ¨´Ä¨
+471 0x0000efc4 0x0000efc4   8   18         utf16le c[egpa=P
+472 0x0000efd6 0x0000efd6   6   14         utf16le h^eGMG
+473 0x0000efe8 0x0000efe8  16   34         utf16le $+@KVw~SWh;:;\r\n 
+474 0x0000f00c 0x0000f00c  11   24         utf16le .A;@*6M*&0)
+475 0x0000f030 0x0000f030   8   18         utf16le !1>QaVkk
+476 0x0000f048 0x0000f048   4   10         utf16le \f+0T
+477 0x0000f058 0x0000f058  41   84         utf16le a>dVJ]JA =3MH@JS-&9!HJ-MT'#@AQ^]DPc6G:&>F
+478 0x0000f0ac 0x0000f0ac  25   52         utf16le &-6NSJcp9&47=[H@C1@`KexJ 
+479 0x0000f0e4 0x0000f0e4   5   12         utf16le @NDK6
+480 0x0000f0fc 0x0000f0fc   9   20         utf16le 0H6;>+GH>
+481 0x0000f116 0x0000f116  11   24         utf16le :`AS6);J=S-
+482 0x0000f12e 0x0000f12e  14   30         utf16le !F0 ##:G.:X*66
+483 0x0000f14c 0x0000f14c  22   46         utf16le 6W!7DMQgxkanHJ7-@HF]~~
+484 0x0000f17a 0x0000f17a  15   32         utf16le xpk~mkT90> *nrn
+485 0x0000f1a6 0x0000f1a6   4   10         utf16le ^n¯² blocks=Basic Latin,Latin-1 Supplement
+486 0x0000f1b1 0x0000f1b1   6   14         utf16be Â¥¥ÂÁ¹
+487 0x0000f1cc 0x0000f1cc   4   10         utf16le z}rw
+488 0x0000f1ea 0x0000f1ea   5   12         utf16le ]Hanx
+489 0x0000f1f6 0x0000f1f6  12   26         utf16le n-J^K[ND`xcq
+490 0x0000f228 0x0000f228   5   12         utf16le rQXhp
+491 0x0000f238 0x0000f238   4   10         utf16le rnTj
+492 0x0000f243 0x0000f243   4   10         utf16be ²~Mq
+493 0x0000f251 0x0000f251  29   60         utf16be ¼·¡·ªÅ¸Äª¡ªÇ²±¹¼Õåòáé¸·µ¢«®¸«
+494 0x0000f2a1 0x0000f2a1   7   16         utf16be ·mQTAPd
+495 0x0000f2b2 0x0000f2b2   6   14         utf16le pgmtru
+496 0x0000f2c6 0x0000f2c6   5   12         utf16le QKe{q
+497 0x0000f2e2 0x0000f2e2  17   36         utf16le wq~gAXCJF;QZ`GD0$
+498 0x0000f306 0x0000f306  14   30         utf16le !!'99!'ACGWhH+
+499 0x0000f336 0x0000f336   4   10         utf16le CA&=
+500 0x0000f348 0x0000f348   6   14         utf16le $09.$*
+501 0x0000f36a 0x0000f36a   6   14         utf16le +@43;9
+502 0x0000f38c 0x0000f38c   5   12         utf16le @mM@*
+503 0x0000f39c 0x0000f39c  15   32         utf16le >@drhuTX`W]adN&
+504 0x0000f3c6 0x0000f3c6  31   64         utf16le qntdZwg.@1:{mdgNNTJd`NXK6Q[H``7
+505 0x0000f40c 0x0000f40c  15   32         utf16le GW@WqcT+30F7!A'
+506 0x0000f434 0x0000f434  17   36         utf16le {TgZ^kVerNTgJPqwg
+507 0x0000f458 0x0000f458   5   12         utf16le nAWcS
+508 0x0000f490 0x0000f490  24   50         utf16le QatSPmVAeTCVN'AZDaV#!Sux
+509 0x0000f4c4 0x0000f4c4  11   24         utf16le nSnM`nWc>=Q
+510 0x0000f4e6 0x0000f4e6   8   18         utf16le eJXK#Phd
+511 0x0000f4f8 0x0000f4f8   4   10         utf16le z`tª blocks=Basic Latin,Latin-1 Supplement
+512 0x0000f508 0x0000f508   4   10         utf16le eTme
+513 0x0000f533 0x0000f533   7   16         utf16be ¹ÞÂÙ¢wu
+514 0x0000f55e 0x0000f55e   7   16         utf16le }rjSTe{
+515 0x0000f572 0x0000f572   8   18         utf16le `gj~}xzJ
+516 0x0000f586 0x0000f586  13   28         utf16le !7A}Pca7HtF#H
+517 0x0000f5aa 0x0000f5aa   7   16         utf16le :etrhK-
+518 0x0000f5c0 0x0000f5c0   7   16         utf16le m]':Mx§ blocks=Basic Latin,Latin-1 Supplement
+519 0x0000f5d2 0x0000f5d2   5   12         utf16le rkjXu
+520 0x0000f5f6 0x0000f5f6   5   12         utf16le {NCQQ
+521 0x0000f606 0x0000f606   5   12         utf16le V^QVg
+522 0x0000f612 0x0000f612  15   32         utf16le u^XW[NjrVM[[T6.
+523 0x0000f632 0x0000f632   7   16         utf16le G`JkaDd
+524 0x0000f64c 0x0000f64c  35   72         utf16le ''+.FFFQWQA+H=G9!FH$9K>@eG9=6+Jh;:Q
+525 0x0000f6aa 0x0000f6aa   5   10         utf16le '-F'&
+526 0x0000f6c4 0x0000f6c4   6   14         utf16le )@FAP*
+527 0x0000f6e8 0x0000f6e8   5   12         utf16le $\f'+\t
+528 0x0000f702 0x0000f702   5   12         utf16le 6NC>K
+529 0x0000f716 0x0000f716   6   14         utf16le Q)Fauw
+530 0x0000f726 0x0000f726   8   18         utf16le gkwX;=M[
+531 0x0000f746 0x0000f746  10   22         utf16le rx`W]cSzP^
+532 0x0000f762 0x0000f762  39   80         utf16le hVu]He[dznQ[cXkhjJNSJ6Q=6HTVdDC@MkmVW>V
+533 0x0000f7be 0x0000f7be  27   56         utf16le }en[GTX`]DMgVkeV]caznZmQAJg
+534 0x0000f7f6 0x0000f7f6   6   14         utf16le {S^a=e
+535 0x0000f80a 0x0000f80a   4   10         utf16le ]Qqe
+536 0x0000f816 0x0000f816   5   12         utf16le jrtj}
+537 0x0000f822 0x0000f822   4   10         utf16le ~{t}
+538 0x0000f854 0x0000f854  26   54         utf16le ^ShASmXm{TJ^at}}ZZS]kQ]gaw
+539 0x0000f88c 0x0000f88c   5   12         utf16le ~kZqw
+540 0x0000f89a 0x0000f89a   5   12         utf16le gXDW¢ blocks=Basic Latin,Latin-1 Supplement
+541 0x0000f8b8 0x0000f8b8   7   16         utf16le ztX`neh
+542 0x0000f8c8 0x0000f8c8  20   42         utf16le nZWT]jSQeKWhNceeSK[@
+543 0x0000f8f2 0x0000f8f2  18   38         utf16le .6;d>)340VMA66>>0+
+544 0x0000f91c 0x0000f91c  41   84         utf16le =]9@11XkgqdTTC9Cj`AmgC@c>`gHc`e[V>@ZK>63 
+545 0x0000f970 0x0000f970   5   12         utf16le $MW6$
+546 0x0000f980 0x0000f980  11   24         utf16le 3K4$*$&'#FD
+547 0x0000f998 0x0000f998  18   38         utf16le GQ7J@6A]H3#0@CSAJ1
+548 0x0000f9be 0x0000f9be   7   16         utf16le +0-CC*)
+549 0x0000f9ce 0x0000f9ce   6   14         utf16le &3A&#0
+550 0x0000f9ec 0x0000f9ec  30   62         utf16le &7@0AZVNXXM=K=KgcVJH^XTTkS7W;6
+551 0x0000fa2a 0x0000fa2a  15   32         utf16le  $`F[zXADMDK@9'
+552 0x0000fa4a 0x0000fa4a  29   60         utf16le 3FWNte>@CHJH`kPPFSNjx{^nd9Kww
+553 0x0000fa88 0x0000fa88  13   28         utf16le qcVMrxrpa@Fem
+554 0x0000faa4 0x0000faa4   9   20         utf16le j^ezrdT]Z
+555 0x0000fab8 0x0000fab8   8   18         utf16le heaaHP{u
+556 0x0000faca 0x0000faca  20   42         utf16le m>G]04G;CP31>9Mh>A@ 
+557 0x0000faf4 0x0000faf4  19   40         utf16le 0JW[Pd[;*37>=^[KKMa
+558 0x0000fb28 0x0000fb28   5   12         utf16le dhqtj
+559 0x0000fb36 0x0000fb36   4   10         utf16le h^Z[
+560 0x0000fb74 0x0000fb74  45   92         utf16le {m[JP]`rca=HPhcTC[@1GH[eTKPJ7)-;10DWZNPDVPT=@
+561 0x0000fbd0 0x0000fbd0  65  132         utf16le #) 6C@93F7!7-4N[]X; 1CDVQHKM`~dktgW~[Z]AGS`QF.KJak^a[CDQFT[6;D=00
+562 0x0000fc5e 0x0000fc5e   6   14         utf16le \r#\r\t=0
+563 0x0000fc80 0x0000fc80   6   14         utf16le &::;@.
+564 0x0000fc98 0x0000fc98   7   16         utf16le \rF;=V;&
+565 0x0000fcb4 0x0000fcb4   8   18         utf16le $]NNxkDT
+566 0x0000fcd0 0x0000fcd0  20   42         utf16le --M6KhdkhHA]NJ[Zpq]{
+567 0x0000fd04 0x0000fd04   7   16         utf16le e{~^{{p
+568 0x0000fd16 0x0000fd16  18   38         utf16le t{d=PKKWHQZ7;^DXc1
+569 0x0000fd40 0x0000fd40  11   24         utf16le #PWaCF1)6'\f
+570 0x0000fd74 0x0000fd74  19   40         utf16le #-3C6$A4#WJ3TG>VT@n
+571 0x0000fd9c 0x0000fd9c  15   32         utf16le wdQS.NrgQX>KWex
+572 0x0000fdc0 0x0000fdc0  11   24         utf16le {Wat^zrue]P
+573 0x0000fe00 0x0000fe00   5   12         utf16le ~Xnk{
+574 0x0000fe16 0x0000fe16   4   10         utf16le n@6A
+575 0x0000fe22 0x0000fe22  35   72         utf16le HZepHVX-KN=1WK1KddKVG;>'490#9Aa]Wer
+576 0x0000fe6a 0x0000fe6a  71  144         utf16le qnCFF'!D>'60.dc]dM))=>-HD+MgruVGdcSQTFSJauzmq]KcK :@=QeWNQS9JJ;N1#=K9Pm
+577 0x0000fefc 0x0000fefc  10   22         utf16le e[]p}r^C9.
+578 0x0000ff12 0x0000ff12  59  118         utf16le CTDaaZthMKHHFT4\t&;-1KCKC*DK@71FPA71AXPM4CQ31:&+F00DD36>MF:\t
+579 0x0000ff8e 0x0000ff8e   4   10         utf16le  *!!
+580 0x0000ff9a 0x0000ff9a   5   12         utf16le *1=:1
+581 0x0000ffcc 0x0000ffcc  26   52         utf16le !NQCJ.7PFHVD3-+=`rkg]rra`a
+582 0x00010000 0x00010000  23   48         utf16le ^QF0&7;9azc^c[SQA.QV>-#
+583 0x00010030 0x00010030   5   12         utf16le 3A74)
+584 0x0001003c 0x0001003c  62  126         utf16le 0@JF6&#07@>;+;HSP9Kh^]jZ9MKPKVMP;)FCAPXFNKDVnqdcjktXVcth{w{paj
+585 0x000100c8 0x000100c8  90  182         utf16le eaZakqm}hguqhqagagcQF9;JJDD=;XXQQT]TXKHD=KjA70';FMQC9PK.AAD;=7!#;GNTJ@Fmmzxdg]=XQHHM>PNWjq
+586 0x0001017e 0x0001017e  18   38         utf16le xZP>*7KTJM]QS^kqM9
+587 0x000101aa 0x000101aa  69  140         utf16le &DDG`decTC=AG3$+3KS]eXZ@HKHM6).00:PkTTQ=3N>$:..9:;;:G70+.709379:C946+
+588 0x00010240 0x00010240   7   16         utf16le $4'0>$4
+589 0x00010258 0x00010258  13   28         utf16le #.0>F@AA:6*;.
+590 0x00010274 0x00010274  25   52         utf16le &9:9N:):>J;7>4*>+0.0:0-0:
+591 0x000102c0 0x000102c0  35   72         utf16le &9133+@!;GDDGF9.6WGWgmVkXMgSWed]c`a
+592 0x00010308 0x00010308  26   54         utf16le {kdd]TJkcZSAFM]`ZD=@DGC':)
+593 0x0001033e 0x0001033e  81  164         utf16le 90**+-NaMW@=FA6;9>#0MDGKZPSWDA6QZMV[A=@7V]FAP>]cX`e`P]VQWZSPZkeerdeddz{e[H@SDQmde
+594 0x000103e2 0x000103e2  89  180         utf16le gWaMA>J@=# .:>KTD7$:=:FF9@@:CAWcC>0!'0CqaNV[JM^kwn`MKQkrrte>-0GVJ^S46DXjnc^>JKGHMJCa[j~{w
+595 0x00010496 0x00010496  46   94         utf16le VM`GAMDF[`rgP]`WQTaS>PNDC:FHJ7-#4P@6KD')3:JC$&
+596 0x000104f6 0x000104f6  27   56         utf16le .#7C@;+.;A=7@K9-36+A7)C:-.*
+597 0x0001053a 0x0001053a  17   36         utf16le 14)0*!$'0*0+9.1.'
+598 0x0001056a 0x0001056a   5   12         utf16le \t$+-&
+599 0x0001057e 0x0001057e   4   10         utf16le !'\n\r
+600 0x000105a6 0x000105a6   7   16         utf16le '96;@1'
+601 0x000105b6 0x000105b6   4   10         utf16le -#0#
+602 0x000105c2 0x000105c2  20   42         utf16le +DMSXMVJFDJ@KVKNXXgz
+603 0x000105ee 0x000105ee  32   66         utf16le m[XW]h]]`cj}{md^`QXaJKXSA::@J==3
+604 0x00010648 0x00010648   5   12         utf16le 3'!.)
+605 0x00010654 0x00010654  65  132         utf16le 0$.=;;-3@D:::=`TTC4+=>DZM77DdjGNW>@J>SGK`ZZXC1@FZV>STTgzgdpX`THH>
+606 0x000106d8 0x000106d8  28   58         utf16le A@GQMcr^We9=;)71+=. +7>PCA:$
+607 0x00010712 0x00010712  65  132         utf16le 1.33'7;7@@=H@7F=)93Nmj`Z94KPMK7AHAKZKG:>QJHJAHVCMDDSN'>;4HF7MH10&
+608 0x0001079c 0x0001079c  82  166         utf16le +)!#$0D)3.&*:4>*0:4)4).1&@NGJK7AD-:J=MG:DQ;QQHWJAPACNGMHC+!&@@=D76C4;QPQXC>J0*C739
+609 0x00010842 0x00010842   8   18         utf16le !16>9--'
+610 0x00010866 0x00010866   4   10         utf16le  @K;
+611 0x00010876 0x00010876   4   10         utf16le $4.)
+612 0x00010882 0x00010882   5   12         utf16le 93*H-
+613 0x0001089a 0x0001089a  14   30         utf16le 16FM>;GF:7A;0 
+614 0x000108b8 0x000108b8 145  292         utf16le !#$1M]P[`HV]QPKFJ6';NFZaJ@FQexxnN7>J69=D3=6-7;=MQ@9)!AaF7G9:=6KT7:MN`ZKFMMH@;ANSQcSAA7CaeX[e[XhqhjSDK@;WQg~}rhG@TQZd[GFGKPJGHK4.*!1;;4C6&16041-:#
+615 0x000109dc 0x000109dc  12   26         utf16le 09000&$&'.!!
+616 0x00010a00 0x00010a00   5   12         utf16le $+16-
+617 0x00010a0e 0x00010a0e   5   12         utf16le !$! &
+618 0x00010a1e 0x00010a1e   5   12         utf16le #FVG3
+619 0x00010a30 0x00010a30  50  102         utf16le  39717;@FCAG:)-*4MVa[A@97>PKH7;C;;3)$&&)0.;9$-911-
+620 0x00010ac8 0x00010ac8   6   14         utf16le $.!'. 
+621 0x00010ae6 0x00010ae6   6   14         utf16le !)-0*&
+622 0x00010afe 0x00010afe   8   18         utf16le *-)0 \r\t\n
+623 0x00010b14 0x00010b14   8   18         utf16le $)!*#+)&
+624 0x00010b26 0x00010b26  74  150         utf16le &&'4>::69;3-7;A97DGHd]S^G4FVPNJ[WW`akedVTVFMPWTNADTQV[]N4>@:MVGT@*1.9>C6& 
+625 0x00010bbc 0x00010bbc 137  276         utf16le  3FJ6AJ>.=61946KFHJJJ9:>3QaSQN>DGCHM>.7=GHVQKMXN9==.H@:=01@JNMTK6GK00F>=DHSN@MJKGT]c[N[S7JT@Q>09@KQ`aVc^QFP.;H:6FAFSTVPK=40*=0AT9C4)'4&!+
+626 0x00010ce6 0x00010ce6   6   14         utf16le )#!!)*
+627 0x00010cf6 0x00010cf6   5   12         utf16le \n!)&'
+628 0x00010d08 0x00010d08   4   10         utf16le $$\r\n
+629 0x00010d2a 0x00010d2a   8   18         utf16le 63=HC30&
+630 0x00010d42 0x00010d42   4   10         utf16le ;4 !
+631 0x00010d4c 0x00010d4c   5   12         utf16le +@733
+632 0x00010d80 0x00010d80   5   12         utf16le +7-+ 
+633 0x00010db2 0x00010db2  12   26         utf16le \f\r-:'&+ #'&#
+634 0x00010dd4 0x00010dd4  10   22         utf16le  *9*4:9&6#
+635 0x00010dee 0x00010dee  11   24         utf16le !367>6164;+
+636 0x00010e0c 0x00010e0c   9   20         utf16le $7+;7=..&
+637 0x00010e2e 0x00010e2e   5   12         utf16le .1)1*
+638 0x00010e3c 0x00010e3c  12   26         utf16le !!')3+)$KF7*
+639 0x00010e5c 0x00010e5c 155  312         utf16le  $$!)#&:JJ1:@+ *$@>:0GQNT=;F13:;CFG^j[]XScnVJDX[dhdnh[XVSH`Z[maQX^ajWMQJAQMXph]ePWWQMg[GHNZMGMGDMNPA+0A3;D;7@6D=>J@-@C9AC=FK:NJCGF:KHG;=CJAA:9C>AQGCMGD:.)0
+640 0x00010f94 0x00010f94  14   30         utf16le 1D>9H6NWGF@&*-
+641 0x00010fe4 0x00010fe4  12   26         utf16le \r  &-&)9'+D-
+642 0x00010ffe 0x00010ffe   4   10         utf16le ))'+
+643 0x0001100a 0x0001100a   7   16         utf16le '0:A3& 
+644 0x0001101a 0x0001101a   4   10         utf16le !)'.
+645 0x000110ba 0x000110ba   6   14         utf16le '$$'*!
+646 0x000110cc 0x000110cc  57  116         utf16le !-0.=49A;;1-1)*:3-;ANSF3933993364CKH@344'&*-**4@::7>97.-&
+647 0x00011140 0x00011140  26   54         utf16le &0.DF>;=1.>9>:.39119>:=::.
+648 0x00011176 0x00011176  14   30         utf16le #''1:=&'1-3&')
+649 0x0001119c 0x0001119c 137  276         utf16le &7;AK919AA7*#+)6A=@@>C=99764:6'.9>=***3--::;:F@CA37336.1@CJFCD;=9A7+77:>D;@=AGG97>GGWXGHSFADHHJSMKMNTNKHD=:=91)4:;DK9779;7:1011>>6+10'*.!
+650 0x00011328 0x00011328   5   12         utf16le $'!!$
+651 0x00011346 0x00011346   6   14         utf16le +66.$#
+652 0x00011364 0x00011364   7   16         utf16le $'$#') 
+653 0x0001139a 0x0001139a   4   10         utf16le !* !
+654 0x000113ba 0x000113ba   5   12         utf16le  ***&
+655 0x000113d6 0x000113d6   6   14         utf16le #$ '3'
+656 0x000113e4 0x000113e4  41   84         utf16le **.0+311434>A@@=@KH@KG>A@@9@>:@JA0737C6*-
+657 0x00011438 0x00011438 124  250         utf16le $34;CA@AFC>*0**90!)17>@96+** #&#&&';1*0-'+* +343*0913:9@=1-14;D;DD70.@KF>::CG@FG:6:6;=9369A=6::9>0&0&+>AAC0*1961))#**$+101-'
+658 0x00011556 0x00011556  40   82         utf16le #$1;;=73$)93:67;6.-09;F=736;FFD6#'+&-1&'
+659 0x000115aa 0x000115aa  14   30         utf16le &)*'1.*-.06>3)
+660 0x000115d0 0x000115d0   4   10         utf16le $.+!
+661 0x0001167c 0x0001167c   5   12         utf16le &+'&&
+662 0x000116c4 0x000116c4  32   66         utf16le $!&+-*.+1.'.3316:A1**-43-!#+- )-
+663 0x0001170a 0x0001170a   6   14         utf16le $$'# !
+664 0x00011718 0x00011718  24   50         utf16le $--.61)&#))&..!'+)**0-##
+665 0x0001174c 0x0001174c   7   16         utf16le !*00.' 
+666 0x0001175e 0x0001175e  53  108         utf16le )-)   $.1.463-1>1777=@79;79347>D:6;A:@;1*')&009;7=;+$
+667 0x000117ca 0x000117ca  59  120         utf16le  &).0*.:74@64-&*).*&+-.3=F>;0+41.1..7@DGFDC:=6.) *0493344.!
+668 0x0001187a 0x0001187a   5   12         utf16le \f\t\n\n\n
+669 0x000118e0 0x000118e0   7   16         utf16le  $)*&$)
+670 0x0001190e 0x0001190e   5   12         utf16le  #$$ 
+671 0x00011962 0x00011962   5   12         utf16le !!#&$
+672 0x00011974 0x00011974  33   68         utf16le !)06-'' &0;>:3--..44-176664.0.-' 
+673 0x000119b8 0x000119b8  14   30         utf16le  -1:74:1..0'$$
+674 0x000119d6 0x000119d6  24   50         utf16le #*436146* '+*61+.)$#+17&
+675 0x00011a0c 0x00011a0c   5   12         utf16le !+1.-
+676 0x00011a1c 0x00011a1c   8   18         utf16le !-:9000$
+677 0x00011a30 0x00011a30  13   28         utf16le &*74+-++0316-
+678 0x00011a4c 0x00011a4c  14   30         utf16le  &19:3041+$#$!
+679 0x00011a6a 0x00011a6a   6   14         utf16le $441'#
+680 0x00011ab0 0x00011ab0   7   16         utf16le '*&$'*&
+681 0x00011ace 0x00011ace   6   14         utf16le 00*&'&
+682 0x00011afe 0x00011afe  12   26         utf16le  $!#&&$+*#&!
+683 0x00011b24 0x00011b24   8   18         utf16le  &# $!!#
+684 0x00011b7e 0x00011b7e   5   12         utf16le !&)* 
+685 0x00011c0e 0x00011c0e   4   10         utf16le \f\n\a\t
+686 0x00011ca8 0x00011ca8   5   12         utf16le &+.+#
+687 0x00011cca 0x00011cca  17   36         utf16le #&+)')&'')-$#&#  
+688 0x00011cf2 0x00011cf2  13   28         utf16le #**&!$  #*-'$
+689 0x00011d10 0x00011d10  73  148         utf16le  !'&''&$&*&&&')1.&$-11-''&+.076639A:1)-47301443467613433.)14..)) ! #--)#!
+690 0x00011da4 0x00011da4   5   12         utf16le !).*$
+691 0x00011dc0 0x00011dc0   6   14         utf16le )&&!! 
+692 0x00011e7a 0x00011e7a   4   10         utf16le \n\a\n\f
+693 0x00011f1c 0x00011f1c   4   10         utf16le \n\f\n\t
+694 0x00011f2e 0x00011f2e   4   10         utf16le \t\n\n\n
+695 0x00011fe0 0x00011fe0   4   10         utf16le \r\f\n\f
+696 0x00012008 0x00012008  34   70         utf16le ! !#-.&##!#''*#!##)*)$#$$$#&#'*))#
+697 0x00012052 0x00012052  12   26         utf16le  &-& #$'+)*$
+698 0x00012070 0x00012070   9   20         utf16le !'*'&$)*#
+699 0x0001208c 0x0001208c   8   18         utf16le '&#!#$)!
+700 0x000120fa 0x000120fa   5   12         utf16le \a\n\n\a\r
+701 0x00012116 0x00012116   5   12         utf16le \r\n\t\t\r
+702 0x0001214a 0x0001214a   4   10         utf16le \r\f\f\r
+703 0x0001216e 0x0001216e   8   18         utf16le \a\f\r\r\f\n\n\r
+704 0x00012216 0x00012216   4   10         utf16le \n\f\f\r
+705 0x00012234 0x00012234   5   12         utf16le \r\f\n\n\r
+706 0x0001229c 0x0001229c   4   10         utf16le !'$ 
+707 0x000122b8 0x000122b8   4   10         utf16le #')$
+708 0x000122ea 0x000122ea  10   22         utf16le !  !#$&&& 
+709 0x00012306 0x00012306   6   14         utf16le  $'#  
+710 0x0001238e 0x0001238e   4   10         utf16le \r\n\t\r
+711 0x000123a4 0x000123a4   5   12         utf16le \r\n\n\t\t
+712 0x000123b8 0x000123b8   4   10         utf16le \a\t\r\f
+713 0x000123ec 0x000123ec   5   12         utf16le \r\r\t\f\t
+714 0x000123f8 0x000123f8   4   10         utf16le \a\t\t\n
+715 0x00012470 0x00012470   7   16         utf16le \a\a\a\f\a\r\f
+716 0x00012494 0x00012494   5   12         utf16le \t\t\t\t\a
+717 0x00012694 0x00012694   4   10         utf16le \t\n\r\f
+718 0x000126b0 0x000126b0   9   20         utf16le \t\t\f\f\f\f\r\n\a
+719 0x000126fa 0x000126fa   8   18         utf16le \t\r\f\f\r\f\n\t
+720 0x00012712 0x00012712   6   14         utf16le \n\n\n\r\f\r
+721 0x00012726 0x00012726   8   18         utf16le \f\t\t\n\n\n\n\a
+722 0x00012752 0x00012752   4   10         utf16le \t\n\t\a
+723 0x00012760 0x00012760   8   18         utf16le \a\a\a\a\a\a\a\a
+724 0x00012774 0x00012774   5   12         utf16le \t\n\t\t\t
+725 0x00012790 0x00012790   7   16         utf16le \a\n\f\f\n\f\f
+726 0x000127da 0x000127da  11   24         utf16le \r\f\n\f\f\f\f\f\f\f\f
+727 0x00012834 0x00012834   5   12         utf16le \n\f\n\f\r
+728 0x00012844 0x00012844   4   10         utf16le \f\f\n\n
+729 0x00012908 0x00012908   5   12         utf16le \f\n\f\f\r
+730 0x00012926 0x00012926   7   16         utf16le \r\r\n\n\n\f\f
+731 0x0001293a 0x0001293a   8   18         utf16le \n\f\r\r\f\n\t\t
+732 0x0001294c 0x0001294c  10   22         utf16le \a\t\f\f\f\f\f\r\r\t
+733 0x00012970 0x00012970  13   28         utf16le \f\r\f\f\f\f\f\n\f\f\f\f\f
+734 0x00012996 0x00012996   9   20         utf16le \f\n\r\r\r\r\r\r\r
+735 0x000129d2 0x000129d2  10   22         utf16le \f\t\t\t\t\t\n\n\n\a
+736 0x00012a2c 0x00012a2c   5   12         utf16le \t\t\t\a\a
+737 0x00012a4e 0x00012a4e   4   10         utf16le \a\t\a\a
+738 0x00012a6a 0x00012a6a   5   12         utf16le \a\n\t\n\t
+739 0x00012ab0 0x00012ab0  10   22         utf16le \t\a\a\t\a\n\f\a\a\a
+740 0x00012ac8 0x00012ac8   9   20         utf16le \a\a\a\t\a\a\n\f\r
+741 0x00012adc 0x00012adc  18   38         utf16le \r\r\r\n\t\n\n\n\n\n\n\n\n\n\f\f\r\r
+742 0x00012b08 0x00012b08   5   12         utf16le \f\f\r\r\r
+743 0x00012b38 0x00012b38  29   60         utf16le \r\f\f\n\t\n\f\n\n\f\r\n\n\f\f\f\r\n\n\a\a\t\n\t\n\f\a\a\a
+744 0x00012b7c 0x00012b7c  40   82         utf16le \a\a\a\t\t\t\t\a\a\n\n\n\a\a\a\t\n\t\t\n\n\t\t\t\n\f\f\f\n\t\t\t\t\f\f\n\n\n\f\r
+745 0x00012bd4 0x00012bd4  14   30         utf16le \r\f\n\n\t\f\f\f\f\n\n\n\f\f
+746 0x00012bf4 0x00012bf4  38   78         utf16le \r\f\f\n\t\n\t\t\n\n\n\t\t\t\f\f\f\r\f\t\a\a\a\a\a\a\a\a\a\t\t\t\n\n\n\t\a\a
+747 0x00012c44 0x00012c44   6   14         utf16le \a\t\f\n\t\a
+748 0x00012c54 0x00012c54   5   12         utf16le \a\a\a\t\a
+749 0x00012c66 0x00012c66   5   12         utf16le \a\a\a\a\a
+750 0x00012c86 0x00012c86   5   12         utf16le \a\n\t\t\a
+751 0x00012ca8 0x00012ca8   4   10         utf16le \a\t\t\t
+752 0x00012cda 0x00012cda  11   24         utf16le \a\a\t\t\a\t\t\a\a\a\a
+753 0x00012d1a 0x00012d1a   4   10         utf16le \a\a\a\a
+754 0x00012df6 0x00012df6   4   10         utf16le \a\a\a\a
+755 0x00012e16 0x00012e16   6   14         utf16le \a\a\a\a\t\a
+756 0x00012e56 0x00012e56   5   12         utf16le \a\a\a\a\a
+757 0x00012e68 0x00012e68   4   10         utf16le \a\a\a\a
+758 0x00012e88 0x00012e88  10   22         utf16le \a\t\t\a\a\a\a\a\a\a
+759 0x00012ea2 0x00012ea2   6   14         utf16le \a\t\t\a\a\a
+760 0x00012eb0 0x00012eb0   4   10         utf16le \a\a\a\a
+761 0x00012ed6 0x00012ed6   4   10         utf16le \a\a\a\a

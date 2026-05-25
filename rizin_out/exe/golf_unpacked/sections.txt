@@ -1,0 +1,9 @@
+     paddr    size      vaddr    vsize align perm name     type flags                
+-------------------------------------------------------------------------------------
+0x00000600 0xb842b 0x00401000  0xb9000   0x0 -rwx .text         CNT_INITIALIZED_DATA
+0x000b8c00  0x6098 0x004ba000   0x7000   0x0 -rw- .rdata        CNT_INITIALIZED_DATA
+0x000bee00 0x25d15 0x004c1000 0x382000   0x0 -rw- .data         CNT_INITIALIZED_DATA
+0x000e4c00  0x114d 0x00843000   0x2000   0x0 -rw- .rsrc         CNT_INITIALIZED_DATA
+0x000e5e00  0x2033 0x00845000   0x3000   0x0 -rw- stxt774       CNT_INITIALIZED_DATA
+0x000e8000  0x390f 0x00848000   0x4000   0x0 -rw- stxt371       CNT_INITIALIZED_DATA
+0x000eba00   0xe00 0x0084c000   0x1000   0x0 -rw- newidata      CNT_INITIALIZED_DATA
