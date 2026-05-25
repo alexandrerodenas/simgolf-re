@@ -1,0 +1,13 @@
+/* Ghidra decompiled: sound.dll */
+/* Function: Unwind@100588f0 @ 0x100588F0 */
+
+
+void Unwind_100588f0(void)
+
+{
+  int unaff_EBP;
+  
+  FUN_1004249a(*(undefined **)(unaff_EBP + -0x10));
+  return;
+}
+
