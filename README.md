@@ -22,7 +22,7 @@ simgolf-re/
 ## Disassembled Binaries
 
 | File | Source | Disasm Lines | Functions | Notes |
-|---|---|---|---|---|---|
+|:---|:---|:---|:---|:---|
 | `golf.exe` | `data/exe_unpacked/golf.exe` | 759 098 | **1 464** | main game executable, unpacked |
 | `Terrain.dll` | `data/raw/Terrain.dll` | 385 588 | **995** | terrain engine |
 | `sound.dll` | `data/raw/sound.dll` | 369 084 | **885** | audio system |
