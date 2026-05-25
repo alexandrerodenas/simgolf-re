@@ -41,17 +41,7 @@ Each binary output includes:
 
 ## Asset Analysis
 
-| Type | Files | Analysis |
-|---|---|---|
-| `.pcx` | 649 | 128-byte header hex dump, strings |
-| `.bmp` | 2 631 | 54-byte BMP header dump, strings |
-| `.flc` | 1 893 | 128-byte FLC header dump, strings |
-| `.wav` | 320 | 44-byte RIFF header dump, strings |
-| `.tga` | 36 | 18-byte TGA header dump, strings |
-| `.txt` | 52 | plain text content dump |
-| `.chr`/`.glf`/`.dta`/`.pro`/`.pal`/`.bik` | ~37 | header dump + strings |
-| `.TTF`/`.fot` | 4 | raw font data dump |
-| `.bat`/`.png`/other | ~8 | raw dump |
+Binary assets (textures, audio, animations) identified but not analyzed in detail — ~11 385 files total.
 
 ## Method
 
@@ -64,4 +54,4 @@ Each binary output includes:
 
 - The unpacked `golf.exe` (`data/exe_unpacked/golf.exe`) reveals 1 464 functions and is the primary analysis target.
 - All DLLs (Terrain, sound, OpenGL, Bink) are unpacked and fully analyzable.
-- Game assets total 11 385 files across multiple formats; each has been processed through rizin for header/metadata extraction.
+- Game assets total ~11 385 files (textures, audio, animations) — identified but not analyzed in detail.
