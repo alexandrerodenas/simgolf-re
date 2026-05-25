@@ -1,7 +1,0 @@
-     paddr    size      vaddr   vsize align perm name   type flags                                
---------------------------------------------------------------------------------------------------
-0x00000400 0x31600 0x30001000 0x32000   0x0 -r-x .text       CNT_CODE
-0x00031a00  0x6c00 0x30033000  0x7000   0x0 -r-- .rdata      CNT_INITIALIZED_DATA
-0x00038600  0x7600 0x3003a000 0x16000   0x0 -rw- .data       CNT_INITIALIZED_DATA
-0x0003fc00  0x2200 0x30050000  0x3000   0x0 -r-- .rsrc       CNT_INITIALIZED_DATA
-0x00041e00  0x5400 0x30053000  0x6000   0x0 -r-- .reloc      CNT_INITIALIZED_DATA,MEM_DISCARDABLE

@@ -1,6 +1,0 @@
-nth      paddr      vaddr bind   type size lib      name                                                            
---------------------------------------------------------------------------------------------------------------------
-  1 0x00048710 0x00449110 GLOBAL FUNC    0 golf.exe public: int __thiscall Terrain::getElevation(class Tile *, int)
-  2 0x00048750 0x00449150 GLOBAL FUNC    0 golf.exe public: int __thiscall Terrain::getType(class Tile *)
-  3 0x00048730 0x00449130 GLOBAL FUNC    0 golf.exe public: bool __thiscall Terrain::getWall(class Tile *, int)
-  4 0x000486d0 0x004490d0 GLOBAL FUNC    0 golf.exe public: class Tile * __thiscall Terrain::tileAt(int, int)

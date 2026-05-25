@@ -1,57 +1,45 @@
 # SimGolf Reverse Engineering
 
-**simgolf-re** is a curated repository of original SimGolf (2002, Maxis/Firaxis) game files and their complete rizin-based disassembly.
+**simgolf-re** — dossier de *reverse engineering* du jeu SimGolf (2002, Maxis/Firaxis).
 
 ## Structure
 
 ```
 simgolf-re/
-├── data/               original game files (338 MB)
-│   ├── exe_unpacked/   unpacked golf.exe (1 464 functions)
-│   └── raw/            all game assets: DLLs, textures, audio, animations, fonts, …
+├── data/               fichiers originaux du jeu (338 MB)
+│   ├── exe_unpacked/   golf.exe dépaqueté
+│   └── raw/            DLLs, textures, audio, animations, fonts…
 │
-├── rizin_out/           rizin disassembly output (650+ MB, factual only)
-│   ├── exe/            PE binaries: full linear disassembly, sections, strings
-│   ├── pcx/            PCX image headers (128-byte hex dump) + strings
-│   ├── raw/            BMP, FLC, WAV, TGA, … header dumps + strings
-│   └── txt/            plain text file contents (raw dump via rizin)
+├── ref/                documentation + analyse
+│   └── decompiled/     code C décompilé par Ghidra (6 535 fonctions)
+│       ├── golf/       golf.exe — 1 702 fonctions
+│       ├── Terrain/    Terrain.dll — 916 fonctions
+│       ├── sound/      sound.dll — 1 601 fonctions
+│       ├── jgl/        jgl.dll — 574 fonctions
+│       ├── jgld/       jgld.dll — 1 316 fonctions
+│       └── binkw32/    binkw32.dll — 426 fonctions
 │
-└── README.md           this file
+├── scripts/            scripts Ghidra
+└── README.md
 ```
 
-## Disassembled Binaries
+## Binaires décompilés
 
-| File | Source | Disasm Lines | Functions | Notes |
-|:---|:---|:---|:---|:---|
-| `golf.exe` | `data/exe_unpacked/golf.exe` | 759 098 | **1 464** | main game executable, unpacked |
-| `Terrain.dll` | `data/raw/Terrain.dll` | 385 588 | **995** | terrain engine |
-| `sound.dll` | `data/raw/sound.dll` | 369 084 | **885** | audio system |
-| `jgld.dll` | `data/raw/jgld.dll` | 1 165 369 | **1 519** | OpenGL debug lib |
-| `jgl.dll` | `data/raw/jgl.dll` | 337 267 | 503 | OpenGL wrapper |
-| `binkw32.dll` | `data/raw/binkw32.dll` | 203 616 | 354 | Bink video playback |
+| Fichier | Source | Fonctions |
+|:---|:---|:---|
+| `golf.exe` | `data/exe_unpacked/golf.exe` | **1 702** (1 464 disassemblées) |
+| `Terrain.dll` | `data/raw/Terrain.dll` | **916** |
+| `sound.dll` | `data/raw/sound.dll` | **1 601** |
+| `jgld.dll` | `data/raw/jgld.dll` | **1 316** |
+| `jgl.dll` | `data/raw/jgl.dll` | **574** |
+| `binkw32.dll` | `data/raw/binkw32.dll` | **426** |
+| **Total** | | **6 535** |
 
-Each binary output includes:
-- `headers.txt` — PE header dump
-- `sections.txt` — section table
-- `imports.txt` / `exports.txt` — symbol tables
-- `libraries.txt` — linked libraries
-- `strings_all.txt` — all embedded strings
-- `functions_full.txt` — detected functions (`rizin -c aaaa; afl`)
-- `full_disasm.txt` — linear disassembly of `.text` section (`rizin pd`)
+Chaque binaire dans `ref/decompiled/ghidra/<binaire>/` contient :
+- `all_decompiled.c` — toutes les fonctions concaténées
+- Fichiers individuels `nom_fonction.c`
 
-## Asset Analysis
+## Outils
 
-Binary assets (textures, audio, animations) identified but not analyzed in detail — ~11 385 files total.
-
-## Method
-
-- **Only tool**: `rizin 0.8.2` (CLI)
-- **No interpretation**: raw dumps only — hex, strings, linear disassembly
-- **No hypotheses**: every output is factual rizin output
-- **Code**: `pd` (linear disassembly), not `pdr` (recursive) — covers the full `.text` section including thunk tables
-
-## Notes
-
-- The unpacked `golf.exe` (`data/exe_unpacked/golf.exe`) reveals 1 464 functions and is the primary analysis target.
-- All DLLs (Terrain, sound, OpenGL, Bink) are unpacked and fully analyzable.
-- Game assets total ~11 385 files (textures, audio, animations) — identified but not analyzed in detail.
+- **Ghidra 12.1** — décompilation des 6 binaires
+- **Rizin 0.8.2** — désassemblage, analyse
