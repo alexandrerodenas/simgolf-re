@@ -24,7 +24,6 @@ from __future__ import annotations
 
 from typing import Dict, List, Optional, Tuple
 
-from engine_stubs import alloc_memory, begin_screen, blit_surface, clear_area, create_surface, draw_loading_progress, end_draw, fill_surface, free_resource, free_slot, game_delay, get_resource, is_key_pressed, load_palette, load_resource, show_cursor, show_error_dialog, update_screen
 # ── Course theme constants ─────────────────────────────────────────────────────
 COURSE_PARKLAND: int = 0
 COURSE_DESERT: int = 1
@@ -65,6 +64,120 @@ terrain_noun_buf: Dict[int, object] = {}  # various theme-specific descriptors
 #  Stub engine calls (delegated to real engine or no-op placeholders)
 # ═══════════════════════════════════════════════════════════════════════════════
 
+def FUN_00475840(path: str, dest_buf: int, unk2: int, palette_size: int, mode: int) -> int:
+    """Load a palette file (.pcx) into a video buffer.
+
+    In the original: FUN_00475840(char *path, void *dest, int unk2, int size, int mode)
+    Returns a handle or 0 on failure.
+    """
+    # Stub: log the call
+    print(f"  [PALETTE] {path}")
+    return 1
+
+
+def FUN_00404120(name_buf: int, slot_id: int, size_ptr: int) -> int:
+    """Open+load a flic animation file, register it under slot_id.
+
+    Returns a file/handle ID.
+    """
+    name = anim_name_table.get(slot_id, f"slot_{slot_id}")
+    print(f"  [FLIC_LOAD] slot={slot_id} name='{name}'")
+    return slot_id
+
+
+def FUN_00404090(slot_id: int) -> int:
+    """Re-load a previously registered flic by slot ID."""
+    name = anim_name_table.get(slot_id, f"slot_{slot_id}")
+    print(f"  [FLIC_RELOAD] slot={slot_id}")
+    return slot_id
+
+
+def FUN_004378a0(buf: int) -> int:
+    """Check if a file exists (used for Shadow.flc probe).
+
+    Returns 1 if exists, 0 if not.
+    """
+    return 1
+
+
+def FUN_00473e60(buf: int, a: int, b: int, c: int) -> None:
+    """Perform blit / composite operation."""
+    pass
+
+
+def FUN_00473bf0(buf: int, x: int, y: int, w: int, h: int, unk1: int, unk2: int) -> None:
+    """Render a rectangle (loading bar / thumbnail area).
+
+    In the original, this draws onto a temporary surface used for
+    the loading screen.
+    """
+    pass
+
+
+def FUN_00478af0(x: int, y: int, w: int, h: int, color: int) -> None:
+    """Fill a rectangle with a solid color."""
+    pass
+
+
+def FUN_00474ae0() -> None:
+    """Initialize the rendering surface / offscreen buffer."""
+    pass
+
+
+def FUN_00474dd0(h: int, w: int, bpp: int, unk1: int, unk2: int, unk3: int) -> None:
+    """Create/configure a drawing surface."""
+    pass
+
+
+def FUN_00474c40() -> None:
+    """Restore previous surface / cleanup after loading."""
+    pass
+
+
+def FUN_00406250(progress: int) -> None:
+    """Update loading progress bar (percentage)."""
+    pass
+
+
+def FUN_00480c80(flag: int) -> None:
+    """Process paint messages during loading."""
+    pass
+
+
+def FUN_0045bf80(delay: int, unk: int) -> None:
+    """Sleep/delay for loading animation timing."""
+    pass
+
+
+def FUN_00483bd0() -> None:
+    """Update the display / present the backbuffer."""
+    pass
+
+
+def FUN_0043d670(slot_id: int) -> None:
+    """Free/unregister a previously registered animation slot."""
+    pass
+
+
+def FUN_004041c0(slot_id: int) -> None:
+    """Release/close a loaded flic resource."""
+    pass
+
+
+def FUN_0046de70(msg: str, x: int, y: int) -> None:
+    """Display an error message (e.g. 'Too many flics!')."""
+    print(f"  [ERROR] {msg}")
+
+
+def FUN_0043d5d0(byte_count: int) -> int:
+    """Allocate memory for flic frames. Returns buffer offset or -1."""
+    return flic_buffer_pos
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+#  FUN_0043D740 — Animation / flic registration
+# ═══════════════════════════════════════════════════════════════════════════════
+
 def register_animation(
     anim_id: int,
     name: str,
@@ -95,16 +208,16 @@ def register_animation(
     loading_counter += 1
     if loading_counter % 100 == 0:
         if force_reload_flag == -1:
-            draw_loading_progress((loading_counter + (loading_counter >> 0x1f & 3)) >> 2)
-            show_cursor(0)
-        game_delay(10, 0)
+            FUN_00406250((loading_counter + (loading_counter >> 0x1f & 3)) >> 2)
+            FUN_00480c80(0)
+        FUN_0045bf80(10, 0)
 
-    update_screen()
+    FUN_00483bd0()
 
     if unk_param == -1:
         frame_count = 1
 
-    clear_area(0, 0, 0x1e0, 0x1e0, 0xff)
+    FUN_00478af0(0, 0, 0x1e0, 0x1e0, 0xff)
 
     slot_index = anim_id + body_type_selector
     # Copy name into name table
@@ -114,15 +227,15 @@ def register_animation(
     if has_shadow != 0:
         shadow_path = "Shadow.flc"
         # Check if Shadow.flc exists
-        if is_key_pressed(0) != 0:  # simplified — original checks via buffer
+        if FUN_004378a0(0) != 0:  # simplified — original checks via buffer
             has_shadow = 0
         else:
-            last_flic_handle = load_resource(0, 0x24e, 0)
-            fill_surface(0, 0, 0, 0)
+            last_flic_handle = FUN_00404120(0, 0x24e, 0)
+            FUN_00473e60(0, 0, 0, 0)
 
     # ── Load the main animation ──────────────────────────────────────────
-    last_flic_handle = load_resource(0, slot_index, 0)
-    fill_surface(0, 0, 0, 0)
+    last_flic_handle = FUN_00404120(0, slot_index, 0)
+    FUN_00473e60(0, 0, 0, 0)
 
     buf_pos = flic_buffer_pos
     needs_initializing = body_type_selector == -2
@@ -131,7 +244,7 @@ def register_animation(
     if needs_initializing:
         buf_pos = -1
     else:
-        new_pos = alloc_memory(frame_count * anim_sizes.get(slot_index, 0))
+        new_pos = FUN_0043d5d0(frame_count * anim_sizes.get(slot_index, 0))
         flic_buffer_pos = new_pos
 
     prev_pos = buf_pos
@@ -153,24 +266,24 @@ def register_animation(
                         if not needs_init:
                             if original_unk == 0:
                                 # Small thumbnail for 0-unks
-                                blit_surface(0, 200, 0xd2, 0x3c, 0x3c, 1, 1)
+                                FUN_00473bf0(0, 200, 0xd2, 0x3c, 0x3c, 1, 1)
                             else:
-                                blit_surface(0, 0, 0, 0x1e0, 0x1e0, 1, 1)
+                                FUN_00473bf0(0, 0, 0, 0x1e0, 0x1e0, 1, 1)
                             if has_shadow != 0:
-                                last_flic_handle = get_resource(0x24e)
-                                fill_surface(0, 0, 0, 0)
-                            last_flic_handle = get_resource(slot_index)
-                            fill_surface(0, 0, 0, 0)
+                                last_flic_handle = FUN_00404090(0x24e)
+                                FUN_00473e60(0, 0, 0, 0)
+                            last_flic_handle = FUN_00404090(slot_index)
+                            FUN_00473e60(0, 0, 0, 0)
                             new_pos = flic_buffer_pos
 
                         if original_unk == 0:
-                            blit_surface(0, 200, 0xd2, 0x3c, 0x3c, 1, 1)
+                            FUN_00473bf0(0, 200, 0xd2, 0x3c, 0x3c, 1, 1)
                         elif original_unk == 1 or original_unk == -1:
-                            blit_surface(0, 100, 100, 0x118, 0xf0, 1, 1)
+                            FUN_00473bf0(0, 100, 100, 0x118, 0xf0, 1, 1)
                         elif original_unk == 0xf0:
-                            blit_surface(0, 0, 0, 0x1e0, 0x1e0, 1, 1)
+                            FUN_00473bf0(0, 0, 0, 0x1e0, 0x1e0, 1, 1)
                         else:
-                            blit_surface(
+                            FUN_00473bf0(
                                 0,
                                 0xf0 - original_unk,
                                 0xf0 - original_unk,
@@ -194,11 +307,11 @@ def register_animation(
                 if original_unk == -1 or frame_idx >= frame_count:
                     break
     else:
-        show_error_dialog("Too many flics!", 100, 100)
+        FUN_0046de70("Too many flics!", 100, 100)
 
     # Cleanup
-    free_resource(slot_index)
-    free_resource(0x24e)
+    FUN_004041c0(slot_index)
+    FUN_004041c0(0x24e)
     if prev_pos != -1:
         flic_buffer_pos = prev_pos
 
@@ -376,39 +489,39 @@ def load_all_assets() -> None:
     global course_theme, terrain_name_buf, terrain_noun_buf, body_type_selector
 
     # ── 1. Initialise offscreen surface ──────────────────────────────────
-    begin_screen()
-    create_surface(0x400, 800, 0, 1, 0, 0)
+    FUN_00474ae0()
+    FUN_00474dd0(0x400, 800, 0, 1, 0, 0)
 
     # ── 2. Load theme-specific palette files ─────────────────────────────
     water_pal_path: str = ""
 
     if course_theme == COURSE_DESERT:
         for pal_path in DESERT_PALETTES:
-            load_palette(pal_path, 0, 0, 0x100, 0)
+            FUN_00475840(pal_path, 0, 0, 0x100, 0)
         water_pal_path = "flics\\water\\DesWater\\Palette.pcx"
 
     elif course_theme == COURSE_TROPICAL:
         for pal_path in TROPICAL_PALETTES:
-            load_palette(pal_path, 0, 0, 0x100, 0)
+            FUN_00475840(pal_path, 0, 0, 0x100, 0)
         water_pal_path = "flics\\water\\TropWater\\Palette.pcx"
 
     elif course_theme == COURSE_LINKS:
         for pal_path in LINKS_PALETTES:
-            load_palette(pal_path, 0, 0, 0x100, 0)
+            FUN_00475840(pal_path, 0, 0, 0x100, 0)
         water_pal_path = "flics\\water\\LinksWater\\Palette.pcx"
 
     else:  # Parkland (0) or default
         for pal_path in PARKLAND_PALETTES:
-            load_palette(pal_path, 0, 0, 0x100, 0)
+            FUN_00475840(pal_path, 0, 0, 0x100, 0)
         water_pal_path = "flics\\water\\ParkWater\\Palette.pcx"
 
     # Load the water palette for any theme
-    load_palette(water_pal_path, 0, 0, 0x100, 0)
+    FUN_00475840(water_pal_path, 0, 0, 0x100, 0)
 
     # ── 3. Load terrain button image ─────────────────────────────────────
     button_path = TERRAIN_BUTTONS.get(course_theme)
     if button_path:
-        load_palette(button_path, 0, 0, 0x100, 2)
+        FUN_00475840(button_path, 0, 0, 0x100, 2)
 
     # ── 4. Render terrain palette previews ───────────────────────────────
     # Original renders 4 rows x 7 columns of building thumbnails
@@ -417,7 +530,7 @@ def load_all_assets() -> None:
         x_pos = 0xf8  # starting x
         for col in range(4):
             y_pos = (row % 7) * 0x36
-            blit_surface(0, x_pos, y_pos, 0x3e, 0x36, 1, 1)
+            FUN_00473bf0(0, x_pos, y_pos, 0x3e, 0x36, 1, 1)
             x_pos += 0x3e
 
     # ── 5. Render theme-specific terrain button bars ─────────────────────
@@ -425,45 +538,45 @@ def load_all_assets() -> None:
     if course_theme == COURSE_PARKLAND:
         x = 0x208
         while x < 0x2f8:
-            blit_surface(0, x, 0, 0x41, 0x54, 1, 1)
-            blit_surface(0, x, 0x96, 0x3e, 0x46, 1, 1)
-            blit_surface(0, x, 300, 0x3e, 0x58, 1, 1)
+            FUN_00473bf0(0, x, 0, 0x41, 0x54, 1, 1)
+            FUN_00473bf0(0, x, 0x96, 0x3e, 0x46, 1, 1)
+            FUN_00473bf0(0, x, 300, 0x3e, 0x58, 1, 1)
             x += 0x50
     elif course_theme == COURSE_DESERT:
         x = 0x208
         while x < 0x2f8:
-            blit_surface(0, x, 0, 0x4b, 0x4a, 1, 1)
-            blit_surface(0, x, 0x96, 0x3e, 0x43, 1, 1)
-            blit_surface(0, x, 300, 0x41, 0x68, 1, 1)
+            FUN_00473bf0(0, x, 0, 0x4b, 0x4a, 1, 1)
+            FUN_00473bf0(0, x, 0x96, 0x3e, 0x43, 1, 1)
+            FUN_00473bf0(0, x, 300, 0x41, 0x68, 1, 1)
             x += 0x50
     elif course_theme == COURSE_TROPICAL:
         x = 0x208
         while x < 0x2f8:
-            blit_surface(0, x, 0, 0x48, 0x4f, 1, 1)
-            blit_surface(0, x, 0x96, 0x3e, 0x51, 1, 1)
-            blit_surface(0, x, 300, 0x41, 0x68, 1, 1)
+            FUN_00473bf0(0, x, 0, 0x48, 0x4f, 1, 1)
+            FUN_00473bf0(0, x, 0x96, 0x3e, 0x51, 1, 1)
+            FUN_00473bf0(0, x, 300, 0x41, 0x68, 1, 1)
             x += 0x50
     elif course_theme == COURSE_LINKS:
         x = 0x208
         while x < 0x2f8:
-            blit_surface(0, x, 0, 0x43, 0x54, 1, 1)
-            blit_surface(0, x, 0x96, 0x3e, 0x58, 1, 1)
-            blit_surface(0, x, 300, 0x43, 0x4c, 1, 1)
+            FUN_00473bf0(0, x, 0, 0x43, 0x54, 1, 1)
+            FUN_00473bf0(0, x, 0x96, 0x3e, 0x58, 1, 1)
+            FUN_00473bf0(0, x, 300, 0x43, 0x4c, 1, 1)
             x += 0x50
 
     # ── 6. Load layout image ─────────────────────────────────────────────
     layout_path = LAYOUT_IMAGES.get(course_theme)
     if layout_path:
-        load_palette(layout_path, 0, 0, 0x100, 2)
+        FUN_00475840(layout_path, 0, 0, 0x100, 2)
 
     # ── 7. Render builder palette blocks ─────────────────────────────────
     # 4 blocks per row, DAT_0053dfb0 stride 0xb0
     for block in range(0x2f8 // 0x4b):  # iterates until DAT_0053dfb0 < 0x53e690
         x = block * 0x4b
-        blit_surface(0, x, 0, 0x4b, 100, 1, 1)
-        blit_surface(0, x, 100, 0x4b, 100, 1, 1)
-        blit_surface(0, x, 200, 0x4b, 100, 1, 1)
-        blit_surface(0, x, 300, 0x4b, 100, 1, 1)
+        FUN_00473bf0(0, x, 0, 0x4b, 100, 1, 1)
+        FUN_00473bf0(0, x, 100, 0x4b, 100, 1, 1)
+        FUN_00473bf0(0, x, 200, 0x4b, 100, 1, 1)
+        FUN_00473bf0(0, x, 300, 0x4b, 100, 1, 1)
 
     # ── 8. Reset animation slot registry ─────────────────────────────────
     # First batch: slot 0x1b6..0x22d  (DAT_005a9a48 + 0x22d-0x1b6+1 entries)
@@ -514,7 +627,7 @@ def load_all_assets() -> None:
     _register_extra_trees()
 
     # ── 18. Cleanup ──────────────────────────────────────────────────────
-    end_draw()
+    FUN_00474c40()
 
 
 # ── Internal helpers ────────────────────────────────────────────────────────
@@ -523,7 +636,7 @@ def _reset_anim_slot_range(start_slot: int, end_slot: int) -> None:
     """Free and reset animation slots from start_slot to end_slot inclusive."""
     for slot in range(start_slot, end_slot + 1):
         if anim_slot_states.get(slot, -1) != -1:
-            free_slot(slot)
+            FUN_0043d670(slot)
         anim_slot_states[slot] = -1
         anim_name_table[slot] = ""
 
@@ -926,7 +1039,7 @@ def _register_bridges_and_water() -> None:
 
     if course_theme == COURSE_PARKLAND:
         # Parkland bridges
-        load_palette("flics\\Bridges\\ParkBridgePal", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\Bridges\\ParkBridgePal", 0, 0, 0x100, 0)
         register_animation(0x1fe, "Bridges\\BridgeTILE", 2, 0x3c, 1)
         register_animation(0x1ff, "Bridges\\BridgeCap", 4, 0x3c, 1)
         register_animation(0x200, "Bridges\\BridgeL", 4, 0x3c, 1)
@@ -935,10 +1048,10 @@ def _register_bridges_and_water() -> None:
         register_animation(0x204, "Bridges\\BridgeReflect", 2, 0x3c, 0)
         register_animation(0x205, "Bridges\\BridgeXtra", 4, 0x3c, 1)
         # Scenic bridge
-        load_palette("flics\\Bridges\\DESScenicBridgePal", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\Bridges\\DESScenicBridgePal", 0, 0, 0x100, 0)
         register_animation(0x203, "Bridges\\DESBridgeScenic", 2, 0x3c, 1)
         # Eagle
-        load_palette("flics\\scenic\\EaglePalette", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\scenic\\EaglePalette", 0, 0, 0x100, 0)
         register_animation(0x206, "Scenic\\Eagle\\SQ", 4, 0x8c, 1)
         register_animation(0x207, "Scenic\\Eagle\\Fidget", 4, 0x8c, 1)
         # Water rocks & ripples
@@ -958,7 +1071,7 @@ def _register_bridges_and_water() -> None:
 
     elif course_theme == COURSE_DESERT:
         # Desert bridges
-        load_palette("flics\\Bridges\\DesBridgePal", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\Bridges\\DesBridgePal", 0, 0, 0x100, 0)
         register_animation(0x1fe, "Bridges\\DESBridgeTILE", 2, 0x3c, 1)
         register_animation(0x1ff, "Bridges\\DESBridgeCap", 4, 0x3c, 1)
         register_animation(0x200, "Bridges\\DESBridgeL", 4, 0x3c, 1)
@@ -966,10 +1079,10 @@ def _register_bridges_and_water() -> None:
         register_animation(0x202, "Bridges\\DESBridgeX", 1, 0x3c, 1)
         register_animation(0x204, "Bridges\\DESBridgeReflect", 2, 0x3c, 0)
         register_animation(0x205, "Bridges\\DESBridgeXtra", 4, 0x3c, 1)
-        load_palette("flics\\Bridges\\DESScenicBridgePal", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\Bridges\\DESScenicBridgePal", 0, 0, 0x100, 0)
         register_animation(0x203, "Bridges\\DESBridgeScenic", 2, 0x3c, 1)
         # Vulture
-        load_palette("flics\\scenic\\Vulture\\Palette", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\scenic\\Vulture\\Palette", 0, 0, 0x100, 0)
         register_animation(0x206, "Scenic\\Vulture\\SQ", 4, 0x8c, 1)
         register_animation(0x207, "Scenic\\Vulture\\Fidget", 4, 0x8c, 1)
         # Water
@@ -989,7 +1102,7 @@ def _register_bridges_and_water() -> None:
 
     elif course_theme == COURSE_TROPICAL:
         # Tropical bridges
-        load_palette("flics\\Bridges\\TRopBridgePal", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\Bridges\\TRopBridgePal", 0, 0, 0x100, 0)
         register_animation(0x1fe, "Bridges\\TROPBridgeTILE", 2, 0x3c, 1)
         register_animation(0x1ff, "Bridges\\TROPBridgeCap", 4, 0x3c, 1)
         register_animation(0x200, "Bridges\\TROPBridgeL", 4, 0x3c, 1)
@@ -997,10 +1110,10 @@ def _register_bridges_and_water() -> None:
         register_animation(0x202, "Bridges\\TROPBridgeX", 1, 0x3c, 1)
         register_animation(0x204, "Bridges\\TROPBridgeReflect", 2, 0x3c, 0)
         register_animation(0x205, "Bridges\\TROPBridgeXtra", 4, 0x3c, 1)
-        load_palette("flics\\Bridges\\DESScenicBridgePal", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\Bridges\\DESScenicBridgePal", 0, 0, 0x100, 0)
         register_animation(0x203, "Bridges\\DESBridgeScenic", 2, 0x3c, 1)
         # Pelican
-        load_palette("flics\\scenic\\Pelican\\Palette", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\scenic\\Pelican\\Palette", 0, 0, 0x100, 0)
         register_animation(0x206, "Scenic\\Pelican\\SQ", 4, 0x8c, 1)
         register_animation(0x207, "Scenic\\Pelican\\Fidget", 4, 0x8c, 1)
         # Water
@@ -1020,7 +1133,7 @@ def _register_bridges_and_water() -> None:
 
     elif course_theme == COURSE_LINKS:
         # Links bridges
-        load_palette("flics\\Bridges\\LinksBridgePalette", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\Bridges\\LinksBridgePalette", 0, 0, 0x100, 0)
         register_animation(0x1fe, "Bridges\\LinksBridgeTILE", 2, 0x3c, 1)
         register_animation(0x1ff, "Bridges\\LinksBridgeCap", 4, 0x3c, 1)
         register_animation(0x200, "Bridges\\LinksBridgeL", 4, 0x3c, 1)
@@ -1028,10 +1141,10 @@ def _register_bridges_and_water() -> None:
         register_animation(0x202, "Bridges\\LinksBridgeX", 1, 0x3c, 1)
         register_animation(0x204, "Bridges\\LinksBridgeReflect", 2, 0x3c, 0)
         register_animation(0x205, "Bridges\\LinksBridgeXtra", 4, 0x3c, 1)
-        load_palette("flics\\Bridges\\DESScenicBridgePal", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\Bridges\\DESScenicBridgePal", 0, 0, 0x100, 0)
         register_animation(0x203, "Bridges\\DESBridgeScenic", 2, 0x3c, 1)
         # Hawk
-        load_palette("flics\\scenic\\Hawk\\Palette", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\scenic\\Hawk\\Palette", 0, 0, 0x100, 0)
         register_animation(0x206, "Scenic\\Hawk\\SQ", 4, 0x8c, 1)
         register_animation(0x207, "Scenic\\Hawk\\Fidget", 4, 0x8c, 1)
         # Water
@@ -1064,39 +1177,39 @@ def _register_tree_palettes() -> None:
     tree_pal_path: str = ""
 
     if course_theme == COURSE_DESERT:
-        load_palette("flics\\trees\\Desert\\JoshuaTreePal", 0, 0, 0x100, 0)
-        load_palette("flics\\trees\\Desert\\JoshuaTreePal", 0, 0, 0x100, 0)
-        load_palette("flics\\trees\\Desert\\JoshuaTreePal", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\Desert\\JoshuaTreePal", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\Desert\\JoshuaTreePal", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\Desert\\JoshuaTreePal", 0, 0, 0x100, 0)
         tree_pal_path = "flics\\trees\\Desert\\JoshuaTreePal"
     elif course_theme == COURSE_TROPICAL:
-        load_palette("flics\\trees\\Tropic\\TropBrushPal", 0, 0, 0x100, 0)
-        load_palette("flics\\trees\\Tropic\\TropBrushPal2", 0, 0, 0x100, 0)
-        load_palette("flics\\trees\\Tropic\\TropBrushPal3", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\Tropic\\TropBrushPal", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\Tropic\\TropBrushPal2", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\Tropic\\TropBrushPal3", 0, 0, 0x100, 0)
         tree_pal_path = "flics\\trees\\Tropic\\TropBrushPal"
     else:
-        load_palette("flics\\trees\\PalGreenMaple", 0, 0, 0x100, 0)
-        load_palette("flics\\trees\\PalRedMaple", 0, 0, 0x100, 0)
-        load_palette("flics\\trees\\PalBrownMaple", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\PalGreenMaple", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\PalRedMaple", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\PalBrownMaple", 0, 0, 0x100, 0)
         tree_pal_path = "flics\\trees\\PalBlueMaple"
 
-    load_palette(tree_pal_path, 0, 0, 0x100, 0)
+    FUN_00475840(tree_pal_path, 0, 0, 0x100, 0)
 
     # Extra tropical tree palettes
     if course_theme == COURSE_TROPICAL:
-        load_palette("flics\\trees\\Tropic\\Tree\\Cerc\\Pal", 0, 0, 0x100, 0)
-        load_palette("flics\\trees\\Tropic\\Tree\\Drac\\Pal", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\Tropic\\Tree\\Cerc\\Pal", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\Tropic\\Tree\\Drac\\Pal", 0, 0, 0x100, 0)
 
     # Parkland pines
     if course_theme == COURSE_PARKLAND:
-        load_palette("flics\\trees\\PalPineBlue", 0, 0, 0x100, 0)
-        load_palette("flics\\trees\\PalPineDarkGreen", 0, 0, 0x100, 0)
-        load_palette("flics\\trees\\PalPineOriginal", 0, 0, 0x100, 0)
-        load_palette("flics\\trees\\PalPineYellow", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\PalPineBlue", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\PalPineDarkGreen", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\PalPineOriginal", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\PalPineYellow", 0, 0, 0x100, 0)
 
     # Desert cactus & flowers
     if course_theme == COURSE_DESERT:
-        load_palette("flics\\trees\\Desert\\CactusAPal", 0, 0, 0x100, 0)
-        load_palette("flics\\trees\\Desert\\CactusCPal", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\Desert\\CactusAPal", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\Desert\\CactusCPal", 0, 0, 0x100, 0)
 
 
 def _register_flower_palettes() -> None:
@@ -1106,32 +1219,32 @@ def _register_flower_palettes() -> None:
     flower_pal_path: str = ""
 
     if course_theme == COURSE_DESERT:
-        load_palette("flics\\flowers\\DesertFlowersRedPa", 0, 0, 0x100, 0)
-        load_palette("flics\\flowers\\DesertFlowersOrgPa", 0, 0, 0x100, 0)
-        load_palette("flics\\flowers\\DesertFlowersPurpP", 0, 0, 0x100, 0)
-        load_palette("flics\\flowers\\DesertFlowersBlueP", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\flowers\\DesertFlowersRedPa", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\flowers\\DesertFlowersOrgPa", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\flowers\\DesertFlowersPurpP", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\flowers\\DesertFlowersBlueP", 0, 0, 0x100, 0)
         flower_pal_path = "flics\\flowers\\DesertFlowersPinkP"
     elif course_theme == COURSE_TROPICAL:
-        load_palette("flics\\flowers\\TropicalFlowers\\Aq", 0, 0, 0x100, 0)
-        load_palette("flics\\flowers\\TropicalFlowers\\Or", 0, 0, 0x100, 0)
-        load_palette("flics\\flowers\\TropicalFlowers\\Pu", 0, 0, 0x100, 0)
-        load_palette("flics\\flowers\\TropicalFlowers\\Bl", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\flowers\\TropicalFlowers\\Aq", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\flowers\\TropicalFlowers\\Or", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\flowers\\TropicalFlowers\\Pu", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\flowers\\TropicalFlowers\\Bl", 0, 0, 0x100, 0)
         flower_pal_path = "flics\\flowers\\TropicalFlowers\\Re"
     else:
-        load_palette("flics\\flowers\\FlowerBedA\\YelPal", 0, 0, 0x100, 0)
-        load_palette("flics\\flowers\\FlowerBedA\\OrgPal", 0, 0, 0x100, 0)
-        load_palette("flics\\flowers\\FlowerBedA\\PurpPal", 0, 0, 0x100, 0)
-        load_palette("flics\\flowers\\FlowerBedA\\WhitePa", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\flowers\\FlowerBedA\\YelPal", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\flowers\\FlowerBedA\\OrgPal", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\flowers\\FlowerBedA\\PurpPal", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\flowers\\FlowerBedA\\WhitePa", 0, 0, 0x100, 0)
         flower_pal_path = "flics\\flowers\\FlowerBedA\\RedPal"
 
-    load_palette(flower_pal_path, 0, 0, 0x100, 0)
+    FUN_00475840(flower_pal_path, 0, 0, 0x100, 0)
 
     # Links pines
     if course_theme == COURSE_LINKS:
-        load_palette("flics\\trees\\Links\\LinksPinePal", 0, 0, 0x100, 0)
-        load_palette("flics\\trees\\Links\\LinksPinePal2", 0, 0, 0x100, 0)
-        load_palette("flics\\trees\\Links\\LinksPinePal3", 0, 0, 0x100, 0)
-        load_palette("flics\\trees\\Links\\LinksPinePal4", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\Links\\LinksPinePal", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\Links\\LinksPinePal2", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\Links\\LinksPinePal3", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\Links\\LinksPinePal4", 0, 0, 0x100, 0)
 
 
 def _register_secondary_trees() -> None:
@@ -1143,27 +1256,27 @@ def _register_secondary_trees() -> None:
 
     if course_theme == COURSE_LINKS:
         # Links gets Scots pines
-        load_palette("flics\\trees\\Links\\ScotsPinePal", 0, 0, 0x100, 0)
-        load_palette("flics\\trees\\Links\\ScotsPinePal2", 0, 0, 0x100, 0)
-        load_palette("flics\\trees\\Links\\ScotsPinePal3", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\Links\\ScotsPinePal", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\Links\\ScotsPinePal2", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\Links\\ScotsPinePal3", 0, 0, 0x100, 0)
         second_tree_pal = "flics\\trees\\Links\\ScotsPinePal4"
     elif course_theme == COURSE_DESERT:
-        load_palette("flics\\trees\\desert\\tallpalmdeser", 0, 0, 0x100, 0)
-        load_palette("flics\\trees\\desert\\tallpalmdeser", 0, 0, 0x100, 0)
-        load_palette("flics\\trees\\desert\\tallpalmdeser", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\desert\\tallpalmdeser", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\desert\\tallpalmdeser", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\desert\\tallpalmdeser", 0, 0, 0x100, 0)
         second_tree_pal = "flics\\trees\\desert\\tallpalmdeser"
     elif course_theme == COURSE_TROPICAL:
-        load_palette("flics\\trees\\tropic\\tree\\tall\\pal", 0, 0, 0x100, 0)
-        load_palette("flics\\trees\\tropic\\tree\\tall\\pal", 0, 0, 0x100, 0)
-        load_palette("flics\\trees\\tropic\\tree\\tall\\pal", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\tropic\\tree\\tall\\pal", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\tropic\\tree\\tall\\pal", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\tropic\\tree\\tall\\pal", 0, 0, 0x100, 0)
         second_tree_pal = "flics\\trees\\tropic\\tree\\tall\\pal"
     else:
-        load_palette("flics\\trees\\PalOrangePalm", 0, 0, 0x100, 0)
-        load_palette("flics\\trees\\PalOriginalPalm", 0, 0, 0x100, 0)
-        load_palette("flics\\trees\\PalPlumPalm", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\PalOrangePalm", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\PalOriginalPalm", 0, 0, 0x100, 0)
+        FUN_00475840("flics\\trees\\PalPlumPalm", 0, 0, 0x100, 0)
         second_tree_pal = "flics\\trees\\PalGreenPalm"
 
-    load_palette(second_tree_pal, 0, 0, 0x100, 0)
+    FUN_00475840(second_tree_pal, 0, 0, 0x100, 0)
 
 
 # ═══════════════════════════════════════════════════════════════════════════════

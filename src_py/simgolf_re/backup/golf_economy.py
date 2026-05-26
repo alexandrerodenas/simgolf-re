@@ -46,7 +46,6 @@ from __future__ import annotations
 
 from typing import Final, List, Optional, Tuple
 
-from engine_stubs import add_money, begin_draw, begin_screen, blit_list, clamp_int, compute_golfer_cost, create_surface, draw_3d_surface, draw_bordered_rect, draw_text_centered, draw_text_right, end_draw, fill_surface, flip_buffers, game_delay, game_delay_cancel, get_mouse_pos, get_tick_count, itoa, load_palette, play_sound, play_sound_ex, pop_render_layer, push_render_layer, reset_random, set_color, set_tile_type, show_cursor, spend_money, update_golfer_happiness, update_tile_skill
 # ── Constants ──────────────────────────────────────────────────────────────────
 
 # Layout coordinates (from the C code)
@@ -222,6 +221,168 @@ def reset_state() -> None:
 # ═══════════════════════════════════════════════════════════════════════════════
 
 
+def FUN_00474ae0() -> None:
+    """Clear screen / reset render state."""
+    pass
+
+
+def FUN_00473ab0() -> None:
+    """Push/pop rendering layer."""
+    pass
+
+
+def FUN_00474dd0(w: int, h: int, x: int, y: int, flags: int, unk: int) -> None:
+    """Set up rendering surface dimensions."""
+    pass
+
+
+def FUN_00475840(path: str, dest_buf: int, unk2: int, palette_size: int, mode: int) -> int:
+    """Load a palette/graphic file. Returns handle or 0 on failure."""
+    print(f"  [GFX] {path}")
+    return 1
+
+
+def FUN_00473c60(surface: int, x: int, y: int, w: int, h: int, fill: int, outline: int) -> None:
+    """Draw a bordered rectangle."""
+    pass
+
+
+def FUN_00474cb0() -> None:
+    """Flip / present buffers."""
+    pass
+
+
+def FUN_004481b0(sound_id: int, volume: int, pan: int, loop: int, prio: int) -> None:
+    """Play a sound effect with parameters."""
+    pass
+
+
+def FUN_00474440(surface: int, x: int, y: int, z: int, flags: int, mode: int) -> None:
+    """Set up a surface transformation."""
+    pass
+
+
+def FUN_00473f60(surface_list: int, src_surface: int, x: int, y: int, flags: int) -> None:
+    """Attach a sub-surface / clipping region."""
+    pass
+
+
+def FUN_00476310(color: int, flags: int, mode: int, unk: int) -> None:
+    """Set text color / format."""
+    pass
+
+
+def FUN_00476700(surface: int, text: str, x: int, y: int, width: int) -> None:
+    """Draw text (left-aligned, with clipping)."""
+    print(f"  [TEXT-L] {text!r} @ ({x}, {y}) w={width}")
+
+
+def FUN_00476750(surface: int, text: str, x: int, y: int, width: int) -> None:
+    """Draw text (right-aligned)."""
+    print(f"  [TEXT-R] {text!r} @ ({x}, {y}) w={width}")
+
+
+def FUN_004ad425(value: int, buf: int, base: int) -> str:
+    """Integer-to-string conversion (itoa wrapper)."""
+    return str(value)
+
+
+def FUN_0042dc00(value: int) -> None:
+    """Format a cash value into the text buffer."""
+    pass
+
+
+def FUN_0042dd50(value: int) -> None:
+    """Format a rating value into the text buffer."""
+    pass
+
+
+def FUN_00467130(value: int, min_val: int, max_val: int) -> int:
+    """Clamp value to range."""
+    return max(min_val, min(value, max_val))
+
+
+def FUN_00466b70(golfer_idx: int, unk1: int, unk2: int, unk3: int) -> None:
+    """Skill training facility interaction helper."""
+    pass
+
+
+def FUN_004074a0(tile_id: int, flags: int) -> None:
+    """Handle land purchase / building event."""
+    pass
+
+
+def FUN_00473e60(surface: int, x: int, y: int, color: int) -> None:
+    """Draw a filled rectangle."""
+    pass
+
+
+def FUN_00480c80(unk: int) -> None:
+    """Process input events."""
+    pass
+
+
+def FUN_0045bf80(duration: int, mode: int) -> None:
+    """Wait / delay."""
+    pass
+
+
+def FUN_0045c030() -> None:
+    """Frame present / buffer flip."""
+    pass
+
+
+def FUN_0047ab50(out_x: list, out_y: list) -> None:
+    """Get mouse position."""
+    out_x[0] = 0
+    out_y[0] = 0
+
+
+def FUN_0045c150() -> None:
+    """Play UI click sound."""
+    pass
+
+
+def FUN_004732d0() -> int:
+    """Get UI button return value."""
+    return -1
+
+
+def FUN_00473470() -> None:
+    """UI button handler."""
+    pass
+
+
+def FUN_00448200(sound_id: int) -> None:
+    """Play a simple sound effect."""
+    pass
+
+
+def FUN_00473ae0() -> None:
+    """Pop rendering surface."""
+    pass
+
+
+def FUN_00474c40() -> None:
+    """Pop and restore rendering surface."""
+    pass
+
+
+def FUN_0045ae70() -> int:
+    """Check for click / keypress. Returns non-zero on action."""
+    return 0
+
+
+def FUN_00483d30() -> None:
+    """Set cursor / UI to default state."""
+    pass
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+#  Internal helpers
+# ═══════════════════════════════════════════════════════════════════════════════
+
+
 def _set_text_buf(s: str) -> None:
     """Set the global text buffer."""
     gob = _get_gob()
@@ -241,7 +402,7 @@ def _clear_text_buf() -> None:
 
 def _itoa(value: int) -> str:
     """Convert integer to string."""
-    return itoa(value, 0, 10)
+    return FUN_004ad425(value, 0, 10)
 
 
 def _strlen(s: str) -> int:
@@ -254,7 +415,7 @@ def _copy_and_draw(surface: int, text: str, x: int, y: int, width: int = -1) -> 
     _set_text_buf(text)
     if width < 0:
         width = _strlen(text)
-    draw_text_centered(surface, text, x, y, width)
+    FUN_00476700(surface, text, x, y, width)
 
 
 def _copy_concat_and_draw(surface: int, parts: List[str], x: int, y: int) -> None:
@@ -262,7 +423,7 @@ def _copy_concat_and_draw(surface: int, parts: List[str], x: int, y: int) -> Non
     _set_text_buf("")
     for p in parts:
         _append_text_buf(p)
-    draw_text_centered(surface, _get_gob()["text_buf"], x, y, _strlen(_get_gob()["text_buf"]))
+    FUN_00476700(surface, _get_gob()["text_buf"], x, y, _strlen(_get_gob()["text_buf"]))
 
 
 def _format_cash(value: int) -> str:
@@ -290,32 +451,32 @@ def end_of_year_screen() -> None:
     gob = _get_gob()
 
     # ── Initialise rendering layers ──────────────────────────────────────
-    begin_screen()
+    FUN_00474ae0()
 
     # Push 6 rendering layers (g_surface_stack)
     for layer_id in range(6):
-        push_render_layer()
+        FUN_00473ab0()
 
-    create_surface(800, 600, 0, 1, 0, 0)
+    FUN_00474dd0(800, 600, 0, 1, 0, 0)
 
     # ── Load background image ────────────────────────────────────────────
-    load_palette("interface/infoscreens/endoyear.pcx", 0, 0, 0x100, 1)
+    FUN_00475840("interface/infoscreens/endoyear.pcx", 0, 0, 0x100, 1)
 
     # Draw bounding boxes for highlights area
     _draw_highlight_boxes()
 
     # ── Load alternate (animated) background ─────────────────────────────
-    load_palette("interface/infoscreens/endoyear_a.pcx", 0, 0, 0x100, 1)
+    FUN_00475840("interface/infoscreens/endoyear_a.pcx", 0, 0, 0x100, 1)
     _draw_highlight_boxes()
 
-    flip_buffers()
+    FUN_00474cb0()
 
     # ── Set up sound ─────────────────────────────────────────────────────
-    play_sound_ex(0x7f, 100, 0, 0, 0)
+    FUN_004481b0(0x7f, 100, 0, 0, 0)
 
     # ── Get rendering surface and set up ─────────────────────────────────
     gob["render_surface"] = 0  # DAT_00519d40 from DAT_00519cd4
-    draw_3d_surface(0, 0, 0, 0x3e800000, 0, 1)  # set up surface transform
+    FUN_00474440(0, 0, 0, 0x3e800000, 0, 1)  # set up surface transform
 
     # ── Compute year indices ─────────────────────────────────────────────
     # cash_history is a ring buffer indexed by year % 500
@@ -327,7 +488,7 @@ def end_of_year_screen() -> None:
     gob["last_year_idx"] = last_year_idx
 
     # ── Set text colour to white ─────────────────────────────────────────
-    set_color(COLOR_WHITE, 0xffffffff, 2, 2)
+    FUN_00476310(COLOR_WHITE, 0xffffffff, 2, 2)
 
     # ── Render "END of YEAR" title ───────────────────────────────────────
     game_year = gob.get("game_year", 2000)
@@ -392,33 +553,33 @@ def end_of_year_screen() -> None:
         _render_board_concern(gob, board_y)
 
     # ── Draw "Continue" button frame ─────────────────────────────────────
-    blit_list(0, 0, 0, board_y, 0)  # set up clipping for button
-    set_color(gob.get("text_color", COLOR_WHITE), 0xffffffff, 2, 2)
+    FUN_00473f60(0, 0, 0, board_y, 0)  # set up clipping for button
+    FUN_00476310(gob.get("text_color", COLOR_WHITE), 0xffffffff, 2, 2)
 
     button_y = board_y + 8
     gob["button_y"] = button_y
-    fill_surface(0, BUTTON_X, button_y, 0)  # draw button background
+    FUN_00473e60(0, BUTTON_X, button_y, 0)  # draw button background
 
     # ── Process events and handle clicks ─────────────────────────────────
-    show_cursor(0)
-    game_delay(0x3c, 0)  # initial delay
-    begin_draw()
+    FUN_00480c80(0)
+    FUN_0045bf80(0x3c, 0)  # initial delay
+    FUN_00483d30()
 
     # ── Main click-wait loop ─────────────────────────────────────────────
     done = False
     button_hover = False
 
     while True:
-        game_delay(1, 0)
-        game_delay_cancel()
+        FUN_0045bf80(1, 0)
+        FUN_0045c030()
 
         mouse_x = [0]
         mouse_y = [0]
-        get_mouse_pos(mouse_x, mouse_y)
+        FUN_0047ab50(mouse_x, mouse_y)
         px = mouse_x[0]
         py = mouse_y[0]
 
-        show_cursor(0)
+        FUN_00480c80(0)
 
         # Check for click
         if gob["ui_done"] == 1:
@@ -432,31 +593,31 @@ def end_of_year_screen() -> None:
 
         if in_button and not button_hover:
             button_hover = True
-            fill_surface(0, BUTTON_X, button_y, 0)  # highlight button
-            show_cursor(0)
+            FUN_00473e60(0, BUTTON_X, button_y, 0)  # highlight button
+            FUN_00480c80(0)
 
         elif not in_button and button_hover:
             button_hover = False
 
         # Check for click/action
-        action = get_tick_count()
+        action = FUN_0045ae70()
         if action != 0 or done:
             break
 
     # ── Cleanup and restore rendering state ──────────────────────────────
-    reset_random()
-    result = compute_golfer_cost()
+    FUN_0045c150()
+    result = FUN_004732d0()
     if result != -1:
-        update_golfer_happiness()
+        FUN_00473470()
 
-    play_sound(0x7f)  # sound
-    pop_render_layer()
-    pop_render_layer()
-    pop_render_layer()
-    pop_render_layer()
-    pop_render_layer()
-    pop_render_layer()
-    end_draw()
+    FUN_00448200(0x7f)  # sound
+    FUN_00473ae0()
+    FUN_00473ae0()
+    FUN_00473ae0()
+    FUN_00473ae0()
+    FUN_00473ae0()
+    FUN_00473ae0()
+    FUN_00474c40()
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -466,14 +627,14 @@ def end_of_year_screen() -> None:
 
 def _draw_highlight_boxes() -> None:
     """Draw the background boxes for the highlights section."""
-    # draw_bordered_rect(local_2c4, 0xbb, 0x28, 0x1ad, 0xb0, 1, 0)
-    draw_bordered_rect(0, HIGHLIGHT_BOX_X, HIGHLIGHT_BOX_Y,
+    # FUN_00473c60(local_2c4, 0xbb, 0x28, 0x1ad, 0xb0, 1, 0)
+    FUN_00473c60(0, HIGHLIGHT_BOX_X, HIGHLIGHT_BOX_Y,
                   HIGHLIGHT_BOX_W, HIGHLIGHT_BOX_H, 1, 0)
-    # draw_bordered_rect(local_2c4, 0xbb, 0x176, 0x1ad, 0x37, 1, 0)
-    draw_bordered_rect(0, HIGHLIGHT_SUB_X, HIGHLIGHT_SUB_Y,
+    # FUN_00473c60(local_2c4, 0xbb, 0x176, 0x1ad, 0x37, 1, 0)
+    FUN_00473c60(0, HIGHLIGHT_SUB_X, HIGHLIGHT_SUB_Y,
                   HIGHLIGHT_SUB_W, HIGHLIGHT_SUB_H, 1, 0)
-    # draw_bordered_rect(local_2c4, 0xbb, 0x123, 0x1ad, 0xf, 1, 0)
-    draw_bordered_rect(0, HIGHLIGHT_SEP_X, HIGHLIGHT_SEP_Y,
+    # FUN_00473c60(local_2c4, 0xbb, 0x123, 0x1ad, 0xf, 1, 0)
+    FUN_00473c60(0, HIGHLIGHT_SEP_X, HIGHLIGHT_SEP_Y,
                   HIGHLIGHT_SEP_W, HIGHLIGHT_SEP_H, 1, 0)
 
 
@@ -496,12 +657,12 @@ def _render_cash_comparison(gob: dict, this_idx: int, last_idx: int) -> None:
 
     # Draw values
     _clear_text_buf()
-    add_money(cash_this * 100)
-    draw_text_right(0, gob["text_buf"], CASH_VAL_X_THIS, CASH_VAL_Y, _strlen(gob["text_buf"]))
+    FUN_0042dc00(cash_this * 100)
+    FUN_00476750(0, gob["text_buf"], CASH_VAL_X_THIS, CASH_VAL_Y, _strlen(gob["text_buf"]))
 
     _clear_text_buf()
-    add_money(cash_last * 100)
-    draw_text_right(0, gob["text_buf"], CASH_VAL_X_LAST, CASH_VAL_Y, _strlen(gob["text_buf"]))
+    FUN_0042dc00(cash_last * 100)
+    FUN_00476750(0, gob["text_buf"], CASH_VAL_X_LAST, CASH_VAL_Y, _strlen(gob["text_buf"]))
 
     # Set colour based on change direction
     if cash_this < cash_last:
@@ -510,15 +671,15 @@ def _render_cash_comparison(gob: dict, this_idx: int, last_idx: int) -> None:
         color = COLOR_WHITE
     else:
         color = COLOR_RED_DECREASE
-    set_color(color, 0xffffffff, 2, 2)
+    FUN_00476310(color, 0xffffffff, 2, 2)
 
     # Redraw this year value with colour
     _clear_text_buf()
-    add_money(cash_this * 100)
-    draw_text_right(0, gob["text_buf"], CASH_VAL_X_THIS, CASH_VAL_Y, _strlen(gob["text_buf"]))
+    FUN_0042dc00(cash_this * 100)
+    FUN_00476750(0, gob["text_buf"], CASH_VAL_X_THIS, CASH_VAL_Y, _strlen(gob["text_buf"]))
 
     # Reset colour to white
-    set_color(COLOR_WHITE, 0xffffffff, 2, 2)
+    FUN_00476310(COLOR_WHITE, 0xffffffff, 2, 2)
 
 
 def _render_fun_rating_comparison(gob: dict, this_idx: int, last_idx: int) -> None:
@@ -538,12 +699,12 @@ def _render_fun_rating_comparison(gob: dict, this_idx: int, last_idx: int) -> No
 
     # Draw values
     _clear_text_buf()
-    spend_money(fun_this)
-    draw_text_right(0, gob["text_buf"], CASH_VAL_X_THIS, FUN_VAL_Y, _strlen(gob["text_buf"]))
+    FUN_0042dd50(fun_this)
+    FUN_00476750(0, gob["text_buf"], CASH_VAL_X_THIS, FUN_VAL_Y, _strlen(gob["text_buf"]))
 
     _clear_text_buf()
-    spend_money(fun_last)
-    draw_text_right(0, gob["text_buf"], CASH_VAL_X_LAST, FUN_VAL_Y, _strlen(gob["text_buf"]))
+    FUN_0042dd50(fun_last)
+    FUN_00476750(0, gob["text_buf"], CASH_VAL_X_LAST, FUN_VAL_Y, _strlen(gob["text_buf"]))
 
     if fun_this < fun_last:
         color = COLOR_GREEN_INCREASE
@@ -551,13 +712,13 @@ def _render_fun_rating_comparison(gob: dict, this_idx: int, last_idx: int) -> No
         color = COLOR_WHITE
     else:
         color = COLOR_RED_DECREASE
-    set_color(color, 0xffffffff, 2, 2)
+    FUN_00476310(color, 0xffffffff, 2, 2)
 
     _clear_text_buf()
-    spend_money(fun_this)
-    draw_text_right(0, gob["text_buf"], CASH_VAL_X_THIS, FUN_VAL_Y, _strlen(gob["text_buf"]))
+    FUN_0042dd50(fun_this)
+    FUN_00476750(0, gob["text_buf"], CASH_VAL_X_THIS, FUN_VAL_Y, _strlen(gob["text_buf"]))
 
-    set_color(COLOR_WHITE, 0xffffffff, 2, 2)
+    FUN_00476310(COLOR_WHITE, 0xffffffff, 2, 2)
 
 
 def _render_skill_rating_comparison(gob: dict, this_idx: int, last_idx: int) -> None:
@@ -576,12 +737,12 @@ def _render_skill_rating_comparison(gob: dict, this_idx: int, last_idx: int) -> 
     _copy_and_draw(0, label, SKILL_LABEL_X, SKILL_LABEL_Y)
 
     _clear_text_buf()
-    spend_money(skill_this)
-    draw_text_right(0, gob["text_buf"], CASH_VAL_X_THIS, SKILL_VAL_Y, _strlen(gob["text_buf"]))
+    FUN_0042dd50(skill_this)
+    FUN_00476750(0, gob["text_buf"], CASH_VAL_X_THIS, SKILL_VAL_Y, _strlen(gob["text_buf"]))
 
     _clear_text_buf()
-    spend_money(skill_last)
-    draw_text_right(0, gob["text_buf"], CASH_VAL_X_LAST, SKILL_VAL_Y, _strlen(gob["text_buf"]))
+    FUN_0042dd50(skill_last)
+    FUN_00476750(0, gob["text_buf"], CASH_VAL_X_LAST, SKILL_VAL_Y, _strlen(gob["text_buf"]))
 
     if skill_this < skill_last:
         color = COLOR_GREEN_INCREASE
@@ -589,13 +750,13 @@ def _render_skill_rating_comparison(gob: dict, this_idx: int, last_idx: int) -> 
         color = COLOR_WHITE
     else:
         color = COLOR_RED_DECREASE
-    set_color(color, 0xffffffff, 2, 2)
+    FUN_00476310(color, 0xffffffff, 2, 2)
 
     _clear_text_buf()
-    spend_money(skill_this)
-    draw_text_right(0, gob["text_buf"], CASH_VAL_X_THIS, SKILL_VAL_Y, _strlen(gob["text_buf"]))
+    FUN_0042dd50(skill_this)
+    FUN_00476750(0, gob["text_buf"], CASH_VAL_X_THIS, SKILL_VAL_Y, _strlen(gob["text_buf"]))
 
-    set_color(COLOR_WHITE, 0xffffffff, 2, 2)
+    FUN_00476310(COLOR_WHITE, 0xffffffff, 2, 2)
 
 
 def _render_membership_comparison(gob: dict, this_idx: int, last_idx: int) -> None:
@@ -619,11 +780,11 @@ def _render_membership_comparison(gob: dict, this_idx: int, last_idx: int) -> No
     # Draw values
     _clear_text_buf()
     _set_text_buf(_itoa(mem_this))
-    draw_text_right(0, gob["text_buf"], CASH_VAL_X_THIS, MEMBERSHIP_VAL_Y, _strlen(gob["text_buf"]))
+    FUN_00476750(0, gob["text_buf"], CASH_VAL_X_THIS, MEMBERSHIP_VAL_Y, _strlen(gob["text_buf"]))
 
     _clear_text_buf()
     _set_text_buf(_itoa(mem_last))
-    draw_text_right(0, gob["text_buf"], CASH_VAL_X_LAST, MEMBERSHIP_VAL_Y, _strlen(gob["text_buf"]))
+    FUN_00476750(0, gob["text_buf"], CASH_VAL_X_LAST, MEMBERSHIP_VAL_Y, _strlen(gob["text_buf"]))
 
     if mem_this < mem_last:
         color = COLOR_GREEN_INCREASE
@@ -631,17 +792,17 @@ def _render_membership_comparison(gob: dict, this_idx: int, last_idx: int) -> No
         color = COLOR_WHITE
     else:
         color = COLOR_RED_DECREASE
-    set_color(color, 0xffffffff, 2, 2)
+    FUN_00476310(color, 0xffffffff, 2, 2)
 
     _clear_text_buf()
     _set_text_buf(_itoa(mem_this))
-    draw_text_right(0, gob["text_buf"], CASH_VAL_X_THIS, MEMBERSHIP_VAL_Y, _strlen(gob["text_buf"]))
+    FUN_00476750(0, gob["text_buf"], CASH_VAL_X_THIS, MEMBERSHIP_VAL_Y, _strlen(gob["text_buf"]))
 
 
 def _get_month_name(offset: int) -> str:
     """Get month name by offset from March."""
-    # clamp_int(offset, 0, 7) — clamp to valid range
-    idx = clamp_int(offset, 0, 7)
+    # FUN_00467130(offset, 0, 7) — clamp to valid range
+    idx = FUN_00467130(offset, 0, 7)
     if 0 <= idx < len(MONTH_NAMES):
         return MONTH_NAMES[idx]
     return ""
@@ -701,7 +862,7 @@ def _build_highlight_string(gob: dict, event_code: int, month_name: str,
 
         if event_type == 0x120:
             # "Happy Ending" (special event)
-            update_tile_skill(sub_value, 0xffffffff, 0, 0)
+            FUN_00466b70(sub_value, 0xffffffff, 0, 0)
             return EVENT_HAPPY_ENDING
 
         if event_type == 0x140:
@@ -710,7 +871,7 @@ def _build_highlight_string(gob: dict, event_code: int, month_name: str,
 
         if event_type == 0x160:
             # "Ivana donates a..."
-            set_tile_type(sub_value, 0)
+            FUN_004074a0(sub_value, 0)
             return EVENT_IVANA_DONATES
 
     return None
@@ -722,7 +883,7 @@ def _render_board_concern(gob: dict, y_pos: int) -> None:
     The original checks DAT_00571fd4 < 0 and (game_flags & 0x1000000) == 0,
     then shows escalating concerns based on DAT_005a6374 level.
     """
-    set_color(COLOR_WHITE_2, 0xffffffff, 2, 2)
+    FUN_00476310(COLOR_WHITE_2, 0xffffffff, 2, 2)
 
     concern_level = gob.get("board_concern_level", 0)
     current_y = y_pos

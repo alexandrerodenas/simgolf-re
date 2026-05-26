@@ -328,10 +328,10 @@ def hex_float(h: int) -> float:
 # Function: FUN_10001000 @ 0x10001000
 # ──────────────────────────────────────────────
 # MemoryFile constructor initializer
-def memory_file_init(obj: list) -> None:
+def FUN_10001000(obj: list) -> None:
     """Initialize a MemoryFile object (vtable + zero fields).
     
-    C++: void __fastcall memory_file_init(MemoryFile* this)
+    C++: void __fastcall FUN_10001000(MemoryFile* this)
     Sets vtable to PTR_FUN_100531d0 and zeros fields.
     """
     obj[0] = PTR_FUN_100531d0
@@ -344,14 +344,14 @@ def memory_file_init(obj: list) -> None:
 # Function: FUN_10001020 @ 0x10001020
 # ──────────────────────────────────────────────
 # MemoryFile::`scalar deleting destructor`
-def memory_file_scalar_del_dtor(this: list, param_1: int) -> list:
+def FUN_10001020(this: list, param_1: int) -> list:
     """MemoryFile destructor with scalar delete.
     
     C++: void* __thiscall MemoryFile::`scalar deleting destructor`(byte flags)
     """
-    memory_file_dtor(this)
+    FUN_10001040(this)
     if (param_1 & 1) != 0:
-        operator_delete_free(this)
+        FUN_10046490(this)
     return this
 
 
@@ -359,20 +359,20 @@ def memory_file_scalar_del_dtor(this: list, param_1: int) -> list:
 # Function: FUN_10001040 @ 0x10001040
 # ──────────────────────────────────────────────
 # MemoryFile destructor
-def memory_file_dtor(obj: list) -> None:
+def FUN_10001040(obj: list) -> None:
     """MemoryFile destructor - close handles and set vtable.
     
-    C++: void __fastcall memory_file_dtor(MemoryFile* this)
+    C++: void __fastcall FUN_10001040(MemoryFile* this)
     """
     obj[0] = PTR_FUN_100531d0
-    memory_file_close(id(obj))
+    FUN_10001170(id(obj))
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_10001050 @ 0x10001050
 # ──────────────────────────────────────────────
 # MemoryFile::Create (open/create file mapping)
-def memory_file_create(this: list, filename: str, size: int, arg3: int) -> int:
+def FUN_10001050(this: list, filename: str, size: int, arg3: int) -> int:
     """Create or open a memory-mapped file.
     
     C++: undefined4 __thiscall MemoryFile::Create(LPCSTR filename, uint size, int arg3)
@@ -381,7 +381,7 @@ def memory_file_create(this: list, filename: str, size: int, arg3: int) -> int:
     Win32 calls: CreateFileA, SetFilePointer, SetEndOfFile,
                  CreateFileMappingA, MapViewOfFile
     """
-    memory_file_close(id(this))
+    FUN_10001170(id(this))
     this[4] = size                           # store at offset 0x10
     
     # CreateFileA would go here
@@ -408,10 +408,10 @@ def memory_file_create(this: list, filename: str, size: int, arg3: int) -> int:
 # Function: FUN_10001170 @ 0x10001170
 # ──────────────────────────────────────────────
 # MemoryFile::Close (release all handles)
-def memory_file_close(param_1: int) -> None:
+def FUN_10001170(param_1: int) -> None:
     """Close all file/mapping handles for a MemoryFile object.
     
-    C++: void __fastcall memory_file_close(MemoryFile* this)
+    C++: void __fastcall FUN_10001170(MemoryFile* this)
     
     Unmaps view, closes mapping handle, closes file handle.
     All handles set to 0/NULL/INVALID_HANDLE_VALUE after closing.
@@ -424,7 +424,7 @@ def memory_file_close(param_1: int) -> None:
 # Function: FUN_100011c0 @ 0x100011c0
 # ──────────────────────────────────────────────
 # MemoryFile::Truncate (shrink file to given pointer)
-def memory_file_truncate(this: list, new_end_ptr: int) -> None:
+def FUN_100011c0(this: list, new_end_ptr: int) -> None:
     """Truncate the memory-mapped file to end at new_end_ptr.
     
     C++: void __thiscall MemoryFile::Truncate(LPCVOID new_end)
@@ -436,10 +436,10 @@ def memory_file_truncate(this: list, new_end_ptr: int) -> None:
 # Function: FUN_10001260 @ 0x10001260
 # ──────────────────────────────────────────────
 # Global notification manager init
-def notification_init_global() -> None:
+def FUN_10001260() -> None:
     """Initialize the global notification system.
     
-    C++: void notification_init_global(void)
+    C++: void FUN_10001260(void)
     Sets up DAT_10057b10 as empty NotificationSource.
     """
     global DAT_10057b10, DAT_10057b20, DAT_10057b24, DAT_10057b1c
@@ -452,41 +452,41 @@ def notification_init_global() -> None:
 # ──────────────────────────────────────────────
 # Function: FUN_10001280 @ 0x10001280
 # ──────────────────────────────────────────────
-def notification_register_handler() -> None:
+def FUN_10001280() -> None:
     """Register notification handler at address 0x10001290.
     
-    C++: void notification_register_handler(void)
+    C++: void FUN_10001280(void)
     """
-    register_trampoline(0x10001290)
+    FUN_10046558(0x10001290)
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_10001310 @ 0x10001310 (NotificationTarget ctor init)
-def notification_target_init(obj: list) -> list:
+def FUN_10001310(obj: list) -> list:
     """Initialize NotificationTarget (set vtable, register with source).
     
-    C++: undefined4* __fastcall notification_target_init(NotificationTarget* this)
+    C++: undefined4* __fastcall FUN_10001310(NotificationTarget* this)
     """
     obj[0] = PTR_FUN_100531fc
-    notification_source_add_node(DAT_10057b10, id(obj), 0)
+    FUN_100014c0(DAT_10057b10, id(obj), 0)
     return obj
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_10001330 @ 0x10001330 (NotificationTarget scalar deleting dtor)
-def notification_target_scalar_del_dtor(this: list, param_1: int) -> list:
-    notification_target_dtor(this)
+def FUN_10001330(this: list, param_1: int) -> list:
+    FUN_10001350(this)
     if (param_1 & 1) != 0:
-        operator_delete_free(this)
+        FUN_10046490(this)
     return this
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_10001350 @ 0x10001350 (NotificationTarget dtor)
-def notification_target_dtor(obj: list) -> None:
+def FUN_10001350(obj: list) -> None:
     """Remove this NotificationTarget from the notification chain.
     
-    C++: void __fastcall notification_target_dtor(NotificationTarget* this)
+    C++: void __fastcall FUN_10001350(NotificationTarget* this)
     """
     global DAT_10057b20, DAT_10057b14, DAT_10057b18, DAT_10057b24, DAT_10057b1c
     
@@ -499,23 +499,23 @@ def notification_target_dtor(obj: list) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10001420 @ 0x10001420
-def notification_process_all() -> None:
+def FUN_10001420() -> None:
     """Process all pending notifications.
     
-    C++: void notification_process_all(void)
+    C++: void FUN_10001420(void)
     """
     pass
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_10001450 @ 0x10001450 (NotificationSource scalar deleting dtor)
-def notification_source_scalar_del_dtor(this: list, param_1: int) -> list:
+def FUN_10001450(this: list, param_1: int) -> list:
     pass
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_100014c0 @ 0x100014c0
-def notification_source_add_node(this, param_1, param_2) -> None:
+def FUN_100014c0(this, param_1, param_2) -> None:
     """Add a notification node to the source chain.
     
     C++: void __thiscall NotificationSource::addTarget(target, byte)
@@ -525,16 +525,16 @@ def notification_source_add_node(this, param_1, param_2) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10001540 @ 0x10001540 (NotificationNode cleanup)
-def notification_node_cleanup(this: list, param_1: int) -> list:
+def FUN_10001540(this: list, param_1: int) -> list:
     pass
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_10001590 @ 0x10001590 (LCG Random)
-def lcg_random_float(state: list) -> float:
+def FUN_10001590(state: list) -> float:
     """LCG random number generator.
     
-    C++: float __fastcall lcg_random_float(uint* state)
+    C++: float __fastcall FUN_10001590(uint* state)
     Returns float in [0.0, 1.0) using LCG:
       state = state * 0x41c64e6d + 0x3039
       result = (state >> 16) & 0x7fff / 32768.0
@@ -545,13 +545,13 @@ def lcg_random_float(state: list) -> float:
 
 # ──────────────────────────────────────────────
 # Function: FUN_100015d0 @ 0x100015d0 (LCG Random int)
-def lcg_random_int(state: list) -> int:
+def FUN_100015d0(state: list) -> int:
     """LCG random as integer.
     
-    C++: longlong __fastcall lcg_random_int(uint* state)
+    C++: longlong __fastcall FUN_100015d0(uint* state)
     Uses LCG then converts to integer.
     """
-    val = lcg_random_float(state)
+    val = FUN_10001590(state)
     return int(val)
 
 
@@ -561,20 +561,20 @@ def lcg_random_int(state: list) -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_100015f0 @ 0x100015f0
-def jgldevice_scalar_del_dtor(this: list, param_1: int) -> list:
+def FUN_100015f0(this: list, param_1: int) -> list:
     """JGLDevice scalar deleting destructor.
     
     C++: void* __thiscall JGLDevice::`scalar deleting destructor`(byte flags)
     """
-    jgldevice_dtor(this)
+    FUN_10001730(this)
     if (param_1 & 1) != 0:
-        operator_delete_free(this)
+        FUN_10046490(this)
     return this
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_10001610 @ 0x10001610 (JGLDevice constructor)
-def jgldevice_ctor(this: list, param_1: int) -> list:
+def FUN_10001610(this: list, param_1: int) -> list:
     """JGLDevice constructor - main graphics device initialization.
     
     C++: void* __thiscall JGLDevice::JGLDevice(undefined4 param_1)
@@ -582,7 +582,7 @@ def jgldevice_ctor(this: list, param_1: int) -> list:
     Initializes all fields, creates critical section,
     sets pixel format defaults.
     """
-    notification_target_init(this)
+    FUN_10001310(this)
     this[0x0A] = 0    # offset 0x28
     this[0x02] = 0    # offset 0x08
     this[0x0E] = 0    # offset 0x38
@@ -630,7 +630,7 @@ def jgldevice_ctor(this: list, param_1: int) -> list:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10001730 @ 0x10001730 (JGLDevice destructor)
-def jgldevice_dtor(obj: list) -> None:
+def FUN_10001730(obj: list) -> None:
     """JGLDevice destructor - release all GDI objects, delete CS.
     
     C++: void __fastcall JGLDevice::~JGLDevice()
@@ -638,17 +638,17 @@ def jgldevice_dtor(obj: list) -> None:
     obj[0] = PTR_FUN_10053214
     # if palette override exists, clear it
     # DeleteCriticalSection at offset 0x0C
-    jgldevice_release_gdi(id(obj))
+    FUN_100017a0(id(obj))
     obj[0] = PTR_FUN_10053304
-    notification_target_dtor(obj)
+    FUN_10001350(obj)
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_100017a0 @ 0x100017a0 (JGLDevice release GDI)
-def jgldevice_release_gdi(param_1: int) -> None:
+def FUN_100017a0(param_1: int) -> None:
     """Release GDI objects (DC, bitmap, palette).
     
-    C++: void __fastcall jgldevice_release_gdi(JGLDevice* this)
+    C++: void __fastcall FUN_100017a0(JGLDevice* this)
     
     Cleans up HDC, HBITMAP, HPALETTE handles at offsets
     0x4AC, 0x4B0, 0x4B4, 0x4B8, 0x4BC, 0x4C0, 0x4C4, 0x4C8.
@@ -658,7 +658,7 @@ def jgldevice_release_gdi(param_1: int) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10001be0 @ 0x10001be0 (pixel offset computation)
-def surface_get_pixel_offset(this: list, x: int, y: int) -> int:
+def FUN_10001be0(this: list, x: int, y: int) -> int:
     """Compute pixel offset in surface memory based on format.
     
     C++: int __thiscall JGLDevice::getPixelOffset(int x, int y)
@@ -694,7 +694,7 @@ def FUN_10001be0_vcall(this: list, offset: int) -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10001d30 @ 0x10001d30
-def device_select_font(this: list, param_1: list) -> int:
+def FUN_10001d30(this: list, param_1: list) -> int:
     """Select a font object into the device context.
     
     C++: undefined4 __thiscall JGLDevice::SelectFont(int* font_params)
@@ -704,17 +704,17 @@ def device_select_font(this: list, param_1: list) -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10001d60 @ 0x10001d60
-def device_select_stock_font(param_1: list) -> int:
+def FUN_10001d60(param_1: list) -> int:
     """Select stock font (DEFAULT_GUI_FONT) into DC.
     
-    C++: undefined4 __fastcall device_select_stock_font(JGLDevice* this)
+    C++: undefined4 __fastcall FUN_10001d60(JGLDevice* this)
     """
     return 0
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_10001d90 @ 0x10001d90
-def device_set_text_color(this: list, param_1: int, param_2: int, param_3: int) -> int:
+def FUN_10001d90(this: list, param_1: int, param_2: int, param_3: int) -> int:
     """Set text color in device context.
     
     C++: undefined4 __thiscall JGLDevice::SetTextColor(uint color, byte r, byte g, byte b)
@@ -724,7 +724,7 @@ def device_set_text_color(this: list, param_1: int, param_2: int, param_3: int) 
 
 # ──────────────────────────────────────────────
 # Function: FUN_10001dd0 @ 0x10001dd0
-def device_set_text_color_packed(this: list, param_1: int) -> int:
+def FUN_10001dd0(this: list, param_1: int) -> int:
     """Set text color packed.
     
     C++: undefined4 __thiscall JGLDevice::SetTextColor(uint packed_color)
@@ -734,7 +734,7 @@ def device_set_text_color_packed(this: list, param_1: int) -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10001e00 @ 0x10001e00
-def surface_draw_text(this: list, x: int, y: int, text: str, length: int) -> int:
+def FUN_10001e00(this: list, x: int, y: int, text: str, length: int) -> int:
     """Draw text at position.
     
     C++: undefined4 __thiscall JGLDevice::TextOut(int x, int y, LPCSTR text, int length)
@@ -745,7 +745,7 @@ def surface_draw_text(this: list, x: int, y: int, text: str, length: int) -> int
 
 # ──────────────────────────────────────────────
 # Function: FUN_10001e40 @ 0x10001e40
-def surface_stretch_blit(this: list, param_1: list, param_2: int, param_3: int,
+def FUN_10001e40(this: list, param_1: list, param_2: int, param_3: int,
                  param_4: int, param_5: int, param_6: int, param_7: int,
                  param_8: int) -> int:
     """Stretch blit dispatcher (selects 8bpp or 16bpp path).
@@ -757,9 +757,9 @@ def surface_stretch_blit(this: list, param_1: list, param_2: int, param_3: int,
     if fmt != 8:
         if fmt != 0x10:
             return 0x17  # invalid format
-        return surface_stretch_blit_16bpp(this, param_1, param_2, param_3, param_4,
+        return FUN_10006a40(this, param_1, param_2, param_3, param_4,
                             param_5, param_6, param_7, param_8)
-    return surface_stretch_blit_8bpp(this, param_1, param_2, param_3, param_4,
+    return FUN_10007300(this, param_1, param_2, param_3, param_4,
                         param_5, param_6, param_7, param_8)
 
 
@@ -769,7 +769,7 @@ def FUN_10001e40_get_format(this):
 
 # ──────────────────────────────────────────────
 # Function: FUN_10001fc0 @ 0x10001fc0
-def surface_copy_alpha_blit(this: list, param_1: list, param_2: int, param_3: int,
+def FUN_10001fc0(this: list, param_1: list, param_2: int, param_3: int,
                  param_4: list, param_5: list, param_6: int, param_7: int) -> int:
     """Copy/alpha blit dispatcher.
     
@@ -779,22 +779,22 @@ def surface_copy_alpha_blit(this: list, param_1: list, param_2: int, param_3: in
     if fmt != 8:
         if fmt != 0x10:
             return 0x17
-        return surface_blit_alpha_colorkey_16bpp(this, param_1, param_2, param_3, param_4,
+        return FUN_10004990(this, param_1, param_2, param_3, param_4,
                             id(param_5) if param_5 else 0, param_6, param_7)
     # 8bpp path checks source format
     src_fmt = FUN_10001e40_get_format(param_1)
     if src_fmt == 8:
-        return surface_blit_palette_lookup_8bpp(this, param_1, param_2, param_3, param_4,
+        return FUN_100075f0(this, param_1, param_2, param_3, param_4,
                             id(param_5) if param_5 else 0, param_6, param_7)
     if src_fmt != 0x10:
         return 0x17
-    return surface_blit_palette_translate_8to16(this, param_1, param_2, param_3, id(param_4) if param_4 else 0,
+    return FUN_10006ce0(this, param_1, param_2, param_3, id(param_4) if param_4 else 0,
                         param_5, param_6, param_7)
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_10002090 @ 0x10002090
-def surface_fill_rect_pattern(this: list, param_1: list, param_2: int, param_3: int) -> int:
+def FUN_10002090(this: list, param_1: list, param_2: int, param_3: int) -> int:
     """Fill rectangle with pattern/color dispatcher.
     
     C++: undefined4 __thiscall JGLDevice::FillRect(RECT* rect, short pattern, short color)
@@ -805,17 +805,17 @@ def surface_fill_rect_pattern(this: list, param_1: list, param_2: int, param_3: 
     if fmt != 8:
         if fmt != 0x10:
             return 0x17
-        return surface_fill_rect_16bpp(this, param_1[0], param_1[1],
+        return FUN_100027a0(this, param_1[0], param_1[1],
                             param_1[2] - param_1[0], param_1[3] - param_1[1],
                             param_2, param_3)
-    return surface_fill_rect_8bpp(this, param_1[0], param_1[1],
+    return FUN_10005000(this, param_1[0], param_1[1],
                         param_1[2] - param_1[0], param_1[3] - param_1[1],
                         param_2 & 0xFF, param_3 & 0xFF)
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_10002120 @ 0x10002120
-def surface_draw_patterned_rect_8bpp(this: list, param_1: list, param_2: int) -> int:
+def FUN_10002120(this: list, param_1: list, param_2: int) -> int:
     """Draw patterned rectangle (8bpp).
     
     C++: undefined4 __thiscall JGLDevice::FrameRect(RECT*, int pattern)
@@ -823,12 +823,12 @@ def surface_draw_patterned_rect_8bpp(this: list, param_1: list, param_2: int) ->
     fmt = FUN_10001e40_get_format(this)
     if fmt != 8:
         return 0
-    return surface_draw_rect_outline_8bpp(this, param_1[0], param_1[1], param_1[2], param_1[3], param_2)
+    return FUN_100050d0(this, param_1[0], param_1[1], param_1[2], param_1[3], param_2)
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_10002160 @ 0x10002160
-def surface_draw_line_solid(this: list, param_1: int, param_2: int, param_3: int,
+def FUN_10002160(this: list, param_1: int, param_2: int, param_3: int,
                  param_4: int, param_5: int) -> int:
     """Draw a line dispatcher (solid color).
     
@@ -836,26 +836,26 @@ def surface_draw_line_solid(this: list, param_1: int, param_2: int, param_3: int
     """
     fmt = FUN_10001e40_get_format(this)
     if fmt == 8:
-        surface_draw_line_bresenham_8bpp(this, param_1, param_2, param_3, param_4, param_5 & 0xFF)
+        FUN_100051c0(this, param_1, param_2, param_3, param_4, param_5 & 0xFF)
     elif fmt == 0x10:
-        surface_draw_line_bresenham_16bpp(this, param_1, param_2, param_3, param_4, param_5)
+        FUN_10002870(this, param_1, param_2, param_3, param_4, param_5)
     return 0
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_100021d0 @ 0x100021d0
-def notification_target_reset_vtable(obj: list) -> None:
+def FUN_100021d0(obj: list) -> None:
     """Reset NotificationTarget vtable to base class.
     
-    C++: void __fastcall notification_target_reset_vtable(NotificationTarget* this)
+    C++: void __fastcall FUN_100021d0(NotificationTarget* this)
     """
     obj[0] = PTR_FUN_10053304
-    notification_target_dtor(obj)
+    FUN_10001350(obj)
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_100021e0 @ 0x100021e0
-def surface_draw_patterned_line(this: list, param_1: int, param_2: int, param_3: int,
+def FUN_100021e0(this: list, param_1: int, param_2: int, param_3: int,
                  param_4: int, param_5: int, param_6: list, param_7: int,
                  param_8: int, param_9: int) -> int:
     """Draw patterned line dispatcher.
@@ -864,32 +864,32 @@ def surface_draw_patterned_line(this: list, param_1: int, param_2: int, param_3:
     """
     fmt = FUN_10001e40_get_format(this)
     if fmt == 8:
-        surface_draw_patterned_line_8bpp(this, param_1, param_2, param_3, param_4, param_5,
+        FUN_10005860(this, param_1, param_2, param_3, param_4, param_5,
                      id(param_6) if param_6 else 0, param_7, param_8, param_9)
     elif fmt == 0x10:
-        surface_draw_patterned_line_16bpp(this, param_1, param_2, param_3, param_4, param_5,
+        FUN_10003070(this, param_1, param_2, param_3, param_4, param_5,
                      param_6, param_7, param_8, param_9)
     return 0
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_10002280 @ 0x10002280
-def surface_color_fill(this: list, param_1: list, param_2: int) -> int:
+def FUN_10002280(this: list, param_1: list, param_2: int) -> int:
     """Color fill dispatcher (solid color).
     
     Routes to 8bpp (FUN_100064b0) or 16bpp (FUN_10003f20).
     """
     fmt = FUN_10001e40_get_format(this)
     if fmt == 8:
-        surface_color_fill_rect_8bpp(this, param_1, param_2 & 0xFFFF)
+        FUN_100064b0(this, param_1, param_2 & 0xFFFF)
     elif fmt == 0x10:
-        surface_fill_rect_solid_16bpp(this, param_1, param_2)
+        FUN_10003f20(this, param_1, param_2)
     return 0
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_100022f0 @ 0x100022f0
-def surface_alpha_blend_rect_16bpp(this: list, param_1: list, param_2: list,
+def FUN_100022f0(this: list, param_1: list, param_2: list,
                  param_3: int, param_4: int) -> int:
     """Alpha blend rect (16bpp only).
     """
@@ -899,47 +899,47 @@ def surface_alpha_blend_rect_16bpp(this: list, param_1: list, param_2: list,
     src_fmt = FUN_10001e40_get_format(param_2)
     if src_fmt != 0x10:
         return 0x17
-    return surface_alpha_blend_blit_16bpp(this, param_1, param_2, param_3, param_4)
+    return FUN_10004ef0(this, param_1, param_2, param_3, param_4)
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_10002350 @ 0x10002350
-def surface_alpha_fill_solid_16bpp(this: list, param_1: list, param_2: int) -> int:
+def FUN_10002350(this: list, param_1: list, param_2: int) -> int:
     """Alpha blend solid fill (16bpp).
     """
     fmt = FUN_10001e40_get_format(this)
     if fmt != 0x10:
         return 0x17
-    return surface_alpha_fill_rect_16bpp(this, param_1, param_2)
+    return FUN_10004080(this, param_1, param_2)
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_100023b0 @ 0x100023b0
-def surface_alpha_blend_dispatch(this: list, param_1: list, param_2: int) -> int:
+def FUN_100023b0(this: list, param_1: list, param_2: int) -> int:
     """Alpha blend dispatcher (both formats).
     """
     fmt = FUN_10001e40_get_format(this)
     if fmt == 8:
-        return surface_alpha_fill_8bpp(this, param_1, param_2 & 0xFF)
+        return FUN_100065a0(this, param_1, param_2 & 0xFF)
     if fmt != 0x10:
         return 0x17
-    return surface_alpha_fill_dither_16bpp(this, param_1, param_2)
+    return FUN_10004420(this, param_1, param_2)
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_10002400 @ 0x10002400
-def surface_alpha_blend_dither_16bpp(this: list, param_1: list, param_2: int) -> int:
+def FUN_10002400(this: list, param_1: list, param_2: int) -> int:
     """Alpha blend dispatcher (16bpp with dither).
     """
     fmt = FUN_10001e40_get_format(this)
     if fmt != 0x10:
         return 0x17
-    return surface_alpha_fill_dither_enhanced_16bpp(this, param_1, param_2)
+    return FUN_100045c0(this, param_1, param_2)
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_10002440 @ 0x10002440 (Blt via affine texture mapper)
-def surface_affine_texture_blit(this: list, param_1: list, param_2: int,
+def FUN_10002440(this: list, param_1: list, param_2: int,
                  param_3: list) -> list:
     """Blit with affine texture mapping (software renderer).
     
@@ -956,23 +956,23 @@ def surface_affine_texture_blit(this: list, param_1: list, param_2: int,
     pixel_flags = this[0x134]  # offset 0x4D0
     render_mode = FUN_10001be0_vcall(this, 0xE8)
     
-    return surface_affine_texture_map(param_1, param_2, param_3, render_mode)
+    return FUN_10008120(param_1, param_2, param_3, render_mode)
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_10002520 @ 0x10002520
-def notification_target_dtor_reset(this: list, param_1: int) -> list:
+def FUN_10002520(this: list, param_1: int) -> list:
     """NotificationTarget scalar deleting destructor (with base reset).
     """
-    notification_target_reset_vtable(this)
+    FUN_100021d0(this)
     if (param_1 & 1) != 0:
-        operator_delete_free(this)
+        FUN_10046490(this)
     return this
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_10002540 @ 0x10002540 (TextureBlt with color key)
-def surface_texture_blit_colorkey(this: list, param_1: list, param_2: int,
+def FUN_10002540(this: list, param_1: list, param_2: int,
                  param_3: list, param_4: int) -> int:
     """Texture blit with color key support.
     
@@ -988,12 +988,12 @@ def surface_texture_blit_colorkey(this: list, param_1: list, param_2: int,
     pixel_flags = this[0x134]
     render_mode = FUN_10001be0_vcall(this, 0xE8)
     
-    return surface_affine_texture_map_colorkey(param_1, param_2, param_3, param_4, render_mode)
+    return FUN_10008800(param_1, param_2, param_3, param_4, render_mode)
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_10002620 @ 0x10002620
-def surface_load_font_8bpp(this: list, param_1: str) -> int:
+def FUN_10002620(this: list, param_1: str) -> int:
     """Load a font by name (8bpp only).
     
     C++: undefined4 __thiscall JGLDevice::LoadFont(char* fontname)
@@ -1001,15 +1001,15 @@ def surface_load_font_8bpp(this: list, param_1: str) -> int:
     fmt = FUN_10001e40_get_format(this)
     if fmt != 8:
         return 0x17
-    return surface_load_font(this, param_1)
+    return FUN_100066a0(this, param_1)
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_10002760 @ 0x10002760
-def memory_fill_ushort(dst: list, value: int, count: int) -> None:
+def FUN_10002760(dst: list, value: int, count: int) -> None:
     """Fill memory with a short value (memset for ushort).
     
-    C++: void __cdecl memory_fill_ushort(void* dst, short value, uint count_bytes)
+    C++: void __cdecl FUN_10002760(void* dst, short value, uint count_bytes)
     
     Fills 'count' bytes at 'dst' with 'value' (short). Handles unaligned start.
     """
@@ -1029,7 +1029,7 @@ def memory_fill_ushort(dst: list, value: int, count: int) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_100027a0 @ 0x100027a0
-def surface_fill_rect_16bpp(this: list, x1: int, y1: int, w: int, h: int,
+def FUN_100027a0(this: list, x1: int, y1: int, w: int, h: int,
                  pattern: int, color: int) -> int:
     """Fill axis-aligned rectangle (16bpp).
     
@@ -1053,7 +1053,7 @@ def surface_fill_rect_16bpp(this: list, x1: int, y1: int, w: int, h: int,
 
 # ──────────────────────────────────────────────
 # Function: FUN_10002870 @ 0x10002870
-def surface_draw_line_bresenham_16bpp(this: list, x1: int, y1: int, x2: int, y2: int,
+def FUN_10002870(this: list, x1: int, y1: int, x2: int, y2: int,
                  color: int) -> None:
     """Draw a line using Bresenham algorithm (16bpp, solid color).
     
@@ -1071,7 +1071,7 @@ def surface_draw_line_bresenham_16bpp(this: list, x1: int, y1: int, x2: int, y2:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10002da0 @ 0x10002da0
-def surface_draw_hline_16bpp(this: list, x1: int, x2: int, y: int, color: int) -> None:
+def FUN_10002da0(this: list, x1: int, x2: int, y: int, color: int) -> None:
     """Draw horizontal line (16bpp).
     """
     pass
@@ -1079,7 +1079,7 @@ def surface_draw_hline_16bpp(this: list, x1: int, x2: int, y: int, color: int) -
 
 # ──────────────────────────────────────────────
 # Function: FUN_10002ef0 @ 0x10002ef0
-def surface_draw_vline_16bpp(this: list, x: int, y1: int, y2: int, color: int) -> None:
+def FUN_10002ef0(this: list, x: int, y1: int, y2: int, color: int) -> None:
     """Draw vertical line (16bpp).
     """
     pass
@@ -1087,7 +1087,7 @@ def surface_draw_vline_16bpp(this: list, x: int, y1: int, y2: int, color: int) -
 
 # ──────────────────────────────────────────────
 # Function: FUN_10003070 @ 0x10003070
-def surface_draw_patterned_line_16bpp(this: list, x1: int, y1: int, x2: int, y2: int,
+def FUN_10003070(this: list, x1: int, y1: int, x2: int, y2: int,
                  color: int, pattern_list: list, pattern_len1: int,
                  pattern_len2: int, pattern_start: int) -> None:
     """Draw patterned/dashed line (16bpp).
@@ -1104,7 +1104,7 @@ def surface_draw_patterned_line_16bpp(this: list, x1: int, y1: int, x2: int, y2:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10003830 @ 0x10003830
-def surface_fill_vertical_pattern_16bpp(this: list, x: int, y1: int, y2: int, color1: int,
+def FUN_10003830(this: list, x: int, y1: int, y2: int, color1: int,
                  color2: int, pattern_on: int, pattern_off: int,
                  start_offset: int) -> None:
     """Fill vertical range with two-color pattern (16bpp).
@@ -1115,7 +1115,7 @@ def surface_fill_vertical_pattern_16bpp(this: list, x: int, y1: int, y2: int, co
 
 # ──────────────────────────────────────────────
 # Function: FUN_10003b30 @ 0x10003b30
-def surface_fill_vertical_palette_16bpp(this: list, x: int, y1: int, y2: int, color1: int,
+def FUN_10003b30(this: list, x: int, y1: int, y2: int, color1: int,
                  color2_ptr: list, pattern_on: int, pattern_off: int,
                  start_offset: int) -> None:
     """Fill vertical range with pattern using palette lookup (16bpp).
@@ -1125,7 +1125,7 @@ def surface_fill_vertical_palette_16bpp(this: list, x: int, y1: int, y2: int, co
 
 # ──────────────────────────────────────────────
 # Function: FUN_10003e40 @ 0x10003e40
-def surface_fill_solid_16bpp(this: list, color: int) -> None:
+def FUN_10003e40(this: list, color: int) -> None:
     """Solid color fill of entire surface (16bpp).
     
     C++: void __thiscall JGLDevice::clear16(uint color)
@@ -1137,19 +1137,19 @@ def surface_fill_solid_16bpp(this: list, color: int) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10003f20 @ 0x10003f20
-def surface_fill_rect_solid_16bpp(this: list, rect: list, color: int) -> int:
+def FUN_10003f20(this: list, rect: list, color: int) -> int:
     """Fill rectangle with solid color (16bpp).
     Supports palette lookup and sub-rect clipping.
     """
     if rect is None:
-        surface_fill_solid_16bpp(this, color)
+        FUN_10003e40(this, color)
         return 0
     return 0
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_10004080 @ 0x10004080
-def surface_alpha_fill_rect_16bpp(this: list, rect: list, alpha: int) -> int:
+def FUN_10004080(this: list, rect: list, alpha: int) -> int:
     """Alpha blend fill rectangle (16bpp, 565 format).
     
     C++: undefined4 __thiscall JGLDevice::alphaFill16(RECT*, uint alpha_percent)
@@ -1162,7 +1162,7 @@ def surface_alpha_fill_rect_16bpp(this: list, rect: list, alpha: int) -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10004420 @ 0x10004420
-def surface_alpha_fill_dither_16bpp(this: list, rect: list, alpha: int) -> int:
+def FUN_10004420(this: list, rect: list, alpha: int) -> int:
     """Alpha fill with dithering (16bpp).
     Similar to FUN_10004080 but with ordered dither.
     """
@@ -1171,7 +1171,7 @@ def surface_alpha_fill_dither_16bpp(this: list, rect: list, alpha: int) -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_100045c0 @ 0x100045c0
-def surface_alpha_fill_dither_enhanced_16bpp(this: list, rect: list, alpha: int) -> int:
+def FUN_100045c0(this: list, rect: list, alpha: int) -> int:
     """Alpha fill with enhanced dithering (16bpp).
     Uses different dither matrix.
     """
@@ -1184,7 +1184,7 @@ def surface_alpha_fill_dither_enhanced_16bpp(this: list, rect: list, alpha: int)
 
 # ──────────────────────────────────────────────
 # Function: FUN_10004990 @ 0x10004990
-def surface_blit_alpha_colorkey_16bpp(this: list, src: list, dst_x: int, dst_y: int,
+def FUN_10004990(this: list, src: list, dst_x: int, dst_y: int,
                  color_table: list, src_palette: int, flags: int,
                  color_key: int) -> int:
     """Copy/blit rectangle with alpha and color key (16bpp).
@@ -1201,7 +1201,7 @@ def surface_blit_alpha_colorkey_16bpp(this: list, src: list, dst_x: int, dst_y: 
 
 # ──────────────────────────────────────────────
 # Function: FUN_10004ef0 @ 0x10004ef0
-def surface_alpha_blend_blit_16bpp(this: list, dst_rect: list, src: list,
+def FUN_10004ef0(this: list, dst_rect: list, src: list,
                  param_3: int, param_4: int) -> int:
     """Alpha blend blit (16bpp to 16bpp).
     """
@@ -1210,7 +1210,7 @@ def surface_alpha_blend_blit_16bpp(this: list, dst_rect: list, src: list,
 
 # ──────────────────────────────────────────────
 # Function: FUN_10005000 @ 0x10005000
-def surface_fill_rect_8bpp(this: list, x: int, y: int, w: int, h: int,
+def FUN_10005000(this: list, x: int, y: int, w: int, h: int,
                  pattern: int, color: int) -> int:
     """Fill rectangle (8bpp).
     
@@ -1221,7 +1221,7 @@ def surface_fill_rect_8bpp(this: list, x: int, y: int, w: int, h: int,
 
 # ──────────────────────────────────────────────
 # Function: FUN_100050d0 @ 0x100050d0
-def surface_draw_rect_outline_8bpp(this: list, x1: int, y1: int, x2: int, y2: int,
+def FUN_100050d0(this: list, x1: int, y1: int, x2: int, y2: int,
                  pattern: int) -> int:
     """Draw rectangle outline with pattern (8bpp).
     """
@@ -1230,7 +1230,7 @@ def surface_draw_rect_outline_8bpp(this: list, x1: int, y1: int, x2: int, y2: in
 
 # ──────────────────────────────────────────────
 # Function: FUN_100051c0 @ 0x100051c0
-def surface_draw_line_bresenham_8bpp(this: list, x1: int, y1: int, x2: int, y2: int,
+def FUN_100051c0(this: list, x1: int, y1: int, x2: int, y2: int,
                  color: int) -> None:
     """Draw line (8bpp, Bresenham).
     """
@@ -1239,7 +1239,7 @@ def surface_draw_line_bresenham_8bpp(this: list, x1: int, y1: int, x2: int, y2: 
 
 # ──────────────────────────────────────────────
 # Function: FUN_10005860 @ 0x10005860
-def surface_draw_patterned_line_8bpp(this: list, x1: int, y1: int, x2: int, y2: int,
+def FUN_10005860(this: list, x1: int, y1: int, x2: int, y2: int,
                  color: int, pattern: int, p_on: int, p_off: int,
                  start: int) -> None:
     """Draw patterned line (8bpp).
@@ -1249,7 +1249,7 @@ def surface_draw_patterned_line_8bpp(this: list, x1: int, y1: int, x2: int, y2: 
 
 # ──────────────────────────────────────────────
 # Function: FUN_100064b0 @ 0x100064b0
-def surface_color_fill_rect_8bpp(this: list, rect: list, color: int) -> int:
+def FUN_100064b0(this: list, rect: list, color: int) -> int:
     """Color fill rect (8bpp).
     """
     pass
@@ -1257,7 +1257,7 @@ def surface_color_fill_rect_8bpp(this: list, rect: list, color: int) -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_100065a0 @ 0x100065a0
-def surface_alpha_fill_8bpp(this: list, rect: list, color: int) -> int:
+def FUN_100065a0(this: list, rect: list, color: int) -> int:
     """Alpha blend fill (8bpp).
     """
     pass
@@ -1265,7 +1265,7 @@ def surface_alpha_fill_8bpp(this: list, rect: list, color: int) -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_100066a0 @ 0x100066a0
-def surface_load_font(this: list, fontname: str) -> int:
+def FUN_100066a0(this: list, fontname: str) -> int:
     """Load font (8bpp).
     Wraps Win32 CreateFontIndirectA/SelectObject.
     """
@@ -1274,7 +1274,7 @@ def surface_load_font(this: list, fontname: str) -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10006a40 @ 0x10006a40
-def surface_stretch_blit_16bpp(this: list, src: list, x: int, y: int, w: int, h: int,
+def FUN_10006a40(this: list, src: list, x: int, y: int, w: int, h: int,
                  dst_x: int, dst_y: int, flags: int) -> int:
     """Stretch blit (16bpp source to 16bpp dest).
     Uses software bilinear/stretch with fixed-point math.
@@ -1284,7 +1284,7 @@ def surface_stretch_blit_16bpp(this: list, src: list, x: int, y: int, w: int, h:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10006ce0 @ 0x10006ce0
-def surface_blit_palette_translate_8to16(this: list, src: list, x: int, y: int, w: int, h: int,
+def FUN_10006ce0(this: list, src: list, x: int, y: int, w: int, h: int,
                  palette: list, dst_x: int, dst_y: int) -> int:
     """Blit with palette translation (8bpp src to 16bpp dst).
     """
@@ -1293,7 +1293,7 @@ def surface_blit_palette_translate_8to16(this: list, src: list, x: int, y: int, 
 
 # ──────────────────────────────────────────────
 # Function: FUN_10007300 @ 0x10007300
-def surface_stretch_blit_8bpp(this: list, src: list, x: int, y: int, w: int, h: int,
+def FUN_10007300(this: list, src: list, x: int, y: int, w: int, h: int,
                  dst_x: int, dst_y: int, flags: int) -> int:
     """Stretch blit (8bpp source to 8bpp dest).
     """
@@ -1302,7 +1302,7 @@ def surface_stretch_blit_8bpp(this: list, src: list, x: int, y: int, w: int, h: 
 
 # ──────────────────────────────────────────────
 # Function: FUN_100075f0 @ 0x100075f0
-def surface_blit_palette_lookup_8bpp(this: list, src: list, x: int, y: int, w: int, h: int,
+def FUN_100075f0(this: list, src: list, x: int, y: int, w: int, h: int,
                  palette: list, dst_x: int, dst_y: int) -> int:
     """Blit with palette lookup (8bpp src to 8bpp dst).
     """
@@ -1315,10 +1315,10 @@ def surface_blit_palette_lookup_8bpp(this: list, src: list, x: int, y: int, w: i
 
 # ──────────────────────────────────────────────
 # Function: FUN_10007e20 @ 0x10007e20
-def surface_ctor(this: list, param_1: int) -> None:
+def FUN_10007e20(this: list, param_1: int) -> None:
     """Surface constructor / initializer.
     
-    C++: void __thiscall surface_ctor(Surface* this, int flags)
+    C++: void __thiscall FUN_10007e20(Surface* this, int flags)
     Sets vtable to Surface8bpp.
     """
     this[0] = PTR_FUN_1005341c
@@ -1327,26 +1327,26 @@ def surface_ctor(this: list, param_1: int) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10007e70 @ 0x10007e70
-def surface_dtor(obj: list) -> None:
+def FUN_10007e70(obj: list) -> None:
     """Surface destructor (both 8bpp and 16bpp).
     
-    C++: void __fastcall surface_dtor(Surface* this)
+    C++: void __fastcall FUN_10007e70(Surface* this)
     Frees bitmap data and releases GDI objects.
     """
     obj[0] = PTR_FUN_1005341c
     # ... cleanup ...
     obj[0] = PTR_FUN_100534c0
     # ... more cleanup ...
-    notification_target_dtor(obj)
+    FUN_10001350(obj)
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_10008120 @ 0x10008120
-def surface_affine_texture_map(state: list, src_rect: list, flags: int,
+def FUN_10008120(state: list, src_rect: list, flags: int,
                  dst_palette: list, render_mode: int) -> list:
     """Affine texture mapper - software renderer core.
     
-    C++: ushort* __cdecl surface_affine_texture_map(...)
+    C++: ushort* __cdecl FUN_10008120(...)
     
     This is the main software rendering loop that performs
     affine texture mapping with sub-pixel accuracy.
@@ -1362,11 +1362,11 @@ def surface_affine_texture_map(state: list, src_rect: list, flags: int,
 
 # ──────────────────────────────────────────────
 # Function: FUN_10008800 @ 0x10008800
-def surface_affine_texture_map_colorkey(state: list, src_rect: list, flags: int,
+def FUN_10008800(state: list, src_rect: list, flags: int,
                  dst_palette: list, color_key: int, render_mode: int) -> int:
     """Affine texture mapper with color key.
     
-    C++: int __cdecl surface_affine_texture_map_colorkey(...)
+    C++: int __cdecl FUN_10008800(...)
     Like FUN_10008120 but supports color key (transparent color).
     """
     return 0
@@ -1378,10 +1378,10 @@ def surface_affine_texture_map_colorkey(state: list, src_rect: list, flags: int,
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003ac60 @ 0x1003ac60
-def palette_converter_init_source() -> None:
+def FUN_1003ac60() -> None:
     """Initialize global palette converter (source).
     
-    C++: void __cdecl palette_converter_init_source(void)
+    C++: void __cdecl FUN_1003ac60(void)
     Sets DAT_10057d58 vtable.
     """
     global DAT_10057d58
@@ -1390,7 +1390,7 @@ def palette_converter_init_source() -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003ac90 @ 0x1003ac90
-def palette_converter_uninit_source() -> None:
+def FUN_1003ac90() -> None:
     """Uninitialize palette converter.
     """
     pass
@@ -1398,10 +1398,10 @@ def palette_converter_uninit_source() -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003ad00 @ 0x1003ad00
-def palette_converter_init_dest() -> None:
+def FUN_1003ad00() -> None:
     """Initialize global palette converter (destination).
     
-    C++: void __cdecl palette_converter_init_dest(void)
+    C++: void __cdecl FUN_1003ad00(void)
     Sets DAT_10057d40 vtable.
     """
     global DAT_10057d40
@@ -1410,7 +1410,7 @@ def palette_converter_init_dest() -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003ad30 @ 0x1003ad30
-def palette_converter_uninit_dest() -> None:
+def FUN_1003ad30() -> None:
     """Uninitialize dest palette converter.
     """
     pass
@@ -1418,10 +1418,10 @@ def palette_converter_uninit_dest() -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003ada0 @ 0x1003ada0
-def palette_converter_init_shared() -> None:
+def FUN_1003ada0() -> None:
     """Initialize global palette converter (shared).
     
-    C++: void __cdecl palette_converter_init_shared(void)
+    C++: void __cdecl FUN_1003ada0(void)
     Sets DAT_10057d70 vtable.
     """
     global DAT_10057d70
@@ -1430,7 +1430,7 @@ def palette_converter_init_shared() -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003add0 @ 0x1003add0
-def palette_converter_uninit_shared() -> None:
+def FUN_1003add0() -> None:
     """Uninitialize shared palette converter.
     """
     pass
@@ -1438,7 +1438,7 @@ def palette_converter_uninit_shared() -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003ae30 @ 0x1003ae30
-def palette_converter_init_global() -> None:
+def FUN_1003ae30() -> None:
     """Initialize global palette converter (global).
     """
     pass
@@ -1446,35 +1446,35 @@ def palette_converter_init_global() -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003aec0 @ 0x1003aec0
-def palette_converter_init_vtable(obj: list) -> None:
+def FUN_1003aec0(obj: list) -> None:
     """Palette converter init - set vtable.
     
-    C++: void __fastcall palette_converter_init_vtable(Palette16To16* this)
+    C++: void __fastcall FUN_1003aec0(Palette16To16* this)
     """
     obj[0] = PTR_FUN_100535d0
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003af40 @ 0x1003af40
-def palette_converter_convert(this: list, param_1: int) -> list:
+def FUN_1003af40(this: list, param_1: int) -> list:
     pass
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003af60 @ 0x1003af60
-def palette_converter_convert_line(this: list, param_1: int) -> list:
+def FUN_1003af60(this: list, param_1: int) -> list:
     pass
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003af70 @ 0x1003af70
-def palette_converter_convert_pixels(this: list, param_1: int) -> list:
+def FUN_1003af70(this: list, param_1: int) -> list:
     pass
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003b390 @ 0x1003b390
-def palette_build_lut_16to16(this: list, palette_data: list, size: int) -> int:
+def FUN_1003b390(this: list, palette_data: list, size: int) -> int:
     """Build a 16-bit to 16-bit palette lookup table.
     
     C++: int __thiscall Palette16To16::build(LPVOID palette_data, int size)
@@ -1485,7 +1485,7 @@ def palette_build_lut_16to16(this: list, palette_data: list, size: int) -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003b4e0 @ 0x1003b4e0
-def palette_build_lut_brightness(this: list, palette_data: list, size: int,
+def FUN_1003b4e0(this: list, palette_data: list, size: int,
                  shift: int) -> int:
     """Build palette LUT with brightness shift.
     """
@@ -1494,7 +1494,7 @@ def palette_build_lut_brightness(this: list, palette_data: list, size: int,
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003b590 @ 0x1003b590
-def palette_build_lut_channel_scale(this: list, scale_r: int, scale_g: int, scale_b: int,
+def FUN_1003b590(this: list, scale_r: int, scale_g: int, scale_b: int,
                  shift: int) -> int:
     """Build palette LUT with per-channel scaling.
     """
@@ -1503,7 +1503,7 @@ def palette_build_lut_channel_scale(this: list, scale_r: int, scale_g: int, scal
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003b8f0 @ 0x1003b8f0
-def palette_16to16_source_ctor(this: list) -> None:
+def FUN_1003b8f0(this: list) -> None:
     """Palette16To16 (source) constructor.
     """
     this[0] = PTR_FUN_100535c4
@@ -1513,7 +1513,7 @@ def palette_16to16_source_ctor(this: list) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003b940 @ 0x1003b940
-def palette_16to16_dest_ctor(this: list) -> None:
+def FUN_1003b940(this: list) -> None:
     """Palette16To16 (destination) constructor.
     """
     this[0] = PTR_FUN_100535c8
@@ -1521,7 +1521,7 @@ def palette_16to16_dest_ctor(this: list) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003b990 @ 0x1003b990
-def palette_16to16_shared_ctor(this: list) -> None:
+def FUN_1003b990(this: list) -> None:
     """Palette16To16 (shared) constructor.
     """
     this[0] = PTR_FUN_100535cc
@@ -1529,18 +1529,18 @@ def palette_16to16_shared_ctor(this: list) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003b9e0 @ 0x1003b9e0
-def palette_16to16_dtor(obj: list) -> None:
+def FUN_1003b9e0(obj: list) -> None:
     """Palette16To16 destructor - free palette data.
     """
     obj[0] = PTR_FUN_100535d0
     # if palette_data: free it
     # Finally set to base vtable
-    notification_target_dtor(obj)
+    FUN_10001350(obj)
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003bb20 @ 0x1003bb20
-def palette_set_source_data(this: list, palette_data: list, size: int) -> int:
+def FUN_1003bb20(this: list, palette_data: list, size: int) -> int:
     """Set palette data for source lookup.
     """
     return 0
@@ -1548,7 +1548,7 @@ def palette_set_source_data(this: list, palette_data: list, size: int) -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003bb80 @ 0x1003bb80
-def palette_set_dest_data(this: list, palette_data: list, size: int) -> int:
+def FUN_1003bb80(this: list, palette_data: list, size: int) -> int:
     """Set palette data for destination lookup.
     """
     return 0
@@ -1556,7 +1556,7 @@ def palette_set_dest_data(this: list, palette_data: list, size: int) -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003bbf0 @ 0x1003bbf0
-def palette_set_shared_data(this: list, palette_data: list, size: int) -> int:
+def FUN_1003bbf0(this: list, palette_data: list, size: int) -> int:
     """Set palette data for shared lookup.
     """
     return 0
@@ -1564,7 +1564,7 @@ def palette_set_shared_data(this: list, palette_data: list, size: int) -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003bc60 @ 0x1003bc60
-def palette_set_global_data(this: list, palette_data: list, size: int) -> int:
+def FUN_1003bc60(this: list, palette_data: list, size: int) -> int:
     """Set palette data for global lookup.
     """
     return 0
@@ -1572,7 +1572,7 @@ def palette_set_global_data(this: list, palette_data: list, size: int) -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003bd90 @ 0x1003bd90
-def png_reader_ctor(this: list) -> None:
+def FUN_1003bd90(this: list) -> None:
     """PngReader constructor.
     
     C++: void __thiscall PngReader::PngReader()
@@ -1582,7 +1582,7 @@ def png_reader_ctor(this: list) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003be00 @ 0x1003be00
-def png_reader_scalar_del_dtor(this: list, param_1: int) -> list:
+def FUN_1003be00(this: list, param_1: int) -> list:
     """PngReader scalar deleting destructor.
     """
     pass
@@ -1590,7 +1590,7 @@ def png_reader_scalar_del_dtor(this: list, param_1: int) -> list:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003c200 @ 0x1003c200
-def png_get_error_message() -> int:
+def FUN_1003c200() -> int:
     """Get PNG error message.
     """
     return 0
@@ -1598,7 +1598,7 @@ def png_get_error_message() -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003c2a0 @ 0x1003c2a0
-def png_read_callback_init() -> None:
+def FUN_1003c2a0() -> None:
     """PNG read callback initialization.
     """
     pass
@@ -1606,7 +1606,7 @@ def png_read_callback_init() -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003c2c0 @ 0x1003c2c0
-def png_error_handler() -> None:
+def FUN_1003c2c0() -> None:
     """PNG error handler.
     """
     pass
@@ -1614,18 +1614,18 @@ def png_error_handler() -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003c2e0 @ 0x1003c2e0
-def png_reader_dtor(obj: list) -> None:
+def FUN_1003c2e0(obj: list) -> None:
     """PngReader destructor.
     """
     obj[0] = PTR_FUN_10053884
     # Cleanup PNG read/write structures
     obj[0] = PTR_FUN_1005392c
-    notification_target_dtor(obj)
+    FUN_10001350(obj)
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003c320 @ 0x1003c320
-def png_read_func(this: list) -> None:
+def FUN_1003c320(this: list) -> None:
     """PNG read function.
     """
     pass
@@ -1633,7 +1633,7 @@ def png_read_func(this: list) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003c350 @ 0x1003c350
-def png_output_func(this: list) -> None:
+def FUN_1003c350(this: list) -> None:
     """PNG output function.
     """
     pass
@@ -1641,7 +1641,7 @@ def png_output_func(this: list) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003c360 @ 0x1003c360
-def png_read_file(this: list, filename: str) -> int:
+def FUN_1003c360(this: list, filename: str) -> int:
     """PNG read PNG file.
     
     C++: int __thiscall PngReader::readPng(char* filename)
@@ -1654,7 +1654,7 @@ def png_read_file(this: list, filename: str) -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003c840 @ 0x1003c840
-def png_read_chunk() -> None:
+def FUN_1003c840() -> None:
     """PNG chunk reading helper.
     """
     pass
@@ -1662,7 +1662,7 @@ def png_read_chunk() -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003c880 @ 0x1003c880
-def png_process_chunk() -> None:
+def FUN_1003c880() -> None:
     """PNG chunk processing.
     """
     pass
@@ -1670,7 +1670,7 @@ def png_process_chunk() -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003c8a0 @ 0x1003c8a0
-def png_validate_signature(this: list) -> int:
+def FUN_1003c8a0(this: list) -> int:
     """Validate PNG signature bytes.
     """
     return 0
@@ -1678,7 +1678,7 @@ def png_validate_signature(this: list) -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003c900 @ 0x1003c900
-def png_decode_ihdr(this: list) -> int:
+def FUN_1003c900(this: list) -> int:
     """Decode PNG IHDR chunk.
     """
     return 0
@@ -1686,7 +1686,7 @@ def png_decode_ihdr(this: list) -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003c960 @ 0x1003c960
-def png_process_plte(this: list) -> int:
+def FUN_1003c960(this: list) -> int:
     """Process PNG PLTE chunk (palette).
     """
     return 0
@@ -1694,7 +1694,7 @@ def png_process_plte(this: list) -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003ca00 @ 0x1003ca00
-def png_process_trns(this: list) -> None:
+def FUN_1003ca00(this: list) -> None:
     """Process PNG tRNS chunk (transparency).
     """
     pass
@@ -1702,7 +1702,7 @@ def png_process_trns(this: list) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003ca20 @ 0x1003ca20
-def png_process_bkgd(this: list) -> None:
+def FUN_1003ca20(this: list) -> None:
     """Process PNG bKGD chunk (background color).
     """
     pass
@@ -1710,7 +1710,7 @@ def png_process_bkgd(this: list) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003ca40 @ 0x1003ca40
-def png_process_phys(this: list) -> None:
+def FUN_1003ca40(this: list) -> None:
     """Process PNG pHYs chunk (physical dimensions).
     """
     pass
@@ -1718,7 +1718,7 @@ def png_process_phys(this: list) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003ca60 @ 0x1003ca60
-def png_process_gama(this: list) -> None:
+def FUN_1003ca60(this: list) -> None:
     """Process PNG gAMA chunk (gamma).
     """
     pass
@@ -1726,7 +1726,7 @@ def png_process_gama(this: list) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003ca80 @ 0x1003ca80
-def png_process_sbit(this: list) -> None:
+def FUN_1003ca80(this: list) -> None:
     """Process PNG sBIT chunk (significant bits).
     """
     pass
@@ -1734,7 +1734,7 @@ def png_process_sbit(this: list) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003caa0 @ 0x1003caa0
-def png_process_srgb(this: list) -> None:
+def FUN_1003caa0(this: list) -> None:
     """Process PNG sRGB chunk.
     """
     pass
@@ -1742,7 +1742,7 @@ def png_process_srgb(this: list) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003cac0 @ 0x1003cac0
-def png_process_chrm(this: list) -> None:
+def FUN_1003cac0(this: list) -> None:
     """Process PNG cHRM chunk.
     """
     pass
@@ -1750,7 +1750,7 @@ def png_process_chrm(this: list) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003cae0 @ 0x1003cae0
-def png_process_idat(this: list) -> None:
+def FUN_1003cae0(this: list) -> None:
     """Process PNG IDAT chunk (image data).
     """
     pass
@@ -1758,7 +1758,7 @@ def png_process_idat(this: list) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003cb00 @ 0x1003cb00
-def png_process_iend(this: list) -> None:
+def FUN_1003cb00(this: list) -> None:
     """Process PNG IEND chunk (end of image).
     """
     pass
@@ -1766,7 +1766,7 @@ def png_process_iend(this: list) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003cb20 @ 0x1003cb20
-def png_process_text(this: list) -> int:
+def FUN_1003cb20(this: list) -> int:
     """Process PNG tEXt chunk (text).
     """
     return 0
@@ -1774,7 +1774,7 @@ def png_process_text(this: list) -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003cb40 @ 0x1003cb40
-def zlib_stream_ctor(this: list) -> None:
+def FUN_1003cb40(this: list) -> None:
     """ZlibStream constructor.
     
     C++: void __thiscall ZlibStream::ZlibStream()
@@ -1785,24 +1785,24 @@ def zlib_stream_ctor(this: list) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003cb70 @ 0x1003cb70
-def zlib_stream_init_allocator(this: list, param_1: int) -> list:
+def FUN_1003cb70(this: list, param_1: int) -> list:
     pass
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003cb90 @ 0x1003cb90
-def zlib_stream_dtor(obj: list) -> None:
+def FUN_1003cb90(obj: list) -> None:
     """ZlibStream destructor.
     """
     obj[0] = PTR_FUN_10053908
     # Cleanup zlib internals
     obj[0] = PTR_FUN_1005392c
-    notification_target_dtor(obj)
+    FUN_10001350(obj)
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003cc00 @ 0x1003cc00
-def zlib_stream_set_allocator(this: list, param_1: int) -> None:
+def FUN_1003cc00(this: list, param_1: int) -> None:
     """ZlibStream set allocator.
     """
     pass
@@ -1810,7 +1810,7 @@ def zlib_stream_set_allocator(this: list, param_1: int) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003cc10 @ 0x1003cc10
-def zlib_stream_set_inflate_func(this: list) -> None:
+def FUN_1003cc10(this: list) -> None:
     """ZlibStream set inflate function.
     """
     pass
@@ -1818,7 +1818,7 @@ def zlib_stream_set_inflate_func(this: list) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003cc70 @ 0x1003cc70
-def zlib_stream_set_state_handler(this: list) -> None:
+def FUN_1003cc70(this: list) -> None:
     """ZlibStream set state handler.
     """
     pass
@@ -1826,7 +1826,7 @@ def zlib_stream_set_state_handler(this: list) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003cd00 @ 0x1003cd00
-def zlib_stream_set_data_func(this: list, func: Callable) -> None:
+def FUN_1003cd00(this: list, func: Callable) -> None:
     """ZlibStream::setDataFunc - set the data processing callback.
     
     C++: void __thiscall ZlibStream::setDataFunc(code* func)
@@ -1836,7 +1836,7 @@ def zlib_stream_set_data_func(this: list, func: Callable) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003ce00 @ 0x1003ce00
-def zlib_stream_decompress(this: list, in_data: list, in_size: int,
+def FUN_1003ce00(this: list, in_data: list, in_size: int,
                  out_data: list, out_size: int) -> int:
     """ZlibStream::decompress - inflate data.
     """
@@ -1845,7 +1845,7 @@ def zlib_stream_decompress(this: list, in_data: list, in_size: int,
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003ce40 @ 0x1003ce40
-def zlib_stream_inflate_state(this: list, in_data: list, in_size: int) -> int:
+def FUN_1003ce40(this: list, in_data: list, in_size: int) -> int:
     """ZlibStream::inflate - decompress with state machine.
     """
     return 0
@@ -1853,7 +1853,7 @@ def zlib_stream_inflate_state(this: list, in_data: list, in_size: int) -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003ce90 @ 0x1003ce90
-def zlib_stream_process_data(this: list, in_data: list, in_size: int,
+def FUN_1003ce90(this: list, in_data: list, in_size: int,
                  out_data: list, out_size: int) -> int:
     """ZlibStream::processData - full decompress.
     """
@@ -1862,7 +1862,7 @@ def zlib_stream_process_data(this: list, in_data: list, in_size: int,
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003cfd0 @ 0x1003cfd0
-def zlib_stream_reset(this: list) -> None:
+def FUN_1003cfd0(this: list) -> None:
     """ZlibStream::reset.
     """
     pass
@@ -1870,7 +1870,7 @@ def zlib_stream_reset(this: list) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003d020 @ 0x1003d020
-def zlib_stream_set_dictionary(this: list, param_1: list, param_2: int) -> None:
+def FUN_1003d020(this: list, param_1: list, param_2: int) -> None:
     """ZlibStream::setDictionary.
     """
     pass
@@ -1878,30 +1878,30 @@ def zlib_stream_set_dictionary(this: list, param_1: list, param_2: int) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003d060 @ 0x1003d060
-def zlib_stream_reset_notification_vtable(obj: list) -> None:
+def FUN_1003d060(obj: list) -> None:
     """NotificationTarget vtable reset for ZlibStream base.
     """
     obj[0] = PTR_FUN_1005392c
-    notification_target_dtor(obj)
+    FUN_10001350(obj)
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003d070 @ 0x1003d070
-def zlib_stream_base_scalar_del_dtor(this: list, param_1: int) -> list:
+def FUN_1003d070(this: list, param_1: int) -> list:
     """ZlibStream base scalar deleting destructor.
     """
-    zlib_stream_reset_notification_vtable(this)
+    FUN_1003d060(this)
     if (param_1 & 1) != 0:
-        operator_delete_free(this)
+        FUN_10046490(this)
     return this
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003d1a8 @ 0x1003d1a8
-def window_translate_message() -> int:
+def FUN_1003d1a8() -> int:
     """Translate and dispatch a Windows message.
     
-    C++: undefined4 window_translate_message(void)
+    C++: undefined4 FUN_1003d1a8(void)
     Selects best display mode and dispatches message.
     """
     return 1
@@ -1909,11 +1909,11 @@ def window_translate_message() -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003d5c0 @ 0x1003d5c0
-def png_create_read_struct(version_str: str, param_2: int, param_3: int,
+def FUN_1003d5c0(version_str: str, param_2: int, param_3: int,
                  param_4: int) -> list:
     """libpng initialization / png_create_read_struct equivalent.
     
-    C++: int* __cdecl png_create_read_struct(char* version, uint, uint, uint)
+    C++: int* __cdecl FUN_1003d5c0(char* version, uint, uint, uint)
     
     Allocates and initializes the PNG read struct,
     sets up error handling, sets up zlib decompression,
@@ -1924,10 +1924,10 @@ def png_create_read_struct(version_str: str, param_2: int, param_3: int,
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003d710 @ 0x1003d710
-def png_read_info(png_ptr: list, info_ptr: list) -> None:
+def FUN_1003d710(png_ptr: list, info_ptr: list) -> None:
     """libpng png_read_info equivalent.
     
-    C++: void __cdecl png_read_info(int* png_ptr, uint* info_ptr)
+    C++: void __cdecl FUN_1003d710(int* png_ptr, uint* info_ptr)
     
     Reads PNG signature, processes IHDR, PLTE, IDAT, IEND chunks.
     Validates CRC, handles transparency, gamma, and color type conversion.
@@ -1937,7 +1937,7 @@ def png_read_info(png_ptr: list, info_ptr: list) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003de30 @ 0x1003de30
-def png_set_color_conversion() -> None:
+def FUN_1003de30() -> None:
     """libpng png_set_* color conversion helper.
     """
     pass
@@ -1945,7 +1945,7 @@ def png_set_color_conversion() -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003de90 @ 0x1003de90
-def png_decode_ihdr_data(this: list, width: int, height: int, bit_depth: int,
+def FUN_1003de90(this: list, width: int, height: int, bit_depth: int,
                  color_type: int, interlace: int, compression: int,
                  filter: int) -> int:
     """Decode PNG IHDR chunk data.
@@ -1957,7 +1957,7 @@ def png_decode_ihdr_data(this: list, width: int, height: int, bit_depth: int,
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003e0a0 @ 0x1003e0a0
-def png_decode_plte(this: list) -> int:
+def FUN_1003e0a0(this: list) -> int:
     """Decode PNG palette (PLTE chunk).
     """
     return 0
@@ -1965,7 +1965,7 @@ def png_decode_plte(this: list) -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003e130 @ 0x1003e130
-def png_process_row_data(this: list, row: list, row_num: int,
+def FUN_1003e130(this: list, row: list, row_num: int,
                  pass_num: int) -> int:
     """Process one row of PNG image data.
     
@@ -1979,7 +1979,7 @@ def png_process_row_data(this: list, row: list, row_num: int,
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003e360 @ 0x1003e360
-def png_filter_none() -> None:
+def FUN_1003e360() -> None:
     """PNG filter type None (passthrough).
     """
     pass
@@ -1987,7 +1987,7 @@ def png_filter_none() -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003e370 @ 0x1003e370
-def png_filter_sub() -> None:
+def FUN_1003e370() -> None:
     """PNG filter type Sub.
     """
     pass
@@ -1995,7 +1995,7 @@ def png_filter_sub() -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003e390 @ 0x1003e390
-def png_filter_up() -> None:
+def FUN_1003e390() -> None:
     """PNG filter type Up.
     """
     pass
@@ -2003,7 +2003,7 @@ def png_filter_up() -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003e3c0 @ 0x1003e3c0
-def png_filter_average() -> None:
+def FUN_1003e3c0() -> None:
     """PNG filter type Average.
     """
     pass
@@ -2011,7 +2011,7 @@ def png_filter_average() -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003e3f0 @ 0x1003e3f0
-def png_filter_paeth() -> None:
+def FUN_1003e3f0() -> None:
     """PNG filter type Paeth.
     """
     pass
@@ -2019,7 +2019,7 @@ def png_filter_paeth() -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003e420 @ 0x1003e420
-def png_apply_filters(this: list) -> None:
+def FUN_1003e420(this: list) -> None:
     """Apply PNG filters to image data.
     """
     pass
@@ -2027,7 +2027,7 @@ def png_apply_filters(this: list) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003e470 @ 0x1003e470
-def png_alloc_output_buffer(this: list, width: int, height: int,
+def FUN_1003e470(this: list, width: int, height: int,
                  row_bytes: int) -> int:
     """Allocate output image buffer.
     """
@@ -2036,7 +2036,7 @@ def png_alloc_output_buffer(this: list, width: int, height: int,
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003e680 @ 0x1003e680
-def png_convert_palette_to_16bit(this: list) -> int:
+def FUN_1003e680(this: list) -> int:
     """Convert palette to 16-bit RGB format.
     """
     return 0
@@ -2044,7 +2044,7 @@ def png_convert_palette_to_16bit(this: list) -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003e750 @ 0x1003e750
-def png_setup_palette_lut(this: list) -> int:
+def FUN_1003e750(this: list) -> int:
     """Set up palette LUT from decoded PLTE chunk.
     """
     return 0
@@ -2052,7 +2052,7 @@ def png_setup_palette_lut(this: list) -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003e840 @ 0x1003e840
-def png_chunk_read_helper() -> None:
+def FUN_1003e840() -> None:
     """libpng chunk reading helper.
     """
     pass
@@ -2060,7 +2060,7 @@ def png_chunk_read_helper() -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003e880 @ 0x1003e880
-def png_crc_check() -> None:
+def FUN_1003e880() -> None:
     """libpng CRC checking helper.
     """
     pass
@@ -2068,7 +2068,7 @@ def png_crc_check() -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003e890 @ 0x1003e890
-def png_read_validate_chunk(this: list, chunk_len: int) -> None:
+def FUN_1003e890(this: list, chunk_len: int) -> None:
     """Read and validate a PNG chunk.
     
     C++: void __thiscall PngReader::readChunk(int length)
@@ -2078,7 +2078,7 @@ def png_read_validate_chunk(this: list, chunk_len: int) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003f2b0 @ 0x1003f2b0
-def png_decode_process_chunks(this: list) -> None:
+def FUN_1003f2b0(this: list) -> None:
     """Decode and process all PNG chunks (central chunk loop).
     
     C++: void __thiscall PngReader::processChunks()
@@ -2088,7 +2088,7 @@ def png_decode_process_chunks(this: list) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1003f700 @ 0x1003f700
-def png_load_file_to_surface(this: list, filename: str) -> int:
+def FUN_1003f700(this: list, filename: str) -> int:
     """Load a PNG file into a surface (main entry point).
     
     C++: int __thiscall PngReader::load(char* filename)
@@ -2102,7 +2102,7 @@ def png_load_file_to_surface(this: list, filename: str) -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10042980 @ 0x10042980
-def mem_alloc(size: int) -> list:
+def FUN_10042980(size: int) -> list:
     """Custom memory allocator (malloc equivalent).
     """
     return [0] * size
@@ -2110,7 +2110,7 @@ def mem_alloc(size: int) -> list:
 
 # ──────────────────────────────────────────────
 # Function: FUN_100429f0 @ 0x100429f0
-def mem_free(ptr: list) -> None:
+def FUN_100429f0(ptr: list) -> None:
     """Custom memory free.
     """
     pass
@@ -2118,7 +2118,7 @@ def mem_free(ptr: list) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10042a10 @ 0x10042a10
-def mem_reset(this: int) -> None:
+def FUN_10042a10(this: int) -> None:
     """Memory reset/reinit.
     """
     pass
@@ -2126,7 +2126,7 @@ def mem_reset(this: int) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10042b90 @ 0x10042b90
-def mem_read(this: list, dst: list, size: int) -> None:
+def FUN_10042b90(this: list, dst: list, size: int) -> None:
     """Memory read.
     """
     pass
@@ -2134,7 +2134,7 @@ def mem_read(this: list, dst: list, size: int) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10042bc0 @ 0x10042bc0
-def mem_init(this: list, param_1: int, param_2: int) -> None:
+def FUN_10042bc0(this: list, param_1: int, param_2: int) -> None:
     """Memory initialization.
     """
     pass
@@ -2142,7 +2142,7 @@ def mem_init(this: list, param_1: int, param_2: int) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10042c60 @ 0x10042c60
-def mem_pool_alloc(param_1: int) -> list:
+def FUN_10042c60(param_1: int) -> list:
     """Allocate memory pool.
     """
     return None
@@ -2150,7 +2150,7 @@ def mem_pool_alloc(param_1: int) -> list:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10042cb0 @ 0x10042cb0
-def mem_pool_free(this: list) -> None:
+def FUN_10042cb0(this: list) -> None:
     """Free memory pool.
     """
     pass
@@ -2158,7 +2158,7 @@ def mem_pool_free(this: list) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10042cc0 @ 0x10042cc0
-def mem_pool_allocate_from(this: list, size: int) -> list:
+def FUN_10042cc0(this: list, size: int) -> list:
     """Allocate from memory pool.
     """
     return None
@@ -2166,7 +2166,7 @@ def mem_pool_allocate_from(this: list, size: int) -> list:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10042d00 @ 0x10042d00
-def mem_pool_free_from(this: list, ptr: list) -> None:
+def FUN_10042d00(this: list, ptr: list) -> None:
     """Free from memory pool.
     """
     pass
@@ -2174,7 +2174,7 @@ def mem_pool_free_from(this: list, ptr: list) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10042d90 @ 0x10042d90
-def png_set_error_message(this: list, msg: str) -> None:
+def FUN_10042d90(this: list, msg: str) -> None:
     """Set error message in PNG struct.
     """
     pass
@@ -2182,7 +2182,7 @@ def png_set_error_message(this: list, msg: str) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10042f30 @ 0x10042f30
-def png_init_jump_buffer(this: list, param_2: int, param_3: int,
+def FUN_10042f30(this: list, param_2: int, param_3: int,
                  param_4: int) -> None:
     """Initialize jump buffer / error handling.
     """
@@ -2191,10 +2191,10 @@ def png_init_jump_buffer(this: list, param_2: int, param_3: int,
 
 # ──────────────────────────────────────────────
 # Function: FUN_10042f50 @ 0x10042f50
-def read_be32(data: list) -> int:
+def FUN_10042f50(data: list) -> int:
     """Read big-endian 32-bit integer.
     
-    C++: uint __cdecl read_be32(byte* data)
+    C++: uint __cdecl FUN_10042f50(byte* data)
     Used for PNG chunk length parsing.
     """
     return (data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3]
@@ -2202,7 +2202,7 @@ def read_be32(data: list) -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10042fa0 @ 0x10042fa0
-def read_data_from_stream(this: list, dst: list, size: int) -> None:
+def FUN_10042fa0(this: list, dst: list, size: int) -> None:
     """Read data from file stream into buffer.
     """
     pass
@@ -2210,17 +2210,17 @@ def read_data_from_stream(this: list, dst: list, size: int) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_100430f0 @ 0x100430f0
-def png_process_ihdr_data(this: list, info_ptr: list, length: int) -> None:
+def FUN_100430f0(this: list, info_ptr: list, length: int) -> None:
     """Process PNG IHDR chunk data.
     
-    C++: void __cdecl png_process_ihdr_data(int* png_ptr, uint* info_ptr, int length)
+    C++: void __cdecl FUN_100430f0(int* png_ptr, uint* info_ptr, int length)
     """
     pass
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_10043350 @ 0x10043350
-def png_process_plte_data(this: list, info_ptr: int, length: int) -> None:
+def FUN_10043350(this: list, info_ptr: int, length: int) -> None:
     """Process PNG PLTE chunk data.
     """
     pass
@@ -2228,7 +2228,7 @@ def png_process_plte_data(this: list, info_ptr: int, length: int) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_100434b0 @ 0x100434b0
-def png_process_idat_data(this: list, info_ptr: int, length: int) -> None:
+def FUN_100434b0(this: list, info_ptr: int, length: int) -> None:
     """Process PNG IDAT chunk data.
     """
     pass
@@ -2236,7 +2236,7 @@ def png_process_idat_data(this: list, info_ptr: int, length: int) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_100437f0 @ 0x100437f0
-def png_process_text_data(this: list, info_ptr: int, length: int) -> None:
+def FUN_100437f0(this: list, info_ptr: int, length: int) -> None:
     """Process PNG tEXt chunk data.
     """
     pass
@@ -2244,7 +2244,7 @@ def png_process_text_data(this: list, info_ptr: int, length: int) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_100442b0 @ 0x100442b0
-def png_process_iend_data(this: list, info_ptr: int, length: int) -> None:
+def FUN_100442b0(this: list, info_ptr: int, length: int) -> None:
     """Process PNG IEND chunk data.
     """
     pass
@@ -2256,7 +2256,7 @@ def png_process_iend_data(this: list, info_ptr: int, length: int) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10046490 @ 0x10046490
-def operator_delete_free(ptr: list) -> None:
+def FUN_10046490(ptr: list) -> None:
     """operator delete / free memory.
     
     In the decompiled code, this is called when an object's
@@ -2267,10 +2267,10 @@ def operator_delete_free(ptr: list) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10046558 @ 0x10046558
-def register_trampoline(address: int) -> None:
+def FUN_10046558(address: int) -> None:
     """Register a function/trampoline.
     
-    C++: void __cdecl register_trampoline(int address)
+    C++: void __cdecl FUN_10046558(int address)
     """
     pass
 
@@ -2281,20 +2281,20 @@ def register_trampoline(address: int) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1004b134 @ 0x1004b134
-def zlib_alloc_default(param_1: int, param_2: int) -> None:
+def FUN_1004b134(param_1: int, param_2: int) -> None:
     """zlib allocator (default).
     
-    C++: void __cdecl zlib_alloc_default(int size, int count)
+    C++: void __cdecl FUN_1004b134(int size, int count)
     """
     pass
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_1004e40d @ 0x1004e40d
-def imul32_overflow(a: int, b: int, out: list) -> int:
+def FUN_1004e40d(a: int, b: int, out: list) -> int:
     """32-bit multiply with overflow detection.
     
-    C++: int __cdecl imul32_overflow(uint a, uint b, uint* out)
+    C++: int __cdecl FUN_1004e40d(uint a, uint b, uint* out)
     
     Returns 0 on success, non-zero if overflow.
     """
@@ -2307,10 +2307,10 @@ def imul32_overflow(a: int, b: int, out: list) -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1004e48c @ 0x1004e48c
-def inflate_bit_read_left(state: list) -> None:
+def FUN_1004e48c(state: list) -> None:
     """Inflate bit reader: shift in next bit (left shift).
     
-    C++: void __cdecl inflate_bit_read_left(uint* state)
+    C++: void __cdecl FUN_1004e48c(uint* state)
     
     Part of the bit-oriented inflate decompressor.
     Shifts the bit buffer left by 1 and reads a new byte if needed.
@@ -2320,7 +2320,7 @@ def inflate_bit_read_left(state: list) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1004e4ba @ 0x1004e4ba
-def inflate_bit_read_right(state: list) -> None:
+def FUN_1004e4ba(state: list) -> None:
     """Inflate bit reader: shift right (opposite direction).
     """
     pass
@@ -2328,17 +2328,17 @@ def inflate_bit_read_right(state: list) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1004f27d @ 0x1004f27d
-def inflate_fixed_huffman_block(param_1: list, param_2: int, param_3: int) -> int:
+def FUN_1004f27d(param_1: list, param_2: int, param_3: int) -> int:
     """Inflate fixed Huffman block.
     
-    C++: int __cdecl inflate_fixed_huffman_block(...)
+    C++: int __cdecl FUN_1004f27d(...)
     """
     return 0
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_1004f494 @ 0x1004f494
-def inflate_table_builder_helper(param_1: list) -> int:
+def FUN_1004f494(param_1: list) -> int:
     """Inflate table builder helper.
     """
     return 0
@@ -2346,7 +2346,7 @@ def inflate_table_builder_helper(param_1: list) -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1004f4ba @ 0x1004f4ba
-def inflate_distance_table_access() -> int:
+def FUN_1004f4ba() -> int:
     """Inflate distance table accessor.
     """
     return 0
@@ -2354,7 +2354,7 @@ def inflate_distance_table_access() -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1004f4bd @ 0x1004f4bd
-def inflate_length_table_access() -> int:
+def FUN_1004f4bd() -> int:
     """Inflate length table accessor.
     """
     return 0
@@ -2362,7 +2362,7 @@ def inflate_length_table_access() -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1004f4cb @ 0x1004f4cb
-def inflate_code_length_table_access() -> int:
+def FUN_1004f4cb() -> int:
     """Inflate code length table accessor.
     """
     return 0
@@ -2370,7 +2370,7 @@ def inflate_code_length_table_access() -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1004f4da @ 0x1004f4da
-def inflate_distance_code_table_access() -> int:
+def FUN_1004f4da() -> int:
     """Inflate distance code table accessor.
     """
     return 0
@@ -2378,7 +2378,7 @@ def inflate_distance_code_table_access() -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1004f4fd @ 0x1004f4fd
-def inflate_fixed_length_table_access() -> int:
+def FUN_1004f4fd() -> int:
     """Inflate fixed length table accessor.
     """
     return 0
@@ -2386,10 +2386,10 @@ def inflate_fixed_length_table_access() -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1004f560 @ 0x1004f560
-def inflate_copy_match_lz77(param_1: list, param_2: list) -> None:
+def FUN_1004f560(param_1: list, param_2: list) -> None:
     """Inflate copy match (LZ77).
     
-    C++: void __cdecl inflate_copy_match_lz77(ushort* dest, ushort* match)
+    C++: void __cdecl FUN_1004f560(ushort* dest, ushort* match)
     Copies a back-referenced match during decompression.
     """
     pass
@@ -2397,20 +2397,20 @@ def inflate_copy_match_lz77(param_1: list, param_2: list) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1004f58f @ 0x1004f58f
-def inflate_output_byte(param_1: list, param_2: list) -> None:
+def FUN_1004f58f(param_1: list, param_2: list) -> None:
     """Inflate output byte.
     
-    C++: void __cdecl inflate_output_byte(int* state, int* table_entry)
+    C++: void __cdecl FUN_1004f58f(int* state, int* table_entry)
     """
     pass
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_1004f7af @ 0x1004f7af
-def inflate_decode_huffman(param_1: list, param_2: int, param_3: int) -> None:
+def FUN_1004f7af(param_1: list, param_2: int, param_3: int) -> None:
     """Inflate decode from bit stream using Huffman tree.
     
-    C++: void __cdecl inflate_decode_huffman(int* buffer, uint bit_count, int table)
+    C++: void __cdecl FUN_1004f7af(int* buffer, uint bit_count, int table)
     Decodes 'bit_count' bits using the Huffman tree at 'table'.
     """
     pass
@@ -2418,10 +2418,10 @@ def inflate_decode_huffman(param_1: list, param_2: int, param_3: int) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1004f82b @ 0x1004f82b
-def inflate_set_window_size(param_1: int, param_2: int) -> int:
+def FUN_1004f82b(param_1: int, param_2: int) -> int:
     """Set inflate window size / dictionary.
     
-    C++: int __cdecl inflate_set_window_size(uint param_1, int param_2)
+    C++: int __cdecl FUN_1004f82b(uint param_1, int param_2)
     
     param_2: 0x8000 = store, 0x4000 = (store|0x80)
     Returns previous state or -1 on error.
@@ -2431,31 +2431,31 @@ def inflate_set_window_size(param_1: int, param_2: int) -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1004f8b0 @ 0x1004f8b0
-def inflate_reset_stream(param_1: int) -> int:
+def FUN_1004f8b0(param_1: int) -> int:
     """Reset inflate stream (start new block).
     
-    C++: undefined4 __cdecl inflate_reset_stream(int zlib_state)
+    C++: undefined4 __cdecl FUN_1004f8b0(int zlib_state)
     """
     return 0
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_1004f900 @ 0x1004f900
-def inflate_end_free(param_1: int) -> int:
+def FUN_1004f900(param_1: int) -> int:
     """End/free inflate stream.
     
-    C++: undefined4 __cdecl inflate_end_free(int zlib_state)
+    C++: undefined4 __cdecl FUN_1004f900(int zlib_state)
     """
     return 0
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_1004f950 @ 0x1004f950
-def inflate_init(state: int, window_bits: int, version: str,
+def FUN_1004f950(state: int, window_bits: int, version: str,
                  struct_size: int) -> int:
     """Initialize inflate (zlib inflateInit_ equivalent).
     
-    C++: undefined4 __cdecl inflate_init(int state, int window_bits,
+    C++: undefined4 __cdecl FUN_1004f950(int state, int window_bits,
                                           char* version, int struct_size)
     
     Initializes the inflate state machine.
@@ -2478,20 +2478,20 @@ def inflate_init(state: int, window_bits: int, version: str,
 
 # ──────────────────────────────────────────────
 # Function: FUN_1004fa60 @ 0x1004fa60
-def inflate_init_default_window(state: int, version: str, struct_size: int) -> None:
+def FUN_1004fa60(state: int, version: str, struct_size: int) -> None:
     """Inflate init with window size 15 (default).
     
-    C++: void __cdecl inflate_init_default_window(int state, char* version, int struct_size)
+    C++: void __cdecl FUN_1004fa60(int state, char* version, int struct_size)
     """
-    inflate_init(state, 15, version, struct_size)
+    FUN_1004f950(state, 15, version, struct_size)
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_1004fa80 @ 0x1004fa80
-def inflate_decompress(z_state: list, flush_mode: int) -> int:
+def FUN_1004fa80(z_state: list, flush_mode: int) -> int:
     """Inflate (zlib inflate equivalent).
     
-    C++: int __cdecl inflate_decompress(int* z_stream, int flush)
+    C++: int __cdecl FUN_1004fa80(int* z_stream, int flush)
     
     Main inflate/decompression entry point.
     State machine with cases:
@@ -2517,10 +2517,10 @@ def inflate_decompress(z_state: list, flush_mode: int) -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_1004ffd0 @ 0x1004ffd0
-def inflate_build_huffman_tree(tree: list, state: int, result: list) -> None:
+def FUN_1004ffd0(tree: list, state: int, result: list) -> None:
     """Build/reuse a Huffman tree from codeword lengths.
     
-    C++: void __cdecl inflate_build_huffman_tree(int* tree, int state, int* result)
+    C++: void __cdecl FUN_1004ffd0(int* tree, int state, int* result)
     
     Builds a Huffman decoding tree from a list of code lengths.
     """
@@ -2529,17 +2529,17 @@ def inflate_build_huffman_tree(tree: list, state: int, result: list) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10050070 @ 0x10050070
-def inflate_alloc_huffman_table(state: int, alloc_hint: int, table_size: int) -> list:
+def FUN_10050070(state: int, alloc_hint: int, table_size: int) -> list:
     """Allocate Huffman tree table.
     
-    C++: int* __cdecl inflate_alloc_huffman_table(int state, int alloc_hint, int table_size)
+    C++: int* __cdecl FUN_10050070(int state, int alloc_hint, int table_size)
     """
     return None
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_100500e0 @ 0x100500e0
-def inflate_stored_block(huff_table: list, z_state: list, avail: int) -> int:
+def FUN_100500e0(huff_table: list, z_state: list, avail: int) -> int:
     """Inflate stored/compressed block.
     
     Processes either a stored (type 0) or dynamic Huffman (type 1/2) block.
@@ -2549,21 +2549,21 @@ def inflate_stored_block(huff_table: list, z_state: list, avail: int) -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10050e10 @ 0x10050e10
-def inflate_free_huffman_tree(tree: list, state: int, result: list) -> int:
+def FUN_10050e10(tree: list, state: int, result: list) -> int:
     """Free Huffman tree and call destructor.
     
-    C++: undefined4 __cdecl inflate_free_huffman_tree(int* tree, int state, int* result)
+    C++: undefined4 __cdecl FUN_10050e10(int* tree, int state, int* result)
     """
-    inflate_build_huffman_tree(tree, state, result)
+    FUN_1004ffd0(tree, state, result)
     return 0
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_10050e50 @ 0x10050e50
-def crc32_checksum(init_crc: int, buf: list, length: int) -> int:
+def FUN_10050e50(init_crc: int, buf: list, length: int) -> int:
     """Compute CRC32 checksum.
     
-    C++: uint __cdecl crc32_checksum(uint crc, byte* buf, uint length)
+    C++: uint __cdecl FUN_10050e50(uint crc, byte* buf, uint length)
     
     Standard CRC32 computation used for PNG chunk validation.
     Uses polynomial 0xEDB88320 (reflected).
@@ -2632,34 +2632,34 @@ def crc32_checksum(init_crc: int, buf: list, length: int) -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10050f80 @ 0x10050f80
-def zlib_alloc_default_wrapper(param_1: int, param_2: int, param_3: int) -> None:
+def FUN_10050f80(param_1: int, param_2: int, param_3: int) -> None:
     """Default zlib allocator (wraps FUN_1004b134).
     
-    C++: void __cdecl zlib_alloc_default_wrapper(uint param_1, int param_2, int param_3)
+    C++: void __cdecl FUN_10050f80(uint param_1, int param_2, int param_3)
     """
-    zlib_alloc_default(param_2, param_3)
+    FUN_1004b134(param_2, param_3)
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_10050fb0 @ 0x10050fb0
-def inflate_build_dynamic_huffman(param_1: list, param_2: list, param_3: list,
+def FUN_10050fb0(param_1: list, param_2: list, param_3: list,
                  param_4: int) -> int:
     """Build dynamic Huffman table from code lengths (inflate).
     
-    C++: int __cdecl inflate_build_dynamic_huffman(int* lengths, uint* out_table,
+    C++: int __cdecl FUN_10050fb0(int* lengths, uint* out_table,
                                    uint* out_bits, int state)
     """
-    return inflate_build_canonical_huffman(param_1, 19, 19, 0, 0, param_3, param_2, param_4)
+    return FUN_10051010(param_1, 19, 19, 0, 0, param_3, param_2, param_4)
 
 
 # ──────────────────────────────────────────────
 # Function: FUN_10051010 @ 0x10051010
-def inflate_build_canonical_huffman(lengths: list, num_codes: int, max_codes: int,
+def FUN_10051010(lengths: list, num_codes: int, max_codes: int,
                   param_4: int, param_5: int, out_bits: list,
                   out_table: list, state: int) -> int:
     """Build canonical Huffman code table.
     
-    C++: undefined4 __cdecl inflate_build_canonical_huffman(int* lengths, uint num_codes,
+    C++: undefined4 __cdecl FUN_10051010(int* lengths, uint num_codes,
                                           uint max_codes, int, int,
                                           uint* out_bits, uint* out_table,
                                           int state)
@@ -2679,7 +2679,7 @@ def inflate_build_canonical_huffman(lengths: list, num_codes: int, max_codes: in
 
 # ──────────────────────────────────────────────
 # Function: FUN_100514d0 @ 0x100514d0
-def inflate_build_combined_trees(param_1: int, param_2: int, param_3: list,
+def FUN_100514d0(param_1: int, param_2: int, param_3: list,
                  param_4: list, param_5: list, param_6: list,
                  param_7: list, param_8: int) -> int:
     """Inflate: build combined length/distance trees.
@@ -2689,7 +2689,7 @@ def inflate_build_combined_trees(param_1: int, param_2: int, param_3: list,
 
 # ──────────────────────────────────────────────
 # Function: FUN_100515c0 @ 0x100515c0
-def inflate_compute_table_size(a: list, b: list, c: list, d: list) -> None:
+def FUN_100515c0(a: list, b: list, c: list, d: list) -> None:
     """Inflate: compute table size parameters.
     """
     pass
@@ -2697,7 +2697,7 @@ def inflate_compute_table_size(a: list, b: list, c: list, d: list) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10051720 @ 0x10051720
-def zlib_free_default(ptr: int, state: int) -> None:
+def FUN_10051720(ptr: int, state: int) -> None:
     """Free memory via zlib allocator.
     """
     pass
@@ -2705,7 +2705,7 @@ def zlib_free_default(ptr: int, state: int) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10051730 @ 0x10051730
-def inflate_helper(param_1: list, param_2: int) -> None:
+def FUN_10051730(param_1: list, param_2: int) -> None:
     """Inflate helper.
     """
     pass
@@ -2713,7 +2713,7 @@ def inflate_helper(param_1: list, param_2: int) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10051760 @ 0x10051760
-def inflate_alloc_trees(param_1: int, param_2: int, param_3: list,
+def FUN_10051760(param_1: int, param_2: int, param_3: list,
                  param_4: list, param_5: int) -> int:
     """Inflate: allocate and initialize trees.
     """
@@ -2722,10 +2722,10 @@ def inflate_alloc_trees(param_1: int, param_2: int, param_3: list,
 
 # ──────────────────────────────────────────────
 # Function: FUN_100517a0 @ 0x100517a0
-def inflate_process_block(state: list, stream: list, flush: int) -> int:
+def FUN_100517a0(state: list, stream: list, flush: int) -> int:
     """Inflate: process one deflate block.
     
-    C++: int __cdecl inflate_process_block(uint* state, int* stream, int flush)
+    C++: int __cdecl FUN_100517a0(uint* state, int* stream, int flush)
     
     Decodes stored (type 0), fixed Huffman (type 1),
     or dynamic Huffman (type 2) blocks.
@@ -2735,7 +2735,7 @@ def inflate_process_block(state: list, stream: list, flush: int) -> int:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10051f30 @ 0x10051f30
-def inflate_free_trees(ptr: int, state: int) -> None:
+def FUN_10051f30(ptr: int, state: int) -> None:
     """Inflate: free allocated trees.
     """
     pass
@@ -2743,7 +2743,7 @@ def inflate_free_trees(ptr: int, state: int) -> None:
 
 # ──────────────────────────────────────────────
 # Function: FUN_10051f50 @ 0x10051f50
-def inflate_save_state(state: int, stream: list, result: int) -> None:
+def FUN_10051f50(state: int, stream: list, result: int) -> None:
     """Inflate: save state and return result.
     
     Saves the current bit buffer state and returns result code.

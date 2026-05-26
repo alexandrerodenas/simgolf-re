@@ -53,9 +53,53 @@ from __future__ import annotations
 
 import typing as t
 
-from engine_stubs import calculate_score, check_partner_status, format_name_text, get_hole_index, itoa, move_ball_to, set_golfer_event, update_golfer_mood, update_scroll_param, update_tile_skill
 # ── Forward declarations of subsidiary functions ──────────────────
 # (to be implemented in their own modules)
+def FUN_004676e0(golfer_id: int, param_2: int) -> None:
+    """Update golfer mood / satisfaction (FUN_004676E0)."""
+    ...
+
+def FUN_00467560(golfer_id: int) -> None:
+    """Update golfer skill from experience (FUN_00467560)."""
+    ...
+
+def FUN_0046c940(golfer_id: int) -> int:
+    """Check / update golf partner status. Returns 0 = different, non-0 = same."""
+    ...
+
+def FUN_00469a20(param_2: int, diff: int) -> None:
+    """Score / difficulty reaction helper."""
+    ...
+
+def FUN_0040a9a0(param_2: int) -> None:
+    """Resolve club name from param_2 to string in buffer."""
+    ...
+
+def FUN_004ad425(value: int, _buf: int, base: int) -> str:
+    """Integer-to-string conversion (like itoa)."""
+    ...
+
+def FUN_00407700(x: int, y: int, z: int) -> None:
+    """UI / coordinate helper."""
+    ...
+
+def FUN_0045b7c0(template: str, name_buf: str) -> None:
+    """Replace MYNAME / PARTNER placeholders with actual names."""
+    ...
+
+def FUN_00407280(hole_idx: int) -> None:
+    """Get hole name / number string."""
+    ...
+
+def FUN_00466b70(tile_id: int, sub_type: int, skill_type: int, flag: int) -> None:
+    """Skill training facility interaction helper."""
+    ...
+
+
+# ── Global state (mapped from decompiled DAT_* symbols) ────────────
+# These live in a shared state dict / module so they can be mutated.
+# For now we use module-level globals to match the C semantics.
+
 g_text_buffer: str = ""
 """DAT_0051a068 — global text output buffer (string being assembled)."""
 
@@ -707,12 +751,12 @@ def _case_1(golfer_id: int) -> None:
         partner_lie = _get_lie_byte(partner_id)
 
         if (partner_lie & 1) == 0:
-            if check_partner_status(partner_id) != 0:
+            if FUN_0046c940(partner_id) != 0:
                 _emit(S["s___I_couldn_t_do_it_any_better__004e3848"])
             else:
                 _emit(S["s___you_are_soooo_GOOD__004e3868"])
         else:
-            if check_partner_status(partner_id) != 0:
+            if FUN_0046c940(partner_id) != 0:
                 _emit(S["s___what_a_great_shot__004e3880"])
             else:
                 _emit(S["s___you_truly_rock__004e3898"])
@@ -729,12 +773,12 @@ def _case_2(golfer_id: int, param_2: int) -> None:
 
     if hole_word == 2:
         _emit("")  # s_DAT_004e37ac
-        update_golfer_mood(golfer_id, 0)
+        FUN_004676e0(golfer_id, 0)
         _emit(S["s___you_re_DATA_004e379c"])
 
     elif hole_word == 4:
         _emit(S["s_Oh_darn__you_re_DATA_004e37b4"])
-        set_golfer_event(golfer_id)
+        FUN_00467560(golfer_id)
         _emit("")  # &DAT_004c4e60 (generic suffix)
 
     else:
@@ -755,13 +799,13 @@ def _case_3(golfer_id: int, param_2: int, param_3: int) -> None:
     if hole_word == 2:
         _emit(S["s_You_look_even_better_DATA_004e3718"])
         _emit(" ")  # DAT_004c3f70
-        update_golfer_mood(golfer_id, 0)
+        FUN_004676e0(golfer_id, 0)
         _emit("")  # DAT_004c4944 (empty flush)
         _goto_LAB_0046a713()
 
     elif hole_word == 3:
         _emit("")  # &DAT_004e3748
-        update_golfer_mood(golfer_id, 0)
+        FUN_004676e0(golfer_id, 0)
         _emit(S["s___now_you_re_DATA__004e3734"])
         _goto_LAB_0046a713()
 
@@ -789,7 +833,7 @@ def _case_4(golfer_id: int, param_2: int) -> None:
 
     if _get_hole_flags(golfer_id) == 4:
         _emit(S["s_Only_you_could_miss_this_shot_004e3a80"])
-        update_golfer_mood(golfer_id, 0)
+        FUN_004676e0(golfer_id, 0)
         _emit_display_flag()
         _emit_color(0x80007D08)
     else:
@@ -817,7 +861,7 @@ def _case_5_37_38(event_type: int, golfer_id: int,
 
     elif hole_word == 1:
         _emit(S["s_Careful_of_the_DATA_004e3910"])
-        set_golfer_event(golfer_id)
+        FUN_00467560(golfer_id)
         # goto LAB_0046a2bd — inlined
         _emit_display_flag()
 
@@ -829,14 +873,14 @@ def _case_5_37_38(event_type: int, golfer_id: int,
             _emit(S["s_You_re_going_into_the_DATA_004e38f4"])
         _emit(" ")  # DAT_004c3f70
         # goto LAB_0046a2b4 — inlined
-        update_golfer_mood(golfer_id, 0)
+        FUN_004676e0(golfer_id, 0)
         _emit_display_flag()
 
     elif hole_word in (3, 5):
         # uVar17 = 1
         _emit(S["s_Watch_out_for_the_DATA_004e3924"])
         # goto LAB_0046a2b4 with uVar17=1 — inlined
-        update_golfer_mood(golfer_id, 1)
+        FUN_004676e0(golfer_id, 1)
         _emit_display_flag()
 
     # Shared postlogue for sub-cases
@@ -918,7 +962,7 @@ def _case_0xB(golfer_id: int, param_2: int) -> None:
     # Hole type 1 → call skill update
     if hole_type == 1:
         tile_id = _get_hole_tile(golfer_id)
-        set_golfer_event(tile_id)
+        FUN_00467560(tile_id)
         _emit_color(0x800023E8)
     else:
         _emit("")  # &DAT_004c4e60 (generic DATA suffix)
@@ -937,7 +981,7 @@ def _case_0xD(golfer_id: int, param_2: int) -> None:
 
     if hole_word in (2, 4):
         _emit(S["s_Did_I_hear_a_splash_004e2ebc"])
-        update_golfer_mood(golfer_id, 0)
+        FUN_004676e0(golfer_id, 0)
         _emit("!")  # &DAT_004c5c0c
         _emit_display_flag()
         _goto_LAB_0046bb15()
@@ -1041,7 +1085,7 @@ def _case_0x13_0x17(event_type: int, golfer_id: int,
 
             if (skill_flag & hole_flags2) == 0 or diff > 0:
                 # Delegate to FUN_00469a20 for generic reaction
-                calculate_score(param_2, diff)
+                FUN_00469a20(param_2, diff)
                 return
             else:
                 if skill_flag == 0x100:
@@ -1102,10 +1146,10 @@ def _case_0x1A(golfer_id: int) -> None:
     else:
         _emit(S["s_You_look_a_bit_tired_004e2e68"])
         if hole_flags == 1:
-            set_golfer_event(golfer_id)
+            FUN_00467560(golfer_id)
         else:
             partner_id = _get_hole_tile(golfer_id)
-            update_golfer_mood(partner_id, 1)
+            FUN_004676e0(partner_id, 1)
         _emit_display_flag()
         _emit("")  # &DAT_004c4944
 
@@ -1124,14 +1168,14 @@ def _case_0x1C(golfer_id: int) -> None:
         _emit(S["s_Look_at_that_lovely_DATA_004e2f6c"])
         if hole_type == 1:
             tile_id = _get_hole_tile(golfer_id)
-            set_golfer_event(tile_id)
+            FUN_00467560(tile_id)
         else:
             partner_id = _get_hole_tile(golfer_id)
-            update_golfer_mood(partner_id, 1)
+            FUN_004676e0(partner_id, 1)
         _emit("")  # &DAT_004c4944
         _emit_color(0x800023E8)
     else:
-        partner_status = check_partner_status(golfer_id)
+        partner_status = FUN_0046c940(golfer_id)
         if partner_status == 0:
             if (_get_lie_byte(golfer_id) & 1) == 0:
                 _emit_color(0x800023E8)
@@ -1240,7 +1284,7 @@ def _case_0x24(param_2: int) -> None:
 
 def _case_0x27(golfer_id: int) -> None:
     """Scared a creature."""
-    if check_partner_status(golfer_id) != 0:
+    if FUN_0046c940(golfer_id) != 0:
         _emit(S["s_I_guess_I_scared_that_little_DAT_004e3090"])
     else:
         _emit(S["s_I_think_I_frightened_that_poor_D_004e3068"])
@@ -1272,7 +1316,7 @@ def _case_0x28(golfer_id: int, param_2: int) -> None:
 
     if param_2 > 0:
         _emit("!")  # &DAT_004c4974
-        move_ball_to(0, 0, param_2)
+        FUN_00407700(0, 0, param_2)
         _emit("!")  # &DAT_004c59e0
 
 
@@ -1287,7 +1331,7 @@ def _case_0x29(golfer_id: int) -> None:
 def _case_0x2A(golfer_id: int) -> None:
     """Lucky bounce."""
     _emit(S["s_Lucky_bounce__004e30f8"])
-    update_golfer_mood(golfer_id, 0)
+    FUN_004676e0(golfer_id, 0)
     _emit_display_flag()
 
 
@@ -1300,7 +1344,7 @@ def _case_0x2B() -> None:
 def _case_0x2C(param_2: int) -> None:
     """Never mind — nice."""
     _emit(S["s_Never_mind___nice_004e30e4"])
-    move_ball_to(0, 0, param_2)
+    FUN_00407700(0, 0, param_2)
     _emit("!")  # &DAT_004c59e0
     _emit_color(0x800023E8)
 
@@ -1351,7 +1395,7 @@ def _case_0x32(golfer_id: int, param_2: int) -> None:
     sub_type = param_2 & 0xF
     skill_type = param_2 >> 4
     flag = (_get_terrain_flag(golfer_id, 1 << 20) & 1)
-    update_tile_skill(tile_id, sub_type, skill_type, flag)
+    FUN_00466b70(tile_id, sub_type, skill_type, flag)
 
 
 def _case_0x33(golfer_id: int) -> None:
@@ -1396,7 +1440,7 @@ def _case_0x35(golfer_id: int) -> None:
 def _case_0x36(param_2: int) -> None:
     """I'll use my [club] for this shot."""
     _emit(S["s_I_ll_use_my_004e2ca4"])
-    update_scroll_param(param_2)  # resolves club name into buffer
+    FUN_0040a9a0(param_2)  # resolves club name into buffer
     _emit(S["s_for_this_shot__004e2c94"])
     if _get_round_count() < 2:
         _emit_color(0x800023E8)
@@ -1441,15 +1485,15 @@ def _case_0x3B(golfer_id: int, hole_idx: int, param_2: int) -> None:
             _emit(S["s_on_this_hole_last_time__004e328c"])
         elif (hole_flags2 & 2) == 0:
             _emit(S["s_You_know_004e32e0"])
-            update_golfer_mood(golfer_id ^ 1, 0)
+            FUN_004676e0(golfer_id ^ 1, 0)
             _emit(" ")  # &DAT_004c52b8
             lie = _get_lie_byte(golfer_id)
             if (lie & 1) == 0:
                 _emit(S["s_they_call_this_hole_004e32b4"])
-                get_hole_index(hole_idx)
+                FUN_00407280(hole_idx)
                 _emit("")  # &DAT_004c4944
             else:
-                get_hole_index(hole_idx)
+                FUN_00407280(hole_idx)
                 _emit(S["s_is_a_top_100_hole__004e32cc"])
         else:
             _emit(S["s_This_hole_is_rated_in_the_top_18_004e32ec"])
@@ -1508,7 +1552,7 @@ def _case_0x3E(golfer_id: int) -> None:
     # Read personality offset byte at DAT_004d60aa[tile_idx * 0x230]
     personality_offset = 0  # placeholder
     # Adjust offset based on partner status
-    partner_status = check_partner_status(golfer_id)
+    partner_status = FUN_0046c940(golfer_id)
     if partner_status == 0:
         personality_offset += 0x14
     # String table at DAT_004d55ec + personality_offset * 0x44
