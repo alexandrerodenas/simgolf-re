@@ -1,0 +1,496 @@
+================================================================================
+SID MEIER'S SIMGOLF (golf.exe) - DECOMPILED CODE ANALYSIS
+================================================================================
+Source: ~/simgolf-re/ref/decompiled/ghidra/golf/
+1703 .c files total (1665 FUN_*.c + runtime/CRT files)
+Total lines across all files: 297,708
+Largest single: all_decompiled.c (152,258 lines - all functions concatenated)
+
+================================================================================
+1. GAME ARCHITECTURE OVERVIEW
+================================================================================
+
+The executable is "Sid Meier's SimGolf" (Windows, ~00400000 base address).
+It uses a custom engine layer built on top of Win32, with a DLL plugin
+(jgld.dll) for 3D rendering.
+
+Key architectural layers:
+  A. Entry / WinMain (0x004A682F, 0x0045BAF0)
+  B. Window/Input System (0x004806C0, 0x004808C0)
+  C. Graphics/Rendering Pipeline (0x00475840, 0x00483BD0, etc.)
+  D. Asset/Loading System (0x0043DBE0, 0x0043D740)
+  E. Event/Messaging System (0x00469B00)
+  F. Course Generation (0x00442180)
+  G. Ball Physics & Simulation (0x00467A00, 0x004289E0)
+  H. Golfer/AI System (0x004385D0, 0x0044Fb30)
+  I. Course Designer / Editor (0x00427380)
+  J. Economy/Management (0x0044CFF0)
+  K. UI/Text Rendering (0x00404970, 0x00404B70, etc.)
+
+================================================================================
+2. NOTABLE CONSTANTS: GLOBALS & DATA STRUCTURES (hex offsets)
+================================================================================
+
+DAT_0051a068      = Text buffer (used as a global string output area)
+DAT_00519cd4      = Primary rendering surface/context
+DAT_00519928      = Secondary UI surface
+DAT_00543d10      = Golfer data array (stride 0x32 per entry?)
+DAT_004d6088      = Golfer stats struct (stride 0x8c per golfer)
+DAT_004d60a8      = Golfer flags/attributes (stride 0x230)
+DAT_004e6d20      = Course tile piece storage (stride 0x74)
+DAT_004e6d70      = Course occupancy grid
+DAT_00575ab0      = Hole/tee data array (stride 0x208 per hole)
+DAT_005794b8      = Terrain height map (stride 0x40 per tile)
+DAT_005794bc      = Terrain height map (secondary)
+DAT_005794c0      = Terrain Y bounds
+DAT_005794c4      = Terrain X bounds
+DAT_005794c8      = Terrain flags
+DAT_005794d0      = Tile type byte
+DAT_005794d1      = Tile subtype byte
+DAT_005794d9      = Tile X (signed byte grid coordinate)
+DAT_005794da      = Tile Y (signed byte grid coordinate)
+DAT_005794db      = Tile Z/height adjustment
+DAT_0057953c      = Tile texture/ground type
+DAT_0057955a      = Hole-to-tile index mapping (stride 0x80)
+DAT_00579566      = Course/hole flags (stride 0x100)
+DAT_0057956e      = Golfer-to-tile mapping (stride 0x80)
+DAT_00579572      = Wind/weather vector component
+DAT_005849e0      = Building/structure data (stride 0x2c)
+DAT_00585850      = Object/entity list
+DAT_0058b198      = UI text color/format code
+DAT_0058bcbc      = Random/X coordinate temp
+DAT_0058bcba      = Random/Y coordinate temp
+DAT_005a34e0      = Current course theme (1=Desert, 2=Tropical, 3=Links, 4=Parkland)
+DAT_005a6d3c      = Current game time / day counter
+DAT_0059e7b8      = Game state flags
+DAT_00822c8c      = Screen width (800 default)
+DAT_00822c90      = Screen height (600 default)
+DAT_0083ad50      = JGLE (Direct3D wrapper) engine object
+
+================================================================================
+3. KEY FUNCTIONS AND THEIR PURPOSES
+================================================================================
+
+--- Entry Point & Main Loop ---
+
+entry() @ 0x004A682F
+  Entry point. Gets Windows version, parses command line, calls startup
+  init functions, then calls FUN_0045BAF0 (WinMain equivalent).
+
+FUN_0045BAF0 @ 0x0045BAF0
+  int FUN_0045baf0(void)
+  WinMain equivalent. Sets screen to 800x600. Loads jgld.dll engine
+  ("Sid Meier's SimGolf"). Creates window with title "Sid Meier's SimGolf".
+  Sets up rendering surfaces, cursor icons (0x66 = golf ball cursor?),
+  initializes timer, sound, and enters main message loop via FUN_00485740.
+
+--- Rendering / Graphics System ---
+
+FUN_00475840 @ 0x00475840
+  void FUN_00475840(char *filename, void *palette, int x, int y, int flags)
+  Loads a .pcx or .pal graphic file and loads palette. Used for all
+  interface sprites, terrain textures, building tiles, etc.
+  Called thousands of times across the codebase.
+
+FUN_004806C0 @ 0x004806C0
+  int FUN_004806c0(x, y, width, height, title, style, ...)
+  Window creation function. Creates the game window.
+
+FUN_004808C0 @ 0x004808C0
+  void __thiscall FUN_004808c0(int this, int mode)
+  Rendering context push/pop or surface management.
+
+FUN_00481870 @ 0x00481870
+  undefined4 FUN_00481870(uint param_1)
+  Timer initialization (8ms ticks?).
+
+FUN_00483BD0 @ 0x00483BD0
+  void FUN_00483bd0(void)
+  Frame buffer clear / render-start function.
+
+FUN_004855B0 @ 0x004855B0
+  int FUN_004855b0(dll_name, window_title, flags)
+  "jgld.dll" loader. Initializes the custom 3D engine DLL.
+
+FUN_00485740 @ 0x00485740
+  void FUN_00485740(void)
+  Main message loop (GetMessage/DispatchMessage). Heart of the game loop.
+
+--- Asset Loading System ---
+
+FUN_0043DBE0 @ 0x0043DBE0
+  void FUN_0043dbe0(void)
+  Massive terrain/building asset loader. Loads all palette files (.pcx)
+  and animation definitions for all four course themes:
+  - Desert (dessignPal, DESclubPal, DESHotelPal, DEScasPal, etc.)
+  - Tropical (TropHouse, TropDriving, TropHotel, TropClub, etc.)
+  - Links (ClubL1, ClubL2, etc.)
+  - Parkland (terrain buttons, layouts, etc.)
+  Also loads animal sprites (crane walk, crane squawk, etc.).
+
+FUN_0043D740 @ 0x0043D740
+  void FUN_0043d740(int animID, char *name, int frameCount, int unk, int unk2)
+  Animation/flic registration function. Registers sprite animations for
+  buildings, landmarks, animals, etc.
+
+--- UI / Text Functions ---
+
+FUN_00404970 @ 0x00404970
+  int FUN_00404970(int fontHeight)
+  Creates font for the game UI. Returns font handle.
+
+FUN_004049D0 @ 0x004049D0
+  void FUN_004049d0(char *text, int x, int y, int color)
+  Draws text on screen at given position.
+
+FUN_00404A20 @ 0x00404A20
+  void FUN_00404a20(char *text, int x, int y, int color)
+  Draws text (right-aligned variant?).
+
+FUN_00404AD0 @ 0x00404AD0
+  void FUN_00404ad0(char *text, int x, int y, int color)
+  Draws text (centered variant?).
+
+FUN_00404B70 @ 0x00404B70
+  void FUN_00404b70(char *text, int x, int y, int color)
+  Draws large title text.
+
+FUN_00404BC0 @ 0x00404BC0
+  void FUN_00404bc0(char *text, int x, int y, int color)
+  Draws text for save/load dialogs.
+
+--- Event / Reaction System (FUN_00469B00) ---
+
+FUN_00469B00 @ 0x00469B00  [6,112 lines]
+  void FUN_00469b00(int eventType, uint param_2, int param_3, uint golferID)
+  THE MAIN EVENT HANDLER / DIALOG SYSTEM. param_1 = event type ID.
+  Generates golfer text reactions (speech bubbles) as strings placed
+  into DAT_0051a068 text buffer. Also calls FUN_004676E0 and
+  FUN_00467560 to update golfer stats.
+
+  Switch cases (eventType values):
+    1  = Shot result (good/bad). Sub-cases check DAT_0057956e[golfer] & 3
+         for lie quality. Strings: "How'd you like that shot",
+         "PARTNER!", "Oh yeah, nothin' but DATA", "Oh yeah, I rock",
+         "Whoa, I am so GOOD", "MYNAME", "...you are soooo GOOD",
+         "...I couldn't do it any better", "...you truly rock",
+         "...what a great shot"
+    2  = Shot result (different quality check). Strings: "Darn, I'm DATA",
+         "Oh darn, you're DATA", "...you're DATA"
+    3  = Shot quality based on terrain (case 0-3 = Great, Oh no, Lovely).
+         Default: "...now I'm DATA"
+    4  = Missed shot / easy shot comments. Strings: "Only you could miss",
+         "This shot looks pretty easy"
+    5/0x25/0x26 = Hazard reactions (water, trees, etc.). Inner switch on
+         DAT_00579566[hole*0x100] values 0-5:
+         0/4: "Eeek, I gotta stay away from the..."
+         1: Comments about trees/hazards
+         2: Water hazard comments
+         3: Sand trap / bunker comments
+         5: Additional hazard reactions
+    6  = "I'll use the slope on this shot"
+    7  = Bridge/terrain comments. "I think I've seen this bridge before",
+         "I love walking over this scenic bridge",
+         "I love riding over this scenic bridge"
+    8  = "Who designed this ... course?"
+    9  = "Hey, that ball almost hit me!"
+    10 = "Must I walk through [object]?" with plural detection
+    0xB = "Check out this [nice/beautiful] [object]"
+    0xC = Object interaction / conversation
+    0xD = Additional terrain interaction
+    0xE = Landscape feature comment
+    0xF = Appreciation of scenery
+    0x10 = More scenery appreciation
+    0x11 = Rude/negative comment about course
+    0x12 = More negative reactions
+    0x13 = Shot strategy comment (uses the slope, hits over water, etc.)
+           Calls FUN_00467A00 which delegates back to this system
+    0x14 = "Gee what an ugly DATA" (ugly terrain/building)
+    0x15 = "I'm tired of waiting for these bums"
+    0x16 = "Hey that's [name]'s house"
+    0x17 = (shared with 0x13 - shot strategy)
+    0x18 = "Yuck, there's something growing here"
+    0x19 = "Ahhh, a cool foamy beverage"
+    0x1A = Tired/exhaustion comments. "I'm starting to get tired"
+
+  Constants used:
+    DAT_0058b198 = color/format code for text (e.g. 0x80006318, 0x800023E8,
+                   0x80007D08)
+    DAT_005409a8 = flag controlling text display (set to 1 when text shown)
+
+--- Ball Physics & Shot Execution ---
+
+FUN_00467A00 @ 0x00467A00  [3,062 lines]
+  void FUN_00467a00(int tileIdx, uint shotType, int param_3)
+  Ball physics/shot execution system. Entry point for processing a shot.
+  Validates tile index bounds (0-0x97) and check game state flags.
+  Handles shot types (0x13 = shot strategy, 0x17 = alternative shot).
+  Delegates to FUN_00469B00 for event reactions.
+  Calls FUN_00406D50 for ball movement.
+
+FUN_004289E0 @ 0x004289E0  [2,831 lines]
+  void FUN_004289e0(void)
+  Course generation / terrain simulation. Uses random values
+  (FUN_0045C1E0) to generate terrain heights, places tiles, sets
+  up golf hole layouts (tee, fairway, green, rough, bunkers, water).
+
+FUN_00407E00 @ 0x00407E00  [2,273 lines]
+  void FUN_00407e00(int holeIdx, int param_2, uint param_3, int param_4)
+  Ball trajectory / flight path simulation. Computes ball position
+  updates based on terrain, wind, obstacles. Accesses terrain height
+  maps and golfer stats arrays.
+
+--- Golfer / AI System ---
+
+FUN_0044FB30 @ 0x0044FB30  [4,026 lines]
+  void FUN_0044fb30(int playerIdx)
+  Golfer AI / turn processing. Main loop over all holes (stride 0x208).
+  Handles pathfinding, club selection, and shot decision-making.
+  Works with DAT_00575ab0 (hole data array). Calls FUN_00474440
+  for 3D positioning/movement.
+
+FUN_004385D0 @ 0x004385D0  [1,999 lines]
+  void FUN_004385d0(int golferIdx, int holeIdx)
+  Golfer skill/attribute screen display. Shows golfer portrait,
+  skill ratings (Length Skill, Accuracy Skill), and handles UI
+  for displaying/upgrading golfer stats.
+
+FUN_00427380 @ 0x00427380  [1,845 lines]
+  void FUN_00427380(uint tileIdx)
+  Course editor / terrain modification tool. Modifies tile properties
+  (elevation, terrain type, features). Updates DAT_00575ad8 (tile
+  edit counts) and DAT_0056ae90 (soil/terrain modification arrays).
+
+--- Course Generation / Initialization ---
+
+FUN_00442180 @ 0x00442180  [1,847 lines]
+  void FUN_00442180(int courseType)
+  Course initialization / game setup. Clears game state arrays
+  (DAT_00575ab0 hole data, DAT_005794b8 terrain data, etc.).
+  Initializes entity lists. Sets up course for play.
+
+--- Economy / Club Management ---
+
+FUN_0044CFF0 @ 0x0044CFF0  [1,713 lines]
+  void FUN_0044cff0(void)
+  End-of-year summary / club management screen. Shows membership
+  revenue, skill upgrades, course ratings. Displays "END of YEAR"
+  screen with financial summary.
+
+FUN_00424120 @ 0x00424120  [1,031 lines]
+  void FUN_00424120(uint param_1, uint param_2, int param_3, int param_4, int param_5)
+  Club member management / golfer hiring. Works with PTR_s_Power_Hitter
+  and PTR_s_Club_Pro personality arrays.
+
+--- Course Theme / Environment ---
+
+FUN_0043D740 (called en masse in FUN_0043DBE0)
+  Registers all themed building animations:
+  - Desert: snack bar, cart rental, hotel, casino, clubhouse, spa,
+    pro shop, putting green, driving range, houses (multiple levels)
+  - Tropical: same building types with palm trees, marina, swim pool
+  - Links: clubhouse levels, stone walls, traditional buildings
+  - Parkland: standard terrain, houses, snack bars
+  Also landmarks: windmills, pagodas, lighthouses, statues, sundials,
+  water mills, Buddha, Civil War cannon/statues, Easter Island heads,
+  barns, stonehenge rocks.
+
+--- Golf Club Types ---
+
+Identified club string constants:
+  s_Driver_004c5220       = "Driver"
+  s_3_Wood_004c5218       = "3 Wood"
+  s_3_Iron_004c5200       = "3 Iron"
+  s_4_Iron_004c51f8       = "4 Iron"
+  s_5_Iron_004c51f0       = "5 Iron"
+  s_6_Iron_004c51e8       = "6 Iron"
+  s_7_Iron_004c51e0       = "7 Iron"
+  s_8_Iron_004c51d8       = "8 Iron"
+  s_9_Iron_004c51d0       = "9 Iron"
+  s_Sand_Wedge_004c51b8   = "Sand Wedge"
+  s_Putter_004c51b0       = "Putter"
+
+--- Golfer Personality Types ---
+
+String pointer arrays:
+  PTR_s_Power_Hitter_004c2c3c  = Array of golfer type strings
+  PTR_s_Club_Pro_004c1464      = Array of golfer type strings
+
+Likely golfer types/skill archetypes: "Power Hitter", "Club Pro",
+"Hacker", "Duffer", "Steady", "Sand/Short Game Expert", etc.
+
+Skills tracked: s_Length_Skill, s_Accuracy_Skill, s_SkillRating,
+also references to "Short Game", "Putting", "Consistency"
+
+--- Misc Notable Strings ---
+
+  s_Sid_Meier_s_SimGolf_004d3910  = "Sid Meier's SimGolf"
+  s_jgld_dll_004d3904             = "jgld.dll"
+  s_Gary_Golf_004d6098            = Default golfer name "Gary Golf"
+  s_MYNAME_004d395c               = Placeholder for player's name
+  s_PARTNER_004d3954              = Placeholder for partner's name
+  s_Hole_004c4978                 = "Hole"
+  s_Loading____004c3fa8           = "Loading..."
+  s_SAVE_GAME__edit_name_then_press_E  = "SAVE GAME: edit name then press ENTER"
+  s_Game_Saved__004c3f00           = "Game Saved!"
+  s_Invalid_File_Name_004c3eec     = "Invalid File Name"
+  s_saved_games__004c3f4c          = "saved games"
+  s_interface_ParklandTerrainButtons  = UI button images
+  s_interface_DesertTerrainButtons    = UI button images
+  s_interface_TropicalTerrainButtons  = UI button images
+  s_interface_LinksTerrainButtons     = UI button images
+  s_interface_golfballhalopage         = Golf ball halo/UI element
+  s_Accuracy_Skill_004c88bc            = "Accuracy Skill"
+  s_Length_Skill_004c88cc              = "Length Skill"
+  s_Golf_Skill_Levels_004c8688         = "Golf Skill Levels"
+  s_END_of_YEAR__004d2a00              = "END of YEAR"
+  s_Before_you_play_your_course_you_m  = Help text for new game
+  s_You_can_also_win_additional_skil   = Help text for skill system
+
+--- Landmarks / Scenery Objects ---
+
+  s_garden_sundial_004c4c44         = "a garden sundial"
+  s_traditional_barn_004c4c28       = "a traditional barn"
+  s_n_authentic_Civil_War_cannon    = "an authentic Civil War cannon"
+  s_ancient_stonehenge_rock         = "an ancient stonehenge rock"
+  s_n_operating_water_mill          = "an operating water mill"
+  s_n_unusual_rock_face             = "an unusual rock face"
+  s_n_authentic_Civil_War_statue    = "an authentic Civil War statue"
+  s_scenic_New_England_lighthouse   = "a scenic New England lighthouse"
+  s_peaceful_Buddha                 = "a peaceful Buddha"
+  s_Dutch_windmill                  = "a Dutch windmill"
+  s_historic_statue                 = "a historic statue"
+  s_haunting_Easter_Island_head     = "a haunting Easter Island head"
+  s_exquisite_pagoda                = "an exquisite pagoda"
+  s_n_historic_Hatteras_lighthouse  = "a historic Hatteras lighthouse"
+
+--- Course Loading Screen Quotes ---
+
+  s_interface_Loading_Screens_Loadin_004c4690 =
+    "Every hole should have a different character"
+  s_interface_Loading_Screens_Loadin_004c4664 =
+    "There should be infinite variety in golf"
+  s_interface_Loading_Screens_Loadin_004c4638 =
+    "All really great golf holes involve a decision"
+  s_interface_Loading_Screens_Loadin_004c460c =
+    "A golf course should provide enough challenge"
+  s_interface_Loading_Screens_Loadin_004c45e0 =
+    "Basic criteria: Safety, Shot values, Variety"
+  s_interface_Loading_Screens_Loadin_004c45b4 =
+    "Golf courses are playfields of imagination"
+  s_interface_Loading_Screens_Loadin_004c4588 =
+    "There are 118 golf holes here. And all are free"
+  s_interface_Loading_Screens_Loadin_004c455c =
+    "When you get those dudes thinking"
+  s_interface_Loading_Screens_Loadin_004c4530 =
+    "The spirit of golf is to dare a hazard"
+  s_interface_Loading_Screens_Loadin_004c4504 =
+    "I hate this stupid course. I'm leaving"
+  s_interface_Loading_Screens_Loadin_004c44d8 =
+    "Hey, that ball almost hit me!"
+  s_interface_Loading_Screens_Loadin_004c44ac =
+    "Every hole should have a different character"
+
+--- UI Screen Flow ---
+
+s_interface_Title_LoadGame_MO_004c8858   = Title screen "Load Game" button
+s_interface_Title_PickAPro_004c883c      = Title screen "Pick A Pro" button
+s_interface_TitleSelDiffMO_004c8778      = Difficulty select button
+s_interface_TitleSelDiffUnSel_004c875c   = Difficulty select (unselected)
+s_interface_Pop_upOK_pcx_004c89f4        = OK popup button
+s_interface_CustGlfBckMale_004c86e4      = Male golfer background
+s_interface_CustGolfBckgrnd_004c8700     = Female golfer background
+
+--- Animal Sprites ---
+
+s_animals_Crane_Walk_004cddf8      = Crane walking animation
+s_animals_Crane_SQ_004cdde4        = Crane squawk animation
+s_animals_Crane_DrinkDown_004cddcc = Crane drinking animation
+s_animals_Crane_DrinkLoop_004cddb4 = Crane drink loop animation
+s_flics_animals_CranePal_004cffd4  = Crane palette
+
+================================================================================
+4. EVENT SYSTEM (FUN_00469B00) INTERNALS
+================================================================================
+
+Signature: void FUN_00469b00(int eventType, uint param_2, int param_3, uint golferID)
+
+The function is a giant switch(eventType) { ... } with string construction.
+Event types identified: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0xB, 0xC, 0xD, 0xE,
+0xF, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x25, 0x26
+
+The string construction pattern is:
+  1. Set pcVar15 to the format string (e.g. "How'd you like that shot")
+  2. Compute string length by walking to null terminator (uVar9 = ~uVar9)
+  3. Copy string into global text buffer at DAT_0051a068
+  4. Set DAT_0058b198 to a color/display code
+  5. Set DAT_005409a8 to 1 to flag text display
+
+DAT_0057956e[golferID*0x80] & 3 = primary check for lie quality
+DAT_00579566[holeID*0x100]     = hole/course flags for context
+DAT_0057955a                   = hole-to-tile mapping
+
+Sub-subsystem calls:
+  FUN_004676E0(golferID, 0)  = update golfer mood/satisfaction
+  FUN_00467560(golferID)     = update golfer skill from experience
+  FUN_0046C940(golferID)     = check/update golf partner status
+
+================================================================================
+5. DATA STRUCTURE SIZES (reconstructed from stride constants)
+================================================================================
+
+Golfer struct:           0x230 bytes (from s_Gary_Golf_004d6098 + idx * 0x230)
+Golfer stats:            0x8c bytes  (from &DAT_004d6088 + idx * 0x8c)
+Course grid tile:        0x40 bytes  (from DAT_005794b8 stride)
+Hole data entry:         0x208 bytes (from DAT_00575ab0 stride)
+Piece/object entry:      0x74 bytes  (from DAT_004e6d20 + idx * 0x74)
+Tile mapping entry:      0x80 bytes  (from DAT_0057955a stride)
+Hole flags entry:        0x100 bytes (from DAT_00579566 stride)
+Building struct:         0x2c bytes  (from DAT_005849e0 stride)
+Map dimensions:          0x98 tiles? (check param_1 < 0x97 bounds check)
+Course grid:             0x100 per axis? (from DAT_005794 c0-c4 stride * 0x40)
+
+================================================================================
+6. FUNCTION SIZE DISTRIBUTION (top 20)
+================================================================================
+  FUN_00469B00.c     6,112 lines  - Event/dialog reaction system
+  FUN_0044FB30.c     4,026 lines  - Golfer AI / turn processing
+  FUN_00467A00.c     3,062 lines  - Ball physics / shot execution
+  FUN_004289E0.c     2,831 lines  - Course generation / terrain sim
+  FUN_00407E00.c     2,273 lines  - Ball trajectory / flight sim
+  FUN_0043DBE0.c     2,011 lines  - Asset/terrain/building loading
+  FUN_004385D0.c     1,999 lines  - Golfer skill display / stats UI
+  FUN_00442180.c     1,847 lines  - Game init / course setup
+  FUN_00427380.c     1,845 lines  - Course editor / terrain tool
+  FUN_0044CFF0.c     1,713 lines  - End-of-year / club management
+  FUN_0045C560.c     1,594 lines  - Course rating / scoring
+  FUN_004266B0.c     1,548 lines  - Pathfinding / navigation
+  FUN_00453330.c     1,510 lines  - Course designer UI
+  FUN_00456BE0.c     1,460 lines  - Save/load game system
+  FUN_0043B610.c     1,444 lines  - Building placement system
+  FUN_0046F550.c     1,412 lines  - Sound / audio system
+  FUN_0045FD80.c     1,224 lines  - Hole scoring / statistics
+  FUN_00424120.c     1,031 lines  - Member/golfer management
+  FUN_004659A0.c     1,025 lines  - UI screen management
+  FUN_0040E720.c     1,012 lines  - Time/day cycle system
+
+================================================================================
+7. NOTABLE MAGIC NUMBERS
+================================================================================
+
+0x800 = Screen width (default)
+0x600 = Screen height (default)
+0x98  = Max tile index (152 tiles per axis?)
+0x40  = Terrain grid stride (64 bytes per tile)
+0x80  = Tile mapping stride
+0x100 = Hole flags stride (256 bytes)
+0x230 = Golfer struct stride (560 bytes)
+0x208 = Hole data stride (520 bytes)
+0x8c  = Golfer stats struct size (140 bytes)
+0x74  = Object/piece entry size
+0x2c  = Building struct size
+0x0b  = Grid width per half-tile?
+0x3e800000 = Float constant (likely 0.25f or 1/4 in IEEE 754)
+0x80000000, 0x80007FFF, 0x80007D08, 0x800023E8, 0x80006318 = UI color codes
+0x400000 = Window style flag
+0xffffffff = Invalid/uninitialized sentinel value
