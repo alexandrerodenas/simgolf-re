@@ -124,12 +124,25 @@ class TileStruct:
         'cull_flag',    # [0x208]
         'edge_flag',    # [0x209]
         'render_flag',  # [0x20A]
-        'tex_sel_0',    # [0x210]
-        'tex_sel_1',    # [0x228]
-        'render_flag_2',# [0x234]
-        'render_flag_3',# [0x23A]
-        'grid_x',       # position X dans la grille (ajouté par le constructeur)
-        'grid_y',       # position Y dans la grille
+        'tex_sel_0',    # [0x210] wall type 0
+        'tex_sel_1',    # [0x228] wall type 4 (also used as variation)
+        'render_flag_2',# [0x234] wall flag 0
+        'render_flag_3',# [0x23A] wall flag 3
+        'grid_x',       # [0x30] position X dans la grille
+        'grid_y',       # [0x2C] position Y dans la grille
+        # Champs ajoutés pour les thunks
+        'field_0x24',   # [0x24] tile type/ID (20 = water => culled)
+        'field_0x28',   # [0x28] render flags/texture selector
+        'sub_obj_count',# [0x44] nombre de sous-objets
+        'sub_obj',      # [0x48+] liste de SubObjData (stride 0x38)
+        'corner_heights',# [0x74+] 8 coins (chacun 3 floats, stride 0x38)
+        'wall_types',   # [0x210,0x214,0x218,0x21c] 4 ints (types de mur)
+        'wall_flags',   # [0x234-0x237] 4 bytes (flags de mur)
+        'render_flag_236',# [0x236]
+        'render_flag_238',# [0x238]
+        'field_0x240',  # [0x240] texture base index
+        'normals_dirty',# [0x244] flag de saleté des normales
+        'field_0x220',  # [0x220] wall type 2
     )
 
     def __init__(self, ptr: int = 0, grid_x: int = 0, grid_y: int = 0):
@@ -151,6 +164,19 @@ class TileStruct:
         self.render_flag_3 = 0
         self.grid_x = grid_x
         self.grid_y = grid_y
+        # Nouveaux champs
+        self.field_0x24 = 0
+        self.field_0x28 = 0
+        self.sub_obj_count = 0
+        self.sub_obj = []  # list of dicts
+        self.corner_heights = [0.0] * 24  # 8 corners * 3 axes (x,y,z)
+        self.wall_types = [0, 0, 0, 0]
+        self.wall_flags = [0, 0, 0, 0]
+        self.render_flag_236 = 0
+        self.render_flag_238 = 0
+        self.field_0x240 = 0
+        self.normals_dirty = 0
+        self.field_0x220 = 0
 
 
 class Terrain:
