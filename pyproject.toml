@@ -1,0 +1,17 @@
+[project]
+name = "simgolf-re"
+version = "0.1.0"
+description = "SimGolf Reverse Engineering — Traduction Python du code décompilé"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+include = ["src_py/"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
